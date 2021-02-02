@@ -17,10 +17,6 @@ class ReceiveRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
      */
     private $type = '';
-    /**
-     * Generated from protobuf field <code>string qgroup = 2;</code>
-     */
-    private $qgroup = '';
 
     /**
      * Constructor.
@@ -29,7 +25,6 @@ class ReceiveRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $type
-     *     @type string $qgroup
      * }
      */
     public function __construct($data = NULL) {
@@ -55,28 +50,6 @@ class ReceiveRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->type = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>string qgroup = 2;</code>
-     * @return string
-     */
-    public function getQgroup()
-    {
-        return $this->qgroup;
-    }
-
-    /**
-     * Generated from protobuf field <code>string qgroup = 2;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setQgroup($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->qgroup = $var;
 
         return $this;
     }

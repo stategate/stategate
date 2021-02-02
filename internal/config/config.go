@@ -6,14 +6,13 @@ import (
 )
 
 type Config struct {
-	Port        int64         `yaml:"port"`
-	Debug       bool          `yaml:"debug"`
-	RegoPolicy  string        `yaml:"rego_policy"`
-	RegoQuery   string        `yaml:"rego_query"`
-	JwksURI     string        `yaml:"jwks_uri"`
-	Repos       []*repo.Entry `yaml:"repos"`
-	NatsURL     string        `yaml:"nats_url"`
-	NatsCluster string        `yaml:"nats_cluster"`
+	Port       int64         `yaml:"port"`
+	Debug      bool          `yaml:"debug"`
+	RegoPolicy string        `yaml:"rego_policy"`
+	RegoQuery  string        `yaml:"rego_query"`
+	JwksURI    string        `yaml:"jwks_uri"`
+	Repos      []*repo.Entry `yaml:"repos"`
+	NatsURL    string        `yaml:"nats_url"`
 }
 
 func (c *Config) SetDefaults() {
@@ -32,8 +31,5 @@ func (c *Config) SetDefaults() {
 	}
 	if c.NatsURL == "" {
 		c.NatsURL = stan.DefaultNatsURL
-	}
-	if c.NatsCluster == "" {
-		c.NatsCluster = "test-cluster"
 	}
 }

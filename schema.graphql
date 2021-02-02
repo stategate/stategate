@@ -23,7 +23,6 @@ input CloudEventInput {
 
 input ReceiveRequest {
     type: String!
-    qgroup: String
 }
 
 type Mutation {

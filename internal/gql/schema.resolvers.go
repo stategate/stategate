@@ -5,14 +5,14 @@ package gql
 
 import (
 	"context"
+
 	"github.com/99designs/gqlgen/graphql"
+	"github.com/autom8ter/cloudEventsProxy/gen/gql/go/generated"
+	"github.com/autom8ter/cloudEventsProxy/gen/gql/go/model"
 	cloudEventsProxy "github.com/autom8ter/cloudEventsProxy/gen/grpc/go"
 	"github.com/vektah/gqlparser/v2/gqlerror"
 	"go.uber.org/zap"
 	"google.golang.org/protobuf/types/known/structpb"
-
-	"github.com/autom8ter/cloudEventsProxy/gen/gql/go/generated"
-	"github.com/autom8ter/cloudEventsProxy/gen/gql/go/model"
 )
 
 func (r *mutationResolver) Send(ctx context.Context, input model.CloudEventInput) (*string, error) {
@@ -76,14 +76,9 @@ func (r *mutationResolver) Request(ctx context.Context, input model.CloudEventIn
 
 func (r *subscriptionResolver) Receive(ctx context.Context, input model.ReceiveRequest) (<-chan *model.CloudEvent, error) {
 	ch := make(chan *model.CloudEvent)
-	i := &cloudEventsProxy.ReceiveRequest{
-		Type:   input.Type,
-		Qgroup: "",
-	}
-	if input.Qgroup != nil {
-		i.Qgroup = *input.Qgroup
-	}
-	stream, err := r.client.Receive(ctx, i)
+	stream, err := r.client.Receive(ctx, &cloudEventsProxy.ReceiveRequest{
+		Type: input.Type,
+	})
 	if err != nil {
 		return nil, &gqlerror.Error{
 			Message: err.Error(),

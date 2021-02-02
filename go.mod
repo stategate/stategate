@@ -6,8 +6,8 @@ require (
 	github.com/99designs/gqlgen v0.13.0
 	github.com/autom8ter/kubego v0.0.13 // indirect
 	github.com/autom8ter/machine v1.1.2
-	github.com/cloudevents/sdk-go/protocol/nats/v2 v2.3.1
-	github.com/cloudevents/sdk-go/v2 v2.3.1
+	github.com/cloudevents/sdk-go/protocol/nats/v2 v2.3.1 // indirect
+	github.com/cloudevents/sdk-go/v2 v2.3.1 // indirect
 	github.com/golang/protobuf v1.4.3
 	github.com/google/uuid v1.2.0 // indirect
 	github.com/gorilla/websocket v1.4.2
@@ -16,6 +16,7 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.1.0
 	github.com/lestrrat-go/jwx v1.0.8
 	github.com/mwitkow/go-proto-validators v0.3.2
+	github.com/nats-io/nats.go v1.10.0
 	github.com/nats-io/nuid v1.0.1
 	github.com/nats-io/stan.go v0.7.0
 	github.com/open-policy-agent/opa v0.26.0

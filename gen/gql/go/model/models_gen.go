@@ -20,6 +20,5 @@ type CloudEventInput struct {
 }
 
 type ReceiveRequest struct {
-	Type   string  `json:"type"`
-	Qgroup *string `json:"qgroup"`
+	Type string `json:"type"`
 }

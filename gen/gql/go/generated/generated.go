@@ -272,7 +272,6 @@ input CloudEventInput {
 
 input ReceiveRequest {
     type: String!
-    qgroup: String
 }
 
 type Mutation {
@@ -1946,14 +1945,6 @@ func (ec *executionContext) unmarshalInputReceiveRequest(ctx context.Context, ob
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("type"))
 			it.Type, err = ec.unmarshalNString2string(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "qgroup":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("qgroup"))
-			it.Qgroup, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}

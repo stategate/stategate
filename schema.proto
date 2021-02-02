@@ -33,12 +33,9 @@ service CloudEventsService {
   }
 }
 
-
 message ReceiveRequest {
   string type =1[(validator.field) = {regex : "^.{1,225}$"}];
-  string qgroup =2;
 }
-
 
 message CloudEventInput {
   string source = 1[(validator.field) = {regex : "^.{1,225}$"}];

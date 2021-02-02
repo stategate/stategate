@@ -67,8 +67,7 @@ proto.cloudEventsProxy.ReceiveRequest.prototype.toObject = function(opt_includeI
  */
 proto.cloudEventsProxy.ReceiveRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    qgroup: jspb.Message.getFieldWithDefault(msg, 2, "")
+    type: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -109,10 +108,6 @@ proto.cloudEventsProxy.ReceiveRequest.deserializeBinaryFromReader = function(msg
       var value = /** @type {string} */ (reader.readString());
       msg.setType(value);
       break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setQgroup(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -149,13 +144,6 @@ proto.cloudEventsProxy.ReceiveRequest.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = message.getQgroup();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
 };
 
 
@@ -171,21 +159,6 @@ proto.cloudEventsProxy.ReceiveRequest.prototype.getType = function() {
 /** @param {string} value */
 proto.cloudEventsProxy.ReceiveRequest.prototype.setType = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string qgroup = 2;
- * @return {string}
- */
-proto.cloudEventsProxy.ReceiveRequest.prototype.getQgroup = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/** @param {string} value */
-proto.cloudEventsProxy.ReceiveRequest.prototype.setQgroup = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

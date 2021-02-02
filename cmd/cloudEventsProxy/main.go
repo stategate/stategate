@@ -16,8 +16,8 @@ import (
 	grpc_validator "github.com/grpc-ecosystem/go-grpc-middleware/validator"
 	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/nats-io/nats.go"
 	"github.com/nats-io/nuid"
-	"github.com/nats-io/stan.go"
 	"github.com/open-policy-agent/opa/rego"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/soheilhy/cmux"
@@ -154,7 +154,7 @@ func run(ctx context.Context) {
 			grpc_recovery.StreamServerInterceptor(),
 		),
 	}
-	nconn, err := natsConn(c.NatsCluster, c.NatsURL)
+	nconn, err := natsConn(c.NatsURL)
 	if err != nil {
 		lgger.Error(err.Error())
 		return
@@ -256,23 +256,23 @@ func run(ctx context.Context) {
 	lgger.Debug("shutdown successful")
 }
 
-func natsConn(clusterID, url string) (stan.Conn, error) {
+func natsConn(url string) (*nats.Conn, error) {
 	hostname, err := os.Hostname()
 	if err != nil {
 		return nil, err
 	}
 	hostname = strings.NewReplacer(".", "_").Replace(hostname)
 	var (
-		conn stan.Conn
+		conn *nats.Conn
 	)
 	for i := 0; i < 10; i++ {
 		var (
 			clientID = fmt.Sprintf("%s-%s", hostname, nuid.Next())
 		)
-		conn, err = stan.Connect(
-			clusterID,
-			clientID,
-			stan.NatsURL(url))
+		conn, err = nats.Connect(
+			url,
+			nats.Name(clientID),
+		)
 		if err == nil && conn != nil {
 			break
 		}
