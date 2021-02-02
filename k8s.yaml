@@ -1,0 +1,118 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cloudEventsProxy-system
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cloudEventsProxy-admin-sa
+automountServiceAccountToken: true
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cloudEventsProxy-admin-cluster-role
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cloudEventsProxy-admin-cluster-role-binding
+  namespace: cloudEventsProxy-system
+subjects:
+  - kind: ServiceAccount
+    name: cloudEventsProxy-admin-sa
+    namespace: cloudEventsProxy-system
+roleRef:
+  kind: ClusterRole
+  name: cloudEventsProxy-admin-cluster-role
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cloudEventsProxy-configmap
+data:
+  cloudEventsProxy.yaml: |
+    port: 8820
+    debug: true
+    rego_policy: |-
+      package cloudEventsProxy.authz
+      default allow = true
+    rego_query: "data.cloudEventsProxy.authz.allow"
+    jwks_uri: ""
+    repos:
+      - name: "stable"
+        url: "https://charts.helm.sh/stable"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudEventsProxy-admin-service
+  namespace: cloudEventsProxy-system
+  labels:
+    app: cloudEventsProxy-admin
+spec:
+  ports:
+  - port: 8820
+    name: api
+  - port: 8821
+    name: admin
+  clusterIP: None
+  selector:
+    app: cloudEventsProxy-admin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudEventsProxy-admin
+  namespace: cloudEventsProxy-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudEventsProxy-admin
+  template:
+    metadata:
+      labels:
+        app: cloudEventsProxy-admin
+    spec:
+      serviceAccountName: cloudEventsProxy-admin-sa
+      containers:
+        - name: cloudEventsProxy-admin
+          env:
+            - name: CLOUD_EVENTS_PROXY_CONFIG
+              value: /tmp/cloudEventsProxy.yaml
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          image: "colemanword/helmproxy:v0.1.1"
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8821
+          - containerPort: 8820
+          volumeMounts:
+            - name: config
+              mountPath: "/tmp"
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: cloudEventsProxy-configmap
+
+---

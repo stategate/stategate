@@ -1,0 +1,36 @@
+# time is an rfc 3339 timestamp
+scalar Time
+# Map is a k/v map where the key is a string and the value is any value
+scalar Map
+
+
+type CloudEvent {
+    id: String!
+    source: String!
+    type: String!
+    subject: String
+    attributes: Map
+    data: Map!
+}
+
+input CloudEventInput {
+    source: String!
+    type: String!
+    subject: String
+    attributes: Map
+    data: Map!
+}
+
+input ReceiveRequest {
+    type: String!
+    qgroup: String
+}
+
+type Mutation {
+    send(input: CloudEventInput!): String
+    request(input: CloudEventInput!): CloudEvent!
+}
+
+type Subscription {
+    receive(input: ReceiveRequest!): CloudEvent!
+}

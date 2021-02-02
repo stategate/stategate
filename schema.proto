@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package cloudEventsProxy;
+
+option go_package = "cloudEventsProxy";
+
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+
+
+service CloudEventsService {
+  rpc Send(CloudEventInput) returns(google.protobuf.Empty){
+    option (google.api.http) = {
+      post: "/send"
+      body: "*"
+    };
+  }
+  rpc Request(CloudEventInput) returns(CloudEvent){
+    option (google.api.http) = {
+      post: "/request"
+      body: "*"
+    };
+  }
+  rpc Receive(ReceiveRequest) returns(stream CloudEvent){
+    option (google.api.http) = {
+      post: "/receive"
+      body: "*"
+    };
+  }
+}
+
+
+message ReceiveRequest {
+  string type =1[(validator.field) = {regex : "^.{1,225}$"}];
+  string qgroup =2;
+}
+
+
+message CloudEventInput {
+  string source = 1[(validator.field) = {regex : "^.{1,225}$"}];
+  string type = 2[(validator.field) = {regex : "^.{1,225}$"}];
+  string subject =3;
+  google.protobuf.Struct attributes = 4;
+  google.protobuf.Struct data = 5[(validator.field) = {msg_exists : true}];
+}
+
+message CloudEvent {
+  string id = 1[(validator.field) = {regex : "^.{1,225}$"}];
+  string source = 2[(validator.field) = {regex : "^.{1,225}$"}];
+  string type = 3[(validator.field) = {regex : "^.{1,225}$"}];
+  string subject =4;
+  google.protobuf.Struct attributes = 5;
+  google.protobuf.Struct data = 6[(validator.field) = {msg_exists : true}];
+}

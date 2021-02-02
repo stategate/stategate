@@ -1,0 +1,77 @@
+excludes:
+  - vendor
+  - gen
+  - .idea
+  - .git
+  - gql
+  - helpers
+  - docs
+  - bin
+
+protoc:
+  version: 3.6.1
+  allow_unused_imports: true
+  includes:
+    - /usr/local/include
+    - /opt/include
+    - /usr/local/bin
+
+
+lint:
+  rules:
+    remove:
+      - FILE_OPTIONS_REQUIRE_JAVA_MULTIPLE_FILES
+      - FILE_OPTIONS_REQUIRE_JAVA_PACKAGE
+      - FILE_OPTIONS_REQUIRE_JAVA_OUTER_CLASSNAME
+      - FILE_OPTIONS_REQUIRE_PHP_NAMESPACE
+      - FILE_OPTIONS_REQUIRE_OBJC_CLASS_PREFIX
+      - FILE_OPTIONS_REQUIRE_CSHARP_CLASS_PREFIX
+      - FILE_OPTIONS_EQUAL_GO_PACKAGE_PB_SUFFIX
+
+generate:
+  go_options:
+    import_path: github.com/autom8ter/cloudEventsProxy
+
+  plugins:
+    - name: go
+      type: go
+      flags: plugins=grpc
+      output: gen/grpc/go
+    - name: grpc-gateway
+      output: gen/grpc/go
+    - name: govalidators
+      type: go
+      output: gen/grpc/go
+    - name: doc
+      flags: html,index.html
+      output: docs
+    - name: python
+      flags: plugins=grpc
+      output: gen/grpc/python
+    - name: php
+      flags: plugins=grpc
+      output: gen/grpc/php
+    - name: csharp
+      #flags: plugins=grpc
+      output: gen/grpc/csharp
+    - name: java
+      #flags: plugins=grpc
+      output: gen/grpc/java
+    # Node
+    - name: js
+      flags: import_style=commonjs,binary
+      output: gen/grpc/node
+    - name: ts
+      flags: service=grpc-node
+      output: gen/grpc/node
+#    - name: grpc
+#      output: gen/grpc/node
+#      path: grpc_node_plugin
+    # Browser
+    - name: js
+      flags: import_style=commonjs
+      output: gen/grpc/web
+    - name: grpc-web
+      flags: import_style=commonjs+dts,mode=grpcwebtext
+      output: gen/grpc/web
+      path: /usr/local/bin/grpc_web_plugin
