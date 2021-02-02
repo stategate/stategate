@@ -30,9 +30,7 @@ A secure API gateway for CloudEvents applications
 - [x] Structured JSON Logs
 - [x] Metrics Server(prometheus/pprof)
 - [x] [Sample Kubernetes Manifest](k8s.yaml)
-    
-## Helpful Links
-- [Helm Docs](https://helm.sh/docs/)
+  
 
 ## Command Line
 
