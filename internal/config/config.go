@@ -16,7 +16,7 @@ type Policy struct {
 
 func (c *Config) SetDefaults() {
 	if c.Port == 0 {
-		c.Port = 8820
+		c.Port = 8080
 	}
 	if c.RequestPolicy == nil {
 		c.RequestPolicy = &Policy{}

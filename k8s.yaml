@@ -10,7 +10,7 @@ metadata:
 data:
   eventgate.yaml: |
     # port to serve on. metrics server is started on this port+1
-    port: 8820
+    port: 8080
     # enable debug logs
     debug: true
     nats_url: "0.0.0.0:4444"
@@ -43,9 +43,9 @@ metadata:
     app: eventgate
 spec:
   ports:
-  - port: 8820
+  - port: 8080
     name: api
-  - port: 8821
+  - port: 8081
     name: admin
   clusterIP: None
   selector:
@@ -84,11 +84,11 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-          image: "colemanword/eventgate:v0.0.3"
+          image: "colemanword/eventgate:v0.0.4"
           imagePullPolicy: Always
           ports:
-          - containerPort: 8821
-          - containerPort: 8820
+          - containerPort: 8081
+          - containerPort: 8080
           volumeMounts:
             - name: config
               mountPath: "/tmp"

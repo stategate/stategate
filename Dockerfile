@@ -14,7 +14,7 @@ FROM alpine
 RUN apk add --no-cache ca-certificates
 COPY --from=build-env /go/bin/ /usr/local/bin/
 WORKDIR /workspace
-EXPOSE 8820
-EXPOSE 8821
+EXPOSE 8080
+EXPOSE 8081
 
 ENTRYPOINT ["/usr/local/bin/eventgate"]
