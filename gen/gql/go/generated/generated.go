@@ -47,6 +47,7 @@ type ComplexityRoot struct {
 	CloudEvent struct {
 		Attributes  func(childComplexity int) int
 		Data        func(childComplexity int) int
+		Dataschema  func(childComplexity int) int
 		ID          func(childComplexity int) int
 		Source      func(childComplexity int) int
 		Specversion func(childComplexity int) int
@@ -104,6 +105,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.CloudEvent.Data(childComplexity), true
+
+	case "CloudEvent.dataschema":
+		if e.complexity.CloudEvent.Dataschema == nil {
+			break
+		}
+
+		return e.complexity.CloudEvent.Dataschema(childComplexity), true
 
 	case "CloudEvent.id":
 		if e.complexity.CloudEvent.ID == nil {
@@ -276,6 +284,7 @@ type CloudEvent {
     source: String!
     type: String!
     subject: String
+    dataschema: String
     attributes: Map
     data: Map!
     time: Time!
@@ -286,6 +295,7 @@ input CloudEventInput {
     source: String!
     type: String!
     subject: String
+    dataschema: String
     attributes: Map
     data: Map!
 }
@@ -567,6 +577,38 @@ func (ec *executionContext) _CloudEvent_subject(ctx context.Context, field graph
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
 		return obj.Subject, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _CloudEvent_dataschema(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:     "CloudEvent",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Dataschema, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -2011,6 +2053,14 @@ func (ec *executionContext) unmarshalInputCloudEventInput(ctx context.Context, o
 			if err != nil {
 				return it, err
 			}
+		case "dataschema":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("dataschema"))
+			it.Dataschema, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "attributes":
 			var err error
 
@@ -2102,6 +2152,8 @@ func (ec *executionContext) _CloudEvent(ctx context.Context, sel ast.SelectionSe
 			}
 		case "subject":
 			out.Values[i] = ec._CloudEvent_subject(ctx, field, obj)
+		case "dataschema":
+			out.Values[i] = ec._CloudEvent_dataschema(ctx, field, obj)
 		case "attributes":
 			out.Values[i] = ec._CloudEvent_attributes(ctx, field, obj)
 		case "data":

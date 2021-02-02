@@ -240,6 +240,7 @@ proto.eventgate.CloudEventInput.toObject = function(includeInstance, msg) {
     source: jspb.Message.getFieldWithDefault(msg, 2, ""),
     type: jspb.Message.getFieldWithDefault(msg, 3, ""),
     subject: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    dataschema: jspb.Message.getFieldWithDefault(msg, 5, ""),
     attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
@@ -295,11 +296,15 @@ proto.eventgate.CloudEventInput.deserializeBinaryFromReader = function(msg, read
       msg.setSubject(value);
       break;
     case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDataschema(value);
+      break;
+    case 6:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setAttributes(value);
       break;
-    case 6:
+    case 7:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setData(value);
@@ -361,10 +366,17 @@ proto.eventgate.CloudEventInput.serializeBinaryToWriter = function(message, writ
       f
     );
   }
+  f = message.getDataschema();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
   f = message.getAttributes();
   if (f != null) {
     writer.writeMessage(
-      5,
+      6,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
@@ -372,7 +384,7 @@ proto.eventgate.CloudEventInput.serializeBinaryToWriter = function(message, writ
   f = message.getData();
   if (f != null) {
     writer.writeMessage(
-      6,
+      7,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
@@ -441,18 +453,33 @@ proto.eventgate.CloudEventInput.prototype.setSubject = function(value) {
 
 
 /**
- * optional google.protobuf.Struct attributes = 5;
+ * optional string dataschema = 5;
+ * @return {string}
+ */
+proto.eventgate.CloudEventInput.prototype.getDataschema = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/** @param {string} value */
+proto.eventgate.CloudEventInput.prototype.setDataschema = function(value) {
+  jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct attributes = 6;
  * @return {?proto.google.protobuf.Struct}
  */
 proto.eventgate.CloudEventInput.prototype.getAttributes = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 5));
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 6));
 };
 
 
 /** @param {?proto.google.protobuf.Struct|undefined} value */
 proto.eventgate.CloudEventInput.prototype.setAttributes = function(value) {
-  jspb.Message.setWrapperField(this, 5, value);
+  jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -466,23 +493,23 @@ proto.eventgate.CloudEventInput.prototype.clearAttributes = function() {
  * @return {!boolean}
  */
 proto.eventgate.CloudEventInput.prototype.hasAttributes = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * optional google.protobuf.Struct data = 6;
+ * optional google.protobuf.Struct data = 7;
  * @return {?proto.google.protobuf.Struct}
  */
 proto.eventgate.CloudEventInput.prototype.getData = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 6));
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 7));
 };
 
 
 /** @param {?proto.google.protobuf.Struct|undefined} value */
 proto.eventgate.CloudEventInput.prototype.setData = function(value) {
-  jspb.Message.setWrapperField(this, 6, value);
+  jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -496,7 +523,7 @@ proto.eventgate.CloudEventInput.prototype.clearData = function() {
  * @return {!boolean}
  */
 proto.eventgate.CloudEventInput.prototype.hasData = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -552,6 +579,7 @@ proto.eventgate.CloudEvent.toObject = function(includeInstance, msg) {
     source: jspb.Message.getFieldWithDefault(msg, 3, ""),
     type: jspb.Message.getFieldWithDefault(msg, 4, ""),
     subject: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    dataschema: jspb.Message.getFieldWithDefault(msg, 6, ""),
     attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
@@ -612,16 +640,20 @@ proto.eventgate.CloudEvent.deserializeBinaryFromReader = function(msg, reader) {
       msg.setSubject(value);
       break;
     case 6:
-      var value = new google_protobuf_struct_pb.Struct;
-      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setAttributes(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDataschema(value);
       break;
     case 7:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setData(value);
+      msg.setAttributes(value);
       break;
     case 8:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setData(value);
+      break;
+    case 9:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTime(value);
@@ -690,15 +722,14 @@ proto.eventgate.CloudEvent.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getAttributes();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getDataschema();
+  if (f.length > 0) {
+    writer.writeString(
       6,
-      f,
-      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getData();
+  f = message.getAttributes();
   if (f != null) {
     writer.writeMessage(
       7,
@@ -706,10 +737,18 @@ proto.eventgate.CloudEvent.serializeBinaryToWriter = function(message, writer) {
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
-  f = message.getTime();
+  f = message.getData();
   if (f != null) {
     writer.writeMessage(
       8,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      9,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -793,18 +832,33 @@ proto.eventgate.CloudEvent.prototype.setSubject = function(value) {
 
 
 /**
- * optional google.protobuf.Struct attributes = 6;
+ * optional string dataschema = 6;
+ * @return {string}
+ */
+proto.eventgate.CloudEvent.prototype.getDataschema = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/** @param {string} value */
+proto.eventgate.CloudEvent.prototype.setDataschema = function(value) {
+  jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct attributes = 7;
  * @return {?proto.google.protobuf.Struct}
  */
 proto.eventgate.CloudEvent.prototype.getAttributes = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 6));
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 7));
 };
 
 
 /** @param {?proto.google.protobuf.Struct|undefined} value */
 proto.eventgate.CloudEvent.prototype.setAttributes = function(value) {
-  jspb.Message.setWrapperField(this, 6, value);
+  jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -818,23 +872,23 @@ proto.eventgate.CloudEvent.prototype.clearAttributes = function() {
  * @return {!boolean}
  */
 proto.eventgate.CloudEvent.prototype.hasAttributes = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
- * optional google.protobuf.Struct data = 7;
+ * optional google.protobuf.Struct data = 8;
  * @return {?proto.google.protobuf.Struct}
  */
 proto.eventgate.CloudEvent.prototype.getData = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 7));
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 8));
 };
 
 
 /** @param {?proto.google.protobuf.Struct|undefined} value */
 proto.eventgate.CloudEvent.prototype.setData = function(value) {
-  jspb.Message.setWrapperField(this, 7, value);
+  jspb.Message.setWrapperField(this, 8, value);
 };
 
 
@@ -848,23 +902,23 @@ proto.eventgate.CloudEvent.prototype.clearData = function() {
  * @return {!boolean}
  */
 proto.eventgate.CloudEvent.prototype.hasData = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
- * optional google.protobuf.Timestamp time = 8;
+ * optional google.protobuf.Timestamp time = 9;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.eventgate.CloudEvent.prototype.getTime = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
 };
 
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.eventgate.CloudEvent.prototype.setTime = function(value) {
-  jspb.Message.setWrapperField(this, 8, value);
+  jspb.Message.setWrapperField(this, 9, value);
 };
 
 
@@ -878,7 +932,7 @@ proto.eventgate.CloudEvent.prototype.clearTime = function() {
  * @return {!boolean}
  */
 proto.eventgate.CloudEvent.prototype.hasTime = function() {
-  return jspb.Message.getField(this, 8) != null;
+  return jspb.Message.getField(this, 9) != null;
 };
 
 

@@ -34,15 +34,19 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
      */
     private $subject = '';
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 6;</code>
+     * Generated from protobuf field <code>string dataschema = 6;</code>
+     */
+    private $dataschema = '';
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 7;</code>
      */
     private $attributes = null;
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 7 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct data = 8 [(.validator.field) = {</code>
      */
     private $data = null;
     /**
-     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 9;</code>
      */
     private $time = null;
 
@@ -57,6 +61,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
      *     @type string $source
      *     @type string $type
      *     @type string $subject
+     *     @type string $dataschema
      *     @type \Google\Protobuf\Struct $attributes
      *     @type \Google\Protobuf\Struct $data
      *     @type \Google\Protobuf\Timestamp $time
@@ -178,7 +183,29 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 6;</code>
+     * Generated from protobuf field <code>string dataschema = 6;</code>
+     * @return string
+     */
+    public function getDataschema()
+    {
+        return $this->dataschema;
+    }
+
+    /**
+     * Generated from protobuf field <code>string dataschema = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDataschema($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dataschema = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 7;</code>
      * @return \Google\Protobuf\Struct
      */
     public function getAttributes()
@@ -187,7 +214,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 7;</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
@@ -200,7 +227,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 7 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct data = 8 [(.validator.field) = {</code>
      * @return \Google\Protobuf\Struct
      */
     public function getData()
@@ -209,7 +236,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 7 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct data = 8 [(.validator.field) = {</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
@@ -222,7 +249,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 9;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getTime()
@@ -231,7 +258,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 9;</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

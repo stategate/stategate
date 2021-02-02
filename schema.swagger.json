@@ -136,6 +136,9 @@
         "subject": {
           "type": "string"
         },
+        "dataschema": {
+          "type": "string"
+        },
         "attributes": {
           "type": "object"
         },
@@ -161,6 +164,9 @@
           "type": "string"
         },
         "subject": {
+          "type": "string"
+        },
+        "dataschema": {
           "type": "string"
         },
         "attributes": {

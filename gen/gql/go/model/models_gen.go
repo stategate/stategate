@@ -12,6 +12,7 @@ type CloudEvent struct {
 	Source      string                 `json:"source"`
 	Type        string                 `json:"type"`
 	Subject     *string                `json:"subject"`
+	Dataschema  *string                `json:"dataschema"`
 	Attributes  map[string]interface{} `json:"attributes"`
 	Data        map[string]interface{} `json:"data"`
 	Time        time.Time              `json:"time"`
@@ -22,6 +23,7 @@ type CloudEventInput struct {
 	Source      string                 `json:"source"`
 	Type        string                 `json:"type"`
 	Subject     *string                `json:"subject"`
+	Dataschema  *string                `json:"dataschema"`
 	Attributes  map[string]interface{} `json:"attributes"`
 	Data        map[string]interface{} `json:"data"`
 }

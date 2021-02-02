@@ -30,11 +30,15 @@ class CloudEventInput extends \Google\Protobuf\Internal\Message
      */
     private $subject = '';
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 5;</code>
+     * Generated from protobuf field <code>string dataschema = 5;</code>
+     */
+    private $dataschema = '';
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 6;</code>
      */
     private $attributes = null;
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 6 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct data = 7 [(.validator.field) = {</code>
      */
     private $data = null;
 
@@ -48,6 +52,7 @@ class CloudEventInput extends \Google\Protobuf\Internal\Message
      *     @type string $source
      *     @type string $type
      *     @type string $subject
+     *     @type string $dataschema
      *     @type \Google\Protobuf\Struct $attributes
      *     @type \Google\Protobuf\Struct $data
      * }
@@ -146,7 +151,29 @@ class CloudEventInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 5;</code>
+     * Generated from protobuf field <code>string dataschema = 5;</code>
+     * @return string
+     */
+    public function getDataschema()
+    {
+        return $this->dataschema;
+    }
+
+    /**
+     * Generated from protobuf field <code>string dataschema = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDataschema($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dataschema = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 6;</code>
      * @return \Google\Protobuf\Struct
      */
     public function getAttributes()
@@ -155,7 +182,7 @@ class CloudEventInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 6;</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
@@ -168,7 +195,7 @@ class CloudEventInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 6 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct data = 7 [(.validator.field) = {</code>
      * @return \Google\Protobuf\Struct
      */
     public function getData()
@@ -177,7 +204,7 @@ class CloudEventInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 6 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct data = 7 [(.validator.field) = {</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */

@@ -27,6 +27,9 @@ func (r *mutationResolver) Send(ctx context.Context, input model.CloudEventInput
 	if input.Subject != nil {
 		i.Subject = *input.Subject
 	}
+	if input.Dataschema != nil {
+		i.Dataschema = *input.Dataschema
+	}
 	if input.Attributes != nil {
 		m, _ := structpb.NewStruct(input.Attributes)
 		i.Attributes = m
@@ -56,6 +59,9 @@ func (r *mutationResolver) Request(ctx context.Context, input model.CloudEventIn
 	}
 	if input.Subject != nil {
 		i.Subject = *input.Subject
+	}
+	if input.Dataschema != nil {
+		i.Dataschema = *input.Dataschema
 	}
 	if input.Attributes != nil {
 		m, _ := structpb.NewStruct(input.Attributes)

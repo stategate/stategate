@@ -746,28 +746,38 @@ public final class Schema {
         getSubjectBytes();
 
     /**
-     * <code>.google.protobuf.Struct attributes = 5;</code>
+     * <code>string dataschema = 5;</code>
+     */
+    java.lang.String getDataschema();
+    /**
+     * <code>string dataschema = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getDataschemaBytes();
+
+    /**
+     * <code>.google.protobuf.Struct attributes = 6;</code>
      */
     boolean hasAttributes();
     /**
-     * <code>.google.protobuf.Struct attributes = 5;</code>
+     * <code>.google.protobuf.Struct attributes = 6;</code>
      */
     com.google.protobuf.Struct getAttributes();
     /**
-     * <code>.google.protobuf.Struct attributes = 5;</code>
+     * <code>.google.protobuf.Struct attributes = 6;</code>
      */
     com.google.protobuf.StructOrBuilder getAttributesOrBuilder();
 
     /**
-     * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
      */
     boolean hasData();
     /**
-     * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.Struct getData();
     /**
-     * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.StructOrBuilder getDataOrBuilder();
   }
@@ -788,6 +798,7 @@ public final class Schema {
       source_ = "";
       type_ = "";
       subject_ = "";
+      dataschema_ = "";
     }
 
     @java.lang.Override
@@ -839,6 +850,12 @@ public final class Schema {
               break;
             }
             case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              dataschema_ = s;
+              break;
+            }
+            case 50: {
               com.google.protobuf.Struct.Builder subBuilder = null;
               if (attributes_ != null) {
                 subBuilder = attributes_.toBuilder();
@@ -851,7 +868,7 @@ public final class Schema {
 
               break;
             }
-            case 50: {
+            case 58: {
               com.google.protobuf.Struct.Builder subBuilder = null;
               if (data_ != null) {
                 subBuilder = data_.toBuilder();
@@ -1032,43 +1049,77 @@ public final class Schema {
       }
     }
 
-    public static final int ATTRIBUTES_FIELD_NUMBER = 5;
+    public static final int DATASCHEMA_FIELD_NUMBER = 5;
+    private volatile java.lang.Object dataschema_;
+    /**
+     * <code>string dataschema = 5;</code>
+     */
+    public java.lang.String getDataschema() {
+      java.lang.Object ref = dataschema_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        dataschema_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string dataschema = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDataschemaBytes() {
+      java.lang.Object ref = dataschema_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        dataschema_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ATTRIBUTES_FIELD_NUMBER = 6;
     private com.google.protobuf.Struct attributes_;
     /**
-     * <code>.google.protobuf.Struct attributes = 5;</code>
+     * <code>.google.protobuf.Struct attributes = 6;</code>
      */
     public boolean hasAttributes() {
       return attributes_ != null;
     }
     /**
-     * <code>.google.protobuf.Struct attributes = 5;</code>
+     * <code>.google.protobuf.Struct attributes = 6;</code>
      */
     public com.google.protobuf.Struct getAttributes() {
       return attributes_ == null ? com.google.protobuf.Struct.getDefaultInstance() : attributes_;
     }
     /**
-     * <code>.google.protobuf.Struct attributes = 5;</code>
+     * <code>.google.protobuf.Struct attributes = 6;</code>
      */
     public com.google.protobuf.StructOrBuilder getAttributesOrBuilder() {
       return getAttributes();
     }
 
-    public static final int DATA_FIELD_NUMBER = 6;
+    public static final int DATA_FIELD_NUMBER = 7;
     private com.google.protobuf.Struct data_;
     /**
-     * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
      */
     public boolean hasData() {
       return data_ != null;
     }
     /**
-     * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.Struct getData() {
       return data_ == null ? com.google.protobuf.Struct.getDefaultInstance() : data_;
     }
     /**
-     * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.StructOrBuilder getDataOrBuilder() {
       return getData();
@@ -1100,11 +1151,14 @@ public final class Schema {
       if (!getSubjectBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, subject_);
       }
+      if (!getDataschemaBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, dataschema_);
+      }
       if (attributes_ != null) {
-        output.writeMessage(5, getAttributes());
+        output.writeMessage(6, getAttributes());
       }
       if (data_ != null) {
-        output.writeMessage(6, getData());
+        output.writeMessage(7, getData());
       }
       unknownFields.writeTo(output);
     }
@@ -1127,13 +1181,16 @@ public final class Schema {
       if (!getSubjectBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, subject_);
       }
+      if (!getDataschemaBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, dataschema_);
+      }
       if (attributes_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, getAttributes());
+          .computeMessageSize(6, getAttributes());
       }
       if (data_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, getData());
+          .computeMessageSize(7, getData());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1159,6 +1216,8 @@ public final class Schema {
           .equals(other.getType());
       result = result && getSubject()
           .equals(other.getSubject());
+      result = result && getDataschema()
+          .equals(other.getDataschema());
       result = result && (hasAttributes() == other.hasAttributes());
       if (hasAttributes()) {
         result = result && getAttributes()
@@ -1188,6 +1247,8 @@ public final class Schema {
       hash = (53 * hash) + getType().hashCode();
       hash = (37 * hash) + SUBJECT_FIELD_NUMBER;
       hash = (53 * hash) + getSubject().hashCode();
+      hash = (37 * hash) + DATASCHEMA_FIELD_NUMBER;
+      hash = (53 * hash) + getDataschema().hashCode();
       if (hasAttributes()) {
         hash = (37 * hash) + ATTRIBUTES_FIELD_NUMBER;
         hash = (53 * hash) + getAttributes().hashCode();
@@ -1337,6 +1398,8 @@ public final class Schema {
 
         subject_ = "";
 
+        dataschema_ = "";
+
         if (attributesBuilder_ == null) {
           attributes_ = null;
         } else {
@@ -1379,6 +1442,7 @@ public final class Schema {
         result.source_ = source_;
         result.type_ = type_;
         result.subject_ = subject_;
+        result.dataschema_ = dataschema_;
         if (attributesBuilder_ == null) {
           result.attributes_ = attributes_;
         } else {
@@ -1451,6 +1515,10 @@ public final class Schema {
         }
         if (!other.getSubject().isEmpty()) {
           subject_ = other.subject_;
+          onChanged();
+        }
+        if (!other.getDataschema().isEmpty()) {
+          dataschema_ = other.dataschema_;
           onChanged();
         }
         if (other.hasAttributes()) {
@@ -1764,17 +1832,86 @@ public final class Schema {
         return this;
       }
 
+      private java.lang.Object dataschema_ = "";
+      /**
+       * <code>string dataschema = 5;</code>
+       */
+      public java.lang.String getDataschema() {
+        java.lang.Object ref = dataschema_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          dataschema_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string dataschema = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDataschemaBytes() {
+        java.lang.Object ref = dataschema_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          dataschema_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string dataschema = 5;</code>
+       */
+      public Builder setDataschema(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        dataschema_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string dataschema = 5;</code>
+       */
+      public Builder clearDataschema() {
+        
+        dataschema_ = getDefaultInstance().getDataschema();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string dataschema = 5;</code>
+       */
+      public Builder setDataschemaBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        dataschema_ = value;
+        onChanged();
+        return this;
+      }
+
       private com.google.protobuf.Struct attributes_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> attributesBuilder_;
       /**
-       * <code>.google.protobuf.Struct attributes = 5;</code>
+       * <code>.google.protobuf.Struct attributes = 6;</code>
        */
       public boolean hasAttributes() {
         return attributesBuilder_ != null || attributes_ != null;
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 5;</code>
+       * <code>.google.protobuf.Struct attributes = 6;</code>
        */
       public com.google.protobuf.Struct getAttributes() {
         if (attributesBuilder_ == null) {
@@ -1784,7 +1921,7 @@ public final class Schema {
         }
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 5;</code>
+       * <code>.google.protobuf.Struct attributes = 6;</code>
        */
       public Builder setAttributes(com.google.protobuf.Struct value) {
         if (attributesBuilder_ == null) {
@@ -1800,7 +1937,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 5;</code>
+       * <code>.google.protobuf.Struct attributes = 6;</code>
        */
       public Builder setAttributes(
           com.google.protobuf.Struct.Builder builderForValue) {
@@ -1814,7 +1951,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 5;</code>
+       * <code>.google.protobuf.Struct attributes = 6;</code>
        */
       public Builder mergeAttributes(com.google.protobuf.Struct value) {
         if (attributesBuilder_ == null) {
@@ -1832,7 +1969,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 5;</code>
+       * <code>.google.protobuf.Struct attributes = 6;</code>
        */
       public Builder clearAttributes() {
         if (attributesBuilder_ == null) {
@@ -1846,7 +1983,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 5;</code>
+       * <code>.google.protobuf.Struct attributes = 6;</code>
        */
       public com.google.protobuf.Struct.Builder getAttributesBuilder() {
         
@@ -1854,7 +1991,7 @@ public final class Schema {
         return getAttributesFieldBuilder().getBuilder();
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 5;</code>
+       * <code>.google.protobuf.Struct attributes = 6;</code>
        */
       public com.google.protobuf.StructOrBuilder getAttributesOrBuilder() {
         if (attributesBuilder_ != null) {
@@ -1865,7 +2002,7 @@ public final class Schema {
         }
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 5;</code>
+       * <code>.google.protobuf.Struct attributes = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
@@ -1885,13 +2022,13 @@ public final class Schema {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> dataBuilder_;
       /**
-       * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
        */
       public boolean hasData() {
         return dataBuilder_ != null || data_ != null;
       }
       /**
-       * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.Struct getData() {
         if (dataBuilder_ == null) {
@@ -1901,7 +2038,7 @@ public final class Schema {
         }
       }
       /**
-       * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
        */
       public Builder setData(com.google.protobuf.Struct value) {
         if (dataBuilder_ == null) {
@@ -1917,7 +2054,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
        */
       public Builder setData(
           com.google.protobuf.Struct.Builder builderForValue) {
@@ -1931,7 +2068,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
        */
       public Builder mergeData(com.google.protobuf.Struct value) {
         if (dataBuilder_ == null) {
@@ -1949,7 +2086,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
        */
       public Builder clearData() {
         if (dataBuilder_ == null) {
@@ -1963,7 +2100,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.Struct.Builder getDataBuilder() {
         
@@ -1971,7 +2108,7 @@ public final class Schema {
         return getDataFieldBuilder().getBuilder();
       }
       /**
-       * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.StructOrBuilder getDataOrBuilder() {
         if (dataBuilder_ != null) {
@@ -1982,7 +2119,7 @@ public final class Schema {
         }
       }
       /**
-       * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
@@ -2105,41 +2242,51 @@ public final class Schema {
         getSubjectBytes();
 
     /**
-     * <code>.google.protobuf.Struct attributes = 6;</code>
+     * <code>string dataschema = 6;</code>
+     */
+    java.lang.String getDataschema();
+    /**
+     * <code>string dataschema = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getDataschemaBytes();
+
+    /**
+     * <code>.google.protobuf.Struct attributes = 7;</code>
      */
     boolean hasAttributes();
     /**
-     * <code>.google.protobuf.Struct attributes = 6;</code>
+     * <code>.google.protobuf.Struct attributes = 7;</code>
      */
     com.google.protobuf.Struct getAttributes();
     /**
-     * <code>.google.protobuf.Struct attributes = 6;</code>
+     * <code>.google.protobuf.Struct attributes = 7;</code>
      */
     com.google.protobuf.StructOrBuilder getAttributesOrBuilder();
 
     /**
-     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
      */
     boolean hasData();
     /**
-     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.Struct getData();
     /**
-     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.StructOrBuilder getDataOrBuilder();
 
     /**
-     * <code>.google.protobuf.Timestamp time = 8;</code>
+     * <code>.google.protobuf.Timestamp time = 9;</code>
      */
     boolean hasTime();
     /**
-     * <code>.google.protobuf.Timestamp time = 8;</code>
+     * <code>.google.protobuf.Timestamp time = 9;</code>
      */
     com.google.protobuf.Timestamp getTime();
     /**
-     * <code>.google.protobuf.Timestamp time = 8;</code>
+     * <code>.google.protobuf.Timestamp time = 9;</code>
      */
     com.google.protobuf.TimestampOrBuilder getTimeOrBuilder();
   }
@@ -2161,6 +2308,7 @@ public final class Schema {
       source_ = "";
       type_ = "";
       subject_ = "";
+      dataschema_ = "";
     }
 
     @java.lang.Override
@@ -2218,6 +2366,12 @@ public final class Schema {
               break;
             }
             case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              dataschema_ = s;
+              break;
+            }
+            case 58: {
               com.google.protobuf.Struct.Builder subBuilder = null;
               if (attributes_ != null) {
                 subBuilder = attributes_.toBuilder();
@@ -2230,7 +2384,7 @@ public final class Schema {
 
               break;
             }
-            case 58: {
+            case 66: {
               com.google.protobuf.Struct.Builder subBuilder = null;
               if (data_ != null) {
                 subBuilder = data_.toBuilder();
@@ -2243,7 +2397,7 @@ public final class Schema {
 
               break;
             }
-            case 66: {
+            case 74: {
               com.google.protobuf.Timestamp.Builder subBuilder = null;
               if (time_ != null) {
                 subBuilder = time_.toBuilder();
@@ -2458,64 +2612,98 @@ public final class Schema {
       }
     }
 
-    public static final int ATTRIBUTES_FIELD_NUMBER = 6;
+    public static final int DATASCHEMA_FIELD_NUMBER = 6;
+    private volatile java.lang.Object dataschema_;
+    /**
+     * <code>string dataschema = 6;</code>
+     */
+    public java.lang.String getDataschema() {
+      java.lang.Object ref = dataschema_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        dataschema_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string dataschema = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDataschemaBytes() {
+      java.lang.Object ref = dataschema_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        dataschema_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ATTRIBUTES_FIELD_NUMBER = 7;
     private com.google.protobuf.Struct attributes_;
     /**
-     * <code>.google.protobuf.Struct attributes = 6;</code>
+     * <code>.google.protobuf.Struct attributes = 7;</code>
      */
     public boolean hasAttributes() {
       return attributes_ != null;
     }
     /**
-     * <code>.google.protobuf.Struct attributes = 6;</code>
+     * <code>.google.protobuf.Struct attributes = 7;</code>
      */
     public com.google.protobuf.Struct getAttributes() {
       return attributes_ == null ? com.google.protobuf.Struct.getDefaultInstance() : attributes_;
     }
     /**
-     * <code>.google.protobuf.Struct attributes = 6;</code>
+     * <code>.google.protobuf.Struct attributes = 7;</code>
      */
     public com.google.protobuf.StructOrBuilder getAttributesOrBuilder() {
       return getAttributes();
     }
 
-    public static final int DATA_FIELD_NUMBER = 7;
+    public static final int DATA_FIELD_NUMBER = 8;
     private com.google.protobuf.Struct data_;
     /**
-     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
      */
     public boolean hasData() {
       return data_ != null;
     }
     /**
-     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.Struct getData() {
       return data_ == null ? com.google.protobuf.Struct.getDefaultInstance() : data_;
     }
     /**
-     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.StructOrBuilder getDataOrBuilder() {
       return getData();
     }
 
-    public static final int TIME_FIELD_NUMBER = 8;
+    public static final int TIME_FIELD_NUMBER = 9;
     private com.google.protobuf.Timestamp time_;
     /**
-     * <code>.google.protobuf.Timestamp time = 8;</code>
+     * <code>.google.protobuf.Timestamp time = 9;</code>
      */
     public boolean hasTime() {
       return time_ != null;
     }
     /**
-     * <code>.google.protobuf.Timestamp time = 8;</code>
+     * <code>.google.protobuf.Timestamp time = 9;</code>
      */
     public com.google.protobuf.Timestamp getTime() {
       return time_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : time_;
     }
     /**
-     * <code>.google.protobuf.Timestamp time = 8;</code>
+     * <code>.google.protobuf.Timestamp time = 9;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
       return getTime();
@@ -2550,14 +2738,17 @@ public final class Schema {
       if (!getSubjectBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, subject_);
       }
+      if (!getDataschemaBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, dataschema_);
+      }
       if (attributes_ != null) {
-        output.writeMessage(6, getAttributes());
+        output.writeMessage(7, getAttributes());
       }
       if (data_ != null) {
-        output.writeMessage(7, getData());
+        output.writeMessage(8, getData());
       }
       if (time_ != null) {
-        output.writeMessage(8, getTime());
+        output.writeMessage(9, getTime());
       }
       unknownFields.writeTo(output);
     }
@@ -2583,17 +2774,20 @@ public final class Schema {
       if (!getSubjectBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, subject_);
       }
+      if (!getDataschemaBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, dataschema_);
+      }
       if (attributes_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, getAttributes());
+          .computeMessageSize(7, getAttributes());
       }
       if (data_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, getData());
+          .computeMessageSize(8, getData());
       }
       if (time_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, getTime());
+          .computeMessageSize(9, getTime());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2621,6 +2815,8 @@ public final class Schema {
           .equals(other.getType());
       result = result && getSubject()
           .equals(other.getSubject());
+      result = result && getDataschema()
+          .equals(other.getDataschema());
       result = result && (hasAttributes() == other.hasAttributes());
       if (hasAttributes()) {
         result = result && getAttributes()
@@ -2657,6 +2853,8 @@ public final class Schema {
       hash = (53 * hash) + getType().hashCode();
       hash = (37 * hash) + SUBJECT_FIELD_NUMBER;
       hash = (53 * hash) + getSubject().hashCode();
+      hash = (37 * hash) + DATASCHEMA_FIELD_NUMBER;
+      hash = (53 * hash) + getDataschema().hashCode();
       if (hasAttributes()) {
         hash = (37 * hash) + ATTRIBUTES_FIELD_NUMBER;
         hash = (53 * hash) + getAttributes().hashCode();
@@ -2812,6 +3010,8 @@ public final class Schema {
 
         subject_ = "";
 
+        dataschema_ = "";
+
         if (attributesBuilder_ == null) {
           attributes_ = null;
         } else {
@@ -2861,6 +3061,7 @@ public final class Schema {
         result.source_ = source_;
         result.type_ = type_;
         result.subject_ = subject_;
+        result.dataschema_ = dataschema_;
         if (attributesBuilder_ == null) {
           result.attributes_ = attributes_;
         } else {
@@ -2942,6 +3143,10 @@ public final class Schema {
         }
         if (!other.getSubject().isEmpty()) {
           subject_ = other.subject_;
+          onChanged();
+        }
+        if (!other.getDataschema().isEmpty()) {
+          dataschema_ = other.dataschema_;
           onChanged();
         }
         if (other.hasAttributes()) {
@@ -3327,17 +3532,86 @@ public final class Schema {
         return this;
       }
 
+      private java.lang.Object dataschema_ = "";
+      /**
+       * <code>string dataschema = 6;</code>
+       */
+      public java.lang.String getDataschema() {
+        java.lang.Object ref = dataschema_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          dataschema_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string dataschema = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDataschemaBytes() {
+        java.lang.Object ref = dataschema_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          dataschema_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string dataschema = 6;</code>
+       */
+      public Builder setDataschema(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        dataschema_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string dataschema = 6;</code>
+       */
+      public Builder clearDataschema() {
+        
+        dataschema_ = getDefaultInstance().getDataschema();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string dataschema = 6;</code>
+       */
+      public Builder setDataschemaBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        dataschema_ = value;
+        onChanged();
+        return this;
+      }
+
       private com.google.protobuf.Struct attributes_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> attributesBuilder_;
       /**
-       * <code>.google.protobuf.Struct attributes = 6;</code>
+       * <code>.google.protobuf.Struct attributes = 7;</code>
        */
       public boolean hasAttributes() {
         return attributesBuilder_ != null || attributes_ != null;
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 6;</code>
+       * <code>.google.protobuf.Struct attributes = 7;</code>
        */
       public com.google.protobuf.Struct getAttributes() {
         if (attributesBuilder_ == null) {
@@ -3347,7 +3621,7 @@ public final class Schema {
         }
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 6;</code>
+       * <code>.google.protobuf.Struct attributes = 7;</code>
        */
       public Builder setAttributes(com.google.protobuf.Struct value) {
         if (attributesBuilder_ == null) {
@@ -3363,7 +3637,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 6;</code>
+       * <code>.google.protobuf.Struct attributes = 7;</code>
        */
       public Builder setAttributes(
           com.google.protobuf.Struct.Builder builderForValue) {
@@ -3377,7 +3651,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 6;</code>
+       * <code>.google.protobuf.Struct attributes = 7;</code>
        */
       public Builder mergeAttributes(com.google.protobuf.Struct value) {
         if (attributesBuilder_ == null) {
@@ -3395,7 +3669,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 6;</code>
+       * <code>.google.protobuf.Struct attributes = 7;</code>
        */
       public Builder clearAttributes() {
         if (attributesBuilder_ == null) {
@@ -3409,7 +3683,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 6;</code>
+       * <code>.google.protobuf.Struct attributes = 7;</code>
        */
       public com.google.protobuf.Struct.Builder getAttributesBuilder() {
         
@@ -3417,7 +3691,7 @@ public final class Schema {
         return getAttributesFieldBuilder().getBuilder();
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 6;</code>
+       * <code>.google.protobuf.Struct attributes = 7;</code>
        */
       public com.google.protobuf.StructOrBuilder getAttributesOrBuilder() {
         if (attributesBuilder_ != null) {
@@ -3428,7 +3702,7 @@ public final class Schema {
         }
       }
       /**
-       * <code>.google.protobuf.Struct attributes = 6;</code>
+       * <code>.google.protobuf.Struct attributes = 7;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
@@ -3448,13 +3722,13 @@ public final class Schema {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> dataBuilder_;
       /**
-       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
        */
       public boolean hasData() {
         return dataBuilder_ != null || data_ != null;
       }
       /**
-       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.Struct getData() {
         if (dataBuilder_ == null) {
@@ -3464,7 +3738,7 @@ public final class Schema {
         }
       }
       /**
-       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
        */
       public Builder setData(com.google.protobuf.Struct value) {
         if (dataBuilder_ == null) {
@@ -3480,7 +3754,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
        */
       public Builder setData(
           com.google.protobuf.Struct.Builder builderForValue) {
@@ -3494,7 +3768,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
        */
       public Builder mergeData(com.google.protobuf.Struct value) {
         if (dataBuilder_ == null) {
@@ -3512,7 +3786,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
        */
       public Builder clearData() {
         if (dataBuilder_ == null) {
@@ -3526,7 +3800,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.Struct.Builder getDataBuilder() {
         
@@ -3534,7 +3808,7 @@ public final class Schema {
         return getDataFieldBuilder().getBuilder();
       }
       /**
-       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.StructOrBuilder getDataOrBuilder() {
         if (dataBuilder_ != null) {
@@ -3545,7 +3819,7 @@ public final class Schema {
         }
       }
       /**
-       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct data = 8 [(.validator.field) = { ... }</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
@@ -3565,13 +3839,13 @@ public final class Schema {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> timeBuilder_;
       /**
-       * <code>.google.protobuf.Timestamp time = 8;</code>
+       * <code>.google.protobuf.Timestamp time = 9;</code>
        */
       public boolean hasTime() {
         return timeBuilder_ != null || time_ != null;
       }
       /**
-       * <code>.google.protobuf.Timestamp time = 8;</code>
+       * <code>.google.protobuf.Timestamp time = 9;</code>
        */
       public com.google.protobuf.Timestamp getTime() {
         if (timeBuilder_ == null) {
@@ -3581,7 +3855,7 @@ public final class Schema {
         }
       }
       /**
-       * <code>.google.protobuf.Timestamp time = 8;</code>
+       * <code>.google.protobuf.Timestamp time = 9;</code>
        */
       public Builder setTime(com.google.protobuf.Timestamp value) {
         if (timeBuilder_ == null) {
@@ -3597,7 +3871,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp time = 8;</code>
+       * <code>.google.protobuf.Timestamp time = 9;</code>
        */
       public Builder setTime(
           com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -3611,7 +3885,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp time = 8;</code>
+       * <code>.google.protobuf.Timestamp time = 9;</code>
        */
       public Builder mergeTime(com.google.protobuf.Timestamp value) {
         if (timeBuilder_ == null) {
@@ -3629,7 +3903,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp time = 8;</code>
+       * <code>.google.protobuf.Timestamp time = 9;</code>
        */
       public Builder clearTime() {
         if (timeBuilder_ == null) {
@@ -3643,7 +3917,7 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>.google.protobuf.Timestamp time = 8;</code>
+       * <code>.google.protobuf.Timestamp time = 9;</code>
        */
       public com.google.protobuf.Timestamp.Builder getTimeBuilder() {
         
@@ -3651,7 +3925,7 @@ public final class Schema {
         return getTimeFieldBuilder().getBuilder();
       }
       /**
-       * <code>.google.protobuf.Timestamp time = 8;</code>
+       * <code>.google.protobuf.Timestamp time = 9;</code>
        */
       public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
         if (timeBuilder_ != null) {
@@ -3662,7 +3936,7 @@ public final class Schema {
         }
       }
       /**
-       * <code>.google.protobuf.Timestamp time = 8;</code>
+       * <code>.google.protobuf.Timestamp time = 9;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -3761,19 +4035,20 @@ public final class Schema {
       "uf/empty.proto\0326github.com/mwitkow/go-pr" +
       "oto-validators/validator.proto\"A\n\016Receiv" +
       "eRequest\022\036\n\004type\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,225}$" +
-      "\022\017\n\007subject\030\002 \001(\t\"\347\001\n\017CloudEventInput\022%\n" +
+      "\022\017\n\007subject\030\002 \001(\t\"\373\001\n\017CloudEventInput\022%\n" +
       "\013specversion\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022 \n\006" +
       "source\030\002 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\036\n\004type\030\003" +
       " \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\017\n\007subject\030\004 \001(\t\022" +
-      "+\n\nattributes\030\005 \001(\0132\027.google.protobuf.St" +
-      "ruct\022-\n\004data\030\006 \001(\0132\027.google.protobuf.Str" +
-      "uctB\006\342\337\037\002 \001\"\252\002\n\nCloudEvent\022%\n\013specversio" +
-      "n\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\034\n\002id\030\002 \001(\tB\020\342" +
-      "\337\037\014\n\n^.{1,225}$\022 \n\006source\030\003 \001(\tB\020\342\337\037\014\n\n^" +
-      ".{1,225}$\022\036\n\004type\030\004 \001(\tB\020\342\337\037\014\n\n^.{1,225}" +
-      "$\022\017\n\007subject\030\005 \001(\t\022+\n\nattributes\030\006 \001(\0132\027" +
-      ".google.protobuf.Struct\022-\n\004data\030\007 \001(\0132\027." +
-      "google.protobuf.StructB\006\342\337\037\002 \001\022(\n\004time\030\010" +
+      "\022\n\ndataschema\030\005 \001(\t\022+\n\nattributes\030\006 \001(\0132" +
+      "\027.google.protobuf.Struct\022-\n\004data\030\007 \001(\0132\027" +
+      ".google.protobuf.StructB\006\342\337\037\002 \001\"\276\002\n\nClou" +
+      "dEvent\022%\n\013specversion\030\001 \001(\tB\020\342\337\037\014\n\n^.{1," +
+      "225}$\022\034\n\002id\030\002 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022 \n\006s" +
+      "ource\030\003 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\036\n\004type\030\004 " +
+      "\001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\017\n\007subject\030\005 \001(\t\022\022" +
+      "\n\ndataschema\030\006 \001(\t\022+\n\nattributes\030\007 \001(\0132\027" +
+      ".google.protobuf.Struct\022-\n\004data\030\010 \001(\0132\027." +
+      "google.protobuf.StructB\006\342\337\037\002 \001\022(\n\004time\030\t" +
       " \001(\0132\032.google.protobuf.Timestamp2\211\002\n\022Clo" +
       "udEventsService\022L\n\004Send\022\032.eventgate.Clou" +
       "dEventInput\032\026.google.protobuf.Empty\"\020\202\323\344" +
@@ -3813,13 +4088,13 @@ public final class Schema {
     internal_static_eventgate_CloudEventInput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_eventgate_CloudEventInput_descriptor,
-        new java.lang.String[] { "Specversion", "Source", "Type", "Subject", "Attributes", "Data", });
+        new java.lang.String[] { "Specversion", "Source", "Type", "Subject", "Dataschema", "Attributes", "Data", });
     internal_static_eventgate_CloudEvent_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_eventgate_CloudEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_eventgate_CloudEvent_descriptor,
-        new java.lang.String[] { "Specversion", "Id", "Source", "Type", "Subject", "Attributes", "Data", "Time", });
+        new java.lang.String[] { "Specversion", "Id", "Source", "Type", "Subject", "Dataschema", "Attributes", "Data", "Time", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(com.google.api.AnnotationsProto.http);

@@ -30,31 +30,32 @@ namespace Eventgate {
             "L2FueS5wcm90bxobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5LnByb3RvGjZnaXRo",
             "dWIuY29tL213aXRrb3cvZ28tcHJvdG8tdmFsaWRhdG9ycy92YWxpZGF0b3Iu",
             "cHJvdG8iQQoOUmVjZWl2ZVJlcXVlc3QSHgoEdHlwZRgBIAEoCUIQ4t8fDAoK",
-            "Xi57MSwyMjV9JBIPCgdzdWJqZWN0GAIgASgJIucBCg9DbG91ZEV2ZW50SW5w",
+            "Xi57MSwyMjV9JBIPCgdzdWJqZWN0GAIgASgJIvsBCg9DbG91ZEV2ZW50SW5w",
             "dXQSJQoLc3BlY3ZlcnNpb24YASABKAlCEOLfHwwKCl4uezEsMjI1fSQSIAoG",
             "c291cmNlGAIgASgJQhDi3x8MCgpeLnsxLDIyNX0kEh4KBHR5cGUYAyABKAlC",
-            "EOLfHwwKCl4uezEsMjI1fSQSDwoHc3ViamVjdBgEIAEoCRIrCgphdHRyaWJ1",
-            "dGVzGAUgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdBItCgRkYXRhGAYg",
-            "ASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABIqoCCgpDbG91",
-            "ZEV2ZW50EiUKC3NwZWN2ZXJzaW9uGAEgASgJQhDi3x8MCgpeLnsxLDIyNX0k",
-            "EhwKAmlkGAIgASgJQhDi3x8MCgpeLnsxLDIyNX0kEiAKBnNvdXJjZRgDIAEo",
-            "CUIQ4t8fDAoKXi57MSwyMjV9JBIeCgR0eXBlGAQgASgJQhDi3x8MCgpeLnsx",
-            "LDIyNX0kEg8KB3N1YmplY3QYBSABKAkSKwoKYXR0cmlidXRlcxgGIAEoCzIX",
-            "Lmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSLQoEZGF0YRgHIAEoCzIXLmdvb2ds",
-            "ZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgARIoCgR0aW1lGAggASgLMhouZ29v",
-            "Z2xlLnByb3RvYnVmLlRpbWVzdGFtcDKJAgoSQ2xvdWRFdmVudHNTZXJ2aWNl",
-            "EkwKBFNlbmQSGi5ldmVudGdhdGUuQ2xvdWRFdmVudElucHV0GhYuZ29vZ2xl",
-            "LnByb3RvYnVmLkVtcHR5IhCC0+STAgoiBS9zZW5kOgEqElEKB1JlcXVlc3QS",
-            "Gi5ldmVudGdhdGUuQ2xvdWRFdmVudElucHV0GhUuZXZlbnRnYXRlLkNsb3Vk",
-            "RXZlbnQiE4LT5JMCDSIIL3JlcXVlc3Q6ASoSUgoHUmVjZWl2ZRIZLmV2ZW50",
-            "Z2F0ZS5SZWNlaXZlUmVxdWVzdBoVLmV2ZW50Z2F0ZS5DbG91ZEV2ZW50IhOC",
-            "0+STAg0iCC9yZWNlaXZlOgEqMAFCC1oJZXZlbnRnYXRlYgZwcm90bzM="));
+            "EOLfHwwKCl4uezEsMjI1fSQSDwoHc3ViamVjdBgEIAEoCRISCgpkYXRhc2No",
+            "ZW1hGAUgASgJEisKCmF0dHJpYnV0ZXMYBiABKAsyFy5nb29nbGUucHJvdG9i",
+            "dWYuU3RydWN0Ei0KBGRhdGEYByABKAsyFy5nb29nbGUucHJvdG9idWYuU3Ry",
+            "dWN0Qgbi3x8CIAEivgIKCkNsb3VkRXZlbnQSJQoLc3BlY3ZlcnNpb24YASAB",
+            "KAlCEOLfHwwKCl4uezEsMjI1fSQSHAoCaWQYAiABKAlCEOLfHwwKCl4uezEs",
+            "MjI1fSQSIAoGc291cmNlGAMgASgJQhDi3x8MCgpeLnsxLDIyNX0kEh4KBHR5",
+            "cGUYBCABKAlCEOLfHwwKCl4uezEsMjI1fSQSDwoHc3ViamVjdBgFIAEoCRIS",
+            "CgpkYXRhc2NoZW1hGAYgASgJEisKCmF0dHJpYnV0ZXMYByABKAsyFy5nb29n",
+            "bGUucHJvdG9idWYuU3RydWN0Ei0KBGRhdGEYCCABKAsyFy5nb29nbGUucHJv",
+            "dG9idWYuU3RydWN0Qgbi3x8CIAESKAoEdGltZRgJIAEoCzIaLmdvb2dsZS5w",
+            "cm90b2J1Zi5UaW1lc3RhbXAyiQIKEkNsb3VkRXZlbnRzU2VydmljZRJMCgRT",
+            "ZW5kEhouZXZlbnRnYXRlLkNsb3VkRXZlbnRJbnB1dBoWLmdvb2dsZS5wcm90",
+            "b2J1Zi5FbXB0eSIQgtPkkwIKIgUvc2VuZDoBKhJRCgdSZXF1ZXN0EhouZXZl",
+            "bnRnYXRlLkNsb3VkRXZlbnRJbnB1dBoVLmV2ZW50Z2F0ZS5DbG91ZEV2ZW50",
+            "IhOC0+STAg0iCC9yZXF1ZXN0OgEqElIKB1JlY2VpdmUSGS5ldmVudGdhdGUu",
+            "UmVjZWl2ZVJlcXVlc3QaFS5ldmVudGdhdGUuQ2xvdWRFdmVudCITgtPkkwIN",
+            "IggvcmVjZWl2ZToBKjABQgtaCWV2ZW50Z2F0ZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.ReceiveRequest), global::Eventgate.ReceiveRequest.Parser, new[]{ "Type", "Subject" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.CloudEventInput), global::Eventgate.CloudEventInput.Parser, new[]{ "Specversion", "Source", "Type", "Subject", "Attributes", "Data" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.CloudEvent), global::Eventgate.CloudEvent.Parser, new[]{ "Specversion", "Id", "Source", "Type", "Subject", "Attributes", "Data", "Time" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.CloudEventInput), global::Eventgate.CloudEventInput.Parser, new[]{ "Specversion", "Source", "Type", "Subject", "Dataschema", "Attributes", "Data" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.CloudEvent), global::Eventgate.CloudEvent.Parser, new[]{ "Specversion", "Id", "Source", "Type", "Subject", "Dataschema", "Attributes", "Data", "Time" }, null, null, null)
           }));
     }
     #endregion
@@ -247,6 +248,7 @@ namespace Eventgate {
       source_ = other.source_;
       type_ = other.type_;
       subject_ = other.subject_;
+      dataschema_ = other.dataschema_;
       attributes_ = other.attributes_ != null ? other.attributes_.Clone() : null;
       data_ = other.data_ != null ? other.data_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -301,8 +303,19 @@ namespace Eventgate {
       }
     }
 
+    /// <summary>Field number for the "dataschema" field.</summary>
+    public const int DataschemaFieldNumber = 5;
+    private string dataschema_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Dataschema {
+      get { return dataschema_; }
+      set {
+        dataschema_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "attributes" field.</summary>
-    public const int AttributesFieldNumber = 5;
+    public const int AttributesFieldNumber = 6;
     private global::Google.Protobuf.WellKnownTypes.Struct attributes_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Google.Protobuf.WellKnownTypes.Struct Attributes {
@@ -313,7 +326,7 @@ namespace Eventgate {
     }
 
     /// <summary>Field number for the "data" field.</summary>
-    public const int DataFieldNumber = 6;
+    public const int DataFieldNumber = 7;
     private global::Google.Protobuf.WellKnownTypes.Struct data_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Google.Protobuf.WellKnownTypes.Struct Data {
@@ -340,6 +353,7 @@ namespace Eventgate {
       if (Source != other.Source) return false;
       if (Type != other.Type) return false;
       if (Subject != other.Subject) return false;
+      if (Dataschema != other.Dataschema) return false;
       if (!object.Equals(Attributes, other.Attributes)) return false;
       if (!object.Equals(Data, other.Data)) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -352,6 +366,7 @@ namespace Eventgate {
       if (Source.Length != 0) hash ^= Source.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (Subject.Length != 0) hash ^= Subject.GetHashCode();
+      if (Dataschema.Length != 0) hash ^= Dataschema.GetHashCode();
       if (attributes_ != null) hash ^= Attributes.GetHashCode();
       if (data_ != null) hash ^= Data.GetHashCode();
       if (_unknownFields != null) {
@@ -383,12 +398,16 @@ namespace Eventgate {
         output.WriteRawTag(34);
         output.WriteString(Subject);
       }
-      if (attributes_ != null) {
+      if (Dataschema.Length != 0) {
         output.WriteRawTag(42);
+        output.WriteString(Dataschema);
+      }
+      if (attributes_ != null) {
+        output.WriteRawTag(50);
         output.WriteMessage(Attributes);
       }
       if (data_ != null) {
-        output.WriteRawTag(50);
+        output.WriteRawTag(58);
         output.WriteMessage(Data);
       }
       if (_unknownFields != null) {
@@ -410,6 +429,9 @@ namespace Eventgate {
       }
       if (Subject.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Subject);
+      }
+      if (Dataschema.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Dataschema);
       }
       if (attributes_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Attributes);
@@ -439,6 +461,9 @@ namespace Eventgate {
       }
       if (other.Subject.Length != 0) {
         Subject = other.Subject;
+      }
+      if (other.Dataschema.Length != 0) {
+        Dataschema = other.Dataschema;
       }
       if (other.attributes_ != null) {
         if (attributes_ == null) {
@@ -480,13 +505,17 @@ namespace Eventgate {
             break;
           }
           case 42: {
+            Dataschema = input.ReadString();
+            break;
+          }
+          case 50: {
             if (attributes_ == null) {
               attributes_ = new global::Google.Protobuf.WellKnownTypes.Struct();
             }
             input.ReadMessage(attributes_);
             break;
           }
-          case 50: {
+          case 58: {
             if (data_ == null) {
               data_ = new global::Google.Protobuf.WellKnownTypes.Struct();
             }
@@ -529,6 +558,7 @@ namespace Eventgate {
       source_ = other.source_;
       type_ = other.type_;
       subject_ = other.subject_;
+      dataschema_ = other.dataschema_;
       attributes_ = other.attributes_ != null ? other.attributes_.Clone() : null;
       data_ = other.data_ != null ? other.data_.Clone() : null;
       time_ = other.time_ != null ? other.time_.Clone() : null;
@@ -595,8 +625,19 @@ namespace Eventgate {
       }
     }
 
+    /// <summary>Field number for the "dataschema" field.</summary>
+    public const int DataschemaFieldNumber = 6;
+    private string dataschema_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Dataschema {
+      get { return dataschema_; }
+      set {
+        dataschema_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "attributes" field.</summary>
-    public const int AttributesFieldNumber = 6;
+    public const int AttributesFieldNumber = 7;
     private global::Google.Protobuf.WellKnownTypes.Struct attributes_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Google.Protobuf.WellKnownTypes.Struct Attributes {
@@ -607,7 +648,7 @@ namespace Eventgate {
     }
 
     /// <summary>Field number for the "data" field.</summary>
-    public const int DataFieldNumber = 7;
+    public const int DataFieldNumber = 8;
     private global::Google.Protobuf.WellKnownTypes.Struct data_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Google.Protobuf.WellKnownTypes.Struct Data {
@@ -618,7 +659,7 @@ namespace Eventgate {
     }
 
     /// <summary>Field number for the "time" field.</summary>
-    public const int TimeFieldNumber = 8;
+    public const int TimeFieldNumber = 9;
     private global::Google.Protobuf.WellKnownTypes.Timestamp time_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Google.Protobuf.WellKnownTypes.Timestamp Time {
@@ -646,6 +687,7 @@ namespace Eventgate {
       if (Source != other.Source) return false;
       if (Type != other.Type) return false;
       if (Subject != other.Subject) return false;
+      if (Dataschema != other.Dataschema) return false;
       if (!object.Equals(Attributes, other.Attributes)) return false;
       if (!object.Equals(Data, other.Data)) return false;
       if (!object.Equals(Time, other.Time)) return false;
@@ -660,6 +702,7 @@ namespace Eventgate {
       if (Source.Length != 0) hash ^= Source.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (Subject.Length != 0) hash ^= Subject.GetHashCode();
+      if (Dataschema.Length != 0) hash ^= Dataschema.GetHashCode();
       if (attributes_ != null) hash ^= Attributes.GetHashCode();
       if (data_ != null) hash ^= Data.GetHashCode();
       if (time_ != null) hash ^= Time.GetHashCode();
@@ -696,16 +739,20 @@ namespace Eventgate {
         output.WriteRawTag(42);
         output.WriteString(Subject);
       }
-      if (attributes_ != null) {
+      if (Dataschema.Length != 0) {
         output.WriteRawTag(50);
+        output.WriteString(Dataschema);
+      }
+      if (attributes_ != null) {
+        output.WriteRawTag(58);
         output.WriteMessage(Attributes);
       }
       if (data_ != null) {
-        output.WriteRawTag(58);
+        output.WriteRawTag(66);
         output.WriteMessage(Data);
       }
       if (time_ != null) {
-        output.WriteRawTag(66);
+        output.WriteRawTag(74);
         output.WriteMessage(Time);
       }
       if (_unknownFields != null) {
@@ -730,6 +777,9 @@ namespace Eventgate {
       }
       if (Subject.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Subject);
+      }
+      if (Dataschema.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Dataschema);
       }
       if (attributes_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Attributes);
@@ -765,6 +815,9 @@ namespace Eventgate {
       }
       if (other.Subject.Length != 0) {
         Subject = other.Subject;
+      }
+      if (other.Dataschema.Length != 0) {
+        Dataschema = other.Dataschema;
       }
       if (other.attributes_ != null) {
         if (attributes_ == null) {
@@ -816,20 +869,24 @@ namespace Eventgate {
             break;
           }
           case 50: {
+            Dataschema = input.ReadString();
+            break;
+          }
+          case 58: {
             if (attributes_ == null) {
               attributes_ = new global::Google.Protobuf.WellKnownTypes.Struct();
             }
             input.ReadMessage(attributes_);
             break;
           }
-          case 58: {
+          case 66: {
             if (data_ == null) {
               data_ = new global::Google.Protobuf.WellKnownTypes.Struct();
             }
             input.ReadMessage(data_);
             break;
           }
-          case 66: {
+          case 74: {
             if (time_ == null) {
               time_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
             }

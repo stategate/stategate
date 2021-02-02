@@ -46,6 +46,9 @@ export class CloudEventInput extends jspb.Message {
   getSubject(): string;
   setSubject(value: string): void;
 
+  getDataschema(): string;
+  setDataschema(value: string): void;
+
   hasAttributes(): boolean;
   clearAttributes(): void;
   getAttributes(): google_protobuf_struct_pb.Struct | undefined;
@@ -72,6 +75,7 @@ export namespace CloudEventInput {
     source: string,
     type: string,
     subject: string,
+    dataschema: string,
     attributes?: google_protobuf_struct_pb.Struct.AsObject,
     data?: google_protobuf_struct_pb.Struct.AsObject,
   }
@@ -92,6 +96,9 @@ export class CloudEvent extends jspb.Message {
 
   getSubject(): string;
   setSubject(value: string): void;
+
+  getDataschema(): string;
+  setDataschema(value: string): void;
 
   hasAttributes(): boolean;
   clearAttributes(): void;
@@ -125,6 +132,7 @@ export namespace CloudEvent {
     source: string,
     type: string,
     subject: string,
+    dataschema: string,
     attributes?: google_protobuf_struct_pb.Struct.AsObject,
     data?: google_protobuf_struct_pb.Struct.AsObject,
     time?: google_protobuf_timestamp_pb.Timestamp.AsObject,

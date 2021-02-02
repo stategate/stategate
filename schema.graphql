@@ -10,6 +10,7 @@ type CloudEvent {
     source: String!
     type: String!
     subject: String
+    dataschema: String
     attributes: Map
     data: Map!
     time: Time!
@@ -20,6 +21,7 @@ input CloudEventInput {
     source: String!
     type: String!
     subject: String
+    dataschema: String
     attributes: Map
     data: Map!
 }

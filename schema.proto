@@ -43,8 +43,9 @@ message CloudEventInput {
   string source = 2[(validator.field) = {regex : "^.{1,225}$"}];
   string type = 3[(validator.field) = {regex : "^.{1,225}$"}];
   string subject =4;
-  google.protobuf.Struct attributes = 5;
-  google.protobuf.Struct data = 6[(validator.field) = {msg_exists : true}];
+  string dataschema =5;
+  google.protobuf.Struct attributes = 6;
+  google.protobuf.Struct data = 7[(validator.field) = {msg_exists : true}];
 }
 
 message CloudEvent {
@@ -53,7 +54,8 @@ message CloudEvent {
   string source = 3[(validator.field) = {regex : "^.{1,225}$"}];
   string type = 4[(validator.field) = {regex : "^.{1,225}$"}];
   string subject =5;
-  google.protobuf.Struct attributes = 6;
-  google.protobuf.Struct data = 7[(validator.field) = {msg_exists : true}];
-  google.protobuf.Timestamp time =8;
+  string dataschema =6;
+  google.protobuf.Struct attributes = 7;
+  google.protobuf.Struct data = 8[(validator.field) = {msg_exists : true}];
+  google.protobuf.Timestamp time =9;
 }
