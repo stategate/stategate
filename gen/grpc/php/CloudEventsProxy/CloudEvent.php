@@ -14,29 +14,37 @@ use Google\Protobuf\Internal\GPBUtil;
 class CloudEvent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string specversion = 1 [(.validator.field) = {</code>
+     */
+    private $specversion = '';
+    /**
+     * Generated from protobuf field <code>string id = 2 [(.validator.field) = {</code>
      */
     private $id = '';
     /**
-     * Generated from protobuf field <code>string source = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string source = 3 [(.validator.field) = {</code>
      */
     private $source = '';
     /**
-     * Generated from protobuf field <code>string type = 3 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 4 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
-     * Generated from protobuf field <code>string subject = 4;</code>
+     * Generated from protobuf field <code>string subject = 5;</code>
      */
     private $subject = '';
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 6;</code>
      */
     private $attributes = null;
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 6 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct data = 7 [(.validator.field) = {</code>
      */
     private $data = null;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 8;</code>
+     */
+    private $time = null;
 
     /**
      * Constructor.
@@ -44,12 +52,14 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $specversion
      *     @type string $id
      *     @type string $source
      *     @type string $type
      *     @type string $subject
      *     @type \Google\Protobuf\Struct $attributes
      *     @type \Google\Protobuf\Struct $data
+     *     @type \Google\Protobuf\Timestamp $time
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +68,29 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string specversion = 1 [(.validator.field) = {</code>
+     * @return string
+     */
+    public function getSpecversion()
+    {
+        return $this->specversion;
+    }
+
+    /**
+     * Generated from protobuf field <code>string specversion = 1 [(.validator.field) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSpecversion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->specversion = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string id = 2 [(.validator.field) = {</code>
      * @return string
      */
     public function getId()
@@ -67,7 +99,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string id = 2 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
@@ -80,7 +112,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string source = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string source = 3 [(.validator.field) = {</code>
      * @return string
      */
     public function getSource()
@@ -89,7 +121,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string source = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string source = 3 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
@@ -102,7 +134,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string type = 3 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 4 [(.validator.field) = {</code>
      * @return string
      */
     public function getType()
@@ -111,7 +143,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string type = 3 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 4 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
@@ -124,7 +156,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string subject = 4;</code>
+     * Generated from protobuf field <code>string subject = 5;</code>
      * @return string
      */
     public function getSubject()
@@ -133,7 +165,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string subject = 4;</code>
+     * Generated from protobuf field <code>string subject = 5;</code>
      * @param string $var
      * @return $this
      */
@@ -146,7 +178,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 6;</code>
      * @return \Google\Protobuf\Struct
      */
     public function getAttributes()
@@ -155,7 +187,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 6;</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
@@ -168,7 +200,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 6 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct data = 7 [(.validator.field) = {</code>
      * @return \Google\Protobuf\Struct
      */
     public function getData()
@@ -177,7 +209,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 6 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct data = 7 [(.validator.field) = {</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
@@ -185,6 +217,28 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 8;</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 8;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->time = $var;
 
         return $this;
     }

@@ -4,11 +4,17 @@ import (
 	"context"
 	"fmt"
 	cloudEventsProxy "github.com/autom8ter/cloudEventsProxy/gen/grpc/go"
+	"github.com/autom8ter/cloudEventsProxy/internal/auth"
 	"github.com/autom8ter/cloudEventsProxy/internal/logger"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/empty"
+	"github.com/google/uuid"
 	"github.com/nats-io/nats.go"
 	"go.uber.org/zap"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+	"google.golang.org/protobuf/types/known/structpb"
+	"google.golang.org/protobuf/types/known/timestamppb"
 	"sync"
 	"time"
 )
@@ -26,7 +32,27 @@ func NewService(logger *logger.Logger, conn *nats.Conn) (*Service, error) {
 }
 
 func (s *Service) Send(ctx context.Context, r *cloudEventsProxy.CloudEventInput) (*empty.Empty, error) {
-	bits, err := proto.Marshal(r)
+	c, ok := auth.GetContext(ctx)
+	if !ok {
+		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
+	}
+	toSend := &cloudEventsProxy.CloudEvent{
+		Specversion: r.GetSpecversion(),
+		Id:          uuid.New().String(),
+		Source:      r.GetSource(),
+		Type:        r.GetType(),
+		Subject:     r.GetSubject(),
+		Attributes:  r.GetAttributes(),
+		Data:        r.GetData(),
+		Time:        timestamppb.New(time.Now()),
+	}
+	if toSend.Attributes == nil {
+		data, _ := structpb.NewStruct(nil)
+		toSend.Attributes = data
+	}
+	claims, _ := structpb.NewStruct(c.Claims)
+	toSend.Attributes.Fields["auth.claims"] = structpb.NewStructValue(claims)
+	bits, err := proto.Marshal(toSend)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +63,28 @@ func (s *Service) Send(ctx context.Context, r *cloudEventsProxy.CloudEventInput)
 }
 
 func (s *Service) Request(ctx context.Context, r *cloudEventsProxy.CloudEventInput) (*cloudEventsProxy.CloudEvent, error) {
-	bits, err := proto.Marshal(r)
+	c, ok := auth.GetContext(ctx)
+	if !ok {
+		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
+	}
+	toSend := &cloudEventsProxy.CloudEvent{
+		Specversion: r.GetSpecversion(),
+		Id:          uuid.New().String(),
+		Source:      r.GetSource(),
+		Type:        r.GetType(),
+		Subject:     r.GetSubject(),
+		Attributes:  r.GetAttributes(),
+		Data:        r.GetData(),
+		Time:        timestamppb.New(time.Now()),
+	}
+	if toSend.Attributes == nil {
+		data, _ := structpb.NewStruct(nil)
+		toSend.Attributes = data
+	}
+	claims, _ := structpb.NewStruct(c.Claims)
+	toSend.Attributes.Fields["auth.claims"] = structpb.NewStructValue(claims)
+
+	bits, err := proto.Marshal(toSend)
 	if err != nil {
 		return nil, err
 	}
@@ -53,6 +100,10 @@ func (s *Service) Request(ctx context.Context, r *cloudEventsProxy.CloudEventInp
 }
 
 func (s *Service) Receive(r *cloudEventsProxy.ReceiveRequest, server cloudEventsProxy.CloudEventsService_ReceiveServer) error {
+	_, ok := auth.GetContext(server.Context())
+	if !ok {
+		return status.Error(codes.Unauthenticated, "unauthenticated")
+	}
 	var (
 		err error
 		sub *nats.Subscription

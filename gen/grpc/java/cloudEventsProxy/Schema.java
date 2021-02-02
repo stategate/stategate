@@ -706,58 +706,68 @@ public final class Schema {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string source = 1 [(.validator.field) = { ... }</code>
+     * <code>string specversion = 1 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getSpecversion();
+    /**
+     * <code>string specversion = 1 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getSpecversionBytes();
+
+    /**
+     * <code>string source = 2 [(.validator.field) = { ... }</code>
      */
     java.lang.String getSource();
     /**
-     * <code>string source = 1 [(.validator.field) = { ... }</code>
+     * <code>string source = 2 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
         getSourceBytes();
 
     /**
-     * <code>string type = 2 [(.validator.field) = { ... }</code>
+     * <code>string type = 3 [(.validator.field) = { ... }</code>
      */
     java.lang.String getType();
     /**
-     * <code>string type = 2 [(.validator.field) = { ... }</code>
+     * <code>string type = 3 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
         getTypeBytes();
 
     /**
-     * <code>string subject = 3;</code>
+     * <code>string subject = 4;</code>
      */
     java.lang.String getSubject();
     /**
-     * <code>string subject = 3;</code>
+     * <code>string subject = 4;</code>
      */
     com.google.protobuf.ByteString
         getSubjectBytes();
 
     /**
-     * <code>.google.protobuf.Struct attributes = 4;</code>
+     * <code>.google.protobuf.Struct attributes = 5;</code>
      */
     boolean hasAttributes();
     /**
-     * <code>.google.protobuf.Struct attributes = 4;</code>
+     * <code>.google.protobuf.Struct attributes = 5;</code>
      */
     com.google.protobuf.Struct getAttributes();
     /**
-     * <code>.google.protobuf.Struct attributes = 4;</code>
+     * <code>.google.protobuf.Struct attributes = 5;</code>
      */
     com.google.protobuf.StructOrBuilder getAttributesOrBuilder();
 
     /**
-     * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
      */
     boolean hasData();
     /**
-     * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.Struct getData();
     /**
-     * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.StructOrBuilder getDataOrBuilder();
   }
@@ -774,6 +784,7 @@ public final class Schema {
       super(builder);
     }
     private CloudEventInput() {
+      specversion_ = "";
       source_ = "";
       type_ = "";
       subject_ = "";
@@ -806,1230 +817,7 @@ public final class Schema {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              source_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              type_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              subject_ = s;
-              break;
-            }
-            case 34: {
-              com.google.protobuf.Struct.Builder subBuilder = null;
-              if (attributes_ != null) {
-                subBuilder = attributes_.toBuilder();
-              }
-              attributes_ = input.readMessage(com.google.protobuf.Struct.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(attributes_);
-                attributes_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 42: {
-              com.google.protobuf.Struct.Builder subBuilder = null;
-              if (data_ != null) {
-                subBuilder = data_.toBuilder();
-              }
-              data_ = input.readMessage(com.google.protobuf.Struct.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(data_);
-                data_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEventInput_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEventInput_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              cloudEventsProxy.Schema.CloudEventInput.class, cloudEventsProxy.Schema.CloudEventInput.Builder.class);
-    }
-
-    public static final int SOURCE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object source_;
-    /**
-     * <code>string source = 1 [(.validator.field) = { ... }</code>
-     */
-    public java.lang.String getSource() {
-      java.lang.Object ref = source_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        source_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string source = 1 [(.validator.field) = { ... }</code>
-     */
-    public com.google.protobuf.ByteString
-        getSourceBytes() {
-      java.lang.Object ref = source_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        source_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int TYPE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object type_;
-    /**
-     * <code>string type = 2 [(.validator.field) = { ... }</code>
-     */
-    public java.lang.String getType() {
-      java.lang.Object ref = type_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        type_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string type = 2 [(.validator.field) = { ... }</code>
-     */
-    public com.google.protobuf.ByteString
-        getTypeBytes() {
-      java.lang.Object ref = type_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        type_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int SUBJECT_FIELD_NUMBER = 3;
-    private volatile java.lang.Object subject_;
-    /**
-     * <code>string subject = 3;</code>
-     */
-    public java.lang.String getSubject() {
-      java.lang.Object ref = subject_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        subject_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string subject = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSubjectBytes() {
-      java.lang.Object ref = subject_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        subject_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int ATTRIBUTES_FIELD_NUMBER = 4;
-    private com.google.protobuf.Struct attributes_;
-    /**
-     * <code>.google.protobuf.Struct attributes = 4;</code>
-     */
-    public boolean hasAttributes() {
-      return attributes_ != null;
-    }
-    /**
-     * <code>.google.protobuf.Struct attributes = 4;</code>
-     */
-    public com.google.protobuf.Struct getAttributes() {
-      return attributes_ == null ? com.google.protobuf.Struct.getDefaultInstance() : attributes_;
-    }
-    /**
-     * <code>.google.protobuf.Struct attributes = 4;</code>
-     */
-    public com.google.protobuf.StructOrBuilder getAttributesOrBuilder() {
-      return getAttributes();
-    }
-
-    public static final int DATA_FIELD_NUMBER = 5;
-    private com.google.protobuf.Struct data_;
-    /**
-     * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
-     */
-    public boolean hasData() {
-      return data_ != null;
-    }
-    /**
-     * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
-     */
-    public com.google.protobuf.Struct getData() {
-      return data_ == null ? com.google.protobuf.Struct.getDefaultInstance() : data_;
-    }
-    /**
-     * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
-     */
-    public com.google.protobuf.StructOrBuilder getDataOrBuilder() {
-      return getData();
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getSourceBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, source_);
-      }
-      if (!getTypeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
-      }
-      if (!getSubjectBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, subject_);
-      }
-      if (attributes_ != null) {
-        output.writeMessage(4, getAttributes());
-      }
-      if (data_ != null) {
-        output.writeMessage(5, getData());
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getSourceBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, source_);
-      }
-      if (!getTypeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
-      }
-      if (!getSubjectBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, subject_);
-      }
-      if (attributes_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getAttributes());
-      }
-      if (data_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, getData());
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof cloudEventsProxy.Schema.CloudEventInput)) {
-        return super.equals(obj);
-      }
-      cloudEventsProxy.Schema.CloudEventInput other = (cloudEventsProxy.Schema.CloudEventInput) obj;
-
-      boolean result = true;
-      result = result && getSource()
-          .equals(other.getSource());
-      result = result && getType()
-          .equals(other.getType());
-      result = result && getSubject()
-          .equals(other.getSubject());
-      result = result && (hasAttributes() == other.hasAttributes());
-      if (hasAttributes()) {
-        result = result && getAttributes()
-            .equals(other.getAttributes());
-      }
-      result = result && (hasData() == other.hasData());
-      if (hasData()) {
-        result = result && getData()
-            .equals(other.getData());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + SOURCE_FIELD_NUMBER;
-      hash = (53 * hash) + getSource().hashCode();
-      hash = (37 * hash) + TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + getType().hashCode();
-      hash = (37 * hash) + SUBJECT_FIELD_NUMBER;
-      hash = (53 * hash) + getSubject().hashCode();
-      if (hasAttributes()) {
-        hash = (37 * hash) + ATTRIBUTES_FIELD_NUMBER;
-        hash = (53 * hash) + getAttributes().hashCode();
-      }
-      if (hasData()) {
-        hash = (37 * hash) + DATA_FIELD_NUMBER;
-        hash = (53 * hash) + getData().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static cloudEventsProxy.Schema.CloudEventInput parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static cloudEventsProxy.Schema.CloudEventInput parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(cloudEventsProxy.Schema.CloudEventInput prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code cloudEventsProxy.CloudEventInput}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:cloudEventsProxy.CloudEventInput)
-        cloudEventsProxy.Schema.CloudEventInputOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEventInput_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEventInput_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                cloudEventsProxy.Schema.CloudEventInput.class, cloudEventsProxy.Schema.CloudEventInput.Builder.class);
-      }
-
-      // Construct using cloudEventsProxy.Schema.CloudEventInput.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        source_ = "";
-
-        type_ = "";
-
-        subject_ = "";
-
-        if (attributesBuilder_ == null) {
-          attributes_ = null;
-        } else {
-          attributes_ = null;
-          attributesBuilder_ = null;
-        }
-        if (dataBuilder_ == null) {
-          data_ = null;
-        } else {
-          data_ = null;
-          dataBuilder_ = null;
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEventInput_descriptor;
-      }
-
-      @java.lang.Override
-      public cloudEventsProxy.Schema.CloudEventInput getDefaultInstanceForType() {
-        return cloudEventsProxy.Schema.CloudEventInput.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public cloudEventsProxy.Schema.CloudEventInput build() {
-        cloudEventsProxy.Schema.CloudEventInput result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public cloudEventsProxy.Schema.CloudEventInput buildPartial() {
-        cloudEventsProxy.Schema.CloudEventInput result = new cloudEventsProxy.Schema.CloudEventInput(this);
-        result.source_ = source_;
-        result.type_ = type_;
-        result.subject_ = subject_;
-        if (attributesBuilder_ == null) {
-          result.attributes_ = attributes_;
-        } else {
-          result.attributes_ = attributesBuilder_.build();
-        }
-        if (dataBuilder_ == null) {
-          result.data_ = data_;
-        } else {
-          result.data_ = dataBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof cloudEventsProxy.Schema.CloudEventInput) {
-          return mergeFrom((cloudEventsProxy.Schema.CloudEventInput)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(cloudEventsProxy.Schema.CloudEventInput other) {
-        if (other == cloudEventsProxy.Schema.CloudEventInput.getDefaultInstance()) return this;
-        if (!other.getSource().isEmpty()) {
-          source_ = other.source_;
-          onChanged();
-        }
-        if (!other.getType().isEmpty()) {
-          type_ = other.type_;
-          onChanged();
-        }
-        if (!other.getSubject().isEmpty()) {
-          subject_ = other.subject_;
-          onChanged();
-        }
-        if (other.hasAttributes()) {
-          mergeAttributes(other.getAttributes());
-        }
-        if (other.hasData()) {
-          mergeData(other.getData());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        cloudEventsProxy.Schema.CloudEventInput parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cloudEventsProxy.Schema.CloudEventInput) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object source_ = "";
-      /**
-       * <code>string source = 1 [(.validator.field) = { ... }</code>
-       */
-      public java.lang.String getSource() {
-        java.lang.Object ref = source_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          source_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string source = 1 [(.validator.field) = { ... }</code>
-       */
-      public com.google.protobuf.ByteString
-          getSourceBytes() {
-        java.lang.Object ref = source_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          source_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string source = 1 [(.validator.field) = { ... }</code>
-       */
-      public Builder setSource(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        source_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string source = 1 [(.validator.field) = { ... }</code>
-       */
-      public Builder clearSource() {
-        
-        source_ = getDefaultInstance().getSource();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string source = 1 [(.validator.field) = { ... }</code>
-       */
-      public Builder setSourceBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        source_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object type_ = "";
-      /**
-       * <code>string type = 2 [(.validator.field) = { ... }</code>
-       */
-      public java.lang.String getType() {
-        java.lang.Object ref = type_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          type_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string type = 2 [(.validator.field) = { ... }</code>
-       */
-      public com.google.protobuf.ByteString
-          getTypeBytes() {
-        java.lang.Object ref = type_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          type_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string type = 2 [(.validator.field) = { ... }</code>
-       */
-      public Builder setType(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        type_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string type = 2 [(.validator.field) = { ... }</code>
-       */
-      public Builder clearType() {
-        
-        type_ = getDefaultInstance().getType();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string type = 2 [(.validator.field) = { ... }</code>
-       */
-      public Builder setTypeBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        type_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object subject_ = "";
-      /**
-       * <code>string subject = 3;</code>
-       */
-      public java.lang.String getSubject() {
-        java.lang.Object ref = subject_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          subject_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string subject = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSubjectBytes() {
-        java.lang.Object ref = subject_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          subject_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string subject = 3;</code>
-       */
-      public Builder setSubject(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        subject_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string subject = 3;</code>
-       */
-      public Builder clearSubject() {
-        
-        subject_ = getDefaultInstance().getSubject();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string subject = 3;</code>
-       */
-      public Builder setSubjectBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        subject_ = value;
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.Struct attributes_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> attributesBuilder_;
-      /**
-       * <code>.google.protobuf.Struct attributes = 4;</code>
-       */
-      public boolean hasAttributes() {
-        return attributesBuilder_ != null || attributes_ != null;
-      }
-      /**
-       * <code>.google.protobuf.Struct attributes = 4;</code>
-       */
-      public com.google.protobuf.Struct getAttributes() {
-        if (attributesBuilder_ == null) {
-          return attributes_ == null ? com.google.protobuf.Struct.getDefaultInstance() : attributes_;
-        } else {
-          return attributesBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.google.protobuf.Struct attributes = 4;</code>
-       */
-      public Builder setAttributes(com.google.protobuf.Struct value) {
-        if (attributesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          attributes_ = value;
-          onChanged();
-        } else {
-          attributesBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Struct attributes = 4;</code>
-       */
-      public Builder setAttributes(
-          com.google.protobuf.Struct.Builder builderForValue) {
-        if (attributesBuilder_ == null) {
-          attributes_ = builderForValue.build();
-          onChanged();
-        } else {
-          attributesBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Struct attributes = 4;</code>
-       */
-      public Builder mergeAttributes(com.google.protobuf.Struct value) {
-        if (attributesBuilder_ == null) {
-          if (attributes_ != null) {
-            attributes_ =
-              com.google.protobuf.Struct.newBuilder(attributes_).mergeFrom(value).buildPartial();
-          } else {
-            attributes_ = value;
-          }
-          onChanged();
-        } else {
-          attributesBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Struct attributes = 4;</code>
-       */
-      public Builder clearAttributes() {
-        if (attributesBuilder_ == null) {
-          attributes_ = null;
-          onChanged();
-        } else {
-          attributes_ = null;
-          attributesBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Struct attributes = 4;</code>
-       */
-      public com.google.protobuf.Struct.Builder getAttributesBuilder() {
-        
-        onChanged();
-        return getAttributesFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.google.protobuf.Struct attributes = 4;</code>
-       */
-      public com.google.protobuf.StructOrBuilder getAttributesOrBuilder() {
-        if (attributesBuilder_ != null) {
-          return attributesBuilder_.getMessageOrBuilder();
-        } else {
-          return attributes_ == null ?
-              com.google.protobuf.Struct.getDefaultInstance() : attributes_;
-        }
-      }
-      /**
-       * <code>.google.protobuf.Struct attributes = 4;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
-          getAttributesFieldBuilder() {
-        if (attributesBuilder_ == null) {
-          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder>(
-                  getAttributes(),
-                  getParentForChildren(),
-                  isClean());
-          attributes_ = null;
-        }
-        return attributesBuilder_;
-      }
-
-      private com.google.protobuf.Struct data_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> dataBuilder_;
-      /**
-       * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
-       */
-      public boolean hasData() {
-        return dataBuilder_ != null || data_ != null;
-      }
-      /**
-       * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
-       */
-      public com.google.protobuf.Struct getData() {
-        if (dataBuilder_ == null) {
-          return data_ == null ? com.google.protobuf.Struct.getDefaultInstance() : data_;
-        } else {
-          return dataBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
-       */
-      public Builder setData(com.google.protobuf.Struct value) {
-        if (dataBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          data_ = value;
-          onChanged();
-        } else {
-          dataBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
-       */
-      public Builder setData(
-          com.google.protobuf.Struct.Builder builderForValue) {
-        if (dataBuilder_ == null) {
-          data_ = builderForValue.build();
-          onChanged();
-        } else {
-          dataBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
-       */
-      public Builder mergeData(com.google.protobuf.Struct value) {
-        if (dataBuilder_ == null) {
-          if (data_ != null) {
-            data_ =
-              com.google.protobuf.Struct.newBuilder(data_).mergeFrom(value).buildPartial();
-          } else {
-            data_ = value;
-          }
-          onChanged();
-        } else {
-          dataBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
-       */
-      public Builder clearData() {
-        if (dataBuilder_ == null) {
-          data_ = null;
-          onChanged();
-        } else {
-          data_ = null;
-          dataBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
-       */
-      public com.google.protobuf.Struct.Builder getDataBuilder() {
-        
-        onChanged();
-        return getDataFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
-       */
-      public com.google.protobuf.StructOrBuilder getDataOrBuilder() {
-        if (dataBuilder_ != null) {
-          return dataBuilder_.getMessageOrBuilder();
-        } else {
-          return data_ == null ?
-              com.google.protobuf.Struct.getDefaultInstance() : data_;
-        }
-      }
-      /**
-       * <code>.google.protobuf.Struct data = 5 [(.validator.field) = { ... }</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
-          getDataFieldBuilder() {
-        if (dataBuilder_ == null) {
-          dataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder>(
-                  getData(),
-                  getParentForChildren(),
-                  isClean());
-          data_ = null;
-        }
-        return dataBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:cloudEventsProxy.CloudEventInput)
-    }
-
-    // @@protoc_insertion_point(class_scope:cloudEventsProxy.CloudEventInput)
-    private static final cloudEventsProxy.Schema.CloudEventInput DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new cloudEventsProxy.Schema.CloudEventInput();
-    }
-
-    public static cloudEventsProxy.Schema.CloudEventInput getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<CloudEventInput>
-        PARSER = new com.google.protobuf.AbstractParser<CloudEventInput>() {
-      @java.lang.Override
-      public CloudEventInput parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new CloudEventInput(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<CloudEventInput> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<CloudEventInput> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public cloudEventsProxy.Schema.CloudEventInput getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface CloudEventOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:cloudEventsProxy.CloudEvent)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>string id = 1 [(.validator.field) = { ... }</code>
-     */
-    java.lang.String getId();
-    /**
-     * <code>string id = 1 [(.validator.field) = { ... }</code>
-     */
-    com.google.protobuf.ByteString
-        getIdBytes();
-
-    /**
-     * <code>string source = 2 [(.validator.field) = { ... }</code>
-     */
-    java.lang.String getSource();
-    /**
-     * <code>string source = 2 [(.validator.field) = { ... }</code>
-     */
-    com.google.protobuf.ByteString
-        getSourceBytes();
-
-    /**
-     * <code>string type = 3 [(.validator.field) = { ... }</code>
-     */
-    java.lang.String getType();
-    /**
-     * <code>string type = 3 [(.validator.field) = { ... }</code>
-     */
-    com.google.protobuf.ByteString
-        getTypeBytes();
-
-    /**
-     * <code>string subject = 4;</code>
-     */
-    java.lang.String getSubject();
-    /**
-     * <code>string subject = 4;</code>
-     */
-    com.google.protobuf.ByteString
-        getSubjectBytes();
-
-    /**
-     * <code>.google.protobuf.Struct attributes = 5;</code>
-     */
-    boolean hasAttributes();
-    /**
-     * <code>.google.protobuf.Struct attributes = 5;</code>
-     */
-    com.google.protobuf.Struct getAttributes();
-    /**
-     * <code>.google.protobuf.Struct attributes = 5;</code>
-     */
-    com.google.protobuf.StructOrBuilder getAttributesOrBuilder();
-
-    /**
-     * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
-     */
-    boolean hasData();
-    /**
-     * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
-     */
-    com.google.protobuf.Struct getData();
-    /**
-     * <code>.google.protobuf.Struct data = 6 [(.validator.field) = { ... }</code>
-     */
-    com.google.protobuf.StructOrBuilder getDataOrBuilder();
-  }
-  /**
-   * Protobuf type {@code cloudEventsProxy.CloudEvent}
-   */
-  public  static final class CloudEvent extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:cloudEventsProxy.CloudEvent)
-      CloudEventOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use CloudEvent.newBuilder() to construct.
-    private CloudEvent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private CloudEvent() {
-      id_ = "";
-      source_ = "";
-      type_ = "";
-      subject_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private CloudEvent(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              id_ = s;
+              specversion_ = s;
               break;
             }
             case 18: {
@@ -2097,45 +885,45 @@ public final class Schema {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEvent_descriptor;
+      return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEventInput_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEvent_fieldAccessorTable
+      return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEventInput_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              cloudEventsProxy.Schema.CloudEvent.class, cloudEventsProxy.Schema.CloudEvent.Builder.class);
+              cloudEventsProxy.Schema.CloudEventInput.class, cloudEventsProxy.Schema.CloudEventInput.Builder.class);
     }
 
-    public static final int ID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object id_;
+    public static final int SPECVERSION_FIELD_NUMBER = 1;
+    private volatile java.lang.Object specversion_;
     /**
-     * <code>string id = 1 [(.validator.field) = { ... }</code>
+     * <code>string specversion = 1 [(.validator.field) = { ... }</code>
      */
-    public java.lang.String getId() {
-      java.lang.Object ref = id_;
+    public java.lang.String getSpecversion() {
+      java.lang.Object ref = specversion_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        id_ = s;
+        specversion_ = s;
         return s;
       }
     }
     /**
-     * <code>string id = 1 [(.validator.field) = { ... }</code>
+     * <code>string specversion = 1 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.ByteString
-        getIdBytes() {
-      java.lang.Object ref = id_;
+        getSpecversionBytes() {
+      java.lang.Object ref = specversion_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        id_ = b;
+        specversion_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -2300,8 +1088,8 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
+      if (!getSpecversionBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, specversion_);
       }
       if (!getSourceBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, source_);
@@ -2327,8 +1115,8 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
-      if (!getIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
+      if (!getSpecversionBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, specversion_);
       }
       if (!getSourceBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, source_);
@@ -2357,14 +1145,14 @@ public final class Schema {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof cloudEventsProxy.Schema.CloudEvent)) {
+      if (!(obj instanceof cloudEventsProxy.Schema.CloudEventInput)) {
         return super.equals(obj);
       }
-      cloudEventsProxy.Schema.CloudEvent other = (cloudEventsProxy.Schema.CloudEvent) obj;
+      cloudEventsProxy.Schema.CloudEventInput other = (cloudEventsProxy.Schema.CloudEventInput) obj;
 
       boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
+      result = result && getSpecversion()
+          .equals(other.getSpecversion());
       result = result && getSource()
           .equals(other.getSource());
       result = result && getType()
@@ -2392,8 +1180,8 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + getId().hashCode();
+      hash = (37 * hash) + SPECVERSION_FIELD_NUMBER;
+      hash = (53 * hash) + getSpecversion().hashCode();
       hash = (37 * hash) + SOURCE_FIELD_NUMBER;
       hash = (53 * hash) + getSource().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
@@ -2413,69 +1201,69 @@ public final class Schema {
       return hash;
     }
 
-    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static cloudEventsProxy.Schema.CloudEvent parseFrom(byte[] data)
+    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static cloudEventsProxy.Schema.CloudEvent parseFrom(java.io.InputStream input)
+    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static cloudEventsProxy.Schema.CloudEvent parseDelimitedFrom(java.io.InputStream input)
+    public static cloudEventsProxy.Schema.CloudEventInput parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static cloudEventsProxy.Schema.CloudEvent parseDelimitedFrom(
+    public static cloudEventsProxy.Schema.CloudEventInput parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+    public static cloudEventsProxy.Schema.CloudEventInput parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2488,7 +1276,7 @@ public final class Schema {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(cloudEventsProxy.Schema.CloudEvent prototype) {
+    public static Builder newBuilder(cloudEventsProxy.Schema.CloudEventInput prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2504,26 +1292,26 @@ public final class Schema {
       return builder;
     }
     /**
-     * Protobuf type {@code cloudEventsProxy.CloudEvent}
+     * Protobuf type {@code cloudEventsProxy.CloudEventInput}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:cloudEventsProxy.CloudEvent)
-        cloudEventsProxy.Schema.CloudEventOrBuilder {
+        // @@protoc_insertion_point(builder_implements:cloudEventsProxy.CloudEventInput)
+        cloudEventsProxy.Schema.CloudEventInputOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEvent_descriptor;
+        return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEventInput_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEvent_fieldAccessorTable
+        return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEventInput_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                cloudEventsProxy.Schema.CloudEvent.class, cloudEventsProxy.Schema.CloudEvent.Builder.class);
+                cloudEventsProxy.Schema.CloudEventInput.class, cloudEventsProxy.Schema.CloudEventInput.Builder.class);
       }
 
-      // Construct using cloudEventsProxy.Schema.CloudEvent.newBuilder()
+      // Construct using cloudEventsProxy.Schema.CloudEventInput.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2541,7 +1329,7 @@ public final class Schema {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        id_ = "";
+        specversion_ = "";
 
         source_ = "";
 
@@ -2567,17 +1355,17 @@ public final class Schema {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEvent_descriptor;
+        return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEventInput_descriptor;
       }
 
       @java.lang.Override
-      public cloudEventsProxy.Schema.CloudEvent getDefaultInstanceForType() {
-        return cloudEventsProxy.Schema.CloudEvent.getDefaultInstance();
+      public cloudEventsProxy.Schema.CloudEventInput getDefaultInstanceForType() {
+        return cloudEventsProxy.Schema.CloudEventInput.getDefaultInstance();
       }
 
       @java.lang.Override
-      public cloudEventsProxy.Schema.CloudEvent build() {
-        cloudEventsProxy.Schema.CloudEvent result = buildPartial();
+      public cloudEventsProxy.Schema.CloudEventInput build() {
+        cloudEventsProxy.Schema.CloudEventInput result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2585,9 +1373,9 @@ public final class Schema {
       }
 
       @java.lang.Override
-      public cloudEventsProxy.Schema.CloudEvent buildPartial() {
-        cloudEventsProxy.Schema.CloudEvent result = new cloudEventsProxy.Schema.CloudEvent(this);
-        result.id_ = id_;
+      public cloudEventsProxy.Schema.CloudEventInput buildPartial() {
+        cloudEventsProxy.Schema.CloudEventInput result = new cloudEventsProxy.Schema.CloudEventInput(this);
+        result.specversion_ = specversion_;
         result.source_ = source_;
         result.type_ = type_;
         result.subject_ = subject_;
@@ -2639,18 +1427,18 @@ public final class Schema {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof cloudEventsProxy.Schema.CloudEvent) {
-          return mergeFrom((cloudEventsProxy.Schema.CloudEvent)other);
+        if (other instanceof cloudEventsProxy.Schema.CloudEventInput) {
+          return mergeFrom((cloudEventsProxy.Schema.CloudEventInput)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(cloudEventsProxy.Schema.CloudEvent other) {
-        if (other == cloudEventsProxy.Schema.CloudEvent.getDefaultInstance()) return this;
-        if (!other.getId().isEmpty()) {
-          id_ = other.id_;
+      public Builder mergeFrom(cloudEventsProxy.Schema.CloudEventInput other) {
+        if (other == cloudEventsProxy.Schema.CloudEventInput.getDefaultInstance()) return this;
+        if (!other.getSpecversion().isEmpty()) {
+          specversion_ = other.specversion_;
           onChanged();
         }
         if (!other.getSource().isEmpty()) {
@@ -2686,11 +1474,11 @@ public final class Schema {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cloudEventsProxy.Schema.CloudEvent parsedMessage = null;
+        cloudEventsProxy.Schema.CloudEventInput parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cloudEventsProxy.Schema.CloudEvent) e.getUnfinishedMessage();
+          parsedMessage = (cloudEventsProxy.Schema.CloudEventInput) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2700,71 +1488,71 @@ public final class Schema {
         return this;
       }
 
-      private java.lang.Object id_ = "";
+      private java.lang.Object specversion_ = "";
       /**
-       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       * <code>string specversion = 1 [(.validator.field) = { ... }</code>
        */
-      public java.lang.String getId() {
-        java.lang.Object ref = id_;
+      public java.lang.String getSpecversion() {
+        java.lang.Object ref = specversion_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          id_ = s;
+          specversion_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       * <code>string specversion = 1 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.ByteString
-          getIdBytes() {
-        java.lang.Object ref = id_;
+          getSpecversionBytes() {
+        java.lang.Object ref = specversion_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          id_ = b;
+          specversion_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       * <code>string specversion = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setId(
+      public Builder setSpecversion(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        id_ = value;
+        specversion_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       * <code>string specversion = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder clearId() {
+      public Builder clearSpecversion() {
         
-        id_ = getDefaultInstance().getId();
+        specversion_ = getDefaultInstance().getSpecversion();
         onChanged();
         return this;
       }
       /**
-       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       * <code>string specversion = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setIdBytes(
+      public Builder setSpecversionBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        id_ = value;
+        specversion_ = value;
         onChanged();
         return this;
       }
@@ -3222,6 +2010,1686 @@ public final class Schema {
       }
 
 
+      // @@protoc_insertion_point(builder_scope:cloudEventsProxy.CloudEventInput)
+    }
+
+    // @@protoc_insertion_point(class_scope:cloudEventsProxy.CloudEventInput)
+    private static final cloudEventsProxy.Schema.CloudEventInput DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new cloudEventsProxy.Schema.CloudEventInput();
+    }
+
+    public static cloudEventsProxy.Schema.CloudEventInput getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<CloudEventInput>
+        PARSER = new com.google.protobuf.AbstractParser<CloudEventInput>() {
+      @java.lang.Override
+      public CloudEventInput parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CloudEventInput(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<CloudEventInput> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CloudEventInput> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public cloudEventsProxy.Schema.CloudEventInput getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface CloudEventOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:cloudEventsProxy.CloudEvent)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string specversion = 1 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getSpecversion();
+    /**
+     * <code>string specversion = 1 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getSpecversionBytes();
+
+    /**
+     * <code>string id = 2 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getId();
+    /**
+     * <code>string id = 2 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>string source = 3 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getSource();
+    /**
+     * <code>string source = 3 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getSourceBytes();
+
+    /**
+     * <code>string type = 4 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getType();
+    /**
+     * <code>string type = 4 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getTypeBytes();
+
+    /**
+     * <code>string subject = 5;</code>
+     */
+    java.lang.String getSubject();
+    /**
+     * <code>string subject = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getSubjectBytes();
+
+    /**
+     * <code>.google.protobuf.Struct attributes = 6;</code>
+     */
+    boolean hasAttributes();
+    /**
+     * <code>.google.protobuf.Struct attributes = 6;</code>
+     */
+    com.google.protobuf.Struct getAttributes();
+    /**
+     * <code>.google.protobuf.Struct attributes = 6;</code>
+     */
+    com.google.protobuf.StructOrBuilder getAttributesOrBuilder();
+
+    /**
+     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+     */
+    boolean hasData();
+    /**
+     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.Struct getData();
+    /**
+     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.StructOrBuilder getDataOrBuilder();
+
+    /**
+     * <code>.google.protobuf.Timestamp time = 8;</code>
+     */
+    boolean hasTime();
+    /**
+     * <code>.google.protobuf.Timestamp time = 8;</code>
+     */
+    com.google.protobuf.Timestamp getTime();
+    /**
+     * <code>.google.protobuf.Timestamp time = 8;</code>
+     */
+    com.google.protobuf.TimestampOrBuilder getTimeOrBuilder();
+  }
+  /**
+   * Protobuf type {@code cloudEventsProxy.CloudEvent}
+   */
+  public  static final class CloudEvent extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:cloudEventsProxy.CloudEvent)
+      CloudEventOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use CloudEvent.newBuilder() to construct.
+    private CloudEvent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private CloudEvent() {
+      specversion_ = "";
+      id_ = "";
+      source_ = "";
+      type_ = "";
+      subject_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CloudEvent(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              specversion_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              source_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              type_ = s;
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              subject_ = s;
+              break;
+            }
+            case 50: {
+              com.google.protobuf.Struct.Builder subBuilder = null;
+              if (attributes_ != null) {
+                subBuilder = attributes_.toBuilder();
+              }
+              attributes_ = input.readMessage(com.google.protobuf.Struct.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(attributes_);
+                attributes_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 58: {
+              com.google.protobuf.Struct.Builder subBuilder = null;
+              if (data_ != null) {
+                subBuilder = data_.toBuilder();
+              }
+              data_ = input.readMessage(com.google.protobuf.Struct.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(data_);
+                data_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 66: {
+              com.google.protobuf.Timestamp.Builder subBuilder = null;
+              if (time_ != null) {
+                subBuilder = time_.toBuilder();
+              }
+              time_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(time_);
+                time_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEvent_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEvent_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              cloudEventsProxy.Schema.CloudEvent.class, cloudEventsProxy.Schema.CloudEvent.Builder.class);
+    }
+
+    public static final int SPECVERSION_FIELD_NUMBER = 1;
+    private volatile java.lang.Object specversion_;
+    /**
+     * <code>string specversion = 1 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getSpecversion() {
+      java.lang.Object ref = specversion_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        specversion_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string specversion = 1 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getSpecversionBytes() {
+      java.lang.Object ref = specversion_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        specversion_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ID_FIELD_NUMBER = 2;
+    private volatile java.lang.Object id_;
+    /**
+     * <code>string id = 2 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string id = 2 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SOURCE_FIELD_NUMBER = 3;
+    private volatile java.lang.Object source_;
+    /**
+     * <code>string source = 3 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getSource() {
+      java.lang.Object ref = source_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        source_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string source = 3 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getSourceBytes() {
+      java.lang.Object ref = source_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        source_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 4;
+    private volatile java.lang.Object type_;
+    /**
+     * <code>string type = 4 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getType() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        type_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string type = 4 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getTypeBytes() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        type_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SUBJECT_FIELD_NUMBER = 5;
+    private volatile java.lang.Object subject_;
+    /**
+     * <code>string subject = 5;</code>
+     */
+    public java.lang.String getSubject() {
+      java.lang.Object ref = subject_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        subject_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string subject = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSubjectBytes() {
+      java.lang.Object ref = subject_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        subject_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ATTRIBUTES_FIELD_NUMBER = 6;
+    private com.google.protobuf.Struct attributes_;
+    /**
+     * <code>.google.protobuf.Struct attributes = 6;</code>
+     */
+    public boolean hasAttributes() {
+      return attributes_ != null;
+    }
+    /**
+     * <code>.google.protobuf.Struct attributes = 6;</code>
+     */
+    public com.google.protobuf.Struct getAttributes() {
+      return attributes_ == null ? com.google.protobuf.Struct.getDefaultInstance() : attributes_;
+    }
+    /**
+     * <code>.google.protobuf.Struct attributes = 6;</code>
+     */
+    public com.google.protobuf.StructOrBuilder getAttributesOrBuilder() {
+      return getAttributes();
+    }
+
+    public static final int DATA_FIELD_NUMBER = 7;
+    private com.google.protobuf.Struct data_;
+    /**
+     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+     */
+    public boolean hasData() {
+      return data_ != null;
+    }
+    /**
+     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.Struct getData() {
+      return data_ == null ? com.google.protobuf.Struct.getDefaultInstance() : data_;
+    }
+    /**
+     * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.StructOrBuilder getDataOrBuilder() {
+      return getData();
+    }
+
+    public static final int TIME_FIELD_NUMBER = 8;
+    private com.google.protobuf.Timestamp time_;
+    /**
+     * <code>.google.protobuf.Timestamp time = 8;</code>
+     */
+    public boolean hasTime() {
+      return time_ != null;
+    }
+    /**
+     * <code>.google.protobuf.Timestamp time = 8;</code>
+     */
+    public com.google.protobuf.Timestamp getTime() {
+      return time_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : time_;
+    }
+    /**
+     * <code>.google.protobuf.Timestamp time = 8;</code>
+     */
+    public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
+      return getTime();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getSpecversionBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, specversion_);
+      }
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, id_);
+      }
+      if (!getSourceBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, source_);
+      }
+      if (!getTypeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, type_);
+      }
+      if (!getSubjectBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, subject_);
+      }
+      if (attributes_ != null) {
+        output.writeMessage(6, getAttributes());
+      }
+      if (data_ != null) {
+        output.writeMessage(7, getData());
+      }
+      if (time_ != null) {
+        output.writeMessage(8, getTime());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getSpecversionBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, specversion_);
+      }
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, id_);
+      }
+      if (!getSourceBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, source_);
+      }
+      if (!getTypeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, type_);
+      }
+      if (!getSubjectBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, subject_);
+      }
+      if (attributes_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getAttributes());
+      }
+      if (data_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, getData());
+      }
+      if (time_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, getTime());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof cloudEventsProxy.Schema.CloudEvent)) {
+        return super.equals(obj);
+      }
+      cloudEventsProxy.Schema.CloudEvent other = (cloudEventsProxy.Schema.CloudEvent) obj;
+
+      boolean result = true;
+      result = result && getSpecversion()
+          .equals(other.getSpecversion());
+      result = result && getId()
+          .equals(other.getId());
+      result = result && getSource()
+          .equals(other.getSource());
+      result = result && getType()
+          .equals(other.getType());
+      result = result && getSubject()
+          .equals(other.getSubject());
+      result = result && (hasAttributes() == other.hasAttributes());
+      if (hasAttributes()) {
+        result = result && getAttributes()
+            .equals(other.getAttributes());
+      }
+      result = result && (hasData() == other.hasData());
+      if (hasData()) {
+        result = result && getData()
+            .equals(other.getData());
+      }
+      result = result && (hasTime() == other.hasTime());
+      if (hasTime()) {
+        result = result && getTime()
+            .equals(other.getTime());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SPECVERSION_FIELD_NUMBER;
+      hash = (53 * hash) + getSpecversion().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId().hashCode();
+      hash = (37 * hash) + SOURCE_FIELD_NUMBER;
+      hash = (53 * hash) + getSource().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType().hashCode();
+      hash = (37 * hash) + SUBJECT_FIELD_NUMBER;
+      hash = (53 * hash) + getSubject().hashCode();
+      if (hasAttributes()) {
+        hash = (37 * hash) + ATTRIBUTES_FIELD_NUMBER;
+        hash = (53 * hash) + getAttributes().hashCode();
+      }
+      if (hasData()) {
+        hash = (37 * hash) + DATA_FIELD_NUMBER;
+        hash = (53 * hash) + getData().hashCode();
+      }
+      if (hasTime()) {
+        hash = (37 * hash) + TIME_FIELD_NUMBER;
+        hash = (53 * hash) + getTime().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static cloudEventsProxy.Schema.CloudEvent parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static cloudEventsProxy.Schema.CloudEvent parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static cloudEventsProxy.Schema.CloudEvent parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static cloudEventsProxy.Schema.CloudEvent parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static cloudEventsProxy.Schema.CloudEvent parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(cloudEventsProxy.Schema.CloudEvent prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code cloudEventsProxy.CloudEvent}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:cloudEventsProxy.CloudEvent)
+        cloudEventsProxy.Schema.CloudEventOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEvent_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEvent_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                cloudEventsProxy.Schema.CloudEvent.class, cloudEventsProxy.Schema.CloudEvent.Builder.class);
+      }
+
+      // Construct using cloudEventsProxy.Schema.CloudEvent.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        specversion_ = "";
+
+        id_ = "";
+
+        source_ = "";
+
+        type_ = "";
+
+        subject_ = "";
+
+        if (attributesBuilder_ == null) {
+          attributes_ = null;
+        } else {
+          attributes_ = null;
+          attributesBuilder_ = null;
+        }
+        if (dataBuilder_ == null) {
+          data_ = null;
+        } else {
+          data_ = null;
+          dataBuilder_ = null;
+        }
+        if (timeBuilder_ == null) {
+          time_ = null;
+        } else {
+          time_ = null;
+          timeBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return cloudEventsProxy.Schema.internal_static_cloudEventsProxy_CloudEvent_descriptor;
+      }
+
+      @java.lang.Override
+      public cloudEventsProxy.Schema.CloudEvent getDefaultInstanceForType() {
+        return cloudEventsProxy.Schema.CloudEvent.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public cloudEventsProxy.Schema.CloudEvent build() {
+        cloudEventsProxy.Schema.CloudEvent result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public cloudEventsProxy.Schema.CloudEvent buildPartial() {
+        cloudEventsProxy.Schema.CloudEvent result = new cloudEventsProxy.Schema.CloudEvent(this);
+        result.specversion_ = specversion_;
+        result.id_ = id_;
+        result.source_ = source_;
+        result.type_ = type_;
+        result.subject_ = subject_;
+        if (attributesBuilder_ == null) {
+          result.attributes_ = attributes_;
+        } else {
+          result.attributes_ = attributesBuilder_.build();
+        }
+        if (dataBuilder_ == null) {
+          result.data_ = data_;
+        } else {
+          result.data_ = dataBuilder_.build();
+        }
+        if (timeBuilder_ == null) {
+          result.time_ = time_;
+        } else {
+          result.time_ = timeBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof cloudEventsProxy.Schema.CloudEvent) {
+          return mergeFrom((cloudEventsProxy.Schema.CloudEvent)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(cloudEventsProxy.Schema.CloudEvent other) {
+        if (other == cloudEventsProxy.Schema.CloudEvent.getDefaultInstance()) return this;
+        if (!other.getSpecversion().isEmpty()) {
+          specversion_ = other.specversion_;
+          onChanged();
+        }
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
+          onChanged();
+        }
+        if (!other.getSource().isEmpty()) {
+          source_ = other.source_;
+          onChanged();
+        }
+        if (!other.getType().isEmpty()) {
+          type_ = other.type_;
+          onChanged();
+        }
+        if (!other.getSubject().isEmpty()) {
+          subject_ = other.subject_;
+          onChanged();
+        }
+        if (other.hasAttributes()) {
+          mergeAttributes(other.getAttributes());
+        }
+        if (other.hasData()) {
+          mergeData(other.getData());
+        }
+        if (other.hasTime()) {
+          mergeTime(other.getTime());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        cloudEventsProxy.Schema.CloudEvent parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (cloudEventsProxy.Schema.CloudEvent) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object specversion_ = "";
+      /**
+       * <code>string specversion = 1 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getSpecversion() {
+        java.lang.Object ref = specversion_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          specversion_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string specversion = 1 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getSpecversionBytes() {
+        java.lang.Object ref = specversion_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          specversion_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string specversion = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setSpecversion(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        specversion_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string specversion = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearSpecversion() {
+        
+        specversion_ = getDefaultInstance().getSpecversion();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string specversion = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setSpecversionBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        specversion_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object id_ = "";
+      /**
+       * <code>string id = 2 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string id = 2 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string id = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearId() {
+        
+        id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object source_ = "";
+      /**
+       * <code>string source = 3 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getSource() {
+        java.lang.Object ref = source_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          source_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string source = 3 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getSourceBytes() {
+        java.lang.Object ref = source_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          source_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string source = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder setSource(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        source_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string source = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearSource() {
+        
+        source_ = getDefaultInstance().getSource();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string source = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder setSourceBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        source_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object type_ = "";
+      /**
+       * <code>string type = 4 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getType() {
+        java.lang.Object ref = type_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          type_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string type = 4 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getTypeBytes() {
+        java.lang.Object ref = type_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          type_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string type = 4 [(.validator.field) = { ... }</code>
+       */
+      public Builder setType(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string type = 4 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearType() {
+        
+        type_ = getDefaultInstance().getType();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string type = 4 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTypeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object subject_ = "";
+      /**
+       * <code>string subject = 5;</code>
+       */
+      public java.lang.String getSubject() {
+        java.lang.Object ref = subject_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          subject_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string subject = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSubjectBytes() {
+        java.lang.Object ref = subject_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          subject_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string subject = 5;</code>
+       */
+      public Builder setSubject(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        subject_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string subject = 5;</code>
+       */
+      public Builder clearSubject() {
+        
+        subject_ = getDefaultInstance().getSubject();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string subject = 5;</code>
+       */
+      public Builder setSubjectBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        subject_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.Struct attributes_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> attributesBuilder_;
+      /**
+       * <code>.google.protobuf.Struct attributes = 6;</code>
+       */
+      public boolean hasAttributes() {
+        return attributesBuilder_ != null || attributes_ != null;
+      }
+      /**
+       * <code>.google.protobuf.Struct attributes = 6;</code>
+       */
+      public com.google.protobuf.Struct getAttributes() {
+        if (attributesBuilder_ == null) {
+          return attributes_ == null ? com.google.protobuf.Struct.getDefaultInstance() : attributes_;
+        } else {
+          return attributesBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.google.protobuf.Struct attributes = 6;</code>
+       */
+      public Builder setAttributes(com.google.protobuf.Struct value) {
+        if (attributesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          attributes_ = value;
+          onChanged();
+        } else {
+          attributesBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Struct attributes = 6;</code>
+       */
+      public Builder setAttributes(
+          com.google.protobuf.Struct.Builder builderForValue) {
+        if (attributesBuilder_ == null) {
+          attributes_ = builderForValue.build();
+          onChanged();
+        } else {
+          attributesBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Struct attributes = 6;</code>
+       */
+      public Builder mergeAttributes(com.google.protobuf.Struct value) {
+        if (attributesBuilder_ == null) {
+          if (attributes_ != null) {
+            attributes_ =
+              com.google.protobuf.Struct.newBuilder(attributes_).mergeFrom(value).buildPartial();
+          } else {
+            attributes_ = value;
+          }
+          onChanged();
+        } else {
+          attributesBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Struct attributes = 6;</code>
+       */
+      public Builder clearAttributes() {
+        if (attributesBuilder_ == null) {
+          attributes_ = null;
+          onChanged();
+        } else {
+          attributes_ = null;
+          attributesBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Struct attributes = 6;</code>
+       */
+      public com.google.protobuf.Struct.Builder getAttributesBuilder() {
+        
+        onChanged();
+        return getAttributesFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.google.protobuf.Struct attributes = 6;</code>
+       */
+      public com.google.protobuf.StructOrBuilder getAttributesOrBuilder() {
+        if (attributesBuilder_ != null) {
+          return attributesBuilder_.getMessageOrBuilder();
+        } else {
+          return attributes_ == null ?
+              com.google.protobuf.Struct.getDefaultInstance() : attributes_;
+        }
+      }
+      /**
+       * <code>.google.protobuf.Struct attributes = 6;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
+          getAttributesFieldBuilder() {
+        if (attributesBuilder_ == null) {
+          attributesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder>(
+                  getAttributes(),
+                  getParentForChildren(),
+                  isClean());
+          attributes_ = null;
+        }
+        return attributesBuilder_;
+      }
+
+      private com.google.protobuf.Struct data_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> dataBuilder_;
+      /**
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       */
+      public boolean hasData() {
+        return dataBuilder_ != null || data_ != null;
+      }
+      /**
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.Struct getData() {
+        if (dataBuilder_ == null) {
+          return data_ == null ? com.google.protobuf.Struct.getDefaultInstance() : data_;
+        } else {
+          return dataBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       */
+      public Builder setData(com.google.protobuf.Struct value) {
+        if (dataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          dataBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       */
+      public Builder setData(
+          com.google.protobuf.Struct.Builder builderForValue) {
+        if (dataBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          dataBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       */
+      public Builder mergeData(com.google.protobuf.Struct value) {
+        if (dataBuilder_ == null) {
+          if (data_ != null) {
+            data_ =
+              com.google.protobuf.Struct.newBuilder(data_).mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          dataBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearData() {
+        if (dataBuilder_ == null) {
+          data_ = null;
+          onChanged();
+        } else {
+          data_ = null;
+          dataBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.Struct.Builder getDataBuilder() {
+        
+        onChanged();
+        return getDataFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.StructOrBuilder getDataOrBuilder() {
+        if (dataBuilder_ != null) {
+          return dataBuilder_.getMessageOrBuilder();
+        } else {
+          return data_ == null ?
+              com.google.protobuf.Struct.getDefaultInstance() : data_;
+        }
+      }
+      /**
+       * <code>.google.protobuf.Struct data = 7 [(.validator.field) = { ... }</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
+          getDataFieldBuilder() {
+        if (dataBuilder_ == null) {
+          dataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder>(
+                  getData(),
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        return dataBuilder_;
+      }
+
+      private com.google.protobuf.Timestamp time_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> timeBuilder_;
+      /**
+       * <code>.google.protobuf.Timestamp time = 8;</code>
+       */
+      public boolean hasTime() {
+        return timeBuilder_ != null || time_ != null;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp time = 8;</code>
+       */
+      public com.google.protobuf.Timestamp getTime() {
+        if (timeBuilder_ == null) {
+          return time_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : time_;
+        } else {
+          return timeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.google.protobuf.Timestamp time = 8;</code>
+       */
+      public Builder setTime(com.google.protobuf.Timestamp value) {
+        if (timeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          time_ = value;
+          onChanged();
+        } else {
+          timeBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp time = 8;</code>
+       */
+      public Builder setTime(
+          com.google.protobuf.Timestamp.Builder builderForValue) {
+        if (timeBuilder_ == null) {
+          time_ = builderForValue.build();
+          onChanged();
+        } else {
+          timeBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp time = 8;</code>
+       */
+      public Builder mergeTime(com.google.protobuf.Timestamp value) {
+        if (timeBuilder_ == null) {
+          if (time_ != null) {
+            time_ =
+              com.google.protobuf.Timestamp.newBuilder(time_).mergeFrom(value).buildPartial();
+          } else {
+            time_ = value;
+          }
+          onChanged();
+        } else {
+          timeBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp time = 8;</code>
+       */
+      public Builder clearTime() {
+        if (timeBuilder_ == null) {
+          time_ = null;
+          onChanged();
+        } else {
+          time_ = null;
+          timeBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Timestamp time = 8;</code>
+       */
+      public com.google.protobuf.Timestamp.Builder getTimeBuilder() {
+        
+        onChanged();
+        return getTimeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.google.protobuf.Timestamp time = 8;</code>
+       */
+      public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
+        if (timeBuilder_ != null) {
+          return timeBuilder_.getMessageOrBuilder();
+        } else {
+          return time_ == null ?
+              com.google.protobuf.Timestamp.getDefaultInstance() : time_;
+        }
+      }
+      /**
+       * <code>.google.protobuf.Timestamp time = 8;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+          getTimeFieldBuilder() {
+        if (timeBuilder_ == null) {
+          timeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                  getTime(),
+                  getParentForChildren(),
+                  isClean());
+          time_ = null;
+        }
+        return timeBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
       // @@protoc_insertion_point(builder_scope:cloudEventsProxy.CloudEvent)
     }
 
@@ -3293,17 +3761,20 @@ public final class Schema {
       "/protobuf/empty.proto\0326github.com/mwitko" +
       "w/go-proto-validators/validator.proto\"A\n" +
       "\016ReceiveRequest\022\036\n\004type\030\001 \001(\tB\020\342\337\037\014\n\n^.{" +
-      "1,225}$\022\017\n\007subject\030\002 \001(\t\"\300\001\n\017CloudEventI" +
-      "nput\022 \n\006source\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\036" +
-      "\n\004type\030\002 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\017\n\007subjec" +
-      "t\030\003 \001(\t\022+\n\nattributes\030\004 \001(\0132\027.google.pro" +
-      "tobuf.Struct\022-\n\004data\030\005 \001(\0132\027.google.prot" +
-      "obuf.StructB\006\342\337\037\002 \001\"\331\001\n\nCloudEvent\022\034\n\002id" +
-      "\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022 \n\006source\030\002 \001(\t" +
-      "B\020\342\337\037\014\n\n^.{1,225}$\022\036\n\004type\030\003 \001(\tB\020\342\337\037\014\n\n" +
-      "^.{1,225}$\022\017\n\007subject\030\004 \001(\t\022+\n\nattribute" +
-      "s\030\005 \001(\0132\027.google.protobuf.Struct\022-\n\004data" +
-      "\030\006 \001(\0132\027.google.protobuf.StructB\006\342\337\037\002 \0012" +
+      "1,225}$\022\017\n\007subject\030\002 \001(\t\"\347\001\n\017CloudEventI" +
+      "nput\022%\n\013specversion\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,22" +
+      "5}$\022 \n\006source\030\002 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\036\n" +
+      "\004type\030\003 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\017\n\007subject" +
+      "\030\004 \001(\t\022+\n\nattributes\030\005 \001(\0132\027.google.prot" +
+      "obuf.Struct\022-\n\004data\030\006 \001(\0132\027.google.proto" +
+      "buf.StructB\006\342\337\037\002 \001\"\252\002\n\nCloudEvent\022%\n\013spe" +
+      "cversion\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\034\n\002id\030\002" +
+      " \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022 \n\006source\030\003 \001(\tB\020" +
+      "\342\337\037\014\n\n^.{1,225}$\022\036\n\004type\030\004 \001(\tB\020\342\337\037\014\n\n^." +
+      "{1,225}$\022\017\n\007subject\030\005 \001(\t\022+\n\nattributes\030" +
+      "\006 \001(\0132\027.google.protobuf.Struct\022-\n\004data\030\007" +
+      " \001(\0132\027.google.protobuf.StructB\006\342\337\037\002 \001\022(\n" +
+      "\004time\030\010 \001(\0132\032.google.protobuf.Timestamp2" +
       "\254\002\n\022CloudEventsService\022S\n\004Send\022!.cloudEv" +
       "entsProxy.CloudEventInput\032\026.google.proto" +
       "buf.Empty\"\020\202\323\344\223\002\n\"\005/send:\001*\022_\n\007Request\022!" +
@@ -3343,13 +3814,13 @@ public final class Schema {
     internal_static_cloudEventsProxy_CloudEventInput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cloudEventsProxy_CloudEventInput_descriptor,
-        new java.lang.String[] { "Source", "Type", "Subject", "Attributes", "Data", });
+        new java.lang.String[] { "Specversion", "Source", "Type", "Subject", "Attributes", "Data", });
     internal_static_cloudEventsProxy_CloudEvent_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_cloudEventsProxy_CloudEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cloudEventsProxy_CloudEvent_descriptor,
-        new java.lang.String[] { "Id", "Source", "Type", "Subject", "Attributes", "Data", });
+        new java.lang.String[] { "Specversion", "Id", "Source", "Type", "Subject", "Attributes", "Data", "Time", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(com.google.api.AnnotationsProto.http);

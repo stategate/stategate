@@ -121,6 +121,9 @@
     "cloudEventsProxyCloudEvent": {
       "type": "object",
       "properties": {
+        "specversion": {
+          "type": "string"
+        },
         "id": {
           "type": "string"
         },
@@ -138,12 +141,19 @@
         },
         "data": {
           "type": "object"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
     "cloudEventsProxyCloudEventInput": {
       "type": "object",
       "properties": {
+        "specversion": {
+          "type": "string"
+        },
         "source": {
           "type": "string"
         },

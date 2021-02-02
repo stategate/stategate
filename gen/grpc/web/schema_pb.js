@@ -236,9 +236,10 @@ proto.cloudEventsProxy.CloudEventInput.prototype.toObject = function(opt_include
  */
 proto.cloudEventsProxy.CloudEventInput.toObject = function(includeInstance, msg) {
   var f, obj = {
-    source: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    subject: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    specversion: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    source: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    subject: jspb.Message.getFieldWithDefault(msg, 4, ""),
     attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
@@ -279,22 +280,26 @@ proto.cloudEventsProxy.CloudEventInput.deserializeBinaryFromReader = function(ms
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setSource(value);
+      msg.setSpecversion(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setType(value);
+      msg.setSource(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setSubject(value);
+      msg.setType(value);
       break;
     case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSubject(value);
+      break;
+    case 5:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setAttributes(value);
       break;
-    case 5:
+    case 6:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setData(value);
@@ -328,36 +333,35 @@ proto.cloudEventsProxy.CloudEventInput.prototype.serializeBinary = function() {
  */
 proto.cloudEventsProxy.CloudEventInput.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getSource();
+  f = message.getSpecversion();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getType();
+  f = message.getSource();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getSubject();
+  f = message.getType();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getAttributes();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getSubject();
+  if (f.length > 0) {
+    writer.writeString(
       4,
-      f,
-      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getData();
+  f = message.getAttributes();
   if (f != null) {
     writer.writeMessage(
       5,
@@ -365,67 +369,90 @@ proto.cloudEventsProxy.CloudEventInput.serializeBinaryToWriter = function(messag
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
 };
 
 
 /**
- * optional string source = 1;
+ * optional string specversion = 1;
  * @return {string}
  */
-proto.cloudEventsProxy.CloudEventInput.prototype.getSource = function() {
+proto.cloudEventsProxy.CloudEventInput.prototype.getSpecversion = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.cloudEventsProxy.CloudEventInput.prototype.setSource = function(value) {
+proto.cloudEventsProxy.CloudEventInput.prototype.setSpecversion = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string type = 2;
+ * optional string source = 2;
  * @return {string}
  */
-proto.cloudEventsProxy.CloudEventInput.prototype.getType = function() {
+proto.cloudEventsProxy.CloudEventInput.prototype.getSource = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /** @param {string} value */
-proto.cloudEventsProxy.CloudEventInput.prototype.setType = function(value) {
+proto.cloudEventsProxy.CloudEventInput.prototype.setSource = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string subject = 3;
+ * optional string type = 3;
  * @return {string}
  */
-proto.cloudEventsProxy.CloudEventInput.prototype.getSubject = function() {
+proto.cloudEventsProxy.CloudEventInput.prototype.getType = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
-proto.cloudEventsProxy.CloudEventInput.prototype.setSubject = function(value) {
+proto.cloudEventsProxy.CloudEventInput.prototype.setType = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional google.protobuf.Struct attributes = 4;
+ * optional string subject = 4;
+ * @return {string}
+ */
+proto.cloudEventsProxy.CloudEventInput.prototype.getSubject = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.cloudEventsProxy.CloudEventInput.prototype.setSubject = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct attributes = 5;
  * @return {?proto.google.protobuf.Struct}
  */
 proto.cloudEventsProxy.CloudEventInput.prototype.getAttributes = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 4));
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 5));
 };
 
 
 /** @param {?proto.google.protobuf.Struct|undefined} value */
 proto.cloudEventsProxy.CloudEventInput.prototype.setAttributes = function(value) {
-  jspb.Message.setWrapperField(this, 4, value);
+  jspb.Message.setWrapperField(this, 5, value);
 };
 
 
@@ -439,23 +466,23 @@ proto.cloudEventsProxy.CloudEventInput.prototype.clearAttributes = function() {
  * @return {!boolean}
  */
 proto.cloudEventsProxy.CloudEventInput.prototype.hasAttributes = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
- * optional google.protobuf.Struct data = 5;
+ * optional google.protobuf.Struct data = 6;
  * @return {?proto.google.protobuf.Struct}
  */
 proto.cloudEventsProxy.CloudEventInput.prototype.getData = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 5));
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 6));
 };
 
 
 /** @param {?proto.google.protobuf.Struct|undefined} value */
 proto.cloudEventsProxy.CloudEventInput.prototype.setData = function(value) {
-  jspb.Message.setWrapperField(this, 5, value);
+  jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -469,7 +496,7 @@ proto.cloudEventsProxy.CloudEventInput.prototype.clearData = function() {
  * @return {!boolean}
  */
 proto.cloudEventsProxy.CloudEventInput.prototype.hasData = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
@@ -520,12 +547,14 @@ proto.cloudEventsProxy.CloudEvent.prototype.toObject = function(opt_includeInsta
  */
 proto.cloudEventsProxy.CloudEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    source: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    subject: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    specversion: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    source: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    subject: jspb.Message.getFieldWithDefault(msg, 5, ""),
     attributes: (f = msg.getAttributes()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
+    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -564,29 +593,38 @@ proto.cloudEventsProxy.CloudEvent.deserializeBinaryFromReader = function(msg, re
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
+      msg.setSpecversion(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setSource(value);
+      msg.setId(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setType(value);
+      msg.setSource(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setSubject(value);
+      msg.setType(value);
       break;
     case 5:
-      var value = new google_protobuf_struct_pb.Struct;
-      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setAttributes(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSubject(value);
       break;
     case 6:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setAttributes(value);
+      break;
+    case 7:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setData(value);
+      break;
+    case 8:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
       break;
     default:
       reader.skipField();
@@ -617,43 +655,42 @@ proto.cloudEventsProxy.CloudEvent.prototype.serializeBinary = function() {
  */
 proto.cloudEventsProxy.CloudEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
+  f = message.getSpecversion();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getSource();
+  f = message.getId();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getType();
+  f = message.getSource();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
-  f = message.getSubject();
+  f = message.getType();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getAttributes();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getSubject();
+  if (f.length > 0) {
+    writer.writeString(
       5,
-      f,
-      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getData();
+  f = message.getAttributes();
   if (f != null) {
     writer.writeMessage(
       6,
@@ -661,82 +698,113 @@ proto.cloudEventsProxy.CloudEvent.serializeBinaryToWriter = function(message, wr
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
   }
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
 };
 
 
 /**
- * optional string id = 1;
+ * optional string specversion = 1;
  * @return {string}
  */
-proto.cloudEventsProxy.CloudEvent.prototype.getId = function() {
+proto.cloudEventsProxy.CloudEvent.prototype.getSpecversion = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.cloudEventsProxy.CloudEvent.prototype.setId = function(value) {
+proto.cloudEventsProxy.CloudEvent.prototype.setSpecversion = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string source = 2;
+ * optional string id = 2;
  * @return {string}
  */
-proto.cloudEventsProxy.CloudEvent.prototype.getSource = function() {
+proto.cloudEventsProxy.CloudEvent.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /** @param {string} value */
-proto.cloudEventsProxy.CloudEvent.prototype.setSource = function(value) {
+proto.cloudEventsProxy.CloudEvent.prototype.setId = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string type = 3;
+ * optional string source = 3;
  * @return {string}
  */
-proto.cloudEventsProxy.CloudEvent.prototype.getType = function() {
+proto.cloudEventsProxy.CloudEvent.prototype.getSource = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
-proto.cloudEventsProxy.CloudEvent.prototype.setType = function(value) {
+proto.cloudEventsProxy.CloudEvent.prototype.setSource = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string subject = 4;
+ * optional string type = 4;
  * @return {string}
  */
-proto.cloudEventsProxy.CloudEvent.prototype.getSubject = function() {
+proto.cloudEventsProxy.CloudEvent.prototype.getType = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
-proto.cloudEventsProxy.CloudEvent.prototype.setSubject = function(value) {
+proto.cloudEventsProxy.CloudEvent.prototype.setType = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional google.protobuf.Struct attributes = 5;
+ * optional string subject = 5;
+ * @return {string}
+ */
+proto.cloudEventsProxy.CloudEvent.prototype.getSubject = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/** @param {string} value */
+proto.cloudEventsProxy.CloudEvent.prototype.setSubject = function(value) {
+  jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct attributes = 6;
  * @return {?proto.google.protobuf.Struct}
  */
 proto.cloudEventsProxy.CloudEvent.prototype.getAttributes = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 5));
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 6));
 };
 
 
 /** @param {?proto.google.protobuf.Struct|undefined} value */
 proto.cloudEventsProxy.CloudEvent.prototype.setAttributes = function(value) {
-  jspb.Message.setWrapperField(this, 5, value);
+  jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -750,23 +818,23 @@ proto.cloudEventsProxy.CloudEvent.prototype.clearAttributes = function() {
  * @return {!boolean}
  */
 proto.cloudEventsProxy.CloudEvent.prototype.hasAttributes = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * optional google.protobuf.Struct data = 6;
+ * optional google.protobuf.Struct data = 7;
  * @return {?proto.google.protobuf.Struct}
  */
 proto.cloudEventsProxy.CloudEvent.prototype.getData = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 6));
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 7));
 };
 
 
 /** @param {?proto.google.protobuf.Struct|undefined} value */
 proto.cloudEventsProxy.CloudEvent.prototype.setData = function(value) {
-  jspb.Message.setWrapperField(this, 6, value);
+  jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -780,7 +848,37 @@ proto.cloudEventsProxy.CloudEvent.prototype.clearData = function() {
  * @return {!boolean}
  */
 proto.cloudEventsProxy.CloudEvent.prototype.hasData = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp time = 8;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.cloudEventsProxy.CloudEvent.prototype.getTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
+};
+
+
+/** @param {?proto.google.protobuf.Timestamp|undefined} value */
+proto.cloudEventsProxy.CloudEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+proto.cloudEventsProxy.CloudEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.cloudEventsProxy.CloudEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 

@@ -39,18 +39,21 @@ message ReceiveRequest {
 }
 
 message CloudEventInput {
-  string source = 1[(validator.field) = {regex : "^.{1,225}$"}];
-  string type = 2[(validator.field) = {regex : "^.{1,225}$"}];
-  string subject =3;
-  google.protobuf.Struct attributes = 4;
-  google.protobuf.Struct data = 5[(validator.field) = {msg_exists : true}];
-}
-
-message CloudEvent {
-  string id = 1[(validator.field) = {regex : "^.{1,225}$"}];
+  string specversion = 1[(validator.field) = {regex : "^.{1,225}$"}];
   string source = 2[(validator.field) = {regex : "^.{1,225}$"}];
   string type = 3[(validator.field) = {regex : "^.{1,225}$"}];
   string subject =4;
   google.protobuf.Struct attributes = 5;
   google.protobuf.Struct data = 6[(validator.field) = {msg_exists : true}];
+}
+
+message CloudEvent {
+  string specversion = 1[(validator.field) = {regex : "^.{1,225}$"}];
+  string id = 2[(validator.field) = {regex : "^.{1,225}$"}];
+  string source = 3[(validator.field) = {regex : "^.{1,225}$"}];
+  string type = 4[(validator.field) = {regex : "^.{1,225}$"}];
+  string subject =5;
+  google.protobuf.Struct attributes = 6;
+  google.protobuf.Struct data = 7[(validator.field) = {msg_exists : true}];
+  google.protobuf.Timestamp time =8;
 }

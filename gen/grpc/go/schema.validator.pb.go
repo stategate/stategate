@@ -7,12 +7,12 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/struct"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/golang/protobuf/ptypes/any"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
+	_ "github.com/golang/protobuf/ptypes/struct"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -31,10 +31,14 @@ func (this *ReceiveRequest) Validate() error {
 	return nil
 }
 
+var _regex_CloudEventInput_Specversion = regexp.MustCompile(`^.{1,225}$`)
 var _regex_CloudEventInput_Source = regexp.MustCompile(`^.{1,225}$`)
 var _regex_CloudEventInput_Type = regexp.MustCompile(`^.{1,225}$`)
 
 func (this *CloudEventInput) Validate() error {
+	if !_regex_CloudEventInput_Specversion.MatchString(this.Specversion) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Specversion", fmt.Errorf(`value '%v' must be a string conforming to regex "^.{1,225}$"`, this.Specversion))
+	}
 	if !_regex_CloudEventInput_Source.MatchString(this.Source) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Source", fmt.Errorf(`value '%v' must be a string conforming to regex "^.{1,225}$"`, this.Source))
 	}
@@ -57,11 +61,15 @@ func (this *CloudEventInput) Validate() error {
 	return nil
 }
 
+var _regex_CloudEvent_Specversion = regexp.MustCompile(`^.{1,225}$`)
 var _regex_CloudEvent_Id = regexp.MustCompile(`^.{1,225}$`)
 var _regex_CloudEvent_Source = regexp.MustCompile(`^.{1,225}$`)
 var _regex_CloudEvent_Type = regexp.MustCompile(`^.{1,225}$`)
 
 func (this *CloudEvent) Validate() error {
+	if !_regex_CloudEvent_Specversion.MatchString(this.Specversion) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Specversion", fmt.Errorf(`value '%v' must be a string conforming to regex "^.{1,225}$"`, this.Specversion))
+	}
 	if !_regex_CloudEvent_Id.MatchString(this.Id) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must be a string conforming to regex "^.{1,225}$"`, this.Id))
 	}
@@ -82,6 +90,11 @@ func (this *CloudEvent) Validate() error {
 	if this.Data != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
 			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+		}
+	}
+	if this.Time != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Time); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Time", err)
 		}
 	}
 	return nil

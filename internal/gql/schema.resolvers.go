@@ -17,8 +17,12 @@ import (
 
 func (r *mutationResolver) Send(ctx context.Context, input model.CloudEventInput) (*string, error) {
 	i := &cloudEventsProxy.CloudEventInput{
-		Source: input.Source,
-		Type:   input.Type,
+		Specversion: input.Specversion,
+		Source:      input.Source,
+		Type:        input.Type,
+		Subject:     "",
+		Attributes:  nil,
+		Data:        nil,
 	}
 	if input.Subject != nil {
 		i.Subject = *input.Subject
@@ -43,8 +47,12 @@ func (r *mutationResolver) Send(ctx context.Context, input model.CloudEventInput
 
 func (r *mutationResolver) Request(ctx context.Context, input model.CloudEventInput) (*model.CloudEvent, error) {
 	i := &cloudEventsProxy.CloudEventInput{
-		Source: input.Source,
-		Type:   input.Type,
+		Specversion: input.Specversion,
+		Source:      input.Source,
+		Type:        input.Type,
+		Subject:     "",
+		Attributes:  nil,
+		Data:        nil,
 	}
 	if input.Subject != nil {
 		i.Subject = *input.Subject
@@ -65,12 +73,14 @@ func (r *mutationResolver) Request(ctx context.Context, input model.CloudEventIn
 		}
 	}
 	return &model.CloudEvent{
-		ID:         resp.GetId(),
-		Source:     resp.GetSource(),
-		Type:       resp.GetType(),
-		Subject:    &resp.Subject,
-		Attributes: resp.GetAttributes().AsMap(),
-		Data:       resp.GetData().AsMap(),
+		Specversion: resp.GetSpecversion(),
+		ID:          resp.GetId(),
+		Source:      resp.GetSource(),
+		Type:        resp.GetType(),
+		Subject:     &resp.Subject,
+		Attributes:  resp.GetAttributes().AsMap(),
+		Data:        resp.GetData().AsMap(),
+		Time:        resp.Time.AsTime(),
 	}, nil
 }
 
@@ -104,12 +114,14 @@ func (r *subscriptionResolver) Receive(ctx context.Context, input model.ReceiveR
 					continue
 				}
 				ch <- &model.CloudEvent{
-					ID:         msg.GetId(),
-					Source:     msg.GetSource(),
-					Type:       msg.GetType(),
-					Subject:    &msg.Subject,
-					Attributes: msg.GetAttributes().AsMap(),
-					Data:       msg.GetData().AsMap(),
+					Specversion: msg.GetSpecversion(),
+					ID:          msg.GetId(),
+					Source:      msg.GetSource(),
+					Type:        msg.GetType(),
+					Subject:     &msg.Subject,
+					Attributes:  msg.GetAttributes().AsMap(),
+					Data:        msg.GetData().AsMap(),
+					Time:        msg.Time.AsTime(),
 				}
 			}
 		}

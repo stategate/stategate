@@ -5,15 +5,18 @@ scalar Map
 
 
 type CloudEvent {
+    specversion: String!
     id: String!
     source: String!
     type: String!
     subject: String
     attributes: Map
     data: Map!
+    time: Time!
 }
 
 input CloudEventInput {
+    specversion: String!
     source: String!
     type: String!
     subject: String

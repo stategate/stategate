@@ -9,7 +9,7 @@ require (
 	github.com/cloudevents/sdk-go/protocol/nats/v2 v2.3.1 // indirect
 	github.com/cloudevents/sdk-go/v2 v2.3.1 // indirect
 	github.com/golang/protobuf v1.4.3
-	github.com/google/uuid v1.2.0 // indirect
+	github.com/google/uuid v1.2.0
 	github.com/gorilla/websocket v1.4.2
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0
@@ -32,7 +32,7 @@ require (
 	google.golang.org/genproto v0.0.0-20210106152847-07624b53cd92
 	google.golang.org/grpc v1.34.0
 	google.golang.org/protobuf v1.25.0
-	helm.sh/helm/v3 v3.5.0
+	helm.sh/helm/v3 v3.5.0 // indirect
 	k8s.io/apimachinery v0.20.1
 	rsc.io/letsencrypt v0.0.3 // indirect
 )

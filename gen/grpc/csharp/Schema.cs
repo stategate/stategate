@@ -30,30 +30,32 @@ namespace CloudEventsProxy {
             "cm90b2J1Zi9hbnkucHJvdG8aG2dvb2dsZS9wcm90b2J1Zi9lbXB0eS5wcm90",
             "bxo2Z2l0aHViLmNvbS9td2l0a293L2dvLXByb3RvLXZhbGlkYXRvcnMvdmFs",
             "aWRhdG9yLnByb3RvIkEKDlJlY2VpdmVSZXF1ZXN0Eh4KBHR5cGUYASABKAlC",
-            "EOLfHwwKCl4uezEsMjI1fSQSDwoHc3ViamVjdBgCIAEoCSLAAQoPQ2xvdWRF",
-            "dmVudElucHV0EiAKBnNvdXJjZRgBIAEoCUIQ4t8fDAoKXi57MSwyMjV9JBIe",
-            "CgR0eXBlGAIgASgJQhDi3x8MCgpeLnsxLDIyNX0kEg8KB3N1YmplY3QYAyAB",
-            "KAkSKwoKYXR0cmlidXRlcxgEIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1",
-            "Y3QSLQoEZGF0YRgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLf",
-            "HwIgASLZAQoKQ2xvdWRFdmVudBIcCgJpZBgBIAEoCUIQ4t8fDAoKXi57MSwy",
-            "MjV9JBIgCgZzb3VyY2UYAiABKAlCEOLfHwwKCl4uezEsMjI1fSQSHgoEdHlw",
-            "ZRgDIAEoCUIQ4t8fDAoKXi57MSwyMjV9JBIPCgdzdWJqZWN0GAQgASgJEisK",
-            "CmF0dHJpYnV0ZXMYBSABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Ei0K",
-            "BGRhdGEYBiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAEy",
-            "rAIKEkNsb3VkRXZlbnRzU2VydmljZRJTCgRTZW5kEiEuY2xvdWRFdmVudHNQ",
-            "cm94eS5DbG91ZEV2ZW50SW5wdXQaFi5nb29nbGUucHJvdG9idWYuRW1wdHki",
-            "EILT5JMCCiIFL3NlbmQ6ASoSXwoHUmVxdWVzdBIhLmNsb3VkRXZlbnRzUHJv",
-            "eHkuQ2xvdWRFdmVudElucHV0GhwuY2xvdWRFdmVudHNQcm94eS5DbG91ZEV2",
-            "ZW50IhOC0+STAg0iCC9yZXF1ZXN0OgEqEmAKB1JlY2VpdmUSIC5jbG91ZEV2",
-            "ZW50c1Byb3h5LlJlY2VpdmVSZXF1ZXN0GhwuY2xvdWRFdmVudHNQcm94eS5D",
-            "bG91ZEV2ZW50IhOC0+STAg0iCC9yZWNlaXZlOgEqMAFCEloQY2xvdWRFdmVu",
-            "dHNQcm94eWIGcHJvdG8z"));
+            "EOLfHwwKCl4uezEsMjI1fSQSDwoHc3ViamVjdBgCIAEoCSLnAQoPQ2xvdWRF",
+            "dmVudElucHV0EiUKC3NwZWN2ZXJzaW9uGAEgASgJQhDi3x8MCgpeLnsxLDIy",
+            "NX0kEiAKBnNvdXJjZRgCIAEoCUIQ4t8fDAoKXi57MSwyMjV9JBIeCgR0eXBl",
+            "GAMgASgJQhDi3x8MCgpeLnsxLDIyNX0kEg8KB3N1YmplY3QYBCABKAkSKwoK",
+            "YXR0cmlidXRlcxgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSLQoE",
+            "ZGF0YRgGIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgASKq",
+            "AgoKQ2xvdWRFdmVudBIlCgtzcGVjdmVyc2lvbhgBIAEoCUIQ4t8fDAoKXi57",
+            "MSwyMjV9JBIcCgJpZBgCIAEoCUIQ4t8fDAoKXi57MSwyMjV9JBIgCgZzb3Vy",
+            "Y2UYAyABKAlCEOLfHwwKCl4uezEsMjI1fSQSHgoEdHlwZRgEIAEoCUIQ4t8f",
+            "DAoKXi57MSwyMjV9JBIPCgdzdWJqZWN0GAUgASgJEisKCmF0dHJpYnV0ZXMY",
+            "BiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Ei0KBGRhdGEYByABKAsy",
+            "Fy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAESKAoEdGltZRgIIAEo",
+            "CzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAyrAIKEkNsb3VkRXZlbnRz",
+            "U2VydmljZRJTCgRTZW5kEiEuY2xvdWRFdmVudHNQcm94eS5DbG91ZEV2ZW50",
+            "SW5wdXQaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiEILT5JMCCiIFL3NlbmQ6",
+            "ASoSXwoHUmVxdWVzdBIhLmNsb3VkRXZlbnRzUHJveHkuQ2xvdWRFdmVudElu",
+            "cHV0GhwuY2xvdWRFdmVudHNQcm94eS5DbG91ZEV2ZW50IhOC0+STAg0iCC9y",
+            "ZXF1ZXN0OgEqEmAKB1JlY2VpdmUSIC5jbG91ZEV2ZW50c1Byb3h5LlJlY2Vp",
+            "dmVSZXF1ZXN0GhwuY2xvdWRFdmVudHNQcm94eS5DbG91ZEV2ZW50IhOC0+ST",
+            "Ag0iCC9yZWNlaXZlOgEqMAFCEloQY2xvdWRFdmVudHNQcm94eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::CloudEventsProxy.ReceiveRequest), global::CloudEventsProxy.ReceiveRequest.Parser, new[]{ "Type", "Subject" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::CloudEventsProxy.CloudEventInput), global::CloudEventsProxy.CloudEventInput.Parser, new[]{ "Source", "Type", "Subject", "Attributes", "Data" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::CloudEventsProxy.CloudEvent), global::CloudEventsProxy.CloudEvent.Parser, new[]{ "Id", "Source", "Type", "Subject", "Attributes", "Data" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::CloudEventsProxy.CloudEventInput), global::CloudEventsProxy.CloudEventInput.Parser, new[]{ "Specversion", "Source", "Type", "Subject", "Attributes", "Data" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::CloudEventsProxy.CloudEvent), global::CloudEventsProxy.CloudEvent.Parser, new[]{ "Specversion", "Id", "Source", "Type", "Subject", "Attributes", "Data", "Time" }, null, null, null)
           }));
     }
     #endregion
@@ -242,6 +244,7 @@ namespace CloudEventsProxy {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CloudEventInput(CloudEventInput other) : this() {
+      specversion_ = other.specversion_;
       source_ = other.source_;
       type_ = other.type_;
       subject_ = other.subject_;
@@ -255,268 +258,14 @@ namespace CloudEventsProxy {
       return new CloudEventInput(this);
     }
 
-    /// <summary>Field number for the "source" field.</summary>
-    public const int SourceFieldNumber = 1;
-    private string source_ = "";
+    /// <summary>Field number for the "specversion" field.</summary>
+    public const int SpecversionFieldNumber = 1;
+    private string specversion_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Source {
-      get { return source_; }
+    public string Specversion {
+      get { return specversion_; }
       set {
-        source_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "type" field.</summary>
-    public const int TypeFieldNumber = 2;
-    private string type_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Type {
-      get { return type_; }
-      set {
-        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "subject" field.</summary>
-    public const int SubjectFieldNumber = 3;
-    private string subject_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Subject {
-      get { return subject_; }
-      set {
-        subject_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "attributes" field.</summary>
-    public const int AttributesFieldNumber = 4;
-    private global::Google.Protobuf.WellKnownTypes.Struct attributes_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Struct Attributes {
-      get { return attributes_; }
-      set {
-        attributes_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "data" field.</summary>
-    public const int DataFieldNumber = 5;
-    private global::Google.Protobuf.WellKnownTypes.Struct data_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Struct Data {
-      get { return data_; }
-      set {
-        data_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as CloudEventInput);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(CloudEventInput other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (Source != other.Source) return false;
-      if (Type != other.Type) return false;
-      if (Subject != other.Subject) return false;
-      if (!object.Equals(Attributes, other.Attributes)) return false;
-      if (!object.Equals(Data, other.Data)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Source.Length != 0) hash ^= Source.GetHashCode();
-      if (Type.Length != 0) hash ^= Type.GetHashCode();
-      if (Subject.Length != 0) hash ^= Subject.GetHashCode();
-      if (attributes_ != null) hash ^= Attributes.GetHashCode();
-      if (data_ != null) hash ^= Data.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (Source.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Source);
-      }
-      if (Type.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Type);
-      }
-      if (Subject.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(Subject);
-      }
-      if (attributes_ != null) {
-        output.WriteRawTag(34);
-        output.WriteMessage(Attributes);
-      }
-      if (data_ != null) {
-        output.WriteRawTag(42);
-        output.WriteMessage(Data);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (Source.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Source);
-      }
-      if (Type.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
-      }
-      if (Subject.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Subject);
-      }
-      if (attributes_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Attributes);
-      }
-      if (data_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Data);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(CloudEventInput other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Source.Length != 0) {
-        Source = other.Source;
-      }
-      if (other.Type.Length != 0) {
-        Type = other.Type;
-      }
-      if (other.Subject.Length != 0) {
-        Subject = other.Subject;
-      }
-      if (other.attributes_ != null) {
-        if (attributes_ == null) {
-          attributes_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-        }
-        Attributes.MergeFrom(other.Attributes);
-      }
-      if (other.data_ != null) {
-        if (data_ == null) {
-          data_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-        }
-        Data.MergeFrom(other.Data);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            Source = input.ReadString();
-            break;
-          }
-          case 18: {
-            Type = input.ReadString();
-            break;
-          }
-          case 26: {
-            Subject = input.ReadString();
-            break;
-          }
-          case 34: {
-            if (attributes_ == null) {
-              attributes_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-            }
-            input.ReadMessage(attributes_);
-            break;
-          }
-          case 42: {
-            if (data_ == null) {
-              data_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-            }
-            input.ReadMessage(data_);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class CloudEvent : pb::IMessage<CloudEvent> {
-    private static readonly pb::MessageParser<CloudEvent> _parser = new pb::MessageParser<CloudEvent>(() => new CloudEvent());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<CloudEvent> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::CloudEventsProxy.SchemaReflection.Descriptor.MessageTypes[2]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public CloudEvent() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public CloudEvent(CloudEvent other) : this() {
-      id_ = other.id_;
-      source_ = other.source_;
-      type_ = other.type_;
-      subject_ = other.subject_;
-      attributes_ = other.attributes_ != null ? other.attributes_.Clone() : null;
-      data_ = other.data_ != null ? other.data_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public CloudEvent Clone() {
-      return new CloudEvent(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private string id_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Id {
-      get { return id_; }
-      set {
-        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        specversion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -577,18 +326,18 @@ namespace CloudEventsProxy {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as CloudEvent);
+      return Equals(other as CloudEventInput);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(CloudEvent other) {
+    public bool Equals(CloudEventInput other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Id != other.Id) return false;
+      if (Specversion != other.Specversion) return false;
       if (Source != other.Source) return false;
       if (Type != other.Type) return false;
       if (Subject != other.Subject) return false;
@@ -600,7 +349,7 @@ namespace CloudEventsProxy {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (Specversion.Length != 0) hash ^= Specversion.GetHashCode();
       if (Source.Length != 0) hash ^= Source.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (Subject.Length != 0) hash ^= Subject.GetHashCode();
@@ -619,9 +368,9 @@ namespace CloudEventsProxy {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Id.Length != 0) {
+      if (Specversion.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteString(Id);
+        output.WriteString(Specversion);
       }
       if (Source.Length != 0) {
         output.WriteRawTag(18);
@@ -651,8 +400,8 @@ namespace CloudEventsProxy {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Id.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      if (Specversion.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Specversion);
       }
       if (Source.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Source);
@@ -676,12 +425,12 @@ namespace CloudEventsProxy {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(CloudEvent other) {
+    public void MergeFrom(CloudEventInput other) {
       if (other == null) {
         return;
       }
-      if (other.Id.Length != 0) {
-        Id = other.Id;
+      if (other.Specversion.Length != 0) {
+        Specversion = other.Specversion;
       }
       if (other.Source.Length != 0) {
         Source = other.Source;
@@ -716,7 +465,7 @@ namespace CloudEventsProxy {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            Id = input.ReadString();
+            Specversion = input.ReadString();
             break;
           }
           case 18: {
@@ -743,6 +492,349 @@ namespace CloudEventsProxy {
               data_ = new global::Google.Protobuf.WellKnownTypes.Struct();
             }
             input.ReadMessage(data_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class CloudEvent : pb::IMessage<CloudEvent> {
+    private static readonly pb::MessageParser<CloudEvent> _parser = new pb::MessageParser<CloudEvent>(() => new CloudEvent());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<CloudEvent> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::CloudEventsProxy.SchemaReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CloudEvent() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CloudEvent(CloudEvent other) : this() {
+      specversion_ = other.specversion_;
+      id_ = other.id_;
+      source_ = other.source_;
+      type_ = other.type_;
+      subject_ = other.subject_;
+      attributes_ = other.attributes_ != null ? other.attributes_.Clone() : null;
+      data_ = other.data_ != null ? other.data_.Clone() : null;
+      time_ = other.time_ != null ? other.time_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CloudEvent Clone() {
+      return new CloudEvent(this);
+    }
+
+    /// <summary>Field number for the "specversion" field.</summary>
+    public const int SpecversionFieldNumber = 1;
+    private string specversion_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Specversion {
+      get { return specversion_; }
+      set {
+        specversion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 2;
+    private string id_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Id {
+      get { return id_; }
+      set {
+        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "source" field.</summary>
+    public const int SourceFieldNumber = 3;
+    private string source_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Source {
+      get { return source_; }
+      set {
+        source_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 4;
+    private string type_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Type {
+      get { return type_; }
+      set {
+        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "subject" field.</summary>
+    public const int SubjectFieldNumber = 5;
+    private string subject_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Subject {
+      get { return subject_; }
+      set {
+        subject_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "attributes" field.</summary>
+    public const int AttributesFieldNumber = 6;
+    private global::Google.Protobuf.WellKnownTypes.Struct attributes_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Struct Attributes {
+      get { return attributes_; }
+      set {
+        attributes_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "data" field.</summary>
+    public const int DataFieldNumber = 7;
+    private global::Google.Protobuf.WellKnownTypes.Struct data_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Struct Data {
+      get { return data_; }
+      set {
+        data_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "time" field.</summary>
+    public const int TimeFieldNumber = 8;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp time_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp Time {
+      get { return time_; }
+      set {
+        time_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as CloudEvent);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(CloudEvent other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Specversion != other.Specversion) return false;
+      if (Id != other.Id) return false;
+      if (Source != other.Source) return false;
+      if (Type != other.Type) return false;
+      if (Subject != other.Subject) return false;
+      if (!object.Equals(Attributes, other.Attributes)) return false;
+      if (!object.Equals(Data, other.Data)) return false;
+      if (!object.Equals(Time, other.Time)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Specversion.Length != 0) hash ^= Specversion.GetHashCode();
+      if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (Source.Length != 0) hash ^= Source.GetHashCode();
+      if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (Subject.Length != 0) hash ^= Subject.GetHashCode();
+      if (attributes_ != null) hash ^= Attributes.GetHashCode();
+      if (data_ != null) hash ^= Data.GetHashCode();
+      if (time_ != null) hash ^= Time.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Specversion.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Specversion);
+      }
+      if (Id.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Id);
+      }
+      if (Source.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Source);
+      }
+      if (Type.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Type);
+      }
+      if (Subject.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Subject);
+      }
+      if (attributes_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(Attributes);
+      }
+      if (data_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(Data);
+      }
+      if (time_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(Time);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Specversion.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Specversion);
+      }
+      if (Id.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      }
+      if (Source.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Source);
+      }
+      if (Type.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      }
+      if (Subject.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Subject);
+      }
+      if (attributes_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Attributes);
+      }
+      if (data_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Data);
+      }
+      if (time_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Time);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(CloudEvent other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Specversion.Length != 0) {
+        Specversion = other.Specversion;
+      }
+      if (other.Id.Length != 0) {
+        Id = other.Id;
+      }
+      if (other.Source.Length != 0) {
+        Source = other.Source;
+      }
+      if (other.Type.Length != 0) {
+        Type = other.Type;
+      }
+      if (other.Subject.Length != 0) {
+        Subject = other.Subject;
+      }
+      if (other.attributes_ != null) {
+        if (attributes_ == null) {
+          attributes_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+        }
+        Attributes.MergeFrom(other.Attributes);
+      }
+      if (other.data_ != null) {
+        if (data_ == null) {
+          data_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+        }
+        Data.MergeFrom(other.Data);
+      }
+      if (other.time_ != null) {
+        if (time_ == null) {
+          time_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        Time.MergeFrom(other.Time);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Specversion = input.ReadString();
+            break;
+          }
+          case 18: {
+            Id = input.ReadString();
+            break;
+          }
+          case 26: {
+            Source = input.ReadString();
+            break;
+          }
+          case 34: {
+            Type = input.ReadString();
+            break;
+          }
+          case 42: {
+            Subject = input.ReadString();
+            break;
+          }
+          case 50: {
+            if (attributes_ == null) {
+              attributes_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+            }
+            input.ReadMessage(attributes_);
+            break;
+          }
+          case 58: {
+            if (data_ == null) {
+              data_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+            }
+            input.ReadMessage(data_);
+            break;
+          }
+          case 66: {
+            if (time_ == null) {
+              time_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(time_);
             break;
           }
         }

@@ -48,17 +48,25 @@ Usage of cloudEventsProxy:
 port: 8820
 # enable debug logs
 debug: true
-# rego policy for authorization. inputs: input.claims(map), input.headers(map), input.request(map), input.method(string)
-# caution - this one allows any request
-rego_policy: |-
-  package cloudEventsProxy.authz
+nats_url: "0.0.0.0:4444"
+# json web keys uri for authentication
+jwks_uri: ""
+# rego policy for request authorization - this one allows any request
+request_policy:
+  rego_policy: |-
+    package cloudEventsProxy.authz
 
-  default allow = true
-# query the allow variable
-rego_query: "data.cloudEventsProxy.authz.allow"
-# remote json web keys uri for verifying inbound JWTs
-jwks_uri: "https://www.googleapis.com/oauth2/v3/certs"
-# add list of helm repos to load at startup
+    default allow = true
+  # query the allow variable
+  rego_query: "data.cloudEventsProxy.authz.allow"
+# rego policy for response authorization - this one allows any request
+response_policy:
+  rego_policy: |-
+    package cloudEventsProxy.authz
+
+    default allow = true
+  # query the allow variable
+  rego_query: "data.cloudEventsProxy.authz.allow"
 
 ```
 

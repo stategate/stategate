@@ -9,6 +9,7 @@ import (
 	"io"
 	"strconv"
 	"sync"
+	"time"
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"
@@ -44,12 +45,14 @@ type DirectiveRoot struct {
 
 type ComplexityRoot struct {
 	CloudEvent struct {
-		Attributes func(childComplexity int) int
-		Data       func(childComplexity int) int
-		ID         func(childComplexity int) int
-		Source     func(childComplexity int) int
-		Subject    func(childComplexity int) int
-		Type       func(childComplexity int) int
+		Attributes  func(childComplexity int) int
+		Data        func(childComplexity int) int
+		ID          func(childComplexity int) int
+		Source      func(childComplexity int) int
+		Specversion func(childComplexity int) int
+		Subject     func(childComplexity int) int
+		Time        func(childComplexity int) int
+		Type        func(childComplexity int) int
 	}
 
 	Mutation struct {
@@ -116,12 +119,26 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.CloudEvent.Source(childComplexity), true
 
+	case "CloudEvent.specversion":
+		if e.complexity.CloudEvent.Specversion == nil {
+			break
+		}
+
+		return e.complexity.CloudEvent.Specversion(childComplexity), true
+
 	case "CloudEvent.subject":
 		if e.complexity.CloudEvent.Subject == nil {
 			break
 		}
 
 		return e.complexity.CloudEvent.Subject(childComplexity), true
+
+	case "CloudEvent.time":
+		if e.complexity.CloudEvent.Time == nil {
+			break
+		}
+
+		return e.complexity.CloudEvent.Time(childComplexity), true
 
 	case "CloudEvent.type":
 		if e.complexity.CloudEvent.Type == nil {
@@ -254,15 +271,18 @@ scalar Map
 
 
 type CloudEvent {
+    specversion: String!
     id: String!
     source: String!
     type: String!
     subject: String
     attributes: Map
     data: Map!
+    time: Time!
 }
 
 input CloudEventInput {
+    specversion: String!
     source: String!
     type: String!
     subject: String
@@ -387,6 +407,41 @@ func (ec *executionContext) field___Type_fields_args(ctx context.Context, rawArg
 // endregion ************************** directives.gotpl **************************
 
 // region    **************************** field.gotpl *****************************
+
+func (ec *executionContext) _CloudEvent_specversion(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:     "CloudEvent",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Specversion, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	fc.Result = res
+	return ec.marshalNString2string(ctx, field.Selections, res)
+}
 
 func (ec *executionContext) _CloudEvent_id(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
 	defer func() {
@@ -590,6 +645,41 @@ func (ec *executionContext) _CloudEvent_data(ctx context.Context, field graphql.
 	res := resTmp.(map[string]interface{})
 	fc.Result = res
 	return ec.marshalNMap2map(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _CloudEvent_time(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:     "CloudEvent",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Time, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(time.Time)
+	fc.Result = res
+	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_send(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -1889,6 +1979,14 @@ func (ec *executionContext) unmarshalInputCloudEventInput(ctx context.Context, o
 
 	for k, v := range asMap {
 		switch k {
+		case "specversion":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("specversion"))
+			it.Specversion, err = ec.unmarshalNString2string(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "source":
 			var err error
 
@@ -1982,6 +2080,11 @@ func (ec *executionContext) _CloudEvent(ctx context.Context, sel ast.SelectionSe
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("CloudEvent")
+		case "specversion":
+			out.Values[i] = ec._CloudEvent_specversion(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "id":
 			out.Values[i] = ec._CloudEvent_id(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
@@ -2003,6 +2106,11 @@ func (ec *executionContext) _CloudEvent(ctx context.Context, sel ast.SelectionSe
 			out.Values[i] = ec._CloudEvent_attributes(ctx, field, obj)
 		case "data":
 			out.Values[i] = ec._CloudEvent_data(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
+		case "time":
+			out.Values[i] = ec._CloudEvent_time(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
@@ -2412,6 +2520,21 @@ func (ec *executionContext) unmarshalNString2string(ctx context.Context, v inter
 
 func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.SelectionSet, v string) graphql.Marshaler {
 	res := graphql.MarshalString(v)
+	if res == graphql.Null {
+		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
+			ec.Errorf(ctx, "must not be null")
+		}
+	}
+	return res
+}
+
+func (ec *executionContext) unmarshalNTime2timeᚐTime(ctx context.Context, v interface{}) (time.Time, error) {
+	res, err := graphql.UnmarshalTime(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalNTime2timeᚐTime(ctx context.Context, sel ast.SelectionSet, v time.Time) graphql.Marshaler {
+	res := graphql.MarshalTime(v)
 	if res == graphql.Null {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")

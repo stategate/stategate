@@ -34,6 +34,9 @@ export namespace ReceiveRequest {
 }
 
 export class CloudEventInput extends jspb.Message {
+  getSpecversion(): string;
+  setSpecversion(value: string): void;
+
   getSource(): string;
   setSource(value: string): void;
 
@@ -65,6 +68,7 @@ export class CloudEventInput extends jspb.Message {
 
 export namespace CloudEventInput {
   export type AsObject = {
+    specversion: string,
     source: string,
     type: string,
     subject: string,
@@ -74,6 +78,9 @@ export namespace CloudEventInput {
 }
 
 export class CloudEvent extends jspb.Message {
+  getSpecversion(): string;
+  setSpecversion(value: string): void;
+
   getId(): string;
   setId(value: string): void;
 
@@ -96,6 +103,11 @@ export class CloudEvent extends jspb.Message {
   getData(): google_protobuf_struct_pb.Struct | undefined;
   setData(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasTime(): boolean;
+  clearTime(): void;
+  getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CloudEvent.AsObject;
   static toObject(includeInstance: boolean, msg: CloudEvent): CloudEvent.AsObject;
@@ -108,12 +120,14 @@ export class CloudEvent extends jspb.Message {
 
 export namespace CloudEvent {
   export type AsObject = {
+    specversion: string,
     id: string,
     source: string,
     type: string,
     subject: string,
     attributes?: google_protobuf_struct_pb.Struct.AsObject,
     data?: google_protobuf_struct_pb.Struct.AsObject,
+    time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 

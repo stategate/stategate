@@ -2,16 +2,24 @@
 port: 8820
 # enable debug logs
 debug: true
-# rego policy for authorization - this one allows any request
-rego_policy: |-
-  package cloudEventsProxy.authz
-
-  default allow = true
-# query the allow variable
-rego_query: "data.cloudEventsProxy.authz.allow"
+nats_url: "0.0.0.0:4444"
 # json web keys uri for authentication
 jwks_uri: ""
-# add list of helm repos to load at startup
-repos:
-  - name: "stable"
-    url: "https://charts.helm.sh/stable"
+# rego policy for request authorization - this one allows any request
+request_policy:
+  rego_policy: |-
+    package cloudEventsProxy.authz
+
+    default allow = true
+  # query the allow variable
+  rego_query: "data.cloudEventsProxy.authz.allow"
+# rego policy for response authorization - this one allows any request
+response_policy:
+  rego_policy: |-
+    package cloudEventsProxy.authz
+
+    default allow = true
+  # query the allow variable
+  rego_query: "data.cloudEventsProxy.authz.allow"
+
+

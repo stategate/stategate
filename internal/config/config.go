@@ -1,9 +1,5 @@
 package config
 
-import (
-	"github.com/nats-io/stan.go"
-)
-
 type Config struct {
 	Port           int64   `yaml:"port"`
 	Debug          bool    `yaml:"debug"`
@@ -50,6 +46,6 @@ func (c *Config) SetDefaults() {
 		c.ResponsePolicy.RegoQuery = "data.cloudEventsProxy.authz.allow"
 	}
 	if c.NatsURL == "" {
-		c.NatsURL = stan.DefaultNatsURL
+		c.NatsURL = "0.0.0.0:4444"
 	}
 }
