@@ -20,5 +20,6 @@ type CloudEventInput struct {
 }
 
 type ReceiveRequest struct {
-	Type string `json:"type"`
+	Type    string  `json:"type"`
+	Subject *string `json:"subject"`
 }

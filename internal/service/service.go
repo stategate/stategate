@@ -2,15 +2,15 @@ package service
 
 import (
 	"context"
+	"fmt"
 	cloudEventsProxy "github.com/autom8ter/cloudEventsProxy/gen/grpc/go"
 	"github.com/autom8ter/cloudEventsProxy/internal/logger"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/nats-io/nats.go"
 	"go.uber.org/zap"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 	"sync"
+	"time"
 )
 
 type Service struct {
@@ -25,20 +25,31 @@ func NewService(logger *logger.Logger, conn *nats.Conn) (*Service, error) {
 	}, nil
 }
 
-func (s *Service) Send(ctx context.Context, c *cloudEventsProxy.CloudEventInput) (*empty.Empty, error) {
-	bits, err := proto.Marshal(c)
+func (s *Service) Send(ctx context.Context, r *cloudEventsProxy.CloudEventInput) (*empty.Empty, error) {
+	bits, err := proto.Marshal(r)
 	if err != nil {
 		return nil, err
 	}
-	if err := s.conn.Publish(c.GetType(), bits); err != nil {
+	if err := s.conn.Publish(getSubject(r.GetType(), r.GetSubject()), bits); err != nil {
 		return nil, err
 	}
 	return &empty.Empty{}, nil
 }
 
-func (s *Service) Request(ctx context.Context, c *cloudEventsProxy.CloudEventInput) (*cloudEventsProxy.CloudEvent, error) {
-
-	return nil, status.Error(codes.Unimplemented, "")
+func (s *Service) Request(ctx context.Context, r *cloudEventsProxy.CloudEventInput) (*cloudEventsProxy.CloudEvent, error) {
+	bits, err := proto.Marshal(r)
+	if err != nil {
+		return nil, err
+	}
+	resp, err := s.conn.Request(getSubject(r.GetType(), r.GetSubject()), bits, 30*time.Second)
+	if err != nil {
+		return nil, err
+	}
+	var event cloudEventsProxy.CloudEvent
+	if err := proto.Unmarshal(resp.Data, &event); err != nil {
+		return nil, err
+	}
+	return &event, nil
 }
 
 func (s *Service) Receive(r *cloudEventsProxy.ReceiveRequest, server cloudEventsProxy.CloudEventsService_ReceiveServer) error {
@@ -47,7 +58,7 @@ func (s *Service) Receive(r *cloudEventsProxy.ReceiveRequest, server cloudEvents
 		sub *nats.Subscription
 		wg  = sync.WaitGroup{}
 	)
-	sub, err = s.conn.Subscribe(r.GetType(), func(msg *nats.Msg) {
+	sub, err = s.conn.Subscribe(getSubject(r.GetType(), r.GetSubject()), func(msg *nats.Msg) {
 		wg.Add(1)
 		defer wg.Done()
 		var event cloudEventsProxy.CloudEvent
@@ -65,14 +76,19 @@ func (s *Service) Receive(r *cloudEventsProxy.ReceiveRequest, server cloudEvents
 	}
 	ctx, cancel := context.WithCancel(server.Context())
 	defer cancel()
-	for {
-		select {
-		case <-ctx.Done():
-			if err := sub.Unsubscribe(); err != nil {
-				return err
-			}
-			wg.Wait()
-			return nil
+	select {
+	case <-ctx.Done():
+		if err := sub.Unsubscribe(); err != nil {
+			return err
 		}
+		wg.Wait()
+		return nil
 	}
+}
+
+func getSubject(typ string, subject string) string {
+	if subject != "" {
+		return fmt.Sprintf("%s/%s", typ, subject)
+	}
+	return typ
 }

@@ -2,17 +2,15 @@ package config
 
 import (
 	"github.com/nats-io/stan.go"
-	"helm.sh/helm/v3/pkg/repo"
 )
 
 type Config struct {
-	Port       int64         `yaml:"port"`
-	Debug      bool          `yaml:"debug"`
-	RegoPolicy string        `yaml:"rego_policy"`
-	RegoQuery  string        `yaml:"rego_query"`
-	JwksURI    string        `yaml:"jwks_uri"`
-	Repos      []*repo.Entry `yaml:"repos"`
-	NatsURL    string        `yaml:"nats_url"`
+	Port       int64  `yaml:"port"`
+	Debug      bool   `yaml:"debug"`
+	RegoPolicy string `yaml:"rego_policy"`
+	RegoQuery  string `yaml:"rego_query"`
+	JwksURI    string `yaml:"jwks_uri"`
+	NatsURL    string `yaml:"nats_url"`
 }
 
 func (c *Config) SetDefaults() {

@@ -27,6 +27,16 @@ public final class Schema {
      */
     com.google.protobuf.ByteString
         getTypeBytes();
+
+    /**
+     * <code>string subject = 2;</code>
+     */
+    java.lang.String getSubject();
+    /**
+     * <code>string subject = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getSubjectBytes();
   }
   /**
    * Protobuf type {@code cloudEventsProxy.ReceiveRequest}
@@ -42,6 +52,7 @@ public final class Schema {
     }
     private ReceiveRequest() {
       type_ = "";
+      subject_ = "";
     }
 
     @java.lang.Override
@@ -72,6 +83,12 @@ public final class Schema {
               java.lang.String s = input.readStringRequireUtf8();
 
               type_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              subject_ = s;
               break;
             }
             default: {
@@ -140,6 +157,40 @@ public final class Schema {
       }
     }
 
+    public static final int SUBJECT_FIELD_NUMBER = 2;
+    private volatile java.lang.Object subject_;
+    /**
+     * <code>string subject = 2;</code>
+     */
+    public java.lang.String getSubject() {
+      java.lang.Object ref = subject_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        subject_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string subject = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSubjectBytes() {
+      java.lang.Object ref = subject_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        subject_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -157,6 +208,9 @@ public final class Schema {
       if (!getTypeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
       }
+      if (!getSubjectBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, subject_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -168,6 +222,9 @@ public final class Schema {
       size = 0;
       if (!getTypeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
+      }
+      if (!getSubjectBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, subject_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -187,6 +244,8 @@ public final class Schema {
       boolean result = true;
       result = result && getType()
           .equals(other.getType());
+      result = result && getSubject()
+          .equals(other.getSubject());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -200,6 +259,8 @@ public final class Schema {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
+      hash = (37 * hash) + SUBJECT_FIELD_NUMBER;
+      hash = (53 * hash) + getSubject().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -335,6 +396,8 @@ public final class Schema {
         super.clear();
         type_ = "";
 
+        subject_ = "";
+
         return this;
       }
 
@@ -362,6 +425,7 @@ public final class Schema {
       public cloudEventsProxy.Schema.ReceiveRequest buildPartial() {
         cloudEventsProxy.Schema.ReceiveRequest result = new cloudEventsProxy.Schema.ReceiveRequest(this);
         result.type_ = type_;
+        result.subject_ = subject_;
         onBuilt();
         return result;
       }
@@ -412,6 +476,10 @@ public final class Schema {
         if (other == cloudEventsProxy.Schema.ReceiveRequest.getDefaultInstance()) return this;
         if (!other.getType().isEmpty()) {
           type_ = other.type_;
+          onChanged();
+        }
+        if (!other.getSubject().isEmpty()) {
+          subject_ = other.subject_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -508,6 +576,75 @@ public final class Schema {
   checkByteStringIsUtf8(value);
         
         type_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object subject_ = "";
+      /**
+       * <code>string subject = 2;</code>
+       */
+      public java.lang.String getSubject() {
+        java.lang.Object ref = subject_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          subject_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string subject = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSubjectBytes() {
+        java.lang.Object ref = subject_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          subject_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string subject = 2;</code>
+       */
+      public Builder setSubject(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        subject_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string subject = 2;</code>
+       */
+      public Builder clearSubject() {
+        
+        subject_ = getDefaultInstance().getSubject();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string subject = 2;</code>
+       */
+      public Builder setSubjectBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        subject_ = value;
         onChanged();
         return this;
       }
@@ -3154,27 +3291,28 @@ public final class Schema {
       "struct.proto\032\037google/protobuf/timestamp." +
       "proto\032\031google/protobuf/any.proto\032\033google" +
       "/protobuf/empty.proto\0326github.com/mwitko" +
-      "w/go-proto-validators/validator.proto\"0\n" +
+      "w/go-proto-validators/validator.proto\"A\n" +
       "\016ReceiveRequest\022\036\n\004type\030\001 \001(\tB\020\342\337\037\014\n\n^.{" +
-      "1,225}$\"\300\001\n\017CloudEventInput\022 \n\006source\030\001 " +
-      "\001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\036\n\004type\030\002 \001(\tB\020\342\337\037" +
-      "\014\n\n^.{1,225}$\022\017\n\007subject\030\003 \001(\t\022+\n\nattrib" +
-      "utes\030\004 \001(\0132\027.google.protobuf.Struct\022-\n\004d" +
-      "ata\030\005 \001(\0132\027.google.protobuf.StructB\006\342\337\037\002" +
-      " \001\"\331\001\n\nCloudEvent\022\034\n\002id\030\001 \001(\tB\020\342\337\037\014\n\n^.{" +
-      "1,225}$\022 \n\006source\030\002 \001(\tB\020\342\337\037\014\n\n^.{1,225}" +
-      "$\022\036\n\004type\030\003 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\017\n\007sub" +
-      "ject\030\004 \001(\t\022+\n\nattributes\030\005 \001(\0132\027.google." +
-      "protobuf.Struct\022-\n\004data\030\006 \001(\0132\027.google.p" +
-      "rotobuf.StructB\006\342\337\037\002 \0012\254\002\n\022CloudEventsSe" +
-      "rvice\022S\n\004Send\022!.cloudEventsProxy.CloudEv" +
-      "entInput\032\026.google.protobuf.Empty\"\020\202\323\344\223\002\n" +
-      "\"\005/send:\001*\022_\n\007Request\022!.cloudEventsProxy" +
-      ".CloudEventInput\032\034.cloudEventsProxy.Clou" +
-      "dEvent\"\023\202\323\344\223\002\r\"\010/request:\001*\022`\n\007Receive\022 " +
-      ".cloudEventsProxy.ReceiveRequest\032\034.cloud" +
-      "EventsProxy.CloudEvent\"\023\202\323\344\223\002\r\"\010/receive" +
-      ":\001*0\001B\022Z\020cloudEventsProxyb\006proto3"
+      "1,225}$\022\017\n\007subject\030\002 \001(\t\"\300\001\n\017CloudEventI" +
+      "nput\022 \n\006source\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\036" +
+      "\n\004type\030\002 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\017\n\007subjec" +
+      "t\030\003 \001(\t\022+\n\nattributes\030\004 \001(\0132\027.google.pro" +
+      "tobuf.Struct\022-\n\004data\030\005 \001(\0132\027.google.prot" +
+      "obuf.StructB\006\342\337\037\002 \001\"\331\001\n\nCloudEvent\022\034\n\002id" +
+      "\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022 \n\006source\030\002 \001(\t" +
+      "B\020\342\337\037\014\n\n^.{1,225}$\022\036\n\004type\030\003 \001(\tB\020\342\337\037\014\n\n" +
+      "^.{1,225}$\022\017\n\007subject\030\004 \001(\t\022+\n\nattribute" +
+      "s\030\005 \001(\0132\027.google.protobuf.Struct\022-\n\004data" +
+      "\030\006 \001(\0132\027.google.protobuf.StructB\006\342\337\037\002 \0012" +
+      "\254\002\n\022CloudEventsService\022S\n\004Send\022!.cloudEv" +
+      "entsProxy.CloudEventInput\032\026.google.proto" +
+      "buf.Empty\"\020\202\323\344\223\002\n\"\005/send:\001*\022_\n\007Request\022!" +
+      ".cloudEventsProxy.CloudEventInput\032\034.clou" +
+      "dEventsProxy.CloudEvent\"\023\202\323\344\223\002\r\"\010/reques" +
+      "t:\001*\022`\n\007Receive\022 .cloudEventsProxy.Recei" +
+      "veRequest\032\034.cloudEventsProxy.CloudEvent\"" +
+      "\023\202\323\344\223\002\r\"\010/receive:\001*0\001B\022Z\020cloudEventsPro" +
+      "xyb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3199,7 +3337,7 @@ public final class Schema {
     internal_static_cloudEventsProxy_ReceiveRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cloudEventsProxy_ReceiveRequest_descriptor,
-        new java.lang.String[] { "Type", });
+        new java.lang.String[] { "Type", "Subject", });
     internal_static_cloudEventsProxy_CloudEventInput_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_cloudEventsProxy_CloudEventInput_fieldAccessorTable = new

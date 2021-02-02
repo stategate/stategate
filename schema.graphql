@@ -23,6 +23,7 @@ input CloudEventInput {
 
 input ReceiveRequest {
     type: String!
+    subject: String
 }
 
 type Mutation {

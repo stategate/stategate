@@ -76,9 +76,13 @@ func (r *mutationResolver) Request(ctx context.Context, input model.CloudEventIn
 
 func (r *subscriptionResolver) Receive(ctx context.Context, input model.ReceiveRequest) (<-chan *model.CloudEvent, error) {
 	ch := make(chan *model.CloudEvent)
-	stream, err := r.client.Receive(ctx, &cloudEventsProxy.ReceiveRequest{
+	i := &cloudEventsProxy.ReceiveRequest{
 		Type: input.Type,
-	})
+	}
+	if input.Subject != nil {
+		i.Subject = *input.Subject
+	}
+	stream, err := r.client.Receive(ctx, i)
 	if err != nil {
 		return nil, &gqlerror.Error{
 			Message: err.Error(),

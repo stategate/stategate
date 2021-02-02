@@ -13,6 +13,9 @@ export class ReceiveRequest extends jspb.Message {
   getType(): string;
   setType(value: string): void;
 
+  getSubject(): string;
+  setSubject(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ReceiveRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ReceiveRequest): ReceiveRequest.AsObject;
@@ -26,6 +29,7 @@ export class ReceiveRequest extends jspb.Message {
 export namespace ReceiveRequest {
   export type AsObject = {
     type: string,
+    subject: string,
   }
 }
 

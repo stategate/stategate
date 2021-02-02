@@ -272,6 +272,7 @@ input CloudEventInput {
 
 input ReceiveRequest {
     type: String!
+    subject: String
 }
 
 type Mutation {
@@ -1945,6 +1946,14 @@ func (ec *executionContext) unmarshalInputReceiveRequest(ctx context.Context, ob
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("type"))
 			it.Type, err = ec.unmarshalNString2string(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "subject":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("subject"))
+			it.Subject, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}

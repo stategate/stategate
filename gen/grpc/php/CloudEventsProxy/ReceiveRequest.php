@@ -17,6 +17,10 @@ class ReceiveRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
      */
     private $type = '';
+    /**
+     * Generated from protobuf field <code>string subject = 2;</code>
+     */
+    private $subject = '';
 
     /**
      * Constructor.
@@ -25,6 +29,7 @@ class ReceiveRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $type
+     *     @type string $subject
      * }
      */
     public function __construct($data = NULL) {
@@ -50,6 +55,28 @@ class ReceiveRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string subject = 2;</code>
+     * @return string
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    /**
+     * Generated from protobuf field <code>string subject = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSubject($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->subject = $var;
 
         return $this;
     }

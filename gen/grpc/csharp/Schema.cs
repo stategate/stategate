@@ -29,28 +29,29 @@ namespace CloudEventsProxy {
             "dG8aH2dvb2dsZS9wcm90b2J1Zi90aW1lc3RhbXAucHJvdG8aGWdvb2dsZS9w",
             "cm90b2J1Zi9hbnkucHJvdG8aG2dvb2dsZS9wcm90b2J1Zi9lbXB0eS5wcm90",
             "bxo2Z2l0aHViLmNvbS9td2l0a293L2dvLXByb3RvLXZhbGlkYXRvcnMvdmFs",
-            "aWRhdG9yLnByb3RvIjAKDlJlY2VpdmVSZXF1ZXN0Eh4KBHR5cGUYASABKAlC",
-            "EOLfHwwKCl4uezEsMjI1fSQiwAEKD0Nsb3VkRXZlbnRJbnB1dBIgCgZzb3Vy",
-            "Y2UYASABKAlCEOLfHwwKCl4uezEsMjI1fSQSHgoEdHlwZRgCIAEoCUIQ4t8f",
-            "DAoKXi57MSwyMjV9JBIPCgdzdWJqZWN0GAMgASgJEisKCmF0dHJpYnV0ZXMY",
-            "BCABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Ei0KBGRhdGEYBSABKAsy",
-            "Fy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAEi2QEKCkNsb3VkRXZl",
-            "bnQSHAoCaWQYASABKAlCEOLfHwwKCl4uezEsMjI1fSQSIAoGc291cmNlGAIg",
-            "ASgJQhDi3x8MCgpeLnsxLDIyNX0kEh4KBHR5cGUYAyABKAlCEOLfHwwKCl4u",
-            "ezEsMjI1fSQSDwoHc3ViamVjdBgEIAEoCRIrCgphdHRyaWJ1dGVzGAUgASgL",
-            "MhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdBItCgRkYXRhGAYgASgLMhcuZ29v",
-            "Z2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABMqwCChJDbG91ZEV2ZW50c1Nl",
-            "cnZpY2USUwoEU2VuZBIhLmNsb3VkRXZlbnRzUHJveHkuQ2xvdWRFdmVudElu",
-            "cHV0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IhCC0+STAgoiBS9zZW5kOgEq",
-            "El8KB1JlcXVlc3QSIS5jbG91ZEV2ZW50c1Byb3h5LkNsb3VkRXZlbnRJbnB1",
-            "dBocLmNsb3VkRXZlbnRzUHJveHkuQ2xvdWRFdmVudCITgtPkkwINIggvcmVx",
-            "dWVzdDoBKhJgCgdSZWNlaXZlEiAuY2xvdWRFdmVudHNQcm94eS5SZWNlaXZl",
-            "UmVxdWVzdBocLmNsb3VkRXZlbnRzUHJveHkuQ2xvdWRFdmVudCITgtPkkwIN",
-            "IggvcmVjZWl2ZToBKjABQhJaEGNsb3VkRXZlbnRzUHJveHliBnByb3RvMw=="));
+            "aWRhdG9yLnByb3RvIkEKDlJlY2VpdmVSZXF1ZXN0Eh4KBHR5cGUYASABKAlC",
+            "EOLfHwwKCl4uezEsMjI1fSQSDwoHc3ViamVjdBgCIAEoCSLAAQoPQ2xvdWRF",
+            "dmVudElucHV0EiAKBnNvdXJjZRgBIAEoCUIQ4t8fDAoKXi57MSwyMjV9JBIe",
+            "CgR0eXBlGAIgASgJQhDi3x8MCgpeLnsxLDIyNX0kEg8KB3N1YmplY3QYAyAB",
+            "KAkSKwoKYXR0cmlidXRlcxgEIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1",
+            "Y3QSLQoEZGF0YRgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLf",
+            "HwIgASLZAQoKQ2xvdWRFdmVudBIcCgJpZBgBIAEoCUIQ4t8fDAoKXi57MSwy",
+            "MjV9JBIgCgZzb3VyY2UYAiABKAlCEOLfHwwKCl4uezEsMjI1fSQSHgoEdHlw",
+            "ZRgDIAEoCUIQ4t8fDAoKXi57MSwyMjV9JBIPCgdzdWJqZWN0GAQgASgJEisK",
+            "CmF0dHJpYnV0ZXMYBSABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Ei0K",
+            "BGRhdGEYBiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAEy",
+            "rAIKEkNsb3VkRXZlbnRzU2VydmljZRJTCgRTZW5kEiEuY2xvdWRFdmVudHNQ",
+            "cm94eS5DbG91ZEV2ZW50SW5wdXQaFi5nb29nbGUucHJvdG9idWYuRW1wdHki",
+            "EILT5JMCCiIFL3NlbmQ6ASoSXwoHUmVxdWVzdBIhLmNsb3VkRXZlbnRzUHJv",
+            "eHkuQ2xvdWRFdmVudElucHV0GhwuY2xvdWRFdmVudHNQcm94eS5DbG91ZEV2",
+            "ZW50IhOC0+STAg0iCC9yZXF1ZXN0OgEqEmAKB1JlY2VpdmUSIC5jbG91ZEV2",
+            "ZW50c1Byb3h5LlJlY2VpdmVSZXF1ZXN0GhwuY2xvdWRFdmVudHNQcm94eS5D",
+            "bG91ZEV2ZW50IhOC0+STAg0iCC9yZWNlaXZlOgEqMAFCEloQY2xvdWRFdmVu",
+            "dHNQcm94eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::CloudEventsProxy.ReceiveRequest), global::CloudEventsProxy.ReceiveRequest.Parser, new[]{ "Type" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::CloudEventsProxy.ReceiveRequest), global::CloudEventsProxy.ReceiveRequest.Parser, new[]{ "Type", "Subject" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CloudEventsProxy.CloudEventInput), global::CloudEventsProxy.CloudEventInput.Parser, new[]{ "Source", "Type", "Subject", "Attributes", "Data" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CloudEventsProxy.CloudEvent), global::CloudEventsProxy.CloudEvent.Parser, new[]{ "Id", "Source", "Type", "Subject", "Attributes", "Data" }, null, null, null)
           }));
@@ -85,6 +86,7 @@ namespace CloudEventsProxy {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ReceiveRequest(ReceiveRequest other) : this() {
       type_ = other.type_;
+      subject_ = other.subject_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -104,6 +106,17 @@ namespace CloudEventsProxy {
       }
     }
 
+    /// <summary>Field number for the "subject" field.</summary>
+    public const int SubjectFieldNumber = 2;
+    private string subject_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Subject {
+      get { return subject_; }
+      set {
+        subject_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as ReceiveRequest);
@@ -118,6 +131,7 @@ namespace CloudEventsProxy {
         return true;
       }
       if (Type != other.Type) return false;
+      if (Subject != other.Subject) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -125,6 +139,7 @@ namespace CloudEventsProxy {
     public override int GetHashCode() {
       int hash = 1;
       if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (Subject.Length != 0) hash ^= Subject.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -142,6 +157,10 @@ namespace CloudEventsProxy {
         output.WriteRawTag(10);
         output.WriteString(Type);
       }
+      if (Subject.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Subject);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -152,6 +171,9 @@ namespace CloudEventsProxy {
       int size = 0;
       if (Type.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      }
+      if (Subject.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Subject);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -167,6 +189,9 @@ namespace CloudEventsProxy {
       if (other.Type.Length != 0) {
         Type = other.Type;
       }
+      if (other.Subject.Length != 0) {
+        Subject = other.Subject;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -180,6 +205,10 @@ namespace CloudEventsProxy {
             break;
           case 10: {
             Type = input.ReadString();
+            break;
+          }
+          case 18: {
+            Subject = input.ReadString();
             break;
           }
         }
