@@ -2,6 +2,7 @@ package auth
 
 import (
 	"context"
+	"github.com/grpc-ecosystem/go-grpc-middleware/util/metautils"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
@@ -37,8 +38,14 @@ func (s *stream) SendMsg(m interface{}) error {
 	if !ok {
 		return status.Error(codes.PermissionDenied, "permission denied")
 	}
-	c.Response = toMap(m)
-	allowed, err := s.a.booleanExpression(ctx, c)
+	md := metautils.ExtractOutgoing(ctx)
+	respMeta := make(map[string]string)
+	for k, arr := range md {
+		respMeta[k] = arr[0]
+	}
+	c.Metadata = respMeta
+	c.Body = toMap(m)
+	allowed, err := s.a.evaluateResponse(ctx, c)
 	if err != nil {
 		s.a.logger.Error(err.Error())
 		return status.Error(codes.Internal, "failed to evaluate authz policy")
@@ -55,8 +62,14 @@ func (s *stream) RecvMsg(m interface{}) error {
 	if !ok {
 		return status.Error(codes.PermissionDenied, "permission denied")
 	}
-	c.Request = toMap(m)
-	allowed, err := s.a.booleanExpression(ctx, c)
+	md := metautils.ExtractIncoming(ctx)
+	reqMeta := make(map[string]string)
+	for k, arr := range md {
+		reqMeta[k] = arr[0]
+	}
+	c.Metadata = reqMeta
+	c.Body = toMap(m)
+	allowed, err := s.a.evaluateRequest(ctx, c)
 	if err != nil {
 		s.a.logger.Error(err.Error())
 		return status.Error(codes.Internal, "failed to evaluate authz policy")

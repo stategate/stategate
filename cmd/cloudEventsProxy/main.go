@@ -129,11 +129,16 @@ func run(ctx context.Context) {
 			lgger.Error("metrics server failure", zap.Error(err))
 		}
 	})
-	r := rego.New(
-		rego.Query(c.RegoQuery),
-		rego.Module("cloudEventsProxy.rego", c.RegoPolicy),
+
+	requestPolicy := rego.New(
+		rego.Query(c.RequestPolicy.RegoQuery),
+		rego.Module("requests.rego", c.RequestPolicy.RegoPolicy),
 	)
-	a, err := auth.NewAuth(c.JwksURI, lgger, r)
+	respPolicy := rego.New(
+		rego.Query(c.ResponsePolicy.RegoQuery),
+		rego.Module("responses.rego", c.ResponsePolicy.RegoPolicy),
+	)
+	a, err := auth.NewAuth(c.JwksURI, lgger, requestPolicy, respPolicy)
 	if err != nil {
 		lgger.Error(err.Error())
 		return

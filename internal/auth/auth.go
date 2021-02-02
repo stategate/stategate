@@ -27,20 +27,22 @@ var (
 )
 
 type Auth struct {
-	jwksUri string
-	jwksSet *jwk.Set
-	mu      sync.RWMutex
-	logger  *logger.Logger
-	policy  *rego.Rego
+	jwksUri        string
+	jwksSet        *jwk.Set
+	mu             sync.RWMutex
+	logger         *logger.Logger
+	requestPolicy  *rego.Rego
+	responsePolicy *rego.Rego
 }
 
-func NewAuth(jwksUri string, logger2 *logger.Logger, policy *rego.Rego) (*Auth, error) {
+func NewAuth(jwksUri string, logger2 *logger.Logger, reqPolicy, respPolicy *rego.Rego) (*Auth, error) {
 	a := &Auth{
-		jwksUri: jwksUri,
-		jwksSet: nil,
-		mu:      sync.RWMutex{},
-		logger:  logger2,
-		policy:  policy,
+		jwksUri:        jwksUri,
+		jwksSet:        nil,
+		mu:             sync.RWMutex{},
+		logger:         logger2,
+		requestPolicy:  reqPolicy,
+		responsePolicy: respPolicy,
 	}
 	return a, a.RefreshJWKS()
 }
@@ -119,15 +121,15 @@ func (a *Auth) UnaryInterceptor() grpc.UnaryServerInterceptor {
 		}
 		md := metautils.ExtractIncoming(ctx)
 		c := &Context{
-			Claims:  payload,
-			Method:  info.FullMethod,
-			Request: toMap(req),
-			Headers: map[string]string{},
+			Claims:   payload,
+			Method:   info.FullMethod,
+			Metadata: map[string]string{},
+			Body:     toMap(req),
 		}
 		for k, arr := range md {
-			c.Headers[k] = arr[0]
+			c.Metadata[k] = arr[0]
 		}
-		allowed, err := a.booleanExpression(ctx, c)
+		allowed, err := a.evaluateRequest(ctx, c)
 		if err != nil {
 			a.logger.Error(err.Error())
 			return nil, status.Error(codes.Internal, "failed to evaluate authz policy")
@@ -136,7 +138,25 @@ func (a *Auth) UnaryInterceptor() grpc.UnaryServerInterceptor {
 			return nil, status.Error(codes.PermissionDenied, "permission denied")
 		}
 		ctx = SetContext(ctx, c)
-		return handler(ctx, req)
+		hresp, err := handler(ctx, req)
+		if err != nil {
+			return resp, err
+		}
+		md = metautils.ExtractOutgoing(ctx)
+		respMeta := make(map[string]string)
+		for k, arr := range md {
+			respMeta[k] = arr[0]
+		}
+		c.Metadata = respMeta
+		allowed, err = a.evaluateResponse(ctx, c)
+		if err != nil {
+			a.logger.Error(err.Error())
+			return nil, status.Error(codes.Internal, "failed to evaluate authz policy")
+		}
+		if !allowed {
+			return nil, status.Error(codes.PermissionDenied, "permission denied")
+		}
+		return hresp, nil
 	}
 }
 
@@ -156,15 +176,14 @@ func (a *Auth) StreamInterceptor() grpc.StreamServerInterceptor {
 		c := &Context{
 			Claims:       payload,
 			Method:       info.FullMethod,
-			Request:      map[string]interface{}{},
-			Response:     map[string]interface{}{},
-			Headers:      map[string]string{},
+			Body:         map[string]interface{}{},
+			Metadata:     map[string]string{},
 			ClientStream: info.IsClientStream,
 			ServerStream: info.IsServerStream,
 		}
 		for k, arr := range md {
 			if len(arr) > 0 {
-				c.Headers[k] = arr[0]
+				c.Metadata[k] = arr[0]
 			}
 		}
 		ctx = SetContext(ctx, c)
@@ -177,27 +196,52 @@ func (a *Auth) StreamInterceptor() grpc.StreamServerInterceptor {
 	}
 }
 
-func (a *Auth) booleanExpression(ctx context.Context, context *Context) (bool, error) {
-	query, err := a.policy.PrepareForEval(ctx)
+func (a *Auth) evaluateRequest(ctx context.Context, context *Context) (bool, error) {
+	query, err := a.requestPolicy.PrepareForEval(ctx)
 	if err != nil {
-		return false, errors.Wrap(err, "policy: failed to prepare for evaluation")
+		return false, errors.Wrap(err, "request policy: failed to prepare for evaluation")
 	}
 	results, err := query.Eval(ctx, rego.EvalInput(context.input()))
 	if err != nil {
-		return false, errors.Wrap(err, "policy: failed to evaluate input")
+		return false, errors.Wrap(err, "request policy: failed to evaluate input")
 	}
 	if len(results) == 0 {
-		return false, errors.Wrap(err, "policy: zero results")
+		return false, errors.Wrap(err, "request policy: zero results")
 	}
 	if len(results[0].Expressions) == 0 {
-		return false, errors.Wrap(err, "policy: zero result expressions")
+		return false, errors.Wrap(err, "request policy: zero result expressions")
 	}
 	if results[0].Expressions[0].Value == nil {
-		return false, errors.Wrap(err, "policy: empty expression value")
+		return false, errors.Wrap(err, "request policy: empty expression value")
 	}
 	res, ok := results[0].Expressions[0].Value.(bool)
 	if !ok {
-		return false, errors.Wrap(err, "policy: expression does not return a boolean value")
+		return false, errors.Wrap(err, "request policy: expression does not return a boolean value")
+	}
+	return res, nil
+}
+
+func (a *Auth) evaluateResponse(ctx context.Context, context *Context) (bool, error) {
+	query, err := a.responsePolicy.PrepareForEval(ctx)
+	if err != nil {
+		return false, errors.Wrap(err, "response policy: failed to prepare for evaluation")
+	}
+	results, err := query.Eval(ctx, rego.EvalInput(context.input()))
+	if err != nil {
+		return false, errors.Wrap(err, "response policy: failed to evaluate input")
+	}
+	if len(results) == 0 {
+		return false, errors.Wrap(err, "response policy: zero results")
+	}
+	if len(results[0].Expressions) == 0 {
+		return false, errors.Wrap(err, "response policy: zero result expressions")
+	}
+	if results[0].Expressions[0].Value == nil {
+		return false, errors.Wrap(err, "response policy: empty expression value")
+	}
+	res, ok := results[0].Expressions[0].Value.(bool)
+	if !ok {
+		return false, errors.Wrap(err, "response policy: expression does not return a boolean value")
 	}
 	return res, nil
 }

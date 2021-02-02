@@ -1,13 +1,14 @@
 package auth
 
-import "context"
+import (
+	"context"
+)
 
 type Context struct {
 	Claims       map[string]interface{} `json:"claims"`
 	Method       string                 `json:"method"`
-	Request      map[string]interface{} `json:"request"`
-	Response     map[string]interface{} `json:"response"`
-	Headers      map[string]string      `json:"headers"`
+	Metadata     map[string]string      `json:"metadata"`
+	Body         map[string]interface{} `json:"body"`
 	ClientStream bool                   `json:"client_stream"`
 	ServerStream bool                   `json:"server_stream"`
 }
@@ -16,11 +17,21 @@ func (a *Context) input() map[string]interface{} {
 	return map[string]interface{}{
 		"claims":        a.Claims,
 		"method":        a.Method,
-		"headers":       a.Headers,
-		"request":       a.Request,
-		"response":      a.Response,
+		"metadata":      a.Metadata,
+		"body":          a.Body,
 		"client_stream": a.ClientStream,
 		"server_stream": a.ClientStream,
+	}
+}
+
+func (c *Context) copy() *Context {
+	return &Context{
+		Claims:       c.Claims,
+		Method:       c.Method,
+		Body:         c.Body,
+		Metadata:     c.Metadata,
+		ClientStream: c.ClientStream,
+		ServerStream: c.ServerStream,
 	}
 }
 
@@ -33,5 +44,8 @@ func GetContext(ctx context.Context) (*Context, bool) {
 		return nil, false
 	}
 	data, ok := ctx.Value(userCtxKey).(*Context)
+	if ok {
+		return data.copy(), true
+	}
 	return data, ok
 }
