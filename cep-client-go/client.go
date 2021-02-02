@@ -166,3 +166,33 @@ func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken b
 		"Authorization", fmt.Sprintf("Bearer %v", token.AccessToken),
 	), nil
 }
+
+func (c *Client) Send(ctx context.Context, in *cloudEventsProxy.CloudEventInput) error {
+	_, err := c.client.Send(ctx, in)
+	return err
+}
+
+func (c *Client) Request(ctx context.Context, in *cloudEventsProxy.CloudEventInput) (*cloudEventsProxy.CloudEvent, error) {
+	return c.client.Request(ctx, in)
+}
+
+func (c *Client) Receive(ctx context.Context, in *cloudEventsProxy.ReceiveRequest, fn func(even *cloudEventsProxy.CloudEvent) bool) error {
+	stream, err := c.client.Receive(ctx, in)
+	if err != nil {
+		return err
+	}
+	for {
+		select {
+		case <-ctx.Done():
+			return nil
+		default:
+			msg, err := stream.Recv()
+			if err != nil {
+				return err
+			}
+			if !fn(msg) {
+				return nil
+			}
+		}
+	}
+}
