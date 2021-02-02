@@ -39,6 +39,8 @@ generate:
       output: gen/grpc/go
     - name: grpc-gateway
       output: gen/grpc/go
+    - name: openapiv2
+      output: .
     - name: govalidators
       type: go
       output: gen/grpc/go

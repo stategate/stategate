@@ -9,7 +9,7 @@ import (
 	"github.com/autom8ter/cloudEventsProxy/internal/gql"
 	"github.com/autom8ter/cloudEventsProxy/internal/helpers"
 	"github.com/autom8ter/cloudEventsProxy/internal/logger"
-	service2 "github.com/autom8ter/cloudEventsProxy/internal/service"
+	nats2 "github.com/autom8ter/cloudEventsProxy/internal/providers/nats"
 	"github.com/autom8ter/machine"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
@@ -160,7 +160,7 @@ func run(ctx context.Context) {
 		return
 	}
 	defer nconn.Close()
-	service, err := service2.NewService(lgger, nconn)
+	service, err := nats2.NewService(lgger, nconn)
 	if err != nil {
 		lgger.Error(err.Error())
 		return
