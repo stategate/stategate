@@ -84,7 +84,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-          image: "colemanword/eventgate:v0.0.2"
+          image: "colemanword/eventgate:v0.0.3"
           imagePullPolicy: Always
           ports:
           - containerPort: 8821
