@@ -8,18 +8,18 @@ jwks_uri: ""
 # rego policy for request authorization - this one allows any request
 request_policy:
   rego_policy: |-
-    package cloudEventsProxy.authz
+    package eventgate.authz
 
     default allow = true
   # query the allow variable
-  rego_query: "data.cloudEventsProxy.authz.allow"
+  rego_query: "data.eventgate.authz.allow"
 # rego policy for response authorization - this one allows any request
 response_policy:
   rego_policy: |-
-    package cloudEventsProxy.authz
+    package eventgate.authz
 
     default allow = true
   # query the allow variable
-  rego_query: "data.cloudEventsProxy.authz.allow"
+  rego_query: "data.eventgate.authz.allow"
 
 

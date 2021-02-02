@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloudEventsProxy;
+package eventgate;
 
-option go_package = "cloudEventsProxy";
+option go_package = "eventgate";
 
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";

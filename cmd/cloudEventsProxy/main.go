@@ -3,13 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
-	cloudEventsProxy "github.com/autom8ter/cloudEventsProxy/gen/grpc/go"
-	"github.com/autom8ter/cloudEventsProxy/internal/auth"
-	"github.com/autom8ter/cloudEventsProxy/internal/config"
-	"github.com/autom8ter/cloudEventsProxy/internal/gql"
-	"github.com/autom8ter/cloudEventsProxy/internal/helpers"
-	"github.com/autom8ter/cloudEventsProxy/internal/logger"
-	nats2 "github.com/autom8ter/cloudEventsProxy/internal/providers/nats"
+	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
+	"github.com/autom8ter/eventgate/internal/auth"
+	"github.com/autom8ter/eventgate/internal/config"
+	"github.com/autom8ter/eventgate/internal/gql"
+	"github.com/autom8ter/eventgate/internal/helpers"
+	"github.com/autom8ter/eventgate/internal/logger"
+	nats2 "github.com/autom8ter/eventgate/internal/providers/nats"
 	"github.com/autom8ter/machine"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
@@ -42,7 +42,7 @@ var (
 )
 
 func init() {
-	pflag.CommandLine.StringVar(&configPath, "config", helpers.EnvOr("CLOUD_EVENTS_PROXY_CONFIG", "config.yaml"), "path to config file (env: CLOUD_EVENTS_PROXY_CONFIG)")
+	pflag.CommandLine.StringVar(&configPath, "config", helpers.EnvOr("EVENTGATE_CONFIG", "config.yaml"), "path to config file (env: EVENTGATE_CONFIG)")
 	pflag.Parse()
 }
 
@@ -171,7 +171,7 @@ func run(ctx context.Context) {
 		return
 	}
 	gserver := grpc.NewServer(gopts...)
-	cloudEventsProxy.RegisterCloudEventsServiceServer(gserver, service)
+	eventgate.RegisterCloudEventsServiceServer(gserver, service)
 	reflection.Register(gserver)
 	grpc_prometheus.Register(gserver)
 
@@ -192,14 +192,14 @@ func run(ctx context.Context) {
 		return
 	}
 	defer conn.Close()
-	resolver := gql.NewResolver(cloudEventsProxy.NewCloudEventsServiceClient(conn), lgger)
+	resolver := gql.NewResolver(eventgate.NewCloudEventsServiceClient(conn), lgger)
 	mux := http.NewServeMux()
 
 	mux.Handle("/graphql", resolver.QueryHandler())
 
 	{
 		restMux := runtime.NewServeMux()
-		if err := cloudEventsProxy.RegisterCloudEventsServiceHandler(ctx, restMux, conn); err != nil {
+		if err := eventgate.RegisterCloudEventsServiceHandler(ctx, restMux, conn); err != nil {
 			lgger.Error("failed to register REST endpoints", zap.Error(err))
 			return
 		}

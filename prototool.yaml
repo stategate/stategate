@@ -30,7 +30,7 @@ lint:
 
 generate:
   go_options:
-    import_path: github.com/autom8ter/cloudEventsProxy
+    import_path: github.com/autom8ter/eventgate
 
   plugins:
     - name: go

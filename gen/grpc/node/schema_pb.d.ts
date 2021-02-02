@@ -1,4 +1,4 @@
-// package: cloudEventsProxy
+// package: eventgate
 // file: schema.proto
 
 import * as jspb from "google-protobuf";

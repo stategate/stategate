@@ -7,16 +7,16 @@ import (
 	"context"
 
 	"github.com/99designs/gqlgen/graphql"
-	"github.com/autom8ter/cloudEventsProxy/gen/gql/go/generated"
-	"github.com/autom8ter/cloudEventsProxy/gen/gql/go/model"
-	cloudEventsProxy "github.com/autom8ter/cloudEventsProxy/gen/grpc/go"
+	"github.com/autom8ter/eventgate/gen/gql/go/generated"
+	"github.com/autom8ter/eventgate/gen/gql/go/model"
+	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
 	"github.com/vektah/gqlparser/v2/gqlerror"
 	"go.uber.org/zap"
 	"google.golang.org/protobuf/types/known/structpb"
 )
 
 func (r *mutationResolver) Send(ctx context.Context, input model.CloudEventInput) (*string, error) {
-	i := &cloudEventsProxy.CloudEventInput{
+	i := &eventgate.CloudEventInput{
 		Specversion: input.Specversion,
 		Source:      input.Source,
 		Type:        input.Type,
@@ -46,7 +46,7 @@ func (r *mutationResolver) Send(ctx context.Context, input model.CloudEventInput
 }
 
 func (r *mutationResolver) Request(ctx context.Context, input model.CloudEventInput) (*model.CloudEvent, error) {
-	i := &cloudEventsProxy.CloudEventInput{
+	i := &eventgate.CloudEventInput{
 		Specversion: input.Specversion,
 		Source:      input.Source,
 		Type:        input.Type,
@@ -86,7 +86,7 @@ func (r *mutationResolver) Request(ctx context.Context, input model.CloudEventIn
 
 func (r *subscriptionResolver) Receive(ctx context.Context, input model.ReceiveRequest) (<-chan *model.CloudEvent, error) {
 	ch := make(chan *model.CloudEvent)
-	i := &cloudEventsProxy.ReceiveRequest{
+	i := &eventgate.ReceiveRequest{
 		Type: input.Type,
 	}
 	if input.Subject != nil {

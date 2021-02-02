@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace CloudEventsProxy {
+namespace Eventgate {
 
   /// <summary>Holder for reflection information generated from schema.proto</summary>
   public static partial class SchemaReflection {
@@ -24,38 +24,37 @@ namespace CloudEventsProxy {
     static SchemaReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgxzY2hlbWEucHJvdG8SEGNsb3VkRXZlbnRzUHJveHkaHGdvb2dsZS9hcGkv",
-            "YW5ub3RhdGlvbnMucHJvdG8aHGdvb2dsZS9wcm90b2J1Zi9zdHJ1Y3QucHJv",
-            "dG8aH2dvb2dsZS9wcm90b2J1Zi90aW1lc3RhbXAucHJvdG8aGWdvb2dsZS9w",
-            "cm90b2J1Zi9hbnkucHJvdG8aG2dvb2dsZS9wcm90b2J1Zi9lbXB0eS5wcm90",
-            "bxo2Z2l0aHViLmNvbS9td2l0a293L2dvLXByb3RvLXZhbGlkYXRvcnMvdmFs",
-            "aWRhdG9yLnByb3RvIkEKDlJlY2VpdmVSZXF1ZXN0Eh4KBHR5cGUYASABKAlC",
-            "EOLfHwwKCl4uezEsMjI1fSQSDwoHc3ViamVjdBgCIAEoCSLnAQoPQ2xvdWRF",
-            "dmVudElucHV0EiUKC3NwZWN2ZXJzaW9uGAEgASgJQhDi3x8MCgpeLnsxLDIy",
-            "NX0kEiAKBnNvdXJjZRgCIAEoCUIQ4t8fDAoKXi57MSwyMjV9JBIeCgR0eXBl",
-            "GAMgASgJQhDi3x8MCgpeLnsxLDIyNX0kEg8KB3N1YmplY3QYBCABKAkSKwoK",
-            "YXR0cmlidXRlcxgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSLQoE",
-            "ZGF0YRgGIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgASKq",
-            "AgoKQ2xvdWRFdmVudBIlCgtzcGVjdmVyc2lvbhgBIAEoCUIQ4t8fDAoKXi57",
-            "MSwyMjV9JBIcCgJpZBgCIAEoCUIQ4t8fDAoKXi57MSwyMjV9JBIgCgZzb3Vy",
-            "Y2UYAyABKAlCEOLfHwwKCl4uezEsMjI1fSQSHgoEdHlwZRgEIAEoCUIQ4t8f",
-            "DAoKXi57MSwyMjV9JBIPCgdzdWJqZWN0GAUgASgJEisKCmF0dHJpYnV0ZXMY",
-            "BiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Ei0KBGRhdGEYByABKAsy",
-            "Fy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAESKAoEdGltZRgIIAEo",
-            "CzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAyrAIKEkNsb3VkRXZlbnRz",
-            "U2VydmljZRJTCgRTZW5kEiEuY2xvdWRFdmVudHNQcm94eS5DbG91ZEV2ZW50",
-            "SW5wdXQaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiEILT5JMCCiIFL3NlbmQ6",
-            "ASoSXwoHUmVxdWVzdBIhLmNsb3VkRXZlbnRzUHJveHkuQ2xvdWRFdmVudElu",
-            "cHV0GhwuY2xvdWRFdmVudHNQcm94eS5DbG91ZEV2ZW50IhOC0+STAg0iCC9y",
-            "ZXF1ZXN0OgEqEmAKB1JlY2VpdmUSIC5jbG91ZEV2ZW50c1Byb3h5LlJlY2Vp",
-            "dmVSZXF1ZXN0GhwuY2xvdWRFdmVudHNQcm94eS5DbG91ZEV2ZW50IhOC0+ST",
-            "Ag0iCC9yZWNlaXZlOgEqMAFCEloQY2xvdWRFdmVudHNQcm94eWIGcHJvdG8z"));
+            "CgxzY2hlbWEucHJvdG8SCWV2ZW50Z2F0ZRocZ29vZ2xlL2FwaS9hbm5vdGF0",
+            "aW9ucy5wcm90bxocZ29vZ2xlL3Byb3RvYnVmL3N0cnVjdC5wcm90bxofZ29v",
+            "Z2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90bxoZZ29vZ2xlL3Byb3RvYnVm",
+            "L2FueS5wcm90bxobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5LnByb3RvGjZnaXRo",
+            "dWIuY29tL213aXRrb3cvZ28tcHJvdG8tdmFsaWRhdG9ycy92YWxpZGF0b3Iu",
+            "cHJvdG8iQQoOUmVjZWl2ZVJlcXVlc3QSHgoEdHlwZRgBIAEoCUIQ4t8fDAoK",
+            "Xi57MSwyMjV9JBIPCgdzdWJqZWN0GAIgASgJIucBCg9DbG91ZEV2ZW50SW5w",
+            "dXQSJQoLc3BlY3ZlcnNpb24YASABKAlCEOLfHwwKCl4uezEsMjI1fSQSIAoG",
+            "c291cmNlGAIgASgJQhDi3x8MCgpeLnsxLDIyNX0kEh4KBHR5cGUYAyABKAlC",
+            "EOLfHwwKCl4uezEsMjI1fSQSDwoHc3ViamVjdBgEIAEoCRIrCgphdHRyaWJ1",
+            "dGVzGAUgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdBItCgRkYXRhGAYg",
+            "ASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABIqoCCgpDbG91",
+            "ZEV2ZW50EiUKC3NwZWN2ZXJzaW9uGAEgASgJQhDi3x8MCgpeLnsxLDIyNX0k",
+            "EhwKAmlkGAIgASgJQhDi3x8MCgpeLnsxLDIyNX0kEiAKBnNvdXJjZRgDIAEo",
+            "CUIQ4t8fDAoKXi57MSwyMjV9JBIeCgR0eXBlGAQgASgJQhDi3x8MCgpeLnsx",
+            "LDIyNX0kEg8KB3N1YmplY3QYBSABKAkSKwoKYXR0cmlidXRlcxgGIAEoCzIX",
+            "Lmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSLQoEZGF0YRgHIAEoCzIXLmdvb2ds",
+            "ZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgARIoCgR0aW1lGAggASgLMhouZ29v",
+            "Z2xlLnByb3RvYnVmLlRpbWVzdGFtcDKJAgoSQ2xvdWRFdmVudHNTZXJ2aWNl",
+            "EkwKBFNlbmQSGi5ldmVudGdhdGUuQ2xvdWRFdmVudElucHV0GhYuZ29vZ2xl",
+            "LnByb3RvYnVmLkVtcHR5IhCC0+STAgoiBS9zZW5kOgEqElEKB1JlcXVlc3QS",
+            "Gi5ldmVudGdhdGUuQ2xvdWRFdmVudElucHV0GhUuZXZlbnRnYXRlLkNsb3Vk",
+            "RXZlbnQiE4LT5JMCDSIIL3JlcXVlc3Q6ASoSUgoHUmVjZWl2ZRIZLmV2ZW50",
+            "Z2F0ZS5SZWNlaXZlUmVxdWVzdBoVLmV2ZW50Z2F0ZS5DbG91ZEV2ZW50IhOC",
+            "0+STAg0iCC9yZWNlaXZlOgEqMAFCC1oJZXZlbnRnYXRlYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::CloudEventsProxy.ReceiveRequest), global::CloudEventsProxy.ReceiveRequest.Parser, new[]{ "Type", "Subject" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::CloudEventsProxy.CloudEventInput), global::CloudEventsProxy.CloudEventInput.Parser, new[]{ "Specversion", "Source", "Type", "Subject", "Attributes", "Data" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::CloudEventsProxy.CloudEvent), global::CloudEventsProxy.CloudEvent.Parser, new[]{ "Specversion", "Id", "Source", "Type", "Subject", "Attributes", "Data", "Time" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.ReceiveRequest), global::Eventgate.ReceiveRequest.Parser, new[]{ "Type", "Subject" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.CloudEventInput), global::Eventgate.CloudEventInput.Parser, new[]{ "Specversion", "Source", "Type", "Subject", "Attributes", "Data" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.CloudEvent), global::Eventgate.CloudEvent.Parser, new[]{ "Specversion", "Id", "Source", "Type", "Subject", "Attributes", "Data", "Time" }, null, null, null)
           }));
     }
     #endregion
@@ -70,7 +69,7 @@ namespace CloudEventsProxy {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::CloudEventsProxy.SchemaReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -227,7 +226,7 @@ namespace CloudEventsProxy {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::CloudEventsProxy.SchemaReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -508,7 +507,7 @@ namespace CloudEventsProxy {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::CloudEventsProxy.SchemaReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

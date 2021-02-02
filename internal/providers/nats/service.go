@@ -3,9 +3,9 @@ package nats
 import (
 	"context"
 	"fmt"
-	cloudEventsProxy "github.com/autom8ter/cloudEventsProxy/gen/grpc/go"
-	"github.com/autom8ter/cloudEventsProxy/internal/auth"
-	"github.com/autom8ter/cloudEventsProxy/internal/logger"
+	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
+	"github.com/autom8ter/eventgate/internal/auth"
+	"github.com/autom8ter/eventgate/internal/logger"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
@@ -31,12 +31,12 @@ func NewService(logger *logger.Logger, conn *nats.Conn) (*Service, error) {
 	}, nil
 }
 
-func (s *Service) Send(ctx context.Context, r *cloudEventsProxy.CloudEventInput) (*empty.Empty, error) {
+func (s *Service) Send(ctx context.Context, r *eventgate.CloudEventInput) (*empty.Empty, error) {
 	c, ok := auth.GetContext(ctx)
 	if !ok {
 		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
 	}
-	toSend := &cloudEventsProxy.CloudEvent{
+	toSend := &eventgate.CloudEvent{
 		Specversion: r.GetSpecversion(),
 		Id:          uuid.New().String(),
 		Source:      r.GetSource(),
@@ -62,12 +62,12 @@ func (s *Service) Send(ctx context.Context, r *cloudEventsProxy.CloudEventInput)
 	return &empty.Empty{}, nil
 }
 
-func (s *Service) Request(ctx context.Context, r *cloudEventsProxy.CloudEventInput) (*cloudEventsProxy.CloudEvent, error) {
+func (s *Service) Request(ctx context.Context, r *eventgate.CloudEventInput) (*eventgate.CloudEvent, error) {
 	c, ok := auth.GetContext(ctx)
 	if !ok {
 		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
 	}
-	toSend := &cloudEventsProxy.CloudEvent{
+	toSend := &eventgate.CloudEvent{
 		Specversion: r.GetSpecversion(),
 		Id:          uuid.New().String(),
 		Source:      r.GetSource(),
@@ -92,14 +92,14 @@ func (s *Service) Request(ctx context.Context, r *cloudEventsProxy.CloudEventInp
 	if err != nil {
 		return nil, err
 	}
-	var event cloudEventsProxy.CloudEvent
+	var event eventgate.CloudEvent
 	if err := proto.Unmarshal(resp.Data, &event); err != nil {
 		return nil, err
 	}
 	return &event, nil
 }
 
-func (s *Service) Receive(r *cloudEventsProxy.ReceiveRequest, server cloudEventsProxy.CloudEventsService_ReceiveServer) error {
+func (s *Service) Receive(r *eventgate.ReceiveRequest, server eventgate.CloudEventsService_ReceiveServer) error {
 	_, ok := auth.GetContext(server.Context())
 	if !ok {
 		return status.Error(codes.Unauthenticated, "unauthenticated")
@@ -112,7 +112,7 @@ func (s *Service) Receive(r *cloudEventsProxy.ReceiveRequest, server cloudEvents
 	sub, err = s.conn.Subscribe(getSubject(r.GetType(), r.GetSubject()), func(msg *nats.Msg) {
 		wg.Add(1)
 		defer wg.Done()
-		var event cloudEventsProxy.CloudEvent
+		var event eventgate.CloudEvent
 		if err := proto.Unmarshal(msg.Data, &event); err != nil {
 			s.logger.Error("failed to unmarshal cloud event", zap.Error(err))
 			return

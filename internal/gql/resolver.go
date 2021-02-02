@@ -7,9 +7,9 @@ import (
 	"github.com/99designs/gqlgen/graphql/handler/extension"
 	"github.com/99designs/gqlgen/graphql/handler/lru"
 	"github.com/99designs/gqlgen/graphql/handler/transport"
-	"github.com/autom8ter/cloudEventsProxy/gen/gql/go/generated"
-	cloudEventsProxy "github.com/autom8ter/cloudEventsProxy/gen/grpc/go"
-	"github.com/autom8ter/cloudEventsProxy/internal/logger"
+	"github.com/autom8ter/eventgate/gen/gql/go/generated"
+	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
+	"github.com/autom8ter/eventgate/internal/logger"
 	"github.com/gorilla/websocket"
 	"google.golang.org/grpc/metadata"
 	"net/http"
@@ -22,10 +22,10 @@ import (
 
 type Resolver struct {
 	logger *logger.Logger
-	client cloudEventsProxy.CloudEventsServiceClient
+	client eventgate.CloudEventsServiceClient
 }
 
-func NewResolver(client cloudEventsProxy.CloudEventsServiceClient, logger *logger.Logger) *Resolver {
+func NewResolver(client eventgate.CloudEventsServiceClient, logger *logger.Logger) *Resolver {
 	return &Resolver{logger: logger, client: client}
 }
 

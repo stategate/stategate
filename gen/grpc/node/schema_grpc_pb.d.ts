@@ -1,6 +1,6 @@
 // GENERATED CODE -- DO NOT EDIT!
 
-// package: cloudEventsProxy
+// package: eventgate
 // file: schema.proto
 
 import * as schema_pb from "./schema_pb";

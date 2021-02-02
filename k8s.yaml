@@ -1,63 +1,46 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: cloudEventsProxy-system
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: cloudEventsProxy-admin-sa
-automountServiceAccountToken: true
----
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: cloudEventsProxy-admin-cluster-role
-rules:
-  - apiGroups: ["*"]
-    resources: ["*"]
-    verbs: ["*"]
-
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: cloudEventsProxy-admin-cluster-role-binding
-  namespace: cloudEventsProxy-system
-subjects:
-  - kind: ServiceAccount
-    name: cloudEventsProxy-admin-sa
-    namespace: cloudEventsProxy-system
-roleRef:
-  kind: ClusterRole
-  name: cloudEventsProxy-admin-cluster-role
-  apiGroup: rbac.authorization.k8s.io
+  name: eventgate-system
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: cloudEventsProxy-configmap
+  name: eventgate-configmap
 data:
-  cloudEventsProxy.yaml: |
+  eventgate.yaml: |
+    # port to serve on. metrics server is started on this port+1
     port: 8820
+    # enable debug logs
     debug: true
-    rego_policy: |-
-      package cloudEventsProxy.authz
-      default allow = true
-    rego_query: "data.cloudEventsProxy.authz.allow"
+    nats_url: "0.0.0.0:4444"
+    # json web keys uri for authentication
     jwks_uri: ""
-    repos:
-      - name: "stable"
-        url: "https://charts.helm.sh/stable"
+    # rego policy for request authorization - this one allows any request
+    request_policy:
+      rego_policy: |-
+        package eventgate.authz
+
+        default allow = true
+      # query the allow variable
+      rego_query: "data.eventgate.authz.allow"
+    # rego policy for response authorization - this one allows any request
+    response_policy:
+      rego_policy: |-
+        package eventgate.authz
+
+        default allow = true
+      # query the allow variable
+      rego_query: "data.eventgate.authz.allow"
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: cloudEventsProxy-admin-service
-  namespace: cloudEventsProxy-system
+  name: eventgate-service
+  namespace: eventgate-system
   labels:
-    app: cloudEventsProxy-admin
+    app: eventgate
 spec:
   ports:
   - port: 8820
@@ -66,29 +49,29 @@ spec:
     name: admin
   clusterIP: None
   selector:
-    app: cloudEventsProxy-admin
+    app: eventgate
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cloudEventsProxy-admin
-  namespace: cloudEventsProxy-system
+  name: eventgate
+  namespace: eventgate-system
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cloudEventsProxy-admin
+      app: eventgate
   template:
     metadata:
       labels:
-        app: cloudEventsProxy-admin
+        app: eventgate
     spec:
-      serviceAccountName: cloudEventsProxy-admin-sa
+      serviceAccountName: eventgate-sa
       containers:
-        - name: cloudEventsProxy-admin
+        - name: eventgate
           env:
-            - name: CLOUD_EVENTS_PROXY_CONFIG
-              value: /tmp/cloudEventsProxy.yaml
+            - name: EVENTGATE_CONFIG
+              value: /tmp/eventgate.yaml
             - name: POD_NAME
               valueFrom:
                 fieldRef:
@@ -101,7 +84,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-          image: "colemanword/helmproxy:v0.0.1"
+          image: "colemanword/eventgate:v0.0.2"
           imagePullPolicy: Always
           ports:
           - containerPort: 8821
@@ -113,6 +96,6 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: cloudEventsProxy-configmap
+            name: eventgate-configmap
 
 ---

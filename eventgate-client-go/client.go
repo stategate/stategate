@@ -1,10 +1,10 @@
-package cep_client_go
+package eventgate_client_go
 
 import (
 	"context"
 	"fmt"
-	"github.com/autom8ter/cloudEventsProxy/gen/grpc/go"
-	"github.com/autom8ter/cloudEventsProxy/internal/logger"
+	"github.com/autom8ter/eventgate/gen/grpc/go"
+	"github.com/autom8ter/eventgate/internal/logger"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	grpc_validator "github.com/grpc-ecosystem/go-grpc-middleware/validator"
 	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
@@ -85,7 +85,7 @@ func streamAuth(tokenSource oauth2.TokenSource, useIDToken bool) grpc.StreamClie
 	}
 }
 
-// NewClient creates a new gRPC cloudEventsProxy client
+// NewClient creates a new gRPC eventgate client
 func NewClient(ctx context.Context, target string, opts ...Opt) (*Client, error) {
 	if target == "" {
 		return nil, errors.New("empty target")
@@ -137,13 +137,13 @@ func NewClient(ctx context.Context, target string, opts ...Opt) (*Client, error)
 		return nil, err
 	}
 	return &Client{
-		client: cloudEventsProxy.NewCloudEventsServiceClient(conn),
+		client: eventgate.NewCloudEventsServiceClient(conn),
 	}, nil
 }
 
-// Client is a cloudEventsProxy gRPC client
+// Client is a eventgate gRPC client
 type Client struct {
-	client cloudEventsProxy.CloudEventsServiceClient
+	client eventgate.CloudEventsServiceClient
 }
 
 func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken bool) (context.Context, error) {
@@ -167,16 +167,16 @@ func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken b
 	), nil
 }
 
-func (c *Client) Send(ctx context.Context, in *cloudEventsProxy.CloudEventInput) error {
+func (c *Client) Send(ctx context.Context, in *eventgate.CloudEventInput) error {
 	_, err := c.client.Send(ctx, in)
 	return err
 }
 
-func (c *Client) Request(ctx context.Context, in *cloudEventsProxy.CloudEventInput) (*cloudEventsProxy.CloudEvent, error) {
+func (c *Client) Request(ctx context.Context, in *eventgate.CloudEventInput) (*eventgate.CloudEvent, error) {
 	return c.client.Request(ctx, in)
 }
 
-func (c *Client) Receive(ctx context.Context, in *cloudEventsProxy.ReceiveRequest, fn func(even *cloudEventsProxy.CloudEvent) bool) error {
+func (c *Client) Receive(ctx context.Context, in *eventgate.ReceiveRequest, fn func(even *eventgate.CloudEvent) bool) error {
 	stream, err := c.client.Receive(ctx, in)
 	if err != nil {
 		return err

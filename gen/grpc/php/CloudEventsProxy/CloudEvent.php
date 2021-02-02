@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>cloudEventsProxy.CloudEvent</code>
+ * Generated from protobuf message <code>eventgate.CloudEvent</code>
  */
 class CloudEvent extends \Google\Protobuf\Internal\Message
 {

@@ -1,4 +1,4 @@
-module github.com/autom8ter/cloudEventsProxy
+module github.com/autom8ter/eventgate
 
 go 1.15
 

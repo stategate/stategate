@@ -1,4 +1,4 @@
-version := "0.0.1"
+version := "0.0.2"
 
 .DEFAULT_GOAL := help
 
@@ -10,7 +10,7 @@ help:
 	@echo "----------------------------------------------------------------"
 
 run:
-	@go run cmd/cloudEventsProxy/main.go
+	@go run cmd/eventgate/main.go
 
 gen: gql helm proto
 
@@ -31,10 +31,10 @@ push:
 	git push origin v$(version)
 
 docker-build:
-	@docker build -t colemanword/helmproxy:v$(version) .
+	@docker build -t colemanword/eventgate:v$(version) .
 
 docker-push:
-	@docker push colemanword/helmproxy:v$(version)
+	@docker push colemanword/eventgate:v$(version)
 
 
 .PHONY: proto
@@ -58,6 +58,6 @@ down: ## shuts down local docker containers
 
 build: ## build the server to ./bin
 	@mkdir -p bin
-	@cd cmd/cloudEventsProxy; gox -osarch="linux/amd64" -output="../../bin/linux/{{.Dir}}_linux_amd64"
-	@cd cmd/cloudEventsProxy; gox -osarch="darwin/amd64" -output="../../bin/darwin/{{.Dir}}_darwin_amd64"
-	@cd cmd/cloudEventsProxy; gox -osarch="windows/amd64" -output="../../bin/windows/{{.Dir}}_windows_amd64"
+	@cd cmd/eventgate; gox -osarch="linux/amd64" -output="../../bin/linux/{{.Dir}}_linux_amd64"
+	@cd cmd/eventgate; gox -osarch="darwin/amd64" -output="../../bin/darwin/{{.Dir}}_darwin_amd64"
+	@cd cmd/eventgate; gox -osarch="windows/amd64" -output="../../bin/windows/{{.Dir}}_windows_amd64"

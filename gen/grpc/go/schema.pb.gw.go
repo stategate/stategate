@@ -2,11 +2,11 @@
 // source: schema.proto
 
 /*
-Package cloudEventsProxy is a reverse proxy.
+Package eventgate is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package cloudEventsProxy
+package eventgate
 
 import (
 	"context"
@@ -136,7 +136,7 @@ func RegisterCloudEventsServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cloudEventsProxy.CloudEventsService/Send")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/eventgate.CloudEventsService/Send")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -159,7 +159,7 @@ func RegisterCloudEventsServiceHandlerServer(ctx context.Context, mux *runtime.S
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/cloudEventsProxy.CloudEventsService/Request")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/eventgate.CloudEventsService/Request")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -228,7 +228,7 @@ func RegisterCloudEventsServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/cloudEventsProxy.CloudEventsService/Send")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/eventgate.CloudEventsService/Send")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -248,7 +248,7 @@ func RegisterCloudEventsServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/cloudEventsProxy.CloudEventsService/Request")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/eventgate.CloudEventsService/Request")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -268,7 +268,7 @@ func RegisterCloudEventsServiceHandlerClient(ctx context.Context, mux *runtime.S
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/cloudEventsProxy.CloudEventsService/Receive")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/eventgate.CloudEventsService/Receive")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

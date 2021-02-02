@@ -21,13 +21,13 @@
               "type": "object",
               "properties": {
                 "result": {
-                  "$ref": "#/definitions/cloudEventsProxyCloudEvent"
+                  "$ref": "#/definitions/eventgateCloudEvent"
                 },
                 "error": {
                   "$ref": "#/definitions/rpcStatus"
                 }
               },
-              "title": "Stream result of cloudEventsProxyCloudEvent"
+              "title": "Stream result of eventgateCloudEvent"
             }
           },
           "default": {
@@ -43,7 +43,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/cloudEventsProxyReceiveRequest"
+              "$ref": "#/definitions/eventgateReceiveRequest"
             }
           }
         ],
@@ -59,7 +59,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/cloudEventsProxyCloudEvent"
+              "$ref": "#/definitions/eventgateCloudEvent"
             }
           },
           "default": {
@@ -75,7 +75,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/cloudEventsProxyCloudEventInput"
+              "$ref": "#/definitions/eventgateCloudEventInput"
             }
           }
         ],
@@ -107,7 +107,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/cloudEventsProxyCloudEventInput"
+              "$ref": "#/definitions/eventgateCloudEventInput"
             }
           }
         ],
@@ -118,7 +118,7 @@
     }
   },
   "definitions": {
-    "cloudEventsProxyCloudEvent": {
+    "eventgateCloudEvent": {
       "type": "object",
       "properties": {
         "specversion": {
@@ -148,7 +148,7 @@
         }
       }
     },
-    "cloudEventsProxyCloudEventInput": {
+    "eventgateCloudEventInput": {
       "type": "object",
       "properties": {
         "specversion": {
@@ -171,7 +171,7 @@
         }
       }
     },
-    "cloudEventsProxyReceiveRequest": {
+    "eventgateReceiveRequest": {
       "type": "object",
       "properties": {
         "type": {

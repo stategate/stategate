@@ -3754,36 +3754,35 @@ public final class Schema {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014schema.proto\022\020eventgate\032\034google" +
-      "/api/annotations.proto\032\034google/protobuf/" +
-      "struct.proto\032\037google/protobuf/timestamp." +
-      "proto\032\031google/protobuf/any.proto\032\033google" +
-      "/protobuf/empty.proto\0326github.com/mwitko" +
-      "w/go-proto-validators/validator.proto\"A\n" +
-      "\016ReceiveRequest\022\036\n\004type\030\001 \001(\tB\020\342\337\037\014\n\n^.{" +
-      "1,225}$\022\017\n\007subject\030\002 \001(\t\"\347\001\n\017CloudEventI" +
-      "nput\022%\n\013specversion\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,22" +
-      "5}$\022 \n\006source\030\002 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\036\n" +
-      "\004type\030\003 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\017\n\007subject" +
-      "\030\004 \001(\t\022+\n\nattributes\030\005 \001(\0132\027.google.prot" +
-      "obuf.Struct\022-\n\004data\030\006 \001(\0132\027.google.proto" +
-      "buf.StructB\006\342\337\037\002 \001\"\252\002\n\nCloudEvent\022%\n\013spe" +
-      "cversion\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\034\n\002id\030\002" +
-      " \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022 \n\006source\030\003 \001(\tB\020" +
-      "\342\337\037\014\n\n^.{1,225}$\022\036\n\004type\030\004 \001(\tB\020\342\337\037\014\n\n^." +
-      "{1,225}$\022\017\n\007subject\030\005 \001(\t\022+\n\nattributes\030" +
-      "\006 \001(\0132\027.google.protobuf.Struct\022-\n\004data\030\007" +
-      " \001(\0132\027.google.protobuf.StructB\006\342\337\037\002 \001\022(\n" +
-      "\004time\030\010 \001(\0132\032.google.protobuf.Timestamp2" +
-      "\254\002\n\022CloudEventsService\022S\n\004Send\022!.cloudEv" +
-      "entsProxy.CloudEventInput\032\026.google.proto" +
-      "buf.Empty\"\020\202\323\344\223\002\n\"\005/send:\001*\022_\n\007Request\022!" +
-      ".eventgate.CloudEventInput\032\034.clou" +
-      "dEventsProxy.CloudEvent\"\023\202\323\344\223\002\r\"\010/reques" +
-      "t:\001*\022`\n\007Receive\022 .eventgate.Recei" +
-      "veRequest\032\034.eventgate.CloudEvent\"" +
-      "\023\202\323\344\223\002\r\"\010/receive:\001*0\001B\022Z\020cloudEventsPro" +
-      "xyb\006proto3"
+      "\n\014schema.proto\022\teventgate\032\034google/api/an" +
+      "notations.proto\032\034google/protobuf/struct." +
+      "proto\032\037google/protobuf/timestamp.proto\032\031" +
+      "google/protobuf/any.proto\032\033google/protob" +
+      "uf/empty.proto\0326github.com/mwitkow/go-pr" +
+      "oto-validators/validator.proto\"A\n\016Receiv" +
+      "eRequest\022\036\n\004type\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,225}$" +
+      "\022\017\n\007subject\030\002 \001(\t\"\347\001\n\017CloudEventInput\022%\n" +
+      "\013specversion\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022 \n\006" +
+      "source\030\002 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\036\n\004type\030\003" +
+      " \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\017\n\007subject\030\004 \001(\t\022" +
+      "+\n\nattributes\030\005 \001(\0132\027.google.protobuf.St" +
+      "ruct\022-\n\004data\030\006 \001(\0132\027.google.protobuf.Str" +
+      "uctB\006\342\337\037\002 \001\"\252\002\n\nCloudEvent\022%\n\013specversio" +
+      "n\030\001 \001(\tB\020\342\337\037\014\n\n^.{1,225}$\022\034\n\002id\030\002 \001(\tB\020\342" +
+      "\337\037\014\n\n^.{1,225}$\022 \n\006source\030\003 \001(\tB\020\342\337\037\014\n\n^" +
+      ".{1,225}$\022\036\n\004type\030\004 \001(\tB\020\342\337\037\014\n\n^.{1,225}" +
+      "$\022\017\n\007subject\030\005 \001(\t\022+\n\nattributes\030\006 \001(\0132\027" +
+      ".google.protobuf.Struct\022-\n\004data\030\007 \001(\0132\027." +
+      "google.protobuf.StructB\006\342\337\037\002 \001\022(\n\004time\030\010" +
+      " \001(\0132\032.google.protobuf.Timestamp2\211\002\n\022Clo" +
+      "udEventsService\022L\n\004Send\022\032.eventgate.Clou" +
+      "dEventInput\032\026.google.protobuf.Empty\"\020\202\323\344" +
+      "\223\002\n\"\005/send:\001*\022Q\n\007Request\022\032.eventgate.Clo" +
+      "udEventInput\032\025.eventgate.CloudEvent\"\023\202\323\344" +
+      "\223\002\r\"\010/request:\001*\022R\n\007Receive\022\031.eventgate." +
+      "ReceiveRequest\032\025.eventgate.CloudEvent\"\023\202" +
+      "\323\344\223\002\r\"\010/receive:\001*0\001B\013Z\teventgateb\006proto" +
+      "3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

@@ -13,7 +13,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"
-	"github.com/autom8ter/cloudEventsProxy/gen/gql/go/model"
+	"github.com/autom8ter/eventgate/gen/gql/go/model"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
 )
@@ -316,7 +316,7 @@ func (ec *executionContext) field_Mutation_request_args(ctx context.Context, raw
 	var arg0 model.CloudEventInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNCloudEventInput2githubᚗcomᚋautom8terᚋcloudEventsProxyᚋgenᚋgqlᚋgoᚋmodelᚐCloudEventInput(ctx, tmp)
+		arg0, err = ec.unmarshalNCloudEventInput2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐCloudEventInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -331,7 +331,7 @@ func (ec *executionContext) field_Mutation_send_args(ctx context.Context, rawArg
 	var arg0 model.CloudEventInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNCloudEventInput2githubᚗcomᚋautom8terᚋcloudEventsProxyᚋgenᚋgqlᚋgoᚋmodelᚐCloudEventInput(ctx, tmp)
+		arg0, err = ec.unmarshalNCloudEventInput2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐCloudEventInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -361,7 +361,7 @@ func (ec *executionContext) field_Subscription_receive_args(ctx context.Context,
 	var arg0 model.ReceiveRequest
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNReceiveRequest2githubᚗcomᚋautom8terᚋcloudEventsProxyᚋgenᚋgqlᚋgoᚋmodelᚐReceiveRequest(ctx, tmp)
+		arg0, err = ec.unmarshalNReceiveRequest2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐReceiveRequest(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -760,7 +760,7 @@ func (ec *executionContext) _Mutation_request(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.CloudEvent)
 	fc.Result = res
-	return ec.marshalNCloudEvent2ᚖgithubᚗcomᚋautom8terᚋcloudEventsProxyᚋgenᚋgqlᚋgoᚋmodelᚐCloudEvent(ctx, field.Selections, res)
+	return ec.marshalNCloudEvent2ᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐCloudEvent(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -880,7 +880,7 @@ func (ec *executionContext) _Subscription_receive(ctx context.Context, field gra
 			w.Write([]byte{'{'})
 			graphql.MarshalString(field.Alias).MarshalGQL(w)
 			w.Write([]byte{':'})
-			ec.marshalNCloudEvent2ᚖgithubᚗcomᚋautom8terᚋcloudEventsProxyᚋgenᚋgqlᚋgoᚋmodelᚐCloudEvent(ctx, field.Selections, res).MarshalGQL(w)
+			ec.marshalNCloudEvent2ᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐCloudEvent(ctx, field.Selections, res).MarshalGQL(w)
 			w.Write([]byte{'}'})
 		})
 	}
@@ -2468,11 +2468,11 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 	return res
 }
 
-func (ec *executionContext) marshalNCloudEvent2githubᚗcomᚋautom8terᚋcloudEventsProxyᚋgenᚋgqlᚋgoᚋmodelᚐCloudEvent(ctx context.Context, sel ast.SelectionSet, v model.CloudEvent) graphql.Marshaler {
+func (ec *executionContext) marshalNCloudEvent2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐCloudEvent(ctx context.Context, sel ast.SelectionSet, v model.CloudEvent) graphql.Marshaler {
 	return ec._CloudEvent(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNCloudEvent2ᚖgithubᚗcomᚋautom8terᚋcloudEventsProxyᚋgenᚋgqlᚋgoᚋmodelᚐCloudEvent(ctx context.Context, sel ast.SelectionSet, v *model.CloudEvent) graphql.Marshaler {
+func (ec *executionContext) marshalNCloudEvent2ᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐCloudEvent(ctx context.Context, sel ast.SelectionSet, v *model.CloudEvent) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2482,7 +2482,7 @@ func (ec *executionContext) marshalNCloudEvent2ᚖgithubᚗcomᚋautom8terᚋclo
 	return ec._CloudEvent(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNCloudEventInput2githubᚗcomᚋautom8terᚋcloudEventsProxyᚋgenᚋgqlᚋgoᚋmodelᚐCloudEventInput(ctx context.Context, v interface{}) (model.CloudEventInput, error) {
+func (ec *executionContext) unmarshalNCloudEventInput2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐCloudEventInput(ctx context.Context, v interface{}) (model.CloudEventInput, error) {
 	res, err := ec.unmarshalInputCloudEventInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
@@ -2508,7 +2508,7 @@ func (ec *executionContext) marshalNMap2map(ctx context.Context, sel ast.Selecti
 	return res
 }
 
-func (ec *executionContext) unmarshalNReceiveRequest2githubᚗcomᚋautom8terᚋcloudEventsProxyᚋgenᚋgqlᚋgoᚋmodelᚐReceiveRequest(ctx context.Context, v interface{}) (model.ReceiveRequest, error) {
+func (ec *executionContext) unmarshalNReceiveRequest2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐReceiveRequest(ctx context.Context, v interface{}) (model.ReceiveRequest, error) {
 	res, err := ec.unmarshalInputReceiveRequest(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }

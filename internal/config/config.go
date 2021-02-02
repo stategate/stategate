@@ -27,23 +27,23 @@ func (c *Config) SetDefaults() {
 
 	if c.RequestPolicy.RegoPolicy == "" {
 		c.RequestPolicy.RegoPolicy = `
-		package cloudEventsProxy.authz
+		package eventgate.authz
 
 		default allow = true
 `
 	}
 	if c.RequestPolicy.RegoQuery == "" {
-		c.RequestPolicy.RegoQuery = "data.cloudEventsProxy.authz.allow"
+		c.RequestPolicy.RegoQuery = "data.eventgate.authz.allow"
 	}
 	if c.ResponsePolicy.RegoPolicy == "" {
 		c.ResponsePolicy.RegoPolicy = `
-		package cloudEventsProxy.authz
+		package eventgate.authz
 
 		default allow = true
 `
 	}
 	if c.ResponsePolicy.RegoQuery == "" {
-		c.ResponsePolicy.RegoQuery = "data.cloudEventsProxy.authz.allow"
+		c.ResponsePolicy.RegoQuery = "data.eventgate.authz.allow"
 	}
 	if c.NatsURL == "" {
 		c.NatsURL = "0.0.0.0:4444"
