@@ -4,7 +4,7 @@ import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty
 import * as schema_pb from './schema_pb';
 
 
-export class CloudEventsServiceClient {
+export class EventGateServiceClient {
   constructor (hostname: string,
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
@@ -24,13 +24,13 @@ export class CloudEventsServiceClient {
   ): grpcWeb.ClientReadableStream<schema_pb.CloudEvent>;
 
   receive(
-    request: schema_pb.ReceiveRequest,
+    request: schema_pb.Filter,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<schema_pb.CloudEvent>;
 
 }
 
-export class CloudEventsServicePromiseClient {
+export class EventGateServicePromiseClient {
   constructor (hostname: string,
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
@@ -46,7 +46,7 @@ export class CloudEventsServicePromiseClient {
   ): Promise<schema_pb.CloudEvent>;
 
   receive(
-    request: schema_pb.ReceiveRequest,
+    request: schema_pb.Filter,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<schema_pb.CloudEvent>;
 

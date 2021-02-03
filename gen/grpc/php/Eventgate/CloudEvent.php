@@ -9,46 +9,78 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * CloudEvent is
+ *
  * Generated from protobuf message <code>eventgate.CloudEvent</code>
  */
 class CloudEvent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string specversion = 1 [(.validator.field) = {</code>
-     */
-    private $specversion = '';
-    /**
-     * Generated from protobuf field <code>string id = 2 [(.validator.field) = {</code>
+     * Identifies the event.
+     *
+     * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
      */
     private $id = '';
     /**
+     * The version of the CloudEvents specification which the event uses.
+     *
+     * Generated from protobuf field <code>string specversion = 2 [(.validator.field) = {</code>
+     */
+    private $specversion = '';
+    /**
+     * Identifies the context in which an event happened.
+     *
      * Generated from protobuf field <code>string source = 3 [(.validator.field) = {</code>
      */
     private $source = '';
     /**
+     * Describes the type of event related to the originating occurrence.
+     *
      * Generated from protobuf field <code>string type = 4 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
+     * Describes the subject of the event in the context of the event producer (identified by source).
+     *
      * Generated from protobuf field <code>string subject = 5;</code>
      */
     private $subject = '';
     /**
+     * Identifies the schema that data adheres to.
+     *
      * Generated from protobuf field <code>string dataschema = 6;</code>
      */
     private $dataschema = '';
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 7;</code>
+     * Content type of the data value. Must adhere to RFC 2046 format.
+     *
+     * Generated from protobuf field <code>string datacontenttype = 7;</code>
      */
-    private $attributes = null;
+    private $datacontenttype = '';
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 8 [(.validator.field) = {</code>
+     * The event payload(structured).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct data = 8;</code>
      */
     private $data = null;
     /**
-     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 9;</code>
+     * Base64 encoded event payload. Must adhere to RFC4648.
+     *
+     * Generated from protobuf field <code>string data_base64 = 9;</code>
+     */
+    private $data_base64 = '';
+    /**
+     * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = {</code>
      */
     private $time = null;
+    /**
+     * Base64 encoded authentication payload(jwt.claims).
+     *
+     * Generated from protobuf field <code>string eventgate_auth = 21;</code>
+     */
+    private $eventgate_auth = '';
 
     /**
      * Constructor.
@@ -56,15 +88,28 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $specversion
      *     @type string $id
+     *           Identifies the event.
+     *     @type string $specversion
+     *           The version of the CloudEvents specification which the event uses.
      *     @type string $source
+     *           Identifies the context in which an event happened.
      *     @type string $type
+     *           Describes the type of event related to the originating occurrence.
      *     @type string $subject
+     *           Describes the subject of the event in the context of the event producer (identified by source).
      *     @type string $dataschema
-     *     @type \Google\Protobuf\Struct $attributes
+     *           Identifies the schema that data adheres to.
+     *     @type string $datacontenttype
+     *           Content type of the data value. Must adhere to RFC 2046 format.
      *     @type \Google\Protobuf\Struct $data
+     *           The event payload(structured).
+     *     @type string $data_base64
+     *           Base64 encoded event payload. Must adhere to RFC4648.
      *     @type \Google\Protobuf\Timestamp $time
+     *           Timestamp of when the occurrence happened. Must adhere to RFC 3339.
+     *     @type string $eventgate_auth
+     *           Base64 encoded authentication payload(jwt.claims).
      * }
      */
     public function __construct($data = NULL) {
@@ -73,29 +118,9 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string specversion = 1 [(.validator.field) = {</code>
-     * @return string
-     */
-    public function getSpecversion()
-    {
-        return $this->specversion;
-    }
-
-    /**
-     * Generated from protobuf field <code>string specversion = 1 [(.validator.field) = {</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setSpecversion($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->specversion = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>string id = 2 [(.validator.field) = {</code>
+     * Identifies the event.
+     *
+     * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
      * @return string
      */
     public function getId()
@@ -104,7 +129,9 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string id = 2 [(.validator.field) = {</code>
+     * Identifies the event.
+     *
+     * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
@@ -117,6 +144,34 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The version of the CloudEvents specification which the event uses.
+     *
+     * Generated from protobuf field <code>string specversion = 2 [(.validator.field) = {</code>
+     * @return string
+     */
+    public function getSpecversion()
+    {
+        return $this->specversion;
+    }
+
+    /**
+     * The version of the CloudEvents specification which the event uses.
+     *
+     * Generated from protobuf field <code>string specversion = 2 [(.validator.field) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSpecversion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->specversion = $var;
+
+        return $this;
+    }
+
+    /**
+     * Identifies the context in which an event happened.
+     *
      * Generated from protobuf field <code>string source = 3 [(.validator.field) = {</code>
      * @return string
      */
@@ -126,6 +181,8 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Identifies the context in which an event happened.
+     *
      * Generated from protobuf field <code>string source = 3 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
@@ -139,6 +196,8 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Describes the type of event related to the originating occurrence.
+     *
      * Generated from protobuf field <code>string type = 4 [(.validator.field) = {</code>
      * @return string
      */
@@ -148,6 +207,8 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Describes the type of event related to the originating occurrence.
+     *
      * Generated from protobuf field <code>string type = 4 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
@@ -161,6 +222,8 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Describes the subject of the event in the context of the event producer (identified by source).
+     *
      * Generated from protobuf field <code>string subject = 5;</code>
      * @return string
      */
@@ -170,6 +233,8 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Describes the subject of the event in the context of the event producer (identified by source).
+     *
      * Generated from protobuf field <code>string subject = 5;</code>
      * @param string $var
      * @return $this
@@ -183,6 +248,8 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Identifies the schema that data adheres to.
+     *
      * Generated from protobuf field <code>string dataschema = 6;</code>
      * @return string
      */
@@ -192,6 +259,8 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Identifies the schema that data adheres to.
+     *
      * Generated from protobuf field <code>string dataschema = 6;</code>
      * @param string $var
      * @return $this
@@ -205,29 +274,35 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 7;</code>
-     * @return \Google\Protobuf\Struct
+     * Content type of the data value. Must adhere to RFC 2046 format.
+     *
+     * Generated from protobuf field <code>string datacontenttype = 7;</code>
+     * @return string
      */
-    public function getAttributes()
+    public function getDatacontenttype()
     {
-        return $this->attributes;
+        return $this->datacontenttype;
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct attributes = 7;</code>
-     * @param \Google\Protobuf\Struct $var
+     * Content type of the data value. Must adhere to RFC 2046 format.
+     *
+     * Generated from protobuf field <code>string datacontenttype = 7;</code>
+     * @param string $var
      * @return $this
      */
-    public function setAttributes($var)
+    public function setDatacontenttype($var)
     {
-        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
-        $this->attributes = $var;
+        GPBUtil::checkString($var, True);
+        $this->datacontenttype = $var;
 
         return $this;
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 8 [(.validator.field) = {</code>
+     * The event payload(structured).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct data = 8;</code>
      * @return \Google\Protobuf\Struct
      */
     public function getData()
@@ -236,7 +311,9 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 8 [(.validator.field) = {</code>
+     * The event payload(structured).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct data = 8;</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
@@ -249,7 +326,35 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 9;</code>
+     * Base64 encoded event payload. Must adhere to RFC4648.
+     *
+     * Generated from protobuf field <code>string data_base64 = 9;</code>
+     * @return string
+     */
+    public function getDataBase64()
+    {
+        return $this->data_base64;
+    }
+
+    /**
+     * Base64 encoded event payload. Must adhere to RFC4648.
+     *
+     * Generated from protobuf field <code>string data_base64 = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDataBase64($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->data_base64 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = {</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getTime()
@@ -258,7 +363,9 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 9;</code>
+     * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = {</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -266,6 +373,32 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Base64 encoded authentication payload(jwt.claims).
+     *
+     * Generated from protobuf field <code>string eventgate_auth = 21;</code>
+     * @return string
+     */
+    public function getEventgateAuth()
+    {
+        return $this->eventgate_auth;
+    }
+
+    /**
+     * Base64 encoded authentication payload(jwt.claims).
+     *
+     * Generated from protobuf field <code>string eventgate_auth = 21;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEventgateAuth($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->eventgate_auth = $var;
 
         return $this;
     }

@@ -29,44 +29,46 @@ namespace Eventgate {
             "Z2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90bxoZZ29vZ2xlL3Byb3RvYnVm",
             "L2FueS5wcm90bxobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5LnByb3RvGjZnaXRo",
             "dWIuY29tL213aXRrb3cvZ28tcHJvdG8tdmFsaWRhdG9ycy92YWxpZGF0b3Iu",
-            "cHJvdG8iQQoOUmVjZWl2ZVJlcXVlc3QSHgoEdHlwZRgBIAEoCUIQ4t8fDAoK",
-            "Xi57MSwyMjV9JBIPCgdzdWJqZWN0GAIgASgJIvsBCg9DbG91ZEV2ZW50SW5w",
-            "dXQSJQoLc3BlY3ZlcnNpb24YASABKAlCEOLfHwwKCl4uezEsMjI1fSQSIAoG",
-            "c291cmNlGAIgASgJQhDi3x8MCgpeLnsxLDIyNX0kEh4KBHR5cGUYAyABKAlC",
-            "EOLfHwwKCl4uezEsMjI1fSQSDwoHc3ViamVjdBgEIAEoCRISCgpkYXRhc2No",
-            "ZW1hGAUgASgJEisKCmF0dHJpYnV0ZXMYBiABKAsyFy5nb29nbGUucHJvdG9i",
-            "dWYuU3RydWN0Ei0KBGRhdGEYByABKAsyFy5nb29nbGUucHJvdG9idWYuU3Ry",
-            "dWN0Qgbi3x8CIAEivgIKCkNsb3VkRXZlbnQSJQoLc3BlY3ZlcnNpb24YASAB",
-            "KAlCEOLfHwwKCl4uezEsMjI1fSQSHAoCaWQYAiABKAlCEOLfHwwKCl4uezEs",
-            "MjI1fSQSIAoGc291cmNlGAMgASgJQhDi3x8MCgpeLnsxLDIyNX0kEh4KBHR5",
-            "cGUYBCABKAlCEOLfHwwKCl4uezEsMjI1fSQSDwoHc3ViamVjdBgFIAEoCRIS",
-            "CgpkYXRhc2NoZW1hGAYgASgJEisKCmF0dHJpYnV0ZXMYByABKAsyFy5nb29n",
-            "bGUucHJvdG9idWYuU3RydWN0Ei0KBGRhdGEYCCABKAsyFy5nb29nbGUucHJv",
-            "dG9idWYuU3RydWN0Qgbi3x8CIAESKAoEdGltZRgJIAEoCzIaLmdvb2dsZS5w",
-            "cm90b2J1Zi5UaW1lc3RhbXAyiQIKEkNsb3VkRXZlbnRzU2VydmljZRJMCgRT",
-            "ZW5kEhouZXZlbnRnYXRlLkNsb3VkRXZlbnRJbnB1dBoWLmdvb2dsZS5wcm90",
-            "b2J1Zi5FbXB0eSIQgtPkkwIKIgUvc2VuZDoBKhJRCgdSZXF1ZXN0EhouZXZl",
-            "bnRnYXRlLkNsb3VkRXZlbnRJbnB1dBoVLmV2ZW50Z2F0ZS5DbG91ZEV2ZW50",
-            "IhOC0+STAg0iCC9yZXF1ZXN0OgEqElIKB1JlY2VpdmUSGS5ldmVudGdhdGUu",
-            "UmVjZWl2ZVJlcXVlc3QaFS5ldmVudGdhdGUuQ2xvdWRFdmVudCITgtPkkwIN",
-            "IggvcmVjZWl2ZToBKjABQgtaCWV2ZW50Z2F0ZWIGcHJvdG8z"));
+            "cHJvdG8iTAoGRmlsdGVyEhMKC3NwZWN2ZXJzaW9uGAEgASgJEg4KBnNvdXJj",
+            "ZRgCIAEoCRIMCgR0eXBlGAMgASgJEg8KB3N1YmplY3QYBCABKAki1gEKD0Ns",
+            "b3VkRXZlbnRJbnB1dBIbCgtzcGVjdmVyc2lvbhgCIAEoCUIG4t8fAlgBEhYK",
+            "BnNvdXJjZRgDIAEoCUIG4t8fAlgBEhQKBHR5cGUYBCABKAlCBuLfHwJYARIP",
+            "CgdzdWJqZWN0GAUgASgJEhIKCmRhdGFzY2hlbWEYBiABKAkSFwoPZGF0YWNv",
+            "bnRlbnR0eXBlGAcgASgJEiUKBGRhdGEYCCABKAsyFy5nb29nbGUucHJvdG9i",
+            "dWYuU3RydWN0EhMKC2RhdGFfYmFzZTY0GAkgASgJIq8CCgpDbG91ZEV2ZW50",
+            "EhIKAmlkGAEgASgJQgbi3x8CWAESGwoLc3BlY3ZlcnNpb24YAiABKAlCBuLf",
+            "HwJYARIWCgZzb3VyY2UYAyABKAlCBuLfHwJYARIUCgR0eXBlGAQgASgJQgbi",
+            "3x8CWAESDwoHc3ViamVjdBgFIAEoCRISCgpkYXRhc2NoZW1hGAYgASgJEhcK",
+            "D2RhdGFjb250ZW50dHlwZRgHIAEoCRIlCgRkYXRhGAggASgLMhcuZ29vZ2xl",
+            "LnByb3RvYnVmLlN0cnVjdBITCgtkYXRhX2Jhc2U2NBgJIAEoCRIwCgR0aW1l",
+            "GBQgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIG4t8fAiABEhYK",
+            "DmV2ZW50Z2F0ZV9hdXRoGBUgASgJMvwBChBFdmVudEdhdGVTZXJ2aWNlEkwK",
+            "BFNlbmQSGi5ldmVudGdhdGUuQ2xvdWRFdmVudElucHV0GhYuZ29vZ2xlLnBy",
+            "b3RvYnVmLkVtcHR5IhCC0+STAgoaBS9zZW5kOgEqElEKB1JlcXVlc3QSGi5l",
+            "dmVudGdhdGUuQ2xvdWRFdmVudElucHV0GhUuZXZlbnRnYXRlLkNsb3VkRXZl",
+            "bnQiE4LT5JMCDRoIL3JlcXVlc3Q6ASoSRwoHUmVjZWl2ZRIRLmV2ZW50Z2F0",
+            "ZS5GaWx0ZXIaFS5ldmVudGdhdGUuQ2xvdWRFdmVudCIQgtPkkwIKEggvcmVj",
+            "ZWl2ZTABQgtaCWV2ZW50Z2F0ZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.ReceiveRequest), global::Eventgate.ReceiveRequest.Parser, new[]{ "Type", "Subject" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.CloudEventInput), global::Eventgate.CloudEventInput.Parser, new[]{ "Specversion", "Source", "Type", "Subject", "Dataschema", "Attributes", "Data" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.CloudEvent), global::Eventgate.CloudEvent.Parser, new[]{ "Specversion", "Id", "Source", "Type", "Subject", "Dataschema", "Attributes", "Data", "Time" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Filter), global::Eventgate.Filter.Parser, new[]{ "Specversion", "Source", "Type", "Subject" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.CloudEventInput), global::Eventgate.CloudEventInput.Parser, new[]{ "Specversion", "Source", "Type", "Subject", "Dataschema", "Datacontenttype", "Data", "DataBase64" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.CloudEvent), global::Eventgate.CloudEvent.Parser, new[]{ "Id", "Specversion", "Source", "Type", "Subject", "Dataschema", "Datacontenttype", "Data", "DataBase64", "Time", "EventgateAuth" }, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
-  public sealed partial class ReceiveRequest : pb::IMessage<ReceiveRequest> {
-    private static readonly pb::MessageParser<ReceiveRequest> _parser = new pb::MessageParser<ReceiveRequest>(() => new ReceiveRequest());
+  /// <summary>
+  /// Filter filters cloud events
+  /// </summary>
+  public sealed partial class Filter : pb::IMessage<Filter> {
+    private static readonly pb::MessageParser<Filter> _parser = new pb::MessageParser<Filter>(() => new Filter());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ReceiveRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<Filter> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -79,27 +81,60 @@ namespace Eventgate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReceiveRequest() {
+    public Filter() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReceiveRequest(ReceiveRequest other) : this() {
+    public Filter(Filter other) : this() {
+      specversion_ = other.specversion_;
+      source_ = other.source_;
       type_ = other.type_;
       subject_ = other.subject_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReceiveRequest Clone() {
-      return new ReceiveRequest(this);
+    public Filter Clone() {
+      return new Filter(this);
+    }
+
+    /// <summary>Field number for the "specversion" field.</summary>
+    public const int SpecversionFieldNumber = 1;
+    private string specversion_ = "";
+    /// <summary>
+    /// The version of the CloudEvents specification which the event uses.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Specversion {
+      get { return specversion_; }
+      set {
+        specversion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "source" field.</summary>
+    public const int SourceFieldNumber = 2;
+    private string source_ = "";
+    /// <summary>
+    /// Identifies the context in which an event happened.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Source {
+      get { return source_; }
+      set {
+        source_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
     }
 
     /// <summary>Field number for the "type" field.</summary>
-    public const int TypeFieldNumber = 1;
+    public const int TypeFieldNumber = 3;
     private string type_ = "";
+    /// <summary>
+    /// Describes the type of event related to the originating occurrence.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
       get { return type_; }
@@ -109,8 +144,11 @@ namespace Eventgate {
     }
 
     /// <summary>Field number for the "subject" field.</summary>
-    public const int SubjectFieldNumber = 2;
+    public const int SubjectFieldNumber = 4;
     private string subject_ = "";
+    /// <summary>
+    /// Describes the subject of the event in the context of the event producer (identified by source).
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Subject {
       get { return subject_; }
@@ -121,17 +159,19 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ReceiveRequest);
+      return Equals(other as Filter);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ReceiveRequest other) {
+    public bool Equals(Filter other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Specversion != other.Specversion) return false;
+      if (Source != other.Source) return false;
       if (Type != other.Type) return false;
       if (Subject != other.Subject) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -140,6 +180,8 @@ namespace Eventgate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (Specversion.Length != 0) hash ^= Specversion.GetHashCode();
+      if (Source.Length != 0) hash ^= Source.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (Subject.Length != 0) hash ^= Subject.GetHashCode();
       if (_unknownFields != null) {
@@ -155,12 +197,20 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Type.Length != 0) {
+      if (Specversion.Length != 0) {
         output.WriteRawTag(10);
+        output.WriteString(Specversion);
+      }
+      if (Source.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Source);
+      }
+      if (Type.Length != 0) {
+        output.WriteRawTag(26);
         output.WriteString(Type);
       }
       if (Subject.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(34);
         output.WriteString(Subject);
       }
       if (_unknownFields != null) {
@@ -171,6 +221,12 @@ namespace Eventgate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (Specversion.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Specversion);
+      }
+      if (Source.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Source);
+      }
       if (Type.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
       }
@@ -184,9 +240,15 @@ namespace Eventgate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ReceiveRequest other) {
+    public void MergeFrom(Filter other) {
       if (other == null) {
         return;
+      }
+      if (other.Specversion.Length != 0) {
+        Specversion = other.Specversion;
+      }
+      if (other.Source.Length != 0) {
+        Source = other.Source;
       }
       if (other.Type.Length != 0) {
         Type = other.Type;
@@ -206,10 +268,18 @@ namespace Eventgate {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            Type = input.ReadString();
+            Specversion = input.ReadString();
             break;
           }
           case 18: {
+            Source = input.ReadString();
+            break;
+          }
+          case 26: {
+            Type = input.ReadString();
+            break;
+          }
+          case 34: {
             Subject = input.ReadString();
             break;
           }
@@ -219,6 +289,9 @@ namespace Eventgate {
 
   }
 
+  /// <summary>
+  /// CloudEventInput constructs a cloud event
+  /// </summary>
   public sealed partial class CloudEventInput : pb::IMessage<CloudEventInput> {
     private static readonly pb::MessageParser<CloudEventInput> _parser = new pb::MessageParser<CloudEventInput>(() => new CloudEventInput());
     private pb::UnknownFieldSet _unknownFields;
@@ -249,8 +322,9 @@ namespace Eventgate {
       type_ = other.type_;
       subject_ = other.subject_;
       dataschema_ = other.dataschema_;
-      attributes_ = other.attributes_ != null ? other.attributes_.Clone() : null;
+      datacontenttype_ = other.datacontenttype_;
       data_ = other.data_ != null ? other.data_.Clone() : null;
+      dataBase64_ = other.dataBase64_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -260,8 +334,11 @@ namespace Eventgate {
     }
 
     /// <summary>Field number for the "specversion" field.</summary>
-    public const int SpecversionFieldNumber = 1;
+    public const int SpecversionFieldNumber = 2;
     private string specversion_ = "";
+    /// <summary>
+    /// The version of the CloudEvents specification which the event uses.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Specversion {
       get { return specversion_; }
@@ -271,8 +348,11 @@ namespace Eventgate {
     }
 
     /// <summary>Field number for the "source" field.</summary>
-    public const int SourceFieldNumber = 2;
+    public const int SourceFieldNumber = 3;
     private string source_ = "";
+    /// <summary>
+    /// Identifies the context in which an event happened.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Source {
       get { return source_; }
@@ -282,8 +362,11 @@ namespace Eventgate {
     }
 
     /// <summary>Field number for the "type" field.</summary>
-    public const int TypeFieldNumber = 3;
+    public const int TypeFieldNumber = 4;
     private string type_ = "";
+    /// <summary>
+    /// Describes the type of event related to the originating occurrence.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
       get { return type_; }
@@ -293,8 +376,11 @@ namespace Eventgate {
     }
 
     /// <summary>Field number for the "subject" field.</summary>
-    public const int SubjectFieldNumber = 4;
+    public const int SubjectFieldNumber = 5;
     private string subject_ = "";
+    /// <summary>
+    /// Describes the subject of the event in the context of the event producer (identified by source).
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Subject {
       get { return subject_; }
@@ -304,8 +390,11 @@ namespace Eventgate {
     }
 
     /// <summary>Field number for the "dataschema" field.</summary>
-    public const int DataschemaFieldNumber = 5;
+    public const int DataschemaFieldNumber = 6;
     private string dataschema_ = "";
+    /// <summary>
+    /// Identifies the schema that data adheres to.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Dataschema {
       get { return dataschema_; }
@@ -314,25 +403,45 @@ namespace Eventgate {
       }
     }
 
-    /// <summary>Field number for the "attributes" field.</summary>
-    public const int AttributesFieldNumber = 6;
-    private global::Google.Protobuf.WellKnownTypes.Struct attributes_;
+    /// <summary>Field number for the "datacontenttype" field.</summary>
+    public const int DatacontenttypeFieldNumber = 7;
+    private string datacontenttype_ = "";
+    /// <summary>
+    /// Content type of the data value. Must adhere to RFC 2046 format.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Struct Attributes {
-      get { return attributes_; }
+    public string Datacontenttype {
+      get { return datacontenttype_; }
       set {
-        attributes_ = value;
+        datacontenttype_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
     /// <summary>Field number for the "data" field.</summary>
-    public const int DataFieldNumber = 7;
+    public const int DataFieldNumber = 8;
     private global::Google.Protobuf.WellKnownTypes.Struct data_;
+    /// <summary>
+    ///The event payload(structured).
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Google.Protobuf.WellKnownTypes.Struct Data {
       get { return data_; }
       set {
         data_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "data_base64" field.</summary>
+    public const int DataBase64FieldNumber = 9;
+    private string dataBase64_ = "";
+    /// <summary>
+    /// Base64 encoded event payload. Must adhere to RFC4648.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string DataBase64 {
+      get { return dataBase64_; }
+      set {
+        dataBase64_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -354,8 +463,9 @@ namespace Eventgate {
       if (Type != other.Type) return false;
       if (Subject != other.Subject) return false;
       if (Dataschema != other.Dataschema) return false;
-      if (!object.Equals(Attributes, other.Attributes)) return false;
+      if (Datacontenttype != other.Datacontenttype) return false;
       if (!object.Equals(Data, other.Data)) return false;
+      if (DataBase64 != other.DataBase64) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -367,8 +477,9 @@ namespace Eventgate {
       if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (Subject.Length != 0) hash ^= Subject.GetHashCode();
       if (Dataschema.Length != 0) hash ^= Dataschema.GetHashCode();
-      if (attributes_ != null) hash ^= Attributes.GetHashCode();
+      if (Datacontenttype.Length != 0) hash ^= Datacontenttype.GetHashCode();
       if (data_ != null) hash ^= Data.GetHashCode();
+      if (DataBase64.Length != 0) hash ^= DataBase64.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -383,32 +494,36 @@ namespace Eventgate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (Specversion.Length != 0) {
-        output.WriteRawTag(10);
+        output.WriteRawTag(18);
         output.WriteString(Specversion);
       }
       if (Source.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteString(Source);
       }
       if (Type.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(34);
         output.WriteString(Type);
       }
       if (Subject.Length != 0) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(42);
         output.WriteString(Subject);
       }
       if (Dataschema.Length != 0) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(50);
         output.WriteString(Dataschema);
       }
-      if (attributes_ != null) {
-        output.WriteRawTag(50);
-        output.WriteMessage(Attributes);
+      if (Datacontenttype.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(Datacontenttype);
       }
       if (data_ != null) {
-        output.WriteRawTag(58);
+        output.WriteRawTag(66);
         output.WriteMessage(Data);
+      }
+      if (DataBase64.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(DataBase64);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -433,11 +548,14 @@ namespace Eventgate {
       if (Dataschema.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Dataschema);
       }
-      if (attributes_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Attributes);
+      if (Datacontenttype.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Datacontenttype);
       }
       if (data_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Data);
+      }
+      if (DataBase64.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(DataBase64);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -465,17 +583,17 @@ namespace Eventgate {
       if (other.Dataschema.Length != 0) {
         Dataschema = other.Dataschema;
       }
-      if (other.attributes_ != null) {
-        if (attributes_ == null) {
-          attributes_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-        }
-        Attributes.MergeFrom(other.Attributes);
+      if (other.Datacontenttype.Length != 0) {
+        Datacontenttype = other.Datacontenttype;
       }
       if (other.data_ != null) {
         if (data_ == null) {
           data_ = new global::Google.Protobuf.WellKnownTypes.Struct();
         }
         Data.MergeFrom(other.Data);
+      }
+      if (other.DataBase64.Length != 0) {
+        DataBase64 = other.DataBase64;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -488,38 +606,39 @@ namespace Eventgate {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
+          case 18: {
             Specversion = input.ReadString();
             break;
           }
-          case 18: {
+          case 26: {
             Source = input.ReadString();
             break;
           }
-          case 26: {
+          case 34: {
             Type = input.ReadString();
             break;
           }
-          case 34: {
+          case 42: {
             Subject = input.ReadString();
             break;
           }
-          case 42: {
+          case 50: {
             Dataschema = input.ReadString();
             break;
           }
-          case 50: {
-            if (attributes_ == null) {
-              attributes_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-            }
-            input.ReadMessage(attributes_);
+          case 58: {
+            Datacontenttype = input.ReadString();
             break;
           }
-          case 58: {
+          case 66: {
             if (data_ == null) {
               data_ = new global::Google.Protobuf.WellKnownTypes.Struct();
             }
             input.ReadMessage(data_);
+            break;
+          }
+          case 74: {
+            DataBase64 = input.ReadString();
             break;
           }
         }
@@ -528,6 +647,9 @@ namespace Eventgate {
 
   }
 
+  /// <summary>
+  /// CloudEvent is
+  /// </summary>
   public sealed partial class CloudEvent : pb::IMessage<CloudEvent> {
     private static readonly pb::MessageParser<CloudEvent> _parser = new pb::MessageParser<CloudEvent>(() => new CloudEvent());
     private pb::UnknownFieldSet _unknownFields;
@@ -553,15 +675,17 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CloudEvent(CloudEvent other) : this() {
-      specversion_ = other.specversion_;
       id_ = other.id_;
+      specversion_ = other.specversion_;
       source_ = other.source_;
       type_ = other.type_;
       subject_ = other.subject_;
       dataschema_ = other.dataschema_;
-      attributes_ = other.attributes_ != null ? other.attributes_.Clone() : null;
+      datacontenttype_ = other.datacontenttype_;
       data_ = other.data_ != null ? other.data_.Clone() : null;
+      dataBase64_ = other.dataBase64_;
       time_ = other.time_ != null ? other.time_.Clone() : null;
+      eventgateAuth_ = other.eventgateAuth_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -570,20 +694,12 @@ namespace Eventgate {
       return new CloudEvent(this);
     }
 
-    /// <summary>Field number for the "specversion" field.</summary>
-    public const int SpecversionFieldNumber = 1;
-    private string specversion_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Specversion {
-      get { return specversion_; }
-      set {
-        specversion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
     /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 2;
+    public const int IdFieldNumber = 1;
     private string id_ = "";
+    /// <summary>
+    /// Identifies the event.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Id {
       get { return id_; }
@@ -592,9 +708,26 @@ namespace Eventgate {
       }
     }
 
+    /// <summary>Field number for the "specversion" field.</summary>
+    public const int SpecversionFieldNumber = 2;
+    private string specversion_ = "";
+    /// <summary>
+    /// The version of the CloudEvents specification which the event uses.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Specversion {
+      get { return specversion_; }
+      set {
+        specversion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "source" field.</summary>
     public const int SourceFieldNumber = 3;
     private string source_ = "";
+    /// <summary>
+    /// Identifies the context in which an event happened.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Source {
       get { return source_; }
@@ -606,6 +739,9 @@ namespace Eventgate {
     /// <summary>Field number for the "type" field.</summary>
     public const int TypeFieldNumber = 4;
     private string type_ = "";
+    /// <summary>
+    /// Describes the type of event related to the originating occurrence.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
       get { return type_; }
@@ -617,6 +753,9 @@ namespace Eventgate {
     /// <summary>Field number for the "subject" field.</summary>
     public const int SubjectFieldNumber = 5;
     private string subject_ = "";
+    /// <summary>
+    /// Describes the subject of the event in the context of the event producer (identified by source).
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Subject {
       get { return subject_; }
@@ -628,6 +767,9 @@ namespace Eventgate {
     /// <summary>Field number for the "dataschema" field.</summary>
     public const int DataschemaFieldNumber = 6;
     private string dataschema_ = "";
+    /// <summary>
+    /// Identifies the schema that data adheres to.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Dataschema {
       get { return dataschema_; }
@@ -636,20 +778,26 @@ namespace Eventgate {
       }
     }
 
-    /// <summary>Field number for the "attributes" field.</summary>
-    public const int AttributesFieldNumber = 7;
-    private global::Google.Protobuf.WellKnownTypes.Struct attributes_;
+    /// <summary>Field number for the "datacontenttype" field.</summary>
+    public const int DatacontenttypeFieldNumber = 7;
+    private string datacontenttype_ = "";
+    /// <summary>
+    /// Content type of the data value. Must adhere to RFC 2046 format.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Struct Attributes {
-      get { return attributes_; }
+    public string Datacontenttype {
+      get { return datacontenttype_; }
       set {
-        attributes_ = value;
+        datacontenttype_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 8;
     private global::Google.Protobuf.WellKnownTypes.Struct data_;
+    /// <summary>
+    /// The event payload(structured).
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Google.Protobuf.WellKnownTypes.Struct Data {
       get { return data_; }
@@ -658,14 +806,45 @@ namespace Eventgate {
       }
     }
 
+    /// <summary>Field number for the "data_base64" field.</summary>
+    public const int DataBase64FieldNumber = 9;
+    private string dataBase64_ = "";
+    /// <summary>
+    /// Base64 encoded event payload. Must adhere to RFC4648.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string DataBase64 {
+      get { return dataBase64_; }
+      set {
+        dataBase64_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "time" field.</summary>
-    public const int TimeFieldNumber = 9;
+    public const int TimeFieldNumber = 20;
     private global::Google.Protobuf.WellKnownTypes.Timestamp time_;
+    /// <summary>
+    /// Timestamp of when the occurrence happened. Must adhere to RFC 3339.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Google.Protobuf.WellKnownTypes.Timestamp Time {
       get { return time_; }
       set {
         time_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "eventgate_auth" field.</summary>
+    public const int EventgateAuthFieldNumber = 21;
+    private string eventgateAuth_ = "";
+    /// <summary>
+    /// Base64 encoded authentication payload(jwt.claims).
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string EventgateAuth {
+      get { return eventgateAuth_; }
+      set {
+        eventgateAuth_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -682,30 +861,34 @@ namespace Eventgate {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Specversion != other.Specversion) return false;
       if (Id != other.Id) return false;
+      if (Specversion != other.Specversion) return false;
       if (Source != other.Source) return false;
       if (Type != other.Type) return false;
       if (Subject != other.Subject) return false;
       if (Dataschema != other.Dataschema) return false;
-      if (!object.Equals(Attributes, other.Attributes)) return false;
+      if (Datacontenttype != other.Datacontenttype) return false;
       if (!object.Equals(Data, other.Data)) return false;
+      if (DataBase64 != other.DataBase64) return false;
       if (!object.Equals(Time, other.Time)) return false;
+      if (EventgateAuth != other.EventgateAuth) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Specversion.Length != 0) hash ^= Specversion.GetHashCode();
       if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (Specversion.Length != 0) hash ^= Specversion.GetHashCode();
       if (Source.Length != 0) hash ^= Source.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (Subject.Length != 0) hash ^= Subject.GetHashCode();
       if (Dataschema.Length != 0) hash ^= Dataschema.GetHashCode();
-      if (attributes_ != null) hash ^= Attributes.GetHashCode();
+      if (Datacontenttype.Length != 0) hash ^= Datacontenttype.GetHashCode();
       if (data_ != null) hash ^= Data.GetHashCode();
+      if (DataBase64.Length != 0) hash ^= DataBase64.GetHashCode();
       if (time_ != null) hash ^= Time.GetHashCode();
+      if (EventgateAuth.Length != 0) hash ^= EventgateAuth.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -719,13 +902,13 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Specversion.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Specversion);
-      }
       if (Id.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(10);
         output.WriteString(Id);
+      }
+      if (Specversion.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Specversion);
       }
       if (Source.Length != 0) {
         output.WriteRawTag(26);
@@ -743,17 +926,25 @@ namespace Eventgate {
         output.WriteRawTag(50);
         output.WriteString(Dataschema);
       }
-      if (attributes_ != null) {
+      if (Datacontenttype.Length != 0) {
         output.WriteRawTag(58);
-        output.WriteMessage(Attributes);
+        output.WriteString(Datacontenttype);
       }
       if (data_ != null) {
         output.WriteRawTag(66);
         output.WriteMessage(Data);
       }
-      if (time_ != null) {
+      if (DataBase64.Length != 0) {
         output.WriteRawTag(74);
+        output.WriteString(DataBase64);
+      }
+      if (time_ != null) {
+        output.WriteRawTag(162, 1);
         output.WriteMessage(Time);
+      }
+      if (EventgateAuth.Length != 0) {
+        output.WriteRawTag(170, 1);
+        output.WriteString(EventgateAuth);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -763,11 +954,11 @@ namespace Eventgate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Specversion.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Specversion);
-      }
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      }
+      if (Specversion.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Specversion);
       }
       if (Source.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Source);
@@ -781,14 +972,20 @@ namespace Eventgate {
       if (Dataschema.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Dataschema);
       }
-      if (attributes_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Attributes);
+      if (Datacontenttype.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Datacontenttype);
       }
       if (data_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Data);
       }
+      if (DataBase64.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(DataBase64);
+      }
       if (time_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Time);
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Time);
+      }
+      if (EventgateAuth.Length != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeStringSize(EventgateAuth);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -801,11 +998,11 @@ namespace Eventgate {
       if (other == null) {
         return;
       }
-      if (other.Specversion.Length != 0) {
-        Specversion = other.Specversion;
-      }
       if (other.Id.Length != 0) {
         Id = other.Id;
+      }
+      if (other.Specversion.Length != 0) {
+        Specversion = other.Specversion;
       }
       if (other.Source.Length != 0) {
         Source = other.Source;
@@ -819,11 +1016,8 @@ namespace Eventgate {
       if (other.Dataschema.Length != 0) {
         Dataschema = other.Dataschema;
       }
-      if (other.attributes_ != null) {
-        if (attributes_ == null) {
-          attributes_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-        }
-        Attributes.MergeFrom(other.Attributes);
+      if (other.Datacontenttype.Length != 0) {
+        Datacontenttype = other.Datacontenttype;
       }
       if (other.data_ != null) {
         if (data_ == null) {
@@ -831,11 +1025,17 @@ namespace Eventgate {
         }
         Data.MergeFrom(other.Data);
       }
+      if (other.DataBase64.Length != 0) {
+        DataBase64 = other.DataBase64;
+      }
       if (other.time_ != null) {
         if (time_ == null) {
           time_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
         }
         Time.MergeFrom(other.Time);
+      }
+      if (other.EventgateAuth.Length != 0) {
+        EventgateAuth = other.EventgateAuth;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -849,11 +1049,11 @@ namespace Eventgate {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            Specversion = input.ReadString();
+            Id = input.ReadString();
             break;
           }
           case 18: {
-            Id = input.ReadString();
+            Specversion = input.ReadString();
             break;
           }
           case 26: {
@@ -873,10 +1073,7 @@ namespace Eventgate {
             break;
           }
           case 58: {
-            if (attributes_ == null) {
-              attributes_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-            }
-            input.ReadMessage(attributes_);
+            Datacontenttype = input.ReadString();
             break;
           }
           case 66: {
@@ -887,10 +1084,18 @@ namespace Eventgate {
             break;
           }
           case 74: {
+            DataBase64 = input.ReadString();
+            break;
+          }
+          case 162: {
             if (time_ == null) {
               time_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
             }
             input.ReadMessage(time_);
+            break;
+          }
+          case 170: {
+            EventgateAuth = input.ReadString();
             break;
           }
         }

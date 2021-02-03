@@ -3,39 +3,72 @@ scalar Time
 # Map is a k/v map where the key is a string and the value is any value
 scalar Map
 
-
+# CloudEvent is a specification for describing event data
 type CloudEvent {
-    specversion: String!
+    # Identifies the event.
     id: String!
-    source: String!
-    type: String!
-    subject: String
-    dataschema: String
-    attributes: Map
-    data: Map!
-    time: Time!
-}
-
-input CloudEventInput {
+    # The version of the CloudEvents specification which the event uses.
     specversion: String!
+    # Identifies the context in which an event happened.
     source: String!
+    # Describes the type of event related to the originating occurrence.
     type: String!
+    # Describes the subject of the event in the context of the event producer (identified by source).
     subject: String
+    # Identifies the schema that data adheres to.
     dataschema: String
-    attributes: Map
-    data: Map!
+    # Content type of the data value. Must adhere to RFC 2046 format.
+    datacontenttype: String
+    # The event payload(structured).
+    data: Map
+    # Base64 encoded event payload. Must adhere to RFC4648.
+    data_base64: String
+    # Timestamp of when the occurrence happened. Must adhere to RFC 3339.
+    time: Time!
+    # Base64 encoded authentication payload(jwt.claims).
+    eventgate_auth: String
 }
 
-input ReceiveRequest {
+# CloudEventInput constructs a cloud event
+input CloudEventInput {
+    # The version of the CloudEvents specification which the event uses.
+    specversion: String!
+    # Identifies the context in which an event happened.
+    source: String!
+    # Describes the type of event related to the originating occurrence.
     type: String!
+    # Describes the subject of the event in the context of the event producer (identified by source).
+    subject: String
+    # Identifies the schema that data adheres to.
+    dataschema: String
+    # Content type of the data value. Must adhere to RFC 2046 format.
+    datacontenttype: String
+    # The event payload(structured).
+    data: Map
+    # Base64 encoded event payload. Must adhere to RFC4648.
+    data_base64: String
+}
+
+# Filter filters cloud events
+input Filter {
+    # The version of the CloudEvents specification which the event uses.
+    specversion: String
+    # Identifies the context in which an event happened.
+    source: String
+    # Describes the type of event related to the originating occurrence.
+    type: String
+    # Describes the subject of the event in the context of the event producer (identified by source).
     subject: String
 }
 
 type Mutation {
+    # send an event(one way)
     send(input: CloudEventInput!): String
+    # request sends an event as a request and waits for an event as a response
     request(input: CloudEventInput!): CloudEvent!
 }
 
 type Subscription {
-    receive(input: ReceiveRequest!): CloudEvent!
+    # receive streams events to a client that pass a Filter
+    receive(input: Filter!): CloudEvent!
 }

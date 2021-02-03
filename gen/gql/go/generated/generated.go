@@ -45,15 +45,17 @@ type DirectiveRoot struct {
 
 type ComplexityRoot struct {
 	CloudEvent struct {
-		Attributes  func(childComplexity int) int
-		Data        func(childComplexity int) int
-		Dataschema  func(childComplexity int) int
-		ID          func(childComplexity int) int
-		Source      func(childComplexity int) int
-		Specversion func(childComplexity int) int
-		Subject     func(childComplexity int) int
-		Time        func(childComplexity int) int
-		Type        func(childComplexity int) int
+		Data            func(childComplexity int) int
+		DataBase64      func(childComplexity int) int
+		Datacontenttype func(childComplexity int) int
+		Dataschema      func(childComplexity int) int
+		EventgateAuth   func(childComplexity int) int
+		ID              func(childComplexity int) int
+		Source          func(childComplexity int) int
+		Specversion     func(childComplexity int) int
+		Subject         func(childComplexity int) int
+		Time            func(childComplexity int) int
+		Type            func(childComplexity int) int
 	}
 
 	Mutation struct {
@@ -65,7 +67,7 @@ type ComplexityRoot struct {
 	}
 
 	Subscription struct {
-		Receive func(childComplexity int, input model.ReceiveRequest) int
+		Receive func(childComplexity int, input model.Filter) int
 	}
 }
 
@@ -74,7 +76,7 @@ type MutationResolver interface {
 	Request(ctx context.Context, input model.CloudEventInput) (*model.CloudEvent, error)
 }
 type SubscriptionResolver interface {
-	Receive(ctx context.Context, input model.ReceiveRequest) (<-chan *model.CloudEvent, error)
+	Receive(ctx context.Context, input model.Filter) (<-chan *model.CloudEvent, error)
 }
 
 type executableSchema struct {
@@ -92,13 +94,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 	_ = ec
 	switch typeName + "." + field {
 
-	case "CloudEvent.attributes":
-		if e.complexity.CloudEvent.Attributes == nil {
-			break
-		}
-
-		return e.complexity.CloudEvent.Attributes(childComplexity), true
-
 	case "CloudEvent.data":
 		if e.complexity.CloudEvent.Data == nil {
 			break
@@ -106,12 +101,33 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.CloudEvent.Data(childComplexity), true
 
+	case "CloudEvent.data_base64":
+		if e.complexity.CloudEvent.DataBase64 == nil {
+			break
+		}
+
+		return e.complexity.CloudEvent.DataBase64(childComplexity), true
+
+	case "CloudEvent.datacontenttype":
+		if e.complexity.CloudEvent.Datacontenttype == nil {
+			break
+		}
+
+		return e.complexity.CloudEvent.Datacontenttype(childComplexity), true
+
 	case "CloudEvent.dataschema":
 		if e.complexity.CloudEvent.Dataschema == nil {
 			break
 		}
 
 		return e.complexity.CloudEvent.Dataschema(childComplexity), true
+
+	case "CloudEvent.eventgate_auth":
+		if e.complexity.CloudEvent.EventgateAuth == nil {
+			break
+		}
+
+		return e.complexity.CloudEvent.EventgateAuth(childComplexity), true
 
 	case "CloudEvent.id":
 		if e.complexity.CloudEvent.ID == nil {
@@ -189,7 +205,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			return 0, false
 		}
 
-		return e.complexity.Subscription.Receive(childComplexity, args["input"].(model.ReceiveRequest)), true
+		return e.complexity.Subscription.Receive(childComplexity, args["input"].(model.Filter)), true
 
 	}
 	return 0, false
@@ -277,41 +293,74 @@ scalar Time
 # Map is a k/v map where the key is a string and the value is any value
 scalar Map
 
-
+# CloudEvent is a specification for describing event data
 type CloudEvent {
-    specversion: String!
+    # Identifies the event.
     id: String!
-    source: String!
-    type: String!
-    subject: String
-    dataschema: String
-    attributes: Map
-    data: Map!
-    time: Time!
-}
-
-input CloudEventInput {
+    # The version of the CloudEvents specification which the event uses.
     specversion: String!
+    # Identifies the context in which an event happened.
     source: String!
+    # Describes the type of event related to the originating occurrence.
     type: String!
+    # Describes the subject of the event in the context of the event producer (identified by source).
     subject: String
+    # Identifies the schema that data adheres to.
     dataschema: String
-    attributes: Map
-    data: Map!
+    # Content type of the data value. Must adhere to RFC 2046 format.
+    datacontenttype: String
+    # The event payload(structured).
+    data: Map
+    # Base64 encoded event payload. Must adhere to RFC4648.
+    data_base64: String
+    # Timestamp of when the occurrence happened. Must adhere to RFC 3339.
+    time: Time!
+    # Base64 encoded authentication payload(jwt.claims).
+    eventgate_auth: String
 }
 
-input ReceiveRequest {
+# CloudEventInput constructs a cloud event
+input CloudEventInput {
+    # The version of the CloudEvents specification which the event uses.
+    specversion: String!
+    # Identifies the context in which an event happened.
+    source: String!
+    # Describes the type of event related to the originating occurrence.
     type: String!
+    # Describes the subject of the event in the context of the event producer (identified by source).
+    subject: String
+    # Identifies the schema that data adheres to.
+    dataschema: String
+    # Content type of the data value. Must adhere to RFC 2046 format.
+    datacontenttype: String
+    # The event payload(structured).
+    data: Map
+    # Base64 encoded event payload. Must adhere to RFC4648.
+    data_base64: String
+}
+
+# Filter filters cloud events
+input Filter {
+    # The version of the CloudEvents specification which the event uses.
+    specversion: String
+    # Identifies the context in which an event happened.
+    source: String
+    # Describes the type of event related to the originating occurrence.
+    type: String
+    # Describes the subject of the event in the context of the event producer (identified by source).
     subject: String
 }
 
 type Mutation {
+    # send an event(one way)
     send(input: CloudEventInput!): String
+    # request sends an event as a request and waits for an event as a response
     request(input: CloudEventInput!): CloudEvent!
 }
 
 type Subscription {
-    receive(input: ReceiveRequest!): CloudEvent!
+    # receive streams events to a client that pass a Filter
+    receive(input: Filter!): CloudEvent!
 }`, BuiltIn: false},
 }
 var parsedSchema = gqlparser.MustLoadSchema(sources...)
@@ -368,10 +417,10 @@ func (ec *executionContext) field_Query___type_args(ctx context.Context, rawArgs
 func (ec *executionContext) field_Subscription_receive_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
-	var arg0 model.ReceiveRequest
+	var arg0 model.Filter
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNReceiveRequest2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐReceiveRequest(ctx, tmp)
+		arg0, err = ec.unmarshalNFilter2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐFilter(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -418,41 +467,6 @@ func (ec *executionContext) field___Type_fields_args(ctx context.Context, rawArg
 
 // region    **************************** field.gotpl *****************************
 
-func (ec *executionContext) _CloudEvent_specversion(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	fc := &graphql.FieldContext{
-		Object:     "CloudEvent",
-		Field:      field,
-		Args:       nil,
-		IsMethod:   false,
-		IsResolver: false,
-	}
-
-	ctx = graphql.WithFieldContext(ctx, fc)
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Specversion, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
-}
-
 func (ec *executionContext) _CloudEvent_id(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
@@ -472,6 +486,41 @@ func (ec *executionContext) _CloudEvent_id(ctx context.Context, field graphql.Co
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
 		return obj.ID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	fc.Result = res
+	return ec.marshalNString2string(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _CloudEvent_specversion(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:     "CloudEvent",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Specversion, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -622,7 +671,7 @@ func (ec *executionContext) _CloudEvent_dataschema(ctx context.Context, field gr
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _CloudEvent_attributes(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
+func (ec *executionContext) _CloudEvent_datacontenttype(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -640,7 +689,7 @@ func (ec *executionContext) _CloudEvent_attributes(ctx context.Context, field gr
 	ctx = graphql.WithFieldContext(ctx, fc)
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Attributes, nil
+		return obj.Datacontenttype, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -649,9 +698,9 @@ func (ec *executionContext) _CloudEvent_attributes(ctx context.Context, field gr
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(map[string]interface{})
+	res := resTmp.(*string)
 	fc.Result = res
-	return ec.marshalOMap2map(ctx, field.Selections, res)
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _CloudEvent_data(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
@@ -679,14 +728,43 @@ func (ec *executionContext) _CloudEvent_data(ctx context.Context, field graphql.
 		return graphql.Null
 	}
 	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
 		return graphql.Null
 	}
 	res := resTmp.(map[string]interface{})
 	fc.Result = res
-	return ec.marshalNMap2map(ctx, field.Selections, res)
+	return ec.marshalOMap2map(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _CloudEvent_data_base64(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:     "CloudEvent",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DataBase64, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _CloudEvent_time(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
@@ -722,6 +800,38 @@ func (ec *executionContext) _CloudEvent_time(ctx context.Context, field graphql.
 	res := resTmp.(time.Time)
 	fc.Result = res
 	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _CloudEvent_eventgate_auth(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:     "CloudEvent",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.EventgateAuth, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	fc.Result = res
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_send(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -901,7 +1011,7 @@ func (ec *executionContext) _Subscription_receive(ctx context.Context, field gra
 	fc.Args = args
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Subscription().Receive(rctx, args["input"].(model.ReceiveRequest))
+		return ec.resolvers.Subscription().Receive(rctx, args["input"].(model.Filter))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -2061,11 +2171,11 @@ func (ec *executionContext) unmarshalInputCloudEventInput(ctx context.Context, o
 			if err != nil {
 				return it, err
 			}
-		case "attributes":
+		case "datacontenttype":
 			var err error
 
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("attributes"))
-			it.Attributes, err = ec.unmarshalOMap2map(ctx, v)
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("datacontenttype"))
+			it.Datacontenttype, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -2073,7 +2183,15 @@ func (ec *executionContext) unmarshalInputCloudEventInput(ctx context.Context, o
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("data"))
-			it.Data, err = ec.unmarshalNMap2map(ctx, v)
+			it.Data, err = ec.unmarshalOMap2map(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "data_base64":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("data_base64"))
+			it.DataBase64, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -2083,17 +2201,33 @@ func (ec *executionContext) unmarshalInputCloudEventInput(ctx context.Context, o
 	return it, nil
 }
 
-func (ec *executionContext) unmarshalInputReceiveRequest(ctx context.Context, obj interface{}) (model.ReceiveRequest, error) {
-	var it model.ReceiveRequest
+func (ec *executionContext) unmarshalInputFilter(ctx context.Context, obj interface{}) (model.Filter, error) {
+	var it model.Filter
 	var asMap = obj.(map[string]interface{})
 
 	for k, v := range asMap {
 		switch k {
+		case "specversion":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("specversion"))
+			it.Specversion, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "source":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("source"))
+			it.Source, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "type":
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("type"))
-			it.Type, err = ec.unmarshalNString2string(ctx, v)
+			it.Type, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -2130,13 +2264,13 @@ func (ec *executionContext) _CloudEvent(ctx context.Context, sel ast.SelectionSe
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("CloudEvent")
-		case "specversion":
-			out.Values[i] = ec._CloudEvent_specversion(ctx, field, obj)
+		case "id":
+			out.Values[i] = ec._CloudEvent_id(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "id":
-			out.Values[i] = ec._CloudEvent_id(ctx, field, obj)
+		case "specversion":
+			out.Values[i] = ec._CloudEvent_specversion(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
@@ -2154,18 +2288,19 @@ func (ec *executionContext) _CloudEvent(ctx context.Context, sel ast.SelectionSe
 			out.Values[i] = ec._CloudEvent_subject(ctx, field, obj)
 		case "dataschema":
 			out.Values[i] = ec._CloudEvent_dataschema(ctx, field, obj)
-		case "attributes":
-			out.Values[i] = ec._CloudEvent_attributes(ctx, field, obj)
+		case "datacontenttype":
+			out.Values[i] = ec._CloudEvent_datacontenttype(ctx, field, obj)
 		case "data":
 			out.Values[i] = ec._CloudEvent_data(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				invalids++
-			}
+		case "data_base64":
+			out.Values[i] = ec._CloudEvent_data_base64(ctx, field, obj)
 		case "time":
 			out.Values[i] = ec._CloudEvent_time(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
+		case "eventgate_auth":
+			out.Values[i] = ec._CloudEvent_eventgate_auth(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -2539,29 +2674,8 @@ func (ec *executionContext) unmarshalNCloudEventInput2githubᚗcomᚋautom8ter�
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNMap2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
-	res, err := graphql.UnmarshalMap(v)
-	return res, graphql.ErrorOnPath(ctx, err)
-}
-
-func (ec *executionContext) marshalNMap2map(ctx context.Context, sel ast.SelectionSet, v map[string]interface{}) graphql.Marshaler {
-	if v == nil {
-		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := graphql.MarshalMap(v)
-	if res == graphql.Null {
-		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
-			ec.Errorf(ctx, "must not be null")
-		}
-	}
-	return res
-}
-
-func (ec *executionContext) unmarshalNReceiveRequest2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐReceiveRequest(ctx context.Context, v interface{}) (model.ReceiveRequest, error) {
-	res, err := ec.unmarshalInputReceiveRequest(ctx, v)
+func (ec *executionContext) unmarshalNFilter2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐFilter(ctx context.Context, v interface{}) (model.Filter, error) {
+	res, err := ec.unmarshalInputFilter(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 

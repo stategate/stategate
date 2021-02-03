@@ -51,7 +51,7 @@ func (s *stream) SendMsg(m interface{}) error {
 		return status.Error(codes.Internal, "failed to evaluate authz policy")
 	}
 	if !allowed {
-		return status.Error(codes.PermissionDenied, "permission denied")
+		return status.Error(codes.PermissionDenied, respDenied)
 	}
 	return s.ss.SendMsg(m)
 }
@@ -75,7 +75,7 @@ func (s *stream) RecvMsg(m interface{}) error {
 		return status.Error(codes.Internal, "failed to evaluate authz policy")
 	}
 	if !allowed {
-		return status.Error(codes.PermissionDenied, "permission denied")
+		return status.Error(codes.PermissionDenied, reqDenied)
 	}
 	return s.ss.RecvMsg(m)
 }

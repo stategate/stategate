@@ -22,10 +22,10 @@ import (
 
 type Resolver struct {
 	logger *logger.Logger
-	client eventgate.CloudEventsServiceClient
+	client eventgate.EventGateServiceClient
 }
 
-func NewResolver(client eventgate.CloudEventsServiceClient, logger *logger.Logger) *Resolver {
+func NewResolver(client eventgate.EventGateServiceClient, logger *logger.Logger) *Resolver {
 	return &Resolver{logger: logger, client: client}
 }
 

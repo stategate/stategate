@@ -25,30 +25,44 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='eventgate',
   syntax='proto3',
   serialized_options=_b('Z\teventgate'),
-  serialized_pb=_b('\n\x0cschema.proto\x12\teventgate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\"A\n\x0eReceiveRequest\x12\x1e\n\x04type\x18\x01 \x01(\tB\x10\xe2\xdf\x1f\x0c\n\n^.{1,225}$\x12\x0f\n\x07subject\x18\x02 \x01(\t\"\xfb\x01\n\x0f\x43loudEventInput\x12%\n\x0bspecversion\x18\x01 \x01(\tB\x10\xe2\xdf\x1f\x0c\n\n^.{1,225}$\x12 \n\x06source\x18\x02 \x01(\tB\x10\xe2\xdf\x1f\x0c\n\n^.{1,225}$\x12\x1e\n\x04type\x18\x03 \x01(\tB\x10\xe2\xdf\x1f\x0c\n\n^.{1,225}$\x12\x0f\n\x07subject\x18\x04 \x01(\t\x12\x12\n\ndataschema\x18\x05 \x01(\t\x12+\n\nattributes\x18\x06 \x01(\x0b\x32\x17.google.protobuf.Struct\x12-\n\x04\x64\x61ta\x18\x07 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\"\xbe\x02\n\nCloudEvent\x12%\n\x0bspecversion\x18\x01 \x01(\tB\x10\xe2\xdf\x1f\x0c\n\n^.{1,225}$\x12\x1c\n\x02id\x18\x02 \x01(\tB\x10\xe2\xdf\x1f\x0c\n\n^.{1,225}$\x12 \n\x06source\x18\x03 \x01(\tB\x10\xe2\xdf\x1f\x0c\n\n^.{1,225}$\x12\x1e\n\x04type\x18\x04 \x01(\tB\x10\xe2\xdf\x1f\x0c\n\n^.{1,225}$\x12\x0f\n\x07subject\x18\x05 \x01(\t\x12\x12\n\ndataschema\x18\x06 \x01(\t\x12+\n\nattributes\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12-\n\x04\x64\x61ta\x18\x08 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12(\n\x04time\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp2\x89\x02\n\x12\x43loudEventsService\x12L\n\x04Send\x12\x1a.eventgate.CloudEventInput\x1a\x16.google.protobuf.Empty\"\x10\x82\xd3\xe4\x93\x02\n\"\x05/send:\x01*\x12Q\n\x07Request\x12\x1a.eventgate.CloudEventInput\x1a\x15.eventgate.CloudEvent\"\x13\x82\xd3\xe4\x93\x02\r\"\x08/request:\x01*\x12R\n\x07Receive\x12\x19.eventgate.ReceiveRequest\x1a\x15.eventgate.CloudEvent\"\x13\x82\xd3\xe4\x93\x02\r\"\x08/receive:\x01*0\x01\x42\x0bZ\teventgateb\x06proto3')
+  serialized_pb=_b('\n\x0cschema.proto\x12\teventgate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\"L\n\x06\x46ilter\x12\x13\n\x0bspecversion\x18\x01 \x01(\t\x12\x0e\n\x06source\x18\x02 \x01(\t\x12\x0c\n\x04type\x18\x03 \x01(\t\x12\x0f\n\x07subject\x18\x04 \x01(\t\"\xd6\x01\n\x0f\x43loudEventInput\x12\x1b\n\x0bspecversion\x18\x02 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\x16\n\x06source\x18\x03 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\x14\n\x04type\x18\x04 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\x0f\n\x07subject\x18\x05 \x01(\t\x12\x12\n\ndataschema\x18\x06 \x01(\t\x12\x17\n\x0f\x64\x61tacontenttype\x18\x07 \x01(\t\x12%\n\x04\x64\x61ta\x18\x08 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x13\n\x0b\x64\x61ta_base64\x18\t \x01(\t\"\xaf\x02\n\nCloudEvent\x12\x12\n\x02id\x18\x01 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\x1b\n\x0bspecversion\x18\x02 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\x16\n\x06source\x18\x03 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\x14\n\x04type\x18\x04 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\x0f\n\x07subject\x18\x05 \x01(\t\x12\x12\n\ndataschema\x18\x06 \x01(\t\x12\x17\n\x0f\x64\x61tacontenttype\x18\x07 \x01(\t\x12%\n\x04\x64\x61ta\x18\x08 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x13\n\x0b\x64\x61ta_base64\x18\t \x01(\t\x12\x30\n\x04time\x18\x14 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x06\xe2\xdf\x1f\x02 \x01\x12\x16\n\x0e\x65ventgate_auth\x18\x15 \x01(\t2\xfc\x01\n\x10\x45ventGateService\x12L\n\x04Send\x12\x1a.eventgate.CloudEventInput\x1a\x16.google.protobuf.Empty\"\x10\x82\xd3\xe4\x93\x02\n\x1a\x05/send:\x01*\x12Q\n\x07Request\x12\x1a.eventgate.CloudEventInput\x1a\x15.eventgate.CloudEvent\"\x13\x82\xd3\xe4\x93\x02\r\x1a\x08/request:\x01*\x12G\n\x07Receive\x12\x11.eventgate.Filter\x1a\x15.eventgate.CloudEvent\"\x10\x82\xd3\xe4\x93\x02\n\x12\x08/receive0\x01\x42\x0bZ\teventgateb\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_any__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,github_dot_com_dot_mwitkow_dot_go__proto__validators_dot_validator__pb2.DESCRIPTOR,])
 
 
 
 
-_RECEIVEREQUEST = _descriptor.Descriptor(
-  name='ReceiveRequest',
-  full_name='eventgate.ReceiveRequest',
+_FILTER = _descriptor.Descriptor(
+  name='Filter',
+  full_name='eventgate.Filter',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='type', full_name='eventgate.ReceiveRequest.type', index=0,
+      name='specversion', full_name='eventgate.Filter.specversion', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\014\n\n^.{1,225}$'), file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='subject', full_name='eventgate.ReceiveRequest.subject', index=1,
+      name='source', full_name='eventgate.Filter.source', index=1,
       number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='type', full_name='eventgate.Filter.type', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='subject', full_name='eventgate.Filter.subject', index=3,
+      number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -66,7 +80,7 @@ _RECEIVEREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=232,
-  serialized_end=297,
+  serialized_end=308,
 )
 
 
@@ -79,53 +93,60 @@ _CLOUDEVENTINPUT = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='specversion', full_name='eventgate.CloudEventInput.specversion', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\014\n\n^.{1,225}$'), file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='source', full_name='eventgate.CloudEventInput.source', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\014\n\n^.{1,225}$'), file=DESCRIPTOR),
+      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='type', full_name='eventgate.CloudEventInput.type', index=2,
+      name='source', full_name='eventgate.CloudEventInput.source', index=1,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\014\n\n^.{1,225}$'), file=DESCRIPTOR),
+      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='subject', full_name='eventgate.CloudEventInput.subject', index=3,
+      name='type', full_name='eventgate.CloudEventInput.type', index=2,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='dataschema', full_name='eventgate.CloudEventInput.dataschema', index=4,
+      name='subject', full_name='eventgate.CloudEventInput.subject', index=3,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='attributes', full_name='eventgate.CloudEventInput.attributes', index=5,
-      number=6, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='dataschema', full_name='eventgate.CloudEventInput.dataschema', index=4,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='datacontenttype', full_name='eventgate.CloudEventInput.datacontenttype', index=5,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='data', full_name='eventgate.CloudEventInput.data', index=6,
-      number=7, type=11, cpp_type=10, label=1,
+      number=8, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\002 \001'), file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='data_base64', full_name='eventgate.CloudEventInput.data_base64', index=7,
+      number=9, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -138,8 +159,8 @@ _CLOUDEVENTINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=300,
-  serialized_end=551,
+  serialized_start=311,
+  serialized_end=525,
 )
 
 
@@ -151,33 +172,33 @@ _CLOUDEVENT = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='specversion', full_name='eventgate.CloudEvent.specversion', index=0,
+      name='id', full_name='eventgate.CloudEvent.id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\014\n\n^.{1,225}$'), file=DESCRIPTOR),
+      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='id', full_name='eventgate.CloudEvent.id', index=1,
+      name='specversion', full_name='eventgate.CloudEvent.specversion', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\014\n\n^.{1,225}$'), file=DESCRIPTOR),
+      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='source', full_name='eventgate.CloudEvent.source', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\014\n\n^.{1,225}$'), file=DESCRIPTOR),
+      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='type', full_name='eventgate.CloudEvent.type', index=3,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\014\n\n^.{1,225}$'), file=DESCRIPTOR),
+      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='subject', full_name='eventgate.CloudEvent.subject', index=4,
       number=5, type=9, cpp_type=9, label=1,
@@ -193,9 +214,9 @@ _CLOUDEVENT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='attributes', full_name='eventgate.CloudEvent.attributes', index=6,
-      number=7, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='datacontenttype', full_name='eventgate.CloudEvent.datacontenttype', index=6,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -205,11 +226,25 @@ _CLOUDEVENT = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='data_base64', full_name='eventgate.CloudEvent.data_base64', index=8,
+      number=9, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='time', full_name='eventgate.CloudEvent.time', index=9,
+      number=20, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
       serialized_options=_b('\342\337\037\002 \001'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='time', full_name='eventgate.CloudEvent.time', index=8,
-      number=9, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='eventgate_auth', full_name='eventgate.CloudEvent.eventgate_auth', index=10,
+      number=21, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -225,26 +260,24 @@ _CLOUDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=554,
-  serialized_end=872,
+  serialized_start=528,
+  serialized_end=831,
 )
 
-_CLOUDEVENTINPUT.fields_by_name['attributes'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
 _CLOUDEVENTINPUT.fields_by_name['data'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
-_CLOUDEVENT.fields_by_name['attributes'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
 _CLOUDEVENT.fields_by_name['data'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
 _CLOUDEVENT.fields_by_name['time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-DESCRIPTOR.message_types_by_name['ReceiveRequest'] = _RECEIVEREQUEST
+DESCRIPTOR.message_types_by_name['Filter'] = _FILTER
 DESCRIPTOR.message_types_by_name['CloudEventInput'] = _CLOUDEVENTINPUT
 DESCRIPTOR.message_types_by_name['CloudEvent'] = _CLOUDEVENT
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-ReceiveRequest = _reflection.GeneratedProtocolMessageType('ReceiveRequest', (_message.Message,), dict(
-  DESCRIPTOR = _RECEIVEREQUEST,
+Filter = _reflection.GeneratedProtocolMessageType('Filter', (_message.Message,), dict(
+  DESCRIPTOR = _FILTER,
   __module__ = 'schema_pb2'
-  # @@protoc_insertion_point(class_scope:eventgate.ReceiveRequest)
+  # @@protoc_insertion_point(class_scope:eventgate.Filter)
   ))
-_sym_db.RegisterMessage(ReceiveRequest)
+_sym_db.RegisterMessage(Filter)
 
 CloudEventInput = _reflection.GeneratedProtocolMessageType('CloudEventInput', (_message.Message,), dict(
   DESCRIPTOR = _CLOUDEVENTINPUT,
@@ -262,56 +295,54 @@ _sym_db.RegisterMessage(CloudEvent)
 
 
 DESCRIPTOR._options = None
-_RECEIVEREQUEST.fields_by_name['type']._options = None
 _CLOUDEVENTINPUT.fields_by_name['specversion']._options = None
 _CLOUDEVENTINPUT.fields_by_name['source']._options = None
 _CLOUDEVENTINPUT.fields_by_name['type']._options = None
-_CLOUDEVENTINPUT.fields_by_name['data']._options = None
-_CLOUDEVENT.fields_by_name['specversion']._options = None
 _CLOUDEVENT.fields_by_name['id']._options = None
+_CLOUDEVENT.fields_by_name['specversion']._options = None
 _CLOUDEVENT.fields_by_name['source']._options = None
 _CLOUDEVENT.fields_by_name['type']._options = None
-_CLOUDEVENT.fields_by_name['data']._options = None
+_CLOUDEVENT.fields_by_name['time']._options = None
 
-_CLOUDEVENTSSERVICE = _descriptor.ServiceDescriptor(
-  name='CloudEventsService',
-  full_name='eventgate.CloudEventsService',
+_EVENTGATESERVICE = _descriptor.ServiceDescriptor(
+  name='EventGateService',
+  full_name='eventgate.EventGateService',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=875,
-  serialized_end=1140,
+  serialized_start=834,
+  serialized_end=1086,
   methods=[
   _descriptor.MethodDescriptor(
     name='Send',
-    full_name='eventgate.CloudEventsService.Send',
+    full_name='eventgate.EventGateService.Send',
     index=0,
     containing_service=None,
     input_type=_CLOUDEVENTINPUT,
     output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
-    serialized_options=_b('\202\323\344\223\002\n\"\005/send:\001*'),
+    serialized_options=_b('\202\323\344\223\002\n\032\005/send:\001*'),
   ),
   _descriptor.MethodDescriptor(
     name='Request',
-    full_name='eventgate.CloudEventsService.Request',
+    full_name='eventgate.EventGateService.Request',
     index=1,
     containing_service=None,
     input_type=_CLOUDEVENTINPUT,
     output_type=_CLOUDEVENT,
-    serialized_options=_b('\202\323\344\223\002\r\"\010/request:\001*'),
+    serialized_options=_b('\202\323\344\223\002\r\032\010/request:\001*'),
   ),
   _descriptor.MethodDescriptor(
     name='Receive',
-    full_name='eventgate.CloudEventsService.Receive',
+    full_name='eventgate.EventGateService.Receive',
     index=2,
     containing_service=None,
-    input_type=_RECEIVEREQUEST,
+    input_type=_FILTER,
     output_type=_CLOUDEVENT,
-    serialized_options=_b('\202\323\344\223\002\r\"\010/receive:\001*'),
+    serialized_options=_b('\202\323\344\223\002\n\022\010/receive'),
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_CLOUDEVENTSSERVICE)
+_sym_db.RegisterServiceDescriptor(_EVENTGATESERVICE)
 
-DESCRIPTOR.services_by_name['CloudEventsService'] = _CLOUDEVENTSSERVICE
+DESCRIPTOR.services_by_name['EventGateService'] = _EVENTGATESERVICE
 
 # @@protoc_insertion_point(module_scope)

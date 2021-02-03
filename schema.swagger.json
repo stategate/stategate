@@ -12,8 +12,9 @@
   ],
   "paths": {
     "/receive": {
-      "post": {
-        "operationId": "CloudEventsService_Receive",
+      "get": {
+        "summary": "Receive streams events to a client that pass a Filter",
+        "operationId": "EventGateService_Receive",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -39,22 +40,43 @@
         },
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/eventgateReceiveRequest"
-            }
+            "name": "specversion",
+            "description": "The version of the CloudEvents specification which the event uses.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "source",
+            "description": "Identifies the context in which an event happened.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "Describes the type of event related to the originating occurrence.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "subject",
+            "description": "Describes the subject of the event in the context of the event producer (identified by source).",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
-          "CloudEventsService"
+          "EventGateService"
         ]
       }
     },
     "/request": {
-      "post": {
-        "operationId": "CloudEventsService_Request",
+      "put": {
+        "summary": "Request sends an event as a request and waits for an event as a response",
+        "operationId": "EventGateService_Request",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -80,13 +102,14 @@
           }
         ],
         "tags": [
-          "CloudEventsService"
+          "EventGateService"
         ]
       }
     },
     "/send": {
-      "post": {
-        "operationId": "CloudEventsService_Send",
+      "put": {
+        "summary": "Brodcast an event(one way)",
+        "operationId": "EventGateService_Send",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -112,7 +135,7 @@
           }
         ],
         "tags": [
-          "CloudEventsService"
+          "EventGateService"
         ]
       }
     }
@@ -121,72 +144,91 @@
     "eventgateCloudEvent": {
       "type": "object",
       "properties": {
-        "specversion": {
-          "type": "string"
-        },
         "id": {
-          "type": "string"
+          "type": "string",
+          "description": "Identifies the event."
+        },
+        "specversion": {
+          "type": "string",
+          "description": "The version of the CloudEvents specification which the event uses."
         },
         "source": {
-          "type": "string"
+          "type": "string",
+          "description": "Identifies the context in which an event happened."
         },
         "type": {
-          "type": "string"
+          "type": "string",
+          "description": "Describes the type of event related to the originating occurrence."
         },
         "subject": {
-          "type": "string"
+          "type": "string",
+          "description": "Describes the subject of the event in the context of the event producer (identified by source)."
         },
         "dataschema": {
-          "type": "string"
+          "type": "string",
+          "description": "Identifies the schema that data adheres to."
         },
-        "attributes": {
-          "type": "object"
+        "datacontenttype": {
+          "type": "string",
+          "description": "Content type of the data value. Must adhere to RFC 2046 format."
         },
         "data": {
-          "type": "object"
+          "type": "object",
+          "description": "The event payload(structured)."
+        },
+        "dataBase64": {
+          "type": "string",
+          "description": "Base64 encoded event payload. Must adhere to RFC4648."
         },
         "time": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "Timestamp of when the occurrence happened. Must adhere to RFC 3339."
+        },
+        "eventgateAuth": {
+          "type": "string",
+          "description": "Base64 encoded authentication payload(jwt.claims)."
         }
-      }
+      },
+      "title": "CloudEvent is"
     },
     "eventgateCloudEventInput": {
       "type": "object",
       "properties": {
         "specversion": {
-          "type": "string"
+          "type": "string",
+          "description": "The version of the CloudEvents specification which the event uses."
         },
         "source": {
-          "type": "string"
+          "type": "string",
+          "description": "Identifies the context in which an event happened."
         },
         "type": {
-          "type": "string"
+          "type": "string",
+          "description": "Describes the type of event related to the originating occurrence."
         },
         "subject": {
-          "type": "string"
+          "type": "string",
+          "description": "Describes the subject of the event in the context of the event producer (identified by source)."
         },
         "dataschema": {
-          "type": "string"
+          "type": "string",
+          "description": "Identifies the schema that data adheres to."
         },
-        "attributes": {
-          "type": "object"
+        "datacontenttype": {
+          "type": "string",
+          "description": "Content type of the data value. Must adhere to RFC 2046 format."
         },
         "data": {
-          "type": "object"
-        }
-      }
-    },
-    "eventgateReceiveRequest": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string"
+          "type": "object",
+          "description": "The event payload(structured)."
         },
-        "subject": {
-          "type": "string"
+        "dataBase64": {
+          "type": "string",
+          "description": "Base64 encoded event payload. Must adhere to RFC4648."
         }
-      }
+      },
+      "title": "CloudEventInput constructs a cloud event"
     },
     "protobufAny": {
       "type": "object",

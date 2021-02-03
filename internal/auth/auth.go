@@ -2,6 +2,7 @@ package auth
 
 import (
 	"context"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"github.com/autom8ter/eventgate/internal/helpers"
@@ -24,6 +25,11 @@ type ctxKey string
 
 var (
 	userCtxKey ctxKey = "user-ctx-key"
+)
+
+const (
+	reqDenied  = "request authorization = denied"
+	respDenied = "response authorization = denied"
 )
 
 type Auth struct {
@@ -61,7 +67,7 @@ func (a *Auth) RefreshJWKS() error {
 	return nil
 }
 
-func (a *Auth) ParseAndVerify(token string) (map[string]interface{}, error) {
+func (a *Auth) ParseAndVerify(token string) ([]byte, error) {
 	message, err := jws.ParseString(token)
 	if err != nil {
 		return nil, err
@@ -101,11 +107,7 @@ func (a *Auth) ParseAndVerify(token string) (map[string]interface{}, error) {
 	} else {
 		payload = message.Payload()
 	}
-	data := map[string]interface{}{}
-	if err := json.Unmarshal(payload, &data); err != nil {
-		return nil, err
-	}
-	return data, nil
+	return payload, nil
 }
 
 func (a *Auth) UnaryInterceptor() grpc.UnaryServerInterceptor {
@@ -119,12 +121,18 @@ func (a *Auth) UnaryInterceptor() grpc.UnaryServerInterceptor {
 			a.logger.Error(err.Error())
 			return nil, status.Error(codes.Unauthenticated, "unverified")
 		}
+		claims := map[string]interface{}{}
+		if err := json.Unmarshal(payload, &claims); err != nil {
+			a.logger.Error(err.Error())
+			return nil, status.Error(codes.Internal, "failed to parse claims")
+		}
 		md := metautils.ExtractIncoming(ctx)
 		c := &Context{
-			Claims:   payload,
-			Method:   info.FullMethod,
-			Metadata: map[string]string{},
-			Body:     toMap(req),
+			authPayload: base64.StdEncoding.EncodeToString(payload),
+			Claims:      claims,
+			Method:      info.FullMethod,
+			Metadata:    map[string]string{},
+			Body:        toMap(req),
 		}
 		for k, arr := range md {
 			c.Metadata[k] = arr[0]
@@ -135,7 +143,7 @@ func (a *Auth) UnaryInterceptor() grpc.UnaryServerInterceptor {
 			return nil, status.Error(codes.Internal, "failed to evaluate authz policy")
 		}
 		if !allowed {
-			return nil, status.Error(codes.PermissionDenied, "permission denied")
+			return nil, status.Error(codes.PermissionDenied, reqDenied)
 		}
 		ctx = SetContext(ctx, c)
 		hresp, err := handler(ctx, req)
@@ -154,7 +162,7 @@ func (a *Auth) UnaryInterceptor() grpc.UnaryServerInterceptor {
 			return nil, status.Error(codes.Internal, "failed to evaluate authz policy")
 		}
 		if !allowed {
-			return nil, status.Error(codes.PermissionDenied, "permission denied")
+			return nil, status.Error(codes.PermissionDenied, respDenied)
 		}
 		return hresp, nil
 	}
@@ -172,12 +180,18 @@ func (a *Auth) StreamInterceptor() grpc.StreamServerInterceptor {
 			a.logger.Error(err.Error())
 			return status.Error(codes.Unauthenticated, "unverified")
 		}
+		claims := map[string]interface{}{}
+		if err := json.Unmarshal(payload, &claims); err != nil {
+			a.logger.Error(err.Error())
+			return status.Error(codes.Internal, "failed to parse claims")
+		}
 		md := metautils.ExtractIncoming(ctx)
 		c := &Context{
-			Claims:       payload,
+			authPayload:  base64.StdEncoding.EncodeToString(payload),
+			Claims:       claims,
 			Method:       info.FullMethod,
-			Body:         map[string]interface{}{},
 			Metadata:     map[string]string{},
+			Body:         map[string]interface{}{},
 			ClientStream: info.IsClientStream,
 			ServerStream: info.IsServerStream,
 		}

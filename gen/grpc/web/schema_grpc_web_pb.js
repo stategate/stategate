@@ -38,7 +38,7 @@ proto.eventgate = require('./schema_pb.js');
  * @struct
  * @final
  */
-proto.eventgate.CloudEventsServiceClient =
+proto.eventgate.EventGateServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -64,7 +64,7 @@ proto.eventgate.CloudEventsServiceClient =
  * @struct
  * @final
  */
-proto.eventgate.CloudEventsServicePromiseClient =
+proto.eventgate.EventGateServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -88,8 +88,8 @@ proto.eventgate.CloudEventsServicePromiseClient =
  *   !proto.eventgate.CloudEventInput,
  *   !proto.google.protobuf.Empty>}
  */
-const methodDescriptor_CloudEventsService_Send = new grpc.web.MethodDescriptor(
-  '/eventgate.CloudEventsService/Send',
+const methodDescriptor_EventGateService_Send = new grpc.web.MethodDescriptor(
+  '/eventgate.EventGateService/Send',
   grpc.web.MethodType.UNARY,
   proto.eventgate.CloudEventInput,
   google_protobuf_empty_pb.Empty,
@@ -110,7 +110,7 @@ const methodDescriptor_CloudEventsService_Send = new grpc.web.MethodDescriptor(
  *   !proto.eventgate.CloudEventInput,
  *   !proto.google.protobuf.Empty>}
  */
-const methodInfo_CloudEventsService_Send = new grpc.web.AbstractClientBase.MethodInfo(
+const methodInfo_EventGateService_Send = new grpc.web.AbstractClientBase.MethodInfo(
   google_protobuf_empty_pb.Empty,
   /**
    * @param {!proto.eventgate.CloudEventInput} request
@@ -133,13 +133,13 @@ const methodInfo_CloudEventsService_Send = new grpc.web.AbstractClientBase.Metho
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.eventgate.CloudEventsServiceClient.prototype.send =
+proto.eventgate.EventGateServiceClient.prototype.send =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/eventgate.CloudEventsService/Send',
+      '/eventgate.EventGateService/Send',
       request,
       metadata || {},
-      methodDescriptor_CloudEventsService_Send,
+      methodDescriptor_EventGateService_Send,
       callback);
 };
 
@@ -152,13 +152,13 @@ proto.eventgate.CloudEventsServiceClient.prototype.send =
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.eventgate.CloudEventsServicePromiseClient.prototype.send =
+proto.eventgate.EventGateServicePromiseClient.prototype.send =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/eventgate.CloudEventsService/Send',
+      '/eventgate.EventGateService/Send',
       request,
       metadata || {},
-      methodDescriptor_CloudEventsService_Send);
+      methodDescriptor_EventGateService_Send);
 };
 
 
@@ -168,8 +168,8 @@ proto.eventgate.CloudEventsServicePromiseClient.prototype.send =
  *   !proto.eventgate.CloudEventInput,
  *   !proto.eventgate.CloudEvent>}
  */
-const methodDescriptor_CloudEventsService_Request = new grpc.web.MethodDescriptor(
-  '/eventgate.CloudEventsService/Request',
+const methodDescriptor_EventGateService_Request = new grpc.web.MethodDescriptor(
+  '/eventgate.EventGateService/Request',
   grpc.web.MethodType.UNARY,
   proto.eventgate.CloudEventInput,
   proto.eventgate.CloudEvent,
@@ -190,7 +190,7 @@ const methodDescriptor_CloudEventsService_Request = new grpc.web.MethodDescripto
  *   !proto.eventgate.CloudEventInput,
  *   !proto.eventgate.CloudEvent>}
  */
-const methodInfo_CloudEventsService_Request = new grpc.web.AbstractClientBase.MethodInfo(
+const methodInfo_EventGateService_Request = new grpc.web.AbstractClientBase.MethodInfo(
   proto.eventgate.CloudEvent,
   /**
    * @param {!proto.eventgate.CloudEventInput} request
@@ -213,13 +213,13 @@ const methodInfo_CloudEventsService_Request = new grpc.web.AbstractClientBase.Me
  * @return {!grpc.web.ClientReadableStream<!proto.eventgate.CloudEvent>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.eventgate.CloudEventsServiceClient.prototype.request =
+proto.eventgate.EventGateServiceClient.prototype.request =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/eventgate.CloudEventsService/Request',
+      '/eventgate.EventGateService/Request',
       request,
       metadata || {},
-      methodDescriptor_CloudEventsService_Request,
+      methodDescriptor_EventGateService_Request,
       callback);
 };
 
@@ -232,29 +232,29 @@ proto.eventgate.CloudEventsServiceClient.prototype.request =
  * @return {!Promise<!proto.eventgate.CloudEvent>}
  *     Promise that resolves to the response
  */
-proto.eventgate.CloudEventsServicePromiseClient.prototype.request =
+proto.eventgate.EventGateServicePromiseClient.prototype.request =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/eventgate.CloudEventsService/Request',
+      '/eventgate.EventGateService/Request',
       request,
       metadata || {},
-      methodDescriptor_CloudEventsService_Request);
+      methodDescriptor_EventGateService_Request);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.eventgate.ReceiveRequest,
+ *   !proto.eventgate.Filter,
  *   !proto.eventgate.CloudEvent>}
  */
-const methodDescriptor_CloudEventsService_Receive = new grpc.web.MethodDescriptor(
-  '/eventgate.CloudEventsService/Receive',
+const methodDescriptor_EventGateService_Receive = new grpc.web.MethodDescriptor(
+  '/eventgate.EventGateService/Receive',
   grpc.web.MethodType.SERVER_STREAMING,
-  proto.eventgate.ReceiveRequest,
+  proto.eventgate.Filter,
   proto.eventgate.CloudEvent,
   /**
-   * @param {!proto.eventgate.ReceiveRequest} request
+   * @param {!proto.eventgate.Filter} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -267,13 +267,13 @@ const methodDescriptor_CloudEventsService_Receive = new grpc.web.MethodDescripto
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.eventgate.ReceiveRequest,
+ *   !proto.eventgate.Filter,
  *   !proto.eventgate.CloudEvent>}
  */
-const methodInfo_CloudEventsService_Receive = new grpc.web.AbstractClientBase.MethodInfo(
+const methodInfo_EventGateService_Receive = new grpc.web.AbstractClientBase.MethodInfo(
   proto.eventgate.CloudEvent,
   /**
-   * @param {!proto.eventgate.ReceiveRequest} request
+   * @param {!proto.eventgate.Filter} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -284,36 +284,36 @@ const methodInfo_CloudEventsService_Receive = new grpc.web.AbstractClientBase.Me
 
 
 /**
- * @param {!proto.eventgate.ReceiveRequest} request The request proto
+ * @param {!proto.eventgate.Filter} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.eventgate.CloudEvent>}
  *     The XHR Node Readable Stream
  */
-proto.eventgate.CloudEventsServiceClient.prototype.receive =
+proto.eventgate.EventGateServiceClient.prototype.receive =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/eventgate.CloudEventsService/Receive',
+      '/eventgate.EventGateService/Receive',
       request,
       metadata || {},
-      methodDescriptor_CloudEventsService_Receive);
+      methodDescriptor_EventGateService_Receive);
 };
 
 
 /**
- * @param {!proto.eventgate.ReceiveRequest} request The request proto
+ * @param {!proto.eventgate.Filter} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.eventgate.CloudEvent>}
  *     The XHR Node Readable Stream
  */
-proto.eventgate.CloudEventsServicePromiseClient.prototype.receive =
+proto.eventgate.EventGateServicePromiseClient.prototype.receive =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/eventgate.CloudEventsService/Receive',
+      '/eventgate.EventGateService/Receive',
       request,
       metadata || {},
-      methodDescriptor_CloudEventsService_Receive);
+      methodDescriptor_EventGateService_Receive);
 };
 
 

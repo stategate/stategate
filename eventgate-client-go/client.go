@@ -137,13 +137,13 @@ func NewClient(ctx context.Context, target string, opts ...Opt) (*Client, error)
 		return nil, err
 	}
 	return &Client{
-		client: eventgate.NewCloudEventsServiceClient(conn),
+		client: eventgate.NewEventGateServiceClient(conn),
 	}, nil
 }
 
 // Client is a eventgate gRPC client
 type Client struct {
-	client eventgate.CloudEventsServiceClient
+	client eventgate.EventGateServiceClient
 }
 
 func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken bool) (context.Context, error) {
@@ -176,7 +176,7 @@ func (c *Client) Request(ctx context.Context, in *eventgate.CloudEventInput) (*e
 	return c.client.Request(ctx, in)
 }
 
-func (c *Client) Receive(ctx context.Context, in *eventgate.ReceiveRequest, fn func(even *eventgate.CloudEvent) bool) error {
+func (c *Client) Receive(ctx context.Context, in *eventgate.Filter, fn func(even *eventgate.CloudEvent) bool) error {
 	stream, err := c.client.Receive(ctx, in)
 	if err != nil {
 		return err

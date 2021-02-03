@@ -1,0 +1,4 @@
+vendor
+.idea
+config.yaml
+k8s.yaml

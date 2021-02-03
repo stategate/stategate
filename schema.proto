@@ -11,51 +11,86 @@ import "google/protobuf/any.proto";
 import "google/protobuf/empty.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
-
-service CloudEventsService {
+// EventGateService is an identity-aware API gateway for CloudEvents applications
+// Pluggable backends include: [nats]
+service EventGateService {
+  // Brodcast an event(one way)
   rpc Send(CloudEventInput) returns(google.protobuf.Empty){
     option (google.api.http) = {
-      post: "/send"
+      put: "/send"
       body: "*"
     };
   }
+  // Request sends an event as a request and waits for an event as a response
   rpc Request(CloudEventInput) returns(CloudEvent){
     option (google.api.http) = {
-      post: "/request"
+      put: "/request"
       body: "*"
     };
   }
-  rpc Receive(ReceiveRequest) returns(stream CloudEvent){
+  // Receive streams events to a client that pass a Filter
+  rpc Receive(Filter) returns(stream CloudEvent){
     option (google.api.http) = {
-      post: "/receive"
-      body: "*"
+      get: "/receive"
     };
   }
 }
 
-message ReceiveRequest {
-  string type =1[(validator.field) = {regex : "^.{1,225}$"}];
-  string subject =2;
-}
 
-message CloudEventInput {
-  string specversion = 1[(validator.field) = {regex : "^.{1,225}$"}];
-  string source = 2[(validator.field) = {regex : "^.{1,225}$"}];
-  string type = 3[(validator.field) = {regex : "^.{1,225}$"}];
+// Filter filters cloud events
+message Filter {
+  // The version of the CloudEvents specification which the event uses.
+  string specversion = 1;
+  // Identifies the context in which an event happened.
+  string source = 2;
+  // Describes the type of event related to the originating occurrence.
+  string type = 3;
+  // Describes the subject of the event in the context of the event producer (identified by source).
   string subject =4;
-  string dataschema =5;
-  google.protobuf.Struct attributes = 6;
-  google.protobuf.Struct data = 7[(validator.field) = {msg_exists : true}];
 }
 
-message CloudEvent {
-  string specversion = 1[(validator.field) = {regex : "^.{1,225}$"}];
-  string id = 2[(validator.field) = {regex : "^.{1,225}$"}];
-  string source = 3[(validator.field) = {regex : "^.{1,225}$"}];
-  string type = 4[(validator.field) = {regex : "^.{1,225}$"}];
+// CloudEventInput constructs a cloud event
+message CloudEventInput {
+  // The version of the CloudEvents specification which the event uses.
+  string specversion = 2[(validator.field) = {string_not_empty : true}];
+  // Identifies the context in which an event happened.
+  string source = 3[(validator.field) = {string_not_empty : true}];
+  // Describes the type of event related to the originating occurrence.
+  string type = 4[(validator.field) = {string_not_empty : true}];
+  // Describes the subject of the event in the context of the event producer (identified by source).
   string subject =5;
+  // Identifies the schema that data adheres to.
   string dataschema =6;
-  google.protobuf.Struct attributes = 7;
-  google.protobuf.Struct data = 8[(validator.field) = {msg_exists : true}];
-  google.protobuf.Timestamp time =9;
+  // Content type of the data value. Must adhere to RFC 2046 format.
+  string datacontenttype =7;
+  //The event payload(structured).
+  google.protobuf.Struct data = 8;
+  // Base64 encoded event payload. Must adhere to RFC4648.
+  string data_base64 =9;
+}
+
+// CloudEvent is
+message CloudEvent {
+  // Identifies the event.
+  string id = 1[(validator.field) = {string_not_empty : true}];
+  // The version of the CloudEvents specification which the event uses.
+  string specversion = 2[(validator.field) = {string_not_empty : true}];
+  // Identifies the context in which an event happened.
+  string source = 3[(validator.field) = {string_not_empty : true}];
+  // Describes the type of event related to the originating occurrence.
+  string type = 4[(validator.field) = {string_not_empty : true}];
+  // Describes the subject of the event in the context of the event producer (identified by source).
+  string subject =5;
+  // Identifies the schema that data adheres to.
+  string dataschema =6;
+  // Content type of the data value. Must adhere to RFC 2046 format.
+  string datacontenttype =7;
+  // The event payload(structured).
+  google.protobuf.Struct data = 8;
+  // Base64 encoded event payload. Must adhere to RFC4648.
+  string data_base64 =9;
+  // Timestamp of when the occurrence happened. Must adhere to RFC 3339.
+  google.protobuf.Timestamp time =20[(validator.field) = {msg_exists : true}];
+  // Base64 encoded authentication payload(jwt.claims).
+  string eventgate_auth =21;
 }

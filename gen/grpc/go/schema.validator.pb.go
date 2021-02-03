@@ -5,16 +5,15 @@ package eventgate
 
 import (
 	fmt "fmt"
-	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/golang/protobuf/ptypes/any"
 	_ "github.com/golang/protobuf/ptypes/empty"
-	_ "github.com/mwitkow/go-proto-validators"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/struct"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
-	_ "github.com/golang/protobuf/ptypes/any"
-	regexp "regexp"
+	_ "github.com/mwitkow/go-proto-validators"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
+	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -22,36 +21,18 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-var _regex_ReceiveRequest_Type = regexp.MustCompile(`^.{1,225}$`)
-
-func (this *ReceiveRequest) Validate() error {
-	if !_regex_ReceiveRequest_Type.MatchString(this.Type) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^.{1,225}$"`, this.Type))
-	}
+func (this *Filter) Validate() error {
 	return nil
 }
-
-var _regex_CloudEventInput_Specversion = regexp.MustCompile(`^.{1,225}$`)
-var _regex_CloudEventInput_Source = regexp.MustCompile(`^.{1,225}$`)
-var _regex_CloudEventInput_Type = regexp.MustCompile(`^.{1,225}$`)
-
 func (this *CloudEventInput) Validate() error {
-	if !_regex_CloudEventInput_Specversion.MatchString(this.Specversion) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Specversion", fmt.Errorf(`value '%v' must be a string conforming to regex "^.{1,225}$"`, this.Specversion))
+	if this.Specversion == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Specversion", fmt.Errorf(`value '%v' must not be an empty string`, this.Specversion))
 	}
-	if !_regex_CloudEventInput_Source.MatchString(this.Source) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Source", fmt.Errorf(`value '%v' must be a string conforming to regex "^.{1,225}$"`, this.Source))
+	if this.Source == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Source", fmt.Errorf(`value '%v' must not be an empty string`, this.Source))
 	}
-	if !_regex_CloudEventInput_Type.MatchString(this.Type) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^.{1,225}$"`, this.Type))
-	}
-	if this.Attributes != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Attributes); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Attributes", err)
-		}
-	}
-	if nil == this.Data {
-		return github_com_mwitkow_go_proto_validators.FieldError("Data", fmt.Errorf("message must exist"))
+	if this.Type == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
 	}
 	if this.Data != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
@@ -60,37 +41,26 @@ func (this *CloudEventInput) Validate() error {
 	}
 	return nil
 }
-
-var _regex_CloudEvent_Specversion = regexp.MustCompile(`^.{1,225}$`)
-var _regex_CloudEvent_Id = regexp.MustCompile(`^.{1,225}$`)
-var _regex_CloudEvent_Source = regexp.MustCompile(`^.{1,225}$`)
-var _regex_CloudEvent_Type = regexp.MustCompile(`^.{1,225}$`)
-
 func (this *CloudEvent) Validate() error {
-	if !_regex_CloudEvent_Specversion.MatchString(this.Specversion) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Specversion", fmt.Errorf(`value '%v' must be a string conforming to regex "^.{1,225}$"`, this.Specversion))
+	if this.Id == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must not be an empty string`, this.Id))
 	}
-	if !_regex_CloudEvent_Id.MatchString(this.Id) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must be a string conforming to regex "^.{1,225}$"`, this.Id))
+	if this.Specversion == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Specversion", fmt.Errorf(`value '%v' must not be an empty string`, this.Specversion))
 	}
-	if !_regex_CloudEvent_Source.MatchString(this.Source) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Source", fmt.Errorf(`value '%v' must be a string conforming to regex "^.{1,225}$"`, this.Source))
+	if this.Source == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Source", fmt.Errorf(`value '%v' must not be an empty string`, this.Source))
 	}
-	if !_regex_CloudEvent_Type.MatchString(this.Type) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^.{1,225}$"`, this.Type))
-	}
-	if this.Attributes != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Attributes); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Attributes", err)
-		}
-	}
-	if nil == this.Data {
-		return github_com_mwitkow_go_proto_validators.FieldError("Data", fmt.Errorf("message must exist"))
+	if this.Type == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
 	}
 	if this.Data != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
 			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
 		}
+	}
+	if nil == this.Time {
+		return github_com_mwitkow_go_proto_validators.FieldError("Time", fmt.Errorf("message must exist"))
 	}
 	if this.Time != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Time); err != nil {

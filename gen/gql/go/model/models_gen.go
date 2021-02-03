@@ -7,28 +7,33 @@ import (
 )
 
 type CloudEvent struct {
-	Specversion string                 `json:"specversion"`
-	ID          string                 `json:"id"`
-	Source      string                 `json:"source"`
-	Type        string                 `json:"type"`
-	Subject     *string                `json:"subject"`
-	Dataschema  *string                `json:"dataschema"`
-	Attributes  map[string]interface{} `json:"attributes"`
-	Data        map[string]interface{} `json:"data"`
-	Time        time.Time              `json:"time"`
+	ID              string                 `json:"id"`
+	Specversion     string                 `json:"specversion"`
+	Source          string                 `json:"source"`
+	Type            string                 `json:"type"`
+	Subject         *string                `json:"subject"`
+	Dataschema      *string                `json:"dataschema"`
+	Datacontenttype *string                `json:"datacontenttype"`
+	Data            map[string]interface{} `json:"data"`
+	DataBase64      *string                `json:"data_base64"`
+	Time            time.Time              `json:"time"`
+	EventgateAuth   *string                `json:"eventgate_auth"`
 }
 
 type CloudEventInput struct {
-	Specversion string                 `json:"specversion"`
-	Source      string                 `json:"source"`
-	Type        string                 `json:"type"`
-	Subject     *string                `json:"subject"`
-	Dataschema  *string                `json:"dataschema"`
-	Attributes  map[string]interface{} `json:"attributes"`
-	Data        map[string]interface{} `json:"data"`
+	Specversion     string                 `json:"specversion"`
+	Source          string                 `json:"source"`
+	Type            string                 `json:"type"`
+	Subject         *string                `json:"subject"`
+	Dataschema      *string                `json:"dataschema"`
+	Datacontenttype *string                `json:"datacontenttype"`
+	Data            map[string]interface{} `json:"data"`
+	DataBase64      *string                `json:"data_base64"`
 }
 
-type ReceiveRequest struct {
-	Type    string  `json:"type"`
-	Subject *string `json:"subject"`
+type Filter struct {
+	Specversion *string `json:"specversion"`
+	Source      *string `json:"source"`
+	Type        *string `json:"type"`
+	Subject     *string `json:"subject"`
 }

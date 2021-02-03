@@ -5,19 +5,17 @@ import (
 	"fmt"
 	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
 	"github.com/autom8ter/eventgate/internal/auth"
+	"github.com/autom8ter/eventgate/internal/backend"
 	"github.com/autom8ter/eventgate/internal/config"
 	"github.com/autom8ter/eventgate/internal/gql"
 	"github.com/autom8ter/eventgate/internal/helpers"
 	"github.com/autom8ter/eventgate/internal/logger"
-	nats2 "github.com/autom8ter/eventgate/internal/providers/nats"
 	"github.com/autom8ter/machine"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	grpc_validator "github.com/grpc-ecosystem/go-grpc-middleware/validator"
 	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/nats-io/nats.go"
-	"github.com/nats-io/nuid"
 	"github.com/open-policy-agent/opa/rego"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/soheilhy/cmux"
@@ -25,8 +23,8 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+	"gopkg.in/yaml.v2"
 	"io/ioutil"
-	"k8s.io/apimachinery/pkg/util/yaml"
 	"net"
 	"net/http"
 	"net/http/pprof"
@@ -57,13 +55,14 @@ func run(ctx context.Context) {
 		return
 	}
 	c := &config.Config{}
-	if err := yaml.Unmarshal(bits, c); err != nil {
+	if err := yaml.UnmarshalStrict(bits, c); err != nil {
 		fmt.Printf("failed to read config file: %s", err.Error())
 		return
 	}
 	c.SetDefaults()
-	var lgger = logger.New(c.Debug)
+	var lgger = logger.New(c.Logging.Debug)
 
+	lgger.Debug("loaded config", zap.Any("config", c))
 	var (
 		metricsLis net.Listener
 		m          = machine.New(ctx)
@@ -130,48 +129,58 @@ func run(ctx context.Context) {
 		}
 	})
 
+	const (
+		requestQuery  = "data.eventgate.authz.requests.allow"
+		responseQuery = "data.eventgate.authz.responses.allow"
+	)
+
 	requestPolicy := rego.New(
-		rego.Query(c.RequestPolicy.RegoQuery),
-		rego.Module("requests.rego", c.RequestPolicy.RegoPolicy),
+		rego.Query(requestQuery),
+		rego.Module("requests.rego", c.Authorization.RequestPolicy),
 	)
 	respPolicy := rego.New(
-		rego.Query(c.ResponsePolicy.RegoQuery),
-		rego.Module("responses.rego", c.ResponsePolicy.RegoPolicy),
+		rego.Query(responseQuery),
+		rego.Module("responses.rego", c.Authorization.ResponsePolicy),
 	)
-	a, err := auth.NewAuth(c.JwksURI, lgger, requestPolicy, respPolicy)
+	a, err := auth.NewAuth(c.Authentication.JwksURI, lgger, requestPolicy, respPolicy)
 	if err != nil {
 		lgger.Error(err.Error())
 		return
+	}
+	unary := []grpc.UnaryServerInterceptor{
+		grpc_prometheus.UnaryServerInterceptor,
+		grpc_zap.UnaryServerInterceptor(lgger.Zap()),
+		a.UnaryInterceptor(),
+		grpc_validator.UnaryServerInterceptor(),
+		grpc_recovery.UnaryServerInterceptor(),
+	}
+	stream := []grpc.StreamServerInterceptor{
+		grpc_prometheus.StreamServerInterceptor,
+		grpc_zap.StreamServerInterceptor(lgger.Zap()),
+		a.StreamInterceptor(),
+		grpc_validator.StreamServerInterceptor(),
+		grpc_recovery.StreamServerInterceptor(),
+	}
+	if c.Logging.Payloads {
+		unary = append(unary, grpc_zap.PayloadUnaryServerInterceptor(lgger.Zap(), func(ctx context.Context, fullMethodName string, servingObject interface{}) bool {
+			return true
+		}))
+		stream = append(stream, grpc_zap.PayloadStreamServerInterceptor(lgger.Zap(), func(ctx context.Context, fullMethodName string, servingObject interface{}) bool {
+			return true
+		}))
 	}
 	gopts := []grpc.ServerOption{
-		grpc.ChainUnaryInterceptor(
-			grpc_prometheus.UnaryServerInterceptor,
-			grpc_zap.UnaryServerInterceptor(lgger.Zap()),
-			a.UnaryInterceptor(),
-			grpc_validator.UnaryServerInterceptor(),
-			grpc_recovery.UnaryServerInterceptor(),
-		),
-		grpc.ChainStreamInterceptor(
-			grpc_prometheus.StreamServerInterceptor,
-			grpc_zap.StreamServerInterceptor(lgger.Zap()),
-			a.StreamInterceptor(),
-			grpc_validator.StreamServerInterceptor(),
-			grpc_recovery.StreamServerInterceptor(),
-		),
+		grpc.ChainUnaryInterceptor(unary...),
+		grpc.ChainStreamInterceptor(stream...),
 	}
-	nconn, err := natsConn(c.NatsURL)
+	service, closer, err := backend.GetProvider(backend.Provider(c.Backend.Name), c.Backend.Config)
 	if err != nil {
 		lgger.Error(err.Error())
 		return
 	}
-	defer nconn.Close()
-	service, err := nats2.NewService(lgger, nconn)
-	if err != nil {
-		lgger.Error(err.Error())
-		return
-	}
+	defer closer()
 	gserver := grpc.NewServer(gopts...)
-	eventgate.RegisterCloudEventsServiceServer(gserver, service)
+	eventgate.RegisterEventGateServiceServer(gserver, service)
 	reflection.Register(gserver)
 	grpc_prometheus.Register(gserver)
 
@@ -192,14 +201,14 @@ func run(ctx context.Context) {
 		return
 	}
 	defer conn.Close()
-	resolver := gql.NewResolver(eventgate.NewCloudEventsServiceClient(conn), lgger)
+	resolver := gql.NewResolver(eventgate.NewEventGateServiceClient(conn), lgger)
 	mux := http.NewServeMux()
 
 	mux.Handle("/graphql", resolver.QueryHandler())
 
 	{
 		restMux := runtime.NewServeMux()
-		if err := eventgate.RegisterCloudEventsServiceHandler(ctx, restMux, conn); err != nil {
+		if err := eventgate.RegisterEventGateServiceHandler(ctx, restMux, conn); err != nil {
 			lgger.Error("failed to register REST endpoints", zap.Error(err))
 			return
 		}
@@ -259,32 +268,4 @@ func run(ctx context.Context) {
 	}()
 	m.Wait()
 	lgger.Debug("shutdown successful")
-}
-
-func natsConn(url string) (*nats.Conn, error) {
-	hostname, err := os.Hostname()
-	if err != nil {
-		return nil, err
-	}
-	hostname = strings.NewReplacer(".", "_").Replace(hostname)
-	var (
-		conn *nats.Conn
-	)
-	for i := 0; i < 10; i++ {
-		var (
-			clientID = fmt.Sprintf("%s-%s", hostname, nuid.Next())
-		)
-		conn, err = nats.Connect(
-			url,
-			nats.Name(clientID),
-		)
-		if err == nil && conn != nil {
-			break
-		}
-		time.Sleep(2 * time.Second)
-	}
-	if err != nil {
-		return nil, err
-	}
-	return conn, nil
 }

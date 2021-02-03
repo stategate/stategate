@@ -31,7 +31,7 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_CloudEventsService_Send_0(ctx context.Context, marshaler runtime.Marshaler, client CloudEventsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_EventGateService_Send_0(ctx context.Context, marshaler runtime.Marshaler, client EventGateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CloudEventInput
 	var metadata runtime.ServerMetadata
 
@@ -48,7 +48,7 @@ func request_CloudEventsService_Send_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_CloudEventsService_Send_0(ctx context.Context, marshaler runtime.Marshaler, server CloudEventsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_EventGateService_Send_0(ctx context.Context, marshaler runtime.Marshaler, server EventGateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CloudEventInput
 	var metadata runtime.ServerMetadata
 
@@ -65,7 +65,7 @@ func local_request_CloudEventsService_Send_0(ctx context.Context, marshaler runt
 
 }
 
-func request_CloudEventsService_Request_0(ctx context.Context, marshaler runtime.Marshaler, client CloudEventsServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_EventGateService_Request_0(ctx context.Context, marshaler runtime.Marshaler, client EventGateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CloudEventInput
 	var metadata runtime.ServerMetadata
 
@@ -82,7 +82,7 @@ func request_CloudEventsService_Request_0(ctx context.Context, marshaler runtime
 
 }
 
-func local_request_CloudEventsService_Request_0(ctx context.Context, marshaler runtime.Marshaler, server CloudEventsServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_EventGateService_Request_0(ctx context.Context, marshaler runtime.Marshaler, server EventGateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CloudEventInput
 	var metadata runtime.ServerMetadata
 
@@ -99,15 +99,18 @@ func local_request_CloudEventsService_Request_0(ctx context.Context, marshaler r
 
 }
 
-func request_CloudEventsService_Receive_0(ctx context.Context, marshaler runtime.Marshaler, client CloudEventsServiceClient, req *http.Request, pathParams map[string]string) (CloudEventsService_ReceiveClient, runtime.ServerMetadata, error) {
-	var protoReq ReceiveRequest
+var (
+	filter_EventGateService_Receive_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_EventGateService_Receive_0(ctx context.Context, marshaler runtime.Marshaler, client EventGateServiceClient, req *http.Request, pathParams map[string]string) (EventGateService_ReceiveClient, runtime.ServerMetadata, error) {
+	var protoReq Filter
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EventGateService_Receive_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -124,24 +127,24 @@ func request_CloudEventsService_Receive_0(ctx context.Context, marshaler runtime
 
 }
 
-// RegisterCloudEventsServiceHandlerServer registers the http handlers for service CloudEventsService to "mux".
-// UnaryRPC     :call CloudEventsServiceServer directly.
+// RegisterEventGateServiceHandlerServer registers the http handlers for service EventGateService to "mux".
+// UnaryRPC     :call EventGateServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterCloudEventsServiceHandlerFromEndpoint instead.
-func RegisterCloudEventsServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server CloudEventsServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterEventGateServiceHandlerFromEndpoint instead.
+func RegisterEventGateServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server EventGateServiceServer) error {
 
-	mux.Handle("POST", pattern_CloudEventsService_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_EventGateService_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/eventgate.CloudEventsService/Send")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/eventgate.EventGateService/Send")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CloudEventsService_Send_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_EventGateService_Send_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -149,22 +152,22 @@ func RegisterCloudEventsServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_CloudEventsService_Send_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EventGateService_Send_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_CloudEventsService_Request_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_EventGateService_Request_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/eventgate.CloudEventsService/Request")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/eventgate.EventGateService/Request")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_CloudEventsService_Request_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_EventGateService_Request_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -172,11 +175,11 @@ func RegisterCloudEventsServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 
-		forward_CloudEventsService_Request_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EventGateService_Request_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_CloudEventsService_Receive_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_EventGateService_Receive_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -186,9 +189,9 @@ func RegisterCloudEventsServiceHandlerServer(ctx context.Context, mux *runtime.S
 	return nil
 }
 
-// RegisterCloudEventsServiceHandlerFromEndpoint is same as RegisterCloudEventsServiceHandler but
+// RegisterEventGateServiceHandlerFromEndpoint is same as RegisterEventGateServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterCloudEventsServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterEventGateServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -208,79 +211,79 @@ func RegisterCloudEventsServiceHandlerFromEndpoint(ctx context.Context, mux *run
 		}()
 	}()
 
-	return RegisterCloudEventsServiceHandler(ctx, mux, conn)
+	return RegisterEventGateServiceHandler(ctx, mux, conn)
 }
 
-// RegisterCloudEventsServiceHandler registers the http handlers for service CloudEventsService to "mux".
+// RegisterEventGateServiceHandler registers the http handlers for service EventGateService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterCloudEventsServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterCloudEventsServiceHandlerClient(ctx, mux, NewCloudEventsServiceClient(conn))
+func RegisterEventGateServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterEventGateServiceHandlerClient(ctx, mux, NewEventGateServiceClient(conn))
 }
 
-// RegisterCloudEventsServiceHandlerClient registers the http handlers for service CloudEventsService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "CloudEventsServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "CloudEventsServiceClient"
+// RegisterEventGateServiceHandlerClient registers the http handlers for service EventGateService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "EventGateServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "EventGateServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "CloudEventsServiceClient" to call the correct interceptors.
-func RegisterCloudEventsServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client CloudEventsServiceClient) error {
+// "EventGateServiceClient" to call the correct interceptors.
+func RegisterEventGateServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client EventGateServiceClient) error {
 
-	mux.Handle("POST", pattern_CloudEventsService_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_EventGateService_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/eventgate.CloudEventsService/Send")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/eventgate.EventGateService/Send")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CloudEventsService_Send_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_EventGateService_Send_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_CloudEventsService_Send_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EventGateService_Send_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_CloudEventsService_Request_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_EventGateService_Request_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/eventgate.CloudEventsService/Request")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/eventgate.EventGateService/Request")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CloudEventsService_Request_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_EventGateService_Request_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_CloudEventsService_Request_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EventGateService_Request_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_CloudEventsService_Receive_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_EventGateService_Receive_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/eventgate.CloudEventsService/Receive")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/eventgate.EventGateService/Receive")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_CloudEventsService_Receive_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_EventGateService_Receive_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_CloudEventsService_Receive_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_EventGateService_Receive_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -288,17 +291,17 @@ func RegisterCloudEventsServiceHandlerClient(ctx context.Context, mux *runtime.S
 }
 
 var (
-	pattern_CloudEventsService_Send_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"send"}, ""))
+	pattern_EventGateService_Send_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"send"}, ""))
 
-	pattern_CloudEventsService_Request_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"request"}, ""))
+	pattern_EventGateService_Request_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"request"}, ""))
 
-	pattern_CloudEventsService_Receive_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"receive"}, ""))
+	pattern_EventGateService_Receive_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"receive"}, ""))
 )
 
 var (
-	forward_CloudEventsService_Send_0 = runtime.ForwardResponseMessage
+	forward_EventGateService_Send_0 = runtime.ForwardResponseMessage
 
-	forward_CloudEventsService_Request_0 = runtime.ForwardResponseMessage
+	forward_EventGateService_Request_0 = runtime.ForwardResponseMessage
 
-	forward_CloudEventsService_Receive_0 = runtime.ForwardResponseStream
+	forward_EventGateService_Receive_0 = runtime.ForwardResponseStream
 )

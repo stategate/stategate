@@ -13,7 +13,6 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"google.golang.org/protobuf/types/known/structpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"sync"
 	"time"
@@ -37,26 +36,23 @@ func (s *Service) Send(ctx context.Context, r *eventgate.CloudEventInput) (*empt
 		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
 	}
 	toSend := &eventgate.CloudEvent{
-		Specversion: r.GetSpecversion(),
-		Id:          uuid.New().String(),
-		Source:      r.GetSource(),
-		Type:        r.GetType(),
-		Subject:     r.GetSubject(),
-		Attributes:  r.GetAttributes(),
-		Data:        r.GetData(),
-		Time:        timestamppb.New(time.Now()),
+		Id:              uuid.New().String(),
+		Specversion:     r.GetSpecversion(),
+		Source:          r.GetSource(),
+		Type:            r.GetType(),
+		Subject:         r.GetSubject(),
+		Dataschema:      r.GetDataschema(),
+		Datacontenttype: r.GetDatacontenttype(),
+		Data:            r.GetData(),
+		DataBase64:      r.GetDataBase64(),
+		Time:            timestamppb.New(time.Now()),
+		EventgateAuth:   c.AuthPayload(),
 	}
-	if toSend.Attributes == nil {
-		data, _ := structpb.NewStruct(nil)
-		toSend.Attributes = data
-	}
-	claims, _ := structpb.NewStruct(c.Claims)
-	toSend.Attributes.Fields["auth.claims"] = structpb.NewStructValue(claims)
 	bits, err := proto.Marshal(toSend)
 	if err != nil {
 		return nil, err
 	}
-	if err := s.conn.Publish(getSubject(r.GetType(), r.GetSubject()), bits); err != nil {
+	if err := s.conn.Publish(getNatsSubject(r.GetSpecversion(), r.GetSource(), r.GetType(), r.GetSubject()), bits); err != nil {
 		return nil, err
 	}
 	return &empty.Empty{}, nil
@@ -68,27 +64,23 @@ func (s *Service) Request(ctx context.Context, r *eventgate.CloudEventInput) (*e
 		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
 	}
 	toSend := &eventgate.CloudEvent{
-		Specversion: r.GetSpecversion(),
-		Id:          uuid.New().String(),
-		Source:      r.GetSource(),
-		Type:        r.GetType(),
-		Subject:     r.GetSubject(),
-		Attributes:  r.GetAttributes(),
-		Data:        r.GetData(),
-		Time:        timestamppb.New(time.Now()),
+		Id:              uuid.New().String(),
+		Specversion:     r.GetSpecversion(),
+		Source:          r.GetSource(),
+		Type:            r.GetType(),
+		Subject:         r.GetSubject(),
+		Dataschema:      r.GetDataschema(),
+		Datacontenttype: r.GetDatacontenttype(),
+		Data:            r.GetData(),
+		DataBase64:      r.GetDataBase64(),
+		Time:            timestamppb.New(time.Now()),
+		EventgateAuth:   c.AuthPayload(),
 	}
-	if toSend.Attributes == nil {
-		data, _ := structpb.NewStruct(nil)
-		toSend.Attributes = data
-	}
-	claims, _ := structpb.NewStruct(c.Claims)
-	toSend.Attributes.Fields["auth.claims"] = structpb.NewStructValue(claims)
-
 	bits, err := proto.Marshal(toSend)
 	if err != nil {
 		return nil, err
 	}
-	resp, err := s.conn.Request(getSubject(r.GetType(), r.GetSubject()), bits, 30*time.Second)
+	resp, err := s.conn.Request(getNatsSubject(r.GetSpecversion(), r.GetSource(), r.GetType(), r.GetSubject()), bits, 30*time.Second)
 	if err != nil {
 		return nil, err
 	}
@@ -99,7 +91,7 @@ func (s *Service) Request(ctx context.Context, r *eventgate.CloudEventInput) (*e
 	return &event, nil
 }
 
-func (s *Service) Receive(r *eventgate.ReceiveRequest, server eventgate.CloudEventsService_ReceiveServer) error {
+func (s *Service) Receive(r *eventgate.Filter, server eventgate.EventGateService_ReceiveServer) error {
 	_, ok := auth.GetContext(server.Context())
 	if !ok {
 		return status.Error(codes.Unauthenticated, "unauthenticated")
@@ -109,7 +101,7 @@ func (s *Service) Receive(r *eventgate.ReceiveRequest, server eventgate.CloudEve
 		sub *nats.Subscription
 		wg  = sync.WaitGroup{}
 	)
-	sub, err = s.conn.Subscribe(getSubject(r.GetType(), r.GetSubject()), func(msg *nats.Msg) {
+	sub, err = s.conn.Subscribe(getNatsSubject(r.GetSpecversion(), r.GetSource(), r.GetType(), r.GetSubject()), func(msg *nats.Msg) {
 		wg.Add(1)
 		defer wg.Done()
 		var event eventgate.CloudEvent
@@ -137,9 +129,18 @@ func (s *Service) Receive(r *eventgate.ReceiveRequest, server eventgate.CloudEve
 	}
 }
 
-func getSubject(typ string, subject string) string {
-	if subject != "" {
-		return fmt.Sprintf("%s/%s", typ, subject)
+func getNatsSubject(schema, source, typ string, subject string) string {
+	if schema == "" {
+		schema = "*"
 	}
-	return typ
+	if source == "" {
+		source = "*"
+	}
+	if typ == "" {
+		typ = "*"
+	}
+	if subject == "" {
+		subject = "*"
+	}
+	return fmt.Sprintf("%s.%s.%s.%s", schema, source, typ, subject)
 }

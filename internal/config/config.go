@@ -1,51 +1,65 @@
 package config
 
 type Config struct {
-	Port           int64   `yaml:"port"`
-	Debug          bool    `yaml:"debug"`
-	RequestPolicy  *Policy `yaml:"request_policy"`
-	ResponsePolicy *Policy `yaml:"response_policy"`
-	JwksURI        string  `yaml:"jwks_uri"`
-	NatsURL        string  `yaml:"nats_url"`
+	Port           int64           `yaml:"port"`
+	Logging        *Logging        `yaml:"logging"`
+	Authorization  *Authorization  `yaml:"authorization"`
+	Authentication *Authentication `yaml:"authentication"`
+	Backend        *Backend        `yaml:"backend"`
 }
 
-type Policy struct {
-	RegoPolicy string `yaml:"rego_policy"`
-	RegoQuery  string `yaml:"rego_query"`
+type Backend struct {
+	Name   string            `yaml:"name"`
+	Config map[string]string `yaml:"config"`
+}
+
+type Authentication struct {
+	JwksURI string `yaml:"jwks_uri"`
+}
+
+type Authorization struct {
+	RequestPolicy  string `yaml:"requests"`
+	ResponsePolicy string `yaml:"responses"`
+}
+
+type Logging struct {
+	Debug    bool `yaml:"debug"`
+	Payloads bool `yaml:"payloads"`
 }
 
 func (c *Config) SetDefaults() {
 	if c.Port == 0 {
 		c.Port = 8080
 	}
-	if c.RequestPolicy == nil {
-		c.RequestPolicy = &Policy{}
+	if c.Logging == nil {
+		c.Logging = &Logging{}
 	}
-	if c.ResponsePolicy == nil {
-		c.ResponsePolicy = &Policy{}
+	if c.Authentication == nil {
+		c.Authentication = &Authentication{}
 	}
+	if c.Authorization == nil {
+		c.Authorization = &Authorization{}
+	}
+	if c.Authorization.RequestPolicy == "" {
+		// target = data.eventgate.requests.authz.allow
+		c.Authorization.RequestPolicy = `
+		package eventgate.authz.requests
 
-	if c.RequestPolicy.RegoPolicy == "" {
-		c.RequestPolicy.RegoPolicy = `
-		package eventgate.authz
-
-		default allow = true
+		default allow = false
 `
 	}
-	if c.RequestPolicy.RegoQuery == "" {
-		c.RequestPolicy.RegoQuery = "data.eventgate.authz.allow"
-	}
-	if c.ResponsePolicy.RegoPolicy == "" {
-		c.ResponsePolicy.RegoPolicy = `
-		package eventgate.authz
+	if c.Authorization.ResponsePolicy == "" {
+		// target = data.eventgate.responses.authz.allow
+		c.Authorization.ResponsePolicy = `
+		package eventgate.authz.responses
 
-		default allow = true
+		default allow = false
 `
 	}
-	if c.ResponsePolicy.RegoQuery == "" {
-		c.ResponsePolicy.RegoQuery = "data.eventgate.authz.allow"
+	if c.Backend == nil {
+		c.Backend = &Backend{}
 	}
-	if c.NatsURL == "" {
-		c.NatsURL = "0.0.0.0:4444"
+	if c.Backend.Config == nil {
+		c.Backend.Config = map[string]string{}
 	}
 }

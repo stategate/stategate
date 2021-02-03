@@ -5,6 +5,7 @@ import (
 )
 
 type Context struct {
+	authPayload  string
 	Claims       map[string]interface{} `json:"claims"`
 	Method       string                 `json:"method"`
 	Metadata     map[string]string      `json:"metadata"`
@@ -26,6 +27,7 @@ func (a *Context) input() map[string]interface{} {
 
 func (c *Context) copy() *Context {
 	return &Context{
+		authPayload:  c.authPayload,
 		Claims:       c.Claims,
 		Method:       c.Method,
 		Body:         c.Body,
@@ -33,6 +35,10 @@ func (c *Context) copy() *Context {
 		ClientStream: c.ClientStream,
 		ServerStream: c.ServerStream,
 	}
+}
+
+func (c *Context) AuthPayload() string {
+	return c.authPayload
 }
 
 func SetContext(ctx context.Context, contxt *Context) context.Context {

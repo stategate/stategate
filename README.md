@@ -1,6 +1,8 @@
 # eventgate
 
-A secure API gateway for CloudEvents applications
+An identity-aware API gateway for CloudEvents applications
+
+Status: MVP
 
 [![GoDoc](https://godoc.org/github.com/autom8ter/eventgate?status.svg)](https://godoc.org/github.com/autom8ter/eventgate/cep-client-go)
 
@@ -44,34 +46,42 @@ Usage of eventgate:
 
 ## Sample Config
 
-
 ```yaml
 # port to serve on. metrics server is started on this port+1
 port: 8080
-# enable debug logs
-debug: true
-nats_url: "0.0.0.0:4444"
-# json web keys uri for authentication
-jwks_uri: ""
-# rego policy for request authorization - this one allows any request
-request_policy:
-  rego_policy: |-
-    package eventgate.authz
+logging:
+  # enable debug logs
+  debug: true
+
+# pluggable backend: [nats]
+backend:
+  name: "nats"
+  config:
+    url: "0.0.0.0:4444"
+
+# authentication options
+authentication:
+  # json web keys uri for authentication.
+  # if empty, inbound jwt's will not be verified.
+  jwks_uri: "https://www.googleapis.com/oauth2/v3/certs"
+
+# authorization options
+authorization:
+  requests: |
+    package eventgate.authz.requests
+
+    default allow = false
+    
+    allow {
+        input.claims.sub = "1234567890"
+        input.claims.name = "John Doe"
+    }
+  responses: |
+    package eventgate.authz.responses
 
     default allow = true
-  # query the allow variable
-  rego_query: "data.eventgate.authz.allow"
-# rego policy for response authorization - this one allows any request
-response_policy:
-  rego_policy: |-
-    package eventgate.authz
 
-    default allow = true
-  # query the allow variable
-  rego_query: "data.eventgate.authz.allow"
 
 ```
 
 ## Notes
-
-      
