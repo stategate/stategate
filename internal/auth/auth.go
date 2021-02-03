@@ -37,18 +37,27 @@ type Auth struct {
 	jwksSet        *jwk.Set
 	mu             sync.RWMutex
 	logger         *logger.Logger
-	requestPolicy  *rego.Rego
-	responsePolicy *rego.Rego
+	requestPolicy  rego.PreparedEvalQuery
+	responsePolicy rego.PreparedEvalQuery
 }
 
 func NewAuth(jwksUri string, logger2 *logger.Logger, reqPolicy, respPolicy *rego.Rego) (*Auth, error) {
+	respeval, err := respPolicy.PrepareForEval(context.Background())
+	if err != nil {
+		return nil, err
+	}
+	reqeval, err := reqPolicy.PrepareForEval(context.Background())
+	if err != nil {
+		return nil, err
+	}
+
 	a := &Auth{
 		jwksUri:        jwksUri,
 		jwksSet:        nil,
 		mu:             sync.RWMutex{},
 		logger:         logger2,
-		requestPolicy:  reqPolicy,
-		responsePolicy: respPolicy,
+		requestPolicy:  reqeval,
+		responsePolicy: respeval,
 	}
 	return a, a.RefreshJWKS()
 }
@@ -170,8 +179,7 @@ func (a *Auth) UnaryInterceptor() grpc.UnaryServerInterceptor {
 
 func (a *Auth) StreamInterceptor() grpc.StreamServerInterceptor {
 	return func(srv interface{}, ss grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
-		ctx := ss.Context()
-		token, err := grpc_auth.AuthFromMD(ctx, "Bearer")
+		token, err := grpc_auth.AuthFromMD(ss.Context(), "Bearer")
 		if err != nil {
 			return err
 		}
@@ -185,7 +193,7 @@ func (a *Auth) StreamInterceptor() grpc.StreamServerInterceptor {
 			a.logger.Error(err.Error())
 			return status.Error(codes.Internal, "failed to parse claims")
 		}
-		md := metautils.ExtractIncoming(ctx)
+		md := metautils.ExtractIncoming(ss.Context())
 		c := &Context{
 			authPayload:  base64.StdEncoding.EncodeToString(payload),
 			Claims:       claims,
@@ -200,22 +208,17 @@ func (a *Auth) StreamInterceptor() grpc.StreamServerInterceptor {
 				c.Metadata[k] = arr[0]
 			}
 		}
-		ctx = SetContext(ctx, c)
-		return handler(ctx, &stream{
-			ctx:  ctx,
+		ctx := SetContext(ss.Context(), c)
+		return handler(srv, &stream{
 			ss:   ss,
 			a:    a,
-			info: info,
+			ctx: ctx,
 		})
 	}
 }
 
 func (a *Auth) evaluateRequest(ctx context.Context, context *Context) (bool, error) {
-	query, err := a.requestPolicy.PrepareForEval(ctx)
-	if err != nil {
-		return false, errors.Wrap(err, "request policy: failed to prepare for evaluation")
-	}
-	results, err := query.Eval(ctx, rego.EvalInput(context.input()))
+	results, err := a.requestPolicy.Eval(ctx, rego.EvalInput(context.input()))
 	if err != nil {
 		return false, errors.Wrap(err, "request policy: failed to evaluate input")
 	}
@@ -236,11 +239,7 @@ func (a *Auth) evaluateRequest(ctx context.Context, context *Context) (bool, err
 }
 
 func (a *Auth) evaluateResponse(ctx context.Context, context *Context) (bool, error) {
-	query, err := a.responsePolicy.PrepareForEval(ctx)
-	if err != nil {
-		return false, errors.Wrap(err, "response policy: failed to prepare for evaluation")
-	}
-	results, err := query.Eval(ctx, rego.EvalInput(context.input()))
+	results, err := a.responsePolicy.Eval(ctx, rego.EvalInput(context.input()))
 	if err != nil {
 		return false, errors.Wrap(err, "response policy: failed to evaluate input")
 	}

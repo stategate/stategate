@@ -10,10 +10,9 @@ import (
 )
 
 type stream struct {
-	ctx  context.Context
 	ss   grpc.ServerStream
 	a    *Auth
-	info *grpc.StreamServerInfo
+	ctx context.Context
 }
 
 func (s *stream) SetHeader(md metadata.MD) error {
@@ -33,22 +32,23 @@ func (s *stream) Context() context.Context {
 }
 
 func (s *stream) SendMsg(m interface{}) error {
-	ctx := s.ctx
-	c, ok := GetContext(ctx)
-	if !ok {
-		return status.Error(codes.PermissionDenied, "permission denied")
-	}
-	md := metautils.ExtractOutgoing(ctx)
+	md := metautils.ExtractOutgoing(s.ctx)
 	respMeta := make(map[string]string)
 	for k, arr := range md {
-		respMeta[k] = arr[0]
+		if len(arr) > 0 {
+			respMeta[k] = arr[0]
+		}
+	}
+	c, ok := GetContext(s.Context())
+	if !ok {
+		return status.Error(codes.PermissionDenied, "failed to get context")
 	}
 	c.Metadata = respMeta
 	c.Body = toMap(m)
-	allowed, err := s.a.evaluateResponse(ctx, c)
+	allowed, err := s.a.evaluateResponse(s.ctx, c)
 	if err != nil {
 		s.a.logger.Error(err.Error())
-		return status.Error(codes.Internal, "failed to evaluate authz policy")
+		return status.Error(codes.Internal, "failed to evaluate authz policy during server stream")
 	}
 	if !allowed {
 		return status.Error(codes.PermissionDenied, respDenied)
@@ -57,22 +57,24 @@ func (s *stream) SendMsg(m interface{}) error {
 }
 
 func (s *stream) RecvMsg(m interface{}) error {
-	ctx := s.ctx
-	c, ok := GetContext(ctx)
-	if !ok {
-		return status.Error(codes.PermissionDenied, "permission denied")
-	}
-	md := metautils.ExtractIncoming(ctx)
+	md := metautils.ExtractIncoming(s.ctx)
 	reqMeta := make(map[string]string)
 	for k, arr := range md {
-		reqMeta[k] = arr[0]
+		if len(arr) > 0 {
+			reqMeta[k] = arr[0]
+		}
+
+	}
+	c, ok := GetContext(s.Context())
+	if !ok {
+		return status.Error(codes.PermissionDenied, "failed to get context")
 	}
 	c.Metadata = reqMeta
 	c.Body = toMap(m)
-	allowed, err := s.a.evaluateRequest(ctx, c)
+	allowed, err := s.a.evaluateRequest(s.ctx, c)
 	if err != nil {
 		s.a.logger.Error(err.Error())
-		return status.Error(codes.Internal, "failed to evaluate authz policy")
+		return status.Error(codes.Internal, "failed to evaluate authz policy during client stream")
 	}
 	if !allowed {
 		return status.Error(codes.PermissionDenied, reqDenied)

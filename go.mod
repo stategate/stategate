@@ -8,6 +8,7 @@ require (
 	github.com/autom8ter/machine v1.1.2
 	github.com/cloudevents/sdk-go/protocol/nats/v2 v2.3.1 // indirect
 	github.com/cloudevents/sdk-go/v2 v2.3.1 // indirect
+	github.com/gogo/protobuf v1.3.2
 	github.com/golang/protobuf v1.4.3
 	github.com/google/uuid v1.2.0
 	github.com/gorilla/websocket v1.4.2
@@ -18,7 +19,7 @@ require (
 	github.com/mwitkow/go-proto-validators v0.3.2
 	github.com/nats-io/nats.go v1.10.0
 	github.com/nats-io/nuid v1.0.1
-	github.com/nats-io/stan.go v0.7.0
+	github.com/nats-io/stan.go v0.7.0 // indirect
 	github.com/open-policy-agent/opa v0.26.0
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.9.0
@@ -32,7 +33,8 @@ require (
 	google.golang.org/genproto v0.0.0-20210106152847-07624b53cd92
 	google.golang.org/grpc v1.34.0
 	google.golang.org/protobuf v1.25.0
+	gopkg.in/yaml.v2 v2.3.0
 	helm.sh/helm/v3 v3.5.0 // indirect
-	k8s.io/apimachinery v0.20.1
+	k8s.io/apimachinery v0.20.1 // indirect
 	rsc.io/letsencrypt v0.0.3 // indirect
 )

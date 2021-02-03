@@ -87,6 +87,7 @@ func run(ctx context.Context) {
 	apiMux := cmux.New(apiLis)
 	apiMux.SetReadTimeout(1 * time.Second)
 	grpcMatcher := apiMux.MatchWithWriters(cmux.HTTP2MatchHeaderFieldSendSettings("content-type", "application/grpc"))
+
 	defer grpcMatcher.Close()
 	httpMatchermatcher := apiMux.Match(cmux.Any())
 	defer httpMatchermatcher.Close()
