@@ -14,10 +14,11 @@ import (
 	"github.com/vektah/gqlparser/v2/gqlerror"
 	"go.uber.org/zap"
 	"google.golang.org/protobuf/types/known/structpb"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 func (r *mutationResolver) Send(ctx context.Context, input model.CloudEventInput) (*string, error) {
-	i := &eventgate.CloudEventInput{
+	i := &eventgate.CloudEvent{
 		Specversion:     input.Specversion,
 		Source:          input.Source,
 		Type:            input.Type,
@@ -26,6 +27,12 @@ func (r *mutationResolver) Send(ctx context.Context, input model.CloudEventInput
 		Datacontenttype: helpers.FromStringPointer(input.Datacontenttype),
 		Data:            nil,
 		DataBase64:      helpers.FromStringPointer(input.DataBase64),
+	}
+	if input.ID != nil {
+		i.Id = *input.ID
+	}
+	if input.Time != nil {
+		i.Time = timestamppb.New(*input.Time)
 	}
 	if input.Data != nil {
 		m, _ := structpb.NewStruct(input.Data)
@@ -42,7 +49,7 @@ func (r *mutationResolver) Send(ctx context.Context, input model.CloudEventInput
 }
 
 func (r *mutationResolver) Request(ctx context.Context, input model.CloudEventInput) (*model.CloudEvent, error) {
-	i := &eventgate.CloudEventInput{
+	i := &eventgate.CloudEvent{
 		Specversion:     input.Specversion,
 		Source:          input.Source,
 		Type:            input.Type,
@@ -51,6 +58,12 @@ func (r *mutationResolver) Request(ctx context.Context, input model.CloudEventIn
 		Datacontenttype: helpers.FromStringPointer(input.Datacontenttype),
 		Data:            nil,
 		DataBase64:      helpers.FromStringPointer(input.DataBase64),
+	}
+	if input.ID != nil {
+		i.Id = *input.ID
+	}
+	if input.Time != nil {
+		i.Time = timestamppb.New(*input.Time)
 	}
 	if input.Data != nil {
 		m, _ := structpb.NewStruct(input.Data)
@@ -74,17 +87,13 @@ func (r *mutationResolver) Request(ctx context.Context, input model.CloudEventIn
 		Data:            resp.GetData().AsMap(),
 		DataBase64:      helpers.ToStringPointer(resp.GetDataBase64()),
 		Time:            resp.Time.AsTime(),
-		EventgateAuth:   helpers.ToStringPointer(resp.GetEventgateAuth()),
 	}, nil
 }
 
 func (r *subscriptionResolver) Receive(ctx context.Context, input model.Filter) (<-chan *model.CloudEvent, error) {
 	ch := make(chan *model.CloudEvent)
 	i := &eventgate.Filter{
-		Specversion: helpers.FromStringPointer(input.Specversion),
-		Source:      helpers.FromStringPointer(input.Source),
-		Type:        helpers.FromStringPointer(input.Type),
-		Subject:     helpers.FromStringPointer(input.Subject),
+		Matchers: helpers.ConvertMapS(input.Matchers),
 	}
 	stream, err := r.client.Receive(ctx, i)
 	if err != nil {
@@ -118,7 +127,6 @@ func (r *subscriptionResolver) Receive(ctx context.Context, input model.Filter) 
 					Data:            msg.GetData().AsMap(),
 					DataBase64:      helpers.ToStringPointer(msg.GetDataBase64()),
 					Time:            msg.Time.AsTime(),
-					EventgateAuth:   helpers.ToStringPointer(msg.GetEventgateAuth()),
 				}
 			}
 		}

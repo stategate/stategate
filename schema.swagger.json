@@ -38,36 +38,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "specversion",
-            "description": "The version of the CloudEvents specification which the event uses.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "source",
-            "description": "Identifies the context in which an event happened.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "description": "Describes the type of event related to the originating occurrence.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "subject",
-            "description": "Describes the subject of the event in the context of the event producer (identified by source).",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
         "tags": [
           "EventGateService"
         ]
@@ -97,7 +67,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/eventgateCloudEventInput"
+              "$ref": "#/definitions/eventgateCloudEvent"
             }
           }
         ],
@@ -108,7 +78,7 @@
     },
     "/send": {
       "put": {
-        "summary": "Brodcast an event(one way)",
+        "summary": "Broadcast an event(one way)",
         "operationId": "EventGateService_Send",
         "responses": {
           "200": {
@@ -130,7 +100,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/eventgateCloudEventInput"
+              "$ref": "#/definitions/eventgateCloudEvent"
             }
           }
         ],
@@ -184,51 +154,9 @@
           "type": "string",
           "format": "date-time",
           "description": "Timestamp of when the occurrence happened. Must adhere to RFC 3339."
-        },
-        "eventgateAuth": {
-          "type": "string",
-          "description": "Base64 encoded authentication payload(jwt.claims)."
         }
       },
       "title": "CloudEvent is a specification for describing event data ref: https://cloudevents.io/"
-    },
-    "eventgateCloudEventInput": {
-      "type": "object",
-      "properties": {
-        "specversion": {
-          "type": "string",
-          "description": "The version of the CloudEvents specification which the event uses."
-        },
-        "source": {
-          "type": "string",
-          "description": "Identifies the context in which an event happened."
-        },
-        "type": {
-          "type": "string",
-          "description": "Describes the type of event related to the originating occurrence."
-        },
-        "subject": {
-          "type": "string",
-          "description": "Describes the subject of the event in the context of the event producer (identified by source)."
-        },
-        "dataschema": {
-          "type": "string",
-          "description": "Identifies the schema that data adheres to."
-        },
-        "datacontenttype": {
-          "type": "string",
-          "description": "Content type of the data value. Must adhere to RFC 2046 format."
-        },
-        "data": {
-          "type": "object",
-          "description": "The event payload(structured)."
-        },
-        "dataBase64": {
-          "type": "string",
-          "description": "Base64 encoded event payload. Must adhere to RFC4648."
-        }
-      },
-      "title": "CloudEventInput constructs a cloud event"
     },
     "protobufAny": {
       "type": "object",

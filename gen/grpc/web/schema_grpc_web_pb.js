@@ -85,16 +85,16 @@ proto.eventgate.EventGateServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.eventgate.CloudEventInput,
+ *   !proto.eventgate.CloudEvent,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_EventGateService_Send = new grpc.web.MethodDescriptor(
   '/eventgate.EventGateService/Send',
   grpc.web.MethodType.UNARY,
-  proto.eventgate.CloudEventInput,
+  proto.eventgate.CloudEvent,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.eventgate.CloudEventInput} request
+   * @param {!proto.eventgate.CloudEvent} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -107,13 +107,13 @@ const methodDescriptor_EventGateService_Send = new grpc.web.MethodDescriptor(
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.eventgate.CloudEventInput,
+ *   !proto.eventgate.CloudEvent,
  *   !proto.google.protobuf.Empty>}
  */
 const methodInfo_EventGateService_Send = new grpc.web.AbstractClientBase.MethodInfo(
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.eventgate.CloudEventInput} request
+   * @param {!proto.eventgate.CloudEvent} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -124,7 +124,7 @@ const methodInfo_EventGateService_Send = new grpc.web.AbstractClientBase.MethodI
 
 
 /**
- * @param {!proto.eventgate.CloudEventInput} request The
+ * @param {!proto.eventgate.CloudEvent} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -145,7 +145,7 @@ proto.eventgate.EventGateServiceClient.prototype.send =
 
 
 /**
- * @param {!proto.eventgate.CloudEventInput} request The
+ * @param {!proto.eventgate.CloudEvent} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -165,16 +165,16 @@ proto.eventgate.EventGateServicePromiseClient.prototype.send =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.eventgate.CloudEventInput,
+ *   !proto.eventgate.CloudEvent,
  *   !proto.eventgate.CloudEvent>}
  */
 const methodDescriptor_EventGateService_Request = new grpc.web.MethodDescriptor(
   '/eventgate.EventGateService/Request',
   grpc.web.MethodType.UNARY,
-  proto.eventgate.CloudEventInput,
+  proto.eventgate.CloudEvent,
   proto.eventgate.CloudEvent,
   /**
-   * @param {!proto.eventgate.CloudEventInput} request
+   * @param {!proto.eventgate.CloudEvent} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -187,13 +187,13 @@ const methodDescriptor_EventGateService_Request = new grpc.web.MethodDescriptor(
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.eventgate.CloudEventInput,
+ *   !proto.eventgate.CloudEvent,
  *   !proto.eventgate.CloudEvent>}
  */
 const methodInfo_EventGateService_Request = new grpc.web.AbstractClientBase.MethodInfo(
   proto.eventgate.CloudEvent,
   /**
-   * @param {!proto.eventgate.CloudEventInput} request
+   * @param {!proto.eventgate.CloudEvent} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -204,7 +204,7 @@ const methodInfo_EventGateService_Request = new grpc.web.AbstractClientBase.Meth
 
 
 /**
- * @param {!proto.eventgate.CloudEventInput} request The
+ * @param {!proto.eventgate.CloudEvent} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -225,7 +225,7 @@ proto.eventgate.EventGateServiceClient.prototype.request =
 
 
 /**
- * @param {!proto.eventgate.CloudEventInput} request The
+ * @param {!proto.eventgate.CloudEvent} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata

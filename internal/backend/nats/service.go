@@ -31,13 +31,13 @@ func NewService(logger *logger.Logger, conn *nats.Conn) (*Service, error) {
 	}, nil
 }
 
-func (s *Service) Send(ctx context.Context, r *eventgate.CloudEventInput) (*empty.Empty, error) {
-	c, ok := auth.GetContext(ctx)
+func (s *Service) Send(ctx context.Context, r *eventgate.CloudEvent) (*empty.Empty, error) {
+	_, ok := auth.GetContext(ctx)
 	if !ok {
 		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
 	}
 	toSend := &eventgate.CloudEvent{
-		Id:              uuid.New().String(),
+		Id:              r.GetId(),
 		Specversion:     r.GetSpecversion(),
 		Source:          r.GetSource(),
 		Type:            r.GetType(),
@@ -46,8 +46,13 @@ func (s *Service) Send(ctx context.Context, r *eventgate.CloudEventInput) (*empt
 		Datacontenttype: r.GetDatacontenttype(),
 		Data:            r.GetData(),
 		DataBase64:      r.GetDataBase64(),
-		Time:            timestamppb.New(time.Now()),
-		EventgateAuth:   c.AuthPayload(),
+		Time:            r.GetTime(),
+	}
+	if toSend.Id == "" {
+		toSend.Id = uuid.New().String()
+	}
+	if toSend.Time == nil {
+		toSend.Time = timestamppb.New(time.Now())
 	}
 	bits, err := proto.Marshal(toSend)
 	if err != nil {
@@ -59,13 +64,13 @@ func (s *Service) Send(ctx context.Context, r *eventgate.CloudEventInput) (*empt
 	return &empty.Empty{}, nil
 }
 
-func (s *Service) Request(ctx context.Context, r *eventgate.CloudEventInput) (*eventgate.CloudEvent, error) {
-	c, ok := auth.GetContext(ctx)
+func (s *Service) Request(ctx context.Context, r *eventgate.CloudEvent) (*eventgate.CloudEvent, error) {
+	_, ok := auth.GetContext(ctx)
 	if !ok {
 		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
 	}
 	toSend := &eventgate.CloudEvent{
-		Id:              uuid.New().String(),
+		Id:              r.GetId(),
 		Specversion:     r.GetSpecversion(),
 		Source:          r.GetSource(),
 		Type:            r.GetType(),
@@ -74,8 +79,13 @@ func (s *Service) Request(ctx context.Context, r *eventgate.CloudEventInput) (*e
 		Datacontenttype: r.GetDatacontenttype(),
 		Data:            r.GetData(),
 		DataBase64:      r.GetDataBase64(),
-		Time:            timestamppb.New(time.Now()),
-		EventgateAuth:   c.AuthPayload(),
+		Time:            r.GetTime(),
+	}
+	if toSend.Id == "" {
+		toSend.Id = uuid.New().String()
+	}
+	if toSend.Time == nil {
+		toSend.Time = timestamppb.New(time.Now())
 	}
 	bits, err := proto.Marshal(toSend)
 	if err != nil {
@@ -102,7 +112,12 @@ func (s *Service) Receive(r *eventgate.Filter, server eventgate.EventGateService
 		sub *nats.Subscription
 		wg  = sync.WaitGroup{}
 	)
-	sub, err = s.conn.Subscribe(getNatsSubject(r.GetSpecversion(), r.GetSource(), r.GetType(), r.GetSubject()), func(msg *nats.Msg) {
+	sub, err = s.conn.Subscribe(getNatsSubject(
+		r.GetMatchers()["specversion"],
+		r.GetMatchers()["source"],
+		r.GetMatchers()["type"],
+		r.GetMatchers()["subject"],
+	), func(msg *nats.Msg) {
 		wg.Add(1)
 		defer wg.Done()
 		var event eventgate.CloudEvent

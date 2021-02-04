@@ -49,7 +49,6 @@ type ComplexityRoot struct {
 		DataBase64      func(childComplexity int) int
 		Datacontenttype func(childComplexity int) int
 		Dataschema      func(childComplexity int) int
-		EventgateAuth   func(childComplexity int) int
 		ID              func(childComplexity int) int
 		Source          func(childComplexity int) int
 		Specversion     func(childComplexity int) int
@@ -121,13 +120,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.CloudEvent.Dataschema(childComplexity), true
-
-	case "CloudEvent.eventgate_auth":
-		if e.complexity.CloudEvent.EventgateAuth == nil {
-			break
-		}
-
-		return e.complexity.CloudEvent.EventgateAuth(childComplexity), true
 
 	case "CloudEvent.id":
 		if e.complexity.CloudEvent.ID == nil {
@@ -315,12 +307,12 @@ type CloudEvent {
     data_base64: String
     # Timestamp of when the occurrence happened. Must adhere to RFC 3339.
     time: Time!
-    # Base64 encoded authentication payload(jwt.claims).
-    eventgate_auth: String
 }
 
 # CloudEventInput constructs a cloud event
 input CloudEventInput {
+    # Identifies the event.
+    id: String
     # The version of the CloudEvents specification which the event uses.
     specversion: String!
     # Identifies the context in which an event happened.
@@ -337,18 +329,13 @@ input CloudEventInput {
     data: Map
     # Base64 encoded event payload. Must adhere to RFC4648.
     data_base64: String
+    # Timestamp of when the occurrence happened. Must adhere to RFC 3339.
+    time: Time
 }
 
 # Filter filters cloud events
 input Filter {
-    # The version of the CloudEvents specification which the event uses.
-    specversion: String
-    # Identifies the context in which an event happened.
-    source: String
-    # Describes the type of event related to the originating occurrence.
-    type: String
-    # Describes the subject of the event in the context of the event producer (identified by source).
-    subject: String
+    matchers: Map!
 }
 
 type Mutation {
@@ -800,38 +787,6 @@ func (ec *executionContext) _CloudEvent_time(ctx context.Context, field graphql.
 	res := resTmp.(time.Time)
 	fc.Result = res
 	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) _CloudEvent_eventgate_auth(ctx context.Context, field graphql.CollectedField, obj *model.CloudEvent) (ret graphql.Marshaler) {
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	fc := &graphql.FieldContext{
-		Object:     "CloudEvent",
-		Field:      field,
-		Args:       nil,
-		IsMethod:   false,
-		IsResolver: false,
-	}
-
-	ctx = graphql.WithFieldContext(ctx, fc)
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.EventgateAuth, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_send(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -2131,6 +2086,14 @@ func (ec *executionContext) unmarshalInputCloudEventInput(ctx context.Context, o
 
 	for k, v := range asMap {
 		switch k {
+		case "id":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
+			it.ID, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "specversion":
 			var err error
 
@@ -2195,6 +2158,14 @@ func (ec *executionContext) unmarshalInputCloudEventInput(ctx context.Context, o
 			if err != nil {
 				return it, err
 			}
+		case "time":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("time"))
+			it.Time, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		}
 	}
 
@@ -2207,35 +2178,11 @@ func (ec *executionContext) unmarshalInputFilter(ctx context.Context, obj interf
 
 	for k, v := range asMap {
 		switch k {
-		case "specversion":
+		case "matchers":
 			var err error
 
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("specversion"))
-			it.Specversion, err = ec.unmarshalOString2ᚖstring(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "source":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("source"))
-			it.Source, err = ec.unmarshalOString2ᚖstring(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "type":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("type"))
-			it.Type, err = ec.unmarshalOString2ᚖstring(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "subject":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("subject"))
-			it.Subject, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("matchers"))
+			it.Matchers, err = ec.unmarshalNMap2map(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -2299,8 +2246,6 @@ func (ec *executionContext) _CloudEvent(ctx context.Context, sel ast.SelectionSe
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "eventgate_auth":
-			out.Values[i] = ec._CloudEvent_eventgate_auth(ctx, field, obj)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -2679,6 +2624,27 @@ func (ec *executionContext) unmarshalNFilter2githubᚗcomᚋautom8terᚋeventgat
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
+func (ec *executionContext) unmarshalNMap2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
+	res, err := graphql.UnmarshalMap(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalNMap2map(ctx context.Context, sel ast.SelectionSet, v map[string]interface{}) graphql.Marshaler {
+	if v == nil {
+		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := graphql.MarshalMap(v)
+	if res == graphql.Null {
+		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
+			ec.Errorf(ctx, "must not be null")
+		}
+	}
+	return res
+}
+
 func (ec *executionContext) unmarshalNString2string(ctx context.Context, v interface{}) (string, error) {
 	res, err := graphql.UnmarshalString(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -2999,6 +2965,21 @@ func (ec *executionContext) marshalOString2ᚖstring(ctx context.Context, sel as
 		return graphql.Null
 	}
 	return graphql.MarshalString(*v)
+}
+
+func (ec *executionContext) unmarshalOTime2ᚖtimeᚐTime(ctx context.Context, v interface{}) (*time.Time, error) {
+	if v == nil {
+		return nil, nil
+	}
+	res, err := graphql.UnmarshalTime(v)
+	return &res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalOTime2ᚖtimeᚐTime(ctx context.Context, sel ast.SelectionSet, v *time.Time) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return graphql.MarshalTime(*v)
 }
 
 func (ec *executionContext) marshalO__EnumValue2ᚕgithubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐEnumValueᚄ(ctx context.Context, sel ast.SelectionSet, v []introspection.EnumValue) graphql.Marshaler {

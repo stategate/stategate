@@ -16,29 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Filter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The version of the CloudEvents specification which the event uses.
-     *
-     * Generated from protobuf field <code>string specversion = 1;</code>
+     * Generated from protobuf field <code>map<string, string> matchers = 1 [(.validator.field) = {</code>
      */
-    private $specversion = '';
-    /**
-     * Identifies the context in which an event happened.
-     *
-     * Generated from protobuf field <code>string source = 2;</code>
-     */
-    private $source = '';
-    /**
-     * Describes the type of event related to the originating occurrence.
-     *
-     * Generated from protobuf field <code>string type = 3;</code>
-     */
-    private $type = '';
-    /**
-     * Describes the subject of the event in the context of the event producer (identified by source).
-     *
-     * Generated from protobuf field <code>string subject = 4;</code>
-     */
-    private $subject = '';
+    private $matchers;
 
     /**
      * Constructor.
@@ -46,14 +26,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $specversion
-     *           The version of the CloudEvents specification which the event uses.
-     *     @type string $source
-     *           Identifies the context in which an event happened.
-     *     @type string $type
-     *           Describes the type of event related to the originating occurrence.
-     *     @type string $subject
-     *           Describes the subject of the event in the context of the event producer (identified by source).
+     *     @type array|\Google\Protobuf\Internal\MapField $matchers
      * }
      */
     public function __construct($data = NULL) {
@@ -62,105 +35,23 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The version of the CloudEvents specification which the event uses.
-     *
-     * Generated from protobuf field <code>string specversion = 1;</code>
-     * @return string
+     * Generated from protobuf field <code>map<string, string> matchers = 1 [(.validator.field) = {</code>
+     * @return \Google\Protobuf\Internal\MapField
      */
-    public function getSpecversion()
+    public function getMatchers()
     {
-        return $this->specversion;
+        return $this->matchers;
     }
 
     /**
-     * The version of the CloudEvents specification which the event uses.
-     *
-     * Generated from protobuf field <code>string specversion = 1;</code>
-     * @param string $var
+     * Generated from protobuf field <code>map<string, string> matchers = 1 [(.validator.field) = {</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
-    public function setSpecversion($var)
+    public function setMatchers($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->specversion = $var;
-
-        return $this;
-    }
-
-    /**
-     * Identifies the context in which an event happened.
-     *
-     * Generated from protobuf field <code>string source = 2;</code>
-     * @return string
-     */
-    public function getSource()
-    {
-        return $this->source;
-    }
-
-    /**
-     * Identifies the context in which an event happened.
-     *
-     * Generated from protobuf field <code>string source = 2;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setSource($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->source = $var;
-
-        return $this;
-    }
-
-    /**
-     * Describes the type of event related to the originating occurrence.
-     *
-     * Generated from protobuf field <code>string type = 3;</code>
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Describes the type of event related to the originating occurrence.
-     *
-     * Generated from protobuf field <code>string type = 3;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setType($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->type = $var;
-
-        return $this;
-    }
-
-    /**
-     * Describes the subject of the event in the context of the event producer (identified by source).
-     *
-     * Generated from protobuf field <code>string subject = 4;</code>
-     * @return string
-     */
-    public function getSubject()
-    {
-        return $this->subject;
-    }
-
-    /**
-     * Describes the subject of the event in the context of the event producer (identified by source).
-     *
-     * Generated from protobuf field <code>string subject = 4;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setSubject($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->subject = $var;
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->matchers = $arr;
 
         return $this;
     }

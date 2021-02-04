@@ -5,15 +5,15 @@ package eventgate
 
 import (
 	fmt "fmt"
-	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/struct"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/golang/protobuf/ptypes/any"
 	_ "github.com/golang/protobuf/ptypes/empty"
+	_ "github.com/golang/protobuf/ptypes/struct"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/mwitkow/go-proto-validators"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
+	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -22,29 +22,10 @@ var _ = fmt.Errorf
 var _ = math.Inf
 
 func (this *Filter) Validate() error {
-	return nil
-}
-func (this *CloudEventInput) Validate() error {
-	if this.Specversion == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Specversion", fmt.Errorf(`value '%v' must not be an empty string`, this.Specversion))
-	}
-	if this.Source == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Source", fmt.Errorf(`value '%v' must not be an empty string`, this.Source))
-	}
-	if this.Type == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
-	}
-	if this.Data != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
-		}
-	}
+	// Validation of proto3 map<> fields is unsupported.
 	return nil
 }
 func (this *CloudEvent) Validate() error {
-	if this.Id == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must not be an empty string`, this.Id))
-	}
 	if this.Specversion == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("Specversion", fmt.Errorf(`value '%v' must not be an empty string`, this.Specversion))
 	}
@@ -58,9 +39,6 @@ func (this *CloudEvent) Validate() error {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
 			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
 		}
-	}
-	if nil == this.Time {
-		return github_com_mwitkow_go_proto_validators.FieldError("Time", fmt.Errorf("message must exist"))
 	}
 	if this.Time != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Time); err != nil {

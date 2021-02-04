@@ -25,12 +25,12 @@ type CloudEvent {
     data_base64: String
     # Timestamp of when the occurrence happened. Must adhere to RFC 3339.
     time: Time!
-    # Base64 encoded authentication payload(jwt.claims).
-    eventgate_auth: String
 }
 
 # CloudEventInput constructs a cloud event
 input CloudEventInput {
+    # Identifies the event. If an ID is not sent with the event, a uuid will be assigned
+    id: String
     # The version of the CloudEvents specification which the event uses.
     specversion: String!
     # Identifies the context in which an event happened.
@@ -47,18 +47,13 @@ input CloudEventInput {
     data: Map
     # Base64 encoded event payload. Must adhere to RFC4648.
     data_base64: String
+    # Timestamp of when the occurrence happened. Must adhere to RFC 3339. If a timestamp is not sent with the event, the current time will be assigned
+    time: Time
 }
 
 # Filter filters cloud events
 input Filter {
-    # The version of the CloudEvents specification which the event uses.
-    specversion: String
-    # Identifies the context in which an event happened.
-    source: String
-    # Describes the type of event related to the originating occurrence.
-    type: String
-    # Describes the subject of the event in the context of the event producer (identified by source).
-    subject: String
+    matchers: Map!
 }
 
 type Mutation {

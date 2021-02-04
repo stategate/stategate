@@ -19,76 +19,38 @@ public final class Schema {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * The version of the CloudEvents specification which the event uses.
-     * </pre>
-     *
-     * <code>string specversion = 1;</code>
+     * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
      */
-    java.lang.String getSpecversion();
+    int getMatchersCount();
     /**
-     * <pre>
-     * The version of the CloudEvents specification which the event uses.
-     * </pre>
-     *
-     * <code>string specversion = 1;</code>
+     * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
      */
-    com.google.protobuf.ByteString
-        getSpecversionBytes();
+    boolean containsMatchers(
+        java.lang.String key);
+    /**
+     * Use {@link #getMatchersMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, java.lang.String>
+    getMatchers();
+    /**
+     * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
+     */
+    java.util.Map<java.lang.String, java.lang.String>
+    getMatchersMap();
+    /**
+     * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
+     */
 
+    java.lang.String getMatchersOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue);
     /**
-     * <pre>
-     * Identifies the context in which an event happened.
-     * </pre>
-     *
-     * <code>string source = 2;</code>
+     * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
      */
-    java.lang.String getSource();
-    /**
-     * <pre>
-     * Identifies the context in which an event happened.
-     * </pre>
-     *
-     * <code>string source = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getSourceBytes();
 
-    /**
-     * <pre>
-     * Describes the type of event related to the originating occurrence.
-     * </pre>
-     *
-     * <code>string type = 3;</code>
-     */
-    java.lang.String getType();
-    /**
-     * <pre>
-     * Describes the type of event related to the originating occurrence.
-     * </pre>
-     *
-     * <code>string type = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getTypeBytes();
-
-    /**
-     * <pre>
-     * Describes the subject of the event in the context of the event producer (identified by source).
-     * </pre>
-     *
-     * <code>string subject = 4;</code>
-     */
-    java.lang.String getSubject();
-    /**
-     * <pre>
-     * Describes the subject of the event in the context of the event producer (identified by source).
-     * </pre>
-     *
-     * <code>string subject = 4;</code>
-     */
-    com.google.protobuf.ByteString
-        getSubjectBytes();
+    java.lang.String getMatchersOrThrow(
+        java.lang.String key);
   }
   /**
    * <pre>
@@ -107,10 +69,6 @@ public final class Schema {
       super(builder);
     }
     private Filter() {
-      specversion_ = "";
-      source_ = "";
-      type_ = "";
-      subject_ = "";
     }
 
     @java.lang.Override
@@ -138,27 +96,16 @@ public final class Schema {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              specversion_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              source_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              type_ = s;
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              subject_ = s;
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                matchers_ = com.google.protobuf.MapField.newMapField(
+                    MatchersDefaultEntryHolder.defaultEntry);
+                mutable_bitField0_ |= 0x00000001;
+              }
+              com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+              matchers__ = input.readMessage(
+                  MatchersDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+              matchers_.getMutableMap().put(
+                  matchers__.getKey(), matchers__.getValue());
               break;
             }
             default: {
@@ -185,6 +132,18 @@ public final class Schema {
       return eventgate.Schema.internal_static_eventgate_Filter_descriptor;
     }
 
+    @SuppressWarnings({"rawtypes"})
+    @java.lang.Override
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 1:
+          return internalGetMatchers();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
@@ -193,172 +152,80 @@ public final class Schema {
               eventgate.Schema.Filter.class, eventgate.Schema.Filter.Builder.class);
     }
 
-    public static final int SPECVERSION_FIELD_NUMBER = 1;
-    private volatile java.lang.Object specversion_;
-    /**
-     * <pre>
-     * The version of the CloudEvents specification which the event uses.
-     * </pre>
-     *
-     * <code>string specversion = 1;</code>
-     */
-    public java.lang.String getSpecversion() {
-      java.lang.Object ref = specversion_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        specversion_ = s;
-        return s;
-      }
+    public static final int MATCHERS_FIELD_NUMBER = 1;
+    private static final class MatchersDefaultEntryHolder {
+      static final com.google.protobuf.MapEntry<
+          java.lang.String, java.lang.String> defaultEntry =
+              com.google.protobuf.MapEntry
+              .<java.lang.String, java.lang.String>newDefaultInstance(
+                  eventgate.Schema.internal_static_eventgate_Filter_MatchersEntry_descriptor, 
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "");
     }
-    /**
-     * <pre>
-     * The version of the CloudEvents specification which the event uses.
-     * </pre>
-     *
-     * <code>string specversion = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSpecversionBytes() {
-      java.lang.Object ref = specversion_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        specversion_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
+    private com.google.protobuf.MapField<
+        java.lang.String, java.lang.String> matchers_;
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+    internalGetMatchers() {
+      if (matchers_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            MatchersDefaultEntryHolder.defaultEntry);
       }
+      return matchers_;
     }
 
-    public static final int SOURCE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object source_;
-    /**
-     * <pre>
-     * Identifies the context in which an event happened.
-     * </pre>
-     *
-     * <code>string source = 2;</code>
-     */
-    public java.lang.String getSource() {
-      java.lang.Object ref = source_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        source_ = s;
-        return s;
-      }
+    public int getMatchersCount() {
+      return internalGetMatchers().getMap().size();
     }
     /**
-     * <pre>
-     * Identifies the context in which an event happened.
-     * </pre>
-     *
-     * <code>string source = 2;</code>
+     * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
      */
-    public com.google.protobuf.ByteString
-        getSourceBytes() {
-      java.lang.Object ref = source_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        source_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
 
-    public static final int TYPE_FIELD_NUMBER = 3;
-    private volatile java.lang.Object type_;
-    /**
-     * <pre>
-     * Describes the type of event related to the originating occurrence.
-     * </pre>
-     *
-     * <code>string type = 3;</code>
-     */
-    public java.lang.String getType() {
-      java.lang.Object ref = type_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        type_ = s;
-        return s;
-      }
+    public boolean containsMatchers(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      return internalGetMatchers().getMap().containsKey(key);
     }
     /**
-     * <pre>
-     * Describes the type of event related to the originating occurrence.
-     * </pre>
-     *
-     * <code>string type = 3;</code>
+     * Use {@link #getMatchersMap()} instead.
      */
-    public com.google.protobuf.ByteString
-        getTypeBytes() {
-      java.lang.Object ref = type_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        type_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getMatchers() {
+      return getMatchersMap();
     }
+    /**
+     * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
+     */
 
-    public static final int SUBJECT_FIELD_NUMBER = 4;
-    private volatile java.lang.Object subject_;
-    /**
-     * <pre>
-     * Describes the subject of the event in the context of the event producer (identified by source).
-     * </pre>
-     *
-     * <code>string subject = 4;</code>
-     */
-    public java.lang.String getSubject() {
-      java.lang.Object ref = subject_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        subject_ = s;
-        return s;
-      }
+    public java.util.Map<java.lang.String, java.lang.String> getMatchersMap() {
+      return internalGetMatchers().getMap();
     }
     /**
-     * <pre>
-     * Describes the subject of the event in the context of the event producer (identified by source).
-     * </pre>
-     *
-     * <code>string subject = 4;</code>
+     * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
      */
-    public com.google.protobuf.ByteString
-        getSubjectBytes() {
-      java.lang.Object ref = subject_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        subject_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
+
+    public java.lang.String getMatchersOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetMatchers().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
+     */
+
+    public java.lang.String getMatchersOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetMatchers().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
       }
+      return map.get(key);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -375,18 +242,12 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getSpecversionBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, specversion_);
-      }
-      if (!getSourceBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, source_);
-      }
-      if (!getTypeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, type_);
-      }
-      if (!getSubjectBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, subject_);
-      }
+      com.google.protobuf.GeneratedMessageV3
+        .serializeStringMapTo(
+          output,
+          internalGetMatchers(),
+          MatchersDefaultEntryHolder.defaultEntry,
+          1);
       unknownFields.writeTo(output);
     }
 
@@ -396,17 +257,15 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
-      if (!getSpecversionBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, specversion_);
-      }
-      if (!getSourceBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, source_);
-      }
-      if (!getTypeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, type_);
-      }
-      if (!getSubjectBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, subject_);
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+           : internalGetMatchers().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+        matchers__ = MatchersDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(1, matchers__);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -424,14 +283,8 @@ public final class Schema {
       eventgate.Schema.Filter other = (eventgate.Schema.Filter) obj;
 
       boolean result = true;
-      result = result && getSpecversion()
-          .equals(other.getSpecversion());
-      result = result && getSource()
-          .equals(other.getSource());
-      result = result && getType()
-          .equals(other.getType());
-      result = result && getSubject()
-          .equals(other.getSubject());
+      result = result && internalGetMatchers().equals(
+          other.internalGetMatchers());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -443,14 +296,10 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + SPECVERSION_FIELD_NUMBER;
-      hash = (53 * hash) + getSpecversion().hashCode();
-      hash = (37 * hash) + SOURCE_FIELD_NUMBER;
-      hash = (53 * hash) + getSource().hashCode();
-      hash = (37 * hash) + TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + getType().hashCode();
-      hash = (37 * hash) + SUBJECT_FIELD_NUMBER;
-      hash = (53 * hash) + getSubject().hashCode();
+      if (!internalGetMatchers().getMap().isEmpty()) {
+        hash = (37 * hash) + MATCHERS_FIELD_NUMBER;
+        hash = (53 * hash) + internalGetMatchers().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -562,6 +411,28 @@ public final class Schema {
         return eventgate.Schema.internal_static_eventgate_Filter_descriptor;
       }
 
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMapField(
+          int number) {
+        switch (number) {
+          case 1:
+            return internalGetMatchers();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMutableMapField(
+          int number) {
+        switch (number) {
+          case 1:
+            return internalGetMutableMatchers();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
@@ -588,14 +459,7 @@ public final class Schema {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        specversion_ = "";
-
-        source_ = "";
-
-        type_ = "";
-
-        subject_ = "";
-
+        internalGetMutableMatchers().clear();
         return this;
       }
 
@@ -622,10 +486,9 @@ public final class Schema {
       @java.lang.Override
       public eventgate.Schema.Filter buildPartial() {
         eventgate.Schema.Filter result = new eventgate.Schema.Filter(this);
-        result.specversion_ = specversion_;
-        result.source_ = source_;
-        result.type_ = type_;
-        result.subject_ = subject_;
+        int from_bitField0_ = bitField0_;
+        result.matchers_ = internalGetMatchers();
+        result.matchers_.makeImmutable();
         onBuilt();
         return result;
       }
@@ -674,22 +537,8 @@ public final class Schema {
 
       public Builder mergeFrom(eventgate.Schema.Filter other) {
         if (other == eventgate.Schema.Filter.getDefaultInstance()) return this;
-        if (!other.getSpecversion().isEmpty()) {
-          specversion_ = other.specversion_;
-          onChanged();
-        }
-        if (!other.getSource().isEmpty()) {
-          source_ = other.source_;
-          onChanged();
-        }
-        if (!other.getType().isEmpty()) {
-          type_ = other.type_;
-          onChanged();
-        }
-        if (!other.getSubject().isEmpty()) {
-          subject_ = other.subject_;
-          onChanged();
-        }
+        internalGetMutableMatchers().mergeFrom(
+            other.internalGetMatchers());
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -718,360 +567,128 @@ public final class Schema {
         }
         return this;
       }
+      private int bitField0_;
 
-      private java.lang.Object specversion_ = "";
-      /**
-       * <pre>
-       * The version of the CloudEvents specification which the event uses.
-       * </pre>
-       *
-       * <code>string specversion = 1;</code>
-       */
-      public java.lang.String getSpecversion() {
-        java.lang.Object ref = specversion_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          specversion_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
+      private com.google.protobuf.MapField<
+          java.lang.String, java.lang.String> matchers_;
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+      internalGetMatchers() {
+        if (matchers_ == null) {
+          return com.google.protobuf.MapField.emptyMapField(
+              MatchersDefaultEntryHolder.defaultEntry);
         }
+        return matchers_;
       }
-      /**
-       * <pre>
-       * The version of the CloudEvents specification which the event uses.
-       * </pre>
-       *
-       * <code>string specversion = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSpecversionBytes() {
-        java.lang.Object ref = specversion_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          specversion_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+      internalGetMutableMatchers() {
+        onChanged();;
+        if (matchers_ == null) {
+          matchers_ = com.google.protobuf.MapField.newMapField(
+              MatchersDefaultEntryHolder.defaultEntry);
         }
-      }
-      /**
-       * <pre>
-       * The version of the CloudEvents specification which the event uses.
-       * </pre>
-       *
-       * <code>string specversion = 1;</code>
-       */
-      public Builder setSpecversion(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        specversion_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * The version of the CloudEvents specification which the event uses.
-       * </pre>
-       *
-       * <code>string specversion = 1;</code>
-       */
-      public Builder clearSpecversion() {
-        
-        specversion_ = getDefaultInstance().getSpecversion();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * The version of the CloudEvents specification which the event uses.
-       * </pre>
-       *
-       * <code>string specversion = 1;</code>
-       */
-      public Builder setSpecversionBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        specversion_ = value;
-        onChanged();
-        return this;
+        if (!matchers_.isMutable()) {
+          matchers_ = matchers_.copy();
+        }
+        return matchers_;
       }
 
-      private java.lang.Object source_ = "";
+      public int getMatchersCount() {
+        return internalGetMatchers().getMap().size();
+      }
       /**
-       * <pre>
-       * Identifies the context in which an event happened.
-       * </pre>
-       *
-       * <code>string source = 2;</code>
+       * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
        */
-      public java.lang.String getSource() {
-        java.lang.Object ref = source_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          source_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
+
+      public boolean containsMatchers(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        return internalGetMatchers().getMap().containsKey(key);
+      }
+      /**
+       * Use {@link #getMatchersMap()} instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String> getMatchers() {
+        return getMatchersMap();
+      }
+      /**
+       * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
+       */
+
+      public java.util.Map<java.lang.String, java.lang.String> getMatchersMap() {
+        return internalGetMatchers().getMap();
+      }
+      /**
+       * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
+       */
+
+      public java.lang.String getMatchersOrDefault(
+          java.lang.String key,
+          java.lang.String defaultValue) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            internalGetMatchers().getMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
+       */
+
+      public java.lang.String getMatchersOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            internalGetMatchers().getMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
         }
-      }
-      /**
-       * <pre>
-       * Identifies the context in which an event happened.
-       * </pre>
-       *
-       * <code>string source = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSourceBytes() {
-        java.lang.Object ref = source_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          source_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Identifies the context in which an event happened.
-       * </pre>
-       *
-       * <code>string source = 2;</code>
-       */
-      public Builder setSource(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        source_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Identifies the context in which an event happened.
-       * </pre>
-       *
-       * <code>string source = 2;</code>
-       */
-      public Builder clearSource() {
-        
-        source_ = getDefaultInstance().getSource();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Identifies the context in which an event happened.
-       * </pre>
-       *
-       * <code>string source = 2;</code>
-       */
-      public Builder setSourceBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        source_ = value;
-        onChanged();
-        return this;
+        return map.get(key);
       }
 
-      private java.lang.Object type_ = "";
-      /**
-       * <pre>
-       * Describes the type of event related to the originating occurrence.
-       * </pre>
-       *
-       * <code>string type = 3;</code>
-       */
-      public java.lang.String getType() {
-        java.lang.Object ref = type_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          type_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Describes the type of event related to the originating occurrence.
-       * </pre>
-       *
-       * <code>string type = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getTypeBytes() {
-        java.lang.Object ref = type_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          type_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Describes the type of event related to the originating occurrence.
-       * </pre>
-       *
-       * <code>string type = 3;</code>
-       */
-      public Builder setType(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        type_ = value;
-        onChanged();
+      public Builder clearMatchers() {
+        internalGetMutableMatchers().getMutableMap()
+            .clear();
         return this;
       }
       /**
-       * <pre>
-       * Describes the type of event related to the originating occurrence.
-       * </pre>
-       *
-       * <code>string type = 3;</code>
+       * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder clearType() {
-        
-        type_ = getDefaultInstance().getType();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Describes the type of event related to the originating occurrence.
-       * </pre>
-       *
-       * <code>string type = 3;</code>
-       */
-      public Builder setTypeBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        type_ = value;
-        onChanged();
-        return this;
-      }
 
-      private java.lang.Object subject_ = "";
-      /**
-       * <pre>
-       * Describes the subject of the event in the context of the event producer (identified by source).
-       * </pre>
-       *
-       * <code>string subject = 4;</code>
-       */
-      public java.lang.String getSubject() {
-        java.lang.Object ref = subject_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          subject_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public Builder removeMatchers(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        internalGetMutableMatchers().getMutableMap()
+            .remove(key);
+        return this;
       }
       /**
-       * <pre>
-       * Describes the subject of the event in the context of the event producer (identified by source).
-       * </pre>
-       *
-       * <code>string subject = 4;</code>
+       * Use alternate mutation accessors instead.
        */
-      public com.google.protobuf.ByteString
-          getSubjectBytes() {
-        java.lang.Object ref = subject_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          subject_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String>
+      getMutableMatchers() {
+        return internalGetMutableMatchers().getMutableMap();
       }
       /**
-       * <pre>
-       * Describes the subject of the event in the context of the event producer (identified by source).
-       * </pre>
-       *
-       * <code>string subject = 4;</code>
+       * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setSubject(
+      public Builder putMatchers(
+          java.lang.String key,
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        subject_ = value;
-        onChanged();
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (value == null) { throw new java.lang.NullPointerException(); }
+        internalGetMutableMatchers().getMutableMap()
+            .put(key, value);
         return this;
       }
       /**
-       * <pre>
-       * Describes the subject of the event in the context of the event producer (identified by source).
-       * </pre>
-       *
-       * <code>string subject = 4;</code>
+       * <code>map&lt;string, string&gt; matchers = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder clearSubject() {
-        
-        subject_ = getDefaultInstance().getSubject();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Describes the subject of the event in the context of the event producer (identified by source).
-       * </pre>
-       *
-       * <code>string subject = 4;</code>
-       */
-      public Builder setSubjectBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        subject_ = value;
-        onChanged();
+
+      public Builder putAllMatchers(
+          java.util.Map<java.lang.String, java.lang.String> values) {
+        internalGetMutableMatchers().getMutableMap()
+            .putAll(values);
         return this;
       }
       @java.lang.Override
@@ -1127,1892 +744,6 @@ public final class Schema {
 
   }
 
-  public interface CloudEventInputOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:eventgate.CloudEventInput)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * The version of the CloudEvents specification which the event uses.
-     * </pre>
-     *
-     * <code>string specversion = 2 [(.validator.field) = { ... }</code>
-     */
-    java.lang.String getSpecversion();
-    /**
-     * <pre>
-     * The version of the CloudEvents specification which the event uses.
-     * </pre>
-     *
-     * <code>string specversion = 2 [(.validator.field) = { ... }</code>
-     */
-    com.google.protobuf.ByteString
-        getSpecversionBytes();
-
-    /**
-     * <pre>
-     * Identifies the context in which an event happened.
-     * </pre>
-     *
-     * <code>string source = 3 [(.validator.field) = { ... }</code>
-     */
-    java.lang.String getSource();
-    /**
-     * <pre>
-     * Identifies the context in which an event happened.
-     * </pre>
-     *
-     * <code>string source = 3 [(.validator.field) = { ... }</code>
-     */
-    com.google.protobuf.ByteString
-        getSourceBytes();
-
-    /**
-     * <pre>
-     * Describes the type of event related to the originating occurrence.
-     * </pre>
-     *
-     * <code>string type = 4 [(.validator.field) = { ... }</code>
-     */
-    java.lang.String getType();
-    /**
-     * <pre>
-     * Describes the type of event related to the originating occurrence.
-     * </pre>
-     *
-     * <code>string type = 4 [(.validator.field) = { ... }</code>
-     */
-    com.google.protobuf.ByteString
-        getTypeBytes();
-
-    /**
-     * <pre>
-     * Describes the subject of the event in the context of the event producer (identified by source).
-     * </pre>
-     *
-     * <code>string subject = 5;</code>
-     */
-    java.lang.String getSubject();
-    /**
-     * <pre>
-     * Describes the subject of the event in the context of the event producer (identified by source).
-     * </pre>
-     *
-     * <code>string subject = 5;</code>
-     */
-    com.google.protobuf.ByteString
-        getSubjectBytes();
-
-    /**
-     * <pre>
-     * Identifies the schema that data adheres to.
-     * </pre>
-     *
-     * <code>string dataschema = 6;</code>
-     */
-    java.lang.String getDataschema();
-    /**
-     * <pre>
-     * Identifies the schema that data adheres to.
-     * </pre>
-     *
-     * <code>string dataschema = 6;</code>
-     */
-    com.google.protobuf.ByteString
-        getDataschemaBytes();
-
-    /**
-     * <pre>
-     * Content type of the data value. Must adhere to RFC 2046 format.
-     * </pre>
-     *
-     * <code>string datacontenttype = 7;</code>
-     */
-    java.lang.String getDatacontenttype();
-    /**
-     * <pre>
-     * Content type of the data value. Must adhere to RFC 2046 format.
-     * </pre>
-     *
-     * <code>string datacontenttype = 7;</code>
-     */
-    com.google.protobuf.ByteString
-        getDatacontenttypeBytes();
-
-    /**
-     * <pre>
-     *The event payload(structured).
-     * </pre>
-     *
-     * <code>.google.protobuf.Struct data = 8;</code>
-     */
-    boolean hasData();
-    /**
-     * <pre>
-     *The event payload(structured).
-     * </pre>
-     *
-     * <code>.google.protobuf.Struct data = 8;</code>
-     */
-    com.google.protobuf.Struct getData();
-    /**
-     * <pre>
-     *The event payload(structured).
-     * </pre>
-     *
-     * <code>.google.protobuf.Struct data = 8;</code>
-     */
-    com.google.protobuf.StructOrBuilder getDataOrBuilder();
-
-    /**
-     * <pre>
-     * Base64 encoded event payload. Must adhere to RFC4648.
-     * </pre>
-     *
-     * <code>string data_base64 = 9;</code>
-     */
-    java.lang.String getDataBase64();
-    /**
-     * <pre>
-     * Base64 encoded event payload. Must adhere to RFC4648.
-     * </pre>
-     *
-     * <code>string data_base64 = 9;</code>
-     */
-    com.google.protobuf.ByteString
-        getDataBase64Bytes();
-  }
-  /**
-   * <pre>
-   * CloudEventInput constructs a cloud event
-   * </pre>
-   *
-   * Protobuf type {@code eventgate.CloudEventInput}
-   */
-  public  static final class CloudEventInput extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:eventgate.CloudEventInput)
-      CloudEventInputOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use CloudEventInput.newBuilder() to construct.
-    private CloudEventInput(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private CloudEventInput() {
-      specversion_ = "";
-      source_ = "";
-      type_ = "";
-      subject_ = "";
-      dataschema_ = "";
-      datacontenttype_ = "";
-      dataBase64_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private CloudEventInput(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              specversion_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              source_ = s;
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              type_ = s;
-              break;
-            }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              subject_ = s;
-              break;
-            }
-            case 50: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              dataschema_ = s;
-              break;
-            }
-            case 58: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              datacontenttype_ = s;
-              break;
-            }
-            case 66: {
-              com.google.protobuf.Struct.Builder subBuilder = null;
-              if (data_ != null) {
-                subBuilder = data_.toBuilder();
-              }
-              data_ = input.readMessage(com.google.protobuf.Struct.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(data_);
-                data_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 74: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              dataBase64_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return eventgate.Schema.internal_static_eventgate_CloudEventInput_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return eventgate.Schema.internal_static_eventgate_CloudEventInput_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              eventgate.Schema.CloudEventInput.class, eventgate.Schema.CloudEventInput.Builder.class);
-    }
-
-    public static final int SPECVERSION_FIELD_NUMBER = 2;
-    private volatile java.lang.Object specversion_;
-    /**
-     * <pre>
-     * The version of the CloudEvents specification which the event uses.
-     * </pre>
-     *
-     * <code>string specversion = 2 [(.validator.field) = { ... }</code>
-     */
-    public java.lang.String getSpecversion() {
-      java.lang.Object ref = specversion_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        specversion_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * The version of the CloudEvents specification which the event uses.
-     * </pre>
-     *
-     * <code>string specversion = 2 [(.validator.field) = { ... }</code>
-     */
-    public com.google.protobuf.ByteString
-        getSpecversionBytes() {
-      java.lang.Object ref = specversion_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        specversion_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int SOURCE_FIELD_NUMBER = 3;
-    private volatile java.lang.Object source_;
-    /**
-     * <pre>
-     * Identifies the context in which an event happened.
-     * </pre>
-     *
-     * <code>string source = 3 [(.validator.field) = { ... }</code>
-     */
-    public java.lang.String getSource() {
-      java.lang.Object ref = source_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        source_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * Identifies the context in which an event happened.
-     * </pre>
-     *
-     * <code>string source = 3 [(.validator.field) = { ... }</code>
-     */
-    public com.google.protobuf.ByteString
-        getSourceBytes() {
-      java.lang.Object ref = source_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        source_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int TYPE_FIELD_NUMBER = 4;
-    private volatile java.lang.Object type_;
-    /**
-     * <pre>
-     * Describes the type of event related to the originating occurrence.
-     * </pre>
-     *
-     * <code>string type = 4 [(.validator.field) = { ... }</code>
-     */
-    public java.lang.String getType() {
-      java.lang.Object ref = type_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        type_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * Describes the type of event related to the originating occurrence.
-     * </pre>
-     *
-     * <code>string type = 4 [(.validator.field) = { ... }</code>
-     */
-    public com.google.protobuf.ByteString
-        getTypeBytes() {
-      java.lang.Object ref = type_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        type_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int SUBJECT_FIELD_NUMBER = 5;
-    private volatile java.lang.Object subject_;
-    /**
-     * <pre>
-     * Describes the subject of the event in the context of the event producer (identified by source).
-     * </pre>
-     *
-     * <code>string subject = 5;</code>
-     */
-    public java.lang.String getSubject() {
-      java.lang.Object ref = subject_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        subject_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * Describes the subject of the event in the context of the event producer (identified by source).
-     * </pre>
-     *
-     * <code>string subject = 5;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSubjectBytes() {
-      java.lang.Object ref = subject_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        subject_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int DATASCHEMA_FIELD_NUMBER = 6;
-    private volatile java.lang.Object dataschema_;
-    /**
-     * <pre>
-     * Identifies the schema that data adheres to.
-     * </pre>
-     *
-     * <code>string dataschema = 6;</code>
-     */
-    public java.lang.String getDataschema() {
-      java.lang.Object ref = dataschema_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        dataschema_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * Identifies the schema that data adheres to.
-     * </pre>
-     *
-     * <code>string dataschema = 6;</code>
-     */
-    public com.google.protobuf.ByteString
-        getDataschemaBytes() {
-      java.lang.Object ref = dataschema_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        dataschema_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int DATACONTENTTYPE_FIELD_NUMBER = 7;
-    private volatile java.lang.Object datacontenttype_;
-    /**
-     * <pre>
-     * Content type of the data value. Must adhere to RFC 2046 format.
-     * </pre>
-     *
-     * <code>string datacontenttype = 7;</code>
-     */
-    public java.lang.String getDatacontenttype() {
-      java.lang.Object ref = datacontenttype_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        datacontenttype_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * Content type of the data value. Must adhere to RFC 2046 format.
-     * </pre>
-     *
-     * <code>string datacontenttype = 7;</code>
-     */
-    public com.google.protobuf.ByteString
-        getDatacontenttypeBytes() {
-      java.lang.Object ref = datacontenttype_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        datacontenttype_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int DATA_FIELD_NUMBER = 8;
-    private com.google.protobuf.Struct data_;
-    /**
-     * <pre>
-     *The event payload(structured).
-     * </pre>
-     *
-     * <code>.google.protobuf.Struct data = 8;</code>
-     */
-    public boolean hasData() {
-      return data_ != null;
-    }
-    /**
-     * <pre>
-     *The event payload(structured).
-     * </pre>
-     *
-     * <code>.google.protobuf.Struct data = 8;</code>
-     */
-    public com.google.protobuf.Struct getData() {
-      return data_ == null ? com.google.protobuf.Struct.getDefaultInstance() : data_;
-    }
-    /**
-     * <pre>
-     *The event payload(structured).
-     * </pre>
-     *
-     * <code>.google.protobuf.Struct data = 8;</code>
-     */
-    public com.google.protobuf.StructOrBuilder getDataOrBuilder() {
-      return getData();
-    }
-
-    public static final int DATA_BASE64_FIELD_NUMBER = 9;
-    private volatile java.lang.Object dataBase64_;
-    /**
-     * <pre>
-     * Base64 encoded event payload. Must adhere to RFC4648.
-     * </pre>
-     *
-     * <code>string data_base64 = 9;</code>
-     */
-    public java.lang.String getDataBase64() {
-      java.lang.Object ref = dataBase64_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        dataBase64_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * Base64 encoded event payload. Must adhere to RFC4648.
-     * </pre>
-     *
-     * <code>string data_base64 = 9;</code>
-     */
-    public com.google.protobuf.ByteString
-        getDataBase64Bytes() {
-      java.lang.Object ref = dataBase64_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        dataBase64_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getSpecversionBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, specversion_);
-      }
-      if (!getSourceBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, source_);
-      }
-      if (!getTypeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, type_);
-      }
-      if (!getSubjectBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, subject_);
-      }
-      if (!getDataschemaBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, dataschema_);
-      }
-      if (!getDatacontenttypeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, datacontenttype_);
-      }
-      if (data_ != null) {
-        output.writeMessage(8, getData());
-      }
-      if (!getDataBase64Bytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, dataBase64_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getSpecversionBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, specversion_);
-      }
-      if (!getSourceBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, source_);
-      }
-      if (!getTypeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, type_);
-      }
-      if (!getSubjectBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, subject_);
-      }
-      if (!getDataschemaBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, dataschema_);
-      }
-      if (!getDatacontenttypeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, datacontenttype_);
-      }
-      if (data_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, getData());
-      }
-      if (!getDataBase64Bytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, dataBase64_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof eventgate.Schema.CloudEventInput)) {
-        return super.equals(obj);
-      }
-      eventgate.Schema.CloudEventInput other = (eventgate.Schema.CloudEventInput) obj;
-
-      boolean result = true;
-      result = result && getSpecversion()
-          .equals(other.getSpecversion());
-      result = result && getSource()
-          .equals(other.getSource());
-      result = result && getType()
-          .equals(other.getType());
-      result = result && getSubject()
-          .equals(other.getSubject());
-      result = result && getDataschema()
-          .equals(other.getDataschema());
-      result = result && getDatacontenttype()
-          .equals(other.getDatacontenttype());
-      result = result && (hasData() == other.hasData());
-      if (hasData()) {
-        result = result && getData()
-            .equals(other.getData());
-      }
-      result = result && getDataBase64()
-          .equals(other.getDataBase64());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + SPECVERSION_FIELD_NUMBER;
-      hash = (53 * hash) + getSpecversion().hashCode();
-      hash = (37 * hash) + SOURCE_FIELD_NUMBER;
-      hash = (53 * hash) + getSource().hashCode();
-      hash = (37 * hash) + TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + getType().hashCode();
-      hash = (37 * hash) + SUBJECT_FIELD_NUMBER;
-      hash = (53 * hash) + getSubject().hashCode();
-      hash = (37 * hash) + DATASCHEMA_FIELD_NUMBER;
-      hash = (53 * hash) + getDataschema().hashCode();
-      hash = (37 * hash) + DATACONTENTTYPE_FIELD_NUMBER;
-      hash = (53 * hash) + getDatacontenttype().hashCode();
-      if (hasData()) {
-        hash = (37 * hash) + DATA_FIELD_NUMBER;
-        hash = (53 * hash) + getData().hashCode();
-      }
-      hash = (37 * hash) + DATA_BASE64_FIELD_NUMBER;
-      hash = (53 * hash) + getDataBase64().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static eventgate.Schema.CloudEventInput parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static eventgate.Schema.CloudEventInput parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static eventgate.Schema.CloudEventInput parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static eventgate.Schema.CloudEventInput parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static eventgate.Schema.CloudEventInput parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static eventgate.Schema.CloudEventInput parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static eventgate.Schema.CloudEventInput parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static eventgate.Schema.CloudEventInput parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static eventgate.Schema.CloudEventInput parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static eventgate.Schema.CloudEventInput parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static eventgate.Schema.CloudEventInput parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static eventgate.Schema.CloudEventInput parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(eventgate.Schema.CloudEventInput prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * CloudEventInput constructs a cloud event
-     * </pre>
-     *
-     * Protobuf type {@code eventgate.CloudEventInput}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:eventgate.CloudEventInput)
-        eventgate.Schema.CloudEventInputOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return eventgate.Schema.internal_static_eventgate_CloudEventInput_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return eventgate.Schema.internal_static_eventgate_CloudEventInput_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                eventgate.Schema.CloudEventInput.class, eventgate.Schema.CloudEventInput.Builder.class);
-      }
-
-      // Construct using eventgate.Schema.CloudEventInput.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        specversion_ = "";
-
-        source_ = "";
-
-        type_ = "";
-
-        subject_ = "";
-
-        dataschema_ = "";
-
-        datacontenttype_ = "";
-
-        if (dataBuilder_ == null) {
-          data_ = null;
-        } else {
-          data_ = null;
-          dataBuilder_ = null;
-        }
-        dataBase64_ = "";
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return eventgate.Schema.internal_static_eventgate_CloudEventInput_descriptor;
-      }
-
-      @java.lang.Override
-      public eventgate.Schema.CloudEventInput getDefaultInstanceForType() {
-        return eventgate.Schema.CloudEventInput.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public eventgate.Schema.CloudEventInput build() {
-        eventgate.Schema.CloudEventInput result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public eventgate.Schema.CloudEventInput buildPartial() {
-        eventgate.Schema.CloudEventInput result = new eventgate.Schema.CloudEventInput(this);
-        result.specversion_ = specversion_;
-        result.source_ = source_;
-        result.type_ = type_;
-        result.subject_ = subject_;
-        result.dataschema_ = dataschema_;
-        result.datacontenttype_ = datacontenttype_;
-        if (dataBuilder_ == null) {
-          result.data_ = data_;
-        } else {
-          result.data_ = dataBuilder_.build();
-        }
-        result.dataBase64_ = dataBase64_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof eventgate.Schema.CloudEventInput) {
-          return mergeFrom((eventgate.Schema.CloudEventInput)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(eventgate.Schema.CloudEventInput other) {
-        if (other == eventgate.Schema.CloudEventInput.getDefaultInstance()) return this;
-        if (!other.getSpecversion().isEmpty()) {
-          specversion_ = other.specversion_;
-          onChanged();
-        }
-        if (!other.getSource().isEmpty()) {
-          source_ = other.source_;
-          onChanged();
-        }
-        if (!other.getType().isEmpty()) {
-          type_ = other.type_;
-          onChanged();
-        }
-        if (!other.getSubject().isEmpty()) {
-          subject_ = other.subject_;
-          onChanged();
-        }
-        if (!other.getDataschema().isEmpty()) {
-          dataschema_ = other.dataschema_;
-          onChanged();
-        }
-        if (!other.getDatacontenttype().isEmpty()) {
-          datacontenttype_ = other.datacontenttype_;
-          onChanged();
-        }
-        if (other.hasData()) {
-          mergeData(other.getData());
-        }
-        if (!other.getDataBase64().isEmpty()) {
-          dataBase64_ = other.dataBase64_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        eventgate.Schema.CloudEventInput parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (eventgate.Schema.CloudEventInput) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object specversion_ = "";
-      /**
-       * <pre>
-       * The version of the CloudEvents specification which the event uses.
-       * </pre>
-       *
-       * <code>string specversion = 2 [(.validator.field) = { ... }</code>
-       */
-      public java.lang.String getSpecversion() {
-        java.lang.Object ref = specversion_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          specversion_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * The version of the CloudEvents specification which the event uses.
-       * </pre>
-       *
-       * <code>string specversion = 2 [(.validator.field) = { ... }</code>
-       */
-      public com.google.protobuf.ByteString
-          getSpecversionBytes() {
-        java.lang.Object ref = specversion_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          specversion_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * The version of the CloudEvents specification which the event uses.
-       * </pre>
-       *
-       * <code>string specversion = 2 [(.validator.field) = { ... }</code>
-       */
-      public Builder setSpecversion(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        specversion_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * The version of the CloudEvents specification which the event uses.
-       * </pre>
-       *
-       * <code>string specversion = 2 [(.validator.field) = { ... }</code>
-       */
-      public Builder clearSpecversion() {
-        
-        specversion_ = getDefaultInstance().getSpecversion();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * The version of the CloudEvents specification which the event uses.
-       * </pre>
-       *
-       * <code>string specversion = 2 [(.validator.field) = { ... }</code>
-       */
-      public Builder setSpecversionBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        specversion_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object source_ = "";
-      /**
-       * <pre>
-       * Identifies the context in which an event happened.
-       * </pre>
-       *
-       * <code>string source = 3 [(.validator.field) = { ... }</code>
-       */
-      public java.lang.String getSource() {
-        java.lang.Object ref = source_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          source_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Identifies the context in which an event happened.
-       * </pre>
-       *
-       * <code>string source = 3 [(.validator.field) = { ... }</code>
-       */
-      public com.google.protobuf.ByteString
-          getSourceBytes() {
-        java.lang.Object ref = source_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          source_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Identifies the context in which an event happened.
-       * </pre>
-       *
-       * <code>string source = 3 [(.validator.field) = { ... }</code>
-       */
-      public Builder setSource(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        source_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Identifies the context in which an event happened.
-       * </pre>
-       *
-       * <code>string source = 3 [(.validator.field) = { ... }</code>
-       */
-      public Builder clearSource() {
-        
-        source_ = getDefaultInstance().getSource();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Identifies the context in which an event happened.
-       * </pre>
-       *
-       * <code>string source = 3 [(.validator.field) = { ... }</code>
-       */
-      public Builder setSourceBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        source_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object type_ = "";
-      /**
-       * <pre>
-       * Describes the type of event related to the originating occurrence.
-       * </pre>
-       *
-       * <code>string type = 4 [(.validator.field) = { ... }</code>
-       */
-      public java.lang.String getType() {
-        java.lang.Object ref = type_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          type_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Describes the type of event related to the originating occurrence.
-       * </pre>
-       *
-       * <code>string type = 4 [(.validator.field) = { ... }</code>
-       */
-      public com.google.protobuf.ByteString
-          getTypeBytes() {
-        java.lang.Object ref = type_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          type_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Describes the type of event related to the originating occurrence.
-       * </pre>
-       *
-       * <code>string type = 4 [(.validator.field) = { ... }</code>
-       */
-      public Builder setType(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        type_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Describes the type of event related to the originating occurrence.
-       * </pre>
-       *
-       * <code>string type = 4 [(.validator.field) = { ... }</code>
-       */
-      public Builder clearType() {
-        
-        type_ = getDefaultInstance().getType();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Describes the type of event related to the originating occurrence.
-       * </pre>
-       *
-       * <code>string type = 4 [(.validator.field) = { ... }</code>
-       */
-      public Builder setTypeBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        type_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object subject_ = "";
-      /**
-       * <pre>
-       * Describes the subject of the event in the context of the event producer (identified by source).
-       * </pre>
-       *
-       * <code>string subject = 5;</code>
-       */
-      public java.lang.String getSubject() {
-        java.lang.Object ref = subject_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          subject_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Describes the subject of the event in the context of the event producer (identified by source).
-       * </pre>
-       *
-       * <code>string subject = 5;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSubjectBytes() {
-        java.lang.Object ref = subject_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          subject_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Describes the subject of the event in the context of the event producer (identified by source).
-       * </pre>
-       *
-       * <code>string subject = 5;</code>
-       */
-      public Builder setSubject(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        subject_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Describes the subject of the event in the context of the event producer (identified by source).
-       * </pre>
-       *
-       * <code>string subject = 5;</code>
-       */
-      public Builder clearSubject() {
-        
-        subject_ = getDefaultInstance().getSubject();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Describes the subject of the event in the context of the event producer (identified by source).
-       * </pre>
-       *
-       * <code>string subject = 5;</code>
-       */
-      public Builder setSubjectBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        subject_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object dataschema_ = "";
-      /**
-       * <pre>
-       * Identifies the schema that data adheres to.
-       * </pre>
-       *
-       * <code>string dataschema = 6;</code>
-       */
-      public java.lang.String getDataschema() {
-        java.lang.Object ref = dataschema_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          dataschema_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Identifies the schema that data adheres to.
-       * </pre>
-       *
-       * <code>string dataschema = 6;</code>
-       */
-      public com.google.protobuf.ByteString
-          getDataschemaBytes() {
-        java.lang.Object ref = dataschema_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          dataschema_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Identifies the schema that data adheres to.
-       * </pre>
-       *
-       * <code>string dataschema = 6;</code>
-       */
-      public Builder setDataschema(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        dataschema_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Identifies the schema that data adheres to.
-       * </pre>
-       *
-       * <code>string dataschema = 6;</code>
-       */
-      public Builder clearDataschema() {
-        
-        dataschema_ = getDefaultInstance().getDataschema();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Identifies the schema that data adheres to.
-       * </pre>
-       *
-       * <code>string dataschema = 6;</code>
-       */
-      public Builder setDataschemaBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        dataschema_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object datacontenttype_ = "";
-      /**
-       * <pre>
-       * Content type of the data value. Must adhere to RFC 2046 format.
-       * </pre>
-       *
-       * <code>string datacontenttype = 7;</code>
-       */
-      public java.lang.String getDatacontenttype() {
-        java.lang.Object ref = datacontenttype_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          datacontenttype_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Content type of the data value. Must adhere to RFC 2046 format.
-       * </pre>
-       *
-       * <code>string datacontenttype = 7;</code>
-       */
-      public com.google.protobuf.ByteString
-          getDatacontenttypeBytes() {
-        java.lang.Object ref = datacontenttype_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          datacontenttype_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Content type of the data value. Must adhere to RFC 2046 format.
-       * </pre>
-       *
-       * <code>string datacontenttype = 7;</code>
-       */
-      public Builder setDatacontenttype(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        datacontenttype_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Content type of the data value. Must adhere to RFC 2046 format.
-       * </pre>
-       *
-       * <code>string datacontenttype = 7;</code>
-       */
-      public Builder clearDatacontenttype() {
-        
-        datacontenttype_ = getDefaultInstance().getDatacontenttype();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Content type of the data value. Must adhere to RFC 2046 format.
-       * </pre>
-       *
-       * <code>string datacontenttype = 7;</code>
-       */
-      public Builder setDatacontenttypeBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        datacontenttype_ = value;
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.Struct data_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> dataBuilder_;
-      /**
-       * <pre>
-       *The event payload(structured).
-       * </pre>
-       *
-       * <code>.google.protobuf.Struct data = 8;</code>
-       */
-      public boolean hasData() {
-        return dataBuilder_ != null || data_ != null;
-      }
-      /**
-       * <pre>
-       *The event payload(structured).
-       * </pre>
-       *
-       * <code>.google.protobuf.Struct data = 8;</code>
-       */
-      public com.google.protobuf.Struct getData() {
-        if (dataBuilder_ == null) {
-          return data_ == null ? com.google.protobuf.Struct.getDefaultInstance() : data_;
-        } else {
-          return dataBuilder_.getMessage();
-        }
-      }
-      /**
-       * <pre>
-       *The event payload(structured).
-       * </pre>
-       *
-       * <code>.google.protobuf.Struct data = 8;</code>
-       */
-      public Builder setData(com.google.protobuf.Struct value) {
-        if (dataBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          data_ = value;
-          onChanged();
-        } else {
-          dataBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       *The event payload(structured).
-       * </pre>
-       *
-       * <code>.google.protobuf.Struct data = 8;</code>
-       */
-      public Builder setData(
-          com.google.protobuf.Struct.Builder builderForValue) {
-        if (dataBuilder_ == null) {
-          data_ = builderForValue.build();
-          onChanged();
-        } else {
-          dataBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       *The event payload(structured).
-       * </pre>
-       *
-       * <code>.google.protobuf.Struct data = 8;</code>
-       */
-      public Builder mergeData(com.google.protobuf.Struct value) {
-        if (dataBuilder_ == null) {
-          if (data_ != null) {
-            data_ =
-              com.google.protobuf.Struct.newBuilder(data_).mergeFrom(value).buildPartial();
-          } else {
-            data_ = value;
-          }
-          onChanged();
-        } else {
-          dataBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       *The event payload(structured).
-       * </pre>
-       *
-       * <code>.google.protobuf.Struct data = 8;</code>
-       */
-      public Builder clearData() {
-        if (dataBuilder_ == null) {
-          data_ = null;
-          onChanged();
-        } else {
-          data_ = null;
-          dataBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       *The event payload(structured).
-       * </pre>
-       *
-       * <code>.google.protobuf.Struct data = 8;</code>
-       */
-      public com.google.protobuf.Struct.Builder getDataBuilder() {
-        
-        onChanged();
-        return getDataFieldBuilder().getBuilder();
-      }
-      /**
-       * <pre>
-       *The event payload(structured).
-       * </pre>
-       *
-       * <code>.google.protobuf.Struct data = 8;</code>
-       */
-      public com.google.protobuf.StructOrBuilder getDataOrBuilder() {
-        if (dataBuilder_ != null) {
-          return dataBuilder_.getMessageOrBuilder();
-        } else {
-          return data_ == null ?
-              com.google.protobuf.Struct.getDefaultInstance() : data_;
-        }
-      }
-      /**
-       * <pre>
-       *The event payload(structured).
-       * </pre>
-       *
-       * <code>.google.protobuf.Struct data = 8;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
-          getDataFieldBuilder() {
-        if (dataBuilder_ == null) {
-          dataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder>(
-                  getData(),
-                  getParentForChildren(),
-                  isClean());
-          data_ = null;
-        }
-        return dataBuilder_;
-      }
-
-      private java.lang.Object dataBase64_ = "";
-      /**
-       * <pre>
-       * Base64 encoded event payload. Must adhere to RFC4648.
-       * </pre>
-       *
-       * <code>string data_base64 = 9;</code>
-       */
-      public java.lang.String getDataBase64() {
-        java.lang.Object ref = dataBase64_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          dataBase64_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Base64 encoded event payload. Must adhere to RFC4648.
-       * </pre>
-       *
-       * <code>string data_base64 = 9;</code>
-       */
-      public com.google.protobuf.ByteString
-          getDataBase64Bytes() {
-        java.lang.Object ref = dataBase64_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          dataBase64_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Base64 encoded event payload. Must adhere to RFC4648.
-       * </pre>
-       *
-       * <code>string data_base64 = 9;</code>
-       */
-      public Builder setDataBase64(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        dataBase64_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Base64 encoded event payload. Must adhere to RFC4648.
-       * </pre>
-       *
-       * <code>string data_base64 = 9;</code>
-       */
-      public Builder clearDataBase64() {
-        
-        dataBase64_ = getDefaultInstance().getDataBase64();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Base64 encoded event payload. Must adhere to RFC4648.
-       * </pre>
-       *
-       * <code>string data_base64 = 9;</code>
-       */
-      public Builder setDataBase64Bytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        dataBase64_ = value;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:eventgate.CloudEventInput)
-    }
-
-    // @@protoc_insertion_point(class_scope:eventgate.CloudEventInput)
-    private static final eventgate.Schema.CloudEventInput DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new eventgate.Schema.CloudEventInput();
-    }
-
-    public static eventgate.Schema.CloudEventInput getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<CloudEventInput>
-        PARSER = new com.google.protobuf.AbstractParser<CloudEventInput>() {
-      @java.lang.Override
-      public CloudEventInput parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new CloudEventInput(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<CloudEventInput> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<CloudEventInput> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public eventgate.Schema.CloudEventInput getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface CloudEventOrBuilder extends
       // @@protoc_insertion_point(interface_extends:eventgate.CloudEvent)
       com.google.protobuf.MessageOrBuilder {
@@ -3022,7 +753,7 @@ public final class Schema {
      * Identifies the event.
      * </pre>
      *
-     * <code>string id = 1 [(.validator.field) = { ... }</code>
+     * <code>string id = 1;</code>
      */
     java.lang.String getId();
     /**
@@ -3030,7 +761,7 @@ public final class Schema {
      * Identifies the event.
      * </pre>
      *
-     * <code>string id = 1 [(.validator.field) = { ... }</code>
+     * <code>string id = 1;</code>
      */
     com.google.protobuf.ByteString
         getIdBytes();
@@ -3191,7 +922,7 @@ public final class Schema {
      * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Timestamp time = 20;</code>
      */
     boolean hasTime();
     /**
@@ -3199,7 +930,7 @@ public final class Schema {
      * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Timestamp time = 20;</code>
      */
     com.google.protobuf.Timestamp getTime();
     /**
@@ -3207,27 +938,9 @@ public final class Schema {
      * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Timestamp time = 20;</code>
      */
     com.google.protobuf.TimestampOrBuilder getTimeOrBuilder();
-
-    /**
-     * <pre>
-     * Base64 encoded authentication payload(jwt.claims).
-     * </pre>
-     *
-     * <code>string eventgate_auth = 21;</code>
-     */
-    java.lang.String getEventgateAuth();
-    /**
-     * <pre>
-     * Base64 encoded authentication payload(jwt.claims).
-     * </pre>
-     *
-     * <code>string eventgate_auth = 21;</code>
-     */
-    com.google.protobuf.ByteString
-        getEventgateAuthBytes();
   }
   /**
    * <pre>
@@ -3254,7 +967,6 @@ public final class Schema {
       dataschema_ = "";
       datacontenttype_ = "";
       dataBase64_ = "";
-      eventgateAuth_ = "";
     }
 
     @java.lang.Override
@@ -3355,12 +1067,6 @@ public final class Schema {
 
               break;
             }
-            case 170: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              eventgateAuth_ = s;
-              break;
-            }
             default: {
               if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -3400,7 +1106,7 @@ public final class Schema {
      * Identifies the event.
      * </pre>
      *
-     * <code>string id = 1 [(.validator.field) = { ... }</code>
+     * <code>string id = 1;</code>
      */
     public java.lang.String getId() {
       java.lang.Object ref = id_;
@@ -3419,7 +1125,7 @@ public final class Schema {
      * Identifies the event.
      * </pre>
      *
-     * <code>string id = 1 [(.validator.field) = { ... }</code>
+     * <code>string id = 1;</code>
      */
     public com.google.protobuf.ByteString
         getIdBytes() {
@@ -3769,7 +1475,7 @@ public final class Schema {
      * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Timestamp time = 20;</code>
      */
     public boolean hasTime() {
       return time_ != null;
@@ -3779,7 +1485,7 @@ public final class Schema {
      * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Timestamp time = 20;</code>
      */
     public com.google.protobuf.Timestamp getTime() {
       return time_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : time_;
@@ -3789,52 +1495,10 @@ public final class Schema {
      * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Timestamp time = 20;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
       return getTime();
-    }
-
-    public static final int EVENTGATE_AUTH_FIELD_NUMBER = 21;
-    private volatile java.lang.Object eventgateAuth_;
-    /**
-     * <pre>
-     * Base64 encoded authentication payload(jwt.claims).
-     * </pre>
-     *
-     * <code>string eventgate_auth = 21;</code>
-     */
-    public java.lang.String getEventgateAuth() {
-      java.lang.Object ref = eventgateAuth_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        eventgateAuth_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * Base64 encoded authentication payload(jwt.claims).
-     * </pre>
-     *
-     * <code>string eventgate_auth = 21;</code>
-     */
-    public com.google.protobuf.ByteString
-        getEventgateAuthBytes() {
-      java.lang.Object ref = eventgateAuth_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        eventgateAuth_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3881,9 +1545,6 @@ public final class Schema {
       if (time_ != null) {
         output.writeMessage(20, getTime());
       }
-      if (!getEventgateAuthBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 21, eventgateAuth_);
-      }
       unknownFields.writeTo(output);
     }
 
@@ -3924,9 +1585,6 @@ public final class Schema {
       if (time_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20, getTime());
-      }
-      if (!getEventgateAuthBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(21, eventgateAuth_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3970,8 +1628,6 @@ public final class Schema {
         result = result && getTime()
             .equals(other.getTime());
       }
-      result = result && getEventgateAuth()
-          .equals(other.getEventgateAuth());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -4007,8 +1663,6 @@ public final class Schema {
         hash = (37 * hash) + TIME_FIELD_NUMBER;
         hash = (53 * hash) + getTime().hashCode();
       }
-      hash = (37 * hash) + EVENTGATE_AUTH_FIELD_NUMBER;
-      hash = (53 * hash) + getEventgateAuth().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4174,8 +1828,6 @@ public final class Schema {
           time_ = null;
           timeBuilder_ = null;
         }
-        eventgateAuth_ = "";
-
         return this;
       }
 
@@ -4220,7 +1872,6 @@ public final class Schema {
         } else {
           result.time_ = timeBuilder_.build();
         }
-        result.eventgateAuth_ = eventgateAuth_;
         onBuilt();
         return result;
       }
@@ -4307,10 +1958,6 @@ public final class Schema {
         if (other.hasTime()) {
           mergeTime(other.getTime());
         }
-        if (!other.getEventgateAuth().isEmpty()) {
-          eventgateAuth_ = other.eventgateAuth_;
-          onChanged();
-        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -4346,7 +1993,7 @@ public final class Schema {
        * Identifies the event.
        * </pre>
        *
-       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       * <code>string id = 1;</code>
        */
       public java.lang.String getId() {
         java.lang.Object ref = id_;
@@ -4365,7 +2012,7 @@ public final class Schema {
        * Identifies the event.
        * </pre>
        *
-       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       * <code>string id = 1;</code>
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -4385,7 +2032,7 @@ public final class Schema {
        * Identifies the event.
        * </pre>
        *
-       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       * <code>string id = 1;</code>
        */
       public Builder setId(
           java.lang.String value) {
@@ -4402,7 +2049,7 @@ public final class Schema {
        * Identifies the event.
        * </pre>
        *
-       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       * <code>string id = 1;</code>
        */
       public Builder clearId() {
         
@@ -4415,7 +2062,7 @@ public final class Schema {
        * Identifies the event.
        * </pre>
        *
-       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       * <code>string id = 1;</code>
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -5213,7 +2860,7 @@ public final class Schema {
        * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Timestamp time = 20;</code>
        */
       public boolean hasTime() {
         return timeBuilder_ != null || time_ != null;
@@ -5223,7 +2870,7 @@ public final class Schema {
        * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Timestamp time = 20;</code>
        */
       public com.google.protobuf.Timestamp getTime() {
         if (timeBuilder_ == null) {
@@ -5237,7 +2884,7 @@ public final class Schema {
        * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Timestamp time = 20;</code>
        */
       public Builder setTime(com.google.protobuf.Timestamp value) {
         if (timeBuilder_ == null) {
@@ -5257,7 +2904,7 @@ public final class Schema {
        * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Timestamp time = 20;</code>
        */
       public Builder setTime(
           com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -5275,7 +2922,7 @@ public final class Schema {
        * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Timestamp time = 20;</code>
        */
       public Builder mergeTime(com.google.protobuf.Timestamp value) {
         if (timeBuilder_ == null) {
@@ -5297,7 +2944,7 @@ public final class Schema {
        * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Timestamp time = 20;</code>
        */
       public Builder clearTime() {
         if (timeBuilder_ == null) {
@@ -5315,7 +2962,7 @@ public final class Schema {
        * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Timestamp time = 20;</code>
        */
       public com.google.protobuf.Timestamp.Builder getTimeBuilder() {
         
@@ -5327,7 +2974,7 @@ public final class Schema {
        * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Timestamp time = 20;</code>
        */
       public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
         if (timeBuilder_ != null) {
@@ -5342,7 +2989,7 @@ public final class Schema {
        * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Timestamp time = 20;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -5356,95 +3003,6 @@ public final class Schema {
           time_ = null;
         }
         return timeBuilder_;
-      }
-
-      private java.lang.Object eventgateAuth_ = "";
-      /**
-       * <pre>
-       * Base64 encoded authentication payload(jwt.claims).
-       * </pre>
-       *
-       * <code>string eventgate_auth = 21;</code>
-       */
-      public java.lang.String getEventgateAuth() {
-        java.lang.Object ref = eventgateAuth_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          eventgateAuth_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Base64 encoded authentication payload(jwt.claims).
-       * </pre>
-       *
-       * <code>string eventgate_auth = 21;</code>
-       */
-      public com.google.protobuf.ByteString
-          getEventgateAuthBytes() {
-        java.lang.Object ref = eventgateAuth_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          eventgateAuth_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Base64 encoded authentication payload(jwt.claims).
-       * </pre>
-       *
-       * <code>string eventgate_auth = 21;</code>
-       */
-      public Builder setEventgateAuth(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        eventgateAuth_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Base64 encoded authentication payload(jwt.claims).
-       * </pre>
-       *
-       * <code>string eventgate_auth = 21;</code>
-       */
-      public Builder clearEventgateAuth() {
-        
-        eventgateAuth_ = getDefaultInstance().getEventgateAuth();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Base64 encoded authentication payload(jwt.claims).
-       * </pre>
-       *
-       * <code>string eventgate_auth = 21;</code>
-       */
-      public Builder setEventgateAuthBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        eventgateAuth_ = value;
-        onChanged();
-        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -5505,10 +3063,10 @@ public final class Schema {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_eventgate_Filter_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_eventgate_CloudEventInput_descriptor;
+    internal_static_eventgate_Filter_MatchersEntry_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_eventgate_CloudEventInput_fieldAccessorTable;
+      internal_static_eventgate_Filter_MatchersEntry_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_eventgate_CloudEvent_descriptor;
   private static final 
@@ -5528,29 +3086,23 @@ public final class Schema {
       "proto\032\037google/protobuf/timestamp.proto\032\031" +
       "google/protobuf/any.proto\032\033google/protob" +
       "uf/empty.proto\0326github.com/mwitkow/go-pr" +
-      "oto-validators/validator.proto\"L\n\006Filter" +
-      "\022\023\n\013specversion\030\001 \001(\t\022\016\n\006source\030\002 \001(\t\022\014\n" +
-      "\004type\030\003 \001(\t\022\017\n\007subject\030\004 \001(\t\"\326\001\n\017CloudEv" +
-      "entInput\022\033\n\013specversion\030\002 \001(\tB\006\342\337\037\002X\001\022\026\n" +
-      "\006source\030\003 \001(\tB\006\342\337\037\002X\001\022\024\n\004type\030\004 \001(\tB\006\342\337\037" +
-      "\002X\001\022\017\n\007subject\030\005 \001(\t\022\022\n\ndataschema\030\006 \001(\t" +
-      "\022\027\n\017datacontenttype\030\007 \001(\t\022%\n\004data\030\010 \001(\0132" +
-      "\027.google.protobuf.Struct\022\023\n\013data_base64\030" +
-      "\t \001(\t\"\257\002\n\nCloudEvent\022\022\n\002id\030\001 \001(\tB\006\342\337\037\002X\001" +
-      "\022\033\n\013specversion\030\002 \001(\tB\006\342\337\037\002X\001\022\026\n\006source\030" +
-      "\003 \001(\tB\006\342\337\037\002X\001\022\024\n\004type\030\004 \001(\tB\006\342\337\037\002X\001\022\017\n\007s" +
-      "ubject\030\005 \001(\t\022\022\n\ndataschema\030\006 \001(\t\022\027\n\017data" +
-      "contenttype\030\007 \001(\t\022%\n\004data\030\010 \001(\0132\027.google" +
-      ".protobuf.Struct\022\023\n\013data_base64\030\t \001(\t\0220\n" +
-      "\004time\030\024 \001(\0132\032.google.protobuf.TimestampB" +
-      "\006\342\337\037\002 \001\022\026\n\016eventgate_auth\030\025 \001(\t2\374\001\n\020Even" +
-      "tGateService\022L\n\004Send\022\032.eventgate.CloudEv" +
-      "entInput\032\026.google.protobuf.Empty\"\020\202\323\344\223\002\n" +
-      "\032\005/send:\001*\022Q\n\007Request\022\032.eventgate.CloudE" +
-      "ventInput\032\025.eventgate.CloudEvent\"\023\202\323\344\223\002\r" +
-      "\032\010/request:\001*\022G\n\007Receive\022\021.eventgate.Fil" +
-      "ter\032\025.eventgate.CloudEvent\"\020\202\323\344\223\002\n\022\010/rec" +
-      "eive0\001B\013Z\teventgateb\006proto3"
+      "oto-validators/validator.proto\"t\n\006Filter" +
+      "\0229\n\010matchers\030\001 \003(\0132\037.eventgate.Filter.Ma" +
+      "tchersEntryB\006\342\337\037\002 \001\032/\n\rMatchersEntry\022\013\n\003" +
+      "key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\207\002\n\nCloudEv" +
+      "ent\022\n\n\002id\030\001 \001(\t\022\033\n\013specversion\030\002 \001(\tB\006\342\337" +
+      "\037\002X\001\022\026\n\006source\030\003 \001(\tB\006\342\337\037\002X\001\022\024\n\004type\030\004 \001" +
+      "(\tB\006\342\337\037\002X\001\022\017\n\007subject\030\005 \001(\t\022\022\n\ndataschem" +
+      "a\030\006 \001(\t\022\027\n\017datacontenttype\030\007 \001(\t\022%\n\004data" +
+      "\030\010 \001(\0132\027.google.protobuf.Struct\022\023\n\013data_" +
+      "base64\030\t \001(\t\022(\n\004time\030\024 \001(\0132\032.google.prot" +
+      "obuf.Timestamp2\362\001\n\020EventGateService\022G\n\004S" +
+      "end\022\025.eventgate.CloudEvent\032\026.google.prot" +
+      "obuf.Empty\"\020\202\323\344\223\002\n\032\005/send:\001*\022L\n\007Request\022" +
+      "\025.eventgate.CloudEvent\032\025.eventgate.Cloud" +
+      "Event\"\023\202\323\344\223\002\r\032\010/request:\001*\022G\n\007Receive\022\021." +
+      "eventgate.Filter\032\025.eventgate.CloudEvent\"" +
+      "\020\202\323\344\223\002\n\022\010/receive0\001B\013Z\teventgateb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -5575,19 +3127,19 @@ public final class Schema {
     internal_static_eventgate_Filter_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_eventgate_Filter_descriptor,
-        new java.lang.String[] { "Specversion", "Source", "Type", "Subject", });
-    internal_static_eventgate_CloudEventInput_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_eventgate_CloudEventInput_fieldAccessorTable = new
+        new java.lang.String[] { "Matchers", });
+    internal_static_eventgate_Filter_MatchersEntry_descriptor =
+      internal_static_eventgate_Filter_descriptor.getNestedTypes().get(0);
+    internal_static_eventgate_Filter_MatchersEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_eventgate_CloudEventInput_descriptor,
-        new java.lang.String[] { "Specversion", "Source", "Type", "Subject", "Dataschema", "Datacontenttype", "Data", "DataBase64", });
+        internal_static_eventgate_Filter_MatchersEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
     internal_static_eventgate_CloudEvent_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_eventgate_CloudEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_eventgate_CloudEvent_descriptor,
-        new java.lang.String[] { "Id", "Specversion", "Source", "Type", "Subject", "Dataschema", "Datacontenttype", "Data", "DataBase64", "Time", "EventgateAuth", });
+        new java.lang.String[] { "Id", "Specversion", "Source", "Type", "Subject", "Dataschema", "Datacontenttype", "Data", "DataBase64", "Time", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(com.google.api.AnnotationsProto.http);

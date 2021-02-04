@@ -17,10 +17,10 @@ type CloudEvent struct {
 	Data            map[string]interface{} `json:"data"`
 	DataBase64      *string                `json:"data_base64"`
 	Time            time.Time              `json:"time"`
-	EventgateAuth   *string                `json:"eventgate_auth"`
 }
 
 type CloudEventInput struct {
+	ID              *string                `json:"id"`
 	Specversion     string                 `json:"specversion"`
 	Source          string                 `json:"source"`
 	Type            string                 `json:"type"`
@@ -29,11 +29,9 @@ type CloudEventInput struct {
 	Datacontenttype *string                `json:"datacontenttype"`
 	Data            map[string]interface{} `json:"data"`
 	DataBase64      *string                `json:"data_base64"`
+	Time            *time.Time             `json:"time"`
 }
 
 type Filter struct {
-	Specversion *string `json:"specversion"`
-	Source      *string `json:"source"`
-	Type        *string `json:"type"`
-	Subject     *string `json:"subject"`
+	Matchers map[string]interface{} `json:"matchers"`
 }

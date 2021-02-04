@@ -10,14 +10,14 @@ export class EventGateServiceClient {
                options?: null | { [index: string]: any; });
 
   send(
-    request: schema_pb.CloudEventInput,
+    request: schema_pb.CloudEvent,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
                response: google_protobuf_empty_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
   request(
-    request: schema_pb.CloudEventInput,
+    request: schema_pb.CloudEvent,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
                response: schema_pb.CloudEvent) => void
@@ -36,12 +36,12 @@ export class EventGateServicePromiseClient {
                options?: null | { [index: string]: any; });
 
   send(
-    request: schema_pb.CloudEventInput,
+    request: schema_pb.CloudEvent,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
   request(
-    request: schema_pb.CloudEventInput,
+    request: schema_pb.CloudEvent,
     metadata?: grpcWeb.Metadata
   ): Promise<schema_pb.CloudEvent>;
 

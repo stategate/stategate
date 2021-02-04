@@ -32,7 +32,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_EventGateService_Send_0(ctx context.Context, marshaler runtime.Marshaler, client EventGateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CloudEventInput
+	var protoReq CloudEvent
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,7 +49,7 @@ func request_EventGateService_Send_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func local_request_EventGateService_Send_0(ctx context.Context, marshaler runtime.Marshaler, server EventGateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CloudEventInput
+	var protoReq CloudEvent
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,7 +66,7 @@ func local_request_EventGateService_Send_0(ctx context.Context, marshaler runtim
 }
 
 func request_EventGateService_Request_0(ctx context.Context, marshaler runtime.Marshaler, client EventGateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CloudEventInput
+	var protoReq CloudEvent
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,7 +83,7 @@ func request_EventGateService_Request_0(ctx context.Context, marshaler runtime.M
 }
 
 func local_request_EventGateService_Request_0(ctx context.Context, marshaler runtime.Marshaler, server EventGateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CloudEventInput
+	var protoReq CloudEvent
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

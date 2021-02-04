@@ -18,7 +18,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     /**
      * Identifies the event.
      *
-     * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string id = 1;</code>
      */
     private $id = '';
     /**
@@ -72,15 +72,9 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     /**
      * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 20;</code>
      */
     private $time = null;
-    /**
-     * Base64 encoded authentication payload(jwt.claims).
-     *
-     * Generated from protobuf field <code>string eventgate_auth = 21;</code>
-     */
-    private $eventgate_auth = '';
 
     /**
      * Constructor.
@@ -108,8 +102,6 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
      *           Base64 encoded event payload. Must adhere to RFC4648.
      *     @type \Google\Protobuf\Timestamp $time
      *           Timestamp of when the occurrence happened. Must adhere to RFC 3339.
-     *     @type string $eventgate_auth
-     *           Base64 encoded authentication payload(jwt.claims).
      * }
      */
     public function __construct($data = NULL) {
@@ -120,7 +112,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     /**
      * Identifies the event.
      *
-     * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string id = 1;</code>
      * @return string
      */
     public function getId()
@@ -131,7 +123,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     /**
      * Identifies the event.
      *
-     * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string id = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -354,7 +346,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     /**
      * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 20;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getTime()
@@ -365,7 +357,7 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     /**
      * Timestamp of when the occurrence happened. Must adhere to RFC 3339.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 20 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 20;</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -373,32 +365,6 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->time = $var;
-
-        return $this;
-    }
-
-    /**
-     * Base64 encoded authentication payload(jwt.claims).
-     *
-     * Generated from protobuf field <code>string eventgate_auth = 21;</code>
-     * @return string
-     */
-    public function getEventgateAuth()
-    {
-        return $this->eventgate_auth;
-    }
-
-    /**
-     * Base64 encoded authentication payload(jwt.claims).
-     *
-     * Generated from protobuf field <code>string eventgate_auth = 21;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setEventgateAuth($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->eventgate_auth = $var;
 
         return $this;
     }

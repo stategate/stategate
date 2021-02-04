@@ -9,17 +9,8 @@ import * as github_com_mwitkow_go$proto$validators_validator_pb from './github.c
 
 
 export class Filter extends jspb.Message {
-  getSpecversion(): string;
-  setSpecversion(value: string): Filter;
-
-  getSource(): string;
-  setSource(value: string): Filter;
-
-  getType(): string;
-  setType(value: string): Filter;
-
-  getSubject(): string;
-  setSubject(value: string): Filter;
+  getMatchersMap(): jspb.Map<string, string>;
+  clearMatchersMap(): Filter;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Filter.AsObject;
@@ -31,58 +22,7 @@ export class Filter extends jspb.Message {
 
 export namespace Filter {
   export type AsObject = {
-    specversion: string,
-    source: string,
-    type: string,
-    subject: string,
-  }
-}
-
-export class CloudEventInput extends jspb.Message {
-  getSpecversion(): string;
-  setSpecversion(value: string): CloudEventInput;
-
-  getSource(): string;
-  setSource(value: string): CloudEventInput;
-
-  getType(): string;
-  setType(value: string): CloudEventInput;
-
-  getSubject(): string;
-  setSubject(value: string): CloudEventInput;
-
-  getDataschema(): string;
-  setDataschema(value: string): CloudEventInput;
-
-  getDatacontenttype(): string;
-  setDatacontenttype(value: string): CloudEventInput;
-
-  getData(): google_protobuf_struct_pb.Struct | undefined;
-  setData(value?: google_protobuf_struct_pb.Struct): CloudEventInput;
-  hasData(): boolean;
-  clearData(): CloudEventInput;
-
-  getDataBase64(): string;
-  setDataBase64(value: string): CloudEventInput;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CloudEventInput.AsObject;
-  static toObject(includeInstance: boolean, msg: CloudEventInput): CloudEventInput.AsObject;
-  static serializeBinaryToWriter(message: CloudEventInput, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CloudEventInput;
-  static deserializeBinaryFromReader(message: CloudEventInput, reader: jspb.BinaryReader): CloudEventInput;
-}
-
-export namespace CloudEventInput {
-  export type AsObject = {
-    specversion: string,
-    source: string,
-    type: string,
-    subject: string,
-    dataschema: string,
-    datacontenttype: string,
-    data?: google_protobuf_struct_pb.Struct.AsObject,
-    dataBase64: string,
+    matchersMap: Array<[string, string]>,
   }
 }
 
@@ -121,9 +61,6 @@ export class CloudEvent extends jspb.Message {
   hasTime(): boolean;
   clearTime(): CloudEvent;
 
-  getEventgateAuth(): string;
-  setEventgateAuth(value: string): CloudEvent;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CloudEvent.AsObject;
   static toObject(includeInstance: boolean, msg: CloudEvent): CloudEvent.AsObject;
@@ -144,7 +81,6 @@ export namespace CloudEvent {
     data?: google_protobuf_struct_pb.Struct.AsObject,
     dataBase64: string,
     time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    eventgateAuth: string,
   }
 }
 
