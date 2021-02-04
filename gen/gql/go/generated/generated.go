@@ -293,7 +293,7 @@ scalar Time
 # Map is a k/v map where the key is a string and the value is any value
 scalar Map
 
-# CloudEvent is a specification for describing event data
+# CloudEvent is a specification for describing event data ref: https://cloudevents.io/
 type CloudEvent {
     # Identifies the event.
     id: String!

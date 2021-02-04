@@ -190,7 +190,7 @@
           "description": "Base64 encoded authentication payload(jwt.claims)."
         }
       },
-      "title": "CloudEvent is"
+      "title": "CloudEvent is a specification for describing event data ref: https://cloudevents.io/"
     },
     "eventgateCloudEventInput": {
       "type": "object",

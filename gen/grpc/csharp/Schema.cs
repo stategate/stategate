@@ -648,7 +648,7 @@ namespace Eventgate {
   }
 
   /// <summary>
-  /// CloudEvent is
+  /// CloudEvent is a specification for describing event data ref: https://cloudevents.io/
   /// </summary>
   public sealed partial class CloudEvent : pb::IMessage<CloudEvent> {
     private static readonly pb::MessageParser<CloudEvent> _parser = new pb::MessageParser<CloudEvent>(() => new CloudEvent());

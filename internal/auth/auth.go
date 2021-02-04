@@ -210,8 +210,8 @@ func (a *Auth) StreamInterceptor() grpc.StreamServerInterceptor {
 		}
 		ctx := SetContext(ss.Context(), c)
 		return handler(srv, &stream{
-			ss:   ss,
-			a:    a,
+			ss:  ss,
+			a:   a,
 			ctx: ctx,
 		})
 	}

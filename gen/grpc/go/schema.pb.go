@@ -218,7 +218,7 @@ func (x *CloudEventInput) GetDataBase64() string {
 	return ""
 }
 
-// CloudEvent is
+// CloudEvent is a specification for describing event data ref: https://cloudevents.io/
 type CloudEvent struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

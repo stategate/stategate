@@ -10,8 +10,8 @@ import (
 )
 
 type stream struct {
-	ss   grpc.ServerStream
-	a    *Auth
+	ss  grpc.ServerStream
+	a   *Auth
 	ctx context.Context
 }
 

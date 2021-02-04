@@ -69,7 +69,7 @@ message CloudEventInput {
   string data_base64 =9;
 }
 
-// CloudEvent is
+// CloudEvent is a specification for describing event data ref: https://cloudevents.io/
 message CloudEvent {
   // Identifies the event.
   string id = 1[(validator.field) = {string_not_empty : true}];

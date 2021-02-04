@@ -1,5 +1,26 @@
-# port to serve on. metrics server is started on this port+1
+# port to serve on. metrics server is started on this port+1 if enabled
 port: 8080
+# enable graphQL API
+graphql: true
+# enable rest API
+rest: true
+# enable metrics server
+metrics: true
+# enable grpcweb support
+grpcweb: true
+cors:
+  allowed_origins:
+    - "*"
+  allowed_methods:
+    - "POST"
+    - "PUT"
+    - "GET"
+    - "OPTIONS"
+  allowed_headers:
+    - "*"
+#tls:
+#  cert_file: "/tmp/server.cert"
+#  key_file: "/tmp/server.key"
 logging:
   # enable debug logs
   debug: true
@@ -19,7 +40,7 @@ authentication:
 # authorization options
 authorization:
   requests: |
-    package eventgate.authz.requests
+    package eventgate.authz
 
     default allow = false
 
@@ -28,7 +49,7 @@ authorization:
       input.claims.name = "John Doe"
     }
   responses: |
-    package eventgate.authz.responses
+    package eventgate.authz
 
     default allow = true
 

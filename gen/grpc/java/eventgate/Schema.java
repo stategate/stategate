@@ -3231,7 +3231,7 @@ public final class Schema {
   }
   /**
    * <pre>
-   * CloudEvent is
+   * CloudEvent is a specification for describing event data ref: https://cloudevents.io/
    * </pre>
    *
    * Protobuf type {@code eventgate.CloudEvent}
@@ -4106,7 +4106,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * CloudEvent is
+     * CloudEvent is a specification for describing event data ref: https://cloudevents.io/
      * </pre>
      *
      * Protobuf type {@code eventgate.CloudEvent}

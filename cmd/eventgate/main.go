@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"crypto/tls"
 	"fmt"
 	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
 	"github.com/autom8ter/eventgate/internal/auth"
@@ -16,12 +17,15 @@ import (
 	grpc_validator "github.com/grpc-ecosystem/go-grpc-middleware/validator"
 	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/open-policy-agent/opa/rego"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/rs/cors"
 	"github.com/soheilhy/cmux"
 	"github.com/spf13/pflag"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/reflection"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
@@ -64,11 +68,23 @@ func run(ctx context.Context) {
 
 	lgger.Debug("loaded config", zap.Any("config", c))
 	var (
-		metricsLis net.Listener
-		m          = machine.New(ctx)
-		interrupt  = make(chan os.Signal, 1)
-		apiLis     net.Listener
+		m         = machine.New(ctx)
+		interrupt = make(chan os.Signal, 1)
+		apiLis    net.Listener
+		tlsConfig *tls.Config
 	)
+
+	if c.TLS != nil && c.TLS.Key != "" && c.TLS.Cert != "" {
+		cer, err := tls.LoadX509KeyPair(c.TLS.Cert, c.TLS.Key)
+		if err != nil {
+			lgger.Error("failed to load tls config", zap.Error(err))
+			return
+		}
+		tlsConfig = &tls.Config{
+			Certificates: []tls.Certificate{cer},
+		}
+	}
+
 	signal.Notify(interrupt, os.Interrupt, syscall.SIGTERM)
 	defer signal.Stop(interrupt)
 	{
@@ -89,28 +105,15 @@ func run(ctx context.Context) {
 	grpcMatcher := apiMux.MatchWithWriters(cmux.HTTP2MatchHeaderFieldSendSettings("content-type", "application/grpc"))
 
 	defer grpcMatcher.Close()
-	httpMatchermatcher := apiMux.Match(cmux.Any())
-	defer httpMatchermatcher.Close()
 	m.Go(func(routine machine.Routine) {
 		if err := apiMux.Serve(); err != nil && !strings.Contains(err.Error(), "closed network connection") {
 			lgger.Error("listener mux error", zap.Error(err))
 		}
 	})
-	{
-		addr, err := net.ResolveTCPAddr("tcp", fmt.Sprintf(":%v", c.Port+1))
-		if err != nil {
-			lgger.Error("failed to create listener", zap.Error(err))
-			return
-		}
-		metricsLis, err = net.ListenTCP("tcp", addr)
-		if err != nil {
-			lgger.Error("failed to create listener", zap.Error(err))
-			return
-		}
-	}
-	defer metricsLis.Close()
+
 	var metricServer *http.Server
-	{
+
+	if c.Metrics {
 		router := http.NewServeMux()
 		router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
@@ -122,25 +125,39 @@ func run(ctx context.Context) {
 		router.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
 		router.HandleFunc("/debug/pprof/trace", pprof.Trace)
 		metricServer = &http.Server{Handler: router}
-	}
-	lgger.Info("starting metrics server", zap.String("address", metricsLis.Addr().String()))
-	m.Go(func(routine machine.Routine) {
-		if err := metricServer.Serve(metricsLis); err != nil && err != http.ErrServerClosed {
-			lgger.Error("metrics server failure", zap.Error(err))
+		if tlsConfig != nil {
+			metricServer.TLSConfig = tlsConfig
+			metricServer.TLSNextProto = map[string]func(*http.Server, *tls.Conn, http.Handler){}
 		}
-	})
+		m.Go(func(routine machine.Routine) {
+			addr, err := net.ResolveTCPAddr("tcp", fmt.Sprintf(":%v", c.Port+1))
+			if err != nil {
+				lgger.Error("failed to create metrics listener", zap.Error(err))
+				return
+			}
+			metricsLis, err := net.ListenTCP("tcp", addr)
+			if err != nil {
+				lgger.Error("failed to create metrics listener", zap.Error(err))
+				return
+			}
+			defer metricsLis.Close()
+			lgger.Info("starting metrics server", zap.String("address", metricsLis.Addr().String()))
+			if err := metricServer.Serve(metricsLis); err != nil && err != http.ErrServerClosed {
+				lgger.Error("metrics server failure", zap.Error(err))
+			}
+		})
+	}
 
 	const (
-		requestQuery  = "data.eventgate.authz.requests.allow"
-		responseQuery = "data.eventgate.authz.responses.allow"
+		regoQuery = "data.eventgate.authz.allow"
 	)
 
 	requestPolicy := rego.New(
-		rego.Query(requestQuery),
+		rego.Query(regoQuery),
 		rego.Module("requests.rego", c.Authorization.RequestPolicy),
 	)
 	respPolicy := rego.New(
-		rego.Query(responseQuery),
+		rego.Query(regoQuery),
 		rego.Module("responses.rego", c.Authorization.ResponsePolicy),
 	)
 	a, err := auth.NewAuth(c.Authentication.JwksURI, lgger, requestPolicy, respPolicy)
@@ -174,6 +191,9 @@ func run(ctx context.Context) {
 		grpc.ChainUnaryInterceptor(unary...),
 		grpc.ChainStreamInterceptor(stream...),
 	}
+	if tlsConfig != nil {
+		gopts = append(gopts, grpc.Creds(credentials.NewTLS(tlsConfig)))
+	}
 	service, closer, err := backend.GetProvider(backend.Provider(c.Backend.Name), c.Backend.Config)
 	if err != nil {
 		lgger.Error(err.Error())
@@ -202,12 +222,13 @@ func run(ctx context.Context) {
 		return
 	}
 	defer conn.Close()
-	resolver := gql.NewResolver(eventgate.NewEventGateServiceClient(conn), lgger)
 	mux := http.NewServeMux()
+	if c.GraphQL {
+		resolver := gql.NewResolver(eventgate.NewEventGateServiceClient(conn), lgger)
+		mux.Handle("/graphql", resolver.QueryHandler())
+	}
 
-	mux.Handle("/graphql", resolver.QueryHandler())
-
-	{
+	if c.Rest {
 		restMux := runtime.NewServeMux()
 		if err := eventgate.RegisterEventGateServiceHandler(ctx, restMux, conn); err != nil {
 			lgger.Error("failed to register REST endpoints", zap.Error(err))
@@ -215,15 +236,50 @@ func run(ctx context.Context) {
 		}
 		mux.Handle("/", restMux)
 	}
-	httpServer := &http.Server{
-		Handler: mux,
-	}
-	m.Go(func(routine machine.Routine) {
-		lgger.Info("starting http server", zap.String("address", httpMatchermatcher.Addr().String()))
-		if err := httpServer.Serve(httpMatchermatcher); err != nil && err != http.ErrServerClosed {
-			lgger.Error("http server failure", zap.Error(err))
+
+	var httpServer *http.Server
+	if c.GraphQL || c.Rest {
+		httpServer = &http.Server{
+			Handler: mux,
 		}
-	})
+		if tlsConfig != nil {
+			httpServer.TLSConfig = tlsConfig
+			httpServer.TLSNextProto = map[string]func(*http.Server, *tls.Conn, http.Handler){}
+		}
+		if c.GrpcWeb {
+			wrappedGrpc := grpcweb.WrapServer(
+				gserver,
+				grpcweb.WithWebsockets(true),
+				grpcweb.WithWebsocketPingInterval(15*time.Second),
+			)
+			httpServer.Handler = http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
+				if wrappedGrpc.IsGrpcWebRequest(req) {
+					wrappedGrpc.ServeHTTP(resp, req)
+				} else {
+					mux.ServeHTTP(resp, req)
+				}
+			})
+			if c.Cors != nil {
+				c := cors.New(cors.Options{
+					AllowedOrigins: c.Cors.AllowedOrigins,
+					AllowedMethods: c.Cors.AllowedMethods,
+					AllowedHeaders: c.Cors.AllowedHeaders,
+					ExposedHeaders: c.Cors.ExposedHeaders,
+				})
+				httpServer.Handler = c.Handler(httpServer.Handler)
+			}
+		}
+
+		m.Go(func(routine machine.Routine) {
+			httpMatchermatcher := apiMux.Match(cmux.Any())
+			defer httpMatchermatcher.Close()
+			lgger.Info("starting http server", zap.String("address", httpMatchermatcher.Addr().String()))
+			if err := httpServer.Serve(httpMatchermatcher); err != nil && err != http.ErrServerClosed {
+				lgger.Error("http server failure", zap.Error(err))
+			}
+		})
+	}
+
 	select {
 	case <-interrupt:
 		m.Cancel()
@@ -233,25 +289,29 @@ func run(ctx context.Context) {
 		break
 	}
 	lgger.Debug("shutdown signal received")
-	go func() {
-		shutdownctx, shutdowncancel := context.WithTimeout(context.Background(), 15*time.Second)
-		defer shutdowncancel()
-		if err := httpServer.Shutdown(shutdownctx); err != nil {
-			lgger.Error("http server shutdown failure", zap.Error(err))
-		} else {
-			lgger.Debug("shutdown http server")
-		}
-	}()
-	go func() {
-		shutdownctx, shutdowncancel := context.WithTimeout(context.Background(), 15*time.Second)
-		defer shutdowncancel()
-		if err := metricServer.Shutdown(shutdownctx); err != nil {
-			lgger.Error("metrics server shutdown failure", zap.Error(err))
-		} else {
-			lgger.Debug("shutdown metrics server")
-		}
+	if httpServer != nil {
+		go func() {
+			shutdownctx, shutdowncancel := context.WithTimeout(context.Background(), 15*time.Second)
+			defer shutdowncancel()
+			if err := httpServer.Shutdown(shutdownctx); err != nil {
+				lgger.Error("http server shutdown failure", zap.Error(err))
+			} else {
+				lgger.Debug("shutdown http server")
+			}
+		}()
+	}
+	if metricServer != nil {
+		go func() {
+			shutdownctx, shutdowncancel := context.WithTimeout(context.Background(), 15*time.Second)
+			defer shutdowncancel()
+			if err := metricServer.Shutdown(shutdownctx); err != nil {
+				lgger.Error("metrics server shutdown failure", zap.Error(err))
+			} else {
+				lgger.Debug("shutdown metrics server")
+			}
 
-	}()
+		}()
+	}
 	go func() {
 		stopped := make(chan struct{})
 		go func() {

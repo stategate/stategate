@@ -2,10 +2,32 @@ package config
 
 type Config struct {
 	Port           int64           `yaml:"port"`
+	Metrics        bool            `yaml:"metrics"`
+	Rest           bool            `yaml:"rest"`
+	GraphQL        bool            `yaml:"graphql"`
+	GrpcWeb        bool            `yaml:"grpcweb"`
+	TLS            *TLS            `yaml:"tls"`
+	Cors           *Cors           `yaml:"cors"`
 	Logging        *Logging        `yaml:"logging"`
 	Authorization  *Authorization  `yaml:"authorization"`
 	Authentication *Authentication `yaml:"authentication"`
 	Backend        *Backend        `yaml:"backend"`
+}
+
+type Cors struct {
+	// Normalized list of plain allowed origins
+	AllowedOrigins []string `yaml:"allowed_origins"`
+	// Normalized list of allowed headers
+	AllowedHeaders []string `yaml:"allowed_headers"`
+	// Normalized list of allowed methods
+	AllowedMethods []string `yaml:"allowed_methods"`
+	// Normalized list of exposed headers
+	ExposedHeaders []string `yaml:"exposed_headers"`
+}
+
+type TLS struct {
+	Cert string `yaml:"cert_file"`
+	Key  string `yaml:"key_file"`
 }
 
 type Backend struct {
@@ -43,7 +65,7 @@ func (c *Config) SetDefaults() {
 	if c.Authorization.RequestPolicy == "" {
 		// target = data.eventgate.requests.authz.allow
 		c.Authorization.RequestPolicy = `
-		package eventgate.authz.requests
+		package eventgate.authz
 
 		default allow = false
 `
@@ -51,7 +73,7 @@ func (c *Config) SetDefaults() {
 	if c.Authorization.ResponsePolicy == "" {
 		// target = data.eventgate.responses.authz.allow
 		c.Authorization.ResponsePolicy = `
-		package eventgate.authz.responses
+		package eventgate.authz
 
 		default allow = false
 `

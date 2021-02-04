@@ -10,7 +10,8 @@ metadata:
 data:
   eventgate.yaml: |
     # port to serve on. metrics server is started on this port+1
-    port: 8080
+    server:
+      port: 8080
     logging:
       # enable debug logs
       debug: true
@@ -30,11 +31,11 @@ data:
     # authorization options
     authorization:
       requests: |
-        package eventgate.authz.requests
+        package eventgate.authz
 
         default allow = true
       responses: |
-        package eventgate.authz.responses
+        package eventgate.authz
 
         default allow = true
 
@@ -88,7 +89,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-          image: "colemanword/eventgate:v0.0.7"
+          image: "colemanword/eventgate:v0.0.8"
           imagePullPolicy: Always
           ports:
           - containerPort: 8081

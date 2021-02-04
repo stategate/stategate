@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * CloudEvent is
+ * CloudEvent is a specification for describing event data ref: https://cloudevents.io/
  *
  * Generated from protobuf message <code>eventgate.CloudEvent</code>
  */

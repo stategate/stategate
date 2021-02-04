@@ -14,6 +14,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/timestamppb"
+	"strings"
 	"sync"
 	"time"
 )
@@ -121,7 +122,7 @@ func (s *Service) Receive(r *eventgate.Filter, server eventgate.EventGateService
 	defer cancel()
 	select {
 	case <-ctx.Done():
-		if err := sub.Unsubscribe(); err != nil {
+		if err := sub.Drain(); err != nil {
 			return err
 		}
 		wg.Wait()
@@ -142,5 +143,5 @@ func getNatsSubject(schema, source, typ string, subject string) string {
 	if subject == "" {
 		subject = "*"
 	}
-	return fmt.Sprintf("%s.%s.%s.%s", schema, source, typ, subject)
+	return strings.TrimSpace(fmt.Sprintf("%s.%s.%s.%s", schema, source, typ, subject))
 }
