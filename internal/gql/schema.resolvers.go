@@ -48,47 +48,11 @@ func (r *mutationResolver) Send(ctx context.Context, input model.EventInput) (*s
 	return nil, nil
 }
 
-func (r *mutationResolver) Request(ctx context.Context, input model.EventInput) (*model.Event, error) {
-	i := &eventgate.Event{
-		Id:       "",
-		Channel:  input.Channel,
-		Data:     nil,
-		Metadata: nil,
-		Time:     nil,
-	}
-	if input.ID != nil {
-		i.Id = *input.ID
-	}
-	if input.Time != nil {
-		i.Time = timestamppb.New(*input.Time)
-	}
-	if input.Data != nil {
-		m, _ := structpb.NewStruct(input.Data)
-		i.Data = m
-	}
-	if input.Metadata != nil {
-		i.Metadata = helpers.ConvertMapS(input.Metadata)
-	}
-	msg, err := r.client.Request(ctx, i)
-	if err != nil {
-		return nil, &gqlerror.Error{
-			Message: err.Error(),
-			Path:    graphql.GetPath(ctx),
-		}
-	}
-	return &model.Event{
-		ID:       msg.GetId(),
-		Channel:  msg.GetChannel(),
-		Data:     msg.GetData().AsMap(),
-		Metadata: helpers.ConvertMap(msg.GetMetadata()),
-		Time:     msg.Time.AsTime(),
-	}, nil
-}
-
-func (r *subscriptionResolver) Receive(ctx context.Context, input model.Filter) (<-chan *model.Event, error) {
+func (r *subscriptionResolver) Receive(ctx context.Context, input model.ReceiveOpts) (<-chan *model.Event, error) {
 	ch := make(chan *model.Event)
-	i := &eventgate.Filter{
-		Channel: input.Channel,
+	i := &eventgate.ReceiveOpts{
+		Channel:       input.Channel,
+		ConsumerGroup: helpers.FromStringPointer(input.ConsumerGroup),
 	}
 	stream, err := r.client.Receive(ctx, i)
 	if err != nil {

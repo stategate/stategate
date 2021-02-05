@@ -1,4 +1,4 @@
-package nats
+package stan
 
 import (
 	"context"
@@ -11,7 +11,7 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
-	"github.com/nats-io/nats.go"
+	"github.com/nats-io/stan.go"
 	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -22,19 +22,19 @@ import (
 type Service struct {
 	eventsChan string
 	logger     *logger.Logger
-	conn       *nats.Conn
+	conn       stan.Conn
 	ps         pubsub.PubSub
-	sub        *nats.Subscription
+	sub        stan.Subscription
 }
 
-func NewService(logger *logger.Logger, conn *nats.Conn) (*Service, error) {
+func NewService(logger *logger.Logger, conn stan.Conn) (*Service, error) {
 	s := &Service{
 		logger:     logger,
 		conn:       conn,
 		ps:         pubsub.NewPubSub(),
 		eventsChan: constants.BackendChannel,
 	}
-	sub, err := s.conn.Subscribe(s.eventsChan, func(msg *nats.Msg) {
+	sub, err := s.conn.Subscribe(s.eventsChan, func(msg *stan.Msg) {
 		var event eventgate.Event
 		if err := proto.Unmarshal(msg.Data, &event); err != nil {
 			s.logger.Error("failed to unmarshal event", zap.Error(err))
@@ -101,7 +101,10 @@ func (s *Service) Receive(r *eventgate.ReceiveOpts, server eventgate.EventGateSe
 }
 
 func (s *Service) Close() error {
-	if err := s.sub.Drain(); err != nil {
+	if err := s.sub.Unsubscribe(); err != nil {
+		return err
+	}
+	if err := s.sub.Close(); err != nil {
 		return err
 	}
 	s.ps.Close()

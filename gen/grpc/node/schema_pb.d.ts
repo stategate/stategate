@@ -9,23 +9,27 @@ import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb"
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 import * as github_com_mwitkow_go_proto_validators_validator_pb from "./github.com/mwitkow/go-proto-validators/validator_pb";
 
-export class Filter extends jspb.Message {
+export class ReceiveOpts extends jspb.Message {
   getChannel(): string;
   setChannel(value: string): void;
 
+  getConsumerGroup(): string;
+  setConsumerGroup(value: string): void;
+
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Filter.AsObject;
-  static toObject(includeInstance: boolean, msg: Filter): Filter.AsObject;
+  toObject(includeInstance?: boolean): ReceiveOpts.AsObject;
+  static toObject(includeInstance: boolean, msg: ReceiveOpts): ReceiveOpts.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Filter, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Filter;
-  static deserializeBinaryFromReader(message: Filter, reader: jspb.BinaryReader): Filter;
+  static serializeBinaryToWriter(message: ReceiveOpts, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ReceiveOpts;
+  static deserializeBinaryFromReader(message: ReceiveOpts, reader: jspb.BinaryReader): ReceiveOpts;
 }
 
-export namespace Filter {
+export namespace ReceiveOpts {
   export type AsObject = {
     channel: string,
+    consumerGroup: string,
   }
 }
 

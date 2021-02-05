@@ -187,7 +187,7 @@
                 </li>
               
                 <li>
-                  <a href="#eventgate.Filter"><span class="badge">M</span>Filter</a>
+                  <a href="#eventgate.ReceiveOpts"><span class="badge">M</span>ReceiveOpts</a>
                 </li>
               
               
@@ -333,8 +333,8 @@
 
         
       
-        <h3 id="eventgate.Filter">Filter</h3>
-        <p>Filter filters events before they are received by a consumer</p>
+        <h3 id="eventgate.ReceiveOpts">ReceiveOpts</h3>
+        <p>ReceiveOpts filters events before they are received by a consumer</p>
 
         
           <table class="field-table">
@@ -345,6 +345,13 @@
               
                 <tr>
                   <td>channel</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>consumer_group</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -406,17 +413,17 @@
               </tr>
             
               <tr>
-                <td>Request</td>
-                <td><a href="#eventgate.Event">Event</a></td>
-                <td><a href="#eventgate.Event">Event</a></td>
-                <td><p>Request sends an event as a request and waits for an event as a response</p></td>
-              </tr>
-            
-              <tr>
                 <td>Receive</td>
-                <td><a href="#eventgate.Filter">Filter</a></td>
+                <td><a href="#eventgate.ReceiveOpts">ReceiveOpts</a></td>
                 <td><a href="#eventgate.Event">Event</a> stream</td>
-                <td><p>Receive streams events to a client that pass a Filter</p></td>
+                <td><p>Request sends an event as a request and waits for an event as a response
+ rpc Request(Event) returns(Event){
+   option (google.api.http) = {
+     put: &#34;/request&#34;
+     body: &#34;*&#34;
+   };
+ }
+Receive streams events to a client that pass a Filter</p></td>
               </tr>
             
           </tbody>
@@ -443,16 +450,6 @@
                 <td>Send</td>
                 <td>PUT</td>
                 <td>/send</td>
-                <td>*</td>
-              </tr>
-              
-            
-              
-              
-              <tr>
-                <td>Request</td>
-                <td>PUT</td>
-                <td>/request</td>
                 <td>*</td>
               </tr>
               

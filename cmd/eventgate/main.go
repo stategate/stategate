@@ -64,7 +64,10 @@ func run(ctx context.Context) {
 		return
 	}
 	c.SetDefaults()
-	var lgger = logger.New(c.Logging.Debug)
+	var lgger = logger.New(
+		c.Logging.Debug,
+		zap.String("backend", c.Backend.Name),
+	)
 
 	lgger.Debug("loaded config", zap.Any("config", c))
 	var (
@@ -194,7 +197,7 @@ func run(ctx context.Context) {
 	if tlsConfig != nil {
 		gopts = append(gopts, grpc.Creds(credentials.NewTLS(tlsConfig)))
 	}
-	service, closer, err := backend.GetProvider(backend.Provider(c.Backend.Name), c.Backend.Config)
+	service, closer, err := backend.GetProvider(backend.Provider(c.Backend.Name), lgger, c.Backend.Config)
 	if err != nil {
 		lgger.Error(err.Error())
 		return

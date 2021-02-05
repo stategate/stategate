@@ -19,7 +19,7 @@ const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwi
 
 func TestIntegration(t *testing.T) {
 	wg := &sync.WaitGroup{}
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	client, err := eventgate_client_go.NewClient(ctx, "localhost:8080", eventgate_client_go.WithTokenSource(oauth2.StaticTokenSource(&oauth2.Token{
 		AccessToken: token,
@@ -30,10 +30,28 @@ func TestIntegration(t *testing.T) {
 	go func() {
 		wg.Add(1)
 		defer wg.Done()
-		if err := client.Receive(ctx, &eventgate.Filter{
+		if err := client.Receive(ctx, &eventgate.ReceiveOpts{
 			Channel: "testing",
 		}, func(event *eventgate.Event) bool {
-			t.Logf("event received: %s\n", jsonString(event))
+			t.Logf("event received on channel 1: %s\n", jsonString(event))
+			return ctx.Err() == nil
+		}); err != nil {
+			s, ok := status.FromError(err)
+			if !ok {
+				t.Fatal(err.Error())
+			}
+			if ok && s.Code() != codes.DeadlineExceeded {
+				t.Fatal(err.Error())
+			}
+		}
+	}()
+	go func() {
+		wg.Add(1)
+		defer wg.Done()
+		if err := client.Receive(ctx, &eventgate.ReceiveOpts{
+			Channel: "testing",
+		}, func(event *eventgate.Event) bool {
+			t.Logf("event received on channel 2: %s\n", jsonString(event))
 			return ctx.Err() == nil
 		}); err != nil {
 			s, ok := status.FromError(err)

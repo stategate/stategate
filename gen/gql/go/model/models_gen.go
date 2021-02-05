@@ -22,6 +22,7 @@ type EventInput struct {
 	Time     *time.Time             `json:"time"`
 }
 
-type Filter struct {
-	Channel string `json:"channel"`
+type ReceiveOpts struct {
+	Channel       string  `json:"channel"`
+	ConsumerGroup *string `json:"consumer_group"`
 }

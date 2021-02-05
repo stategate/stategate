@@ -34,11 +34,13 @@ Status: MVP
 - [x] Structured JSON Logs
 - [x] [Sample Kubernetes Manifest](k8s.yaml)
 - [x] Pluggable Backends
+    - [x] In-Memory
     - [x] Nats
-    - [ ] Nats Streaming(Stan)
-    - [ ] Kafka
-    - [ ] Redis
-    - [ ] In-Memory
+    - [x] Nats Streaming(Stan)
+    - [x] Redis
+    - [x] Kafka
+    - [ ] RabbitMQ
+
     
 ## Command Line
 
@@ -77,14 +79,23 @@ cors:
 logging:
   # enable debug logs
   debug: true
-  # log request/response payloads
-  payloads: false
 
-# pluggable backend: [nats]
+# pluggable backend: [inmem, redis, nats, stan]
 backend:
-  name: "nats"
-  config:
-    url: "0.0.0.0:4444"
+  name: "inmem"
+
+#backend:
+#  name: "redis"
+#  config:
+#    addr: "0.0.0.0:6379"
+#backend:
+#  name: "nats"
+#  config:
+#    addr: "0.0.0.0:4444"
+#backend:
+#  name: "stan"
+#  config:
+#    addr: "0.0.0.0:4444"
 
 # authentication options
 authentication:
@@ -92,7 +103,7 @@ authentication:
   # if empty, inbound jwt's will not be verified.
   jwks_uri: ""
 
-# authorization options
+# authorization options(input.claims(object), input.method(string), input.body(object), input.client_stream(bool), input.server_stream(bool)
 authorization:
   requests: |
     package eventgate.authz

@@ -21,7 +21,7 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-func (this *Filter) Validate() error {
+func (this *ReceiveOpts) Validate() error {
 	if this.Channel == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("Channel", fmt.Errorf(`value '%v' must not be an empty string`, this.Channel))
 	}

@@ -14,8 +14,8 @@ public final class Schema {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface FilterOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:eventgate.Filter)
+  public interface ReceiveOptsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:eventgate.ReceiveOpts)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -27,25 +27,36 @@ public final class Schema {
      */
     com.google.protobuf.ByteString
         getChannelBytes();
+
+    /**
+     * <code>string consumer_group = 2;</code>
+     */
+    java.lang.String getConsumerGroup();
+    /**
+     * <code>string consumer_group = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getConsumerGroupBytes();
   }
   /**
    * <pre>
-   * Filter filters events before they are received by a consumer
+   * ReceiveOpts filters events before they are received by a consumer
    * </pre>
    *
-   * Protobuf type {@code eventgate.Filter}
+   * Protobuf type {@code eventgate.ReceiveOpts}
    */
-  public  static final class Filter extends
+  public  static final class ReceiveOpts extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:eventgate.Filter)
-      FilterOrBuilder {
+      // @@protoc_insertion_point(message_implements:eventgate.ReceiveOpts)
+      ReceiveOptsOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use Filter.newBuilder() to construct.
-    private Filter(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ReceiveOpts.newBuilder() to construct.
+    private ReceiveOpts(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private Filter() {
+    private ReceiveOpts() {
       channel_ = "";
+      consumerGroup_ = "";
     }
 
     @java.lang.Override
@@ -53,7 +64,7 @@ public final class Schema {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Filter(
+    private ReceiveOpts(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -78,6 +89,12 @@ public final class Schema {
               channel_ = s;
               break;
             }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              consumerGroup_ = s;
+              break;
+            }
             default: {
               if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -99,15 +116,15 @@ public final class Schema {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return eventgate.Schema.internal_static_eventgate_Filter_descriptor;
+      return eventgate.Schema.internal_static_eventgate_ReceiveOpts_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return eventgate.Schema.internal_static_eventgate_Filter_fieldAccessorTable
+      return eventgate.Schema.internal_static_eventgate_ReceiveOpts_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              eventgate.Schema.Filter.class, eventgate.Schema.Filter.Builder.class);
+              eventgate.Schema.ReceiveOpts.class, eventgate.Schema.ReceiveOpts.Builder.class);
     }
 
     public static final int CHANNEL_FIELD_NUMBER = 1;
@@ -144,6 +161,40 @@ public final class Schema {
       }
     }
 
+    public static final int CONSUMER_GROUP_FIELD_NUMBER = 2;
+    private volatile java.lang.Object consumerGroup_;
+    /**
+     * <code>string consumer_group = 2;</code>
+     */
+    public java.lang.String getConsumerGroup() {
+      java.lang.Object ref = consumerGroup_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        consumerGroup_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string consumer_group = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getConsumerGroupBytes() {
+      java.lang.Object ref = consumerGroup_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        consumerGroup_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -161,6 +212,9 @@ public final class Schema {
       if (!getChannelBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, channel_);
       }
+      if (!getConsumerGroupBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, consumerGroup_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -173,6 +227,9 @@ public final class Schema {
       if (!getChannelBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, channel_);
       }
+      if (!getConsumerGroupBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, consumerGroup_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -183,14 +240,16 @@ public final class Schema {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof eventgate.Schema.Filter)) {
+      if (!(obj instanceof eventgate.Schema.ReceiveOpts)) {
         return super.equals(obj);
       }
-      eventgate.Schema.Filter other = (eventgate.Schema.Filter) obj;
+      eventgate.Schema.ReceiveOpts other = (eventgate.Schema.ReceiveOpts) obj;
 
       boolean result = true;
       result = result && getChannel()
           .equals(other.getChannel());
+      result = result && getConsumerGroup()
+          .equals(other.getConsumerGroup());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -204,74 +263,76 @@ public final class Schema {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + CHANNEL_FIELD_NUMBER;
       hash = (53 * hash) + getChannel().hashCode();
+      hash = (37 * hash) + CONSUMER_GROUP_FIELD_NUMBER;
+      hash = (53 * hash) + getConsumerGroup().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static eventgate.Schema.Filter parseFrom(
+    public static eventgate.Schema.ReceiveOpts parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static eventgate.Schema.Filter parseFrom(
+    public static eventgate.Schema.ReceiveOpts parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static eventgate.Schema.Filter parseFrom(
+    public static eventgate.Schema.ReceiveOpts parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static eventgate.Schema.Filter parseFrom(
+    public static eventgate.Schema.ReceiveOpts parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static eventgate.Schema.Filter parseFrom(byte[] data)
+    public static eventgate.Schema.ReceiveOpts parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static eventgate.Schema.Filter parseFrom(
+    public static eventgate.Schema.ReceiveOpts parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static eventgate.Schema.Filter parseFrom(java.io.InputStream input)
+    public static eventgate.Schema.ReceiveOpts parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static eventgate.Schema.Filter parseFrom(
+    public static eventgate.Schema.ReceiveOpts parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static eventgate.Schema.Filter parseDelimitedFrom(java.io.InputStream input)
+    public static eventgate.Schema.ReceiveOpts parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static eventgate.Schema.Filter parseDelimitedFrom(
+    public static eventgate.Schema.ReceiveOpts parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static eventgate.Schema.Filter parseFrom(
+    public static eventgate.Schema.ReceiveOpts parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static eventgate.Schema.Filter parseFrom(
+    public static eventgate.Schema.ReceiveOpts parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -284,7 +345,7 @@ public final class Schema {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(eventgate.Schema.Filter prototype) {
+    public static Builder newBuilder(eventgate.Schema.ReceiveOpts prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -301,29 +362,29 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Filter filters events before they are received by a consumer
+     * ReceiveOpts filters events before they are received by a consumer
      * </pre>
      *
-     * Protobuf type {@code eventgate.Filter}
+     * Protobuf type {@code eventgate.ReceiveOpts}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:eventgate.Filter)
-        eventgate.Schema.FilterOrBuilder {
+        // @@protoc_insertion_point(builder_implements:eventgate.ReceiveOpts)
+        eventgate.Schema.ReceiveOptsOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return eventgate.Schema.internal_static_eventgate_Filter_descriptor;
+        return eventgate.Schema.internal_static_eventgate_ReceiveOpts_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return eventgate.Schema.internal_static_eventgate_Filter_fieldAccessorTable
+        return eventgate.Schema.internal_static_eventgate_ReceiveOpts_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                eventgate.Schema.Filter.class, eventgate.Schema.Filter.Builder.class);
+                eventgate.Schema.ReceiveOpts.class, eventgate.Schema.ReceiveOpts.Builder.class);
       }
 
-      // Construct using eventgate.Schema.Filter.newBuilder()
+      // Construct using eventgate.Schema.ReceiveOpts.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -343,23 +404,25 @@ public final class Schema {
         super.clear();
         channel_ = "";
 
+        consumerGroup_ = "";
+
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return eventgate.Schema.internal_static_eventgate_Filter_descriptor;
+        return eventgate.Schema.internal_static_eventgate_ReceiveOpts_descriptor;
       }
 
       @java.lang.Override
-      public eventgate.Schema.Filter getDefaultInstanceForType() {
-        return eventgate.Schema.Filter.getDefaultInstance();
+      public eventgate.Schema.ReceiveOpts getDefaultInstanceForType() {
+        return eventgate.Schema.ReceiveOpts.getDefaultInstance();
       }
 
       @java.lang.Override
-      public eventgate.Schema.Filter build() {
-        eventgate.Schema.Filter result = buildPartial();
+      public eventgate.Schema.ReceiveOpts build() {
+        eventgate.Schema.ReceiveOpts result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -367,9 +430,10 @@ public final class Schema {
       }
 
       @java.lang.Override
-      public eventgate.Schema.Filter buildPartial() {
-        eventgate.Schema.Filter result = new eventgate.Schema.Filter(this);
+      public eventgate.Schema.ReceiveOpts buildPartial() {
+        eventgate.Schema.ReceiveOpts result = new eventgate.Schema.ReceiveOpts(this);
         result.channel_ = channel_;
+        result.consumerGroup_ = consumerGroup_;
         onBuilt();
         return result;
       }
@@ -408,18 +472,22 @@ public final class Schema {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof eventgate.Schema.Filter) {
-          return mergeFrom((eventgate.Schema.Filter)other);
+        if (other instanceof eventgate.Schema.ReceiveOpts) {
+          return mergeFrom((eventgate.Schema.ReceiveOpts)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(eventgate.Schema.Filter other) {
-        if (other == eventgate.Schema.Filter.getDefaultInstance()) return this;
+      public Builder mergeFrom(eventgate.Schema.ReceiveOpts other) {
+        if (other == eventgate.Schema.ReceiveOpts.getDefaultInstance()) return this;
         if (!other.getChannel().isEmpty()) {
           channel_ = other.channel_;
+          onChanged();
+        }
+        if (!other.getConsumerGroup().isEmpty()) {
+          consumerGroup_ = other.consumerGroup_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -437,11 +505,11 @@ public final class Schema {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        eventgate.Schema.Filter parsedMessage = null;
+        eventgate.Schema.ReceiveOpts parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (eventgate.Schema.Filter) e.getUnfinishedMessage();
+          parsedMessage = (eventgate.Schema.ReceiveOpts) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -519,6 +587,75 @@ public final class Schema {
         onChanged();
         return this;
       }
+
+      private java.lang.Object consumerGroup_ = "";
+      /**
+       * <code>string consumer_group = 2;</code>
+       */
+      public java.lang.String getConsumerGroup() {
+        java.lang.Object ref = consumerGroup_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          consumerGroup_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string consumer_group = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getConsumerGroupBytes() {
+        java.lang.Object ref = consumerGroup_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          consumerGroup_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string consumer_group = 2;</code>
+       */
+      public Builder setConsumerGroup(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        consumerGroup_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string consumer_group = 2;</code>
+       */
+      public Builder clearConsumerGroup() {
+        
+        consumerGroup_ = getDefaultInstance().getConsumerGroup();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string consumer_group = 2;</code>
+       */
+      public Builder setConsumerGroupBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        consumerGroup_ = value;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -532,41 +669,41 @@ public final class Schema {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:eventgate.Filter)
+      // @@protoc_insertion_point(builder_scope:eventgate.ReceiveOpts)
     }
 
-    // @@protoc_insertion_point(class_scope:eventgate.Filter)
-    private static final eventgate.Schema.Filter DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:eventgate.ReceiveOpts)
+    private static final eventgate.Schema.ReceiveOpts DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new eventgate.Schema.Filter();
+      DEFAULT_INSTANCE = new eventgate.Schema.ReceiveOpts();
     }
 
-    public static eventgate.Schema.Filter getDefaultInstance() {
+    public static eventgate.Schema.ReceiveOpts getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<Filter>
-        PARSER = new com.google.protobuf.AbstractParser<Filter>() {
+    private static final com.google.protobuf.Parser<ReceiveOpts>
+        PARSER = new com.google.protobuf.AbstractParser<ReceiveOpts>() {
       @java.lang.Override
-      public Filter parsePartialFrom(
+      public ReceiveOpts parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Filter(input, extensionRegistry);
+        return new ReceiveOpts(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<Filter> parser() {
+    public static com.google.protobuf.Parser<ReceiveOpts> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<Filter> getParserForType() {
+    public com.google.protobuf.Parser<ReceiveOpts> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public eventgate.Schema.Filter getDefaultInstanceForType() {
+    public eventgate.Schema.ReceiveOpts getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2224,10 +2361,10 @@ public final class Schema {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_eventgate_Filter_descriptor;
+    internal_static_eventgate_ReceiveOpts_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_eventgate_Filter_fieldAccessorTable;
+      internal_static_eventgate_ReceiveOpts_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_eventgate_Event_descriptor;
   private static final 
@@ -2252,20 +2389,19 @@ public final class Schema {
       "proto\032\037google/protobuf/timestamp.proto\032\031" +
       "google/protobuf/any.proto\032\033google/protob" +
       "uf/empty.proto\0326github.com/mwitkow/go-pr" +
-      "oto-validators/validator.proto\"!\n\006Filter" +
-      "\022\027\n\007channel\030\001 \001(\tB\006\342\337\037\002X\001\"\350\001\n\005Event\022\n\n\002i" +
-      "d\030\001 \001(\t\022\027\n\007channel\030\002 \001(\tB\006\342\337\037\002X\001\022-\n\004data" +
-      "\030\005 \001(\0132\027.google.protobuf.StructB\006\342\337\037\002 \001\022" +
-      "0\n\010metadata\030\006 \003(\0132\036.eventgate.Event.Meta" +
-      "dataEntry\022(\n\004time\030\024 \001(\0132\032.google.protobu" +
-      "f.Timestamp\032/\n\rMetadataEntry\022\013\n\003key\030\001 \001(" +
-      "\t\022\r\n\005value\030\002 \001(\t:\0028\0012\336\001\n\020EventGateServic" +
-      "e\022B\n\004Send\022\020.eventgate.Event\032\026.google.pro" +
-      "tobuf.Empty\"\020\202\323\344\223\002\n\032\005/send:\001*\022B\n\007Request" +
-      "\022\020.eventgate.Event\032\020.eventgate.Event\"\023\202\323" +
-      "\344\223\002\r\032\010/request:\001*\022B\n\007Receive\022\021.eventgate" +
-      ".Filter\032\020.eventgate.Event\"\020\202\323\344\223\002\n\022\010/rece" +
-      "ive0\001B\013Z\teventgateb\006proto3"
+      "oto-validators/validator.proto\">\n\013Receiv" +
+      "eOpts\022\027\n\007channel\030\001 \001(\tB\006\342\337\037\002X\001\022\026\n\016consum" +
+      "er_group\030\002 \001(\t\"\350\001\n\005Event\022\n\n\002id\030\001 \001(\t\022\027\n\007" +
+      "channel\030\002 \001(\tB\006\342\337\037\002X\001\022-\n\004data\030\005 \001(\0132\027.go" +
+      "ogle.protobuf.StructB\006\342\337\037\002 \001\0220\n\010metadata" +
+      "\030\006 \003(\0132\036.eventgate.Event.MetadataEntry\022(" +
+      "\n\004time\030\024 \001(\0132\032.google.protobuf.Timestamp" +
+      "\032/\n\rMetadataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030" +
+      "\002 \001(\t:\0028\0012\237\001\n\020EventGateService\022B\n\004Send\022\020" +
+      ".eventgate.Event\032\026.google.protobuf.Empty" +
+      "\"\020\202\323\344\223\002\n\032\005/send:\001*\022G\n\007Receive\022\026.eventgat" +
+      "e.ReceiveOpts\032\020.eventgate.Event\"\020\202\323\344\223\002\n\022" +
+      "\010/receive0\001B\013Z\teventgateb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2285,12 +2421,12 @@ public final class Schema {
           com.google.protobuf.EmptyProto.getDescriptor(),
           validator.Validator.getDescriptor(),
         }, assigner);
-    internal_static_eventgate_Filter_descriptor =
+    internal_static_eventgate_ReceiveOpts_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_eventgate_Filter_fieldAccessorTable = new
+    internal_static_eventgate_ReceiveOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_eventgate_Filter_descriptor,
-        new java.lang.String[] { "Channel", });
+        internal_static_eventgate_ReceiveOpts_descriptor,
+        new java.lang.String[] { "Channel", "ConsumerGroup", });
     internal_static_eventgate_Event_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_eventgate_Event_fieldAccessorTable = new

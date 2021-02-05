@@ -9,18 +9,53 @@ metadata:
   name: eventgate-configmap
 data:
   eventgate.yaml: |
-    # port to serve on. metrics server is started on this port+1
-    server:
-      port: 8080
+    # port to serve on. metrics server is started on this port+1 if enabled
+    port: 8080
+    # enable graphQL API
+    graphql: true
+    # enable rest API
+    rest: true
+    # enable metrics server
+    metrics: true
+    # enable grpcweb support
+    grpcweb: true
+    cors:
+      allowed_origins:
+        - "*"
+      allowed_methods:
+        - "POST"
+        - "PUT"
+        - "GET"
+        - "OPTIONS"
+      allowed_headers:
+        - "*"
+    #tls:
+    #  cert_file: "/tmp/server.cert"
+    #  key_file: "/tmp/server.key"
     logging:
       # enable debug logs
       debug: true
 
-    # pluggable backend: [nats]
+    # pluggable backend: [inmem, redis, nats, stan]
     backend:
-      name: "nats"
-      config:
-        url: "nats:4444"
+      name: "inmem"
+
+    #backend:
+    #  name: "redis"
+    #  config:
+    #    addr: "0.0.0.0:6379"
+    #backend:
+    #  name: "nats"
+    #  config:
+    #    addr: "0.0.0.0:4444"
+    #backend:
+    #  name: "stan"
+    #  config:
+    #    addr: "0.0.0.0:4444"
+    #backend:
+    #  name: "stan"
+    #  config:
+    #    addr: "0.0.0.0:4444"
 
     # authentication options
     authentication:
@@ -33,7 +68,12 @@ data:
       requests: |
         package eventgate.authz
 
-        default allow = true
+        default allow = false
+
+        allow {
+          input.claims.sub = "1234567890"
+          input.claims.name = "John Doe"
+        }
       responses: |
         package eventgate.authz
 
@@ -89,7 +129,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-          image: "colemanword/eventgate:v0.0.11"
+          image: "colemanword/eventgate:v0.0.12"
           imagePullPolicy: Always
           ports:
           - containerPort: 8081

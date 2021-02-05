@@ -53,24 +53,22 @@ type ComplexityRoot struct {
 	}
 
 	Mutation struct {
-		Request func(childComplexity int, input model.EventInput) int
-		Send    func(childComplexity int, input model.EventInput) int
+		Send func(childComplexity int, input model.EventInput) int
 	}
 
 	Query struct {
 	}
 
 	Subscription struct {
-		Receive func(childComplexity int, input model.Filter) int
+		Receive func(childComplexity int, input model.ReceiveOpts) int
 	}
 }
 
 type MutationResolver interface {
 	Send(ctx context.Context, input model.EventInput) (*string, error)
-	Request(ctx context.Context, input model.EventInput) (*model.Event, error)
 }
 type SubscriptionResolver interface {
-	Receive(ctx context.Context, input model.Filter) (<-chan *model.Event, error)
+	Receive(ctx context.Context, input model.ReceiveOpts) (<-chan *model.Event, error)
 }
 
 type executableSchema struct {
@@ -123,18 +121,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Event.Time(childComplexity), true
 
-	case "Mutation.request":
-		if e.complexity.Mutation.Request == nil {
-			break
-		}
-
-		args, err := ec.field_Mutation_request_args(context.TODO(), rawArgs)
-		if err != nil {
-			return 0, false
-		}
-
-		return e.complexity.Mutation.Request(childComplexity, args["input"].(model.EventInput)), true
-
 	case "Mutation.send":
 		if e.complexity.Mutation.Send == nil {
 			break
@@ -157,7 +143,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			return 0, false
 		}
 
-		return e.complexity.Subscription.Receive(childComplexity, args["input"].(model.Filter)), true
+		return e.complexity.Subscription.Receive(childComplexity, args["input"].(model.ReceiveOpts)), true
 
 	}
 	return 0, false
@@ -273,21 +259,20 @@ input EventInput {
     time: Time
 }
 
-# Filter filters cloud events
-input Filter {
+# ReceiveOpts filters cloud events
+input ReceiveOpts {
     channel: String!
+    consumer_group: String
 }
 
 type Mutation {
     # send an event(one way)
     send(input: EventInput!): String
-    # request sends an event as a request and waits for an event as a response
-    request(input: EventInput!): Event!
 }
 
 type Subscription {
     # receive streams events to a client that pass a Filter
-    receive(input: Filter!): Event!
+    receive(input: ReceiveOpts!): Event!
 }`, BuiltIn: false},
 }
 var parsedSchema = gqlparser.MustLoadSchema(sources...)
@@ -295,21 +280,6 @@ var parsedSchema = gqlparser.MustLoadSchema(sources...)
 // endregion ************************** generated!.gotpl **************************
 
 // region    ***************************** args.gotpl *****************************
-
-func (ec *executionContext) field_Mutation_request_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
-	var err error
-	args := map[string]interface{}{}
-	var arg0 model.EventInput
-	if tmp, ok := rawArgs["input"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNEventInput2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEventInput(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["input"] = arg0
-	return args, nil
-}
 
 func (ec *executionContext) field_Mutation_send_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
@@ -344,10 +314,10 @@ func (ec *executionContext) field_Query___type_args(ctx context.Context, rawArgs
 func (ec *executionContext) field_Subscription_receive_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
-	var arg0 model.Filter
+	var arg0 model.ReceiveOpts
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNFilter2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐFilter(ctx, tmp)
+		arg0, err = ec.unmarshalNReceiveOpts2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐReceiveOpts(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -605,48 +575,6 @@ func (ec *executionContext) _Mutation_send(ctx context.Context, field graphql.Co
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Mutation_request(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	fc := &graphql.FieldContext{
-		Object:     "Mutation",
-		Field:      field,
-		Args:       nil,
-		IsMethod:   true,
-		IsResolver: true,
-	}
-
-	ctx = graphql.WithFieldContext(ctx, fc)
-	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Mutation_request_args(ctx, rawArgs)
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	fc.Args = args
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Mutation().Request(rctx, args["input"].(model.EventInput))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(*model.Event)
-	fc.Result = res
-	return ec.marshalNEvent2ᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx, field.Selections, res)
-}
-
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
@@ -743,7 +671,7 @@ func (ec *executionContext) _Subscription_receive(ctx context.Context, field gra
 	fc.Args = args
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Subscription().Receive(rctx, args["input"].(model.Filter))
+		return ec.resolvers.Subscription().Receive(rctx, args["input"].(model.ReceiveOpts))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -1909,8 +1837,8 @@ func (ec *executionContext) unmarshalInputEventInput(ctx context.Context, obj in
 	return it, nil
 }
 
-func (ec *executionContext) unmarshalInputFilter(ctx context.Context, obj interface{}) (model.Filter, error) {
-	var it model.Filter
+func (ec *executionContext) unmarshalInputReceiveOpts(ctx context.Context, obj interface{}) (model.ReceiveOpts, error) {
+	var it model.ReceiveOpts
 	var asMap = obj.(map[string]interface{})
 
 	for k, v := range asMap {
@@ -1920,6 +1848,14 @@ func (ec *executionContext) unmarshalInputFilter(ctx context.Context, obj interf
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("channel"))
 			it.Channel, err = ec.unmarshalNString2string(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "consumer_group":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("consumer_group"))
+			it.ConsumerGroup, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -1998,11 +1934,6 @@ func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet)
 			out.Values[i] = graphql.MarshalString("Mutation")
 		case "send":
 			out.Values[i] = ec._Mutation_send(ctx, field)
-		case "request":
-			out.Values[i] = ec._Mutation_request(ctx, field)
-			if out.Values[i] == graphql.Null {
-				invalids++
-			}
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -2343,11 +2274,6 @@ func (ec *executionContext) unmarshalNEventInput2githubᚗcomᚋautom8terᚋeven
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNFilter2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐFilter(ctx context.Context, v interface{}) (model.Filter, error) {
-	res, err := ec.unmarshalInputFilter(ctx, v)
-	return res, graphql.ErrorOnPath(ctx, err)
-}
-
 func (ec *executionContext) unmarshalNMap2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
 	res, err := graphql.UnmarshalMap(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -2367,6 +2293,11 @@ func (ec *executionContext) marshalNMap2map(ctx context.Context, sel ast.Selecti
 		}
 	}
 	return res
+}
+
+func (ec *executionContext) unmarshalNReceiveOpts2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐReceiveOpts(ctx context.Context, v interface{}) (model.ReceiveOpts, error) {
+	res, err := ec.unmarshalInputReceiveOpts(ctx, v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) unmarshalNString2string(ctx context.Context, v interface{}) (string, error) {

@@ -12,7 +12,7 @@ import "google/protobuf/empty.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 // EventGateService is an identity-aware API gateway for message-queues/event sinks applications
-// Pluggable backends include: [nats]
+// Pluggable backends include: [inmem, redis, nats]
 service EventGateService {
   // Broadcast an event(one way)
   rpc Send(Event) returns(google.protobuf.Empty){
@@ -21,15 +21,8 @@ service EventGateService {
       body: "*"
     };
   }
-  // Request sends an event as a request and waits for an event as a response
-  rpc Request(Event) returns(Event){
-    option (google.api.http) = {
-      put: "/request"
-      body: "*"
-    };
-  }
   // Receive streams events to a client that pass a Filter
-  rpc Receive(Filter) returns(stream Event){
+  rpc Receive(ReceiveOpts) returns(stream Event){
     option (google.api.http) = {
       get: "/receive"
     };
@@ -37,9 +30,10 @@ service EventGateService {
 }
 
 
-// Filter filters events before they are received by a consumer
-message Filter {
+// ReceiveOpts filters events before they are received by a consumer
+message ReceiveOpts {
   string channel =1[(validator.field) = {string_not_empty : true}];
+  string consumer_group =2;
 }
 
 // Event is a specification for describing event data

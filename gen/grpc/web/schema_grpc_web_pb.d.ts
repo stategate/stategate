@@ -16,15 +16,8 @@ export class EventGateServiceClient {
                response: google_protobuf_empty_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
-  request(
-    request: schema_pb.Event,
-    metadata: grpcWeb.Metadata | undefined,
-    callback: (err: grpcWeb.Error,
-               response: schema_pb.Event) => void
-  ): grpcWeb.ClientReadableStream<schema_pb.Event>;
-
   receive(
-    request: schema_pb.Filter,
+    request: schema_pb.ReceiveOpts,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<schema_pb.Event>;
 
@@ -40,13 +33,8 @@ export class EventGateServicePromiseClient {
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
-  request(
-    request: schema_pb.Event,
-    metadata?: grpcWeb.Metadata
-  ): Promise<schema_pb.Event>;
-
   receive(
-    request: schema_pb.Filter,
+    request: schema_pb.ReceiveOpts,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<schema_pb.Event>;
 

@@ -14,6 +14,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/metadata"
+	"io"
 )
 
 // Options holds configuration options
@@ -172,11 +173,7 @@ func (c *Client) Send(ctx context.Context, in *eventgate.Event) error {
 	return err
 }
 
-func (c *Client) Request(ctx context.Context, in *eventgate.Event) (*eventgate.Event, error) {
-	return c.client.Request(ctx, in)
-}
-
-func (c *Client) Receive(ctx context.Context, in *eventgate.Filter, fn func(even *eventgate.Event) bool) error {
+func (c *Client) Receive(ctx context.Context, in *eventgate.ReceiveOpts, fn func(even *eventgate.Event) bool) error {
 	stream, err := c.client.Receive(ctx, in)
 	if err != nil {
 		return err
@@ -188,6 +185,9 @@ func (c *Client) Receive(ctx context.Context, in *eventgate.Filter, fn func(even
 		default:
 			msg, err := stream.Recv()
 			if err != nil {
+				if err == io.EOF {
+					return nil
+				}
 				return err
 			}
 			if !fn(msg) {

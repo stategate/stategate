@@ -31,19 +31,18 @@ input EventInput {
     time: Time
 }
 
-# Filter filters cloud events
-input Filter {
+# ReceiveOpts filters cloud events
+input ReceiveOpts {
     channel: String!
+    consumer_group: String
 }
 
 type Mutation {
     # send an event(one way)
     send(input: EventInput!): String
-    # request sends an event as a request and waits for an event as a response
-    request(input: EventInput!): Event!
 }
 
 type Subscription {
     # receive streams events to a client that pass a Filter
-    receive(input: Filter!): Event!
+    receive(input: ReceiveOpts!): Event!
 }

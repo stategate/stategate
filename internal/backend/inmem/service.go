@@ -1,17 +1,14 @@
-package nats
+package inmem
 
 import (
 	"context"
 	"fmt"
 	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
 	"github.com/autom8ter/eventgate/internal/auth"
-	"github.com/autom8ter/eventgate/internal/constants"
 	"github.com/autom8ter/eventgate/internal/logger"
 	"github.com/autom8ter/machine/pubsub"
-	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
-	"github.com/nats-io/nats.go"
 	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -20,36 +17,15 @@ import (
 )
 
 type Service struct {
-	eventsChan string
-	logger     *logger.Logger
-	conn       *nats.Conn
-	ps         pubsub.PubSub
-	sub        *nats.Subscription
+	logger *logger.Logger
+	ps     pubsub.PubSub
 }
 
-func NewService(logger *logger.Logger, conn *nats.Conn) (*Service, error) {
-	s := &Service{
-		logger:     logger,
-		conn:       conn,
-		ps:         pubsub.NewPubSub(),
-		eventsChan: constants.BackendChannel,
+func NewService(logger *logger.Logger) *Service {
+	return &Service{
+		logger: logger,
+		ps:     pubsub.NewPubSub(),
 	}
-	sub, err := s.conn.Subscribe(s.eventsChan, func(msg *nats.Msg) {
-		var event eventgate.Event
-		if err := proto.Unmarshal(msg.Data, &event); err != nil {
-			s.logger.Error("failed to unmarshal event", zap.Error(err))
-			return
-		}
-		if err := s.ps.Publish(event.GetChannel(), &event); err != nil {
-			s.logger.Error("failed to unmarshal event", zap.Error(err))
-			return
-		}
-	})
-	if err != nil {
-		return nil, err
-	}
-	s.sub = sub
-	return s, nil
 }
 
 func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, error) {
@@ -70,11 +46,7 @@ func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, e
 	if toSend.Time == nil {
 		toSend.Time = timestamppb.New(time.Now())
 	}
-	bits, err := proto.Marshal(toSend)
-	if err != nil {
-		return nil, err
-	}
-	if err := s.conn.Publish(s.eventsChan, bits); err != nil {
+	if err := s.ps.Publish(r.Channel, toSend); err != nil {
 		return nil, err
 	}
 	return &empty.Empty{}, nil
@@ -95,15 +67,13 @@ func (s *Service) Receive(r *eventgate.ReceiveOpts, server eventgate.EventGateSe
 		}
 		return true
 	}); err != nil {
+		s.logger.Error("reception failure", zap.Error(err))
 		return status.Error(codes.Internal, "reception failure")
 	}
 	return nil
 }
 
 func (s *Service) Close() error {
-	if err := s.sub.Drain(); err != nil {
-		return err
-	}
 	s.ps.Close()
 	return nil
 }

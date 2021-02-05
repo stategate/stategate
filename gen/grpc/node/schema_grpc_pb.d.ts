@@ -9,8 +9,7 @@ import * as grpc from "grpc";
 
 interface IEventGateServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   send: grpc.MethodDefinition<schema_pb.Event, google_protobuf_empty_pb.Empty>;
-  request: grpc.MethodDefinition<schema_pb.Event, schema_pb.Event>;
-  receive: grpc.MethodDefinition<schema_pb.Filter, schema_pb.Event>;
+  receive: grpc.MethodDefinition<schema_pb.ReceiveOpts, schema_pb.Event>;
 }
 
 export const EventGateServiceService: IEventGateServiceService;
@@ -20,9 +19,6 @@ export class EventGateServiceClient extends grpc.Client {
   send(argument: schema_pb.Event, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
   send(argument: schema_pb.Event, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
   send(argument: schema_pb.Event, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
-  request(argument: schema_pb.Event, callback: grpc.requestCallback<schema_pb.Event>): grpc.ClientUnaryCall;
-  request(argument: schema_pb.Event, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Event>): grpc.ClientUnaryCall;
-  request(argument: schema_pb.Event, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Event>): grpc.ClientUnaryCall;
-  receive(argument: schema_pb.Filter, metadataOrOptions?: grpc.Metadata | grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.Event>;
-  receive(argument: schema_pb.Filter, metadata?: grpc.Metadata | null, options?: grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.Event>;
+  receive(argument: schema_pb.ReceiveOpts, metadataOrOptions?: grpc.Metadata | grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.Event>;
+  receive(argument: schema_pb.ReceiveOpts, metadata?: grpc.Metadata | null, options?: grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.Event>;
 }

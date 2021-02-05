@@ -1,4 +1,4 @@
-package nats
+package redis
 
 import (
 	"context"
@@ -8,10 +8,10 @@ import (
 	"github.com/autom8ter/eventgate/internal/constants"
 	"github.com/autom8ter/eventgate/internal/logger"
 	"github.com/autom8ter/machine/pubsub"
+	"github.com/go-redis/redis/v8"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
-	"github.com/nats-io/nats.go"
 	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -22,32 +22,36 @@ import (
 type Service struct {
 	eventsChan string
 	logger     *logger.Logger
-	conn       *nats.Conn
+	conn       *redis.Client
 	ps         pubsub.PubSub
-	sub        *nats.Subscription
+	sub        *redis.PubSub
 }
 
-func NewService(logger *logger.Logger, conn *nats.Conn) (*Service, error) {
+func NewService(logger *logger.Logger, client *redis.Client) (*Service, error) {
 	s := &Service{
 		logger:     logger,
-		conn:       conn,
+		conn:       client,
 		ps:         pubsub.NewPubSub(),
 		eventsChan: constants.BackendChannel,
 	}
-	sub, err := s.conn.Subscribe(s.eventsChan, func(msg *nats.Msg) {
-		var event eventgate.Event
-		if err := proto.Unmarshal(msg.Data, &event); err != nil {
-			s.logger.Error("failed to unmarshal event", zap.Error(err))
-			return
+	sub := s.conn.Subscribe(context.Background(), s.eventsChan)
+	go func() {
+		ch := sub.Channel()
+		for {
+			select {
+			case msg := <-ch:
+				var event eventgate.Event
+				if err := proto.Unmarshal([]byte(msg.Payload), &event); err != nil {
+					s.logger.Error("failed to unmarshal event", zap.Error(err))
+					return
+				}
+				if err := s.ps.Publish(event.GetChannel(), &event); err != nil {
+					s.logger.Error("failed to unmarshal event", zap.Error(err))
+					return
+				}
+			}
 		}
-		if err := s.ps.Publish(event.GetChannel(), &event); err != nil {
-			s.logger.Error("failed to unmarshal event", zap.Error(err))
-			return
-		}
-	})
-	if err != nil {
-		return nil, err
-	}
+	}()
 	s.sub = sub
 	return s, nil
 }
@@ -74,7 +78,7 @@ func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, e
 	if err != nil {
 		return nil, err
 	}
-	if err := s.conn.Publish(s.eventsChan, bits); err != nil {
+	if _, err := s.conn.Publish(ctx, s.eventsChan, bits).Result(); err != nil {
 		return nil, err
 	}
 	return &empty.Empty{}, nil
@@ -101,7 +105,7 @@ func (s *Service) Receive(r *eventgate.ReceiveOpts, server eventgate.EventGateSe
 }
 
 func (s *Service) Close() error {
-	if err := s.sub.Drain(); err != nil {
+	if err := s.sub.Close(); err != nil {
 		return err
 	}
 	s.ps.Close()

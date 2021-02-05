@@ -25,11 +25,26 @@ logging:
   # enable debug logs
   debug: true
 
-# pluggable backend: [nats]
+# pluggable backend: [inmem, redis, nats, stan]
 backend:
-  name: "nats"
-  config:
-    url: "0.0.0.0:4444"
+  name: "inmem"
+
+#backend:
+#  name: "redis"
+#  config:
+#    addr: "0.0.0.0:6379"
+#backend:
+#  name: "nats"
+#  config:
+#    addr: "0.0.0.0:4444"
+#backend:
+#  name: "stan"
+#  config:
+#    addr: "0.0.0.0:4444"
+#backend:
+#  name: "stan"
+#  config:
+#    addr: "0.0.0.0:4444"
 
 # authentication options
 authentication:

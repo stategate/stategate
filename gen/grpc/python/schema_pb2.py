@@ -25,27 +25,34 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='eventgate',
   syntax='proto3',
   serialized_options=_b('Z\teventgate'),
-  serialized_pb=_b('\n\x0cschema.proto\x12\teventgate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\"!\n\x06\x46ilter\x12\x17\n\x07\x63hannel\x18\x01 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\"\xe8\x01\n\x05\x45vent\x12\n\n\x02id\x18\x01 \x01(\t\x12\x17\n\x07\x63hannel\x18\x02 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12-\n\x04\x64\x61ta\x18\x05 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12\x30\n\x08metadata\x18\x06 \x03(\x0b\x32\x1e.eventgate.Event.MetadataEntry\x12(\n\x04time\x18\x14 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x32\xde\x01\n\x10\x45ventGateService\x12\x42\n\x04Send\x12\x10.eventgate.Event\x1a\x16.google.protobuf.Empty\"\x10\x82\xd3\xe4\x93\x02\n\x1a\x05/send:\x01*\x12\x42\n\x07Request\x12\x10.eventgate.Event\x1a\x10.eventgate.Event\"\x13\x82\xd3\xe4\x93\x02\r\x1a\x08/request:\x01*\x12\x42\n\x07Receive\x12\x11.eventgate.Filter\x1a\x10.eventgate.Event\"\x10\x82\xd3\xe4\x93\x02\n\x12\x08/receive0\x01\x42\x0bZ\teventgateb\x06proto3')
+  serialized_pb=_b('\n\x0cschema.proto\x12\teventgate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\">\n\x0bReceiveOpts\x12\x17\n\x07\x63hannel\x18\x01 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\x16\n\x0e\x63onsumer_group\x18\x02 \x01(\t\"\xe8\x01\n\x05\x45vent\x12\n\n\x02id\x18\x01 \x01(\t\x12\x17\n\x07\x63hannel\x18\x02 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12-\n\x04\x64\x61ta\x18\x05 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12\x30\n\x08metadata\x18\x06 \x03(\x0b\x32\x1e.eventgate.Event.MetadataEntry\x12(\n\x04time\x18\x14 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x32\x9f\x01\n\x10\x45ventGateService\x12\x42\n\x04Send\x12\x10.eventgate.Event\x1a\x16.google.protobuf.Empty\"\x10\x82\xd3\xe4\x93\x02\n\x1a\x05/send:\x01*\x12G\n\x07Receive\x12\x16.eventgate.ReceiveOpts\x1a\x10.eventgate.Event\"\x10\x82\xd3\xe4\x93\x02\n\x12\x08/receive0\x01\x42\x0bZ\teventgateb\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_any__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,github_dot_com_dot_mwitkow_dot_go__proto__validators_dot_validator__pb2.DESCRIPTOR,])
 
 
 
 
-_FILTER = _descriptor.Descriptor(
-  name='Filter',
-  full_name='eventgate.Filter',
+_RECEIVEOPTS = _descriptor.Descriptor(
+  name='ReceiveOpts',
+  full_name='eventgate.ReceiveOpts',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='channel', full_name='eventgate.Filter.channel', index=0,
+      name='channel', full_name='eventgate.ReceiveOpts.channel', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='consumer_group', full_name='eventgate.ReceiveOpts.consumer_group', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -59,7 +66,7 @@ _FILTER = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=232,
-  serialized_end=265,
+  serialized_end=294,
 )
 
 
@@ -96,8 +103,8 @@ _EVENT_METADATAENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=453,
-  serialized_end=500,
+  serialized_start=482,
+  serialized_end=529,
 )
 
 _EVENT = _descriptor.Descriptor(
@@ -154,24 +161,24 @@ _EVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=268,
-  serialized_end=500,
+  serialized_start=297,
+  serialized_end=529,
 )
 
 _EVENT_METADATAENTRY.containing_type = _EVENT
 _EVENT.fields_by_name['data'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
 _EVENT.fields_by_name['metadata'].message_type = _EVENT_METADATAENTRY
 _EVENT.fields_by_name['time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-DESCRIPTOR.message_types_by_name['Filter'] = _FILTER
+DESCRIPTOR.message_types_by_name['ReceiveOpts'] = _RECEIVEOPTS
 DESCRIPTOR.message_types_by_name['Event'] = _EVENT
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-Filter = _reflection.GeneratedProtocolMessageType('Filter', (_message.Message,), dict(
-  DESCRIPTOR = _FILTER,
+ReceiveOpts = _reflection.GeneratedProtocolMessageType('ReceiveOpts', (_message.Message,), dict(
+  DESCRIPTOR = _RECEIVEOPTS,
   __module__ = 'schema_pb2'
-  # @@protoc_insertion_point(class_scope:eventgate.Filter)
+  # @@protoc_insertion_point(class_scope:eventgate.ReceiveOpts)
   ))
-_sym_db.RegisterMessage(Filter)
+_sym_db.RegisterMessage(ReceiveOpts)
 
 Event = _reflection.GeneratedProtocolMessageType('Event', (_message.Message,), dict(
 
@@ -190,7 +197,7 @@ _sym_db.RegisterMessage(Event.MetadataEntry)
 
 
 DESCRIPTOR._options = None
-_FILTER.fields_by_name['channel']._options = None
+_RECEIVEOPTS.fields_by_name['channel']._options = None
 _EVENT_METADATAENTRY._options = None
 _EVENT.fields_by_name['channel']._options = None
 _EVENT.fields_by_name['data']._options = None
@@ -201,8 +208,8 @@ _EVENTGATESERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=503,
-  serialized_end=725,
+  serialized_start=532,
+  serialized_end=691,
   methods=[
   _descriptor.MethodDescriptor(
     name='Send',
@@ -214,20 +221,11 @@ _EVENTGATESERVICE = _descriptor.ServiceDescriptor(
     serialized_options=_b('\202\323\344\223\002\n\032\005/send:\001*'),
   ),
   _descriptor.MethodDescriptor(
-    name='Request',
-    full_name='eventgate.EventGateService.Request',
-    index=1,
-    containing_service=None,
-    input_type=_EVENT,
-    output_type=_EVENT,
-    serialized_options=_b('\202\323\344\223\002\r\032\010/request:\001*'),
-  ),
-  _descriptor.MethodDescriptor(
     name='Receive',
     full_name='eventgate.EventGateService.Receive',
-    index=2,
+    index=1,
     containing_service=None,
-    input_type=_FILTER,
+    input_type=_RECEIVEOPTS,
     output_type=_EVENT,
     serialized_options=_b('\202\323\344\223\002\n\022\010/receive'),
   ),

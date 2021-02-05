@@ -29,22 +29,21 @@ namespace Eventgate {
             "Z2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90bxoZZ29vZ2xlL3Byb3RvYnVm",
             "L2FueS5wcm90bxobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5LnByb3RvGjZnaXRo",
             "dWIuY29tL213aXRrb3cvZ28tcHJvdG8tdmFsaWRhdG9ycy92YWxpZGF0b3Iu",
-            "cHJvdG8iIQoGRmlsdGVyEhcKB2NoYW5uZWwYASABKAlCBuLfHwJYASLoAQoF",
-            "RXZlbnQSCgoCaWQYASABKAkSFwoHY2hhbm5lbBgCIAEoCUIG4t8fAlgBEi0K",
-            "BGRhdGEYBSABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAES",
-            "MAoIbWV0YWRhdGEYBiADKAsyHi5ldmVudGdhdGUuRXZlbnQuTWV0YWRhdGFF",
-            "bnRyeRIoCgR0aW1lGBQgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFt",
-            "cBovCg1NZXRhZGF0YUVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEo",
-            "CToCOAEy3gEKEEV2ZW50R2F0ZVNlcnZpY2USQgoEU2VuZBIQLmV2ZW50Z2F0",
-            "ZS5FdmVudBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIQgtPkkwIKGgUvc2Vu",
-            "ZDoBKhJCCgdSZXF1ZXN0EhAuZXZlbnRnYXRlLkV2ZW50GhAuZXZlbnRnYXRl",
-            "LkV2ZW50IhOC0+STAg0aCC9yZXF1ZXN0OgEqEkIKB1JlY2VpdmUSES5ldmVu",
-            "dGdhdGUuRmlsdGVyGhAuZXZlbnRnYXRlLkV2ZW50IhCC0+STAgoSCC9yZWNl",
-            "aXZlMAFCC1oJZXZlbnRnYXRlYgZwcm90bzM="));
+            "cHJvdG8iPgoLUmVjZWl2ZU9wdHMSFwoHY2hhbm5lbBgBIAEoCUIG4t8fAlgB",
+            "EhYKDmNvbnN1bWVyX2dyb3VwGAIgASgJIugBCgVFdmVudBIKCgJpZBgBIAEo",
+            "CRIXCgdjaGFubmVsGAIgASgJQgbi3x8CWAESLQoEZGF0YRgFIAEoCzIXLmdv",
+            "b2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgARIwCghtZXRhZGF0YRgGIAMo",
+            "CzIeLmV2ZW50Z2F0ZS5FdmVudC5NZXRhZGF0YUVudHJ5EigKBHRpbWUYFCAB",
+            "KAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wGi8KDU1ldGFkYXRhRW50",
+            "cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ATKfAQoQRXZlbnRH",
+            "YXRlU2VydmljZRJCCgRTZW5kEhAuZXZlbnRnYXRlLkV2ZW50GhYuZ29vZ2xl",
+            "LnByb3RvYnVmLkVtcHR5IhCC0+STAgoaBS9zZW5kOgEqEkcKB1JlY2VpdmUS",
+            "Fi5ldmVudGdhdGUuUmVjZWl2ZU9wdHMaEC5ldmVudGdhdGUuRXZlbnQiEILT",
+            "5JMCChIIL3JlY2VpdmUwAUILWglldmVudGdhdGViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Filter), global::Eventgate.Filter.Parser, new[]{ "Channel" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.ReceiveOpts), global::Eventgate.ReceiveOpts.Parser, new[]{ "Channel", "ConsumerGroup" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Event), global::Eventgate.Event.Parser, new[]{ "Id", "Channel", "Data", "Metadata", "Time" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
           }));
     }
@@ -53,13 +52,13 @@ namespace Eventgate {
   }
   #region Messages
   /// <summary>
-  /// Filter filters events before they are received by a consumer
+  /// ReceiveOpts filters events before they are received by a consumer
   /// </summary>
-  public sealed partial class Filter : pb::IMessage<Filter> {
-    private static readonly pb::MessageParser<Filter> _parser = new pb::MessageParser<Filter>(() => new Filter());
+  public sealed partial class ReceiveOpts : pb::IMessage<ReceiveOpts> {
+    private static readonly pb::MessageParser<ReceiveOpts> _parser = new pb::MessageParser<ReceiveOpts>(() => new ReceiveOpts());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<Filter> Parser { get { return _parser; } }
+    public static pb::MessageParser<ReceiveOpts> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -72,21 +71,22 @@ namespace Eventgate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Filter() {
+    public ReceiveOpts() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Filter(Filter other) : this() {
+    public ReceiveOpts(ReceiveOpts other) : this() {
       channel_ = other.channel_;
+      consumerGroup_ = other.consumerGroup_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Filter Clone() {
-      return new Filter(this);
+    public ReceiveOpts Clone() {
+      return new ReceiveOpts(this);
     }
 
     /// <summary>Field number for the "channel" field.</summary>
@@ -100,13 +100,24 @@ namespace Eventgate {
       }
     }
 
+    /// <summary>Field number for the "consumer_group" field.</summary>
+    public const int ConsumerGroupFieldNumber = 2;
+    private string consumerGroup_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as Filter);
+    public string ConsumerGroup {
+      get { return consumerGroup_; }
+      set {
+        consumerGroup_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Filter other) {
+    public override bool Equals(object other) {
+      return Equals(other as ReceiveOpts);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ReceiveOpts other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -114,6 +125,7 @@ namespace Eventgate {
         return true;
       }
       if (Channel != other.Channel) return false;
+      if (ConsumerGroup != other.ConsumerGroup) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -121,6 +133,7 @@ namespace Eventgate {
     public override int GetHashCode() {
       int hash = 1;
       if (Channel.Length != 0) hash ^= Channel.GetHashCode();
+      if (ConsumerGroup.Length != 0) hash ^= ConsumerGroup.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -138,6 +151,10 @@ namespace Eventgate {
         output.WriteRawTag(10);
         output.WriteString(Channel);
       }
+      if (ConsumerGroup.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(ConsumerGroup);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -149,6 +166,9 @@ namespace Eventgate {
       if (Channel.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Channel);
       }
+      if (ConsumerGroup.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ConsumerGroup);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -156,12 +176,15 @@ namespace Eventgate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Filter other) {
+    public void MergeFrom(ReceiveOpts other) {
       if (other == null) {
         return;
       }
       if (other.Channel.Length != 0) {
         Channel = other.Channel;
+      }
+      if (other.ConsumerGroup.Length != 0) {
+        ConsumerGroup = other.ConsumerGroup;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -176,6 +199,10 @@ namespace Eventgate {
             break;
           case 10: {
             Channel = input.ReadString();
+            break;
+          }
+          case 18: {
+            ConsumerGroup = input.ReadString();
             break;
           }
         }

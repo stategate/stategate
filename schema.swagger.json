@@ -13,7 +13,7 @@
   "paths": {
     "/receive": {
       "get": {
-        "summary": "Receive streams events to a client that pass a Filter",
+        "summary": "// Request sends an event as a request and waits for an event as a response\n rpc Request(Event) returns(Event){\n   option (google.api.http) = {\n     put: \"/request\"\n     body: \"*\"\n   };\n }\nReceive streams events to a client that pass a Filter",
         "operationId": "EventGateService_Receive",
         "responses": {
           "200": {
@@ -44,39 +44,12 @@
             "in": "query",
             "required": false,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "EventGateService"
-        ]
-      }
-    },
-    "/request": {
-      "put": {
-        "summary": "Request sends an event as a request and waits for an event as a response",
-        "operationId": "EventGateService_Request",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/eventgateEvent"
-            }
           },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/eventgateEvent"
-            }
+            "name": "consumerGroup",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
