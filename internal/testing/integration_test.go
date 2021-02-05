@@ -5,6 +5,8 @@ import (
 	eventgate_client_go "github.com/autom8ter/eventgate/eventgate-client-go"
 	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
 	"golang.org/x/oauth2"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/structpb"
@@ -17,7 +19,7 @@ const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwi
 
 func TestIntegration(t *testing.T) {
 	wg := &sync.WaitGroup{}
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	client, err := eventgate_client_go.NewClient(ctx, "localhost:8080", eventgate_client_go.WithTokenSource(oauth2.StaticTokenSource(&oauth2.Token{
 		AccessToken: token,
@@ -34,7 +36,13 @@ func TestIntegration(t *testing.T) {
 			t.Logf("event received: %s\n", jsonString(event))
 			return ctx.Err() == nil
 		}); err != nil {
-			t.Fatal(err.Error())
+			s, ok := status.FromError(err)
+			if !ok {
+				t.Fatal(err.Error())
+			}
+			if ok && s.Code() != codes.DeadlineExceeded {
+				t.Fatal(err.Error())
+			}
 		}
 	}()
 	data, _ := structpb.NewStruct(map[string]interface{}{

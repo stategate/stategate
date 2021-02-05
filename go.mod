@@ -4,7 +4,7 @@ go 1.15
 
 require (
 	github.com/99designs/gqlgen v0.13.0
-	github.com/autom8ter/machine v1.1.2
+	github.com/autom8ter/machine v1.3.0
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.4.3
@@ -36,9 +36,9 @@ require (
 	golang.org/x/oauth2 v0.0.0-20210112200429-01de73cf58bd
 	golang.org/x/text v0.3.4 // indirect
 	google.golang.org/genproto v0.0.0-20210106152847-07624b53cd92
-	google.golang.org/grpc v1.34.0
+	google.golang.org/grpc v1.35.0
 	google.golang.org/grpc/examples v0.0.0-20201123174403-6d0f0110bf69 // indirect
 	google.golang.org/protobuf v1.25.0
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
-	gopkg.in/yaml.v2 v2.3.0
+	gopkg.in/yaml.v2 v2.4.0
 )
