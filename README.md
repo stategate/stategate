@@ -1,6 +1,6 @@
 # eventgate
 
-A [cloudevents-compatible](https://cloudevents.io/) identity-aware gateway for event sinks
+An identity-aware gateway for message queues & event sinks
 
 Status: MVP
 

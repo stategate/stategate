@@ -167,16 +167,16 @@ func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken b
 	), nil
 }
 
-func (c *Client) Send(ctx context.Context, in *eventgate.CloudEventInput) error {
+func (c *Client) Send(ctx context.Context, in *eventgate.Event) error {
 	_, err := c.client.Send(ctx, in)
 	return err
 }
 
-func (c *Client) Request(ctx context.Context, in *eventgate.CloudEventInput) (*eventgate.CloudEvent, error) {
+func (c *Client) Request(ctx context.Context, in *eventgate.Event) (*eventgate.Event, error) {
 	return c.client.Request(ctx, in)
 }
 
-func (c *Client) Receive(ctx context.Context, in *eventgate.Filter, fn func(even *eventgate.CloudEvent) bool) error {
+func (c *Client) Receive(ctx context.Context, in *eventgate.Filter, fn func(even *eventgate.Event) bool) error {
 	stream, err := c.client.Receive(ctx, in)
 	if err != nil {
 		return err

@@ -11,25 +11,25 @@ import "google/protobuf/any.proto";
 import "google/protobuf/empty.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
-// EventGateService is an identity-aware API gateway for CloudEvents applications
+// EventGateService is an identity-aware API gateway for message-queues/event sinks applications
 // Pluggable backends include: [nats]
 service EventGateService {
-  // Brodcast an event(one way)
-  rpc Send(CloudEventInput) returns(google.protobuf.Empty){
+  // Broadcast an event(one way)
+  rpc Send(Event) returns(google.protobuf.Empty){
     option (google.api.http) = {
       put: "/send"
       body: "*"
     };
   }
   // Request sends an event as a request and waits for an event as a response
-  rpc Request(CloudEventInput) returns(CloudEvent){
+  rpc Request(Event) returns(Event){
     option (google.api.http) = {
       put: "/request"
       body: "*"
     };
   }
   // Receive streams events to a client that pass a Filter
-  rpc Receive(Filter) returns(stream CloudEvent){
+  rpc Receive(Filter) returns(stream Event){
     option (google.api.http) = {
       get: "/receive"
     };
@@ -37,60 +37,21 @@ service EventGateService {
 }
 
 
-// Filter filters cloud events
+// Filter filters events before they are received by a consumer
 message Filter {
-  // The version of the CloudEvents specification which the event uses.
-  string specversion = 1;
-  // Identifies the context in which an event happened.
-  string source = 2;
-  // Describes the type of event related to the originating occurrence.
-  string type = 3;
-  // Describes the subject of the event in the context of the event producer (identified by source).
-  string subject =4;
+  string channel =1[(validator.field) = {string_not_empty : true}];
 }
 
-// CloudEventInput constructs a cloud event
-message CloudEventInput {
-  // The version of the CloudEvents specification which the event uses.
-  string specversion = 2[(validator.field) = {string_not_empty : true}];
-  // Identifies the context in which an event happened.
-  string source = 3[(validator.field) = {string_not_empty : true}];
-  // Describes the type of event related to the originating occurrence.
-  string type = 4[(validator.field) = {string_not_empty : true}];
-  // Describes the subject of the event in the context of the event producer (identified by source).
-  string subject =5;
-  // Identifies the schema that data adheres to.
-  string dataschema =6;
-  // Content type of the data value. Must adhere to RFC 2046 format.
-  string datacontenttype =7;
-  //The event payload(structured).
-  google.protobuf.Struct data = 8;
-  // Base64 encoded event payload. Must adhere to RFC4648.
-  string data_base64 =9;
-}
-
-// CloudEvent is a specification for describing event data ref: https://cloudevents.io/
-message CloudEvent {
-  // Identifies the event.
-  string id = 1[(validator.field) = {string_not_empty : true}];
-  // The version of the CloudEvents specification which the event uses.
-  string specversion = 2[(validator.field) = {string_not_empty : true}];
-  // Identifies the context in which an event happened.
-  string source = 3[(validator.field) = {string_not_empty : true}];
-  // Describes the type of event related to the originating occurrence.
-  string type = 4[(validator.field) = {string_not_empty : true}];
-  // Describes the subject of the event in the context of the event producer (identified by source).
-  string subject =5;
-  // Identifies the schema that data adheres to.
-  string dataschema =6;
-  // Content type of the data value. Must adhere to RFC 2046 format.
-  string datacontenttype =7;
+// Event is a specification for describing event data
+message Event {
+  // Identifies the event. If an ID is not sent with the event, a uuid will be assigned
+  string id = 1;
+  // Identifies the channel/subject to which the event will be sent
+  string channel = 2[(validator.field) = {string_not_empty : true}];
   // The event payload(structured).
-  google.protobuf.Struct data = 8;
-  // Base64 encoded event payload. Must adhere to RFC4648.
-  string data_base64 =9;
-  // Timestamp of when the occurrence happened. Must adhere to RFC 3339.
-  google.protobuf.Timestamp time =20[(validator.field) = {msg_exists : true}];
-  // Base64 encoded authentication payload(jwt.claims).
-  string eventgate_auth =21;
+  google.protobuf.Struct data = 5[(validator.field) = {msg_exists : true}];
+  // Arbitrary metadata about the event
+  map<string, string> metadata =6;
+  // Timestamp of when the occurrence happened. Must adhere to RFC 3339. If a timestamp is not sent with the event, the current time will be assigned
+  google.protobuf.Timestamp time =20;
 }

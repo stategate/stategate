@@ -29,13 +29,10 @@ func TestIntegration(t *testing.T) {
 		wg.Add(1)
 		defer wg.Done()
 		if err := client.Receive(ctx, &eventgate.Filter{
-			Specversion: "1.0.1",
-			Source:      "colemanword@gmail.com",
-			Type:        "test_email",
-			Subject:     "hello_world",
-		}, func(event *eventgate.CloudEvent) bool {
+			Channel: "testing",
+		}, func(event *eventgate.Event) bool {
 			t.Logf("event received: %s\n", jsonString(event))
-			return ctx.Err() != nil
+			return ctx.Err() == nil
 		}); err != nil {
 			t.Fatal(err.Error())
 		}
@@ -44,12 +41,9 @@ func TestIntegration(t *testing.T) {
 		"message": "hello world, friend",
 	})
 	for x := 0; x < 10; x++ {
-		if err := client.Send(ctx, &eventgate.CloudEventInput{
-			Specversion: "1.0.1",
-			Source:      "colemanword@gmail.com",
-			Type:        "test_email",
-			Subject:     "hello_world",
-			Data:        data,
+		if err := client.Send(ctx, &eventgate.Event{
+			Channel: "testing",
+			Data:    data,
 		}); err != nil {
 			t.Fatal(err.Error())
 		}

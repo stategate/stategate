@@ -14,22 +14,29 @@ import (
 	"github.com/vektah/gqlparser/v2/gqlerror"
 	"go.uber.org/zap"
 	"google.golang.org/protobuf/types/known/structpb"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-func (r *mutationResolver) Send(ctx context.Context, input model.CloudEventInput) (*string, error) {
-	i := &eventgate.CloudEventInput{
-		Specversion:     input.Specversion,
-		Source:          input.Source,
-		Type:            input.Type,
-		Subject:         helpers.FromStringPointer(input.Subject),
-		Dataschema:      helpers.FromStringPointer(input.Dataschema),
-		Datacontenttype: helpers.FromStringPointer(input.Datacontenttype),
-		Data:            nil,
-		DataBase64:      helpers.FromStringPointer(input.DataBase64),
+func (r *mutationResolver) Send(ctx context.Context, input model.EventInput) (*string, error) {
+	i := &eventgate.Event{
+		Id:       "",
+		Channel:  input.Channel,
+		Data:     nil,
+		Metadata: nil,
+		Time:     nil,
+	}
+	if input.ID != nil {
+		i.Id = *input.ID
+	}
+	if input.Time != nil {
+		i.Time = timestamppb.New(*input.Time)
 	}
 	if input.Data != nil {
 		m, _ := structpb.NewStruct(input.Data)
 		i.Data = m
+	}
+	if input.Metadata != nil {
+		i.Metadata = helpers.ConvertMapS(input.Metadata)
 	}
 	_, err := r.client.Send(ctx, i)
 	if err != nil {
@@ -41,50 +48,47 @@ func (r *mutationResolver) Send(ctx context.Context, input model.CloudEventInput
 	return nil, nil
 }
 
-func (r *mutationResolver) Request(ctx context.Context, input model.CloudEventInput) (*model.CloudEvent, error) {
-	i := &eventgate.CloudEventInput{
-		Specversion:     input.Specversion,
-		Source:          input.Source,
-		Type:            input.Type,
-		Subject:         helpers.FromStringPointer(input.Subject),
-		Dataschema:      helpers.FromStringPointer(input.Dataschema),
-		Datacontenttype: helpers.FromStringPointer(input.Datacontenttype),
-		Data:            nil,
-		DataBase64:      helpers.FromStringPointer(input.DataBase64),
+func (r *mutationResolver) Request(ctx context.Context, input model.EventInput) (*model.Event, error) {
+	i := &eventgate.Event{
+		Id:       "",
+		Channel:  input.Channel,
+		Data:     nil,
+		Metadata: nil,
+		Time:     nil,
+	}
+	if input.ID != nil {
+		i.Id = *input.ID
+	}
+	if input.Time != nil {
+		i.Time = timestamppb.New(*input.Time)
 	}
 	if input.Data != nil {
 		m, _ := structpb.NewStruct(input.Data)
 		i.Data = m
 	}
-	resp, err := r.client.Request(ctx, i)
+	if input.Metadata != nil {
+		i.Metadata = helpers.ConvertMapS(input.Metadata)
+	}
+	msg, err := r.client.Request(ctx, i)
 	if err != nil {
 		return nil, &gqlerror.Error{
 			Message: err.Error(),
 			Path:    graphql.GetPath(ctx),
 		}
 	}
-	return &model.CloudEvent{
-		Specversion:     resp.GetSpecversion(),
-		ID:              resp.GetId(),
-		Source:          resp.GetSource(),
-		Type:            resp.GetType(),
-		Subject:         helpers.ToStringPointer(resp.GetSubject()),
-		Dataschema:      helpers.ToStringPointer(resp.GetDataschema()),
-		Datacontenttype: helpers.ToStringPointer(resp.GetDatacontenttype()),
-		Data:            resp.GetData().AsMap(),
-		DataBase64:      helpers.ToStringPointer(resp.GetDataBase64()),
-		Time:            resp.Time.AsTime(),
-		EventgateAuth:   helpers.ToStringPointer(resp.GetEventgateAuth()),
+	return &model.Event{
+		ID:       msg.GetId(),
+		Channel:  msg.GetChannel(),
+		Data:     msg.GetData().AsMap(),
+		Metadata: helpers.ConvertMap(msg.GetMetadata()),
+		Time:     msg.Time.AsTime(),
 	}, nil
 }
 
-func (r *subscriptionResolver) Receive(ctx context.Context, input model.Filter) (<-chan *model.CloudEvent, error) {
-	ch := make(chan *model.CloudEvent)
+func (r *subscriptionResolver) Receive(ctx context.Context, input model.Filter) (<-chan *model.Event, error) {
+	ch := make(chan *model.Event)
 	i := &eventgate.Filter{
-		Specversion: helpers.FromStringPointer(input.Specversion),
-		Source:      helpers.FromStringPointer(input.Source),
-		Type:        helpers.FromStringPointer(input.Type),
-		Subject:     helpers.FromStringPointer(input.Subject),
+		Channel: input.Channel,
 	}
 	stream, err := r.client.Receive(ctx, i)
 	if err != nil {
@@ -107,18 +111,12 @@ func (r *subscriptionResolver) Receive(ctx context.Context, input model.Filter) 
 					r.logger.Error("failed to receive gql subscription", zap.Error(err))
 					continue
 				}
-				ch <- &model.CloudEvent{
-					Specversion:     msg.GetSpecversion(),
-					ID:              msg.GetId(),
-					Source:          msg.GetSource(),
-					Type:            msg.GetType(),
-					Subject:         helpers.ToStringPointer(msg.GetSubject()),
-					Dataschema:      helpers.ToStringPointer(msg.GetDataschema()),
-					Datacontenttype: helpers.ToStringPointer(msg.GetDatacontenttype()),
-					Data:            msg.GetData().AsMap(),
-					DataBase64:      helpers.ToStringPointer(msg.GetDataBase64()),
-					Time:            msg.Time.AsTime(),
-					EventgateAuth:   helpers.ToStringPointer(msg.GetEventgateAuth()),
+				ch <- &model.Event{
+					ID:       msg.GetId(),
+					Channel:  msg.GetChannel(),
+					Data:     msg.GetData().AsMap(),
+					Metadata: helpers.ConvertMap(msg.GetMetadata()),
+					Time:     msg.Time.AsTime(),
 				}
 			}
 		}

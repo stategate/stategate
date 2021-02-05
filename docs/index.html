@@ -179,11 +179,11 @@
             <ul>
               
                 <li>
-                  <a href="#eventgate.CloudEvent"><span class="badge">M</span>CloudEvent</a>
+                  <a href="#eventgate.Event"><span class="badge">M</span>Event</a>
                 </li>
               
                 <li>
-                  <a href="#eventgate.CloudEventInput"><span class="badge">M</span>CloudEventInput</a>
+                  <a href="#eventgate.Event.MetadataEntry"><span class="badge">M</span>Event.MetadataEntry</a>
                 </li>
               
                 <li>
@@ -212,8 +212,8 @@
       <p></p>
 
       
-        <h3 id="eventgate.CloudEvent">CloudEvent</h3>
-        <p>CloudEvent is a specification for describing event data ref: https://cloudevents.io/</p>
+        <h3 id="eventgate.Event">Event</h3>
+        <p>Event is a specification for describing event data</p>
 
         
           <table class="field-table">
@@ -226,49 +226,14 @@
                   <td>id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Identifies the event. </p></td>
+                  <td><p>Identifies the event. If an ID is not sent with the event, a uuid will be assigned </p></td>
                 </tr>
               
                 <tr>
-                  <td>specversion</td>
+                  <td>channel</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>The version of the CloudEvents specification which the event uses. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>source</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Identifies the context in which an event happened. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Describes the type of event related to the originating occurrence. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>subject</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Describes the subject of the event in the context of the event producer (identified by source). </p></td>
-                </tr>
-              
-                <tr>
-                  <td>dataschema</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Identifies the schema that data adheres to. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>datacontenttype</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Content type of the data value. Must adhere to RFC 2046 format. </p></td>
+                  <td><p>Identifies the channel/subject to which the event will be sent </p></td>
                 </tr>
               
                 <tr>
@@ -279,24 +244,17 @@
                 </tr>
               
                 <tr>
-                  <td>data_base64</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Base64 encoded event payload. Must adhere to RFC4648. </p></td>
+                  <td>metadata</td>
+                  <td><a href="#eventgate.Event.MetadataEntry">Event.MetadataEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Arbitrary metadata about the event </p></td>
                 </tr>
               
                 <tr>
                   <td>time</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
-                  <td><p>Timestamp of when the occurrence happened. Must adhere to RFC 3339. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>eventgate_auth</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Base64 encoded authentication payload(jwt.claims). </p></td>
+                  <td><p>Timestamp of when the occurrence happened. Must adhere to RFC 3339. If a timestamp is not sent with the event, the current time will be assigned </p></td>
                 </tr>
               
             </tbody>
@@ -316,7 +274,7 @@
               <tbody>
               
                 <tr>
-                  <td>id</td>
+                  <td>channel</td>
                   <td>
                     <ul>
                     
@@ -327,40 +285,7 @@
                 </tr>
               
                 <tr>
-                  <td>specversion</td>
-                  <td>
-                    <ul>
-                    
-                      <li>string_not_empty: true</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>source</td>
-                  <td>
-                    <ul>
-                    
-                      <li>string_not_empty: true</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td>
-                    <ul>
-                    
-                      <li>string_not_empty: true</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>time</td>
+                  <td>data</td>
                   <td>
                     <ul>
                     
@@ -377,8 +302,8 @@
 
         
       
-        <h3 id="eventgate.CloudEventInput">CloudEventInput</h3>
-        <p>CloudEventInput constructs a cloud event</p>
+        <h3 id="eventgate.Event.MetadataEntry">Event.MetadataEntry</h3>
+        <p></p>
 
         
           <table class="field-table">
@@ -388,59 +313,41 @@
             <tbody>
               
                 <tr>
-                  <td>specversion</td>
+                  <td>key</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>The version of the CloudEvents specification which the event uses. </p></td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>source</td>
+                  <td>value</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Identifies the context in which an event happened. </p></td>
+                  <td><p> </p></td>
                 </tr>
               
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="eventgate.Filter">Filter</h3>
+        <p>Filter filters events before they are received by a consumer</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
                 <tr>
-                  <td>type</td>
+                  <td>channel</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Describes the type of event related to the originating occurrence. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>subject</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Describes the subject of the event in the context of the event producer (identified by source). </p></td>
-                </tr>
-              
-                <tr>
-                  <td>dataschema</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Identifies the schema that data adheres to. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>datacontenttype</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Content type of the data value. Must adhere to RFC 2046 format. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>data</td>
-                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
-                  <td></td>
-                  <td><p>The event payload(structured). </p></td>
-                </tr>
-              
-                <tr>
-                  <td>data_base64</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Base64 encoded event payload. Must adhere to RFC4648. </p></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -460,29 +367,7 @@
               <tbody>
               
                 <tr>
-                  <td>specversion</td>
-                  <td>
-                    <ul>
-                    
-                      <li>string_not_empty: true</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>source</td>
-                  <td>
-                    <ul>
-                    
-                      <li>string_not_empty: true</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
+                  <td>channel</td>
                   <td>
                     <ul>
                     
@@ -499,51 +384,6 @@
 
         
       
-        <h3 id="eventgate.Filter">Filter</h3>
-        <p>Filter filters cloud events</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>specversion</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The version of the CloudEvents specification which the event uses. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>source</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Identifies the context in which an event happened. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Describes the type of event related to the originating occurrence. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>subject</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Describes the subject of the event in the context of the event producer (identified by source). </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
 
       
 
@@ -551,7 +391,7 @@
 
       
         <h3 id="eventgate.EventGateService">EventGateService</h3>
-        <p>EventGateService is an identity-aware API gateway for CloudEvents applications</p><p>Pluggable backends include: [nats]</p>
+        <p>EventGateService is an identity-aware API gateway for message-queues/event sinks applications</p><p>Pluggable backends include: [nats]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -560,22 +400,22 @@
             
               <tr>
                 <td>Send</td>
-                <td><a href="#eventgate.CloudEventInput">CloudEventInput</a></td>
+                <td><a href="#eventgate.Event">Event</a></td>
                 <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
-                <td><p>Brodcast an event(one way)</p></td>
+                <td><p>Broadcast an event(one way)</p></td>
               </tr>
             
               <tr>
                 <td>Request</td>
-                <td><a href="#eventgate.CloudEventInput">CloudEventInput</a></td>
-                <td><a href="#eventgate.CloudEvent">CloudEvent</a></td>
+                <td><a href="#eventgate.Event">Event</a></td>
+                <td><a href="#eventgate.Event">Event</a></td>
                 <td><p>Request sends an event as a request and waits for an event as a response</p></td>
               </tr>
             
               <tr>
                 <td>Receive</td>
                 <td><a href="#eventgate.Filter">Filter</a></td>
-                <td><a href="#eventgate.CloudEvent">CloudEvent</a> stream</td>
+                <td><a href="#eventgate.Event">Event</a> stream</td>
                 <td><p>Receive streams events to a client that pass a Filter</p></td>
               </tr>
             

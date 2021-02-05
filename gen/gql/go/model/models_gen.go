@@ -6,34 +6,22 @@ import (
 	"time"
 )
 
-type CloudEvent struct {
-	ID              string                 `json:"id"`
-	Specversion     string                 `json:"specversion"`
-	Source          string                 `json:"source"`
-	Type            string                 `json:"type"`
-	Subject         *string                `json:"subject"`
-	Dataschema      *string                `json:"dataschema"`
-	Datacontenttype *string                `json:"datacontenttype"`
-	Data            map[string]interface{} `json:"data"`
-	DataBase64      *string                `json:"data_base64"`
-	Time            time.Time              `json:"time"`
-	EventgateAuth   *string                `json:"eventgate_auth"`
+type Event struct {
+	ID       string                 `json:"id"`
+	Channel  string                 `json:"channel"`
+	Data     map[string]interface{} `json:"data"`
+	Metadata map[string]interface{} `json:"metadata"`
+	Time     time.Time              `json:"time"`
 }
 
-type CloudEventInput struct {
-	Specversion     string                 `json:"specversion"`
-	Source          string                 `json:"source"`
-	Type            string                 `json:"type"`
-	Subject         *string                `json:"subject"`
-	Dataschema      *string                `json:"dataschema"`
-	Datacontenttype *string                `json:"datacontenttype"`
-	Data            map[string]interface{} `json:"data"`
-	DataBase64      *string                `json:"data_base64"`
+type EventInput struct {
+	ID       *string                `json:"id"`
+	Channel  string                 `json:"channel"`
+	Data     map[string]interface{} `json:"data"`
+	Metadata map[string]interface{} `json:"metadata"`
+	Time     *time.Time             `json:"time"`
 }
 
 type Filter struct {
-	Specversion *string `json:"specversion"`
-	Source      *string `json:"source"`
-	Type        *string `json:"type"`
-	Subject     *string `json:"subject"`
+	Channel string `json:"channel"`
 }

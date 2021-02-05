@@ -7,12 +7,12 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/struct"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
-	_ "github.com/golang/protobuf/ptypes/any"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
+	_ "github.com/golang/protobuf/ptypes/struct"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
+	_ "github.com/golang/protobuf/ptypes/any"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -22,46 +22,24 @@ var _ = fmt.Errorf
 var _ = math.Inf
 
 func (this *Filter) Validate() error {
+	if this.Channel == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Channel", fmt.Errorf(`value '%v' must not be an empty string`, this.Channel))
+	}
 	return nil
 }
-func (this *CloudEventInput) Validate() error {
-	if this.Specversion == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Specversion", fmt.Errorf(`value '%v' must not be an empty string`, this.Specversion))
+func (this *Event) Validate() error {
+	if this.Channel == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Channel", fmt.Errorf(`value '%v' must not be an empty string`, this.Channel))
 	}
-	if this.Source == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Source", fmt.Errorf(`value '%v' must not be an empty string`, this.Source))
-	}
-	if this.Type == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
+	if nil == this.Data {
+		return github_com_mwitkow_go_proto_validators.FieldError("Data", fmt.Errorf("message must exist"))
 	}
 	if this.Data != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
 			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
 		}
 	}
-	return nil
-}
-func (this *CloudEvent) Validate() error {
-	if this.Id == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must not be an empty string`, this.Id))
-	}
-	if this.Specversion == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Specversion", fmt.Errorf(`value '%v' must not be an empty string`, this.Specversion))
-	}
-	if this.Source == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Source", fmt.Errorf(`value '%v' must not be an empty string`, this.Source))
-	}
-	if this.Type == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
-	}
-	if this.Data != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
-		}
-	}
-	if nil == this.Time {
-		return github_com_mwitkow_go_proto_validators.FieldError("Time", fmt.Errorf("message must exist"))
-	}
+	// Validation of proto3 map<> fields is unsupported.
 	if this.Time != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Time); err != nil {
 			return github_com_mwitkow_go_proto_validators.FieldError("Time", err)

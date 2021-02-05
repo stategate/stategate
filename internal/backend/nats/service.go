@@ -31,61 +31,61 @@ func NewService(logger *logger.Logger, conn *nats.Conn) (*Service, error) {
 	}, nil
 }
 
-func (s *Service) Send(ctx context.Context, r *eventgate.CloudEventInput) (*empty.Empty, error) {
-	c, ok := auth.GetContext(ctx)
+func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, error) {
+	_, ok := auth.GetContext(ctx)
 	if !ok {
 		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
 	}
-	toSend := &eventgate.CloudEvent{
-		Id:              uuid.New().String(),
-		Specversion:     r.GetSpecversion(),
-		Source:          r.GetSource(),
-		Type:            r.GetType(),
-		Subject:         r.GetSubject(),
-		Dataschema:      r.GetDataschema(),
-		Datacontenttype: r.GetDatacontenttype(),
-		Data:            r.GetData(),
-		DataBase64:      r.GetDataBase64(),
-		Time:            timestamppb.New(time.Now()),
-		EventgateAuth:   c.AuthPayload(),
+	toSend := &eventgate.Event{
+		Id:       r.GetId(),
+		Channel:  r.GetChannel(),
+		Data:     r.GetData(),
+		Metadata: r.GetMetadata(),
+		Time:     r.GetTime(),
+	}
+	if toSend.Id == "" {
+		toSend.Id = uuid.New().String()
+	}
+	if toSend.Time == nil {
+		toSend.Time = timestamppb.New(time.Now())
 	}
 	bits, err := proto.Marshal(toSend)
 	if err != nil {
 		return nil, err
 	}
-	if err := s.conn.Publish(getNatsSubject(r.GetSpecversion(), r.GetSource(), r.GetType(), r.GetSubject()), bits); err != nil {
+	if err := s.conn.Publish(r.GetChannel(), bits); err != nil {
 		return nil, err
 	}
 	return &empty.Empty{}, nil
 }
 
-func (s *Service) Request(ctx context.Context, r *eventgate.CloudEventInput) (*eventgate.CloudEvent, error) {
-	c, ok := auth.GetContext(ctx)
+func (s *Service) Request(ctx context.Context, r *eventgate.Event) (*eventgate.Event, error) {
+	_, ok := auth.GetContext(ctx)
 	if !ok {
 		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
 	}
-	toSend := &eventgate.CloudEvent{
-		Id:              uuid.New().String(),
-		Specversion:     r.GetSpecversion(),
-		Source:          r.GetSource(),
-		Type:            r.GetType(),
-		Subject:         r.GetSubject(),
-		Dataschema:      r.GetDataschema(),
-		Datacontenttype: r.GetDatacontenttype(),
-		Data:            r.GetData(),
-		DataBase64:      r.GetDataBase64(),
-		Time:            timestamppb.New(time.Now()),
-		EventgateAuth:   c.AuthPayload(),
+	toSend := &eventgate.Event{
+		Id:       r.GetId(),
+		Channel:  r.GetChannel(),
+		Data:     r.GetData(),
+		Metadata: r.GetMetadata(),
+		Time:     r.GetTime(),
+	}
+	if toSend.Id == "" {
+		toSend.Id = uuid.New().String()
+	}
+	if toSend.Time == nil {
+		toSend.Time = timestamppb.New(time.Now())
 	}
 	bits, err := proto.Marshal(toSend)
 	if err != nil {
 		return nil, err
 	}
-	resp, err := s.conn.Request(getNatsSubject(r.GetSpecversion(), r.GetSource(), r.GetType(), r.GetSubject()), bits, 30*time.Second)
+	resp, err := s.conn.Request(r.GetChannel(), bits, 30*time.Second)
 	if err != nil {
 		return nil, err
 	}
-	var event eventgate.CloudEvent
+	var event eventgate.Event
 	if err := proto.Unmarshal(resp.Data, &event); err != nil {
 		return nil, err
 	}
@@ -102,10 +102,10 @@ func (s *Service) Receive(r *eventgate.Filter, server eventgate.EventGateService
 		sub *nats.Subscription
 		wg  = sync.WaitGroup{}
 	)
-	sub, err = s.conn.Subscribe(getNatsSubject(r.GetSpecversion(), r.GetSource(), r.GetType(), r.GetSubject()), func(msg *nats.Msg) {
+	sub, err = s.conn.Subscribe(r.GetChannel(), func(msg *nats.Msg) {
 		wg.Add(1)
 		defer wg.Done()
-		var event eventgate.CloudEvent
+		var event eventgate.Event
 		if err := proto.Unmarshal(msg.Data, &event); err != nil {
 			s.logger.Error("failed to unmarshal cloud event", zap.Error(err))
 			return
