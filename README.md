@@ -10,7 +10,6 @@ Status: MVP
                                         
 ## Features
 - [x] [Headless](https://en.wikipedia.org/wiki/Headless_software)
-- [x] [Stateless](https://nordicapis.com/defining-stateful-vs-stateless-web-services/)
 - [x] [gRPC](https://grpc.io/) support
     - [protobuf schema](schema.proto)
 - [x] Optional Embedded [graphQL](https://graphql.org/) support `/graphql` (transcoding)
