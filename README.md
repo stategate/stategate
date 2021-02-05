@@ -79,7 +79,7 @@ logging:
   # enable debug logs
   debug: true
 
-# pluggable backend: [inmem, redis, nats, stan]
+# pluggable backend: [inmem, redis, nats, stan, kafka]
 backend:
   name: "inmem"
 
@@ -95,6 +95,10 @@ backend:
 #  name: "stan"
 #  config:
 #    addr: "0.0.0.0:4444"
+#backend:
+#  name: "kafka"
+#  config:
+#    addr: "0.0.0.0:9092"
 
 # authentication options
 authentication:
