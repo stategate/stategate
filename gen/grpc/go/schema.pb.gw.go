@@ -99,7 +99,7 @@ func request_EventGateService_Receive_0(ctx context.Context, marshaler runtime.M
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterEventGateServiceHandlerFromEndpoint instead.
 func RegisterEventGateServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server EventGateServiceServer) error {
 
-	mux.Handle("PUT", pattern_EventGateService_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_EventGateService_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -170,7 +170,7 @@ func RegisterEventGateServiceHandler(ctx context.Context, mux *runtime.ServeMux,
 // "EventGateServiceClient" to call the correct interceptors.
 func RegisterEventGateServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client EventGateServiceClient) error {
 
-	mux.Handle("PUT", pattern_EventGateService_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_EventGateService_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)

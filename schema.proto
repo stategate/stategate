@@ -17,7 +17,7 @@ service EventGateService {
   // Broadcast an event(one way)
   rpc Send(Event) returns(google.protobuf.Empty){
     option (google.api.http) = {
-      put: "/send"
+      post: "/send"
       body: "*"
     };
   }

@@ -13,7 +13,7 @@
   "paths": {
     "/receive": {
       "get": {
-        "summary": "// Request sends an event as a request and waits for an event as a response\n rpc Request(Event) returns(Event){\n   option (google.api.http) = {\n     put: \"/request\"\n     body: \"*\"\n   };\n }\nReceive streams events to a client that pass a Filter",
+        "summary": "Receive streams events to a client that pass a Filter",
         "operationId": "EventGateService_Receive",
         "responses": {
           "200": {
@@ -58,7 +58,7 @@
       }
     },
     "/send": {
-      "put": {
+      "post": {
         "summary": "Broadcast an event(one way)",
         "operationId": "EventGateService_Send",
         "responses": {

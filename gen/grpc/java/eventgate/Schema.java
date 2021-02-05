@@ -2399,7 +2399,7 @@ public final class Schema {
       "\032/\n\rMetadataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030" +
       "\002 \001(\t:\0028\0012\237\001\n\020EventGateService\022B\n\004Send\022\020" +
       ".eventgate.Event\032\026.google.protobuf.Empty" +
-      "\"\020\202\323\344\223\002\n\032\005/send:\001*\022G\n\007Receive\022\026.eventgat" +
+      "\"\020\202\323\344\223\002\n\"\005/send:\001*\022G\n\007Receive\022\026.eventgat" +
       "e.ReceiveOpts\032\020.eventgate.Event\"\020\202\323\344\223\002\n\022" +
       "\010/receive0\001B\013Z\teventgateb\006proto3"
     };

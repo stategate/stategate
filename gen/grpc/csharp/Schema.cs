@@ -37,7 +37,7 @@ namespace Eventgate {
             "KAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wGi8KDU1ldGFkYXRhRW50",
             "cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ATKfAQoQRXZlbnRH",
             "YXRlU2VydmljZRJCCgRTZW5kEhAuZXZlbnRnYXRlLkV2ZW50GhYuZ29vZ2xl",
-            "LnByb3RvYnVmLkVtcHR5IhCC0+STAgoaBS9zZW5kOgEqEkcKB1JlY2VpdmUS",
+            "LnByb3RvYnVmLkVtcHR5IhCC0+STAgoiBS9zZW5kOgEqEkcKB1JlY2VpdmUS",
             "Fi5ldmVudGdhdGUuUmVjZWl2ZU9wdHMaEC5ldmVudGdhdGUuRXZlbnQiEILT",
             "5JMCChIIL3JlY2VpdmUwAUILWglldmVudGdhdGViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,

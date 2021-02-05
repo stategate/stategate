@@ -398,7 +398,7 @@
 
       
         <h3 id="eventgate.EventGateService">EventGateService</h3>
-        <p>EventGateService is an identity-aware API gateway for message-queues/event sinks applications</p><p>Pluggable backends include: [nats]</p>
+        <p>EventGateService is an identity-aware API gateway for message-queues/event sinks applications</p><p>Pluggable backends include: [inmem, redis, nats]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -416,14 +416,7 @@
                 <td>Receive</td>
                 <td><a href="#eventgate.ReceiveOpts">ReceiveOpts</a></td>
                 <td><a href="#eventgate.Event">Event</a> stream</td>
-                <td><p>Request sends an event as a request and waits for an event as a response
- rpc Request(Event) returns(Event){
-   option (google.api.http) = {
-     put: &#34;/request&#34;
-     body: &#34;*&#34;
-   };
- }
-Receive streams events to a client that pass a Filter</p></td>
+                <td><p>Receive streams events to a client that pass a Filter</p></td>
               </tr>
             
           </tbody>
@@ -448,7 +441,7 @@ Receive streams events to a client that pass a Filter</p></td>
               
               <tr>
                 <td>Send</td>
-                <td>PUT</td>
+                <td>POST</td>
                 <td>/send</td>
                 <td>*</td>
               </tr>
