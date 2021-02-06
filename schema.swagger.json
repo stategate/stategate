@@ -44,12 +44,6 @@
             "in": "query",
             "required": false,
             "type": "string"
-          },
-          {
-            "name": "consumerGroup",
-            "in": "query",
-            "required": false,
-            "type": "string"
           }
         ],
         "tags": [

@@ -33,7 +33,6 @@ service EventGateService {
 // ReceiveOpts filters events before they are received by a consumer
 message ReceiveOpts {
   string channel =1[(validator.field) = {string_not_empty : true}];
-  string consumer_group =2;
 }
 
 // Event is a specification for describing event data

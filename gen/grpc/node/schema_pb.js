@@ -66,8 +66,7 @@ proto.eventgate.ReceiveOpts.prototype.toObject = function(opt_includeInstance) {
  */
 proto.eventgate.ReceiveOpts.toObject = function(includeInstance, msg) {
   var f, obj = {
-    channel: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    consumerGroup: jspb.Message.getFieldWithDefault(msg, 2, "")
+    channel: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -108,10 +107,6 @@ proto.eventgate.ReceiveOpts.deserializeBinaryFromReader = function(msg, reader) 
       var value = /** @type {string} */ (reader.readString());
       msg.setChannel(value);
       break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setConsumerGroup(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -148,13 +143,6 @@ proto.eventgate.ReceiveOpts.serializeBinaryToWriter = function(message, writer) 
       f
     );
   }
-  f = message.getConsumerGroup();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
-  }
 };
 
 
@@ -170,21 +158,6 @@ proto.eventgate.ReceiveOpts.prototype.getChannel = function() {
 /** @param {string} value */
 proto.eventgate.ReceiveOpts.prototype.setChannel = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string consumer_group = 2;
- * @return {string}
- */
-proto.eventgate.ReceiveOpts.prototype.getConsumerGroup = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/** @param {string} value */
-proto.eventgate.ReceiveOpts.prototype.setConsumerGroup = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

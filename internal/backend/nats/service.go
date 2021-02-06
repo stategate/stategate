@@ -20,17 +20,17 @@ import (
 )
 
 type Service struct {
-	logger     *logger.Logger
-	conn       *nats.Conn
-	ps         pubsub.PubSub
-	sub        *nats.Subscription
+	logger *logger.Logger
+	conn   *nats.Conn
+	ps     pubsub.PubSub
+	sub    *nats.Subscription
 }
 
 func NewService(logger *logger.Logger, conn *nats.Conn) (*Service, error) {
 	s := &Service{
-		logger:     logger,
-		conn:       conn,
-		ps:         pubsub.NewPubSub(),
+		logger: logger,
+		conn:   conn,
+		ps:     pubsub.NewPubSub(),
 	}
 	sub, err := s.conn.Subscribe(constants.BackendChannel, func(msg *nats.Msg) {
 		var event eventgate.Event
@@ -83,7 +83,7 @@ func (s *Service) Receive(r *eventgate.ReceiveOpts, server eventgate.EventGateSe
 	if !ok {
 		return status.Error(codes.Unauthenticated, "unauthenticated")
 	}
-	if err := s.ps.Subscribe(server.Context(), r.GetChannel(), r.GetConsumerGroup(), func(msg interface{}) bool {
+	if err := s.ps.Subscribe(server.Context(), r.GetChannel(), "", func(msg interface{}) bool {
 		if event, ok := msg.(*eventgate.Event); ok {
 			if err := server.Send(event); err != nil {
 				s.logger.Error("failed to send subscription event", zap.Error(err))

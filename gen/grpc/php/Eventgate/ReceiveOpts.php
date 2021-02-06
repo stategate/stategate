@@ -19,10 +19,6 @@ class ReceiveOpts extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string channel = 1 [(.validator.field) = {</code>
      */
     private $channel = '';
-    /**
-     * Generated from protobuf field <code>string consumer_group = 2;</code>
-     */
-    private $consumer_group = '';
 
     /**
      * Constructor.
@@ -31,7 +27,6 @@ class ReceiveOpts extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $channel
-     *     @type string $consumer_group
      * }
      */
     public function __construct($data = NULL) {
@@ -57,28 +52,6 @@ class ReceiveOpts extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->channel = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>string consumer_group = 2;</code>
-     * @return string
-     */
-    public function getConsumerGroup()
-    {
-        return $this->consumer_group;
-    }
-
-    /**
-     * Generated from protobuf field <code>string consumer_group = 2;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setConsumerGroup($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->consumer_group = $var;
 
         return $this;
     }

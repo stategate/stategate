@@ -13,9 +13,6 @@ export class ReceiveOpts extends jspb.Message {
   getChannel(): string;
   setChannel(value: string): void;
 
-  getConsumerGroup(): string;
-  setConsumerGroup(value: string): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ReceiveOpts.AsObject;
   static toObject(includeInstance: boolean, msg: ReceiveOpts): ReceiveOpts.AsObject;
@@ -29,7 +26,6 @@ export class ReceiveOpts extends jspb.Message {
 export namespace ReceiveOpts {
   export type AsObject = {
     channel: string,
-    consumerGroup: string,
   }
 }
 

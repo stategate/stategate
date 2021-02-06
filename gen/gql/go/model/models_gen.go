@@ -23,6 +23,5 @@ type EventInput struct {
 }
 
 type ReceiveOpts struct {
-	Channel       string  `json:"channel"`
-	ConsumerGroup *string `json:"consumer_group"`
+	Channel string `json:"channel"`
 }

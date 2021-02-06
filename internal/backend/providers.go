@@ -30,11 +30,11 @@ import (
 type Provider string
 
 const (
-	NATS  Provider = "nats"
-	STAN  Provider = "stan"
-	INMEM Provider = "inmem"
-	REDIS Provider = "redis"
-	KAFKA Provider = "kafka"
+	NATS         Provider = "nats"
+	STAN         Provider = "stan"
+	INMEM        Provider = "inmem"
+	REDIS        Provider = "redis"
+	KAFKA        Provider = "kafka"
 	GOOGLEPUBSUB Provider = "google-pubsub"
 )
 
@@ -69,12 +69,9 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 			return nil, nil, errors.New("kafka config: empty addr")
 		}
 
-
-
 		dialer := &kafkaa.Dialer{
 			Timeout:   10 * time.Second,
 			DualStack: true,
-
 		}
 		if tlsConfig != nil {
 			dialer.TLS = tlsConfig
@@ -86,8 +83,8 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 		})
 		w := kafkaa.NewWriter(kafkaa.WriterConfig{
 			Brokers: []string{kafkaAddr},
-			Topic:             constants.BackendChannel,
-			Dialer:            dialer,
+			Topic:   constants.BackendChannel,
+			Dialer:  dialer,
 		})
 		svc, err := kafka.NewService(lgger, r, w)
 		if err != nil {
@@ -141,13 +138,13 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 		}
 		hostname = strings.NewReplacer(".", "_").Replace(hostname)
 		var (
-			conn *nats.Conn
+			conn     *nats.Conn
 			clientID string
 		)
 		for i := 0; i < 10; i++ {
 			var (
 				clientID = fmt.Sprintf("%s-%s", hostname, nuid.Next())
-				opts = []nats.Option{nats.Name(clientID)}
+				opts     = []nats.Option{nats.Name(clientID)}
 			)
 			if tlsConfig != nil {
 				opts = append(opts, nats.ClientCert(providerConfig["tls_cert_file"], providerConfig["tls_key_file"]))
@@ -191,7 +188,7 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 		for i := 0; i < 10; i++ {
 			var (
 				clientID = fmt.Sprintf("%s-%s", hostname, nuid.Next())
-				opts = []nats.Option{nats.Name(clientID)}
+				opts     = []nats.Option{nats.Name(clientID)}
 			)
 
 			if tlsConfig != nil {
@@ -224,7 +221,7 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 		credentialsFile := providerConfig["credentials_file"]
 		var (
 			client *gsub.Client
-			err error
+			err    error
 		)
 		if credentialsFile != "" {
 			client, err = gsub.NewClient(ctx, project, option.WithCredentialsFile(credentialsFile))

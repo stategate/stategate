@@ -24,8 +24,8 @@ type Service struct {
 	logger     *logger.Logger
 	conn       *pubsub.Client
 	ps         ps.PubSub
-	topic *pubsub.Topic
-	cancel func()
+	topic      *pubsub.Topic
+	cancel     func()
 }
 
 func NewService(logger *logger.Logger, conn *pubsub.Client) (*Service, error) {
@@ -85,7 +85,7 @@ func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, e
 		return nil, err
 	}
 	if _, err := s.topic.Publish(ctx, &pubsub.Message{
-		Data:            bits,
+		Data: bits,
 	}).Get(ctx); err != nil {
 		return nil, err
 	}
@@ -97,7 +97,7 @@ func (s *Service) Receive(r *eventgate.ReceiveOpts, server eventgate.EventGateSe
 	if !ok {
 		return status.Error(codes.Unauthenticated, "unauthenticated")
 	}
-	if err := s.ps.Subscribe(server.Context(), r.GetChannel(), r.GetConsumerGroup(), func(msg interface{}) bool {
+	if err := s.ps.Subscribe(server.Context(), r.GetChannel(), "", func(msg interface{}) bool {
 		if event, ok := msg.(*eventgate.Event); ok {
 			if err := server.Send(event); err != nil {
 				s.logger.Error("failed to send subscription event", zap.Error(err))

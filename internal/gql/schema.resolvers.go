@@ -51,8 +51,7 @@ func (r *mutationResolver) Send(ctx context.Context, input model.EventInput) (*s
 func (r *subscriptionResolver) Receive(ctx context.Context, input model.ReceiveOpts) (<-chan *model.Event, error) {
 	ch := make(chan *model.Event)
 	i := &eventgate.ReceiveOpts{
-		Channel:       input.Channel,
-		ConsumerGroup: helpers.FromStringPointer(input.ConsumerGroup),
+		Channel: input.Channel,
 	}
 	stream, err := r.client.Receive(ctx, i)
 	if err != nil {

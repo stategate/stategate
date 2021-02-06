@@ -3,7 +3,7 @@ module github.com/autom8ter/eventgate
 go 1.15
 
 require (
-	cloud.google.com/go/pubsub v1.9.1 // indirect
+	cloud.google.com/go/pubsub v1.9.1
 	github.com/99designs/gqlgen v0.13.0
 	github.com/autom8ter/machine v1.3.0
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
@@ -42,6 +42,7 @@ require (
 	golang.org/x/oauth2 v0.0.0-20210112200429-01de73cf58bd
 	golang.org/x/sync v0.0.0-20201207232520-09787c993a3a
 	golang.org/x/text v0.3.4 // indirect
+	google.golang.org/api v0.36.0
 	google.golang.org/genproto v0.0.0-20210106152847-07624b53cd92
 	google.golang.org/grpc v1.35.0
 	google.golang.org/grpc/examples v0.0.0-20201123174403-6d0f0110bf69 // indirect

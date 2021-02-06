@@ -262,7 +262,6 @@ input EventInput {
 # ReceiveOpts filters cloud events
 input ReceiveOpts {
     channel: String!
-    consumer_group: String
 }
 
 type Mutation {
@@ -1848,14 +1847,6 @@ func (ec *executionContext) unmarshalInputReceiveOpts(ctx context.Context, obj i
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("channel"))
 			it.Channel, err = ec.unmarshalNString2string(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "consumer_group":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("consumer_group"))
-			it.ConsumerGroup, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}

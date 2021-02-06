@@ -29,21 +29,21 @@ namespace Eventgate {
             "Z2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90bxoZZ29vZ2xlL3Byb3RvYnVm",
             "L2FueS5wcm90bxobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5LnByb3RvGjZnaXRo",
             "dWIuY29tL213aXRrb3cvZ28tcHJvdG8tdmFsaWRhdG9ycy92YWxpZGF0b3Iu",
-            "cHJvdG8iPgoLUmVjZWl2ZU9wdHMSFwoHY2hhbm5lbBgBIAEoCUIG4t8fAlgB",
-            "EhYKDmNvbnN1bWVyX2dyb3VwGAIgASgJIugBCgVFdmVudBIKCgJpZBgBIAEo",
-            "CRIXCgdjaGFubmVsGAIgASgJQgbi3x8CWAESLQoEZGF0YRgFIAEoCzIXLmdv",
-            "b2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgARIwCghtZXRhZGF0YRgGIAMo",
-            "CzIeLmV2ZW50Z2F0ZS5FdmVudC5NZXRhZGF0YUVudHJ5EigKBHRpbWUYFCAB",
-            "KAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wGi8KDU1ldGFkYXRhRW50",
-            "cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ATKfAQoQRXZlbnRH",
-            "YXRlU2VydmljZRJCCgRTZW5kEhAuZXZlbnRnYXRlLkV2ZW50GhYuZ29vZ2xl",
-            "LnByb3RvYnVmLkVtcHR5IhCC0+STAgoiBS9zZW5kOgEqEkcKB1JlY2VpdmUS",
-            "Fi5ldmVudGdhdGUuUmVjZWl2ZU9wdHMaEC5ldmVudGdhdGUuRXZlbnQiEILT",
-            "5JMCChIIL3JlY2VpdmUwAUILWglldmVudGdhdGViBnByb3RvMw=="));
+            "cHJvdG8iJgoLUmVjZWl2ZU9wdHMSFwoHY2hhbm5lbBgBIAEoCUIG4t8fAlgB",
+            "IugBCgVFdmVudBIKCgJpZBgBIAEoCRIXCgdjaGFubmVsGAIgASgJQgbi3x8C",
+            "WAESLQoEZGF0YRgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLf",
+            "HwIgARIwCghtZXRhZGF0YRgGIAMoCzIeLmV2ZW50Z2F0ZS5FdmVudC5NZXRh",
+            "ZGF0YUVudHJ5EigKBHRpbWUYFCABKAsyGi5nb29nbGUucHJvdG9idWYuVGlt",
+            "ZXN0YW1wGi8KDU1ldGFkYXRhRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVl",
+            "GAIgASgJOgI4ATKfAQoQRXZlbnRHYXRlU2VydmljZRJCCgRTZW5kEhAuZXZl",
+            "bnRnYXRlLkV2ZW50GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IhCC0+STAgoi",
+            "BS9zZW5kOgEqEkcKB1JlY2VpdmUSFi5ldmVudGdhdGUuUmVjZWl2ZU9wdHMa",
+            "EC5ldmVudGdhdGUuRXZlbnQiEILT5JMCChIIL3JlY2VpdmUwAUILWglldmVu",
+            "dGdhdGViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.ReceiveOpts), global::Eventgate.ReceiveOpts.Parser, new[]{ "Channel", "ConsumerGroup" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.ReceiveOpts), global::Eventgate.ReceiveOpts.Parser, new[]{ "Channel" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Event), global::Eventgate.Event.Parser, new[]{ "Id", "Channel", "Data", "Metadata", "Time" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
           }));
     }
@@ -80,7 +80,6 @@ namespace Eventgate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ReceiveOpts(ReceiveOpts other) : this() {
       channel_ = other.channel_;
-      consumerGroup_ = other.consumerGroup_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -100,17 +99,6 @@ namespace Eventgate {
       }
     }
 
-    /// <summary>Field number for the "consumer_group" field.</summary>
-    public const int ConsumerGroupFieldNumber = 2;
-    private string consumerGroup_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string ConsumerGroup {
-      get { return consumerGroup_; }
-      set {
-        consumerGroup_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as ReceiveOpts);
@@ -125,7 +113,6 @@ namespace Eventgate {
         return true;
       }
       if (Channel != other.Channel) return false;
-      if (ConsumerGroup != other.ConsumerGroup) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -133,7 +120,6 @@ namespace Eventgate {
     public override int GetHashCode() {
       int hash = 1;
       if (Channel.Length != 0) hash ^= Channel.GetHashCode();
-      if (ConsumerGroup.Length != 0) hash ^= ConsumerGroup.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -151,10 +137,6 @@ namespace Eventgate {
         output.WriteRawTag(10);
         output.WriteString(Channel);
       }
-      if (ConsumerGroup.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(ConsumerGroup);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -165,9 +147,6 @@ namespace Eventgate {
       int size = 0;
       if (Channel.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Channel);
-      }
-      if (ConsumerGroup.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(ConsumerGroup);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -183,9 +162,6 @@ namespace Eventgate {
       if (other.Channel.Length != 0) {
         Channel = other.Channel;
       }
-      if (other.ConsumerGroup.Length != 0) {
-        ConsumerGroup = other.ConsumerGroup;
-      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -199,10 +175,6 @@ namespace Eventgate {
             break;
           case 10: {
             Channel = input.ReadString();
-            break;
-          }
-          case 18: {
-            ConsumerGroup = input.ReadString();
             break;
           }
         }
