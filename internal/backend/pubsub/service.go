@@ -44,6 +44,7 @@ func NewService(logger *logger.Logger, conn *pubsub.Client) (*Service, error) {
 			if ctx.Err() != nil {
 				return
 			}
+			message.Ack()
 			var event eventgate.Event
 			if err := proto.Unmarshal(message.Data, &event); err != nil {
 				s.logger.Error("failed to unmarshal event", zap.Error(err))
