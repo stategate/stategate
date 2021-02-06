@@ -1,6 +1,7 @@
 package backend
 
 import (
+	gsub "cloud.google.com/go/pubsub"
 	"context"
 	"crypto/tls"
 	"fmt"
@@ -8,6 +9,7 @@ import (
 	"github.com/autom8ter/eventgate/internal/backend/inmem"
 	"github.com/autom8ter/eventgate/internal/backend/kafka"
 	nats2 "github.com/autom8ter/eventgate/internal/backend/nats"
+	"github.com/autom8ter/eventgate/internal/backend/pubsub"
 	"github.com/autom8ter/eventgate/internal/backend/redis"
 	"github.com/autom8ter/eventgate/internal/backend/stan"
 	"github.com/autom8ter/eventgate/internal/constants"
@@ -19,6 +21,7 @@ import (
 	"github.com/pkg/errors"
 	kafkaa "github.com/segmentio/kafka-go"
 	"go.uber.org/zap"
+	"google.golang.org/api/option"
 	"os"
 	"strings"
 	"time"
@@ -32,6 +35,7 @@ const (
 	INMEM Provider = "inmem"
 	REDIS Provider = "redis"
 	KAFKA Provider = "kafka"
+	GOOGLEPUBSUB Provider = "google-pubsub"
 )
 
 var allProviders = []string{string(INMEM), string(REDIS), string(NATS), string(STAN)}
@@ -206,6 +210,35 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 			return nil, nil, err
 		}
 		svc, err := nats2.NewService(lgger, conn)
+		if err != nil {
+			return nil, nil, err
+		}
+		return svc, func() {
+			if err := svc.Close(); err != nil {
+				lgger.Error("failed to close backend", zap.Error(err))
+			}
+		}, nil
+	case GOOGLEPUBSUB:
+		ctx := context.Background()
+		project := providerConfig["project"]
+		credentialsFile := providerConfig["credentials_file"]
+		var (
+			client *gsub.Client
+			err error
+		)
+		if credentialsFile != "" {
+			client, err = gsub.NewClient(ctx, project, option.WithCredentialsFile(credentialsFile))
+			if err != nil {
+				return nil, nil, err
+			}
+		} else {
+			client, err = gsub.NewClient(ctx, project)
+			if err != nil {
+				return nil, nil, err
+			}
+		}
+		client.CreateTopic(ctx, constants.BackendChannel)
+		svc, err := pubsub.NewService(lgger, client)
 		if err != nil {
 			return nil, nil, err
 		}

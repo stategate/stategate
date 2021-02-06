@@ -38,9 +38,17 @@ Status: MVP
     - [x] Nats Streaming(Stan)
     - [x] Redis
     - [x] Kafka
+    - [x] Google PubSub
+    - [ ] AWS SQS
     - [ ] RabbitMQ
 
-    
+
+## Why?
+
+- univeral API interface for publishing and subscribing to events
+- swap backend providers without changing client-side code
+- type safe client's generated in many languages
+
 ## Command Line
 
 ```
@@ -99,6 +107,11 @@ backend:
 #  name: "kafka"
 #  config:
 #    addr: "0.0.0.0:9092"
+#backend:
+#  name: "google-pubsub"
+#  config:
+#    project: "my-gcloud-project"
+#    credentials_file: "/tmp/credentials.json"
 
 # authentication options
 authentication:

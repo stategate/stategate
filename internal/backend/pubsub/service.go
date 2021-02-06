@@ -1,17 +1,17 @@
-package nats
+package pubsub
 
 import (
+	pubsub "cloud.google.com/go/pubsub"
 	"context"
 	"fmt"
 	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
 	"github.com/autom8ter/eventgate/internal/auth"
 	"github.com/autom8ter/eventgate/internal/constants"
 	"github.com/autom8ter/eventgate/internal/logger"
-	"github.com/autom8ter/machine/pubsub"
+	ps "github.com/autom8ter/machine/pubsub"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
-	"github.com/nats-io/nats.go"
 	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -20,33 +20,44 @@ import (
 )
 
 type Service struct {
+	eventsChan string
 	logger     *logger.Logger
-	conn       *nats.Conn
-	ps         pubsub.PubSub
-	sub        *nats.Subscription
+	conn       *pubsub.Client
+	ps         ps.PubSub
+	topic *pubsub.Topic
+	cancel func()
 }
 
-func NewService(logger *logger.Logger, conn *nats.Conn) (*Service, error) {
+func NewService(logger *logger.Logger, conn *pubsub.Client) (*Service, error) {
 	s := &Service{
 		logger:     logger,
 		conn:       conn,
-		ps:         pubsub.NewPubSub(),
+		ps:         ps.NewPubSub(),
+		eventsChan: constants.BackendChannel,
 	}
-	sub, err := s.conn.Subscribe(constants.BackendChannel, func(msg *nats.Msg) {
-		var event eventgate.Event
-		if err := proto.Unmarshal(msg.Data, &event); err != nil {
-			s.logger.Error("failed to unmarshal event", zap.Error(err))
+	ctx, cancel := context.WithCancel(context.Background())
+	s.cancel = cancel
+	s.topic = s.conn.Topic(s.eventsChan)
+	go func() {
+		sub := s.conn.Subscription(constants.BackendChannel)
+		if err := sub.Receive(ctx, func(ctx context.Context, message *pubsub.Message) {
+			if ctx.Err() != nil {
+				return
+			}
+			var event eventgate.Event
+			if err := proto.Unmarshal(message.Data, &event); err != nil {
+				s.logger.Error("failed to unmarshal event", zap.Error(err))
+				return
+			}
+			if err := s.ps.Publish(event.GetChannel(), &event); err != nil {
+				s.logger.Error("failed to unmarshal event", zap.Error(err))
+				return
+			}
+		}); err != nil {
+			s.logger.Error("subscription failure", zap.Error(err))
 			return
 		}
-		if err := s.ps.Publish(event.GetChannel(), &event); err != nil {
-			s.logger.Error("failed to unmarshal event", zap.Error(err))
-			return
-		}
-	})
-	if err != nil {
-		return nil, err
-	}
-	s.sub = sub
+	}()
 	return s, nil
 }
 
@@ -72,7 +83,9 @@ func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, e
 	if err != nil {
 		return nil, err
 	}
-	if err := s.conn.Publish(constants.BackendChannel, bits); err != nil {
+	if _, err := s.topic.Publish(ctx, &pubsub.Message{
+		Data:            bits,
+	}).Get(ctx); err != nil {
 		return nil, err
 	}
 	return &empty.Empty{}, nil
@@ -99,9 +112,8 @@ func (s *Service) Receive(r *eventgate.ReceiveOpts, server eventgate.EventGateSe
 }
 
 func (s *Service) Close() error {
-	if err := s.sub.Drain(); err != nil {
-		return err
-	}
+	s.topic.Stop()
+	s.cancel()
 	s.ps.Close()
 	return nil
 }
