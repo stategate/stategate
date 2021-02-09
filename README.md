@@ -119,35 +119,46 @@ backend:
     name: "nats"
     config:
       addr: "0.0.0.0:4444"
-  #channel_provider:
-  #  name: "redis"
-  #  config:
-  #    addr: "0.0.0.0:6379"
-  #channel_provider:
-  #  name: "nats"
-  #  config:
-  #    addr: "0.0.0.0:4444"
-  #channel_provider:
-  #  name: "stan"
-  #  config:
-  #    addr: "0.0.0.0:4444"
-  #channel_provider:
-  #  name: "stan"
-  #  config:
-  #    addr: "0.0.0.0:4444"
+#     client_cert_file: "/tmp/nats.cert"
+#     client_key_file: "/tmp/nats.key"
+#  channel_provider:
+#    name: "redis"
+#    config:
+#      addr: "0.0.0.0:6379"
+#      user: "default"
+#      password: "admin1234"
+#      client_cert_file: "/tmp/redis.cert"
+#      client_key_file: "/tmp/redis.key"
 
-  # pluggable storage providers: [inmem, mongo]
+#  channel_provider:
+#    name: "stan"
+#    config:
+#      addr: "0.0.0.0:4444"
+#      client_cert_file: "/tmp/stan.cert"
+#      client_key_file: "/tmp/stan.key"
+
+# pluggable storage providers: [mongo, elasticsearch]
+  
+#  storage_provider:
+#    name: "mongo"
+#    config:
+#      addr: "mongodb://localhost:27017/testing"
+#      database: "testing"
+#      client_cert_file: "/tmp/mongo.cert"
+#      client_key_file: "/tmp/mongo.key"
   storage_provider:
-    name: "mongo"
+    name: "elasticsearch"
     config:
-      uri: "mongodb://localhost:27017/testing"
-      database: "testing"
+      addr: "http://localhost:9200"
+#     user: "default"
+#     password: "admin1234"
+
 
 # authentication options
 authentication:
   # json web keys uri for authentication.
   # if empty, inbound jwt's will not be verified.
-  jwks_uri: ""
+  jwks_uri: "https://www.googleapis.com/oauth2/v3/certs"
 
 # authorization options
 authorization:
@@ -164,7 +175,6 @@ authorization:
     package eventgate.authz
 
     default allow = true
-
 
 ```
 

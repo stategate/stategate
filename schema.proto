@@ -11,24 +11,24 @@ import "google/protobuf/any.proto";
 import "google/protobuf/empty.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
-// EventGateService is an identity-aware API gateway for message-queues/event sinks applications
-// Pluggable backends include: [inmem, redis, nats]
+// EventGateService is an identity-aware API gateway for event-sourcing based applications
 service EventGateService {
-  // Send broadcasts an event to all consumers on a given channel
+  // Send broadcasts an event to all consumers on a given channel. Producers invoke this method.
   rpc Send(Event) returns(google.protobuf.Empty){
     option (google.api.http) = {
       post: "/send"
       body: "*"
     };
   }
-  // Receive pushes events to a new client consumer
+  // Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
+  // Event Consumers invoke this method.
   rpc Receive(ReceiveOpts) returns(stream Event){
     option (google.api.http) = {
       get: "/receive"
     };
   }
   // History returns an array of immutable historical events.
-  // If a backend storage provider is not registered, an error will be returned to the client
+  // Event Consumers invoke this method.
   rpc History(HistoryOpts) returns(Events){
     option (google.api.http) = {
       get: "/history"
@@ -44,7 +44,7 @@ message HistoryOpts {
   // only return events that occurred before specified max timestamp
   google.protobuf.Timestamp max = 3;
   // limit returned events
-  int64 limit =4;
+  int64 limit =4[(validator.field) = {int_gt : 0}];;
   // offset returned events(pagination)
   int64 offset =5;
 }
@@ -64,6 +64,8 @@ message Event {
   google.protobuf.Struct data = 5[(validator.field) = {msg_exists : true}];
   // Arbitrary metadata about the event
   google.protobuf.Struct metadata =6;
+  // The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+  google.protobuf.Struct claims =7;
   // Timestamp of when the occurrence happened. Must adhere to RFC 3339. If a timestamp is not sent with the event, the current time will be assigned
   google.protobuf.Timestamp time =20;
 }

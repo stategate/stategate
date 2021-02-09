@@ -22,8 +22,8 @@ func NewService(client *elasticsearch.Client) (*Service, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	req := esapi.InfoRequest{
-		Pretty:     true,
-		Human:      true,
+		Pretty: true,
+		Human:  true,
 	}
 	_, err := req.Do(ctx, client)
 	if err != nil {
@@ -34,10 +34,9 @@ func NewService(client *elasticsearch.Client) (*Service, error) {
 
 func (s Service) SaveEvent(ctx context.Context, event *eventgate.Event) error {
 	req := esapi.IndexRequest{
-		Index:               event.GetChannel(),
-		Body:                strings.NewReader(protojson.Format(event)),
-		Refresh:             "true",
-
+		Index:   event.GetChannel(),
+		Body:    strings.NewReader(protojson.Format(event)),
+		Refresh: "true",
 	}
 	resp, err := req.Do(ctx, s.client)
 	if err != nil {
@@ -51,27 +50,27 @@ func (s Service) SaveEvent(ctx context.Context, event *eventgate.Event) error {
 
 func (s Service) GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*eventgate.Events, error) {
 	if opts.Max == nil {
-		opts.Max = timestamppb.New(time.Now().Add(5 *time.Minute))
+		opts.Max = timestamppb.New(time.Now().Add(5 * time.Minute))
 	}
 	if opts.Limit == 0 {
 		opts.Limit = 1000
 	}
-//	query := fmt.Sprintf(`
-//{
-//  "query": {
-//	"match": {
-//		"channel": "%s"
-//	},
-//    "range": {
-//      "time": {
-//        "gte": "%s",
-//		"lte": "%s"
-//      },
-//    }
-//  }
-//}`, opts.GetChannel(), opts.GetMin().AsTime().String(), opts.GetMax().AsTime().String())
+	//	query := fmt.Sprintf(`
+	//{
+	//  "query": {
+	//	"match": {
+	//		"channel": "%s"
+	//	},
+	//    "range": {
+	//      "time": {
+	//        "gte": "%s",
+	//		"lte": "%s"
+	//      },
+	//    }
+	//  }
+	//}`, opts.GetChannel(), opts.GetMin().AsTime().String(), opts.GetMax().AsTime().String())
 
-		query := fmt.Sprintf(`
+	query := fmt.Sprintf(`
 { 
   "from" : %v, 
   "size" : %v,
@@ -101,12 +100,11 @@ func (s Service) GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*e
     } 
   } 
 }
-`, opts.GetOffset(), opts.GetLimit(), opts.GetMin().GetSeconds()*1000, opts.GetMax().GetSeconds()*1000,  opts.GetChannel())
+`, opts.GetOffset(), opts.GetLimit(), opts.GetMin().GetSeconds()*1000, opts.GetMax().GetSeconds()*1000, opts.GetChannel())
 	rsp, err := s.client.Search(
 		s.client.Search.WithContext(ctx),
 		s.client.Search.WithIndex(opts.GetChannel()),
 		s.client.Search.WithBody(strings.NewReader(query)),
-
 	)
 	if err != nil {
 		return nil, err

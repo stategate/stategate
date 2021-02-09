@@ -47,6 +47,7 @@ type DirectiveRoot struct {
 type ComplexityRoot struct {
 	Event struct {
 		Channel  func(childComplexity int) int
+		Claims   func(childComplexity int) int
 		Data     func(childComplexity int) int
 		ID       func(childComplexity int) int
 		Metadata func(childComplexity int) int
@@ -97,6 +98,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Event.Channel(childComplexity), true
+
+	case "Event.claims":
+		if e.complexity.Event.Claims == nil {
+			break
+		}
+
+		return e.complexity.Event.Claims(childComplexity), true
 
 	case "Event.data":
 		if e.complexity.Event.Data == nil {
@@ -258,6 +266,8 @@ type Event {
     data: Map!
     # Arbitrary metadata about the event
     metadata: Map
+    # The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+    claims: Map
     # Timestamp of when the occurrence happened. Must adhere to RFC 3339.
     time: Time!
 }
@@ -292,7 +302,6 @@ input ReceiveOpts {
 
 type Query {
     # History returns an array of immutable historical events.
-    # If a backend storage provider is not registered, an "Unimplemented" error will be returned to the client
     history(input: HistoryOpts!): [Event!]
 }
 
@@ -302,7 +311,7 @@ type Mutation {
 }
 
 type Subscription {
-    # Receive pushes events to a new client consumer
+    # Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
     receive(input: ReceiveOpts!): Event!
 }`, BuiltIn: false},
 }
@@ -534,6 +543,38 @@ func (ec *executionContext) _Event_metadata(ctx context.Context, field graphql.C
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
 		return obj.Metadata, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(map[string]interface{})
+	fc.Result = res
+	return ec.marshalOMap2map(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _Event_claims(ctx context.Context, field graphql.CollectedField, obj *model.Event) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:     "Event",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   false,
+		IsResolver: false,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Claims, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -2030,6 +2071,8 @@ func (ec *executionContext) _Event(ctx context.Context, sel ast.SelectionSet, ob
 			}
 		case "metadata":
 			out.Values[i] = ec._Event_metadata(ctx, field, obj)
+		case "claims":
+			out.Values[i] = ec._Event_claims(ctx, field, obj)
 		case "time":
 			out.Values[i] = ec._Event_time(ctx, field, obj)
 			if out.Values[i] == graphql.Null {

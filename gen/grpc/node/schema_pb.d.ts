@@ -86,6 +86,11 @@ export class Event extends jspb.Message {
   getMetadata(): google_protobuf_struct_pb.Struct | undefined;
   setMetadata(value?: google_protobuf_struct_pb.Struct): void;
 
+  hasClaims(): boolean;
+  clearClaims(): void;
+  getClaims(): google_protobuf_struct_pb.Struct | undefined;
+  setClaims(value?: google_protobuf_struct_pb.Struct): void;
+
   hasTime(): boolean;
   clearTime(): void;
   getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -107,6 +112,7 @@ export namespace Event {
     channel: string,
     data?: google_protobuf_struct_pb.Struct.AsObject,
     metadata?: google_protobuf_struct_pb.Struct.AsObject,
+    claims?: google_protobuf_struct_pb.Struct.AsObject,
     time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }

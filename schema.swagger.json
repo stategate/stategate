@@ -13,7 +13,7 @@
   "paths": {
     "/history": {
       "get": {
-        "summary": "History returns an array of immutable historical events.\nIf a backend storage provider is not registered, an error will be returned to the client",
+        "summary": "History returns an array of immutable historical events.\nEvent Consumers invoke this method.",
         "operationId": "EventGateService_History",
         "responses": {
           "200": {
@@ -76,7 +76,7 @@
     },
     "/receive": {
       "get": {
-        "summary": "Receive pushes events to a new client consumer",
+        "summary": "Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.\nEvent Consumers invoke this method.",
         "operationId": "EventGateService_Receive",
         "responses": {
           "200": {
@@ -116,7 +116,7 @@
     },
     "/send": {
       "post": {
-        "summary": "Send broadcasts an event to all consumers on a given channel",
+        "summary": "Send broadcasts an event to all consumers on a given channel. Producers invoke this method.",
         "operationId": "EventGateService_Send",
         "responses": {
           "200": {
@@ -167,6 +167,10 @@
         "metadata": {
           "type": "object",
           "title": "Arbitrary metadata about the event"
+        },
+        "claims": {
+          "type": "object",
+          "description": "The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers."
         },
         "time": {
           "type": "string",

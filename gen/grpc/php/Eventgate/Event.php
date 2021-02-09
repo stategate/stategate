@@ -40,6 +40,12 @@ class Event extends \Google\Protobuf\Internal\Message
      */
     private $metadata = null;
     /**
+     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct claims = 7;</code>
+     */
+    private $claims = null;
+    /**
      * Timestamp of when the occurrence happened. Must adhere to RFC 3339. If a timestamp is not sent with the event, the current time will be assigned
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp time = 20;</code>
@@ -60,6 +66,8 @@ class Event extends \Google\Protobuf\Internal\Message
      *           The event payload(structured).
      *     @type \Google\Protobuf\Struct $metadata
      *           Arbitrary metadata about the event
+     *     @type \Google\Protobuf\Struct $claims
+     *           The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
      *     @type \Google\Protobuf\Timestamp $time
      *           Timestamp of when the occurrence happened. Must adhere to RFC 3339. If a timestamp is not sent with the event, the current time will be assigned
      * }
@@ -169,6 +177,32 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct claims = 7;</code>
+     * @return \Google\Protobuf\Struct
+     */
+    public function getClaims()
+    {
+        return $this->claims;
+    }
+
+    /**
+     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct claims = 7;</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setClaims($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->claims = $var;
 
         return $this;
     }

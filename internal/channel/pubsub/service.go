@@ -14,9 +14,9 @@ import (
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
 	"go.uber.org/zap"
-	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"google.golang.org/protobuf/types/known/structpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"time"
 )
@@ -67,16 +67,18 @@ func NewService(logger *logger.Logger, conn *pubsub.Client, storage storage.Prov
 }
 
 func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, error) {
-	_, ok := auth.GetContext(ctx)
+	c, ok := auth.GetContext(ctx)
 	if !ok {
 		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
 	}
+	claims, _ := structpb.NewStruct(c.Claims)
 	toSend := &eventgate.Event{
 		Id:       r.GetId(),
 		Channel:  r.GetChannel(),
 		Data:     r.GetData(),
 		Metadata: r.GetMetadata(),
 		Time:     r.GetTime(),
+		Claims:   claims,
 	}
 	if toSend.Id == "" {
 		toSend.Id = uuid.New().String()
@@ -88,21 +90,14 @@ func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, e
 	if err != nil {
 		return nil, err
 	}
-	group := errgroup.Group{}
-	group.Go(func() error {
-		if _, err := s.topic.Publish(ctx, &pubsub.Message{
-			Data: bits,
-		}).Get(ctx); err != nil {
-			return err
-		}
-		return nil
-	})
 	if s.storage != nil {
-		group.Go(func() error {
-			return s.storage.SaveEvent(ctx, toSend)
-		})
+		if err := s.storage.SaveEvent(ctx, toSend); err != nil {
+			return nil, err
+		}
 	}
-	if err := group.Wait(); err != nil {
+	if _, err := s.topic.Publish(ctx, &pubsub.Message{
+		Data: bits,
+	}).Get(ctx); err != nil {
 		return nil, err
 	}
 	return &empty.Empty{}, nil

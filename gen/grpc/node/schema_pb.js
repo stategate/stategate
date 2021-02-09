@@ -498,6 +498,7 @@ proto.eventgate.Event.toObject = function(includeInstance, msg) {
     channel: jspb.Message.getFieldWithDefault(msg, 2, ""),
     data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    claims: (f = msg.getClaims()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
@@ -552,6 +553,11 @@ proto.eventgate.Event.deserializeBinaryFromReader = function(msg, reader) {
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setMetadata(value);
+      break;
+    case 7:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setClaims(value);
       break;
     case 20:
       var value = new google_protobuf_timestamp_pb.Timestamp;
@@ -613,6 +619,14 @@ proto.eventgate.Event.serializeBinaryToWriter = function(message, writer) {
   if (f != null) {
     writer.writeMessage(
       6,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getClaims();
+  if (f != null) {
+    writer.writeMessage(
+      7,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
@@ -715,6 +729,36 @@ proto.eventgate.Event.prototype.clearMetadata = function() {
  */
 proto.eventgate.Event.prototype.hasMetadata = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional google.protobuf.Struct claims = 7;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.eventgate.Event.prototype.getClaims = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 7));
+};
+
+
+/** @param {?proto.google.protobuf.Struct|undefined} value */
+proto.eventgate.Event.prototype.setClaims = function(value) {
+  jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+proto.eventgate.Event.prototype.clearClaims = function() {
+  this.setClaims(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.eventgate.Event.prototype.hasClaims = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 

@@ -46,10 +46,10 @@ var AllChannelProviders = []ChannelProvider{INMEM, REDIS, NATS, STAN, KAFKA, GOO
 
 func GetChannelProvider(provider ChannelProvider, storage storage.Provider, lgger *logger.Logger, providerConfig map[string]string) (eventgate.EventGateServiceServer, func(), error) {
 	if providerConfig == nil {
-		return nil, nil, errors.Errorf("empty backend config")
+		return nil, nil, errors.Errorf("empty backend channel provider config")
 	}
 	var tlsConfig *tls.Config
-	if providerConfig["tls_cert_file"] != "" && providerConfig["tls_key_file"] != "" {
+	if providerConfig["client_cert_file"] != "" && providerConfig["client_key_file"] != "" {
 		cer, err := tls.LoadX509KeyPair(providerConfig["tls_cert"], providerConfig["tls_key"])
 		if err != nil {
 			lgger.Error("failed to load tls config", zap.Error(err))
@@ -106,7 +106,7 @@ func GetChannelProvider(provider ChannelProvider, storage storage.Provider, lgge
 		}
 		opts := &rediss.Options{
 			Addr:     redisHost,
-			Username: providerConfig["username"],
+			Username: providerConfig["user"],
 			Password: providerConfig["password"],
 		}
 		if tlsConfig != nil {
@@ -151,7 +151,7 @@ func GetChannelProvider(provider ChannelProvider, storage storage.Provider, lgge
 				opts     = []nats.Option{nats.Name(clientID)}
 			)
 			if tlsConfig != nil {
-				opts = append(opts, nats.ClientCert(providerConfig["tls_cert_file"], providerConfig["tls_key_file"]))
+				opts = append(opts, nats.ClientCert(providerConfig["client_cert_file"], providerConfig["client_key_file"]))
 			}
 
 			conn, err = nats.Connect(
@@ -196,7 +196,7 @@ func GetChannelProvider(provider ChannelProvider, storage storage.Provider, lgge
 			)
 
 			if tlsConfig != nil {
-				opts = append(opts, nats.ClientCert(providerConfig["tls_cert_file"], providerConfig["tls_key_file"]))
+				opts = append(opts, nats.ClientCert(providerConfig["client_cert_file"], providerConfig["client_key_file"]))
 			}
 			conn, err = nats.Connect(
 				natsUrl,

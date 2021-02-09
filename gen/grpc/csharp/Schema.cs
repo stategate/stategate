@@ -29,28 +29,29 @@ namespace Eventgate {
             "Z2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90bxoZZ29vZ2xlL3Byb3RvYnVm",
             "L2FueS5wcm90bxobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5LnByb3RvGjZnaXRo",
             "dWIuY29tL213aXRrb3cvZ28tcHJvdG8tdmFsaWRhdG9ycy92YWxpZGF0b3Iu",
-            "cHJvdG8ilwEKC0hpc3RvcnlPcHRzEhcKB2NoYW5uZWwYASABKAlCBuLfHwJY",
+            "cHJvdG8inwEKC0hpc3RvcnlPcHRzEhcKB2NoYW5uZWwYASABKAlCBuLfHwJY",
             "ARInCgNtaW4YAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEicK",
-            "A21heBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASDQoFbGlt",
-            "aXQYBCABKAMSDgoGb2Zmc2V0GAUgASgDIiYKC1JlY2VpdmVPcHRzEhcKB2No",
-            "YW5uZWwYASABKAlCBuLfHwJYASKwAQoFRXZlbnQSCgoCaWQYASABKAkSFwoH",
-            "Y2hhbm5lbBgCIAEoCUIG4t8fAlgBEi0KBGRhdGEYBSABKAsyFy5nb29nbGUu",
-            "cHJvdG9idWYuU3RydWN0Qgbi3x8CIAESKQoIbWV0YWRhdGEYBiABKAsyFy5n",
-            "b29nbGUucHJvdG9idWYuU3RydWN0EigKBHRpbWUYFCABKAsyGi5nb29nbGUu",
-            "cHJvdG9idWYuVGltZXN0YW1wIioKBkV2ZW50cxIgCgZldmVudHMYASADKAsy",
-            "EC5ldmVudGdhdGUuRXZlbnQy5wEKEEV2ZW50R2F0ZVNlcnZpY2USQgoEU2Vu",
-            "ZBIQLmV2ZW50Z2F0ZS5FdmVudBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIQ",
-            "gtPkkwIKIgUvc2VuZDoBKhJHCgdSZWNlaXZlEhYuZXZlbnRnYXRlLlJlY2Vp",
-            "dmVPcHRzGhAuZXZlbnRnYXRlLkV2ZW50IhCC0+STAgoSCC9yZWNlaXZlMAES",
-            "RgoHSGlzdG9yeRIWLmV2ZW50Z2F0ZS5IaXN0b3J5T3B0cxoRLmV2ZW50Z2F0",
-            "ZS5FdmVudHMiEILT5JMCChIIL2hpc3RvcnlCC1oJZXZlbnRnYXRlYgZwcm90",
-            "bzM="));
+            "A21heBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASFQoFbGlt",
+            "aXQYBCABKANCBuLfHwIQABIOCgZvZmZzZXQYBSABKAMiJgoLUmVjZWl2ZU9w",
+            "dHMSFwoHY2hhbm5lbBgBIAEoCUIG4t8fAlgBItkBCgVFdmVudBIKCgJpZBgB",
+            "IAEoCRIXCgdjaGFubmVsGAIgASgJQgbi3x8CWAESLQoEZGF0YRgFIAEoCzIX",
+            "Lmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgARIpCghtZXRhZGF0YRgG",
+            "IAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSJwoGY2xhaW1zGAcgASgL",
+            "MhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdBIoCgR0aW1lGBQgASgLMhouZ29v",
+            "Z2xlLnByb3RvYnVmLlRpbWVzdGFtcCIqCgZFdmVudHMSIAoGZXZlbnRzGAEg",
+            "AygLMhAuZXZlbnRnYXRlLkV2ZW50MucBChBFdmVudEdhdGVTZXJ2aWNlEkIK",
+            "BFNlbmQSEC5ldmVudGdhdGUuRXZlbnQaFi5nb29nbGUucHJvdG9idWYuRW1w",
+            "dHkiEILT5JMCCiIFL3NlbmQ6ASoSRwoHUmVjZWl2ZRIWLmV2ZW50Z2F0ZS5S",
+            "ZWNlaXZlT3B0cxoQLmV2ZW50Z2F0ZS5FdmVudCIQgtPkkwIKEggvcmVjZWl2",
+            "ZTABEkYKB0hpc3RvcnkSFi5ldmVudGdhdGUuSGlzdG9yeU9wdHMaES5ldmVu",
+            "dGdhdGUuRXZlbnRzIhCC0+STAgoSCC9oaXN0b3J5QgtaCWV2ZW50Z2F0ZWIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.HistoryOpts), global::Eventgate.HistoryOpts.Parser, new[]{ "Channel", "Min", "Max", "Limit", "Offset" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.ReceiveOpts), global::Eventgate.ReceiveOpts.Parser, new[]{ "Channel" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Event), global::Eventgate.Event.Parser, new[]{ "Id", "Channel", "Data", "Metadata", "Time" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Event), global::Eventgate.Event.Parser, new[]{ "Id", "Channel", "Data", "Metadata", "Claims", "Time" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Events), global::Eventgate.Events.Parser, new[]{ "Events_" }, null, null, null)
           }));
     }
@@ -490,6 +491,7 @@ namespace Eventgate {
       channel_ = other.channel_;
       data_ = other.data_ != null ? other.data_.Clone() : null;
       metadata_ = other.metadata_ != null ? other.metadata_.Clone() : null;
+      claims_ = other.claims_ != null ? other.claims_.Clone() : null;
       time_ = other.time_ != null ? other.time_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -555,6 +557,20 @@ namespace Eventgate {
       }
     }
 
+    /// <summary>Field number for the "claims" field.</summary>
+    public const int ClaimsFieldNumber = 7;
+    private global::Google.Protobuf.WellKnownTypes.Struct claims_;
+    /// <summary>
+    /// The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Struct Claims {
+      get { return claims_; }
+      set {
+        claims_ = value;
+      }
+    }
+
     /// <summary>Field number for the "time" field.</summary>
     public const int TimeFieldNumber = 20;
     private global::Google.Protobuf.WellKnownTypes.Timestamp time_;
@@ -586,6 +602,7 @@ namespace Eventgate {
       if (Channel != other.Channel) return false;
       if (!object.Equals(Data, other.Data)) return false;
       if (!object.Equals(Metadata, other.Metadata)) return false;
+      if (!object.Equals(Claims, other.Claims)) return false;
       if (!object.Equals(Time, other.Time)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -597,6 +614,7 @@ namespace Eventgate {
       if (Channel.Length != 0) hash ^= Channel.GetHashCode();
       if (data_ != null) hash ^= Data.GetHashCode();
       if (metadata_ != null) hash ^= Metadata.GetHashCode();
+      if (claims_ != null) hash ^= Claims.GetHashCode();
       if (time_ != null) hash ^= Time.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -627,6 +645,10 @@ namespace Eventgate {
         output.WriteRawTag(50);
         output.WriteMessage(Metadata);
       }
+      if (claims_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(Claims);
+      }
       if (time_ != null) {
         output.WriteRawTag(162, 1);
         output.WriteMessage(Time);
@@ -650,6 +672,9 @@ namespace Eventgate {
       }
       if (metadata_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Metadata);
+      }
+      if (claims_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Claims);
       }
       if (time_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(Time);
@@ -682,6 +707,12 @@ namespace Eventgate {
           metadata_ = new global::Google.Protobuf.WellKnownTypes.Struct();
         }
         Metadata.MergeFrom(other.Metadata);
+      }
+      if (other.claims_ != null) {
+        if (claims_ == null) {
+          claims_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+        }
+        Claims.MergeFrom(other.Claims);
       }
       if (other.time_ != null) {
         if (time_ == null) {
@@ -720,6 +751,13 @@ namespace Eventgate {
               metadata_ = new global::Google.Protobuf.WellKnownTypes.Struct();
             }
             input.ReadMessage(metadata_);
+            break;
+          }
+          case 58: {
+            if (claims_ == null) {
+              claims_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+            }
+            input.ReadMessage(claims_);
             break;
           }
           case 162: {

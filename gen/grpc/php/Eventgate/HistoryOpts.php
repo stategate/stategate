@@ -34,7 +34,7 @@ class HistoryOpts extends \Google\Protobuf\Internal\Message
     /**
      * limit returned events
      *
-     * Generated from protobuf field <code>int64 limit = 4;</code>
+     * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
      */
     private $limit = 0;
     /**
@@ -143,7 +143,7 @@ class HistoryOpts extends \Google\Protobuf\Internal\Message
     /**
      * limit returned events
      *
-     * Generated from protobuf field <code>int64 limit = 4;</code>
+     * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
      * @return int|string
      */
     public function getLimit()
@@ -154,7 +154,7 @@ class HistoryOpts extends \Google\Protobuf\Internal\Message
     /**
      * limit returned events
      *
-     * Generated from protobuf field <code>int64 limit = 4;</code>
+     * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
      * @param int|string $var
      * @return $this
      */

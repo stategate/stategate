@@ -9,7 +9,7 @@ require (
 	github.com/aws/aws-sdk-go v1.37.6
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
 	github.com/elastic/go-elasticsearch/v7 v7.10.0
-	github.com/elastic/go-elasticsearch/v8 v8.0.0-20201229214741-2366c2514674
+	github.com/elastic/go-elasticsearch/v8 v8.0.0-20201229214741-2366c2514674 // indirect
 	github.com/go-redis/redis/v8 v8.5.0
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.4.3

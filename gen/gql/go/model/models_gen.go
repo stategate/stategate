@@ -11,6 +11,7 @@ type Event struct {
 	Channel  string                 `json:"channel"`
 	Data     map[string]interface{} `json:"data"`
 	Metadata map[string]interface{} `json:"metadata"`
+	Claims   map[string]interface{} `json:"claims"`
 	Time     time.Time              `json:"time"`
 }
 

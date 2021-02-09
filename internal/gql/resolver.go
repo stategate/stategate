@@ -80,6 +80,7 @@ func (r *Resolver) toEvent(msg *eventgate.Event) *model.Event {
 		Channel:  msg.GetChannel(),
 		Data:     msg.GetData().AsMap(),
 		Metadata: msg.GetMetadata().AsMap(),
+		Claims:   msg.GetClaims().AsMap(),
 		Time:     msg.Time.AsTime(),
 	}
 }

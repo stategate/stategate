@@ -83,7 +83,7 @@ public final class Schema {
      * limit returned events
      * </pre>
      *
-     * <code>int64 limit = 4;</code>
+     * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
      */
     long getLimit();
 
@@ -323,7 +323,7 @@ public final class Schema {
      * limit returned events
      * </pre>
      *
-     * <code>int64 limit = 4;</code>
+     * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
      */
     public long getLimit() {
       return limit_;
@@ -1126,7 +1126,7 @@ public final class Schema {
        * limit returned events
        * </pre>
        *
-       * <code>int64 limit = 4;</code>
+       * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
        */
       public long getLimit() {
         return limit_;
@@ -1136,7 +1136,7 @@ public final class Schema {
        * limit returned events
        * </pre>
        *
-       * <code>int64 limit = 4;</code>
+       * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
        */
       public Builder setLimit(long value) {
         
@@ -1149,7 +1149,7 @@ public final class Schema {
        * limit returned events
        * </pre>
        *
-       * <code>int64 limit = 4;</code>
+       * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
        */
       public Builder clearLimit() {
         
@@ -1898,6 +1898,31 @@ public final class Schema {
 
     /**
      * <pre>
+     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct claims = 7;</code>
+     */
+    boolean hasClaims();
+    /**
+     * <pre>
+     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct claims = 7;</code>
+     */
+    com.google.protobuf.Struct getClaims();
+    /**
+     * <pre>
+     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct claims = 7;</code>
+     */
+    com.google.protobuf.StructOrBuilder getClaimsOrBuilder();
+
+    /**
+     * <pre>
      * Timestamp of when the occurrence happened. Must adhere to RFC 3339. If a timestamp is not sent with the event, the current time will be assigned
      * </pre>
      *
@@ -2000,6 +2025,19 @@ public final class Schema {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(metadata_);
                 metadata_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 58: {
+              com.google.protobuf.Struct.Builder subBuilder = null;
+              if (claims_ != null) {
+                subBuilder = claims_.toBuilder();
+              }
+              claims_ = input.readMessage(com.google.protobuf.Struct.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(claims_);
+                claims_ = subBuilder.buildPartial();
               }
 
               break;
@@ -2199,6 +2237,39 @@ public final class Schema {
       return getMetadata();
     }
 
+    public static final int CLAIMS_FIELD_NUMBER = 7;
+    private com.google.protobuf.Struct claims_;
+    /**
+     * <pre>
+     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct claims = 7;</code>
+     */
+    public boolean hasClaims() {
+      return claims_ != null;
+    }
+    /**
+     * <pre>
+     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct claims = 7;</code>
+     */
+    public com.google.protobuf.Struct getClaims() {
+      return claims_ == null ? com.google.protobuf.Struct.getDefaultInstance() : claims_;
+    }
+    /**
+     * <pre>
+     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct claims = 7;</code>
+     */
+    public com.google.protobuf.StructOrBuilder getClaimsOrBuilder() {
+      return getClaims();
+    }
+
     public static final int TIME_FIELD_NUMBER = 20;
     private com.google.protobuf.Timestamp time_;
     /**
@@ -2258,6 +2329,9 @@ public final class Schema {
       if (metadata_ != null) {
         output.writeMessage(6, getMetadata());
       }
+      if (claims_ != null) {
+        output.writeMessage(7, getClaims());
+      }
       if (time_ != null) {
         output.writeMessage(20, getTime());
       }
@@ -2283,6 +2357,10 @@ public final class Schema {
       if (metadata_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, getMetadata());
+      }
+      if (claims_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, getClaims());
       }
       if (time_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -2318,6 +2396,11 @@ public final class Schema {
         result = result && getMetadata()
             .equals(other.getMetadata());
       }
+      result = result && (hasClaims() == other.hasClaims());
+      if (hasClaims()) {
+        result = result && getClaims()
+            .equals(other.getClaims());
+      }
       result = result && (hasTime() == other.hasTime());
       if (hasTime()) {
         result = result && getTime()
@@ -2345,6 +2428,10 @@ public final class Schema {
       if (hasMetadata()) {
         hash = (37 * hash) + METADATA_FIELD_NUMBER;
         hash = (53 * hash) + getMetadata().hashCode();
+      }
+      if (hasClaims()) {
+        hash = (37 * hash) + CLAIMS_FIELD_NUMBER;
+        hash = (53 * hash) + getClaims().hashCode();
       }
       if (hasTime()) {
         hash = (37 * hash) + TIME_FIELD_NUMBER;
@@ -2503,6 +2590,12 @@ public final class Schema {
           metadata_ = null;
           metadataBuilder_ = null;
         }
+        if (claimsBuilder_ == null) {
+          claims_ = null;
+        } else {
+          claims_ = null;
+          claimsBuilder_ = null;
+        }
         if (timeBuilder_ == null) {
           time_ = null;
         } else {
@@ -2546,6 +2639,11 @@ public final class Schema {
           result.metadata_ = metadata_;
         } else {
           result.metadata_ = metadataBuilder_.build();
+        }
+        if (claimsBuilder_ == null) {
+          result.claims_ = claims_;
+        } else {
+          result.claims_ = claimsBuilder_.build();
         }
         if (timeBuilder_ == null) {
           result.time_ = time_;
@@ -2613,6 +2711,9 @@ public final class Schema {
         }
         if (other.hasMetadata()) {
           mergeMetadata(other.getMetadata());
+        }
+        if (other.hasClaims()) {
+          mergeClaims(other.getClaims());
         }
         if (other.hasTime()) {
           mergeTime(other.getTime());
@@ -3128,6 +3229,159 @@ public final class Schema {
           metadata_ = null;
         }
         return metadataBuilder_;
+      }
+
+      private com.google.protobuf.Struct claims_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> claimsBuilder_;
+      /**
+       * <pre>
+       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 7;</code>
+       */
+      public boolean hasClaims() {
+        return claimsBuilder_ != null || claims_ != null;
+      }
+      /**
+       * <pre>
+       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 7;</code>
+       */
+      public com.google.protobuf.Struct getClaims() {
+        if (claimsBuilder_ == null) {
+          return claims_ == null ? com.google.protobuf.Struct.getDefaultInstance() : claims_;
+        } else {
+          return claimsBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 7;</code>
+       */
+      public Builder setClaims(com.google.protobuf.Struct value) {
+        if (claimsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          claims_ = value;
+          onChanged();
+        } else {
+          claimsBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 7;</code>
+       */
+      public Builder setClaims(
+          com.google.protobuf.Struct.Builder builderForValue) {
+        if (claimsBuilder_ == null) {
+          claims_ = builderForValue.build();
+          onChanged();
+        } else {
+          claimsBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 7;</code>
+       */
+      public Builder mergeClaims(com.google.protobuf.Struct value) {
+        if (claimsBuilder_ == null) {
+          if (claims_ != null) {
+            claims_ =
+              com.google.protobuf.Struct.newBuilder(claims_).mergeFrom(value).buildPartial();
+          } else {
+            claims_ = value;
+          }
+          onChanged();
+        } else {
+          claimsBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 7;</code>
+       */
+      public Builder clearClaims() {
+        if (claimsBuilder_ == null) {
+          claims_ = null;
+          onChanged();
+        } else {
+          claims_ = null;
+          claimsBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 7;</code>
+       */
+      public com.google.protobuf.Struct.Builder getClaimsBuilder() {
+        
+        onChanged();
+        return getClaimsFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 7;</code>
+       */
+      public com.google.protobuf.StructOrBuilder getClaimsOrBuilder() {
+        if (claimsBuilder_ != null) {
+          return claimsBuilder_.getMessageOrBuilder();
+        } else {
+          return claims_ == null ?
+              com.google.protobuf.Struct.getDefaultInstance() : claims_;
+        }
+      }
+      /**
+       * <pre>
+       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 7;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
+          getClaimsFieldBuilder() {
+        if (claimsBuilder_ == null) {
+          claimsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder>(
+                  getClaims(),
+                  getParentForChildren(),
+                  isClean());
+          claims_ = null;
+        }
+        return claimsBuilder_;
       }
 
       private com.google.protobuf.Timestamp time_ = null;
@@ -4159,24 +4413,25 @@ public final class Schema {
       "proto\032\037google/protobuf/timestamp.proto\032\031" +
       "google/protobuf/any.proto\032\033google/protob" +
       "uf/empty.proto\0326github.com/mwitkow/go-pr" +
-      "oto-validators/validator.proto\"\227\001\n\013Histo" +
+      "oto-validators/validator.proto\"\237\001\n\013Histo" +
       "ryOpts\022\027\n\007channel\030\001 \001(\tB\006\342\337\037\002X\001\022\'\n\003min\030\002" +
       " \001(\0132\032.google.protobuf.Timestamp\022\'\n\003max\030" +
-      "\003 \001(\0132\032.google.protobuf.Timestamp\022\r\n\005lim" +
-      "it\030\004 \001(\003\022\016\n\006offset\030\005 \001(\003\"&\n\013ReceiveOpts\022" +
-      "\027\n\007channel\030\001 \001(\tB\006\342\337\037\002X\001\"\260\001\n\005Event\022\n\n\002id" +
-      "\030\001 \001(\t\022\027\n\007channel\030\002 \001(\tB\006\342\337\037\002X\001\022-\n\004data\030" +
-      "\005 \001(\0132\027.google.protobuf.StructB\006\342\337\037\002 \001\022)" +
-      "\n\010metadata\030\006 \001(\0132\027.google.protobuf.Struc" +
-      "t\022(\n\004time\030\024 \001(\0132\032.google.protobuf.Timest" +
-      "amp\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020.eventgat" +
-      "e.Event2\347\001\n\020EventGateService\022B\n\004Send\022\020.e" +
-      "ventgate.Event\032\026.google.protobuf.Empty\"\020" +
-      "\202\323\344\223\002\n\"\005/send:\001*\022G\n\007Receive\022\026.eventgate." +
-      "ReceiveOpts\032\020.eventgate.Event\"\020\202\323\344\223\002\n\022\010/" +
-      "receive0\001\022F\n\007History\022\026.eventgate.History" +
-      "Opts\032\021.eventgate.Events\"\020\202\323\344\223\002\n\022\010/histor" +
-      "yB\013Z\teventgateb\006proto3"
+      "\003 \001(\0132\032.google.protobuf.Timestamp\022\025\n\005lim" +
+      "it\030\004 \001(\003B\006\342\337\037\002\020\000\022\016\n\006offset\030\005 \001(\003\"&\n\013Rece" +
+      "iveOpts\022\027\n\007channel\030\001 \001(\tB\006\342\337\037\002X\001\"\331\001\n\005Eve" +
+      "nt\022\n\n\002id\030\001 \001(\t\022\027\n\007channel\030\002 \001(\tB\006\342\337\037\002X\001\022" +
+      "-\n\004data\030\005 \001(\0132\027.google.protobuf.StructB\006" +
+      "\342\337\037\002 \001\022)\n\010metadata\030\006 \001(\0132\027.google.protob" +
+      "uf.Struct\022\'\n\006claims\030\007 \001(\0132\027.google.proto" +
+      "buf.Struct\022(\n\004time\030\024 \001(\0132\032.google.protob" +
+      "uf.Timestamp\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020" +
+      ".eventgate.Event2\347\001\n\020EventGateService\022B\n" +
+      "\004Send\022\020.eventgate.Event\032\026.google.protobu" +
+      "f.Empty\"\020\202\323\344\223\002\n\"\005/send:\001*\022G\n\007Receive\022\026.e" +
+      "ventgate.ReceiveOpts\032\020.eventgate.Event\"\020" +
+      "\202\323\344\223\002\n\022\010/receive0\001\022F\n\007History\022\026.eventgat" +
+      "e.HistoryOpts\032\021.eventgate.Events\"\020\202\323\344\223\002\n" +
+      "\022\010/historyB\013Z\teventgateb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -4213,7 +4468,7 @@ public final class Schema {
     internal_static_eventgate_Event_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_eventgate_Event_descriptor,
-        new java.lang.String[] { "Id", "Channel", "Data", "Metadata", "Time", });
+        new java.lang.String[] { "Id", "Channel", "Data", "Metadata", "Claims", "Time", });
     internal_static_eventgate_Events_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_eventgate_Events_fieldAccessorTable = new

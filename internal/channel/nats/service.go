@@ -14,9 +14,9 @@ import (
 	"github.com/google/uuid"
 	"github.com/nats-io/nats.go"
 	"go.uber.org/zap"
-	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"google.golang.org/protobuf/types/known/structpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"time"
 )
@@ -55,16 +55,18 @@ func NewService(logger *logger.Logger, conn *nats.Conn, storage storage.Provider
 }
 
 func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, error) {
-	_, ok := auth.GetContext(ctx)
+	c, ok := auth.GetContext(ctx)
 	if !ok {
 		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
 	}
+	claims, _ := structpb.NewStruct(c.Claims)
 	toSend := &eventgate.Event{
 		Id:       r.GetId(),
 		Channel:  r.GetChannel(),
 		Data:     r.GetData(),
 		Metadata: r.GetMetadata(),
 		Time:     r.GetTime(),
+		Claims:   claims,
 	}
 	if toSend.Id == "" {
 		toSend.Id = uuid.New().String()
@@ -76,16 +78,12 @@ func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, e
 	if err != nil {
 		return nil, err
 	}
-	group := errgroup.Group{}
-	group.Go(func() error {
-		return s.conn.Publish(constants.BackendChannel, bits)
-	})
 	if s.storage != nil {
-		group.Go(func() error {
-			return s.storage.SaveEvent(ctx, toSend)
-		})
+		if err := s.storage.SaveEvent(ctx, toSend); err != nil {
+			return nil, err
+		}
 	}
-	if err := group.Wait(); err != nil {
+	if err := s.conn.Publish(constants.BackendChannel, bits); err != nil {
 		return nil, err
 	}
 	return &empty.Empty{}, nil

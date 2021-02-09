@@ -16,6 +16,7 @@ import (
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"google.golang.org/protobuf/types/known/structpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"time"
 )
@@ -57,15 +58,17 @@ func NewService(logger *logger.Logger, reader *kafka.Reader, writer *kafka.Write
 }
 
 func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, error) {
-	_, ok := auth.GetContext(ctx)
+	c, ok := auth.GetContext(ctx)
 	if !ok {
 		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
 	}
+	claims, _ := structpb.NewStruct(c.Claims)
 	toSend := &eventgate.Event{
 		Id:       r.GetId(),
 		Channel:  r.GetChannel(),
 		Data:     r.GetData(),
 		Metadata: r.GetMetadata(),
+		Claims:   claims,
 		Time:     r.GetTime(),
 	}
 	if toSend.Id == "" {
@@ -78,19 +81,15 @@ func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, e
 	if err != nil {
 		return nil, err
 	}
-	group := errgroup.Group{}
-	group.Go(func() error {
-		return s.writer.WriteMessages(ctx, kafka.Message{
-			Key:   []byte(toSend.Id),
-			Value: bits,
-		})
-	})
 	if s.storage != nil {
-		group.Go(func() error {
-			return s.storage.SaveEvent(ctx, toSend)
-		})
+		if err := s.storage.SaveEvent(ctx, toSend); err != nil {
+			return nil, err
+		}
 	}
-	if err := group.Wait(); err != nil {
+	if err := s.writer.WriteMessages(ctx, kafka.Message{
+		Key:   []byte(toSend.Id),
+		Value: bits,
+	}); err != nil {
 		return nil, err
 	}
 	return &empty.Empty{}, nil

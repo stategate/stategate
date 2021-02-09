@@ -21,17 +21,7 @@ type Service struct {
 	lgger  *logger.Logger
 }
 
-func NewService(dbName, uri string, lgger *logger.Logger) (*Service, error) {
-	client, err := mongo.NewClient(options.Client().ApplyURI(uri))
-	if err != nil {
-		return nil, err
-	}
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-	err = client.Connect(ctx)
-	if err != nil {
-		return nil, err
-	}
+func NewService(dbName string, client *mongo.Client, lgger *logger.Logger) (*Service, error) {
 	return &Service{
 		client: client,
 		db:     client.Database(dbName),
@@ -112,7 +102,7 @@ func (s Service) GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*e
 }
 
 func (s Service) Close() error {
-	ctx, cancel := context.WithTimeout(context.Background(), 5 *time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	return s.client.Disconnect(ctx)
 }
