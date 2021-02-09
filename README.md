@@ -1,6 +1,6 @@
 # eventgate
 
-A flexible, identity-aware gateway & immutable event storage service for microservices abiding by the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html)
+A flexible, identity-aware message-queue & immutable event storage service for microservices following the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html)
 
 Status: Proof of Concept
 
@@ -10,6 +10,7 @@ Status: Proof of Concept
                                         
 ## Features
 - [x] [Headless](https://en.wikipedia.org/wiki/Headless_software)
+- [x] [3 simple API Methods](https://github.com/autom8ter/eventgate/blob/master/schema.proto#L15) for interacting with events: `Receive, Send, History`
 - [x] Native [gRPC](https://grpc.io/) support
     - [protobuf schema](schema.proto)
 - [x] Optional Embedded [graphQL](https://graphql.org/) support `/graphql` (transcoding)
