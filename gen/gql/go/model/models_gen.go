@@ -22,6 +22,14 @@ type EventInput struct {
 	Time     *time.Time             `json:"time"`
 }
 
+type HistoryOpts struct {
+	Channel string     `json:"channel"`
+	Min     *time.Time `json:"min"`
+	Max     *time.Time `json:"max"`
+	Limit   *int       `json:"limit"`
+	Offset  *int       `json:"offset"`
+}
+
 type ReceiveOpts struct {
 	Channel string `json:"channel"`
 }

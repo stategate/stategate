@@ -1,4 +1,4 @@
-package backend
+package providers
 
 import (
 	gsub "cloud.google.com/go/pubsub"
@@ -6,14 +6,17 @@ import (
 	"crypto/tls"
 	"fmt"
 	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
-	"github.com/autom8ter/eventgate/internal/backend/inmem"
-	"github.com/autom8ter/eventgate/internal/backend/kafka"
-	nats2 "github.com/autom8ter/eventgate/internal/backend/nats"
-	"github.com/autom8ter/eventgate/internal/backend/pubsub"
-	"github.com/autom8ter/eventgate/internal/backend/redis"
-	"github.com/autom8ter/eventgate/internal/backend/stan"
+	"github.com/autom8ter/eventgate/internal/channel/inmem"
+	"github.com/autom8ter/eventgate/internal/channel/kafka"
+	nats2 "github.com/autom8ter/eventgate/internal/channel/nats"
+	"github.com/autom8ter/eventgate/internal/channel/pubsub"
+	"github.com/autom8ter/eventgate/internal/channel/redis"
+	"github.com/autom8ter/eventgate/internal/channel/sqs"
+	"github.com/autom8ter/eventgate/internal/channel/stan"
 	"github.com/autom8ter/eventgate/internal/constants"
 	"github.com/autom8ter/eventgate/internal/logger"
+	"github.com/autom8ter/eventgate/internal/storage"
+	"github.com/aws/aws-sdk-go/aws/session"
 	rediss "github.com/go-redis/redis/v8"
 	"github.com/nats-io/nats.go"
 	"github.com/nats-io/nuid"
@@ -27,20 +30,21 @@ import (
 	"time"
 )
 
-type Provider string
+type ChannelProvider string
 
 const (
-	NATS         Provider = "nats"
-	STAN         Provider = "stan"
-	INMEM        Provider = "inmem"
-	REDIS        Provider = "redis"
-	KAFKA        Provider = "kafka"
-	GOOGLEPUBSUB Provider = "google-pubsub"
+	NATS         ChannelProvider = "nats"
+	STAN         ChannelProvider = "stan"
+	INMEM        ChannelProvider = "inmem"
+	REDIS        ChannelProvider = "redis"
+	KAFKA        ChannelProvider = "kafka"
+	GOOGLEPUBSUB ChannelProvider = "google-pubsub"
+	AWSSQS       ChannelProvider = "aws-sqs"
 )
 
-var allProviders = []string{string(INMEM), string(REDIS), string(NATS), string(STAN)}
+var AllChannelProviders = []ChannelProvider{INMEM, REDIS, NATS, STAN, KAFKA, GOOGLEPUBSUB, AWSSQS}
 
-func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[string]string) (eventgate.EventGateServiceServer, func(), error) {
+func GetChannelProvider(provider ChannelProvider, storage storage.Provider, lgger *logger.Logger, providerConfig map[string]string) (eventgate.EventGateServiceServer, func(), error) {
 	if providerConfig == nil {
 		return nil, nil, errors.Errorf("empty backend config")
 	}
@@ -57,7 +61,7 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 	}
 	switch provider {
 	case INMEM:
-		svc := inmem.NewService(lgger)
+		svc := inmem.NewService(lgger, storage)
 		return svc, func() {
 			if err := svc.Close(); err != nil {
 				lgger.Error("failed to close backend", zap.Error(err))
@@ -86,7 +90,7 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 			Topic:   constants.BackendChannel,
 			Dialer:  dialer,
 		})
-		svc, err := kafka.NewService(lgger, r, w)
+		svc, err := kafka.NewService(lgger, r, w, storage)
 		if err != nil {
 			return nil, nil, err
 		}
@@ -114,7 +118,7 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 		if _, err := client.Ping(ctx).Result(); err != nil {
 			return nil, nil, err
 		}
-		svc, err := redis.NewService(lgger, client)
+		svc, err := redis.NewService(lgger, client, storage)
 		if err != nil {
 			return nil, nil, err
 		}
@@ -163,7 +167,7 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 			return nil, nil, err
 		}
 		sconn, err := stan2.Connect(cluster, clientID, stan2.NatsConn(conn))
-		svc, err := stan.NewService(lgger, sconn)
+		svc, err := stan.NewService(lgger, sconn, storage)
 		if err != nil {
 			return nil, nil, err
 		}
@@ -206,7 +210,7 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 		if err != nil {
 			return nil, nil, err
 		}
-		svc, err := nats2.NewService(lgger, conn)
+		svc, err := nats2.NewService(lgger, conn, storage)
 		if err != nil {
 			return nil, nil, err
 		}
@@ -218,6 +222,9 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 	case GOOGLEPUBSUB:
 		ctx := context.Background()
 		project := providerConfig["project"]
+		if project == "" {
+			return nil, nil, errors.New("google pubsub config: empty project")
+		}
 		credentialsFile := providerConfig["credentials_file"]
 		var (
 			client *gsub.Client
@@ -235,7 +242,23 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 			}
 		}
 		client.CreateTopic(ctx, constants.BackendChannel)
-		svc, err := pubsub.NewService(lgger, client)
+		svc, err := pubsub.NewService(lgger, client, storage)
+		if err != nil {
+			return nil, nil, err
+		}
+		return svc, func() {
+			if err := svc.Close(); err != nil {
+				lgger.Error("failed to close backend", zap.Error(err))
+			}
+		}, nil
+	case AWSSQS:
+		sess, err := session.NewSessionWithOptions(session.Options{
+			SharedConfigState: session.SharedConfigEnable,
+		})
+		if err != nil {
+			return nil, nil, err
+		}
+		svc, err := sqs.NewService(lgger, sess, storage)
 		if err != nil {
 			return nil, nil, err
 		}
@@ -245,6 +268,6 @@ func GetProvider(provider Provider, lgger *logger.Logger, providerConfig map[str
 			}
 		}, nil
 	default:
-		return nil, nil, errors.Errorf("unsupported backend provider: %s. must be one of: %s", provider, strings.Join(allProviders, ","))
+		return nil, nil, errors.Errorf("unsupported backend provider: %s. must be one of: %v", provider, AllChannelProviders)
 	}
 }

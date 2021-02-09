@@ -183,7 +183,11 @@
                 </li>
               
                 <li>
-                  <a href="#eventgate.Event.MetadataEntry"><span class="badge">M</span>Event.MetadataEntry</a>
+                  <a href="#eventgate.Events"><span class="badge">M</span>Events</a>
+                </li>
+              
+                <li>
+                  <a href="#eventgate.HistoryOpts"><span class="badge">M</span>HistoryOpts</a>
                 </li>
               
                 <li>
@@ -245,8 +249,8 @@
               
                 <tr>
                   <td>metadata</td>
-                  <td><a href="#eventgate.Event.MetadataEntry">Event.MetadataEntry</a></td>
-                  <td>repeated</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
                   <td><p>Arbitrary metadata about the event </p></td>
                 </tr>
               
@@ -302,8 +306,8 @@
 
         
       
-        <h3 id="eventgate.Event.MetadataEntry">Event.MetadataEntry</h3>
-        <p></p>
+        <h3 id="eventgate.Events">Events</h3>
+        <p>Events is an array of events</p>
 
         
           <table class="field-table">
@@ -313,22 +317,94 @@
             <tbody>
               
                 <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>events</td>
+                  <td><a href="#eventgate.Event">Event</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+
+        
+      
+        <h3 id="eventgate.HistoryOpts">HistoryOpts</h3>
+        <p>HistoryOpts are options when querying historical events</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>channel</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>min</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>only return events that occurred after specified min timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>only return events that occurred before specified max timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>limit returned events </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>offset returned events(pagination) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>channel</td>
+                  <td>
+                    <ul>
+                    
+                      <li>string_not_empty: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -402,14 +478,22 @@
                 <td>Send</td>
                 <td><a href="#eventgate.Event">Event</a></td>
                 <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
-                <td><p>Broadcast an event(one way)</p></td>
+                <td><p>Send broadcasts an event to all consumers on a given channel</p></td>
               </tr>
             
               <tr>
                 <td>Receive</td>
                 <td><a href="#eventgate.ReceiveOpts">ReceiveOpts</a></td>
                 <td><a href="#eventgate.Event">Event</a> stream</td>
-                <td><p>Receive streams events to a client that pass a Filter</p></td>
+                <td><p>Receive pushes events to a new client consumer</p></td>
+              </tr>
+            
+              <tr>
+                <td>History</td>
+                <td><a href="#eventgate.HistoryOpts">HistoryOpts</a></td>
+                <td><a href="#eventgate.Events">Events</a></td>
+                <td><p>History returns an array of immutable historical events.
+If a backend storage provider is not registered, an error will be returned to the client</p></td>
               </tr>
             
           </tbody>
@@ -446,6 +530,16 @@
                 <td>Receive</td>
                 <td>GET</td>
                 <td>/receive</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>History</td>
+                <td>GET</td>
+                <td>/history</td>
                 <td></td>
               </tr>
               

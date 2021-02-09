@@ -14,6 +14,1240 @@ public final class Schema {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  public interface HistoryOptsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:eventgate.HistoryOpts)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string channel = 1 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getChannel();
+    /**
+     * <code>string channel = 1 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getChannelBytes();
+
+    /**
+     * <pre>
+     * only return events that occurred after specified min timestamp
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp min = 2;</code>
+     */
+    boolean hasMin();
+    /**
+     * <pre>
+     * only return events that occurred after specified min timestamp
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp min = 2;</code>
+     */
+    com.google.protobuf.Timestamp getMin();
+    /**
+     * <pre>
+     * only return events that occurred after specified min timestamp
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp min = 2;</code>
+     */
+    com.google.protobuf.TimestampOrBuilder getMinOrBuilder();
+
+    /**
+     * <pre>
+     * only return events that occurred before specified max timestamp
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp max = 3;</code>
+     */
+    boolean hasMax();
+    /**
+     * <pre>
+     * only return events that occurred before specified max timestamp
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp max = 3;</code>
+     */
+    com.google.protobuf.Timestamp getMax();
+    /**
+     * <pre>
+     * only return events that occurred before specified max timestamp
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp max = 3;</code>
+     */
+    com.google.protobuf.TimestampOrBuilder getMaxOrBuilder();
+
+    /**
+     * <pre>
+     * limit returned events
+     * </pre>
+     *
+     * <code>int64 limit = 4;</code>
+     */
+    long getLimit();
+
+    /**
+     * <pre>
+     * offset returned events(pagination)
+     * </pre>
+     *
+     * <code>int64 offset = 5;</code>
+     */
+    long getOffset();
+  }
+  /**
+   * <pre>
+   * HistoryOpts are options when querying historical events
+   * </pre>
+   *
+   * Protobuf type {@code eventgate.HistoryOpts}
+   */
+  public  static final class HistoryOpts extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:eventgate.HistoryOpts)
+      HistoryOptsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use HistoryOpts.newBuilder() to construct.
+    private HistoryOpts(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private HistoryOpts() {
+      channel_ = "";
+      limit_ = 0L;
+      offset_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private HistoryOpts(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              channel_ = s;
+              break;
+            }
+            case 18: {
+              com.google.protobuf.Timestamp.Builder subBuilder = null;
+              if (min_ != null) {
+                subBuilder = min_.toBuilder();
+              }
+              min_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(min_);
+                min_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 26: {
+              com.google.protobuf.Timestamp.Builder subBuilder = null;
+              if (max_ != null) {
+                subBuilder = max_.toBuilder();
+              }
+              max_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(max_);
+                max_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 32: {
+
+              limit_ = input.readInt64();
+              break;
+            }
+            case 40: {
+
+              offset_ = input.readInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return eventgate.Schema.internal_static_eventgate_HistoryOpts_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return eventgate.Schema.internal_static_eventgate_HistoryOpts_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              eventgate.Schema.HistoryOpts.class, eventgate.Schema.HistoryOpts.Builder.class);
+    }
+
+    public static final int CHANNEL_FIELD_NUMBER = 1;
+    private volatile java.lang.Object channel_;
+    /**
+     * <code>string channel = 1 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getChannel() {
+      java.lang.Object ref = channel_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        channel_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string channel = 1 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getChannelBytes() {
+      java.lang.Object ref = channel_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        channel_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MIN_FIELD_NUMBER = 2;
+    private com.google.protobuf.Timestamp min_;
+    /**
+     * <pre>
+     * only return events that occurred after specified min timestamp
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp min = 2;</code>
+     */
+    public boolean hasMin() {
+      return min_ != null;
+    }
+    /**
+     * <pre>
+     * only return events that occurred after specified min timestamp
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp min = 2;</code>
+     */
+    public com.google.protobuf.Timestamp getMin() {
+      return min_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : min_;
+    }
+    /**
+     * <pre>
+     * only return events that occurred after specified min timestamp
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp min = 2;</code>
+     */
+    public com.google.protobuf.TimestampOrBuilder getMinOrBuilder() {
+      return getMin();
+    }
+
+    public static final int MAX_FIELD_NUMBER = 3;
+    private com.google.protobuf.Timestamp max_;
+    /**
+     * <pre>
+     * only return events that occurred before specified max timestamp
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp max = 3;</code>
+     */
+    public boolean hasMax() {
+      return max_ != null;
+    }
+    /**
+     * <pre>
+     * only return events that occurred before specified max timestamp
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp max = 3;</code>
+     */
+    public com.google.protobuf.Timestamp getMax() {
+      return max_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : max_;
+    }
+    /**
+     * <pre>
+     * only return events that occurred before specified max timestamp
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp max = 3;</code>
+     */
+    public com.google.protobuf.TimestampOrBuilder getMaxOrBuilder() {
+      return getMax();
+    }
+
+    public static final int LIMIT_FIELD_NUMBER = 4;
+    private long limit_;
+    /**
+     * <pre>
+     * limit returned events
+     * </pre>
+     *
+     * <code>int64 limit = 4;</code>
+     */
+    public long getLimit() {
+      return limit_;
+    }
+
+    public static final int OFFSET_FIELD_NUMBER = 5;
+    private long offset_;
+    /**
+     * <pre>
+     * offset returned events(pagination)
+     * </pre>
+     *
+     * <code>int64 offset = 5;</code>
+     */
+    public long getOffset() {
+      return offset_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getChannelBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, channel_);
+      }
+      if (min_ != null) {
+        output.writeMessage(2, getMin());
+      }
+      if (max_ != null) {
+        output.writeMessage(3, getMax());
+      }
+      if (limit_ != 0L) {
+        output.writeInt64(4, limit_);
+      }
+      if (offset_ != 0L) {
+        output.writeInt64(5, offset_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getChannelBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, channel_);
+      }
+      if (min_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getMin());
+      }
+      if (max_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getMax());
+      }
+      if (limit_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, limit_);
+      }
+      if (offset_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, offset_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof eventgate.Schema.HistoryOpts)) {
+        return super.equals(obj);
+      }
+      eventgate.Schema.HistoryOpts other = (eventgate.Schema.HistoryOpts) obj;
+
+      boolean result = true;
+      result = result && getChannel()
+          .equals(other.getChannel());
+      result = result && (hasMin() == other.hasMin());
+      if (hasMin()) {
+        result = result && getMin()
+            .equals(other.getMin());
+      }
+      result = result && (hasMax() == other.hasMax());
+      if (hasMax()) {
+        result = result && getMax()
+            .equals(other.getMax());
+      }
+      result = result && (getLimit()
+          == other.getLimit());
+      result = result && (getOffset()
+          == other.getOffset());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CHANNEL_FIELD_NUMBER;
+      hash = (53 * hash) + getChannel().hashCode();
+      if (hasMin()) {
+        hash = (37 * hash) + MIN_FIELD_NUMBER;
+        hash = (53 * hash) + getMin().hashCode();
+      }
+      if (hasMax()) {
+        hash = (37 * hash) + MAX_FIELD_NUMBER;
+        hash = (53 * hash) + getMax().hashCode();
+      }
+      hash = (37 * hash) + LIMIT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getLimit());
+      hash = (37 * hash) + OFFSET_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getOffset());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static eventgate.Schema.HistoryOpts parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static eventgate.Schema.HistoryOpts parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static eventgate.Schema.HistoryOpts parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static eventgate.Schema.HistoryOpts parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static eventgate.Schema.HistoryOpts parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static eventgate.Schema.HistoryOpts parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static eventgate.Schema.HistoryOpts parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static eventgate.Schema.HistoryOpts parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static eventgate.Schema.HistoryOpts parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static eventgate.Schema.HistoryOpts parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static eventgate.Schema.HistoryOpts parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static eventgate.Schema.HistoryOpts parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(eventgate.Schema.HistoryOpts prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * HistoryOpts are options when querying historical events
+     * </pre>
+     *
+     * Protobuf type {@code eventgate.HistoryOpts}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:eventgate.HistoryOpts)
+        eventgate.Schema.HistoryOptsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return eventgate.Schema.internal_static_eventgate_HistoryOpts_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return eventgate.Schema.internal_static_eventgate_HistoryOpts_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                eventgate.Schema.HistoryOpts.class, eventgate.Schema.HistoryOpts.Builder.class);
+      }
+
+      // Construct using eventgate.Schema.HistoryOpts.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        channel_ = "";
+
+        if (minBuilder_ == null) {
+          min_ = null;
+        } else {
+          min_ = null;
+          minBuilder_ = null;
+        }
+        if (maxBuilder_ == null) {
+          max_ = null;
+        } else {
+          max_ = null;
+          maxBuilder_ = null;
+        }
+        limit_ = 0L;
+
+        offset_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return eventgate.Schema.internal_static_eventgate_HistoryOpts_descriptor;
+      }
+
+      @java.lang.Override
+      public eventgate.Schema.HistoryOpts getDefaultInstanceForType() {
+        return eventgate.Schema.HistoryOpts.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public eventgate.Schema.HistoryOpts build() {
+        eventgate.Schema.HistoryOpts result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public eventgate.Schema.HistoryOpts buildPartial() {
+        eventgate.Schema.HistoryOpts result = new eventgate.Schema.HistoryOpts(this);
+        result.channel_ = channel_;
+        if (minBuilder_ == null) {
+          result.min_ = min_;
+        } else {
+          result.min_ = minBuilder_.build();
+        }
+        if (maxBuilder_ == null) {
+          result.max_ = max_;
+        } else {
+          result.max_ = maxBuilder_.build();
+        }
+        result.limit_ = limit_;
+        result.offset_ = offset_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof eventgate.Schema.HistoryOpts) {
+          return mergeFrom((eventgate.Schema.HistoryOpts)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(eventgate.Schema.HistoryOpts other) {
+        if (other == eventgate.Schema.HistoryOpts.getDefaultInstance()) return this;
+        if (!other.getChannel().isEmpty()) {
+          channel_ = other.channel_;
+          onChanged();
+        }
+        if (other.hasMin()) {
+          mergeMin(other.getMin());
+        }
+        if (other.hasMax()) {
+          mergeMax(other.getMax());
+        }
+        if (other.getLimit() != 0L) {
+          setLimit(other.getLimit());
+        }
+        if (other.getOffset() != 0L) {
+          setOffset(other.getOffset());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        eventgate.Schema.HistoryOpts parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (eventgate.Schema.HistoryOpts) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object channel_ = "";
+      /**
+       * <code>string channel = 1 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getChannel() {
+        java.lang.Object ref = channel_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          channel_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string channel = 1 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getChannelBytes() {
+        java.lang.Object ref = channel_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          channel_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string channel = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setChannel(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        channel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string channel = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearChannel() {
+        
+        channel_ = getDefaultInstance().getChannel();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string channel = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setChannelBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        channel_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.Timestamp min_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> minBuilder_;
+      /**
+       * <pre>
+       * only return events that occurred after specified min timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp min = 2;</code>
+       */
+      public boolean hasMin() {
+        return minBuilder_ != null || min_ != null;
+      }
+      /**
+       * <pre>
+       * only return events that occurred after specified min timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp min = 2;</code>
+       */
+      public com.google.protobuf.Timestamp getMin() {
+        if (minBuilder_ == null) {
+          return min_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : min_;
+        } else {
+          return minBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * only return events that occurred after specified min timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp min = 2;</code>
+       */
+      public Builder setMin(com.google.protobuf.Timestamp value) {
+        if (minBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          min_ = value;
+          onChanged();
+        } else {
+          minBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * only return events that occurred after specified min timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp min = 2;</code>
+       */
+      public Builder setMin(
+          com.google.protobuf.Timestamp.Builder builderForValue) {
+        if (minBuilder_ == null) {
+          min_ = builderForValue.build();
+          onChanged();
+        } else {
+          minBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * only return events that occurred after specified min timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp min = 2;</code>
+       */
+      public Builder mergeMin(com.google.protobuf.Timestamp value) {
+        if (minBuilder_ == null) {
+          if (min_ != null) {
+            min_ =
+              com.google.protobuf.Timestamp.newBuilder(min_).mergeFrom(value).buildPartial();
+          } else {
+            min_ = value;
+          }
+          onChanged();
+        } else {
+          minBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * only return events that occurred after specified min timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp min = 2;</code>
+       */
+      public Builder clearMin() {
+        if (minBuilder_ == null) {
+          min_ = null;
+          onChanged();
+        } else {
+          min_ = null;
+          minBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * only return events that occurred after specified min timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp min = 2;</code>
+       */
+      public com.google.protobuf.Timestamp.Builder getMinBuilder() {
+        
+        onChanged();
+        return getMinFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * only return events that occurred after specified min timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp min = 2;</code>
+       */
+      public com.google.protobuf.TimestampOrBuilder getMinOrBuilder() {
+        if (minBuilder_ != null) {
+          return minBuilder_.getMessageOrBuilder();
+        } else {
+          return min_ == null ?
+              com.google.protobuf.Timestamp.getDefaultInstance() : min_;
+        }
+      }
+      /**
+       * <pre>
+       * only return events that occurred after specified min timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp min = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+          getMinFieldBuilder() {
+        if (minBuilder_ == null) {
+          minBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                  getMin(),
+                  getParentForChildren(),
+                  isClean());
+          min_ = null;
+        }
+        return minBuilder_;
+      }
+
+      private com.google.protobuf.Timestamp max_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> maxBuilder_;
+      /**
+       * <pre>
+       * only return events that occurred before specified max timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp max = 3;</code>
+       */
+      public boolean hasMax() {
+        return maxBuilder_ != null || max_ != null;
+      }
+      /**
+       * <pre>
+       * only return events that occurred before specified max timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp max = 3;</code>
+       */
+      public com.google.protobuf.Timestamp getMax() {
+        if (maxBuilder_ == null) {
+          return max_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : max_;
+        } else {
+          return maxBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * only return events that occurred before specified max timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp max = 3;</code>
+       */
+      public Builder setMax(com.google.protobuf.Timestamp value) {
+        if (maxBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          max_ = value;
+          onChanged();
+        } else {
+          maxBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * only return events that occurred before specified max timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp max = 3;</code>
+       */
+      public Builder setMax(
+          com.google.protobuf.Timestamp.Builder builderForValue) {
+        if (maxBuilder_ == null) {
+          max_ = builderForValue.build();
+          onChanged();
+        } else {
+          maxBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * only return events that occurred before specified max timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp max = 3;</code>
+       */
+      public Builder mergeMax(com.google.protobuf.Timestamp value) {
+        if (maxBuilder_ == null) {
+          if (max_ != null) {
+            max_ =
+              com.google.protobuf.Timestamp.newBuilder(max_).mergeFrom(value).buildPartial();
+          } else {
+            max_ = value;
+          }
+          onChanged();
+        } else {
+          maxBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * only return events that occurred before specified max timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp max = 3;</code>
+       */
+      public Builder clearMax() {
+        if (maxBuilder_ == null) {
+          max_ = null;
+          onChanged();
+        } else {
+          max_ = null;
+          maxBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * only return events that occurred before specified max timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp max = 3;</code>
+       */
+      public com.google.protobuf.Timestamp.Builder getMaxBuilder() {
+        
+        onChanged();
+        return getMaxFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * only return events that occurred before specified max timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp max = 3;</code>
+       */
+      public com.google.protobuf.TimestampOrBuilder getMaxOrBuilder() {
+        if (maxBuilder_ != null) {
+          return maxBuilder_.getMessageOrBuilder();
+        } else {
+          return max_ == null ?
+              com.google.protobuf.Timestamp.getDefaultInstance() : max_;
+        }
+      }
+      /**
+       * <pre>
+       * only return events that occurred before specified max timestamp
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp max = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+          getMaxFieldBuilder() {
+        if (maxBuilder_ == null) {
+          maxBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                  getMax(),
+                  getParentForChildren(),
+                  isClean());
+          max_ = null;
+        }
+        return maxBuilder_;
+      }
+
+      private long limit_ ;
+      /**
+       * <pre>
+       * limit returned events
+       * </pre>
+       *
+       * <code>int64 limit = 4;</code>
+       */
+      public long getLimit() {
+        return limit_;
+      }
+      /**
+       * <pre>
+       * limit returned events
+       * </pre>
+       *
+       * <code>int64 limit = 4;</code>
+       */
+      public Builder setLimit(long value) {
+        
+        limit_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * limit returned events
+       * </pre>
+       *
+       * <code>int64 limit = 4;</code>
+       */
+      public Builder clearLimit() {
+        
+        limit_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long offset_ ;
+      /**
+       * <pre>
+       * offset returned events(pagination)
+       * </pre>
+       *
+       * <code>int64 offset = 5;</code>
+       */
+      public long getOffset() {
+        return offset_;
+      }
+      /**
+       * <pre>
+       * offset returned events(pagination)
+       * </pre>
+       *
+       * <code>int64 offset = 5;</code>
+       */
+      public Builder setOffset(long value) {
+        
+        offset_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * offset returned events(pagination)
+       * </pre>
+       *
+       * <code>int64 offset = 5;</code>
+       */
+      public Builder clearOffset() {
+        
+        offset_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:eventgate.HistoryOpts)
+    }
+
+    // @@protoc_insertion_point(class_scope:eventgate.HistoryOpts)
+    private static final eventgate.Schema.HistoryOpts DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new eventgate.Schema.HistoryOpts();
+    }
+
+    public static eventgate.Schema.HistoryOpts getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<HistoryOpts>
+        PARSER = new com.google.protobuf.AbstractParser<HistoryOpts>() {
+      @java.lang.Override
+      public HistoryOpts parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new HistoryOpts(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<HistoryOpts> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<HistoryOpts> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public eventgate.Schema.HistoryOpts getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface ReceiveOptsOrBuilder extends
       // @@protoc_insertion_point(interface_extends:eventgate.ReceiveOpts)
       com.google.protobuf.MessageOrBuilder {
@@ -642,54 +1876,25 @@ public final class Schema {
      * Arbitrary metadata about the event
      * </pre>
      *
-     * <code>map&lt;string, string&gt; metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
-    int getMetadataCount();
+    boolean hasMetadata();
     /**
      * <pre>
      * Arbitrary metadata about the event
      * </pre>
      *
-     * <code>map&lt;string, string&gt; metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
-    boolean containsMetadata(
-        java.lang.String key);
-    /**
-     * Use {@link #getMetadataMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, java.lang.String>
-    getMetadata();
+    com.google.protobuf.Struct getMetadata();
     /**
      * <pre>
      * Arbitrary metadata about the event
      * </pre>
      *
-     * <code>map&lt;string, string&gt; metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
-    java.util.Map<java.lang.String, java.lang.String>
-    getMetadataMap();
-    /**
-     * <pre>
-     * Arbitrary metadata about the event
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; metadata = 6;</code>
-     */
-
-    java.lang.String getMetadataOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue);
-    /**
-     * <pre>
-     * Arbitrary metadata about the event
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; metadata = 6;</code>
-     */
-
-    java.lang.String getMetadataOrThrow(
-        java.lang.String key);
+    com.google.protobuf.StructOrBuilder getMetadataOrBuilder();
 
     /**
      * <pre>
@@ -787,16 +1992,16 @@ public final class Schema {
               break;
             }
             case 50: {
-              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-                metadata_ = com.google.protobuf.MapField.newMapField(
-                    MetadataDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000008;
+              com.google.protobuf.Struct.Builder subBuilder = null;
+              if (metadata_ != null) {
+                subBuilder = metadata_.toBuilder();
               }
-              com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-              metadata__ = input.readMessage(
-                  MetadataDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              metadata_.getMutableMap().put(
-                  metadata__.getKey(), metadata__.getValue());
+              metadata_ = input.readMessage(com.google.protobuf.Struct.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(metadata_);
+                metadata_ = subBuilder.buildPartial();
+              }
+
               break;
             }
             case 162: {
@@ -836,18 +2041,6 @@ public final class Schema {
       return eventgate.Schema.internal_static_eventgate_Event_descriptor;
     }
 
-    @SuppressWarnings({"rawtypes"})
-    @java.lang.Override
-    protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 6:
-          return internalGetMetadata();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
@@ -856,7 +2049,6 @@ public final class Schema {
               eventgate.Schema.Event.class, eventgate.Schema.Event.Builder.class);
     }
 
-    private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
     private volatile java.lang.Object id_;
     /**
@@ -975,95 +2167,36 @@ public final class Schema {
     }
 
     public static final int METADATA_FIELD_NUMBER = 6;
-    private static final class MetadataDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.String, java.lang.String> defaultEntry =
-              com.google.protobuf.MapEntry
-              .<java.lang.String, java.lang.String>newDefaultInstance(
-                  eventgate.Schema.internal_static_eventgate_Event_MetadataEntry_descriptor, 
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "",
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "");
-    }
-    private com.google.protobuf.MapField<
-        java.lang.String, java.lang.String> metadata_;
-    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-    internalGetMetadata() {
-      if (metadata_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            MetadataDefaultEntryHolder.defaultEntry);
-      }
-      return metadata_;
-    }
-
-    public int getMetadataCount() {
-      return internalGetMetadata().getMap().size();
+    private com.google.protobuf.Struct metadata_;
+    /**
+     * <pre>
+     * Arbitrary metadata about the event
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct metadata = 6;</code>
+     */
+    public boolean hasMetadata() {
+      return metadata_ != null;
     }
     /**
      * <pre>
      * Arbitrary metadata about the event
      * </pre>
      *
-     * <code>map&lt;string, string&gt; metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
-
-    public boolean containsMetadata(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      return internalGetMetadata().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getMetadataMap()} instead.
-     */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.String> getMetadata() {
-      return getMetadataMap();
+    public com.google.protobuf.Struct getMetadata() {
+      return metadata_ == null ? com.google.protobuf.Struct.getDefaultInstance() : metadata_;
     }
     /**
      * <pre>
      * Arbitrary metadata about the event
      * </pre>
      *
-     * <code>map&lt;string, string&gt; metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
-
-    public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
-      return internalGetMetadata().getMap();
-    }
-    /**
-     * <pre>
-     * Arbitrary metadata about the event
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; metadata = 6;</code>
-     */
-
-    public java.lang.String getMetadataOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetMetadata().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <pre>
-     * Arbitrary metadata about the event
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; metadata = 6;</code>
-     */
-
-    public java.lang.String getMetadataOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetMetadata().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
+    public com.google.protobuf.StructOrBuilder getMetadataOrBuilder() {
+      return getMetadata();
     }
 
     public static final int TIME_FIELD_NUMBER = 20;
@@ -1122,12 +2255,9 @@ public final class Schema {
       if (data_ != null) {
         output.writeMessage(5, getData());
       }
-      com.google.protobuf.GeneratedMessageV3
-        .serializeStringMapTo(
-          output,
-          internalGetMetadata(),
-          MetadataDefaultEntryHolder.defaultEntry,
-          6);
+      if (metadata_ != null) {
+        output.writeMessage(6, getMetadata());
+      }
       if (time_ != null) {
         output.writeMessage(20, getTime());
       }
@@ -1150,15 +2280,9 @@ public final class Schema {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getData());
       }
-      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-           : internalGetMetadata().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-        metadata__ = MetadataDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
+      if (metadata_ != null) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(6, metadata__);
+          .computeMessageSize(6, getMetadata());
       }
       if (time_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -1189,8 +2313,11 @@ public final class Schema {
         result = result && getData()
             .equals(other.getData());
       }
-      result = result && internalGetMetadata().equals(
-          other.internalGetMetadata());
+      result = result && (hasMetadata() == other.hasMetadata());
+      if (hasMetadata()) {
+        result = result && getMetadata()
+            .equals(other.getMetadata());
+      }
       result = result && (hasTime() == other.hasTime());
       if (hasTime()) {
         result = result && getTime()
@@ -1215,9 +2342,9 @@ public final class Schema {
         hash = (37 * hash) + DATA_FIELD_NUMBER;
         hash = (53 * hash) + getData().hashCode();
       }
-      if (!internalGetMetadata().getMap().isEmpty()) {
+      if (hasMetadata()) {
         hash = (37 * hash) + METADATA_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetMetadata().hashCode();
+        hash = (53 * hash) + getMetadata().hashCode();
       }
       if (hasTime()) {
         hash = (37 * hash) + TIME_FIELD_NUMBER;
@@ -1334,28 +2461,6 @@ public final class Schema {
         return eventgate.Schema.internal_static_eventgate_Event_descriptor;
       }
 
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMapField(
-          int number) {
-        switch (number) {
-          case 6:
-            return internalGetMetadata();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMutableMapField(
-          int number) {
-        switch (number) {
-          case 6:
-            return internalGetMutableMetadata();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
@@ -1392,7 +2497,12 @@ public final class Schema {
           data_ = null;
           dataBuilder_ = null;
         }
-        internalGetMutableMetadata().clear();
+        if (metadataBuilder_ == null) {
+          metadata_ = null;
+        } else {
+          metadata_ = null;
+          metadataBuilder_ = null;
+        }
         if (timeBuilder_ == null) {
           time_ = null;
         } else {
@@ -1425,8 +2535,6 @@ public final class Schema {
       @java.lang.Override
       public eventgate.Schema.Event buildPartial() {
         eventgate.Schema.Event result = new eventgate.Schema.Event(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         result.id_ = id_;
         result.channel_ = channel_;
         if (dataBuilder_ == null) {
@@ -1434,14 +2542,16 @@ public final class Schema {
         } else {
           result.data_ = dataBuilder_.build();
         }
-        result.metadata_ = internalGetMetadata();
-        result.metadata_.makeImmutable();
+        if (metadataBuilder_ == null) {
+          result.metadata_ = metadata_;
+        } else {
+          result.metadata_ = metadataBuilder_.build();
+        }
         if (timeBuilder_ == null) {
           result.time_ = time_;
         } else {
           result.time_ = timeBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -1501,8 +2611,9 @@ public final class Schema {
         if (other.hasData()) {
           mergeData(other.getData());
         }
-        internalGetMutableMetadata().mergeFrom(
-            other.internalGetMetadata());
+        if (other.hasMetadata()) {
+          mergeMetadata(other.getMetadata());
+        }
         if (other.hasTime()) {
           mergeTime(other.getTime());
         }
@@ -1534,7 +2645,6 @@ public final class Schema {
         }
         return this;
       }
-      private int bitField0_;
 
       private java.lang.Object id_ = "";
       /**
@@ -1867,140 +2977,109 @@ public final class Schema {
         return dataBuilder_;
       }
 
-      private com.google.protobuf.MapField<
-          java.lang.String, java.lang.String> metadata_;
-      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMetadata() {
-        if (metadata_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              MetadataDefaultEntryHolder.defaultEntry);
-        }
-        return metadata_;
-      }
-      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMutableMetadata() {
-        onChanged();;
-        if (metadata_ == null) {
-          metadata_ = com.google.protobuf.MapField.newMapField(
-              MetadataDefaultEntryHolder.defaultEntry);
-        }
-        if (!metadata_.isMutable()) {
-          metadata_ = metadata_.copy();
-        }
-        return metadata_;
-      }
-
-      public int getMetadataCount() {
-        return internalGetMetadata().getMap().size();
+      private com.google.protobuf.Struct metadata_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> metadataBuilder_;
+      /**
+       * <pre>
+       * Arbitrary metadata about the event
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct metadata = 6;</code>
+       */
+      public boolean hasMetadata() {
+        return metadataBuilder_ != null || metadata_ != null;
       }
       /**
        * <pre>
        * Arbitrary metadata about the event
        * </pre>
        *
-       * <code>map&lt;string, string&gt; metadata = 6;</code>
+       * <code>.google.protobuf.Struct metadata = 6;</code>
        */
-
-      public boolean containsMetadata(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        return internalGetMetadata().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getMetadataMap()} instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.String> getMetadata() {
-        return getMetadataMap();
-      }
-      /**
-       * <pre>
-       * Arbitrary metadata about the event
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; metadata = 6;</code>
-       */
-
-      public java.util.Map<java.lang.String, java.lang.String> getMetadataMap() {
-        return internalGetMetadata().getMap();
-      }
-      /**
-       * <pre>
-       * Arbitrary metadata about the event
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; metadata = 6;</code>
-       */
-
-      public java.lang.String getMetadataOrDefault(
-          java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetMetadata().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <pre>
-       * Arbitrary metadata about the event
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; metadata = 6;</code>
-       */
-
-      public java.lang.String getMetadataOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetMetadata().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
+      public com.google.protobuf.Struct getMetadata() {
+        if (metadataBuilder_ == null) {
+          return metadata_ == null ? com.google.protobuf.Struct.getDefaultInstance() : metadata_;
+        } else {
+          return metadataBuilder_.getMessage();
         }
-        return map.get(key);
       }
+      /**
+       * <pre>
+       * Arbitrary metadata about the event
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct metadata = 6;</code>
+       */
+      public Builder setMetadata(com.google.protobuf.Struct value) {
+        if (metadataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          metadata_ = value;
+          onChanged();
+        } else {
+          metadataBuilder_.setMessage(value);
+        }
 
+        return this;
+      }
+      /**
+       * <pre>
+       * Arbitrary metadata about the event
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct metadata = 6;</code>
+       */
+      public Builder setMetadata(
+          com.google.protobuf.Struct.Builder builderForValue) {
+        if (metadataBuilder_ == null) {
+          metadata_ = builderForValue.build();
+          onChanged();
+        } else {
+          metadataBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Arbitrary metadata about the event
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct metadata = 6;</code>
+       */
+      public Builder mergeMetadata(com.google.protobuf.Struct value) {
+        if (metadataBuilder_ == null) {
+          if (metadata_ != null) {
+            metadata_ =
+              com.google.protobuf.Struct.newBuilder(metadata_).mergeFrom(value).buildPartial();
+          } else {
+            metadata_ = value;
+          }
+          onChanged();
+        } else {
+          metadataBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Arbitrary metadata about the event
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct metadata = 6;</code>
+       */
       public Builder clearMetadata() {
-        internalGetMutableMetadata().getMutableMap()
-            .clear();
-        return this;
-      }
-      /**
-       * <pre>
-       * Arbitrary metadata about the event
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; metadata = 6;</code>
-       */
+        if (metadataBuilder_ == null) {
+          metadata_ = null;
+          onChanged();
+        } else {
+          metadata_ = null;
+          metadataBuilder_ = null;
+        }
 
-      public Builder removeMetadata(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutableMetadata().getMutableMap()
-            .remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.String>
-      getMutableMetadata() {
-        return internalGetMutableMetadata().getMutableMap();
-      }
-      /**
-       * <pre>
-       * Arbitrary metadata about the event
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; metadata = 6;</code>
-       */
-      public Builder putMetadata(
-          java.lang.String key,
-          java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutableMetadata().getMutableMap()
-            .put(key, value);
         return this;
       }
       /**
@@ -2008,14 +3087,47 @@ public final class Schema {
        * Arbitrary metadata about the event
        * </pre>
        *
-       * <code>map&lt;string, string&gt; metadata = 6;</code>
+       * <code>.google.protobuf.Struct metadata = 6;</code>
        */
-
-      public Builder putAllMetadata(
-          java.util.Map<java.lang.String, java.lang.String> values) {
-        internalGetMutableMetadata().getMutableMap()
-            .putAll(values);
-        return this;
+      public com.google.protobuf.Struct.Builder getMetadataBuilder() {
+        
+        onChanged();
+        return getMetadataFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Arbitrary metadata about the event
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct metadata = 6;</code>
+       */
+      public com.google.protobuf.StructOrBuilder getMetadataOrBuilder() {
+        if (metadataBuilder_ != null) {
+          return metadataBuilder_.getMessageOrBuilder();
+        } else {
+          return metadata_ == null ?
+              com.google.protobuf.Struct.getDefaultInstance() : metadata_;
+        }
+      }
+      /**
+       * <pre>
+       * Arbitrary metadata about the event
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct metadata = 6;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
+          getMetadataFieldBuilder() {
+        if (metadataBuilder_ == null) {
+          metadataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder>(
+                  getMetadata(),
+                  getParentForChildren(),
+                  isClean());
+          metadata_ = null;
+        }
+        return metadataBuilder_;
       }
 
       private com.google.protobuf.Timestamp time_ = null;
@@ -2223,6 +3335,801 @@ public final class Schema {
 
   }
 
+  public interface EventsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:eventgate.Events)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .eventgate.Event events = 1;</code>
+     */
+    java.util.List<eventgate.Schema.Event> 
+        getEventsList();
+    /**
+     * <code>repeated .eventgate.Event events = 1;</code>
+     */
+    eventgate.Schema.Event getEvents(int index);
+    /**
+     * <code>repeated .eventgate.Event events = 1;</code>
+     */
+    int getEventsCount();
+    /**
+     * <code>repeated .eventgate.Event events = 1;</code>
+     */
+    java.util.List<? extends eventgate.Schema.EventOrBuilder> 
+        getEventsOrBuilderList();
+    /**
+     * <code>repeated .eventgate.Event events = 1;</code>
+     */
+    eventgate.Schema.EventOrBuilder getEventsOrBuilder(
+        int index);
+  }
+  /**
+   * <pre>
+   * Events is an array of events
+   * </pre>
+   *
+   * Protobuf type {@code eventgate.Events}
+   */
+  public  static final class Events extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:eventgate.Events)
+      EventsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Events.newBuilder() to construct.
+    private Events(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Events() {
+      events_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Events(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                events_ = new java.util.ArrayList<eventgate.Schema.Event>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              events_.add(
+                  input.readMessage(eventgate.Schema.Event.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          events_ = java.util.Collections.unmodifiableList(events_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return eventgate.Schema.internal_static_eventgate_Events_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return eventgate.Schema.internal_static_eventgate_Events_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              eventgate.Schema.Events.class, eventgate.Schema.Events.Builder.class);
+    }
+
+    public static final int EVENTS_FIELD_NUMBER = 1;
+    private java.util.List<eventgate.Schema.Event> events_;
+    /**
+     * <code>repeated .eventgate.Event events = 1;</code>
+     */
+    public java.util.List<eventgate.Schema.Event> getEventsList() {
+      return events_;
+    }
+    /**
+     * <code>repeated .eventgate.Event events = 1;</code>
+     */
+    public java.util.List<? extends eventgate.Schema.EventOrBuilder> 
+        getEventsOrBuilderList() {
+      return events_;
+    }
+    /**
+     * <code>repeated .eventgate.Event events = 1;</code>
+     */
+    public int getEventsCount() {
+      return events_.size();
+    }
+    /**
+     * <code>repeated .eventgate.Event events = 1;</code>
+     */
+    public eventgate.Schema.Event getEvents(int index) {
+      return events_.get(index);
+    }
+    /**
+     * <code>repeated .eventgate.Event events = 1;</code>
+     */
+    public eventgate.Schema.EventOrBuilder getEventsOrBuilder(
+        int index) {
+      return events_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < events_.size(); i++) {
+        output.writeMessage(1, events_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < events_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, events_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof eventgate.Schema.Events)) {
+        return super.equals(obj);
+      }
+      eventgate.Schema.Events other = (eventgate.Schema.Events) obj;
+
+      boolean result = true;
+      result = result && getEventsList()
+          .equals(other.getEventsList());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getEventsCount() > 0) {
+        hash = (37 * hash) + EVENTS_FIELD_NUMBER;
+        hash = (53 * hash) + getEventsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static eventgate.Schema.Events parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static eventgate.Schema.Events parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static eventgate.Schema.Events parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static eventgate.Schema.Events parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static eventgate.Schema.Events parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static eventgate.Schema.Events parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static eventgate.Schema.Events parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static eventgate.Schema.Events parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static eventgate.Schema.Events parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static eventgate.Schema.Events parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static eventgate.Schema.Events parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static eventgate.Schema.Events parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(eventgate.Schema.Events prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Events is an array of events
+     * </pre>
+     *
+     * Protobuf type {@code eventgate.Events}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:eventgate.Events)
+        eventgate.Schema.EventsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return eventgate.Schema.internal_static_eventgate_Events_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return eventgate.Schema.internal_static_eventgate_Events_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                eventgate.Schema.Events.class, eventgate.Schema.Events.Builder.class);
+      }
+
+      // Construct using eventgate.Schema.Events.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getEventsFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (eventsBuilder_ == null) {
+          events_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          eventsBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return eventgate.Schema.internal_static_eventgate_Events_descriptor;
+      }
+
+      @java.lang.Override
+      public eventgate.Schema.Events getDefaultInstanceForType() {
+        return eventgate.Schema.Events.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public eventgate.Schema.Events build() {
+        eventgate.Schema.Events result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public eventgate.Schema.Events buildPartial() {
+        eventgate.Schema.Events result = new eventgate.Schema.Events(this);
+        int from_bitField0_ = bitField0_;
+        if (eventsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            events_ = java.util.Collections.unmodifiableList(events_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.events_ = events_;
+        } else {
+          result.events_ = eventsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof eventgate.Schema.Events) {
+          return mergeFrom((eventgate.Schema.Events)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(eventgate.Schema.Events other) {
+        if (other == eventgate.Schema.Events.getDefaultInstance()) return this;
+        if (eventsBuilder_ == null) {
+          if (!other.events_.isEmpty()) {
+            if (events_.isEmpty()) {
+              events_ = other.events_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureEventsIsMutable();
+              events_.addAll(other.events_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.events_.isEmpty()) {
+            if (eventsBuilder_.isEmpty()) {
+              eventsBuilder_.dispose();
+              eventsBuilder_ = null;
+              events_ = other.events_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              eventsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getEventsFieldBuilder() : null;
+            } else {
+              eventsBuilder_.addAllMessages(other.events_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        eventgate.Schema.Events parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (eventgate.Schema.Events) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<eventgate.Schema.Event> events_ =
+        java.util.Collections.emptyList();
+      private void ensureEventsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          events_ = new java.util.ArrayList<eventgate.Schema.Event>(events_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          eventgate.Schema.Event, eventgate.Schema.Event.Builder, eventgate.Schema.EventOrBuilder> eventsBuilder_;
+
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public java.util.List<eventgate.Schema.Event> getEventsList() {
+        if (eventsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(events_);
+        } else {
+          return eventsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public int getEventsCount() {
+        if (eventsBuilder_ == null) {
+          return events_.size();
+        } else {
+          return eventsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public eventgate.Schema.Event getEvents(int index) {
+        if (eventsBuilder_ == null) {
+          return events_.get(index);
+        } else {
+          return eventsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public Builder setEvents(
+          int index, eventgate.Schema.Event value) {
+        if (eventsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureEventsIsMutable();
+          events_.set(index, value);
+          onChanged();
+        } else {
+          eventsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public Builder setEvents(
+          int index, eventgate.Schema.Event.Builder builderForValue) {
+        if (eventsBuilder_ == null) {
+          ensureEventsIsMutable();
+          events_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          eventsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public Builder addEvents(eventgate.Schema.Event value) {
+        if (eventsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureEventsIsMutable();
+          events_.add(value);
+          onChanged();
+        } else {
+          eventsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public Builder addEvents(
+          int index, eventgate.Schema.Event value) {
+        if (eventsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureEventsIsMutable();
+          events_.add(index, value);
+          onChanged();
+        } else {
+          eventsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public Builder addEvents(
+          eventgate.Schema.Event.Builder builderForValue) {
+        if (eventsBuilder_ == null) {
+          ensureEventsIsMutable();
+          events_.add(builderForValue.build());
+          onChanged();
+        } else {
+          eventsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public Builder addEvents(
+          int index, eventgate.Schema.Event.Builder builderForValue) {
+        if (eventsBuilder_ == null) {
+          ensureEventsIsMutable();
+          events_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          eventsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public Builder addAllEvents(
+          java.lang.Iterable<? extends eventgate.Schema.Event> values) {
+        if (eventsBuilder_ == null) {
+          ensureEventsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, events_);
+          onChanged();
+        } else {
+          eventsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public Builder clearEvents() {
+        if (eventsBuilder_ == null) {
+          events_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          eventsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public Builder removeEvents(int index) {
+        if (eventsBuilder_ == null) {
+          ensureEventsIsMutable();
+          events_.remove(index);
+          onChanged();
+        } else {
+          eventsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public eventgate.Schema.Event.Builder getEventsBuilder(
+          int index) {
+        return getEventsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public eventgate.Schema.EventOrBuilder getEventsOrBuilder(
+          int index) {
+        if (eventsBuilder_ == null) {
+          return events_.get(index);  } else {
+          return eventsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public java.util.List<? extends eventgate.Schema.EventOrBuilder> 
+           getEventsOrBuilderList() {
+        if (eventsBuilder_ != null) {
+          return eventsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(events_);
+        }
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public eventgate.Schema.Event.Builder addEventsBuilder() {
+        return getEventsFieldBuilder().addBuilder(
+            eventgate.Schema.Event.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public eventgate.Schema.Event.Builder addEventsBuilder(
+          int index) {
+        return getEventsFieldBuilder().addBuilder(
+            index, eventgate.Schema.Event.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .eventgate.Event events = 1;</code>
+       */
+      public java.util.List<eventgate.Schema.Event.Builder> 
+           getEventsBuilderList() {
+        return getEventsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          eventgate.Schema.Event, eventgate.Schema.Event.Builder, eventgate.Schema.EventOrBuilder> 
+          getEventsFieldBuilder() {
+        if (eventsBuilder_ == null) {
+          eventsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              eventgate.Schema.Event, eventgate.Schema.Event.Builder, eventgate.Schema.EventOrBuilder>(
+                  events_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          events_ = null;
+        }
+        return eventsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:eventgate.Events)
+    }
+
+    // @@protoc_insertion_point(class_scope:eventgate.Events)
+    private static final eventgate.Schema.Events DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new eventgate.Schema.Events();
+    }
+
+    public static eventgate.Schema.Events getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Events>
+        PARSER = new com.google.protobuf.AbstractParser<Events>() {
+      @java.lang.Override
+      public Events parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Events(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Events> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Events> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public eventgate.Schema.Events getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_eventgate_HistoryOpts_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_eventgate_HistoryOpts_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_eventgate_ReceiveOpts_descriptor;
   private static final 
@@ -2234,10 +4141,10 @@ public final class Schema {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_eventgate_Event_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_eventgate_Event_MetadataEntry_descriptor;
+    internal_static_eventgate_Events_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_eventgate_Event_MetadataEntry_fieldAccessorTable;
+      internal_static_eventgate_Events_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2252,19 +4159,24 @@ public final class Schema {
       "proto\032\037google/protobuf/timestamp.proto\032\031" +
       "google/protobuf/any.proto\032\033google/protob" +
       "uf/empty.proto\0326github.com/mwitkow/go-pr" +
-      "oto-validators/validator.proto\"&\n\013Receiv" +
-      "eOpts\022\027\n\007channel\030\001 \001(\tB\006\342\337\037\002X\001\"\350\001\n\005Event" +
-      "\022\n\n\002id\030\001 \001(\t\022\027\n\007channel\030\002 \001(\tB\006\342\337\037\002X\001\022-\n" +
-      "\004data\030\005 \001(\0132\027.google.protobuf.StructB\006\342\337" +
-      "\037\002 \001\0220\n\010metadata\030\006 \003(\0132\036.eventgate.Event" +
-      ".MetadataEntry\022(\n\004time\030\024 \001(\0132\032.google.pr" +
-      "otobuf.Timestamp\032/\n\rMetadataEntry\022\013\n\003key" +
-      "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\0012\237\001\n\020EventGateS" +
-      "ervice\022B\n\004Send\022\020.eventgate.Event\032\026.googl" +
-      "e.protobuf.Empty\"\020\202\323\344\223\002\n\"\005/send:\001*\022G\n\007Re" +
-      "ceive\022\026.eventgate.ReceiveOpts\032\020.eventgat" +
-      "e.Event\"\020\202\323\344\223\002\n\022\010/receive0\001B\013Z\teventgate" +
-      "b\006proto3"
+      "oto-validators/validator.proto\"\227\001\n\013Histo" +
+      "ryOpts\022\027\n\007channel\030\001 \001(\tB\006\342\337\037\002X\001\022\'\n\003min\030\002" +
+      " \001(\0132\032.google.protobuf.Timestamp\022\'\n\003max\030" +
+      "\003 \001(\0132\032.google.protobuf.Timestamp\022\r\n\005lim" +
+      "it\030\004 \001(\003\022\016\n\006offset\030\005 \001(\003\"&\n\013ReceiveOpts\022" +
+      "\027\n\007channel\030\001 \001(\tB\006\342\337\037\002X\001\"\260\001\n\005Event\022\n\n\002id" +
+      "\030\001 \001(\t\022\027\n\007channel\030\002 \001(\tB\006\342\337\037\002X\001\022-\n\004data\030" +
+      "\005 \001(\0132\027.google.protobuf.StructB\006\342\337\037\002 \001\022)" +
+      "\n\010metadata\030\006 \001(\0132\027.google.protobuf.Struc" +
+      "t\022(\n\004time\030\024 \001(\0132\032.google.protobuf.Timest" +
+      "amp\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020.eventgat" +
+      "e.Event2\347\001\n\020EventGateService\022B\n\004Send\022\020.e" +
+      "ventgate.Event\032\026.google.protobuf.Empty\"\020" +
+      "\202\323\344\223\002\n\"\005/send:\001*\022G\n\007Receive\022\026.eventgate." +
+      "ReceiveOpts\032\020.eventgate.Event\"\020\202\323\344\223\002\n\022\010/" +
+      "receive0\001\022F\n\007History\022\026.eventgate.History" +
+      "Opts\032\021.eventgate.Events\"\020\202\323\344\223\002\n\022\010/histor" +
+      "yB\013Z\teventgateb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2284,24 +4196,30 @@ public final class Schema {
           com.google.protobuf.EmptyProto.getDescriptor(),
           validator.Validator.getDescriptor(),
         }, assigner);
-    internal_static_eventgate_ReceiveOpts_descriptor =
+    internal_static_eventgate_HistoryOpts_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_eventgate_HistoryOpts_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_eventgate_HistoryOpts_descriptor,
+        new java.lang.String[] { "Channel", "Min", "Max", "Limit", "Offset", });
+    internal_static_eventgate_ReceiveOpts_descriptor =
+      getDescriptor().getMessageTypes().get(1);
     internal_static_eventgate_ReceiveOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_eventgate_ReceiveOpts_descriptor,
         new java.lang.String[] { "Channel", });
     internal_static_eventgate_Event_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_eventgate_Event_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_eventgate_Event_descriptor,
         new java.lang.String[] { "Id", "Channel", "Data", "Metadata", "Time", });
-    internal_static_eventgate_Event_MetadataEntry_descriptor =
-      internal_static_eventgate_Event_descriptor.getNestedTypes().get(0);
-    internal_static_eventgate_Event_MetadataEntry_fieldAccessorTable = new
+    internal_static_eventgate_Events_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_eventgate_Events_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_eventgate_Event_MetadataEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
+        internal_static_eventgate_Events_descriptor,
+        new java.lang.String[] { "Events", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(com.google.api.AnnotationsProto.http);

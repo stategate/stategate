@@ -25,26 +25,41 @@ logging:
   # enable debug logs
   debug: true
 
-# pluggable backend: [inmem, redis, nats, stan]
-backend:
-  name: "inmem"
 
-#backend:
-#  name: "redis"
-#  config:
-#    addr: "0.0.0.0:6379"
-#backend:
-#  name: "nats"
-#  config:
-#    addr: "0.0.0.0:4444"
-#backend:
-#  name: "stan"
-#  config:
-#    addr: "0.0.0.0:4444"
-#backend:
-#  name: "stan"
-#  config:
-#    addr: "0.0.0.0:4444"
+backend:
+  # pluggable channel providers: [inmem, redis, nats, stan, kafka, google-pubsub, aws-sqs]
+  channel_provider:
+    name: "nats"
+    config:
+      addr: "0.0.0.0:4444"
+  #channel_provider:
+  #  name: "redis"
+  #  config:
+  #    addr: "0.0.0.0:6379"
+  #channel_provider:
+  #  name: "nats"
+  #  config:
+  #    addr: "0.0.0.0:4444"
+  #channel_provider:
+  #  name: "stan"
+  #  config:
+  #    addr: "0.0.0.0:4444"
+  #channel_provider:
+  #  name: "stan"
+  #  config:
+  #    addr: "0.0.0.0:4444"
+
+  # pluggable storage providers: [inmem, mongo]
+#  storage_provider:
+#    name: "mongo"
+#    config:
+#      uri: "mongodb://localhost:27017/testing"
+#      database: "testing"
+  storage_provider:
+    name: "elasticsearch"
+    config:
+      addr: "http://localhost:9200"
+
 
 # authentication options
 authentication:

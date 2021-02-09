@@ -36,9 +36,9 @@ class Event extends \Google\Protobuf\Internal\Message
     /**
      * Arbitrary metadata about the event
      *
-     * Generated from protobuf field <code>map<string, string> metadata = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 6;</code>
      */
-    private $metadata;
+    private $metadata = null;
     /**
      * Timestamp of when the occurrence happened. Must adhere to RFC 3339. If a timestamp is not sent with the event, the current time will be assigned
      *
@@ -58,7 +58,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *           Identifies the channel/subject to which the event will be sent
      *     @type \Google\Protobuf\Struct $data
      *           The event payload(structured).
-     *     @type array|\Google\Protobuf\Internal\MapField $metadata
+     *     @type \Google\Protobuf\Struct $metadata
      *           Arbitrary metadata about the event
      *     @type \Google\Protobuf\Timestamp $time
      *           Timestamp of when the occurrence happened. Must adhere to RFC 3339. If a timestamp is not sent with the event, the current time will be assigned
@@ -150,8 +150,8 @@ class Event extends \Google\Protobuf\Internal\Message
     /**
      * Arbitrary metadata about the event
      *
-     * Generated from protobuf field <code>map<string, string> metadata = 6;</code>
-     * @return \Google\Protobuf\Internal\MapField
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 6;</code>
+     * @return \Google\Protobuf\Struct
      */
     public function getMetadata()
     {
@@ -161,14 +161,14 @@ class Event extends \Google\Protobuf\Internal\Message
     /**
      * Arbitrary metadata about the event
      *
-     * Generated from protobuf field <code>map<string, string> metadata = 6;</code>
-     * @param array|\Google\Protobuf\Internal\MapField $var
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 6;</code>
+     * @param \Google\Protobuf\Struct $var
      * @return $this
      */
     public function setMetadata($var)
     {
-        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->metadata = $arr;
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->metadata = $var;
 
         return $this;
     }

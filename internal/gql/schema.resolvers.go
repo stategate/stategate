@@ -36,7 +36,8 @@ func (r *mutationResolver) Send(ctx context.Context, input model.EventInput) (*s
 		i.Data = m
 	}
 	if input.Metadata != nil {
-		i.Metadata = helpers.ConvertMapS(input.Metadata)
+		m, _ := structpb.NewStruct(input.Metadata)
+		i.Metadata = m
 	}
 	_, err := r.client.Send(ctx, i)
 	if err != nil {
@@ -46,6 +47,37 @@ func (r *mutationResolver) Send(ctx context.Context, input model.EventInput) (*s
 		}
 	}
 	return nil, nil
+}
+
+func (r *queryResolver) History(ctx context.Context, input model.HistoryOpts) ([]*model.Event, error) {
+	opts := &eventgate.HistoryOpts{
+		Channel: input.Channel,
+	}
+	if input.Max != nil {
+		opts.Max = timestamppb.New(*input.Max)
+	}
+	if input.Min != nil {
+		opts.Min = timestamppb.New(*input.Min)
+	}
+
+	if input.Limit != nil {
+		opts.Limit = int64(helpers.FromIntPointer(input.Limit))
+	}
+	if input.Offset != nil {
+		opts.Offset = int64(helpers.FromIntPointer(input.Offset))
+	}
+	resp, err := r.client.History(ctx, opts)
+	if err != nil {
+		return nil, &gqlerror.Error{
+			Message: err.Error(),
+			Path:    graphql.GetPath(ctx),
+		}
+	}
+	var events []*model.Event
+	for _, e := range resp.GetEvents() {
+		events = append(events, r.toEvent(e))
+	}
+	return events, nil
 }
 
 func (r *subscriptionResolver) Receive(ctx context.Context, input model.ReceiveOpts) (<-chan *model.Event, error) {
@@ -74,13 +106,7 @@ func (r *subscriptionResolver) Receive(ctx context.Context, input model.ReceiveO
 					r.logger.Error("failed to receive gql subscription", zap.Error(err))
 					continue
 				}
-				ch <- &model.Event{
-					ID:       msg.GetId(),
-					Channel:  msg.GetChannel(),
-					Data:     msg.GetData().AsMap(),
-					Metadata: helpers.ConvertMap(msg.GetMetadata()),
-					Time:     msg.Time.AsTime(),
-				}
+				ch <- r.toEvent(msg)
 			}
 		}
 	}()
@@ -90,8 +116,12 @@ func (r *subscriptionResolver) Receive(ctx context.Context, input model.ReceiveO
 // Mutation returns generated.MutationResolver implementation.
 func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
 
+// Query returns generated.QueryResolver implementation.
+func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
+
 // Subscription returns generated.SubscriptionResolver implementation.
 func (r *Resolver) Subscription() generated.SubscriptionResolver { return &subscriptionResolver{r} }
 
 type mutationResolver struct{ *Resolver }
+type queryResolver struct{ *Resolver }
 type subscriptionResolver struct{ *Resolver }

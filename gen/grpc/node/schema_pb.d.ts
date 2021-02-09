@@ -9,6 +9,46 @@ import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb"
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 import * as github_com_mwitkow_go_proto_validators_validator_pb from "./github.com/mwitkow/go-proto-validators/validator_pb";
 
+export class HistoryOpts extends jspb.Message {
+  getChannel(): string;
+  setChannel(value: string): void;
+
+  hasMin(): boolean;
+  clearMin(): void;
+  getMin(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setMin(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasMax(): boolean;
+  clearMax(): void;
+  getMax(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setMax(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  getOffset(): number;
+  setOffset(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): HistoryOpts.AsObject;
+  static toObject(includeInstance: boolean, msg: HistoryOpts): HistoryOpts.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: HistoryOpts, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): HistoryOpts;
+  static deserializeBinaryFromReader(message: HistoryOpts, reader: jspb.BinaryReader): HistoryOpts;
+}
+
+export namespace HistoryOpts {
+  export type AsObject = {
+    channel: string,
+    min?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    max?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    limit: number,
+    offset: number,
+  }
+}
+
 export class ReceiveOpts extends jspb.Message {
   getChannel(): string;
   setChannel(value: string): void;
@@ -41,8 +81,11 @@ export class Event extends jspb.Message {
   getData(): google_protobuf_struct_pb.Struct | undefined;
   setData(value?: google_protobuf_struct_pb.Struct): void;
 
-  getMetadataMap(): jspb.Map<string, string>;
-  clearMetadataMap(): void;
+  hasMetadata(): boolean;
+  clearMetadata(): void;
+  getMetadata(): google_protobuf_struct_pb.Struct | undefined;
+  setMetadata(value?: google_protobuf_struct_pb.Struct): void;
+
   hasTime(): boolean;
   clearTime(): void;
   getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -63,8 +106,30 @@ export namespace Event {
     id: string,
     channel: string,
     data?: google_protobuf_struct_pb.Struct.AsObject,
-    metadataMap: Array<[string, string]>,
+    metadata?: google_protobuf_struct_pb.Struct.AsObject,
     time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class Events extends jspb.Message {
+  clearEventsList(): void;
+  getEventsList(): Array<Event>;
+  setEventsList(value: Array<Event>): void;
+  addEvents(value?: Event, index?: number): Event;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Events.AsObject;
+  static toObject(includeInstance: boolean, msg: Events): Events.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Events, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Events;
+  static deserializeBinaryFromReader(message: Events, reader: jspb.BinaryReader): Events;
+}
+
+export namespace Events {
+  export type AsObject = {
+    eventsList: Array<Event.AsObject>,
   }
 }
 

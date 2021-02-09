@@ -37,6 +37,7 @@ type Config struct {
 
 type ResolverRoot interface {
 	Mutation() MutationResolver
+	Query() QueryResolver
 	Subscription() SubscriptionResolver
 }
 
@@ -57,6 +58,7 @@ type ComplexityRoot struct {
 	}
 
 	Query struct {
+		History func(childComplexity int, input model.HistoryOpts) int
 	}
 
 	Subscription struct {
@@ -66,6 +68,9 @@ type ComplexityRoot struct {
 
 type MutationResolver interface {
 	Send(ctx context.Context, input model.EventInput) (*string, error)
+}
+type QueryResolver interface {
+	History(ctx context.Context, input model.HistoryOpts) ([]*model.Event, error)
 }
 type SubscriptionResolver interface {
 	Receive(ctx context.Context, input model.ReceiveOpts) (<-chan *model.Event, error)
@@ -132,6 +137,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Mutation.Send(childComplexity, args["input"].(model.EventInput)), true
+
+	case "Query.history":
+		if e.complexity.Query.History == nil {
+			break
+		}
+
+		args, err := ec.field_Query_history_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Query.History(childComplexity, args["input"].(model.HistoryOpts)), true
 
 	case "Subscription.receive":
 		if e.complexity.Subscription.Receive == nil {
@@ -259,18 +276,33 @@ input EventInput {
     time: Time
 }
 
+# HistoryOpts are options when querying historical events
+input HistoryOpts {
+    channel: String!
+    min: Time
+    max: Time
+    limit: Int
+    offset: Int
+}
+
 # ReceiveOpts filters cloud events
 input ReceiveOpts {
     channel: String!
 }
 
+type Query {
+    # History returns an array of immutable historical events.
+    # If a backend storage provider is not registered, an "Unimplemented" error will be returned to the client
+    history(input: HistoryOpts!): [Event!]
+}
+
 type Mutation {
-    # send an event(one way)
+    # Send broadcasts an event to all consumers on a given channel
     send(input: EventInput!): String
 }
 
 type Subscription {
-    # receive streams events to a client that pass a Filter
+    # Receive pushes events to a new client consumer
     receive(input: ReceiveOpts!): Event!
 }`, BuiltIn: false},
 }
@@ -307,6 +339,21 @@ func (ec *executionContext) field_Query___type_args(ctx context.Context, rawArgs
 		}
 	}
 	args["name"] = arg0
+	return args, nil
+}
+
+func (ec *executionContext) field_Query_history_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 model.HistoryOpts
+	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
+		arg0, err = ec.unmarshalNHistoryOpts2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐHistoryOpts(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["input"] = arg0
 	return args, nil
 }
 
@@ -572,6 +619,45 @@ func (ec *executionContext) _Mutation_send(ctx context.Context, field graphql.Co
 	res := resTmp.(*string)
 	fc.Result = res
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _Query_history(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		Args:       nil,
+		IsMethod:   true,
+		IsResolver: true,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_Query_history_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	fc.Args = args
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().History(rctx, args["input"].(model.HistoryOpts))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]*model.Event)
+	fc.Result = res
+	return ec.marshalOEvent2ᚕᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEventᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -1836,6 +1922,58 @@ func (ec *executionContext) unmarshalInputEventInput(ctx context.Context, obj in
 	return it, nil
 }
 
+func (ec *executionContext) unmarshalInputHistoryOpts(ctx context.Context, obj interface{}) (model.HistoryOpts, error) {
+	var it model.HistoryOpts
+	var asMap = obj.(map[string]interface{})
+
+	for k, v := range asMap {
+		switch k {
+		case "channel":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("channel"))
+			it.Channel, err = ec.unmarshalNString2string(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "min":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("min"))
+			it.Min, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "max":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("max"))
+			it.Max, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "limit":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("limit"))
+			it.Limit, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "offset":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("offset"))
+			it.Offset, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		}
+	}
+
+	return it, nil
+}
+
 func (ec *executionContext) unmarshalInputReceiveOpts(ctx context.Context, obj interface{}) (model.ReceiveOpts, error) {
 	var it model.ReceiveOpts
 	var asMap = obj.(map[string]interface{})
@@ -1951,6 +2089,17 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Query")
+		case "history":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_history(ctx, field)
+				return res
+			})
 		case "__type":
 			out.Values[i] = ec._Query___type(ctx, field)
 		case "__schema":
@@ -2265,6 +2414,11 @@ func (ec *executionContext) unmarshalNEventInput2githubᚗcomᚋautom8terᚋeven
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
+func (ec *executionContext) unmarshalNHistoryOpts2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐHistoryOpts(ctx context.Context, v interface{}) (model.HistoryOpts, error) {
+	res, err := ec.unmarshalInputHistoryOpts(ctx, v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
 func (ec *executionContext) unmarshalNMap2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
 	res, err := graphql.UnmarshalMap(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -2572,6 +2726,61 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 		return graphql.Null
 	}
 	return graphql.MarshalBoolean(*v)
+}
+
+func (ec *executionContext) marshalOEvent2ᚕᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEventᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Event) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalNEvent2ᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+	return ret
+}
+
+func (ec *executionContext) unmarshalOInt2ᚖint(ctx context.Context, v interface{}) (*int, error) {
+	if v == nil {
+		return nil, nil
+	}
+	res, err := graphql.UnmarshalInt(v)
+	return &res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalOInt2ᚖint(ctx context.Context, sel ast.SelectionSet, v *int) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return graphql.MarshalInt(*v)
 }
 
 func (ec *executionContext) unmarshalOMap2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {

@@ -8,6 +8,7 @@ import (
 	"github.com/99designs/gqlgen/graphql/handler/lru"
 	"github.com/99designs/gqlgen/graphql/handler/transport"
 	"github.com/autom8ter/eventgate/gen/gql/go/generated"
+	"github.com/autom8ter/eventgate/gen/gql/go/model"
 	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
 	"github.com/autom8ter/eventgate/internal/logger"
 	"github.com/gorilla/websocket"
@@ -70,5 +71,15 @@ func (r *Resolver) authMiddleware(handler http.Handler) http.HandlerFunc {
 			}
 		}
 		handler.ServeHTTP(w, req.WithContext(ctx))
+	}
+}
+
+func (r *Resolver) toEvent(msg *eventgate.Event) *model.Event {
+	return &model.Event{
+		ID:       msg.GetId(),
+		Channel:  msg.GetChannel(),
+		Data:     msg.GetData().AsMap(),
+		Metadata: msg.GetMetadata().AsMap(),
+		Time:     msg.Time.AsTime(),
 	}
 }

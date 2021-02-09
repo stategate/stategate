@@ -1,8 +1,8 @@
 # eventgate
 
-An identity-aware gateway for message queues & event sinks
+A flexible, identity-aware gateway & immutable event storage service for microservices abiding by the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html)
 
-Status: MVP
+Status: Proof of Concept
 
 [![GoDoc](https://godoc.org/github.com/autom8ter/eventgate?status.svg)](https://godoc.org/github.com/autom8ter/eventgate/eventgate-client-go)
 
@@ -10,7 +10,7 @@ Status: MVP
                                         
 ## Features
 - [x] [Headless](https://en.wikipedia.org/wiki/Headless_software)
-- [x] [gRPC](https://grpc.io/) support
+- [x] Native [gRPC](https://grpc.io/) support
     - [protobuf schema](schema.proto)
 - [x] Optional Embedded [graphQL](https://graphql.org/) support `/graphql` (transcoding)
     - [graphQL schema](schema.graphql)
@@ -32,22 +32,47 @@ Status: MVP
     - [ ] Ruby
 - [x] Structured JSON Logs
 - [x] [Sample Kubernetes Manifest](k8s.yaml)
-- [x] Pluggable Backends
-    - [x] In-Memory
+- [x] Pluggable "Channel" Providers
     - [x] Nats
     - [x] Nats Streaming(Stan)
     - [x] Redis
     - [x] Kafka
-    - [x] Google PubSub
-    - [ ] AWS SQS
     - [ ] RabbitMQ
+    - [x] Google PubSub
+    - [x] AWS SQS
+    - [ ] Azure Queue
+- [x] Pluggable "Storage" Providers
+    - [x] MongoDb
+    - [x] ElasticSearch
+    - [ ] Cassandra
+    - [ ] PostgreSQL
+    - [ ] MySQL
+    - [ ] Snowflake
 
+## Concepts
 
-## Why?
+### Channel Provider
 
-- univeral API interface for publishing and subscribing to events
-- swap backend providers without changing client-side code
-- type safe client's generated in many languages
+A Channel Provider is a plugin that provides stream/channel functionality for broadcasting & consuming events
+
+A single Channel Provider is required. An in memory provider may be used for testing, but it is not considered to be production ready. 
+
+### Storage Provider
+
+A storage provider is a plugin that provides storage for persisting a historical record of all events produced
+
+Storage provider's enable the `History` method- without it, an `Unimplemented` error will be returned to the client
+
+## Goals
+
+- [x] Create a universal API interface for publishing and subscribing to events using pluggable channel & storage provider
+- [x] Interact with the API interface in gRPC, REST, and/or graphQL.
+- [x] Safe to swap backend providers without changing client-side code
+- [x] Type-safe client's generated in many languages
+- [x] Safe to expose to the public internet due to fine-grained authentication/authorization model.
+- [x] Capture a persistant, immutable historical record of all events using a pluggable storage provider
+- [x] Different combinations of Channel & Storage Providers are interoperable.
+- [x] Audit log of events broadcasted by authorized producers
 
 ## Command Line
 
@@ -87,31 +112,36 @@ logging:
   # enable debug logs
   debug: true
 
-# pluggable backend: [inmem, redis, nats, stan, kafka]
-backend:
-  name: "inmem"
 
-#backend:
-#  name: "redis"
-#  config:
-#    addr: "0.0.0.0:6379"
-#backend:
-#  name: "nats"
-#  config:
-#    addr: "0.0.0.0:4444"
-#backend:
-#  name: "stan"
-#  config:
-#    addr: "0.0.0.0:4444"
-#backend:
-#  name: "kafka"
-#  config:
-#    addr: "0.0.0.0:9092"
-#backend:
-#  name: "google-pubsub"
-#  config:
-#    project: "my-gcloud-project"
-#    credentials_file: "/tmp/credentials.json"
+backend:
+  # pluggable channel providers: [inmem, redis, nats, stan, kafka, google-pubsub, aws-sqs]
+  channel_provider:
+    name: "nats"
+    config:
+      addr: "0.0.0.0:4444"
+  #channel_provider:
+  #  name: "redis"
+  #  config:
+  #    addr: "0.0.0.0:6379"
+  #channel_provider:
+  #  name: "nats"
+  #  config:
+  #    addr: "0.0.0.0:4444"
+  #channel_provider:
+  #  name: "stan"
+  #  config:
+  #    addr: "0.0.0.0:4444"
+  #channel_provider:
+  #  name: "stan"
+  #  config:
+  #    addr: "0.0.0.0:4444"
+
+  # pluggable storage providers: [inmem, mongo]
+  storage_provider:
+    name: "mongo"
+    config:
+      uri: "mongodb://localhost:27017/testing"
+      database: "testing"
 
 # authentication options
 authentication:
@@ -119,7 +149,7 @@ authentication:
   # if empty, inbound jwt's will not be verified.
   jwks_uri: ""
 
-# authorization options(input.claims(object), input.method(string), input.body(object), input.client_stream(bool), input.server_stream(bool)
+# authorization options
 authorization:
   requests: |
     package eventgate.authz
@@ -134,6 +164,7 @@ authorization:
     package eventgate.authz
 
     default allow = true
+
 
 ```
 

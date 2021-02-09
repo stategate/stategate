@@ -31,6 +31,11 @@ type TLS struct {
 }
 
 type Backend struct {
+	ChannelProvider *Provider `yaml:"channel_provider"`
+	StorageProvider *Provider `yaml:"storage_provider"`
+}
+
+type Provider struct {
 	Name   string            `yaml:"name"`
 	Config map[string]string `yaml:"config"`
 }
@@ -81,7 +86,16 @@ func (c *Config) SetDefaults() {
 	if c.Backend == nil {
 		c.Backend = &Backend{}
 	}
-	if c.Backend.Config == nil {
-		c.Backend.Config = map[string]string{}
+	if c.Backend.ChannelProvider == nil {
+		c.Backend.ChannelProvider = &Provider{}
+	}
+	if c.Backend.StorageProvider == nil {
+		c.Backend.StorageProvider = &Provider{}
+	}
+	if c.Backend.StorageProvider.Config == nil {
+		c.Backend.StorageProvider.Config = map[string]string{}
+	}
+	if c.Backend.ChannelProvider.Config == nil {
+		c.Backend.ChannelProvider.Config = map[string]string{}
 	}
 }

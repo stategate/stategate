@@ -6,11 +6,12 @@ import (
 	"fmt"
 	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
 	"github.com/autom8ter/eventgate/internal/auth"
-	"github.com/autom8ter/eventgate/internal/backend"
 	"github.com/autom8ter/eventgate/internal/config"
 	"github.com/autom8ter/eventgate/internal/gql"
 	"github.com/autom8ter/eventgate/internal/helpers"
 	"github.com/autom8ter/eventgate/internal/logger"
+	"github.com/autom8ter/eventgate/internal/providers"
+	"github.com/autom8ter/eventgate/internal/storage"
 	"github.com/autom8ter/machine"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
@@ -66,7 +67,8 @@ func run(ctx context.Context) {
 	c.SetDefaults()
 	var lgger = logger.New(
 		c.Logging.Debug,
-		zap.String("backend", c.Backend.Name),
+		zap.String("channel_provider", c.Backend.ChannelProvider.Name),
+		zap.String("storage_provider", c.Backend.StorageProvider.Name),
 	)
 
 	lgger.Debug("loaded config", zap.Any("config", c))
@@ -197,9 +199,19 @@ func run(ctx context.Context) {
 	if tlsConfig != nil {
 		gopts = append(gopts, grpc.Creds(credentials.NewTLS(tlsConfig)))
 	}
-	service, closer, err := backend.GetProvider(backend.Provider(c.Backend.Name), lgger, c.Backend.Config)
+	var strg storage.Provider
+	if c.Backend.StorageProvider != nil && c.Backend.StorageProvider.Name != "" {
+		strg, err = providers.GetStorageProvider(providers.StorageProvider(c.Backend.StorageProvider.Name), lgger, c.Backend.StorageProvider.Config)
+		if err != nil {
+			lgger.Error("failed to setup storage provider", zap.Error(err))
+			return
+		}
+		defer strg.Close()
+	}
+
+	service, closer, err := providers.GetChannelProvider(providers.ChannelProvider(c.Backend.ChannelProvider.Name), strg, lgger, c.Backend.ChannelProvider.Config)
 	if err != nil {
-		lgger.Error(err.Error())
+		lgger.Error("failed to setup channel provider", zap.Error(err))
 		return
 	}
 	defer closer()

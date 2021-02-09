@@ -6,7 +6,10 @@ require (
 	cloud.google.com/go/pubsub v1.9.1
 	github.com/99designs/gqlgen v0.13.0
 	github.com/autom8ter/machine v1.3.0
+	github.com/aws/aws-sdk-go v1.37.6
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
+	github.com/elastic/go-elasticsearch/v7 v7.10.0
+	github.com/elastic/go-elasticsearch/v8 v8.0.0-20201229214741-2366c2514674
 	github.com/go-redis/redis/v8 v8.5.0
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.4.3
@@ -38,6 +41,7 @@ require (
 	github.com/spf13/cast v1.3.1
 	github.com/spf13/pflag v1.0.5
 	github.com/vektah/gqlparser/v2 v2.1.0
+	go.mongodb.org/mongo-driver v1.4.6
 	go.uber.org/zap v1.16.0
 	golang.org/x/oauth2 v0.0.0-20210112200429-01de73cf58bd
 	golang.org/x/sync v0.0.0-20201207232520-09787c993a3a

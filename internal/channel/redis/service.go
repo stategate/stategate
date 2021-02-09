@@ -1,18 +1,20 @@
-package pubsub
+package redis
 
 import (
-	pubsub "cloud.google.com/go/pubsub"
 	"context"
 	"fmt"
 	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
 	"github.com/autom8ter/eventgate/internal/auth"
 	"github.com/autom8ter/eventgate/internal/constants"
 	"github.com/autom8ter/eventgate/internal/logger"
-	ps "github.com/autom8ter/machine/pubsub"
+	"github.com/autom8ter/eventgate/internal/storage"
+	"github.com/autom8ter/machine/pubsub"
+	"github.com/go-redis/redis/v8"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
 	"go.uber.org/zap"
+	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -22,43 +24,39 @@ import (
 type Service struct {
 	eventsChan string
 	logger     *logger.Logger
-	conn       *pubsub.Client
-	ps         ps.PubSub
-	topic      *pubsub.Topic
-	cancel     func()
+	conn       *redis.Client
+	ps         pubsub.PubSub
+	sub        *redis.PubSub
+	storage    storage.Provider
 }
 
-func NewService(logger *logger.Logger, conn *pubsub.Client) (*Service, error) {
+func NewService(logger *logger.Logger, client *redis.Client, storage storage.Provider) (*Service, error) {
 	s := &Service{
 		logger:     logger,
-		conn:       conn,
-		ps:         ps.NewPubSub(),
+		conn:       client,
+		ps:         pubsub.NewPubSub(),
 		eventsChan: constants.BackendChannel,
+		storage:    storage,
 	}
-	ctx, cancel := context.WithCancel(context.Background())
-	s.cancel = cancel
-	s.topic = s.conn.Topic(s.eventsChan)
+	sub := s.conn.Subscribe(context.Background(), s.eventsChan)
 	go func() {
-		sub := s.conn.Subscription(constants.BackendChannel)
-		if err := sub.Receive(ctx, func(ctx context.Context, message *pubsub.Message) {
-			if ctx.Err() != nil {
-				return
+		ch := sub.Channel()
+		for {
+			select {
+			case msg := <-ch:
+				var event eventgate.Event
+				if err := proto.Unmarshal([]byte(msg.Payload), &event); err != nil {
+					s.logger.Error("failed to unmarshal event", zap.Error(err))
+					return
+				}
+				if err := s.ps.Publish(event.GetChannel(), &event); err != nil {
+					s.logger.Error("failed to unmarshal event", zap.Error(err))
+					return
+				}
 			}
-			message.Ack()
-			var event eventgate.Event
-			if err := proto.Unmarshal(message.Data, &event); err != nil {
-				s.logger.Error("failed to unmarshal event", zap.Error(err))
-				return
-			}
-			if err := s.ps.Publish(event.GetChannel(), &event); err != nil {
-				s.logger.Error("failed to unmarshal event", zap.Error(err))
-				return
-			}
-		}); err != nil {
-			s.logger.Error("subscription failure", zap.Error(err))
-			return
 		}
 	}()
+	s.sub = sub
 	return s, nil
 }
 
@@ -84,9 +82,20 @@ func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, e
 	if err != nil {
 		return nil, err
 	}
-	if _, err := s.topic.Publish(ctx, &pubsub.Message{
-		Data: bits,
-	}).Get(ctx); err != nil {
+
+	group := errgroup.Group{}
+	group.Go(func() error {
+		if _, err := s.conn.Publish(ctx, s.eventsChan, bits).Result(); err != nil {
+			return err
+		}
+		return nil
+	})
+	if s.storage != nil {
+		group.Go(func() error {
+			return s.storage.SaveEvent(ctx, toSend)
+		})
+	}
+	if err := group.Wait(); err != nil {
 		return nil, err
 	}
 	return &empty.Empty{}, nil
@@ -113,8 +122,16 @@ func (s *Service) Receive(r *eventgate.ReceiveOpts, server eventgate.EventGateSe
 }
 
 func (s *Service) Close() error {
-	s.topic.Stop()
-	s.cancel()
+	if err := s.sub.Close(); err != nil {
+		return err
+	}
 	s.ps.Close()
 	return nil
+}
+
+func (s *Service) History(ctx context.Context, opts *eventgate.HistoryOpts) (*eventgate.Events, error) {
+	if s.storage == nil {
+		return nil, status.Error(codes.Unimplemented, "backend timeseries storage provider not registered")
+	}
+	return s.storage.GetEvents(ctx, opts)
 }

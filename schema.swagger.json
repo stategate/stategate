@@ -11,9 +11,72 @@
     "application/json"
   ],
   "paths": {
+    "/history": {
+      "get": {
+        "summary": "History returns an array of immutable historical events.\nIf a backend storage provider is not registered, an error will be returned to the client",
+        "operationId": "EventGateService_History",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eventgateEvents"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "channel",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "min",
+            "description": "only return events that occurred after specified min timestamp.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "max",
+            "description": "only return events that occurred before specified max timestamp.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "limit",
+            "description": "limit returned events.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "description": "offset returned events(pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "EventGateService"
+        ]
+      }
+    },
     "/receive": {
       "get": {
-        "summary": "Receive streams events to a client that pass a Filter",
+        "summary": "Receive pushes events to a new client consumer",
         "operationId": "EventGateService_Receive",
         "responses": {
           "200": {
@@ -53,7 +116,7 @@
     },
     "/send": {
       "post": {
-        "summary": "Broadcast an event(one way)",
+        "summary": "Send broadcasts an event to all consumers on a given channel",
         "operationId": "EventGateService_Send",
         "responses": {
           "200": {
@@ -103,9 +166,6 @@
         },
         "metadata": {
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "title": "Arbitrary metadata about the event"
         },
         "time": {
@@ -115,6 +175,18 @@
         }
       },
       "title": "Event is a specification for describing event data"
+    },
+    "eventgateEvents": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/eventgateEvent"
+          }
+        }
+      },
+      "title": "Events is an array of events"
     },
     "protobufAny": {
       "type": "object",

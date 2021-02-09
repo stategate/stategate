@@ -237,5 +237,85 @@ proto.eventgate.EventGateServicePromiseClient.prototype.receive =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.eventgate.HistoryOpts,
+ *   !proto.eventgate.Events>}
+ */
+const methodDescriptor_EventGateService_History = new grpc.web.MethodDescriptor(
+  '/eventgate.EventGateService/History',
+  grpc.web.MethodType.UNARY,
+  proto.eventgate.HistoryOpts,
+  proto.eventgate.Events,
+  /**
+   * @param {!proto.eventgate.HistoryOpts} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.eventgate.Events.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.eventgate.HistoryOpts,
+ *   !proto.eventgate.Events>}
+ */
+const methodInfo_EventGateService_History = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.eventgate.Events,
+  /**
+   * @param {!proto.eventgate.HistoryOpts} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.eventgate.Events.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.eventgate.HistoryOpts} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.eventgate.Events)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.eventgate.Events>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.eventgate.EventGateServiceClient.prototype.history =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/eventgate.EventGateService/History',
+      request,
+      metadata || {},
+      methodDescriptor_EventGateService_History,
+      callback);
+};
+
+
+/**
+ * @param {!proto.eventgate.HistoryOpts} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.eventgate.Events>}
+ *     Promise that resolves to the response
+ */
+proto.eventgate.EventGateServicePromiseClient.prototype.history =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/eventgate.EventGateService/History',
+      request,
+      metadata || {},
+      methodDescriptor_EventGateService_History);
+};
+
+
 module.exports = proto.eventgate;
 

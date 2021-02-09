@@ -1,18 +1,19 @@
-package stan
+package kafka
 
 import (
 	"context"
 	"fmt"
 	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
 	"github.com/autom8ter/eventgate/internal/auth"
-	"github.com/autom8ter/eventgate/internal/constants"
 	"github.com/autom8ter/eventgate/internal/logger"
+	"github.com/autom8ter/eventgate/internal/storage"
 	"github.com/autom8ter/machine/pubsub"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
-	"github.com/nats-io/stan.go"
+	"github.com/segmentio/kafka-go"
 	"go.uber.org/zap"
+	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -20,35 +21,38 @@ import (
 )
 
 type Service struct {
-	eventsChan string
-	logger     *logger.Logger
-	conn       stan.Conn
-	ps         pubsub.PubSub
-	sub        stan.Subscription
+	logger  *logger.Logger
+	reader  *kafka.Reader
+	writer  *kafka.Writer
+	ps      pubsub.PubSub
+	storage storage.Provider
 }
 
-func NewService(logger *logger.Logger, conn stan.Conn) (*Service, error) {
+func NewService(logger *logger.Logger, reader *kafka.Reader, writer *kafka.Writer, storage storage.Provider) (*Service, error) {
 	s := &Service{
-		logger:     logger,
-		conn:       conn,
-		ps:         pubsub.NewPubSub(),
-		eventsChan: constants.BackendChannel,
+		logger:  logger,
+		reader:  reader,
+		writer:  writer,
+		ps:      pubsub.NewPubSub(),
+		storage: storage,
 	}
-	sub, err := s.conn.Subscribe(s.eventsChan, func(msg *stan.Msg) {
-		var event eventgate.Event
-		if err := proto.Unmarshal(msg.Data, &event); err != nil {
-			s.logger.Error("failed to unmarshal event", zap.Error(err))
-			return
+	go func() {
+		for {
+			msg, err := reader.ReadMessage(context.Background())
+			if err != nil {
+				s.logger.Error("failed to read event", zap.Error(err))
+				return
+			}
+			var event eventgate.Event
+			if err := proto.Unmarshal(msg.Value, &event); err != nil {
+				s.logger.Error("failed to unmarshal event", zap.Error(err))
+				continue
+			}
+			if err := s.ps.Publish(event.GetChannel(), &event); err != nil {
+				s.logger.Error("failed to unmarshal event", zap.Error(err))
+			}
 		}
-		if err := s.ps.Publish(event.GetChannel(), &event); err != nil {
-			s.logger.Error("failed to unmarshal event", zap.Error(err))
-			return
-		}
-	})
-	if err != nil {
-		return nil, err
-	}
-	s.sub = sub
+	}()
 	return s, nil
 }
 
@@ -74,7 +78,19 @@ func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, e
 	if err != nil {
 		return nil, err
 	}
-	if err := s.conn.Publish(s.eventsChan, bits); err != nil {
+	group := errgroup.Group{}
+	group.Go(func() error {
+		return s.writer.WriteMessages(ctx, kafka.Message{
+			Key:   []byte(toSend.Id),
+			Value: bits,
+		})
+	})
+	if s.storage != nil {
+		group.Go(func() error {
+			return s.storage.SaveEvent(ctx, toSend)
+		})
+	}
+	if err := group.Wait(); err != nil {
 		return nil, err
 	}
 	return &empty.Empty{}, nil
@@ -101,12 +117,19 @@ func (s *Service) Receive(r *eventgate.ReceiveOpts, server eventgate.EventGateSe
 }
 
 func (s *Service) Close() error {
-	if err := s.sub.Unsubscribe(); err != nil {
-		return err
-	}
-	if err := s.sub.Close(); err != nil {
+	group := &errgroup.Group{}
+	group.Go(s.writer.Close)
+	group.Go(s.reader.Close)
+	if err := group.Wait(); err != nil {
 		return err
 	}
 	s.ps.Close()
 	return nil
+}
+
+func (s *Service) History(ctx context.Context, opts *eventgate.HistoryOpts) (*eventgate.Events, error) {
+	if s.storage == nil {
+		return nil, status.Error(codes.Unimplemented, "backend timeseries storage provider not registered")
+	}
+	return s.storage.GetEvents(ctx, opts)
 }

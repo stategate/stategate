@@ -196,3 +196,7 @@ func (c *Client) Receive(ctx context.Context, in *eventgate.ReceiveOpts, fn func
 		}
 	}
 }
+
+func (c *Client) History(ctx context.Context, in *eventgate.HistoryOpts) (*eventgate.Events, error) {
+	return c.client.History(ctx, in)
+}

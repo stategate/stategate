@@ -21,6 +21,13 @@ export class EventGateServiceClient {
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<schema_pb.Event>;
 
+  history(
+    request: schema_pb.HistoryOpts,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: schema_pb.Events) => void
+  ): grpcWeb.ClientReadableStream<schema_pb.Events>;
+
 }
 
 export class EventGateServicePromiseClient {
@@ -37,6 +44,11 @@ export class EventGateServicePromiseClient {
     request: schema_pb.ReceiveOpts,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<schema_pb.Event>;
+
+  history(
+    request: schema_pb.HistoryOpts,
+    metadata?: grpcWeb.Metadata
+  ): Promise<schema_pb.Events>;
 
 }
 
