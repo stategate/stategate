@@ -63,6 +63,9 @@ func (this *Event) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("Metadata", err)
 		}
 	}
+	if nil == this.Claims {
+		return github_com_mwitkow_go_proto_validators.FieldError("Claims", fmt.Errorf("message must exist"))
+	}
 	if this.Claims != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Claims); err != nil {
 			return github_com_mwitkow_go_proto_validators.FieldError("Claims", err)

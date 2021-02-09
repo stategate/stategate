@@ -65,7 +65,7 @@ message Event {
   // Arbitrary metadata about the event
   google.protobuf.Struct metadata =6;
   // The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
-  google.protobuf.Struct claims =7;
+  google.protobuf.Struct claims =7[(validator.field) = {msg_exists : true}];
   // Timestamp of when the occurrence happened. Must adhere to RFC 3339. If a timestamp is not sent with the event, the current time will be assigned
   google.protobuf.Timestamp time =20;
 }

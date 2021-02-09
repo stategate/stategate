@@ -14,7 +14,7 @@ type Event {
     # Arbitrary metadata about the event
     metadata: Map
     # The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
-    claims: Map
+    claims: Map!
     # Timestamp of when the occurrence happened. Must adhere to RFC 3339.
     time: Time!
 }

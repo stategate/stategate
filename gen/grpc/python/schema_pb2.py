@@ -25,7 +25,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='eventgate',
   syntax='proto3',
   serialized_options=_b('Z\teventgate'),
-  serialized_pb=_b('\n\x0cschema.proto\x12\teventgate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\"\x9f\x01\n\x0bHistoryOpts\x12\x17\n\x07\x63hannel\x18\x01 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\'\n\x03min\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x03max\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x15\n\x05limit\x18\x04 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x05 \x01(\x03\"&\n\x0bReceiveOpts\x12\x17\n\x07\x63hannel\x18\x01 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\"\xd9\x01\n\x05\x45vent\x12\n\n\x02id\x18\x01 \x01(\t\x12\x17\n\x07\x63hannel\x18\x02 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12-\n\x04\x64\x61ta\x18\x05 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12)\n\x08metadata\x18\x06 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\'\n\x06\x63laims\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12(\n\x04time\x18\x14 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"*\n\x06\x45vents\x12 \n\x06\x65vents\x18\x01 \x03(\x0b\x32\x10.eventgate.Event2\xe7\x01\n\x10\x45ventGateService\x12\x42\n\x04Send\x12\x10.eventgate.Event\x1a\x16.google.protobuf.Empty\"\x10\x82\xd3\xe4\x93\x02\n\"\x05/send:\x01*\x12G\n\x07Receive\x12\x16.eventgate.ReceiveOpts\x1a\x10.eventgate.Event\"\x10\x82\xd3\xe4\x93\x02\n\x12\x08/receive0\x01\x12\x46\n\x07History\x12\x16.eventgate.HistoryOpts\x1a\x11.eventgate.Events\"\x10\x82\xd3\xe4\x93\x02\n\x12\x08/historyB\x0bZ\teventgateb\x06proto3')
+  serialized_pb=_b('\n\x0cschema.proto\x12\teventgate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\"\x9f\x01\n\x0bHistoryOpts\x12\x17\n\x07\x63hannel\x18\x01 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\'\n\x03min\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x03max\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x15\n\x05limit\x18\x04 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x05 \x01(\x03\"&\n\x0bReceiveOpts\x12\x17\n\x07\x63hannel\x18\x01 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\"\xe1\x01\n\x05\x45vent\x12\n\n\x02id\x18\x01 \x01(\t\x12\x17\n\x07\x63hannel\x18\x02 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12-\n\x04\x64\x61ta\x18\x05 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12)\n\x08metadata\x18\x06 \x01(\x0b\x32\x17.google.protobuf.Struct\x12/\n\x06\x63laims\x18\x07 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12(\n\x04time\x18\x14 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"*\n\x06\x45vents\x12 \n\x06\x65vents\x18\x01 \x03(\x0b\x32\x10.eventgate.Event2\xe7\x01\n\x10\x45ventGateService\x12\x42\n\x04Send\x12\x10.eventgate.Event\x1a\x16.google.protobuf.Empty\"\x10\x82\xd3\xe4\x93\x02\n\"\x05/send:\x01*\x12G\n\x07Receive\x12\x16.eventgate.ReceiveOpts\x1a\x10.eventgate.Event\"\x10\x82\xd3\xe4\x93\x02\n\x12\x08/receive0\x01\x12\x46\n\x07History\x12\x16.eventgate.HistoryOpts\x1a\x11.eventgate.Events\"\x10\x82\xd3\xe4\x93\x02\n\x12\x08/historyB\x0bZ\teventgateb\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_any__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,github_dot_com_dot_mwitkow_dot_go__proto__validators_dot_validator__pb2.DESCRIPTOR,])
 
@@ -163,7 +163,7 @@ _EVENT = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=_b('\342\337\037\002 \001'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='time', full_name='eventgate.Event.time', index=5,
       number=20, type=11, cpp_type=10, label=1,
@@ -184,7 +184,7 @@ _EVENT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=435,
-  serialized_end=652,
+  serialized_end=660,
 )
 
 
@@ -214,8 +214,8 @@ _EVENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=654,
-  serialized_end=696,
+  serialized_start=662,
+  serialized_end=704,
 )
 
 _HISTORYOPTS.fields_by_name['min'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
@@ -266,6 +266,7 @@ _HISTORYOPTS.fields_by_name['limit']._options = None
 _RECEIVEOPTS.fields_by_name['channel']._options = None
 _EVENT.fields_by_name['channel']._options = None
 _EVENT.fields_by_name['data']._options = None
+_EVENT.fields_by_name['claims']._options = None
 
 _EVENTGATESERVICE = _descriptor.ServiceDescriptor(
   name='EventGateService',
@@ -273,8 +274,8 @@ _EVENTGATESERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=699,
-  serialized_end=930,
+  serialized_start=707,
+  serialized_end=938,
   methods=[
   _descriptor.MethodDescriptor(
     name='Send',

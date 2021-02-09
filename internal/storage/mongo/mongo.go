@@ -37,6 +37,7 @@ func (s Service) SaveEvent(ctx context.Context, event *eventgate.Event) error {
 		"timestamp": event.GetTime().AsTime().Unix(),
 		"metadata":  bson.M(event.GetMetadata().AsMap()),
 		"data":      bson.M(event.GetData().AsMap()),
+		"claims":    bson.M(event.GetClaims().AsMap()),
 	}
 
 	if _, err := s.db.Collection(constants.BackendChannel).InsertOne(ctx, document); err != nil {
@@ -94,6 +95,11 @@ func (s Service) GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*e
 		if ok {
 			d, _ := structpb.NewStruct(md)
 			e.Metadata = d
+		}
+		claims, ok := r["claims"].(bson.M)
+		if ok {
+			d, _ := structpb.NewStruct(claims)
+			e.Claims = d
 		}
 		e.Time = timestamppb.New(time.Unix(cast.ToInt64(r["timestamp"]), 0))
 		events = append(events, e)

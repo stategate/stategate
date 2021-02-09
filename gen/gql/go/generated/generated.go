@@ -267,7 +267,7 @@ type Event {
     # Arbitrary metadata about the event
     metadata: Map
     # The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
-    claims: Map
+    claims: Map!
     # Timestamp of when the occurrence happened. Must adhere to RFC 3339.
     time: Time!
 }
@@ -581,11 +581,14 @@ func (ec *executionContext) _Event_claims(ctx context.Context, field graphql.Col
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.(map[string]interface{})
 	fc.Result = res
-	return ec.marshalOMap2map(ctx, field.Selections, res)
+	return ec.marshalNMap2map(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Event_time(ctx context.Context, field graphql.CollectedField, obj *model.Event) (ret graphql.Marshaler) {
@@ -2073,6 +2076,9 @@ func (ec *executionContext) _Event(ctx context.Context, sel ast.SelectionSet, ob
 			out.Values[i] = ec._Event_metadata(ctx, field, obj)
 		case "claims":
 			out.Values[i] = ec._Event_claims(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "time":
 			out.Values[i] = ec._Event_time(ctx, field, obj)
 			if out.Values[i] == graphql.Null {

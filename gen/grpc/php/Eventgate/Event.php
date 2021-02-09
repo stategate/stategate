@@ -42,7 +42,7 @@ class Event extends \Google\Protobuf\Internal\Message
     /**
      * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct claims = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct claims = 7 [(.validator.field) = {</code>
      */
     private $claims = null;
     /**
@@ -184,7 +184,7 @@ class Event extends \Google\Protobuf\Internal\Message
     /**
      * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct claims = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct claims = 7 [(.validator.field) = {</code>
      * @return \Google\Protobuf\Struct
      */
     public function getClaims()
@@ -195,7 +195,7 @@ class Event extends \Google\Protobuf\Internal\Message
     /**
      * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct claims = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct claims = 7 [(.validator.field) = {</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */

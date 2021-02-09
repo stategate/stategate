@@ -52,17 +52,17 @@ backend:
 
 # pluggable storage providers: [mongo, elasticsearch]
   
-#  storage_provider:
-#    name: "mongo"
-#    config:
-#      addr: "mongodb://localhost:27017/testing"
-#      database: "testing"
+  storage_provider:
+    name: "mongo"
+    config:
+      addr: "mongodb://localhost:27017/testing"
+      database: "testing"
 #      client_cert_file: "/tmp/mongo.cert"
 #      client_key_file: "/tmp/mongo.key"
-  storage_provider:
-    name: "elasticsearch"
-    config:
-      addr: "http://localhost:9200"
+#  storage_provider:
+#    name: "elasticsearch"
+#    config:
+#      addr: "http://localhost:9200"
 #     user: "default"
 #     password: "admin1234"
 
