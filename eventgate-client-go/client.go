@@ -139,14 +139,14 @@ func NewClient(ctx context.Context, target string, opts ...Opt) (*Client, error)
 	}
 	return &Client{
 		client: eventgate.NewEventGateServiceClient(conn),
-		conn: conn,
+		conn:   conn,
 	}, nil
 }
 
 // Client is a eventgate gRPC client
 type Client struct {
 	client eventgate.EventGateServiceClient
-	conn *grpc.ClientConn
+	conn   *grpc.ClientConn
 }
 
 func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken bool) (context.Context, error) {
@@ -178,6 +178,9 @@ func (c *Client) Send(ctx context.Context, in *eventgate.Event) error {
 
 // Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
 func (c *Client) Receive(ctx context.Context, in *eventgate.ReceiveOpts, fn func(even *eventgate.EventDetail) bool) error {
+	if ctx.Err() != nil {
+		return nil
+	}
 	stream, err := c.client.Receive(ctx, in)
 	if err != nil {
 		return err

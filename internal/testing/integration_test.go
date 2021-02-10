@@ -2,6 +2,7 @@ package testing
 
 import (
 	"context"
+	"fmt"
 	eventgate_client_go "github.com/autom8ter/eventgate/eventgate-client-go"
 	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
 	"github.com/autom8ter/eventgate/internal/server"
@@ -11,24 +12,27 @@ import (
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/structpb"
 	"testing"
-	"time"
 )
 
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 
 func TestIntegration(t *testing.T) {
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-	defer cancel()
+
+	natsContainer := framework.NewContainer(t, "nats", "latest", nil)
+	defer natsContainer.Close(t)
+	mongoContainer := framework.NewContainer(t, "mongo", "latest", nil)
+	defer mongoContainer.Close(t)
+	ctx := context.Background()
+	nmgo := natsMongo(t, ctx, natsContainer.GetPort("4222/tcp"), mongoContainer.GetPort("27017/tcp"))
 	framework.Run(t, []*framework.Provider{
-		natsMongo(t, ctx),
+		nmgo,
 	}, []*framework.TestCase{
 		helloWorld(ctx),
 	})
 }
 
-func natsMongo(t *testing.T, ctx context.Context) *framework.Provider {
-	return framework.NewProvider(t, ctx, &server.Config{
-		Port: 5555,
+func natsMongo(t *testing.T, ctx context.Context, natsPort, mongoPort string) *framework.Provider {
+	return framework.NewProvider(t, ctx, token, &server.Config{
 		Authorization: &server.Authorization{
 			RequestPolicy: `
 	package eventgate.authz
@@ -51,25 +55,37 @@ func natsMongo(t *testing.T, ctx context.Context) *framework.Provider {
 			ChannelProvider: &server.Provider{
 				Name: "nats",
 				Config: map[string]string{
-					"addr": "0.0.0.0:4444",
+					"addr": fmt.Sprintf("0.0.0.0:%s", natsPort),
 				},
 			},
 			StorageProvider: &server.Provider{
 				Name: "mongo",
 				Config: map[string]string{
-					"addr":     "mongodb://localhost:27017/testing",
+					"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
 					"database": "testing",
 				},
 			},
 		},
-	}, token)
+	})
 }
 
 func helloWorld(ctx context.Context) *framework.TestCase {
 	return &framework.TestCase{
 		Name: "hello_world",
 		Func: func(t *testing.T, client *eventgate_client_go.Client) {
+			const channelName = "hello_world"
 			group := &errgroup.Group{}
+			group.Go(func() error {
+				count := 0
+				if err := client.Receive(ctx, &eventgate.ReceiveOpts{Channel: channelName}, func(even *eventgate.EventDetail) bool {
+					t.Logf("received hello world event: %s\n", jsonString(even))
+					count++
+					return count < 3
+				}); err != nil {
+					return err
+				}
+				return nil
+			})
 			group.Go(func() error {
 				data, _ := structpb.NewStruct(map[string]interface{}{
 					"message": "hello world",
@@ -77,27 +93,23 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				metadata, _ := structpb.NewStruct(map[string]interface{}{
 					"type": "conversation",
 				})
-				if err := client.Send(context.Background(), &eventgate.Event{
-					Channel:  "testing",
+				event := &eventgate.Event{
+					Channel:  channelName,
 					Data:     data,
 					Metadata: metadata,
-				}); err != nil {
-					return err
 				}
-				return nil
-			})
-			group.Go(func() error {
-				if err := client.Receive(ctx, &eventgate.ReceiveOpts{Channel: "testing"}, func(even *eventgate.EventDetail) bool {
-					if even.GetData().GetFields()["message"].GetStringValue() == "hello world" {
-						t.Logf("received hello world event: %s\n", jsonString(even))
-						return false
+				for i := 0; i < 3; i++ {
+					index := i
+					event.Metadata.Fields["index"] = structpb.NewNumberValue(float64(index))
+					t.Log("sending event")
+					if err := client.Send(context.Background(), event); err != nil {
+						return err
 					}
-					return true
-				}); err != nil {
-					return err
 				}
+
 				return nil
 			})
+
 			if err := group.Wait(); err != nil {
 				t.Fatal(err)
 			}
