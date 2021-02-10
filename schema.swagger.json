@@ -19,7 +19,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/eventgateEvents"
+              "$ref": "#/definitions/eventgateEventDetails"
             }
           },
           "default": {
@@ -85,13 +85,13 @@
               "type": "object",
               "properties": {
                 "result": {
-                  "$ref": "#/definitions/eventgateEvent"
+                  "$ref": "#/definitions/eventgateEventDetail"
                 },
                 "error": {
                   "$ref": "#/definitions/rpcStatus"
                 }
               },
-              "title": "Stream result of eventgateEvent"
+              "title": "Stream result of eventgateEventDetail"
             }
           },
           "default": {
@@ -152,9 +152,27 @@
     "eventgateEvent": {
       "type": "object",
       "properties": {
+        "channel": {
+          "type": "string",
+          "title": "Identifies the channel/subject to which the event will be sent"
+        },
+        "data": {
+          "type": "object",
+          "description": "The event payload(structured)."
+        },
+        "metadata": {
+          "type": "object",
+          "title": "Arbitrary metadata about the event"
+        }
+      },
+      "title": "Event is a specification for describing event-sourced data"
+    },
+    "eventgateEventDetail": {
+      "type": "object",
+      "properties": {
         "id": {
           "type": "string",
-          "title": "Identifies the event. If an ID is not sent with the event, a uuid will be assigned"
+          "description": "Identifies the event(uuid)."
         },
         "channel": {
           "type": "string",
@@ -170,27 +188,27 @@
         },
         "claims": {
           "type": "object",
-          "description": "The authentication claims of the event producer. This field is read-only \u0026 populated/overriden by the server before it is broadcasted to consumers."
+          "description": "The authentication claims of the event producer."
         },
         "time": {
           "type": "string",
           "format": "date-time",
-          "title": "Timestamp of when the occurrence happened. Must adhere to RFC 3339. If a timestamp is not sent with the event, the current time will be assigned"
+          "description": "Timestamp of when the event was received."
         }
       },
-      "title": "Event is a specification for describing event data"
+      "description": "EventDetail wraps an Event with additional details."
     },
-    "eventgateEvents": {
+    "eventgateEventDetails": {
       "type": "object",
       "properties": {
         "events": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/eventgateEvent"
+            "$ref": "#/definitions/eventgateEventDetail"
           }
         }
       },
-      "title": "Events is an array of events"
+      "title": "EventDetails is an array of event details"
     },
     "protobufAny": {
       "type": "object",

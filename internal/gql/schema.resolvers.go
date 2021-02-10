@@ -17,19 +17,11 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-func (r *mutationResolver) Send(ctx context.Context, input model.EventInput) (*string, error) {
+func (r *mutationResolver) Send(ctx context.Context, input model.Event) (*string, error) {
 	i := &eventgate.Event{
-		Id:       "",
 		Channel:  input.Channel,
 		Data:     nil,
 		Metadata: nil,
-		Time:     nil,
-	}
-	if input.ID != nil {
-		i.Id = *input.ID
-	}
-	if input.Time != nil {
-		i.Time = timestamppb.New(*input.Time)
 	}
 	if input.Data != nil {
 		m, _ := structpb.NewStruct(input.Data)
@@ -49,7 +41,7 @@ func (r *mutationResolver) Send(ctx context.Context, input model.EventInput) (*s
 	return nil, nil
 }
 
-func (r *queryResolver) History(ctx context.Context, input model.HistoryOpts) ([]*model.Event, error) {
+func (r *queryResolver) History(ctx context.Context, input model.HistoryOpts) ([]*model.EventDetail, error) {
 	opts := &eventgate.HistoryOpts{
 		Channel: input.Channel,
 	}
@@ -73,15 +65,15 @@ func (r *queryResolver) History(ctx context.Context, input model.HistoryOpts) ([
 			Path:    graphql.GetPath(ctx),
 		}
 	}
-	var events []*model.Event
+	var events []*model.EventDetail
 	for _, e := range resp.GetEvents() {
 		events = append(events, r.toEvent(e))
 	}
 	return events, nil
 }
 
-func (r *subscriptionResolver) Receive(ctx context.Context, input model.ReceiveOpts) (<-chan *model.Event, error) {
-	ch := make(chan *model.Event)
+func (r *subscriptionResolver) Receive(ctx context.Context, input model.ReceiveOpts) (<-chan *model.EventDetail, error) {
+	ch := make(chan *model.EventDetail)
 	i := &eventgate.ReceiveOpts{
 		Channel: input.Channel,
 	}

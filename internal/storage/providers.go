@@ -6,7 +6,7 @@ import (
 )
 
 type Provider interface {
-	SaveEvent(ctx context.Context, event *eventgate.Event) error
-	GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*eventgate.Events, error)
+	SaveEvent(ctx context.Context, event *eventgate.EventDetail) error
+	GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*eventgate.EventDetails, error)
 	Close() error
 }

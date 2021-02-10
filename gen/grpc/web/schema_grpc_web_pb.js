@@ -166,13 +166,13 @@ proto.eventgate.EventGateServicePromiseClient.prototype.send =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.eventgate.ReceiveOpts,
- *   !proto.eventgate.Event>}
+ *   !proto.eventgate.EventDetail>}
  */
 const methodDescriptor_EventGateService_Receive = new grpc.web.MethodDescriptor(
   '/eventgate.EventGateService/Receive',
   grpc.web.MethodType.SERVER_STREAMING,
   proto.eventgate.ReceiveOpts,
-  proto.eventgate.Event,
+  proto.eventgate.EventDetail,
   /**
    * @param {!proto.eventgate.ReceiveOpts} request
    * @return {!Uint8Array}
@@ -180,7 +180,7 @@ const methodDescriptor_EventGateService_Receive = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.eventgate.Event.deserializeBinary
+  proto.eventgate.EventDetail.deserializeBinary
 );
 
 
@@ -188,10 +188,10 @@ const methodDescriptor_EventGateService_Receive = new grpc.web.MethodDescriptor(
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
  *   !proto.eventgate.ReceiveOpts,
- *   !proto.eventgate.Event>}
+ *   !proto.eventgate.EventDetail>}
  */
 const methodInfo_EventGateService_Receive = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.eventgate.Event,
+  proto.eventgate.EventDetail,
   /**
    * @param {!proto.eventgate.ReceiveOpts} request
    * @return {!Uint8Array}
@@ -199,7 +199,7 @@ const methodInfo_EventGateService_Receive = new grpc.web.AbstractClientBase.Meth
   function(request) {
     return request.serializeBinary();
   },
-  proto.eventgate.Event.deserializeBinary
+  proto.eventgate.EventDetail.deserializeBinary
 );
 
 
@@ -207,7 +207,7 @@ const methodInfo_EventGateService_Receive = new grpc.web.AbstractClientBase.Meth
  * @param {!proto.eventgate.ReceiveOpts} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.eventgate.Event>}
+ * @return {!grpc.web.ClientReadableStream<!proto.eventgate.EventDetail>}
  *     The XHR Node Readable Stream
  */
 proto.eventgate.EventGateServiceClient.prototype.receive =
@@ -224,7 +224,7 @@ proto.eventgate.EventGateServiceClient.prototype.receive =
  * @param {!proto.eventgate.ReceiveOpts} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.eventgate.Event>}
+ * @return {!grpc.web.ClientReadableStream<!proto.eventgate.EventDetail>}
  *     The XHR Node Readable Stream
  */
 proto.eventgate.EventGateServicePromiseClient.prototype.receive =
@@ -241,13 +241,13 @@ proto.eventgate.EventGateServicePromiseClient.prototype.receive =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.eventgate.HistoryOpts,
- *   !proto.eventgate.Events>}
+ *   !proto.eventgate.EventDetails>}
  */
 const methodDescriptor_EventGateService_History = new grpc.web.MethodDescriptor(
   '/eventgate.EventGateService/History',
   grpc.web.MethodType.UNARY,
   proto.eventgate.HistoryOpts,
-  proto.eventgate.Events,
+  proto.eventgate.EventDetails,
   /**
    * @param {!proto.eventgate.HistoryOpts} request
    * @return {!Uint8Array}
@@ -255,7 +255,7 @@ const methodDescriptor_EventGateService_History = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.eventgate.Events.deserializeBinary
+  proto.eventgate.EventDetails.deserializeBinary
 );
 
 
@@ -263,10 +263,10 @@ const methodDescriptor_EventGateService_History = new grpc.web.MethodDescriptor(
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
  *   !proto.eventgate.HistoryOpts,
- *   !proto.eventgate.Events>}
+ *   !proto.eventgate.EventDetails>}
  */
 const methodInfo_EventGateService_History = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.eventgate.Events,
+  proto.eventgate.EventDetails,
   /**
    * @param {!proto.eventgate.HistoryOpts} request
    * @return {!Uint8Array}
@@ -274,7 +274,7 @@ const methodInfo_EventGateService_History = new grpc.web.AbstractClientBase.Meth
   function(request) {
     return request.serializeBinary();
   },
-  proto.eventgate.Events.deserializeBinary
+  proto.eventgate.EventDetails.deserializeBinary
 );
 
 
@@ -283,9 +283,9 @@ const methodInfo_EventGateService_History = new grpc.web.AbstractClientBase.Meth
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.eventgate.Events)}
+ * @param {function(?grpc.web.Error, ?proto.eventgate.EventDetails)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.eventgate.Events>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.eventgate.EventDetails>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.eventgate.EventGateServiceClient.prototype.history =
@@ -304,7 +304,7 @@ proto.eventgate.EventGateServiceClient.prototype.history =
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.eventgate.Events>}
+ * @return {!Promise<!proto.eventgate.EventDetails>}
  *     Promise that resolves to the response
  */
 proto.eventgate.EventGateServicePromiseClient.prototype.history =

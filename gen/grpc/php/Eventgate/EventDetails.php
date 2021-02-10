@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Events is an array of events
+ * EventDetails is an array of event details
  *
- * Generated from protobuf message <code>eventgate.Events</code>
+ * Generated from protobuf message <code>eventgate.EventDetails</code>
  */
-class Events extends \Google\Protobuf\Internal\Message
+class EventDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>repeated .eventgate.Event events = 1;</code>
+     * Generated from protobuf field <code>repeated .eventgate.EventDetail events = 1;</code>
      */
     private $events;
 
@@ -26,7 +26,7 @@ class Events extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Eventgate\Event[]|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type \Eventgate\EventDetail[]|\Google\Protobuf\Internal\RepeatedField $events
      * }
      */
     public function __construct($data = NULL) {
@@ -35,7 +35,7 @@ class Events extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .eventgate.Event events = 1;</code>
+     * Generated from protobuf field <code>repeated .eventgate.EventDetail events = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEvents()
@@ -44,13 +44,13 @@ class Events extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .eventgate.Event events = 1;</code>
-     * @param \Eventgate\Event[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .eventgate.EventDetail events = 1;</code>
+     * @param \Eventgate\EventDetail[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEvents($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Eventgate\Event::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Eventgate\EventDetail::class);
         $this->events = $arr;
 
         return $this;

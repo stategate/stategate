@@ -18,7 +18,6 @@ import (
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/structpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
-	"time"
 )
 
 type Service struct {
@@ -62,19 +61,13 @@ func (s *Service) Send(ctx context.Context, r *eventgate.Event) (*empty.Empty, e
 		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
 	}
 	claims, _ := structpb.NewStruct(c.Claims)
-	toSend := &eventgate.Event{
-		Id:       r.GetId(),
+	toSend := &eventgate.EventDetail{
+		Id:       uuid.New().String(),
 		Channel:  r.GetChannel(),
 		Data:     r.GetData(),
 		Metadata: r.GetMetadata(),
-		Time:     r.GetTime(),
 		Claims:   claims,
-	}
-	if toSend.Id == "" {
-		toSend.Id = uuid.New().String()
-	}
-	if toSend.Time == nil {
-		toSend.Time = timestamppb.New(time.Now())
+		Time:     timestamppb.Now(),
 	}
 	bits, err := proto.Marshal(toSend)
 	if err != nil {
@@ -97,7 +90,7 @@ func (s *Service) Receive(r *eventgate.ReceiveOpts, server eventgate.EventGateSe
 		return status.Error(codes.Unauthenticated, "unauthenticated")
 	}
 	if err := s.ps.Subscribe(server.Context(), r.GetChannel(), "", func(msg interface{}) bool {
-		if event, ok := msg.(*eventgate.Event); ok {
+		if event, ok := msg.(*eventgate.EventDetail); ok {
 			if err := server.Send(event); err != nil {
 				s.logger.Error("failed to send subscription event", zap.Error(err))
 			}
@@ -122,7 +115,7 @@ func (s *Service) Close() error {
 	return nil
 }
 
-func (s *Service) History(ctx context.Context, opts *eventgate.HistoryOpts) (*eventgate.Events, error) {
+func (s *Service) History(ctx context.Context, opts *eventgate.HistoryOpts) (*eventgate.EventDetails, error) {
 	if s.storage == nil {
 		return nil, status.Error(codes.Unimplemented, "backend timeseries storage provider not registered")
 	}

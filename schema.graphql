@@ -3,8 +3,8 @@ scalar Time
 # Map is a k/v map where the key is a string and the value is any value
 scalar Map
 
-# Event is a specification for describing event data
-type Event {
+# EventDetail is a specification for describing event data
+type EventDetail {
     # Identifies the event.
     id: String!
     # Identifies the channel/subject to which the event will be sent
@@ -20,17 +20,13 @@ type Event {
 }
 
 # EventInput constructs an event
-input EventInput {
-    # Identifies the event.
-    id: String
+input Event {
     # Identifies the channel/subject to which the event will be sent
     channel: String!
     # The event payload(structured).
     data: Map!
     # Arbitrary metadata about the event
     metadata: Map
-    # Timestamp of when the occurrence happened. Must adhere to RFC 3339.
-    time: Time
 }
 
 # HistoryOpts are options when querying historical events
@@ -49,15 +45,15 @@ input ReceiveOpts {
 
 type Query {
     # History returns an array of immutable historical events.
-    history(input: HistoryOpts!): [Event!]
+    history(input: HistoryOpts!): [EventDetail!]
 }
 
 type Mutation {
     # Send broadcasts an event to all consumers on a given channel
-    send(input: EventInput!): String
+    send(input: Event!): String
 }
 
 type Subscription {
     # Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
-    receive(input: ReceiveOpts!): Event!
+    receive(input: ReceiveOpts!): EventDetail!
 }

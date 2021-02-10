@@ -38,7 +38,7 @@ func TestIntegration(t *testing.T) {
 		defer wg.Done()
 		if err := client.Receive(ctx, &eventgate.ReceiveOpts{
 			Channel: "testing",
-		}, func(event *eventgate.Event) bool {
+		}, func(event *eventgate.EventDetail) bool {
 			t.Logf("event received on channel 1: %s\n", jsonString(event))
 			return ctx.Err() == nil
 		}); err != nil {
@@ -56,7 +56,7 @@ func TestIntegration(t *testing.T) {
 		defer wg.Done()
 		if err := client.Receive(ctx, &eventgate.ReceiveOpts{
 			Channel: "testing",
-		}, func(event *eventgate.Event) bool {
+		}, func(event *eventgate.EventDetail) bool {
 			t.Logf("event received on channel 2: %s\n", jsonString(event))
 			return ctx.Err() == nil
 		}); err != nil {

@@ -45,7 +45,7 @@ type DirectiveRoot struct {
 }
 
 type ComplexityRoot struct {
-	Event struct {
+	EventDetail struct {
 		Channel  func(childComplexity int) int
 		Claims   func(childComplexity int) int
 		Data     func(childComplexity int) int
@@ -55,7 +55,7 @@ type ComplexityRoot struct {
 	}
 
 	Mutation struct {
-		Send func(childComplexity int, input model.EventInput) int
+		Send func(childComplexity int, input model.Event) int
 	}
 
 	Query struct {
@@ -68,13 +68,13 @@ type ComplexityRoot struct {
 }
 
 type MutationResolver interface {
-	Send(ctx context.Context, input model.EventInput) (*string, error)
+	Send(ctx context.Context, input model.Event) (*string, error)
 }
 type QueryResolver interface {
-	History(ctx context.Context, input model.HistoryOpts) ([]*model.Event, error)
+	History(ctx context.Context, input model.HistoryOpts) ([]*model.EventDetail, error)
 }
 type SubscriptionResolver interface {
-	Receive(ctx context.Context, input model.ReceiveOpts) (<-chan *model.Event, error)
+	Receive(ctx context.Context, input model.ReceiveOpts) (<-chan *model.EventDetail, error)
 }
 
 type executableSchema struct {
@@ -92,47 +92,47 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 	_ = ec
 	switch typeName + "." + field {
 
-	case "Event.channel":
-		if e.complexity.Event.Channel == nil {
+	case "EventDetail.channel":
+		if e.complexity.EventDetail.Channel == nil {
 			break
 		}
 
-		return e.complexity.Event.Channel(childComplexity), true
+		return e.complexity.EventDetail.Channel(childComplexity), true
 
-	case "Event.claims":
-		if e.complexity.Event.Claims == nil {
+	case "EventDetail.claims":
+		if e.complexity.EventDetail.Claims == nil {
 			break
 		}
 
-		return e.complexity.Event.Claims(childComplexity), true
+		return e.complexity.EventDetail.Claims(childComplexity), true
 
-	case "Event.data":
-		if e.complexity.Event.Data == nil {
+	case "EventDetail.data":
+		if e.complexity.EventDetail.Data == nil {
 			break
 		}
 
-		return e.complexity.Event.Data(childComplexity), true
+		return e.complexity.EventDetail.Data(childComplexity), true
 
-	case "Event.id":
-		if e.complexity.Event.ID == nil {
+	case "EventDetail.id":
+		if e.complexity.EventDetail.ID == nil {
 			break
 		}
 
-		return e.complexity.Event.ID(childComplexity), true
+		return e.complexity.EventDetail.ID(childComplexity), true
 
-	case "Event.metadata":
-		if e.complexity.Event.Metadata == nil {
+	case "EventDetail.metadata":
+		if e.complexity.EventDetail.Metadata == nil {
 			break
 		}
 
-		return e.complexity.Event.Metadata(childComplexity), true
+		return e.complexity.EventDetail.Metadata(childComplexity), true
 
-	case "Event.time":
-		if e.complexity.Event.Time == nil {
+	case "EventDetail.time":
+		if e.complexity.EventDetail.Time == nil {
 			break
 		}
 
-		return e.complexity.Event.Time(childComplexity), true
+		return e.complexity.EventDetail.Time(childComplexity), true
 
 	case "Mutation.send":
 		if e.complexity.Mutation.Send == nil {
@@ -144,7 +144,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			return 0, false
 		}
 
-		return e.complexity.Mutation.Send(childComplexity, args["input"].(model.EventInput)), true
+		return e.complexity.Mutation.Send(childComplexity, args["input"].(model.Event)), true
 
 	case "Query.history":
 		if e.complexity.Query.History == nil {
@@ -256,8 +256,8 @@ scalar Time
 # Map is a k/v map where the key is a string and the value is any value
 scalar Map
 
-# Event is a specification for describing event data
-type Event {
+# EventDetail is a specification for describing event data
+type EventDetail {
     # Identifies the event.
     id: String!
     # Identifies the channel/subject to which the event will be sent
@@ -273,17 +273,13 @@ type Event {
 }
 
 # EventInput constructs an event
-input EventInput {
-    # Identifies the event.
-    id: String
+input Event {
     # Identifies the channel/subject to which the event will be sent
     channel: String!
     # The event payload(structured).
     data: Map!
     # Arbitrary metadata about the event
     metadata: Map
-    # Timestamp of when the occurrence happened. Must adhere to RFC 3339.
-    time: Time
 }
 
 # HistoryOpts are options when querying historical events
@@ -302,17 +298,17 @@ input ReceiveOpts {
 
 type Query {
     # History returns an array of immutable historical events.
-    history(input: HistoryOpts!): [Event!]
+    history(input: HistoryOpts!): [EventDetail!]
 }
 
 type Mutation {
     # Send broadcasts an event to all consumers on a given channel
-    send(input: EventInput!): String
+    send(input: Event!): String
 }
 
 type Subscription {
     # Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
-    receive(input: ReceiveOpts!): Event!
+    receive(input: ReceiveOpts!): EventDetail!
 }`, BuiltIn: false},
 }
 var parsedSchema = gqlparser.MustLoadSchema(sources...)
@@ -324,10 +320,10 @@ var parsedSchema = gqlparser.MustLoadSchema(sources...)
 func (ec *executionContext) field_Mutation_send_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
-	var arg0 model.EventInput
+	var arg0 model.Event
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNEventInput2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEventInput(ctx, tmp)
+		arg0, err = ec.unmarshalNEvent2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -419,7 +415,7 @@ func (ec *executionContext) field___Type_fields_args(ctx context.Context, rawArg
 
 // region    **************************** field.gotpl *****************************
 
-func (ec *executionContext) _Event_id(ctx context.Context, field graphql.CollectedField, obj *model.Event) (ret graphql.Marshaler) {
+func (ec *executionContext) _EventDetail_id(ctx context.Context, field graphql.CollectedField, obj *model.EventDetail) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -427,7 +423,7 @@ func (ec *executionContext) _Event_id(ctx context.Context, field graphql.Collect
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:     "Event",
+		Object:     "EventDetail",
 		Field:      field,
 		Args:       nil,
 		IsMethod:   false,
@@ -454,7 +450,7 @@ func (ec *executionContext) _Event_id(ctx context.Context, field graphql.Collect
 	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Event_channel(ctx context.Context, field graphql.CollectedField, obj *model.Event) (ret graphql.Marshaler) {
+func (ec *executionContext) _EventDetail_channel(ctx context.Context, field graphql.CollectedField, obj *model.EventDetail) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -462,7 +458,7 @@ func (ec *executionContext) _Event_channel(ctx context.Context, field graphql.Co
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:     "Event",
+		Object:     "EventDetail",
 		Field:      field,
 		Args:       nil,
 		IsMethod:   false,
@@ -489,7 +485,7 @@ func (ec *executionContext) _Event_channel(ctx context.Context, field graphql.Co
 	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Event_data(ctx context.Context, field graphql.CollectedField, obj *model.Event) (ret graphql.Marshaler) {
+func (ec *executionContext) _EventDetail_data(ctx context.Context, field graphql.CollectedField, obj *model.EventDetail) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -497,7 +493,7 @@ func (ec *executionContext) _Event_data(ctx context.Context, field graphql.Colle
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:     "Event",
+		Object:     "EventDetail",
 		Field:      field,
 		Args:       nil,
 		IsMethod:   false,
@@ -524,7 +520,7 @@ func (ec *executionContext) _Event_data(ctx context.Context, field graphql.Colle
 	return ec.marshalNMap2map(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Event_metadata(ctx context.Context, field graphql.CollectedField, obj *model.Event) (ret graphql.Marshaler) {
+func (ec *executionContext) _EventDetail_metadata(ctx context.Context, field graphql.CollectedField, obj *model.EventDetail) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -532,7 +528,7 @@ func (ec *executionContext) _Event_metadata(ctx context.Context, field graphql.C
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:     "Event",
+		Object:     "EventDetail",
 		Field:      field,
 		Args:       nil,
 		IsMethod:   false,
@@ -556,7 +552,7 @@ func (ec *executionContext) _Event_metadata(ctx context.Context, field graphql.C
 	return ec.marshalOMap2map(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Event_claims(ctx context.Context, field graphql.CollectedField, obj *model.Event) (ret graphql.Marshaler) {
+func (ec *executionContext) _EventDetail_claims(ctx context.Context, field graphql.CollectedField, obj *model.EventDetail) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -564,7 +560,7 @@ func (ec *executionContext) _Event_claims(ctx context.Context, field graphql.Col
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:     "Event",
+		Object:     "EventDetail",
 		Field:      field,
 		Args:       nil,
 		IsMethod:   false,
@@ -591,7 +587,7 @@ func (ec *executionContext) _Event_claims(ctx context.Context, field graphql.Col
 	return ec.marshalNMap2map(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Event_time(ctx context.Context, field graphql.CollectedField, obj *model.Event) (ret graphql.Marshaler) {
+func (ec *executionContext) _EventDetail_time(ctx context.Context, field graphql.CollectedField, obj *model.EventDetail) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -599,7 +595,7 @@ func (ec *executionContext) _Event_time(ctx context.Context, field graphql.Colle
 		}
 	}()
 	fc := &graphql.FieldContext{
-		Object:     "Event",
+		Object:     "EventDetail",
 		Field:      field,
 		Args:       nil,
 		IsMethod:   false,
@@ -651,7 +647,7 @@ func (ec *executionContext) _Mutation_send(ctx context.Context, field graphql.Co
 	fc.Args = args
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Mutation().Send(rctx, args["input"].(model.EventInput))
+		return ec.resolvers.Mutation().Send(rctx, args["input"].(model.Event))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -699,9 +695,9 @@ func (ec *executionContext) _Query_history(ctx context.Context, field graphql.Co
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]*model.Event)
+	res := resTmp.([]*model.EventDetail)
 	fc.Result = res
-	return ec.marshalOEvent2ᚕᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEventᚄ(ctx, field.Selections, res)
+	return ec.marshalOEventDetail2ᚕᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEventDetailᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -813,7 +809,7 @@ func (ec *executionContext) _Subscription_receive(ctx context.Context, field gra
 		return nil
 	}
 	return func() graphql.Marshaler {
-		res, ok := <-resTmp.(<-chan *model.Event)
+		res, ok := <-resTmp.(<-chan *model.EventDetail)
 		if !ok {
 			return nil
 		}
@@ -821,7 +817,7 @@ func (ec *executionContext) _Subscription_receive(ctx context.Context, field gra
 			w.Write([]byte{'{'})
 			graphql.MarshalString(field.Alias).MarshalGQL(w)
 			w.Write([]byte{':'})
-			ec.marshalNEvent2ᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx, field.Selections, res).MarshalGQL(w)
+			ec.marshalNEventDetail2ᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEventDetail(ctx, field.Selections, res).MarshalGQL(w)
 			w.Write([]byte{'}'})
 		})
 	}
@@ -1914,20 +1910,12 @@ func (ec *executionContext) ___Type_ofType(ctx context.Context, field graphql.Co
 
 // region    **************************** input.gotpl *****************************
 
-func (ec *executionContext) unmarshalInputEventInput(ctx context.Context, obj interface{}) (model.EventInput, error) {
-	var it model.EventInput
+func (ec *executionContext) unmarshalInputEvent(ctx context.Context, obj interface{}) (model.Event, error) {
+	var it model.Event
 	var asMap = obj.(map[string]interface{})
 
 	for k, v := range asMap {
 		switch k {
-		case "id":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
-			it.ID, err = ec.unmarshalOString2ᚖstring(ctx, v)
-			if err != nil {
-				return it, err
-			}
 		case "channel":
 			var err error
 
@@ -1949,14 +1937,6 @@ func (ec *executionContext) unmarshalInputEventInput(ctx context.Context, obj in
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("metadata"))
 			it.Metadata, err = ec.unmarshalOMap2map(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "time":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("time"))
-			it.Time, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -2046,41 +2026,41 @@ func (ec *executionContext) unmarshalInputReceiveOpts(ctx context.Context, obj i
 
 // region    **************************** object.gotpl ****************************
 
-var eventImplementors = []string{"Event"}
+var eventDetailImplementors = []string{"EventDetail"}
 
-func (ec *executionContext) _Event(ctx context.Context, sel ast.SelectionSet, obj *model.Event) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, eventImplementors)
+func (ec *executionContext) _EventDetail(ctx context.Context, sel ast.SelectionSet, obj *model.EventDetail) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, eventDetailImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	var invalids uint32
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("Event")
+			out.Values[i] = graphql.MarshalString("EventDetail")
 		case "id":
-			out.Values[i] = ec._Event_id(ctx, field, obj)
+			out.Values[i] = ec._EventDetail_id(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
 		case "channel":
-			out.Values[i] = ec._Event_channel(ctx, field, obj)
+			out.Values[i] = ec._EventDetail_channel(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
 		case "data":
-			out.Values[i] = ec._Event_data(ctx, field, obj)
+			out.Values[i] = ec._EventDetail_data(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
 		case "metadata":
-			out.Values[i] = ec._Event_metadata(ctx, field, obj)
+			out.Values[i] = ec._EventDetail_metadata(ctx, field, obj)
 		case "claims":
-			out.Values[i] = ec._Event_claims(ctx, field, obj)
+			out.Values[i] = ec._EventDetail_claims(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
 		case "time":
-			out.Values[i] = ec._Event_time(ctx, field, obj)
+			out.Values[i] = ec._EventDetail_time(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
@@ -2444,23 +2424,23 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 	return res
 }
 
-func (ec *executionContext) marshalNEvent2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx context.Context, sel ast.SelectionSet, v model.Event) graphql.Marshaler {
-	return ec._Event(ctx, sel, &v)
+func (ec *executionContext) unmarshalNEvent2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx context.Context, v interface{}) (model.Event, error) {
+	res, err := ec.unmarshalInputEvent(ctx, v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNEvent2ᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx context.Context, sel ast.SelectionSet, v *model.Event) graphql.Marshaler {
+func (ec *executionContext) marshalNEventDetail2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEventDetail(ctx context.Context, sel ast.SelectionSet, v model.EventDetail) graphql.Marshaler {
+	return ec._EventDetail(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalNEventDetail2ᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEventDetail(ctx context.Context, sel ast.SelectionSet, v *model.EventDetail) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
 		}
 		return graphql.Null
 	}
-	return ec._Event(ctx, sel, v)
-}
-
-func (ec *executionContext) unmarshalNEventInput2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEventInput(ctx context.Context, v interface{}) (model.EventInput, error) {
-	res, err := ec.unmarshalInputEventInput(ctx, v)
-	return res, graphql.ErrorOnPath(ctx, err)
+	return ec._EventDetail(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalNHistoryOpts2githubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐHistoryOpts(ctx context.Context, v interface{}) (model.HistoryOpts, error) {
@@ -2777,7 +2757,7 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	return graphql.MarshalBoolean(*v)
 }
 
-func (ec *executionContext) marshalOEvent2ᚕᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEventᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Event) graphql.Marshaler {
+func (ec *executionContext) marshalOEventDetail2ᚕᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEventDetailᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.EventDetail) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -2804,7 +2784,7 @@ func (ec *executionContext) marshalOEvent2ᚕᚖgithubᚗcomᚋautom8terᚋevent
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNEvent2ᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx, sel, v[i])
+			ret[i] = ec.marshalNEventDetail2ᚖgithubᚗcomᚋautom8terᚋeventgateᚋgenᚋgqlᚋgoᚋmodelᚐEventDetail(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)

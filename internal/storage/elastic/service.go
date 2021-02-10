@@ -32,7 +32,7 @@ func NewService(client *elasticsearch.Client) (*Service, error) {
 	return &Service{client: client}, nil
 }
 
-func (s Service) SaveEvent(ctx context.Context, event *eventgate.Event) error {
+func (s Service) SaveEvent(ctx context.Context, event *eventgate.EventDetail) error {
 	req := esapi.IndexRequest{
 		Index:   event.GetChannel(),
 		Body:    strings.NewReader(protojson.Format(event)),
@@ -48,7 +48,7 @@ func (s Service) SaveEvent(ctx context.Context, event *eventgate.Event) error {
 	return nil
 }
 
-func (s Service) GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*eventgate.Events, error) {
+func (s Service) GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*eventgate.EventDetails, error) {
 	if opts.Max == nil {
 		opts.Max = timestamppb.New(time.Now().Add(5 * time.Minute))
 	}
@@ -115,12 +115,12 @@ func (s Service) GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*e
 	if err := json.NewDecoder(rsp.Body).Decode(&mapResp); err != nil {
 		return nil, err
 	}
-	events := &eventgate.Events{}
+	events := &eventgate.EventDetails{}
 	if mapResp["hits"] != nil {
 		for _, hit := range mapResp["hits"].(map[string]interface{})["hits"].([]interface{}) {
 			doc := hit.(map[string]interface{})
 			source := doc["_source"].(map[string]interface{})
-			var e eventgate.Event
+			var e eventgate.EventDetail
 			bits, _ := json.Marshal(source)
 			if err := protojson.Unmarshal(bits, &e); err != nil {
 				return nil, err

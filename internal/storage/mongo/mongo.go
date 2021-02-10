@@ -29,15 +29,15 @@ func NewService(dbName string, client *mongo.Client, lgger *logger.Logger) (*Ser
 	}, nil
 }
 
-func (s Service) SaveEvent(ctx context.Context, event *eventgate.Event) error {
+func (s Service) SaveEvent(ctx context.Context, event *eventgate.EventDetail) error {
 	document := bson.M{
-		"_id":       primitive.NewObjectIDFromTimestamp(event.Time.AsTime()),
-		"id":        event.GetId(),
-		"channel":   event.GetChannel(),
-		"timestamp": event.GetTime().AsTime().Unix(),
-		"metadata":  bson.M(event.GetMetadata().AsMap()),
-		"data":      bson.M(event.GetData().AsMap()),
-		"claims":    bson.M(event.GetClaims().AsMap()),
+		"_id":      primitive.NewObjectIDFromTimestamp(event.Time.AsTime()),
+		"id":       event.GetId(),
+		"channel":  event.GetChannel(),
+		"time":     event.GetTime().AsTime().Unix(),
+		"metadata": bson.M(event.GetMetadata().AsMap()),
+		"data":     bson.M(event.GetData().AsMap()),
+		"claims":   bson.M(event.GetClaims().AsMap()),
 	}
 
 	if _, err := s.db.Collection(constants.BackendChannel).InsertOne(ctx, document); err != nil {
@@ -46,7 +46,7 @@ func (s Service) SaveEvent(ctx context.Context, event *eventgate.Event) error {
 	return nil
 }
 
-func (s Service) GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*eventgate.Events, error) {
+func (s Service) GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*eventgate.EventDetails, error) {
 	o := options.Find()
 	if opts.GetLimit() > 0 {
 		o.SetLimit(opts.GetLimit())
@@ -62,13 +62,13 @@ func (s Service) GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*e
 	}
 	if opts.Min != nil {
 		filter = append(filter, bson.E{
-			Key:   "timestamp",
+			Key:   "time",
 			Value: bson.M{"$gte": opts.GetMin().AsTime().Unix()},
 		})
 	}
 	if opts.Max != nil {
 		filter = append(filter, bson.E{
-			Key:   "timestamp",
+			Key:   "time",
 			Value: bson.M{"$lte": opts.GetMax().AsTime().Unix()},
 		})
 	}
@@ -81,9 +81,9 @@ func (s Service) GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*e
 	if err := cur.All(ctx, &results); err != nil {
 		return nil, err
 	}
-	var events []*eventgate.Event
+	var events []*eventgate.EventDetail
 	for _, r := range results {
-		var e = &eventgate.Event{}
+		var e = &eventgate.EventDetail{}
 		e.Id = cast.ToString(r["id"])
 		e.Channel = cast.ToString(r["channel"])
 		data, ok := r["data"].(bson.M)
@@ -101,10 +101,10 @@ func (s Service) GetEvents(ctx context.Context, opts *eventgate.HistoryOpts) (*e
 			d, _ := structpb.NewStruct(claims)
 			e.Claims = d
 		}
-		e.Time = timestamppb.New(time.Unix(cast.ToInt64(r["timestamp"]), 0))
+		e.Time = timestamppb.New(time.Unix(cast.ToInt64(r["time"]), 0))
 		events = append(events, e)
 	}
-	return &eventgate.Events{Events: events}, nil
+	return &eventgate.EventDetails{Events: events}, nil
 }
 
 func (s Service) Close() error {

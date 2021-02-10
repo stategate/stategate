@@ -18,7 +18,8 @@ var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js'
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var github_com_mwitkow_go$proto$validators_validator_pb = require('./github.com/mwitkow/go-proto-validators/validator_pb.js');
 goog.exportSymbol('proto.eventgate.Event', null, global);
-goog.exportSymbol('proto.eventgate.Events', null, global);
+goog.exportSymbol('proto.eventgate.EventDetail', null, global);
+goog.exportSymbol('proto.eventgate.EventDetails', null, global);
 goog.exportSymbol('proto.eventgate.HistoryOpts', null, global);
 goog.exportSymbol('proto.eventgate.ReceiveOpts', null, global);
 
@@ -494,12 +495,9 @@ proto.eventgate.Event.prototype.toObject = function(opt_includeInstance) {
  */
 proto.eventgate.Event.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    channel: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    channel: jspb.Message.getFieldWithDefault(msg, 30, ""),
     data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    claims: (f = msg.getClaims()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
-    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -536,33 +534,19 @@ proto.eventgate.Event.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
-      break;
-    case 2:
+    case 30:
       var value = /** @type {string} */ (reader.readString());
       msg.setChannel(value);
       break;
-    case 5:
+    case 31:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setData(value);
       break;
-    case 6:
+    case 32:
       var value = new google_protobuf_struct_pb.Struct;
       reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
       msg.setMetadata(value);
-      break;
-    case 7:
-      var value = new google_protobuf_struct_pb.Struct;
-      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setClaims(value);
-      break;
-    case 20:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setTime(value);
       break;
     default:
       reader.skipField();
@@ -593,24 +577,17 @@ proto.eventgate.Event.prototype.serializeBinary = function() {
  */
 proto.eventgate.Event.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
   f = message.getChannel();
   if (f.length > 0) {
     writer.writeString(
-      2,
+      30,
       f
     );
   }
   f = message.getData();
   if (f != null) {
     writer.writeMessage(
-      5,
+      31,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
     );
@@ -618,73 +595,42 @@ proto.eventgate.Event.serializeBinaryToWriter = function(message, writer) {
   f = message.getMetadata();
   if (f != null) {
     writer.writeMessage(
-      6,
+      32,
       f,
       google_protobuf_struct_pb.Struct.serializeBinaryToWriter
-    );
-  }
-  f = message.getClaims();
-  if (f != null) {
-    writer.writeMessage(
-      7,
-      f,
-      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
-    );
-  }
-  f = message.getTime();
-  if (f != null) {
-    writer.writeMessage(
-      20,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional string id = 1;
- * @return {string}
- */
-proto.eventgate.Event.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/** @param {string} value */
-proto.eventgate.Event.prototype.setId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string channel = 2;
+ * optional string channel = 30;
  * @return {string}
  */
 proto.eventgate.Event.prototype.getChannel = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 30, ""));
 };
 
 
 /** @param {string} value */
 proto.eventgate.Event.prototype.setChannel = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 30, value);
 };
 
 
 /**
- * optional google.protobuf.Struct data = 5;
+ * optional google.protobuf.Struct data = 31;
  * @return {?proto.google.protobuf.Struct}
  */
 proto.eventgate.Event.prototype.getData = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 5));
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 31));
 };
 
 
 /** @param {?proto.google.protobuf.Struct|undefined} value */
 proto.eventgate.Event.prototype.setData = function(value) {
-  jspb.Message.setWrapperField(this, 5, value);
+  jspb.Message.setWrapperField(this, 31, value);
 };
 
 
@@ -698,23 +644,23 @@ proto.eventgate.Event.prototype.clearData = function() {
  * @return {!boolean}
  */
 proto.eventgate.Event.prototype.hasData = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 31) != null;
 };
 
 
 /**
- * optional google.protobuf.Struct metadata = 6;
+ * optional google.protobuf.Struct metadata = 32;
  * @return {?proto.google.protobuf.Struct}
  */
 proto.eventgate.Event.prototype.getMetadata = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 6));
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 32));
 };
 
 
 /** @param {?proto.google.protobuf.Struct|undefined} value */
 proto.eventgate.Event.prototype.setMetadata = function(value) {
-  jspb.Message.setWrapperField(this, 6, value);
+  jspb.Message.setWrapperField(this, 32, value);
 };
 
 
@@ -728,67 +674,7 @@ proto.eventgate.Event.prototype.clearMetadata = function() {
  * @return {!boolean}
  */
 proto.eventgate.Event.prototype.hasMetadata = function() {
-  return jspb.Message.getField(this, 6) != null;
-};
-
-
-/**
- * optional google.protobuf.Struct claims = 7;
- * @return {?proto.google.protobuf.Struct}
- */
-proto.eventgate.Event.prototype.getClaims = function() {
-  return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 7));
-};
-
-
-/** @param {?proto.google.protobuf.Struct|undefined} value */
-proto.eventgate.Event.prototype.setClaims = function(value) {
-  jspb.Message.setWrapperField(this, 7, value);
-};
-
-
-proto.eventgate.Event.prototype.clearClaims = function() {
-  this.setClaims(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.eventgate.Event.prototype.hasClaims = function() {
-  return jspb.Message.getField(this, 7) != null;
-};
-
-
-/**
- * optional google.protobuf.Timestamp time = 20;
- * @return {?proto.google.protobuf.Timestamp}
- */
-proto.eventgate.Event.prototype.getTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 20));
-};
-
-
-/** @param {?proto.google.protobuf.Timestamp|undefined} value */
-proto.eventgate.Event.prototype.setTime = function(value) {
-  jspb.Message.setWrapperField(this, 20, value);
-};
-
-
-proto.eventgate.Event.prototype.clearTime = function() {
-  this.setTime(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.eventgate.Event.prototype.hasTime = function() {
-  return jspb.Message.getField(this, 20) != null;
+  return jspb.Message.getField(this, 32) != null;
 };
 
 
@@ -803,19 +689,364 @@ proto.eventgate.Event.prototype.hasTime = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.eventgate.Events = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.eventgate.Events.repeatedFields_, null);
+proto.eventgate.EventDetail = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.eventgate.Events, jspb.Message);
+goog.inherits(proto.eventgate.EventDetail, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.eventgate.Events.displayName = 'proto.eventgate.Events';
+  proto.eventgate.EventDetail.displayName = 'proto.eventgate.EventDetail';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.eventgate.EventDetail.prototype.toObject = function(opt_includeInstance) {
+  return proto.eventgate.EventDetail.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.eventgate.EventDetail} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.eventgate.EventDetail.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    channel: jspb.Message.getFieldWithDefault(msg, 30, ""),
+    data: (f = msg.getData()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    metadata: (f = msg.getMetadata()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    claims: (f = msg.getClaims()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.eventgate.EventDetail}
+ */
+proto.eventgate.EventDetail.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.eventgate.EventDetail;
+  return proto.eventgate.EventDetail.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.eventgate.EventDetail} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.eventgate.EventDetail}
+ */
+proto.eventgate.EventDetail.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 30:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setChannel(value);
+      break;
+    case 31:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setData(value);
+      break;
+    case 32:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setMetadata(value);
+      break;
+    case 2:
+      var value = new google_protobuf_struct_pb.Struct;
+      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
+      msg.setClaims(value);
+      break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.eventgate.EventDetail.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.eventgate.EventDetail.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.eventgate.EventDetail} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.eventgate.EventDetail.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getChannel();
+  if (f.length > 0) {
+    writer.writeString(
+      30,
+      f
+    );
+  }
+  f = message.getData();
+  if (f != null) {
+    writer.writeMessage(
+      31,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getMetadata();
+  if (f != null) {
+    writer.writeMessage(
+      32,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getClaims();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+    );
+  }
+  f = message.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.eventgate.EventDetail.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.eventgate.EventDetail.prototype.setId = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string channel = 30;
+ * @return {string}
+ */
+proto.eventgate.EventDetail.prototype.getChannel = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 30, ""));
+};
+
+
+/** @param {string} value */
+proto.eventgate.EventDetail.prototype.setChannel = function(value) {
+  jspb.Message.setProto3StringField(this, 30, value);
+};
+
+
+/**
+ * optional google.protobuf.Struct data = 31;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.eventgate.EventDetail.prototype.getData = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 31));
+};
+
+
+/** @param {?proto.google.protobuf.Struct|undefined} value */
+proto.eventgate.EventDetail.prototype.setData = function(value) {
+  jspb.Message.setWrapperField(this, 31, value);
+};
+
+
+proto.eventgate.EventDetail.prototype.clearData = function() {
+  this.setData(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.eventgate.EventDetail.prototype.hasData = function() {
+  return jspb.Message.getField(this, 31) != null;
+};
+
+
+/**
+ * optional google.protobuf.Struct metadata = 32;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.eventgate.EventDetail.prototype.getMetadata = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 32));
+};
+
+
+/** @param {?proto.google.protobuf.Struct|undefined} value */
+proto.eventgate.EventDetail.prototype.setMetadata = function(value) {
+  jspb.Message.setWrapperField(this, 32, value);
+};
+
+
+proto.eventgate.EventDetail.prototype.clearMetadata = function() {
+  this.setMetadata(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.eventgate.EventDetail.prototype.hasMetadata = function() {
+  return jspb.Message.getField(this, 32) != null;
+};
+
+
+/**
+ * optional google.protobuf.Struct claims = 2;
+ * @return {?proto.google.protobuf.Struct}
+ */
+proto.eventgate.EventDetail.prototype.getClaims = function() {
+  return /** @type{?proto.google.protobuf.Struct} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 2));
+};
+
+
+/** @param {?proto.google.protobuf.Struct|undefined} value */
+proto.eventgate.EventDetail.prototype.setClaims = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.eventgate.EventDetail.prototype.clearClaims = function() {
+  this.setClaims(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.eventgate.EventDetail.prototype.hasClaims = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp time = 3;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.eventgate.EventDetail.prototype.getTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+};
+
+
+/** @param {?proto.google.protobuf.Timestamp|undefined} value */
+proto.eventgate.EventDetail.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.eventgate.EventDetail.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.eventgate.EventDetail.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.eventgate.EventDetails = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.eventgate.EventDetails.repeatedFields_, null);
+};
+goog.inherits(proto.eventgate.EventDetails, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.eventgate.EventDetails.displayName = 'proto.eventgate.EventDetails';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.eventgate.Events.repeatedFields_ = [1];
+proto.eventgate.EventDetails.repeatedFields_ = [1];
 
 
 
@@ -830,8 +1061,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.eventgate.Events.prototype.toObject = function(opt_includeInstance) {
-  return proto.eventgate.Events.toObject(opt_includeInstance, this);
+proto.eventgate.EventDetails.prototype.toObject = function(opt_includeInstance) {
+  return proto.eventgate.EventDetails.toObject(opt_includeInstance, this);
 };
 
 
@@ -840,14 +1071,14 @@ proto.eventgate.Events.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.eventgate.Events} msg The msg instance to transform.
+ * @param {!proto.eventgate.EventDetails} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.eventgate.Events.toObject = function(includeInstance, msg) {
+proto.eventgate.EventDetails.toObject = function(includeInstance, msg) {
   var f, obj = {
     eventsList: jspb.Message.toObjectList(msg.getEventsList(),
-    proto.eventgate.Event.toObject, includeInstance)
+    proto.eventgate.EventDetail.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -861,23 +1092,23 @@ proto.eventgate.Events.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.eventgate.Events}
+ * @return {!proto.eventgate.EventDetails}
  */
-proto.eventgate.Events.deserializeBinary = function(bytes) {
+proto.eventgate.EventDetails.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.eventgate.Events;
-  return proto.eventgate.Events.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.eventgate.EventDetails;
+  return proto.eventgate.EventDetails.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.eventgate.Events} msg The message object to deserialize into.
+ * @param {!proto.eventgate.EventDetails} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.eventgate.Events}
+ * @return {!proto.eventgate.EventDetails}
  */
-proto.eventgate.Events.deserializeBinaryFromReader = function(msg, reader) {
+proto.eventgate.EventDetails.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -885,8 +1116,8 @@ proto.eventgate.Events.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.eventgate.Event;
-      reader.readMessage(value,proto.eventgate.Event.deserializeBinaryFromReader);
+      var value = new proto.eventgate.EventDetail;
+      reader.readMessage(value,proto.eventgate.EventDetail.deserializeBinaryFromReader);
       msg.addEvents(value);
       break;
     default:
@@ -902,9 +1133,9 @@ proto.eventgate.Events.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.eventgate.Events.prototype.serializeBinary = function() {
+proto.eventgate.EventDetails.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.eventgate.Events.serializeBinaryToWriter(this, writer);
+  proto.eventgate.EventDetails.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -912,50 +1143,50 @@ proto.eventgate.Events.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.eventgate.Events} message
+ * @param {!proto.eventgate.EventDetails} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.eventgate.Events.serializeBinaryToWriter = function(message, writer) {
+proto.eventgate.EventDetails.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getEventsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.eventgate.Event.serializeBinaryToWriter
+      proto.eventgate.EventDetail.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * repeated Event events = 1;
- * @return {!Array<!proto.eventgate.Event>}
+ * repeated EventDetail events = 1;
+ * @return {!Array<!proto.eventgate.EventDetail>}
  */
-proto.eventgate.Events.prototype.getEventsList = function() {
-  return /** @type{!Array<!proto.eventgate.Event>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.eventgate.Event, 1));
+proto.eventgate.EventDetails.prototype.getEventsList = function() {
+  return /** @type{!Array<!proto.eventgate.EventDetail>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.eventgate.EventDetail, 1));
 };
 
 
-/** @param {!Array<!proto.eventgate.Event>} value */
-proto.eventgate.Events.prototype.setEventsList = function(value) {
+/** @param {!Array<!proto.eventgate.EventDetail>} value */
+proto.eventgate.EventDetails.prototype.setEventsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.eventgate.Event=} opt_value
+ * @param {!proto.eventgate.EventDetail=} opt_value
  * @param {number=} opt_index
- * @return {!proto.eventgate.Event}
+ * @return {!proto.eventgate.EventDetail}
  */
-proto.eventgate.Events.prototype.addEvents = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.eventgate.Event, opt_index);
+proto.eventgate.EventDetails.prototype.addEvents = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.eventgate.EventDetail, opt_index);
 };
 
 
-proto.eventgate.Events.prototype.clearEventsList = function() {
+proto.eventgate.EventDetails.prototype.clearEventsList = function() {
   this.setEventsList([]);
 };
 

@@ -70,6 +70,38 @@ export namespace ReceiveOpts {
 }
 
 export class Event extends jspb.Message {
+  getChannel(): string;
+  setChannel(value: string): void;
+
+  hasData(): boolean;
+  clearData(): void;
+  getData(): google_protobuf_struct_pb.Struct | undefined;
+  setData(value?: google_protobuf_struct_pb.Struct): void;
+
+  hasMetadata(): boolean;
+  clearMetadata(): void;
+  getMetadata(): google_protobuf_struct_pb.Struct | undefined;
+  setMetadata(value?: google_protobuf_struct_pb.Struct): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Event.AsObject;
+  static toObject(includeInstance: boolean, msg: Event): Event.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Event, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Event;
+  static deserializeBinaryFromReader(message: Event, reader: jspb.BinaryReader): Event;
+}
+
+export namespace Event {
+  export type AsObject = {
+    channel: string,
+    data?: google_protobuf_struct_pb.Struct.AsObject,
+    metadata?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class EventDetail extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
@@ -97,16 +129,16 @@ export class Event extends jspb.Message {
   setTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Event.AsObject;
-  static toObject(includeInstance: boolean, msg: Event): Event.AsObject;
+  toObject(includeInstance?: boolean): EventDetail.AsObject;
+  static toObject(includeInstance: boolean, msg: EventDetail): EventDetail.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Event, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Event;
-  static deserializeBinaryFromReader(message: Event, reader: jspb.BinaryReader): Event;
+  static serializeBinaryToWriter(message: EventDetail, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EventDetail;
+  static deserializeBinaryFromReader(message: EventDetail, reader: jspb.BinaryReader): EventDetail;
 }
 
-export namespace Event {
+export namespace EventDetail {
   export type AsObject = {
     id: string,
     channel: string,
@@ -117,25 +149,25 @@ export namespace Event {
   }
 }
 
-export class Events extends jspb.Message {
+export class EventDetails extends jspb.Message {
   clearEventsList(): void;
-  getEventsList(): Array<Event>;
-  setEventsList(value: Array<Event>): void;
-  addEvents(value?: Event, index?: number): Event;
+  getEventsList(): Array<EventDetail>;
+  setEventsList(value: Array<EventDetail>): void;
+  addEvents(value?: EventDetail, index?: number): EventDetail;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Events.AsObject;
-  static toObject(includeInstance: boolean, msg: Events): Events.AsObject;
+  toObject(includeInstance?: boolean): EventDetails.AsObject;
+  static toObject(includeInstance: boolean, msg: EventDetails): EventDetails.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Events, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Events;
-  static deserializeBinaryFromReader(message: Events, reader: jspb.BinaryReader): Events;
+  static serializeBinaryToWriter(message: EventDetails, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EventDetails;
+  static deserializeBinaryFromReader(message: EventDetails, reader: jspb.BinaryReader): EventDetails;
 }
 
-export namespace Events {
+export namespace EventDetails {
   export type AsObject = {
-    eventsList: Array<Event.AsObject>,
+    eventsList: Array<EventDetail.AsObject>,
   }
 }
 

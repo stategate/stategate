@@ -74,8 +74,8 @@ func (r *Resolver) authMiddleware(handler http.Handler) http.HandlerFunc {
 	}
 }
 
-func (r *Resolver) toEvent(msg *eventgate.Event) *model.Event {
-	return &model.Event{
+func (r *Resolver) toEvent(msg *eventgate.EventDetail) *model.EventDetail {
+	return &model.EventDetail{
 		ID:       msg.GetId(),
 		Channel:  msg.GetChannel(),
 		Data:     msg.GetData().AsMap(),

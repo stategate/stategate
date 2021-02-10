@@ -175,7 +175,7 @@ func (c *Client) Send(ctx context.Context, in *eventgate.Event) error {
 }
 
 // Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
-func (c *Client) Receive(ctx context.Context, in *eventgate.ReceiveOpts, fn func(even *eventgate.Event) bool) error {
+func (c *Client) Receive(ctx context.Context, in *eventgate.ReceiveOpts, fn func(even *eventgate.EventDetail) bool) error {
 	stream, err := c.client.Receive(ctx, in)
 	if err != nil {
 		return err
@@ -202,6 +202,6 @@ func (c *Client) Receive(ctx context.Context, in *eventgate.ReceiveOpts, fn func
 }
 
 // History returns an array of immutable historical events from a given channel.
-func (c *Client) History(ctx context.Context, in *eventgate.HistoryOpts) (*eventgate.Events, error) {
+func (c *Client) History(ctx context.Context, in *eventgate.HistoryOpts) (*eventgate.EventDetails, error) {
 	return c.client.History(ctx, in)
 }

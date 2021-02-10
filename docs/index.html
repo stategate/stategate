@@ -183,7 +183,11 @@
                 </li>
               
                 <li>
-                  <a href="#eventgate.Events"><span class="badge">M</span>Events</a>
+                  <a href="#eventgate.EventDetail"><span class="badge">M</span>EventDetail</a>
+                </li>
+              
+                <li>
+                  <a href="#eventgate.EventDetails"><span class="badge">M</span>EventDetails</a>
                 </li>
               
                 <li>
@@ -217,7 +221,7 @@
 
       
         <h3 id="eventgate.Event">Event</h3>
-        <p>Event is a specification for describing event data</p>
+        <p>Event is a specification for describing event-sourced data</p>
 
         
           <table class="field-table">
@@ -225,13 +229,6 @@
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
-              
-                <tr>
-                  <td>id</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Identifies the event. If an ID is not sent with the event, a uuid will be assigned </p></td>
-                </tr>
               
                 <tr>
                   <td>channel</td>
@@ -252,20 +249,6 @@
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td></td>
                   <td><p>Arbitrary metadata about the event </p></td>
-                </tr>
-              
-                <tr>
-                  <td>claims</td>
-                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
-                  <td></td>
-                  <td><p>The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p>Timestamp of when the occurrence happened. Must adhere to RFC 3339. If a timestamp is not sent with the event, the current time will be assigned </p></td>
                 </tr>
               
             </tbody>
@@ -313,8 +296,138 @@
 
         
       
-        <h3 id="eventgate.Events">Events</h3>
-        <p>Events is an array of events</p>
+        <h3 id="eventgate.EventDetail">EventDetail</h3>
+        <p>EventDetail wraps an Event with additional details.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Identifies the event(uuid). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>channel</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Identifies the channel/subject to which the event will be sent </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>The event payload(structured). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>Arbitrary metadata about the event </p></td>
+                </tr>
+              
+                <tr>
+                  <td>claims</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>The authentication claims of the event producer. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>Timestamp of when the event was received. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td>
+                    <ul>
+                    
+                      <li>uuid_ver: 0</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>channel</td>
+                  <td>
+                    <ul>
+                    
+                      <li>string_not_empty: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td>
+                    <ul>
+                    
+                      <li>msg_exists: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>claims</td>
+                  <td>
+                    <ul>
+                    
+                      <li>msg_exists: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td>
+                    <ul>
+                    
+                      <li>msg_exists: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="eventgate.EventDetails">EventDetails</h3>
+        <p>EventDetails is an array of event details</p>
 
         
           <table class="field-table">
@@ -325,7 +438,7 @@
               
                 <tr>
                   <td>events</td>
-                  <td><a href="#eventgate.Event">Event</a></td>
+                  <td><a href="#eventgate.EventDetail">EventDetail</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
@@ -502,7 +615,7 @@
               <tr>
                 <td>Receive</td>
                 <td><a href="#eventgate.ReceiveOpts">ReceiveOpts</a></td>
-                <td><a href="#eventgate.Event">Event</a> stream</td>
+                <td><a href="#eventgate.EventDetail">EventDetail</a> stream</td>
                 <td><p>Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
 Event Consumers invoke this method.</p></td>
               </tr>
@@ -510,7 +623,7 @@ Event Consumers invoke this method.</p></td>
               <tr>
                 <td>History</td>
                 <td><a href="#eventgate.HistoryOpts">HistoryOpts</a></td>
-                <td><a href="#eventgate.Events">Events</a></td>
+                <td><a href="#eventgate.EventDetails">EventDetails</a></td>
                 <td><p>History returns an array of immutable historical events.
 Event Consumers invoke this method.</p></td>
               </tr>
