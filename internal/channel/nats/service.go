@@ -36,7 +36,7 @@ func NewService(logger *logger.Logger, conn *nats.Conn, storage storage.Provider
 		storage: storage,
 	}
 	sub, err := s.conn.Subscribe(constants.BackendChannel, func(msg *nats.Msg) {
-		var event eventgate.Event
+		var event eventgate.EventDetail
 		if err := proto.Unmarshal(msg.Data, &event); err != nil {
 			s.logger.Error("failed to unmarshal event", zap.Error(err))
 			return

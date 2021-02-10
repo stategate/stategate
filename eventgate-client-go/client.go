@@ -139,12 +139,14 @@ func NewClient(ctx context.Context, target string, opts ...Opt) (*Client, error)
 	}
 	return &Client{
 		client: eventgate.NewEventGateServiceClient(conn),
+		conn: conn,
 	}, nil
 }
 
 // Client is a eventgate gRPC client
 type Client struct {
 	client eventgate.EventGateServiceClient
+	conn *grpc.ClientConn
 }
 
 func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken bool) (context.Context, error) {
@@ -204,4 +206,9 @@ func (c *Client) Receive(ctx context.Context, in *eventgate.ReceiveOpts, fn func
 // History returns an array of immutable historical events from a given channel.
 func (c *Client) History(ctx context.Context, in *eventgate.HistoryOpts) (*eventgate.EventDetails, error) {
 	return c.client.History(ctx, in)
+}
+
+// Close closes the gRPC client connection
+func (c *Client) Close() error {
+	return c.conn.Close()
 }

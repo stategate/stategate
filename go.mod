@@ -32,6 +32,7 @@ require (
 	github.com/nats-io/stan.go v0.8.2
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/open-policy-agent/opa v0.26.0
+	github.com/ory/dockertest/v3 v3.6.3 // indirect
 	github.com/pierrec/lz4 v2.6.0+incompatible // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.9.0

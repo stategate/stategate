@@ -43,7 +43,7 @@ func NewService(logger *logger.Logger, client *redis.Client, storage storage.Pro
 		for {
 			select {
 			case msg := <-ch:
-				var event eventgate.Event
+				var event eventgate.EventDetail
 				if err := proto.Unmarshal([]byte(msg.Payload), &event); err != nil {
 					s.logger.Error("failed to unmarshal event", zap.Error(err))
 					return

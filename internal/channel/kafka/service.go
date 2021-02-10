@@ -43,7 +43,7 @@ func NewService(logger *logger.Logger, reader *kafka.Reader, writer *kafka.Write
 				s.logger.Error("failed to read event", zap.Error(err))
 				return
 			}
-			var event eventgate.Event
+			var event eventgate.EventDetail
 			if err := proto.Unmarshal(msg.Value, &event); err != nil {
 				s.logger.Error("failed to unmarshal event", zap.Error(err))
 				continue

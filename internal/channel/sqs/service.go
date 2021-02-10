@@ -74,7 +74,7 @@ func NewService(logger *logger.Logger, sess *session.Session, storage storage.Pr
 					continue
 				}
 				if len(resp.Messages) > 0 && resp.Messages[0].Body != nil {
-					var event eventgate.Event
+					var event eventgate.EventDetail
 
 					var body = *resp.Messages[0].Body
 					if err := proto.Unmarshal([]byte(body), &event); err != nil {
