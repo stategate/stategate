@@ -1898,26 +1898,26 @@ public final class Schema {
 
     /**
      * <pre>
-     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
      * </pre>
      *
-     * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct claims = 7;</code>
      */
     boolean hasClaims();
     /**
      * <pre>
-     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
      * </pre>
      *
-     * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct claims = 7;</code>
      */
     com.google.protobuf.Struct getClaims();
     /**
      * <pre>
-     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
      * </pre>
      *
-     * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct claims = 7;</code>
      */
     com.google.protobuf.StructOrBuilder getClaimsOrBuilder();
 
@@ -2241,30 +2241,30 @@ public final class Schema {
     private com.google.protobuf.Struct claims_;
     /**
      * <pre>
-     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
      * </pre>
      *
-     * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct claims = 7;</code>
      */
     public boolean hasClaims() {
       return claims_ != null;
     }
     /**
      * <pre>
-     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
      * </pre>
      *
-     * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct claims = 7;</code>
      */
     public com.google.protobuf.Struct getClaims() {
       return claims_ == null ? com.google.protobuf.Struct.getDefaultInstance() : claims_;
     }
     /**
      * <pre>
-     * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+     * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
      * </pre>
      *
-     * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct claims = 7;</code>
      */
     public com.google.protobuf.StructOrBuilder getClaimsOrBuilder() {
       return getClaims();
@@ -3236,20 +3236,20 @@ public final class Schema {
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> claimsBuilder_;
       /**
        * <pre>
-       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
        * </pre>
        *
-       * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct claims = 7;</code>
        */
       public boolean hasClaims() {
         return claimsBuilder_ != null || claims_ != null;
       }
       /**
        * <pre>
-       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
        * </pre>
        *
-       * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct claims = 7;</code>
        */
       public com.google.protobuf.Struct getClaims() {
         if (claimsBuilder_ == null) {
@@ -3260,10 +3260,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
        * </pre>
        *
-       * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct claims = 7;</code>
        */
       public Builder setClaims(com.google.protobuf.Struct value) {
         if (claimsBuilder_ == null) {
@@ -3280,10 +3280,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
        * </pre>
        *
-       * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct claims = 7;</code>
        */
       public Builder setClaims(
           com.google.protobuf.Struct.Builder builderForValue) {
@@ -3298,10 +3298,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
        * </pre>
        *
-       * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct claims = 7;</code>
        */
       public Builder mergeClaims(com.google.protobuf.Struct value) {
         if (claimsBuilder_ == null) {
@@ -3320,10 +3320,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
        * </pre>
        *
-       * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct claims = 7;</code>
        */
       public Builder clearClaims() {
         if (claimsBuilder_ == null) {
@@ -3338,10 +3338,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
        * </pre>
        *
-       * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct claims = 7;</code>
        */
       public com.google.protobuf.Struct.Builder getClaimsBuilder() {
         
@@ -3350,10 +3350,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
        * </pre>
        *
-       * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct claims = 7;</code>
        */
       public com.google.protobuf.StructOrBuilder getClaimsOrBuilder() {
         if (claimsBuilder_ != null) {
@@ -3365,10 +3365,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers.
+       * The authentication claims of the event producer. This field is read-only &amp; populated/overriden by the server before it is broadcasted to consumers.
        * </pre>
        *
-       * <code>.google.protobuf.Struct claims = 7 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct claims = 7;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
@@ -4418,20 +4418,20 @@ public final class Schema {
       " \001(\0132\032.google.protobuf.Timestamp\022\'\n\003max\030" +
       "\003 \001(\0132\032.google.protobuf.Timestamp\022\025\n\005lim" +
       "it\030\004 \001(\003B\006\342\337\037\002\020\000\022\016\n\006offset\030\005 \001(\003\"&\n\013Rece" +
-      "iveOpts\022\027\n\007channel\030\001 \001(\tB\006\342\337\037\002X\001\"\341\001\n\005Eve" +
+      "iveOpts\022\027\n\007channel\030\001 \001(\tB\006\342\337\037\002X\001\"\331\001\n\005Eve" +
       "nt\022\n\n\002id\030\001 \001(\t\022\027\n\007channel\030\002 \001(\tB\006\342\337\037\002X\001\022" +
       "-\n\004data\030\005 \001(\0132\027.google.protobuf.StructB\006" +
       "\342\337\037\002 \001\022)\n\010metadata\030\006 \001(\0132\027.google.protob" +
-      "uf.Struct\022/\n\006claims\030\007 \001(\0132\027.google.proto" +
-      "buf.StructB\006\342\337\037\002 \001\022(\n\004time\030\024 \001(\0132\032.googl" +
-      "e.protobuf.Timestamp\"*\n\006Events\022 \n\006events" +
-      "\030\001 \003(\0132\020.eventgate.Event2\347\001\n\020EventGateSe" +
-      "rvice\022B\n\004Send\022\020.eventgate.Event\032\026.google" +
-      ".protobuf.Empty\"\020\202\323\344\223\002\n\"\005/send:\001*\022G\n\007Rec" +
-      "eive\022\026.eventgate.ReceiveOpts\032\020.eventgate" +
-      ".Event\"\020\202\323\344\223\002\n\022\010/receive0\001\022F\n\007History\022\026." +
-      "eventgate.HistoryOpts\032\021.eventgate.Events" +
-      "\"\020\202\323\344\223\002\n\022\010/historyB\013Z\teventgateb\006proto3"
+      "uf.Struct\022\'\n\006claims\030\007 \001(\0132\027.google.proto" +
+      "buf.Struct\022(\n\004time\030\024 \001(\0132\032.google.protob" +
+      "uf.Timestamp\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020" +
+      ".eventgate.Event2\347\001\n\020EventGateService\022B\n" +
+      "\004Send\022\020.eventgate.Event\032\026.google.protobu" +
+      "f.Empty\"\020\202\323\344\223\002\n\"\005/send:\001*\022G\n\007Receive\022\026.e" +
+      "ventgate.ReceiveOpts\032\020.eventgate.Event\"\020" +
+      "\202\323\344\223\002\n\022\010/receive0\001\022F\n\007History\022\026.eventgat" +
+      "e.HistoryOpts\032\021.eventgate.Events\"\020\202\323\344\223\002\n" +
+      "\022\010/historyB\013Z\teventgateb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

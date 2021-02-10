@@ -1,4 +1,9 @@
-package config
+package server
+
+import (
+	"gopkg.in/yaml.v2"
+	"io/ioutil"
+)
 
 type Config struct {
 	Port           int64           `yaml:"port"`
@@ -98,4 +103,17 @@ func (c *Config) SetDefaults() {
 	if c.Backend.ChannelProvider.Config == nil {
 		c.Backend.ChannelProvider.Config = map[string]string{}
 	}
+}
+
+func ConfigFromFile(path string) (*Config, error) {
+	bits, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	c := &Config{}
+	if err := yaml.UnmarshalStrict(bits, c); err != nil {
+		return nil, err
+	}
+	c.SetDefaults()
+	return c, nil
 }

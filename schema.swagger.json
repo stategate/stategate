@@ -170,7 +170,7 @@
         },
         "claims": {
           "type": "object",
-          "description": "The authentication claims of the event producer. This field is populated/overriden by the server before it is broadcasted to consumers."
+          "description": "The authentication claims of the event producer. This field is read-only \u0026 populated/overriden by the server before it is broadcasted to consumers."
         },
         "time": {
           "type": "string",
