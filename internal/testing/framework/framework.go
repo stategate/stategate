@@ -3,9 +3,9 @@ package framework
 import (
 	"context"
 	"fmt"
-	eventgate_client_go "github.com/autom8ter/eventgate/eventgate-client-go"
-	"github.com/autom8ter/eventgate/internal/logger"
-	"github.com/autom8ter/eventgate/internal/server"
+	"github.com/autom8ter/stategate/internal/logger"
+	"github.com/autom8ter/stategate/internal/server"
+	stategate_client_go "github.com/autom8ter/stategate/stategate-client-go"
 	"github.com/ory/dockertest/v3"
 	"golang.org/x/oauth2"
 	"golang.org/x/sync/errgroup"
@@ -36,7 +36,7 @@ func Run(t *testing.T, providers []*Provider, testCases []*TestCase) {
 
 type TestCase struct {
 	Name string
-	Func func(t *testing.T, client *eventgate_client_go.Client)
+	Func func(t *testing.T, client *stategate_client_go.Client)
 }
 
 type Provider struct {
@@ -45,7 +45,7 @@ type Provider struct {
 	config *server.Config
 	group  *errgroup.Group
 	lgger  *logger.Logger
-	client *eventgate_client_go.Client
+	client *stategate_client_go.Client
 }
 
 type Container struct {
@@ -88,10 +88,10 @@ func NewProvider(t *testing.T, ctx context.Context, jwt string, config *server.C
 		return server.ListenAndServe(f.ctx, f.lgger, f.config)
 	})
 	time.Sleep(1 * time.Second)
-	client, err := eventgate_client_go.NewClient(
+	client, err := stategate_client_go.NewClient(
 		ctx,
 		fmt.Sprintf("localhost:%v", f.config.Port),
-		eventgate_client_go.WithTokenSource(oauth2.StaticTokenSource(&oauth2.Token{
+		stategate_client_go.WithTokenSource(oauth2.StaticTokenSource(&oauth2.Token{
 			AccessToken: jwt,
 		})))
 	if err != nil {

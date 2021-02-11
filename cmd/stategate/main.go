@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/autom8ter/eventgate/internal/helpers"
-	"github.com/autom8ter/eventgate/internal/logger"
-	"github.com/autom8ter/eventgate/internal/server"
+	"github.com/autom8ter/stategate/internal/helpers"
+	"github.com/autom8ter/stategate/internal/logger"
+	"github.com/autom8ter/stategate/internal/server"
 	"github.com/spf13/pflag"
 	"go.uber.org/zap"
 )
@@ -15,7 +15,7 @@ var (
 )
 
 func init() {
-	pflag.CommandLine.StringVar(&configPath, "config", helpers.EnvOr("EVENTGATE_CONFIG", "config.yaml"), "path to config file (env: EVENTGATE_CONFIG)")
+	pflag.CommandLine.StringVar(&configPath, "config", helpers.EnvOr("STATEGATE_CONFIG", "config.yaml"), "path to config file (env: STATEGATE_CONFIG)")
 	pflag.Parse()
 }
 
@@ -32,6 +32,6 @@ func main() {
 	)
 	lgger.Debug("loaded config", zap.Any("config", c))
 	if err := server.ListenAndServe(context.Background(), lgger, c); err != nil {
-		lgger.Error("eventgate server failure", zap.Error(err))
+		lgger.Error("stategate server failure", zap.Error(err))
 	}
 }

@@ -68,7 +68,7 @@ authentication:
 # authorization options
 authorization:
   requests: |
-    package eventgate.authz
+    package stategate.authz
 
     default allow = false
 
@@ -77,7 +77,7 @@ authorization:
       input.claims.name = "John Doe"
     }
   responses: |
-    package eventgate.authz
+    package stategate.authz
 
     default allow = true
 

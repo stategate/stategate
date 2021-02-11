@@ -2,11 +2,11 @@
 // source: schema.proto
 
 /*
-Package eventgate is a reverse proxy.
+Package stategate is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package eventgate
+package stategate
 
 import (
 	"context"
@@ -32,10 +32,10 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_EventGateService_SetObject_0 = &utilities.DoubleArray{Encoding: map[string]int{"type": 0, "key": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_StateGateService_SetObject_0 = &utilities.DoubleArray{Encoding: map[string]int{"type": 0, "key": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 )
 
-func request_EventGateService_SetObject_0(ctx context.Context, marshaler runtime.Marshaler, client EventGateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_StateGateService_SetObject_0(ctx context.Context, marshaler runtime.Marshaler, client StateGateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Object
 	var metadata runtime.ServerMetadata
 
@@ -69,7 +69,7 @@ func request_EventGateService_SetObject_0(ctx context.Context, marshaler runtime
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EventGateService_SetObject_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StateGateService_SetObject_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -78,7 +78,7 @@ func request_EventGateService_SetObject_0(ctx context.Context, marshaler runtime
 
 }
 
-func local_request_EventGateService_SetObject_0(ctx context.Context, marshaler runtime.Marshaler, server EventGateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_StateGateService_SetObject_0(ctx context.Context, marshaler runtime.Marshaler, server StateGateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Object
 	var metadata runtime.ServerMetadata
 
@@ -112,7 +112,7 @@ func local_request_EventGateService_SetObject_0(ctx context.Context, marshaler r
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EventGateService_SetObject_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StateGateService_SetObject_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -121,7 +121,7 @@ func local_request_EventGateService_SetObject_0(ctx context.Context, marshaler r
 
 }
 
-func request_EventGateService_GetObject_0(ctx context.Context, marshaler runtime.Marshaler, client EventGateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_StateGateService_GetObject_0(ctx context.Context, marshaler runtime.Marshaler, client StateGateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ObjectRef
 	var metadata runtime.ServerMetadata
 
@@ -157,7 +157,7 @@ func request_EventGateService_GetObject_0(ctx context.Context, marshaler runtime
 
 }
 
-func local_request_EventGateService_GetObject_0(ctx context.Context, marshaler runtime.Marshaler, server EventGateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_StateGateService_GetObject_0(ctx context.Context, marshaler runtime.Marshaler, server StateGateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ObjectRef
 	var metadata runtime.ServerMetadata
 
@@ -193,7 +193,7 @@ func local_request_EventGateService_GetObject_0(ctx context.Context, marshaler r
 
 }
 
-func request_EventGateService_StreamEvents_0(ctx context.Context, marshaler runtime.Marshaler, client EventGateServiceClient, req *http.Request, pathParams map[string]string) (EventGateService_StreamEventsClient, runtime.ServerMetadata, error) {
+func request_StateGateService_StreamEvents_0(ctx context.Context, marshaler runtime.Marshaler, client StateGateServiceClient, req *http.Request, pathParams map[string]string) (StateGateService_StreamEventsClient, runtime.ServerMetadata, error) {
 	var protoReq StreamOpts
 	var metadata runtime.ServerMetadata
 
@@ -228,10 +228,10 @@ func request_EventGateService_StreamEvents_0(ctx context.Context, marshaler runt
 }
 
 var (
-	filter_EventGateService_SearchEvents_0 = &utilities.DoubleArray{Encoding: map[string]int{"type": 0, "key": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_StateGateService_SearchEvents_0 = &utilities.DoubleArray{Encoding: map[string]int{"type": 0, "key": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 )
 
-func request_EventGateService_SearchEvents_0(ctx context.Context, marshaler runtime.Marshaler, client EventGateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_StateGateService_SearchEvents_0(ctx context.Context, marshaler runtime.Marshaler, client StateGateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq SearchOpts
 	var metadata runtime.ServerMetadata
 
@@ -265,7 +265,7 @@ func request_EventGateService_SearchEvents_0(ctx context.Context, marshaler runt
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EventGateService_SearchEvents_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StateGateService_SearchEvents_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -274,7 +274,7 @@ func request_EventGateService_SearchEvents_0(ctx context.Context, marshaler runt
 
 }
 
-func local_request_EventGateService_SearchEvents_0(ctx context.Context, marshaler runtime.Marshaler, server EventGateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_StateGateService_SearchEvents_0(ctx context.Context, marshaler runtime.Marshaler, server StateGateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq SearchOpts
 	var metadata runtime.ServerMetadata
 
@@ -308,7 +308,7 @@ func local_request_EventGateService_SearchEvents_0(ctx context.Context, marshale
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EventGateService_SearchEvents_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StateGateService_SearchEvents_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -317,24 +317,24 @@ func local_request_EventGateService_SearchEvents_0(ctx context.Context, marshale
 
 }
 
-// RegisterEventGateServiceHandlerServer registers the http handlers for service EventGateService to "mux".
-// UnaryRPC     :call EventGateServiceServer directly.
+// RegisterStateGateServiceHandlerServer registers the http handlers for service StateGateService to "mux".
+// UnaryRPC     :call StateGateServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterEventGateServiceHandlerFromEndpoint instead.
-func RegisterEventGateServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server EventGateServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterStateGateServiceHandlerFromEndpoint instead.
+func RegisterStateGateServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server StateGateServiceServer) error {
 
-	mux.Handle("POST", pattern_EventGateService_SetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_StateGateService_SetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/eventgate.EventGateService/SetObject")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/stategate.StateGateService/SetObject")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_EventGateService_SetObject_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StateGateService_SetObject_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -342,22 +342,22 @@ func RegisterEventGateServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_EventGateService_SetObject_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateGateService_SetObject_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_EventGateService_GetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StateGateService_GetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/eventgate.EventGateService/GetObject")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/stategate.StateGateService/GetObject")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_EventGateService_GetObject_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StateGateService_GetObject_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -365,29 +365,29 @@ func RegisterEventGateServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_EventGateService_GetObject_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateGateService_GetObject_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_EventGateService_StreamEvents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StateGateService_StreamEvents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
 	})
 
-	mux.Handle("GET", pattern_EventGateService_SearchEvents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StateGateService_SearchEvents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/eventgate.EventGateService/SearchEvents")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/stategate.StateGateService/SearchEvents")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_EventGateService_SearchEvents_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StateGateService_SearchEvents_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -395,16 +395,16 @@ func RegisterEventGateServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_EventGateService_SearchEvents_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateGateService_SearchEvents_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterEventGateServiceHandlerFromEndpoint is same as RegisterEventGateServiceHandler but
+// RegisterStateGateServiceHandlerFromEndpoint is same as RegisterStateGateServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterEventGateServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterStateGateServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -424,99 +424,99 @@ func RegisterEventGateServiceHandlerFromEndpoint(ctx context.Context, mux *runti
 		}()
 	}()
 
-	return RegisterEventGateServiceHandler(ctx, mux, conn)
+	return RegisterStateGateServiceHandler(ctx, mux, conn)
 }
 
-// RegisterEventGateServiceHandler registers the http handlers for service EventGateService to "mux".
+// RegisterStateGateServiceHandler registers the http handlers for service StateGateService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterEventGateServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterEventGateServiceHandlerClient(ctx, mux, NewEventGateServiceClient(conn))
+func RegisterStateGateServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterStateGateServiceHandlerClient(ctx, mux, NewStateGateServiceClient(conn))
 }
 
-// RegisterEventGateServiceHandlerClient registers the http handlers for service EventGateService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "EventGateServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "EventGateServiceClient"
+// RegisterStateGateServiceHandlerClient registers the http handlers for service StateGateService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "StateGateServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "StateGateServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "EventGateServiceClient" to call the correct interceptors.
-func RegisterEventGateServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client EventGateServiceClient) error {
+// "StateGateServiceClient" to call the correct interceptors.
+func RegisterStateGateServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client StateGateServiceClient) error {
 
-	mux.Handle("POST", pattern_EventGateService_SetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_StateGateService_SetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/eventgate.EventGateService/SetObject")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/stategate.StateGateService/SetObject")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_EventGateService_SetObject_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StateGateService_SetObject_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_EventGateService_SetObject_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateGateService_SetObject_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_EventGateService_GetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StateGateService_GetObject_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/eventgate.EventGateService/GetObject")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/stategate.StateGateService/GetObject")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_EventGateService_GetObject_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StateGateService_GetObject_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_EventGateService_GetObject_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateGateService_GetObject_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_EventGateService_StreamEvents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StateGateService_StreamEvents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/eventgate.EventGateService/StreamEvents")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/stategate.StateGateService/StreamEvents")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_EventGateService_StreamEvents_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StateGateService_StreamEvents_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_EventGateService_StreamEvents_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+		forward_StateGateService_StreamEvents_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_EventGateService_SearchEvents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StateGateService_SearchEvents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/eventgate.EventGateService/SearchEvents")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/stategate.StateGateService/SearchEvents")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_EventGateService_SearchEvents_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StateGateService_SearchEvents_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_EventGateService_SearchEvents_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateGateService_SearchEvents_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -524,21 +524,21 @@ func RegisterEventGateServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 }
 
 var (
-	pattern_EventGateService_SetObject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "type", "state", "key"}, ""))
+	pattern_StateGateService_SetObject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "type", "state", "key"}, ""))
 
-	pattern_EventGateService_GetObject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "type", "state", "key"}, ""))
+	pattern_StateGateService_GetObject_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "type", "state", "key"}, ""))
 
-	pattern_EventGateService_StreamEvents_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"api", "type", "events"}, ""))
+	pattern_StateGateService_StreamEvents_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"api", "type", "events"}, ""))
 
-	pattern_EventGateService_SearchEvents_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "type", "events", "key"}, ""))
+	pattern_StateGateService_SearchEvents_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "type", "events", "key"}, ""))
 )
 
 var (
-	forward_EventGateService_SetObject_0 = runtime.ForwardResponseMessage
+	forward_StateGateService_SetObject_0 = runtime.ForwardResponseMessage
 
-	forward_EventGateService_GetObject_0 = runtime.ForwardResponseMessage
+	forward_StateGateService_GetObject_0 = runtime.ForwardResponseMessage
 
-	forward_EventGateService_StreamEvents_0 = runtime.ForwardResponseStream
+	forward_StateGateService_StreamEvents_0 = runtime.ForwardResponseStream
 
-	forward_EventGateService_SearchEvents_0 = runtime.ForwardResponseMessage
+	forward_StateGateService_SearchEvents_0 = runtime.ForwardResponseMessage
 )

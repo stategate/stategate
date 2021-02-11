@@ -3,12 +3,12 @@ package service
 import (
 	"context"
 	"fmt"
-	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
-	"github.com/autom8ter/eventgate/internal/auth"
-	"github.com/autom8ter/eventgate/internal/channel"
-	"github.com/autom8ter/eventgate/internal/logger"
-	"github.com/autom8ter/eventgate/internal/storage"
 	"github.com/autom8ter/machine/pubsub"
+	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	"github.com/autom8ter/stategate/internal/auth"
+	"github.com/autom8ter/stategate/internal/channel"
+	"github.com/autom8ter/stategate/internal/logger"
+	"github.com/autom8ter/stategate/internal/storage"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
@@ -57,7 +57,7 @@ func NewService(storage storage.Provider, channel channel.Provider, lgger *logge
 	return svc, nil
 }
 
-func (s Service) SetObject(ctx context.Context, object *eventgate.Object) (*empty.Empty, error) {
+func (s Service) SetObject(ctx context.Context, object *stategate.Object) (*empty.Empty, error) {
 	c, ok := auth.GetContext(ctx)
 	if !ok {
 		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
@@ -65,7 +65,7 @@ func (s Service) SetObject(ctx context.Context, object *eventgate.Object) (*empt
 	group := &errgroup.Group{}
 	claims, _ := structpb.NewStruct(c.Claims)
 
-	e := &eventgate.Event{
+	e := &stategate.Event{
 		Id:     uuid.New().String(),
 		Object: object,
 		Claims: claims,
@@ -88,17 +88,17 @@ func (s Service) SetObject(ctx context.Context, object *eventgate.Object) (*empt
 	return &empty.Empty{}, nil
 }
 
-func (s Service) GetObject(ctx context.Context, ref *eventgate.ObjectRef) (*eventgate.Object, error) {
+func (s Service) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, error) {
 	return s.storage.GetObject(ctx, ref)
 }
 
-func (s Service) StreamEvents(opts *eventgate.StreamOpts, server eventgate.EventGateService_StreamEventsServer) error {
+func (s Service) StreamEvents(opts *stategate.StreamOpts, server stategate.StateGateService_StreamEventsServer) error {
 	_, ok := auth.GetContext(server.Context())
 	if !ok {
 		return status.Error(codes.Unauthenticated, "unauthenticated")
 	}
 	if err := s.ps.Subscribe(server.Context(), opts.GetType(), "", func(msg interface{}) bool {
-		if event, ok := msg.(*eventgate.Event); ok {
+		if event, ok := msg.(*stategate.Event); ok {
 			if err := server.Send(event); err != nil {
 				s.lgger.Error("failed to send subscription event", zap.Error(err))
 			}
@@ -112,7 +112,7 @@ func (s Service) StreamEvents(opts *eventgate.StreamOpts, server eventgate.Event
 	return nil
 }
 
-func (s Service) SearchEvents(ctx context.Context, opts *eventgate.SearchOpts) (*eventgate.Events, error) {
+func (s Service) SearchEvents(ctx context.Context, opts *stategate.SearchOpts) (*stategate.Events, error) {
 	return s.storage.SearchEvents(ctx, opts)
 }
 

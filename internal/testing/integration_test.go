@@ -3,10 +3,10 @@ package testing
 import (
 	"context"
 	"fmt"
-	eventgate_client_go "github.com/autom8ter/eventgate/eventgate-client-go"
-	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
-	"github.com/autom8ter/eventgate/internal/server"
-	"github.com/autom8ter/eventgate/internal/testing/framework"
+	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	"github.com/autom8ter/stategate/internal/server"
+	"github.com/autom8ter/stategate/internal/testing/framework"
+	stategate_client_go "github.com/autom8ter/stategate/stategate-client-go"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
@@ -35,7 +35,7 @@ func natsMongo(t *testing.T, ctx context.Context, natsPort, mongoPort string) *f
 	return framework.NewProvider(t, ctx, token, &server.Config{
 		Authorization: &server.Authorization{
 			RequestPolicy: `
-	package eventgate.authz
+	package stategate.authz
 
 	default allow = false
 
@@ -45,7 +45,7 @@ func natsMongo(t *testing.T, ctx context.Context, natsPort, mongoPort string) *f
     }
 `,
 			ResponsePolicy: `
-	package eventgate.authz
+	package stategate.authz
 
     default allow = true
 `,
@@ -72,12 +72,12 @@ func natsMongo(t *testing.T, ctx context.Context, natsPort, mongoPort string) *f
 func helloWorld(ctx context.Context) *framework.TestCase {
 	return &framework.TestCase{
 		Name: "hello_world",
-		Func: func(t *testing.T, client *eventgate_client_go.Client) {
+		Func: func(t *testing.T, client *stategate_client_go.Client) {
 			const channelName = "hello_world"
 			group := &errgroup.Group{}
 			group.Go(func() error {
 				count := 0
-				if err := client.StreamEvents(ctx, &eventgate.StreamOpts{Type: channelName}, func(even *eventgate.Event) bool {
+				if err := client.StreamEvents(ctx, &stategate.StreamOpts{Type: channelName}, func(even *stategate.Event) bool {
 					t.Logf("received hello world event: %s\n", jsonString(even))
 					count++
 					return count < 3
@@ -90,7 +90,7 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				data, _ := structpb.NewStruct(map[string]interface{}{
 					"message": "hello world",
 				})
-				event := &eventgate.Object{
+				event := &stategate.Object{
 					Type:   channelName,
 					Key:    "colemanword@gmail.com",
 					Values: data,
@@ -108,7 +108,7 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 			if err := group.Wait(); err != nil {
 				t.Fatal(err)
 			}
-			events, err := client.SearchEvents(ctx, &eventgate.SearchOpts{
+			events, err := client.SearchEvents(ctx, &stategate.SearchOpts{
 				Type:  channelName,
 				Key:   "colemanword@gmail.com",
 				Min:   0,

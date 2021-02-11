@@ -4,14 +4,14 @@ import (
 	"context"
 	"crypto/tls"
 	"fmt"
-	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
-	"github.com/autom8ter/eventgate/internal/channel/inmem"
-	"github.com/autom8ter/eventgate/internal/channel/kafka"
-	nats2 "github.com/autom8ter/eventgate/internal/channel/nats"
-	"github.com/autom8ter/eventgate/internal/channel/redis"
-	"github.com/autom8ter/eventgate/internal/channel/stan"
-	"github.com/autom8ter/eventgate/internal/constants"
-	"github.com/autom8ter/eventgate/internal/logger"
+	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	"github.com/autom8ter/stategate/internal/channel/inmem"
+	"github.com/autom8ter/stategate/internal/channel/kafka"
+	nats2 "github.com/autom8ter/stategate/internal/channel/nats"
+	"github.com/autom8ter/stategate/internal/channel/redis"
+	"github.com/autom8ter/stategate/internal/channel/stan"
+	"github.com/autom8ter/stategate/internal/constants"
+	"github.com/autom8ter/stategate/internal/logger"
 	rediss "github.com/go-redis/redis/v8"
 	"github.com/nats-io/nats.go"
 	"github.com/nats-io/nuid"
@@ -25,8 +25,8 @@ import (
 )
 
 type Provider interface {
-	Publish(ctx context.Context, event *eventgate.Event) error
-	GetChannel(ctx context.Context) (chan *eventgate.Event, error)
+	Publish(ctx context.Context, event *stategate.Event) error
+	GetChannel(ctx context.Context) (chan *stategate.Event, error)
 	Close() error
 }
 

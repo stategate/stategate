@@ -3,7 +3,7 @@ package mongo
 import (
 	"context"
 	"fmt"
-	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
+	stategate "github.com/autom8ter/stategate/gen/grpc/go"
 	"github.com/spf13/cast"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -22,7 +22,7 @@ func NewProvider(db *mongo.Database) *Provider {
 	return &Provider{db: db}
 }
 
-func (p Provider) SetObject(ctx context.Context, object *eventgate.Object) error {
+func (p Provider) SetObject(ctx context.Context, object *stategate.Object) error {
 	filter := bson.D{
 		{Key: "key", Value: object.GetKey()},
 	}
@@ -38,7 +38,7 @@ func (p Provider) SetObject(ctx context.Context, object *eventgate.Object) error
 	return nil
 }
 
-func (p Provider) SaveEvent(ctx context.Context, e *eventgate.Event) error {
+func (p Provider) SaveEvent(ctx context.Context, e *stategate.Event) error {
 	_, err := p.db.Collection(fmt.Sprintf("%s_events", e.GetObject().GetType())).InsertOne(ctx, bson.M(map[string]interface{}{
 		"id":   e.Id,
 		"time": e.GetTime(),
@@ -55,7 +55,7 @@ func (p Provider) SaveEvent(ctx context.Context, e *eventgate.Event) error {
 	return nil
 }
 
-func (p *Provider) GetObject(ctx context.Context, ref *eventgate.ObjectRef) (*eventgate.Object, error) {
+func (p *Provider) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, error) {
 	filter := bson.D{
 		{Key: "key", Value: ref.GetKey()},
 	}
@@ -67,7 +67,7 @@ func (p *Provider) GetObject(ctx context.Context, ref *eventgate.ObjectRef) (*ev
 		}
 		return nil, err
 	}
-	object := &eventgate.Object{
+	object := &stategate.Object{
 		Type: ref.GetType(),
 		Key:  cast.ToString(result["key"]),
 	}
@@ -77,7 +77,7 @@ func (p *Provider) GetObject(ctx context.Context, ref *eventgate.ObjectRef) (*ev
 	return object, nil
 }
 
-func (p *Provider) SearchEvents(ctx context.Context, opts *eventgate.SearchOpts) (*eventgate.Events, error) {
+func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchOpts) (*stategate.Events, error) {
 	o := options.Find()
 	if opts.GetLimit() > 0 {
 		o.SetLimit(opts.GetLimit())
@@ -112,11 +112,11 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *eventgate.SearchOpts)
 	if err := cur.All(ctx, &results); err != nil {
 		return nil, err
 	}
-	var events []*eventgate.Event
+	var events []*stategate.Event
 	for _, r := range results {
-		var e = &eventgate.Event{
+		var e = &stategate.Event{
 			Id:     "",
-			Object: &eventgate.Object{},
+			Object: &stategate.Object{},
 			Claims: nil,
 			Time:   cast.ToInt64(r["time"]),
 		}
@@ -135,7 +135,7 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *eventgate.SearchOpts)
 		}
 		events = append(events, e)
 	}
-	return &eventgate.Events{Events: events}, nil
+	return &stategate.Events{Events: events}, nil
 }
 
 func (p *Provider) Close() error {

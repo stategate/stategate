@@ -69,17 +69,17 @@ func (c *Config) SetDefaults() {
 		c.Authorization = &Authorization{}
 	}
 	if c.Authorization.RequestPolicy == "" {
-		// target = data.eventgate.requests.authz.allow
+		// target = data.stategate.requests.authz.allow
 		c.Authorization.RequestPolicy = `
-		package eventgate.authz
+		package stategate.authz
 
 		default allow = false
 `
 	}
 	if c.Authorization.ResponsePolicy == "" {
-		// target = data.eventgate.responses.authz.allow
+		// target = data.stategate.responses.authz.allow
 		c.Authorization.ResponsePolicy = `
-		package eventgate.authz
+		package stategate.authz
 
 		default allow = false
 `

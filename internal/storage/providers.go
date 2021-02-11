@@ -3,9 +3,9 @@ package storage
 import (
 	"context"
 	"crypto/tls"
-	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
-	"github.com/autom8ter/eventgate/internal/logger"
-	"github.com/autom8ter/eventgate/internal/storage/mongo"
+	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	"github.com/autom8ter/stategate/internal/logger"
+	"github.com/autom8ter/stategate/internal/storage/mongo"
 	"github.com/pkg/errors"
 	mongo2 "go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -14,10 +14,10 @@ import (
 )
 
 type Provider interface {
-	SetObject(ctx context.Context, object *eventgate.Object) error
-	SaveEvent(ctx context.Context, event *eventgate.Event) error
-	GetObject(ctx context.Context, ref *eventgate.ObjectRef) (*eventgate.Object, error)
-	SearchEvents(ctx context.Context, ref *eventgate.SearchOpts) (*eventgate.Events, error)
+	SetObject(ctx context.Context, object *stategate.Object) error
+	SaveEvent(ctx context.Context, event *stategate.Event) error
+	GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, error)
+	SearchEvents(ctx context.Context, ref *stategate.SearchOpts) (*stategate.Events, error)
 	Close() error
 }
 

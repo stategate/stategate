@@ -1,10 +1,10 @@
-package eventgate_client_go
+package stategate_client_go
 
 import (
 	"context"
 	"fmt"
-	"github.com/autom8ter/eventgate/gen/grpc/go"
-	"github.com/autom8ter/eventgate/internal/logger"
+	"github.com/autom8ter/stategate/gen/grpc/go"
+	"github.com/autom8ter/stategate/internal/logger"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	grpc_validator "github.com/grpc-ecosystem/go-grpc-middleware/validator"
 	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
@@ -86,7 +86,7 @@ func streamAuth(tokenSource oauth2.TokenSource, useIDToken bool) grpc.StreamClie
 	}
 }
 
-// NewClient creates a new gRPC eventgate client
+// NewClient creates a new gRPC stategate client
 func NewClient(ctx context.Context, target string, opts ...Opt) (*Client, error) {
 	if target == "" {
 		return nil, errors.New("empty target")
@@ -138,14 +138,14 @@ func NewClient(ctx context.Context, target string, opts ...Opt) (*Client, error)
 		return nil, err
 	}
 	return &Client{
-		client: eventgate.NewEventGateServiceClient(conn),
+		client: stategate.NewStateGateServiceClient(conn),
 		conn:   conn,
 	}, nil
 }
 
-// Client is a eventgate gRPC client
+// Client is a stategate gRPC client
 type Client struct {
-	client eventgate.EventGateServiceClient
+	client stategate.StateGateServiceClient
 	conn   *grpc.ClientConn
 }
 
@@ -171,19 +171,19 @@ func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken b
 }
 
 // GetObject gets the current state value of an object
-func (c *Client) GetObject(ctx context.Context, in *eventgate.ObjectRef) error {
+func (c *Client) GetObject(ctx context.Context, in *stategate.ObjectRef) error {
 	_, err := c.client.GetObject(ctx, in)
 	return err
 }
 
 // Set sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
-func (c *Client) SetObject(ctx context.Context, in *eventgate.Object) error {
+func (c *Client) SetObject(ctx context.Context, in *stategate.Object) error {
 	_, err := c.client.SetObject(ctx, in)
 	return err
 }
 
 // StreamEvents creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
-func (c *Client) StreamEvents(ctx context.Context, in *eventgate.StreamOpts, fn func(even *eventgate.Event) bool) error {
+func (c *Client) StreamEvents(ctx context.Context, in *stategate.StreamOpts, fn func(even *stategate.Event) bool) error {
 	if ctx.Err() != nil {
 		return nil
 	}
@@ -213,7 +213,7 @@ func (c *Client) StreamEvents(ctx context.Context, in *eventgate.StreamOpts, fn 
 }
 
 // SearchEvents returns an array of immutable historical events from a given channel.
-func (c *Client) SearchEvents(ctx context.Context, in *eventgate.SearchOpts) (*eventgate.Events, error) {
+func (c *Client) SearchEvents(ctx context.Context, in *stategate.SearchOpts) (*stategate.Events, error) {
 	return c.client.SearchEvents(ctx, in)
 }
 

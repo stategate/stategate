@@ -14,7 +14,7 @@
     "/api/{type}/events": {
       "get": {
         "summary": "StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.\nEvent Consumers invoke this method.",
-        "operationId": "EventGateService_StreamEvents",
+        "operationId": "StateGateService_StreamEvents",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -22,13 +22,13 @@
               "type": "object",
               "properties": {
                 "result": {
-                  "$ref": "#/definitions/eventgateEvent"
+                  "$ref": "#/definitions/stategateEvent"
                 },
                 "error": {
                   "$ref": "#/definitions/rpcStatus"
                 }
               },
-              "title": "Stream result of eventgateEvent"
+              "title": "Stream result of stategateEvent"
             }
           },
           "default": {
@@ -47,19 +47,19 @@
           }
         ],
         "tags": [
-          "EventGateService"
+          "StateGateService"
         ]
       }
     },
     "/api/{type}/events/{key}": {
       "get": {
         "summary": "SearchEvents returns an array of immutable historical events for a given object.",
-        "operationId": "EventGateService_SearchEvents",
+        "operationId": "StateGateService_SearchEvents",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/eventgateEvents"
+              "$ref": "#/definitions/stategateEvents"
             }
           },
           "default": {
@@ -118,19 +118,19 @@
           }
         ],
         "tags": [
-          "EventGateService"
+          "StateGateService"
         ]
       }
     },
     "/api/{type}/state/{key}": {
       "get": {
         "summary": "GetObject gets an object's current state values",
-        "operationId": "EventGateService_GetObject",
+        "operationId": "StateGateService_GetObject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/eventgateObject"
+              "$ref": "#/definitions/stategateObject"
             }
           },
           "default": {
@@ -157,12 +157,12 @@
           }
         ],
         "tags": [
-          "EventGateService"
+          "StateGateService"
         ]
       },
       "post": {
         "summary": "SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers",
-        "operationId": "EventGateService_SetObject",
+        "operationId": "StateGateService_SetObject",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -194,65 +194,12 @@
           }
         ],
         "tags": [
-          "EventGateService"
+          "StateGateService"
         ]
       }
     }
   },
   "definitions": {
-    "eventgateEvent": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "Identifies the event(uuid)."
-        },
-        "object": {
-          "$ref": "#/definitions/eventgateObject",
-          "title": "the unmodified"
-        },
-        "claims": {
-          "type": "object",
-          "description": "The authentication claims of the event producer."
-        },
-        "time": {
-          "type": "string",
-          "format": "int64",
-          "description": "Timestamp(ns) of when the event was received."
-        }
-      },
-      "title": "Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.\nEvents are persisted to history \u0026 broadcasted to interested consumers(Stream) any time an object is created/modified"
-    },
-    "eventgateEvents": {
-      "type": "object",
-      "properties": {
-        "events": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/eventgateEvent"
-          }
-        }
-      },
-      "title": "Events is an array of events"
-    },
-    "eventgateObject": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "title": "Object type (ex: user)"
-        },
-        "key": {
-          "type": "string",
-          "title": "Object key (unique within type)"
-        },
-        "values": {
-          "type": "object",
-          "title": "Object values (structured k/v pairs)"
-        }
-      },
-      "title": "Object hold's the current state of an object"
-    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -293,6 +240,59 @@
           }
         }
       }
+    },
+    "stategateEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identifies the event(uuid)."
+        },
+        "object": {
+          "$ref": "#/definitions/stategateObject",
+          "title": "the unmodified"
+        },
+        "claims": {
+          "type": "object",
+          "description": "The authentication claims of the event producer."
+        },
+        "time": {
+          "type": "string",
+          "format": "int64",
+          "description": "Timestamp(ns) of when the event was received."
+        }
+      },
+      "title": "Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.\nEvents are persisted to history \u0026 broadcasted to interested consumers(Stream) any time an object is created/modified"
+    },
+    "stategateEvents": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stategateEvent"
+          }
+        }
+      },
+      "title": "Events is an array of events"
+    },
+    "stategateObject": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Object type (ex: user)"
+        },
+        "key": {
+          "type": "string",
+          "title": "Object key (unique within type)"
+        },
+        "values": {
+          "type": "object",
+          "title": "Object values (structured k/v pairs)"
+        }
+      },
+      "title": "Object hold's the current state of an object"
     }
   }
 }

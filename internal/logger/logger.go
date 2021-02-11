@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"github.com/autom8ter/eventgate/internal/version"
+	"github.com/autom8ter/stategate/internal/version"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"os"

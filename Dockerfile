@@ -1,9 +1,9 @@
 FROM golang:1.15.6-alpine3.12 as build-env
 
-RUN mkdir /eventgate
+RUN mkdir /stategate
 RUN apk --update add ca-certificates build-base
 RUN apk add make git
-WORKDIR /eventgate
+WORKDIR /stategate
 COPY go.mod .
 COPY go.sum .
 RUN go mod download
@@ -17,4 +17,4 @@ WORKDIR /workspace
 EXPOSE 8080
 EXPOSE 8081
 
-ENTRYPOINT ["/usr/local/bin/eventgate"]
+ENTRYPOINT ["/usr/local/bin/stategate"]

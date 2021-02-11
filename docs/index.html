@@ -179,34 +179,34 @@
             <ul>
               
                 <li>
-                  <a href="#eventgate.Event"><span class="badge">M</span>Event</a>
+                  <a href="#stategate.Event"><span class="badge">M</span>Event</a>
                 </li>
               
                 <li>
-                  <a href="#eventgate.Events"><span class="badge">M</span>Events</a>
+                  <a href="#stategate.Events"><span class="badge">M</span>Events</a>
                 </li>
               
                 <li>
-                  <a href="#eventgate.Object"><span class="badge">M</span>Object</a>
+                  <a href="#stategate.Object"><span class="badge">M</span>Object</a>
                 </li>
               
                 <li>
-                  <a href="#eventgate.ObjectRef"><span class="badge">M</span>ObjectRef</a>
+                  <a href="#stategate.ObjectRef"><span class="badge">M</span>ObjectRef</a>
                 </li>
               
                 <li>
-                  <a href="#eventgate.SearchOpts"><span class="badge">M</span>SearchOpts</a>
+                  <a href="#stategate.SearchOpts"><span class="badge">M</span>SearchOpts</a>
                 </li>
               
                 <li>
-                  <a href="#eventgate.StreamOpts"><span class="badge">M</span>StreamOpts</a>
+                  <a href="#stategate.StreamOpts"><span class="badge">M</span>StreamOpts</a>
                 </li>
               
               
               
               
                 <li>
-                  <a href="#eventgate.EventGateService"><span class="badge">S</span>EventGateService</a>
+                  <a href="#stategate.StateGateService"><span class="badge">S</span>StateGateService</a>
                 </li>
               
             </ul>
@@ -224,7 +224,7 @@
       <p></p>
 
       
-        <h3 id="eventgate.Event">Event</h3>
+        <h3 id="stategate.Event">Event</h3>
         <p>Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.</p><p>Events are persisted to history & broadcasted to interested consumers(Stream) any time an object is created/modified</p>
 
         
@@ -243,7 +243,7 @@
               
                 <tr>
                   <td>object</td>
-                  <td><a href="#eventgate.Object">Object</a></td>
+                  <td><a href="#stategate.Object">Object</a></td>
                   <td></td>
                   <td><p>the unmodified </p></td>
                 </tr>
@@ -329,7 +329,7 @@
 
         
       
-        <h3 id="eventgate.Events">Events</h3>
+        <h3 id="stategate.Events">Events</h3>
         <p>Events is an array of events</p>
 
         
@@ -341,7 +341,7 @@
               
                 <tr>
                   <td>events</td>
-                  <td><a href="#eventgate.Event">Event</a></td>
+                  <td><a href="#stategate.Event">Event</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
@@ -353,7 +353,7 @@
 
         
       
-        <h3 id="eventgate.Object">Object</h3>
+        <h3 id="stategate.Object">Object</h3>
         <p>Object hold's the current state of an object</p>
 
         
@@ -440,7 +440,7 @@
 
         
       
-        <h3 id="eventgate.ObjectRef">ObjectRef</h3>
+        <h3 id="stategate.ObjectRef">ObjectRef</h3>
         <p>ObjectRef is a reference to an existing object</p>
 
         
@@ -509,7 +509,7 @@
 
         
       
-        <h3 id="eventgate.SearchOpts">SearchOpts</h3>
+        <h3 id="stategate.SearchOpts">SearchOpts</h3>
         <p>SearchOpts are options when querying historical events for a given object</p>
 
         
@@ -617,7 +617,7 @@
 
         
       
-        <h3 id="eventgate.StreamOpts">StreamOpts</h3>
+        <h3 id="stategate.StreamOpts">StreamOpts</h3>
         <p>StreamOpts are options for consumers looking to stream events</p>
 
         
@@ -674,8 +674,8 @@
       
 
       
-        <h3 id="eventgate.EventGateService">EventGateService</h3>
-        <p>EventGateService is an identity-aware API gateway for event-sourcing based applications</p>
+        <h3 id="stategate.StateGateService">StateGateService</h3>
+        <p>StateGateService is an identity-aware API gateway for event-sourcing based applications</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -684,30 +684,30 @@
             
               <tr>
                 <td>SetObject</td>
-                <td><a href="#eventgate.Object">Object</a></td>
+                <td><a href="#stategate.Object">Object</a></td>
                 <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
                 <td><p>SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers</p></td>
               </tr>
             
               <tr>
                 <td>GetObject</td>
-                <td><a href="#eventgate.ObjectRef">ObjectRef</a></td>
-                <td><a href="#eventgate.Object">Object</a></td>
+                <td><a href="#stategate.ObjectRef">ObjectRef</a></td>
+                <td><a href="#stategate.Object">Object</a></td>
                 <td><p>GetObject gets an object&#39;s current state values</p></td>
               </tr>
             
               <tr>
                 <td>StreamEvents</td>
-                <td><a href="#eventgate.StreamOpts">StreamOpts</a></td>
-                <td><a href="#eventgate.Event">Event</a> stream</td>
+                <td><a href="#stategate.StreamOpts">StreamOpts</a></td>
+                <td><a href="#stategate.Event">Event</a> stream</td>
                 <td><p>StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
 Event Consumers invoke this method.</p></td>
               </tr>
             
               <tr>
                 <td>SearchEvents</td>
-                <td><a href="#eventgate.SearchOpts">SearchOpts</a></td>
-                <td><a href="#eventgate.Events">Events</a></td>
+                <td><a href="#stategate.SearchOpts">SearchOpts</a></td>
+                <td><a href="#stategate.Events">Events</a></td>
                 <td><p>SearchEvents returns an array of immutable historical events for a given object.</p></td>
               </tr>
             

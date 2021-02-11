@@ -1,4 +1,4 @@
-version := "0.1.0"
+version := "0.2.0"
 
 .DEFAULT_GOAL := help
 
@@ -10,7 +10,7 @@ help:
 	@echo "----------------------------------------------------------------"
 
 run:
-	@go run cmd/eventgate/main.go
+	@go run cmd/stategate/main.go
 
 patch: ## bump sem version by 1 patch
 	bumpversion patch --allow-dirty
@@ -25,10 +25,10 @@ push:
 	git push origin v$(version)
 
 docker-build:
-	@docker build -t colemanword/eventgate:v$(version) .
+	@docker build -t colemanword/stategate:v$(version) .
 
 docker-push:
-	@docker push colemanword/eventgate:v$(version)
+	@docker push colemanword/stategate:v$(version)
 
 
 .PHONY: proto
@@ -48,6 +48,6 @@ down: ## shuts down local docker containers
 
 build: ## build the server to ./bin
 	@mkdir -p bin
-	@cd cmd/eventgate; gox -osarch="linux/amd64" -output="../../bin/linux/{{.Dir}}_linux_amd64"
-	@cd cmd/eventgate; gox -osarch="darwin/amd64" -output="../../bin/darwin/{{.Dir}}_darwin_amd64"
-	@cd cmd/eventgate; gox -osarch="windows/amd64" -output="../../bin/windows/{{.Dir}}_windows_amd64"
+	@cd cmd/stategate; gox -osarch="linux/amd64" -output="../../bin/linux/{{.Dir}}_linux_amd64"
+	@cd cmd/stategate; gox -osarch="darwin/amd64" -output="../../bin/darwin/{{.Dir}}_darwin_amd64"
+	@cd cmd/stategate; gox -osarch="windows/amd64" -output="../../bin/windows/{{.Dir}}_windows_amd64"

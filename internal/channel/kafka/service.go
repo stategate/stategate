@@ -2,8 +2,8 @@ package kafka
 
 import (
 	"context"
-	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
-	"github.com/autom8ter/eventgate/internal/logger"
+	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	"github.com/autom8ter/stategate/internal/logger"
 	"github.com/golang/protobuf/proto"
 	"github.com/segmentio/kafka-go"
 	"go.uber.org/zap"
@@ -16,7 +16,7 @@ type Service struct {
 	writer *kafka.Writer
 }
 
-func (s *Service) Publish(ctx context.Context, event *eventgate.Event) error {
+func (s *Service) Publish(ctx context.Context, event *stategate.Event) error {
 	bits, err := proto.Marshal(event)
 	if err != nil {
 		return err
@@ -30,8 +30,8 @@ func (s *Service) Publish(ctx context.Context, event *eventgate.Event) error {
 	return nil
 }
 
-func (s *Service) GetChannel(ctx context.Context) (chan *eventgate.Event, error) {
-	events := make(chan *eventgate.Event)
+func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error) {
+	events := make(chan *stategate.Event)
 	go func() {
 		for {
 			select {
@@ -43,7 +43,7 @@ func (s *Service) GetChannel(ctx context.Context) (chan *eventgate.Event, error)
 					s.logger.Error("failed to read event", zap.Error(err))
 					return
 				}
-				var event eventgate.Event
+				var event stategate.Event
 				if err := proto.Unmarshal(msg.Value, &event); err != nil {
 					s.logger.Error("failed to unmarshal event", zap.Error(err))
 					continue

@@ -4,7 +4,7 @@
 // 	protoc        v3.6.1
 // source: schema.proto
 
-package eventgate
+package stategate
 
 import (
 	context "context"
@@ -426,7 +426,7 @@ var File_schema_proto protoreflect.FileDescriptor
 
 var file_schema_proto_rawDesc = []byte{
 	0x0a, 0x0c, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09,
-	0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x73, 0x74, 0x61, 0x74, 0x65, 0x67, 0x61, 0x74, 0x65, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
 	0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e,
 	0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x2e,
@@ -467,7 +467,7 @@ var file_schema_proto_rawDesc = []byte{
 	0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x17, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x09, 0x42, 0x07, 0xe2, 0xdf, 0x1f, 0x03, 0x90, 0x01, 0x00, 0x52, 0x02, 0x69, 0x64, 0x12, 0x31,
 	0x0a, 0x06, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11,
-	0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63,
+	0x2e, 0x73, 0x74, 0x61, 0x74, 0x65, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63,
 	0x74, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x20, 0x01, 0x52, 0x06, 0x6f, 0x62, 0x6a, 0x65, 0x63,
 	0x74, 0x12, 0x37, 0x0a, 0x06, 0x63, 0x6c, 0x61, 0x69, 0x6d, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28,
 	0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
@@ -476,32 +476,32 @@ var file_schema_proto_rawDesc = []byte{
 	0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x10, 0x00,
 	0x52, 0x04, 0x74, 0x69, 0x6d, 0x65, 0x22, 0x32, 0x0a, 0x06, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73,
 	0x12, 0x28, 0x0a, 0x06, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
-	0x32, 0x10, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x45, 0x76, 0x65,
-	0x6e, 0x74, 0x52, 0x06, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x32, 0xf5, 0x02, 0x0a, 0x10, 0x45,
-	0x76, 0x65, 0x6e, 0x74, 0x47, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
-	0x57, 0x0a, 0x09, 0x53, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x12, 0x11, 0x2e, 0x65,
-	0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x1a,
+	0x32, 0x10, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x65, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x45, 0x76, 0x65,
+	0x6e, 0x74, 0x52, 0x06, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x32, 0xf5, 0x02, 0x0a, 0x10, 0x53,
+	0x74, 0x61, 0x74, 0x65, 0x47, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
+	0x57, 0x0a, 0x09, 0x53, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x12, 0x11, 0x2e, 0x73,
+	0x74, 0x61, 0x74, 0x65, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x1a,
 	0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
 	0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x1f, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x19, 0x22,
 	0x17, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x7b, 0x74, 0x79, 0x70, 0x65, 0x7d, 0x2f, 0x73, 0x74, 0x61,
 	0x74, 0x65, 0x2f, 0x7b, 0x6b, 0x65, 0x79, 0x7d, 0x12, 0x55, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x4f,
-	0x62, 0x6a, 0x65, 0x63, 0x74, 0x12, 0x14, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74,
-	0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x66, 0x1a, 0x11, 0x2e, 0x65, 0x76,
-	0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x22, 0x1f,
+	0x62, 0x6a, 0x65, 0x63, 0x74, 0x12, 0x14, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x65, 0x67, 0x61, 0x74,
+	0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x66, 0x1a, 0x11, 0x2e, 0x73, 0x74,
+	0x61, 0x74, 0x65, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x22, 0x1f,
 	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x19, 0x12, 0x17, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x7b, 0x74, 0x79,
 	0x70, 0x65, 0x7d, 0x2f, 0x73, 0x74, 0x61, 0x74, 0x65, 0x2f, 0x7b, 0x6b, 0x65, 0x79, 0x7d, 0x12,
 	0x55, 0x0a, 0x0c, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x12,
-	0x15, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x53, 0x74, 0x72, 0x65,
-	0x61, 0x6d, 0x4f, 0x70, 0x74, 0x73, 0x1a, 0x10, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61,
+	0x15, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x65, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x53, 0x74, 0x72, 0x65,
+	0x61, 0x6d, 0x4f, 0x70, 0x74, 0x73, 0x1a, 0x10, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x65, 0x67, 0x61,
 	0x74, 0x65, 0x2e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x22, 0x1a, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x14,
 	0x12, 0x12, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x7b, 0x74, 0x79, 0x70, 0x65, 0x7d, 0x2f, 0x65, 0x76,
 	0x65, 0x6e, 0x74, 0x73, 0x30, 0x01, 0x12, 0x5a, 0x0a, 0x0c, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68,
-	0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x15, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61,
+	0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x15, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x65, 0x67, 0x61,
 	0x74, 0x65, 0x2e, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x4f, 0x70, 0x74, 0x73, 0x1a, 0x11, 0x2e,
-	0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73,
+	0x73, 0x74, 0x61, 0x74, 0x65, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73,
 	0x22, 0x20, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x1a, 0x12, 0x18, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x7b,
 	0x74, 0x79, 0x70, 0x65, 0x7d, 0x2f, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x2f, 0x7b, 0x6b, 0x65,
-	0x79, 0x7d, 0x42, 0x0b, 0x5a, 0x09, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x62,
+	0x79, 0x7d, 0x42, 0x0b, 0x5a, 0x09, 0x73, 0x74, 0x61, 0x74, 0x65, 0x67, 0x61, 0x74, 0x65, 0x62,
 	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
@@ -519,28 +519,28 @@ func file_schema_proto_rawDescGZIP() []byte {
 
 var file_schema_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_schema_proto_goTypes = []interface{}{
-	(*ObjectRef)(nil),      // 0: eventgate.ObjectRef
-	(*Object)(nil),         // 1: eventgate.Object
-	(*SearchOpts)(nil),     // 2: eventgate.SearchOpts
-	(*StreamOpts)(nil),     // 3: eventgate.StreamOpts
-	(*Event)(nil),          // 4: eventgate.Event
-	(*Events)(nil),         // 5: eventgate.Events
+	(*ObjectRef)(nil),      // 0: stategate.ObjectRef
+	(*Object)(nil),         // 1: stategate.Object
+	(*SearchOpts)(nil),     // 2: stategate.SearchOpts
+	(*StreamOpts)(nil),     // 3: stategate.StreamOpts
+	(*Event)(nil),          // 4: stategate.Event
+	(*Events)(nil),         // 5: stategate.Events
 	(*_struct.Struct)(nil), // 6: google.protobuf.Struct
 	(*empty.Empty)(nil),    // 7: google.protobuf.Empty
 }
 var file_schema_proto_depIdxs = []int32{
-	6, // 0: eventgate.Object.values:type_name -> google.protobuf.Struct
-	1, // 1: eventgate.Event.object:type_name -> eventgate.Object
-	6, // 2: eventgate.Event.claims:type_name -> google.protobuf.Struct
-	4, // 3: eventgate.Events.events:type_name -> eventgate.Event
-	1, // 4: eventgate.EventGateService.SetObject:input_type -> eventgate.Object
-	0, // 5: eventgate.EventGateService.GetObject:input_type -> eventgate.ObjectRef
-	3, // 6: eventgate.EventGateService.StreamEvents:input_type -> eventgate.StreamOpts
-	2, // 7: eventgate.EventGateService.SearchEvents:input_type -> eventgate.SearchOpts
-	7, // 8: eventgate.EventGateService.SetObject:output_type -> google.protobuf.Empty
-	1, // 9: eventgate.EventGateService.GetObject:output_type -> eventgate.Object
-	4, // 10: eventgate.EventGateService.StreamEvents:output_type -> eventgate.Event
-	5, // 11: eventgate.EventGateService.SearchEvents:output_type -> eventgate.Events
+	6, // 0: stategate.Object.values:type_name -> google.protobuf.Struct
+	1, // 1: stategate.Event.object:type_name -> stategate.Object
+	6, // 2: stategate.Event.claims:type_name -> google.protobuf.Struct
+	4, // 3: stategate.Events.events:type_name -> stategate.Event
+	1, // 4: stategate.StateGateService.SetObject:input_type -> stategate.Object
+	0, // 5: stategate.StateGateService.GetObject:input_type -> stategate.ObjectRef
+	3, // 6: stategate.StateGateService.StreamEvents:input_type -> stategate.StreamOpts
+	2, // 7: stategate.StateGateService.SearchEvents:input_type -> stategate.SearchOpts
+	7, // 8: stategate.StateGateService.SetObject:output_type -> google.protobuf.Empty
+	1, // 9: stategate.StateGateService.GetObject:output_type -> stategate.Object
+	4, // 10: stategate.StateGateService.StreamEvents:output_type -> stategate.Event
+	5, // 11: stategate.StateGateService.SearchEvents:output_type -> stategate.Events
 	8, // [8:12] is the sub-list for method output_type
 	4, // [4:8] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
@@ -655,53 +655,53 @@ var _ grpc.ClientConnInterface
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// EventGateServiceClient is the client API for EventGateService service.
+// StateGateServiceClient is the client API for StateGateService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type EventGateServiceClient interface {
+type StateGateServiceClient interface {
 	// SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
 	SetObject(ctx context.Context, in *Object, opts ...grpc.CallOption) (*empty.Empty, error)
 	// GetObject gets an object's current state values
 	GetObject(ctx context.Context, in *ObjectRef, opts ...grpc.CallOption) (*Object, error)
 	// StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
 	// Event Consumers invoke this method.
-	StreamEvents(ctx context.Context, in *StreamOpts, opts ...grpc.CallOption) (EventGateService_StreamEventsClient, error)
+	StreamEvents(ctx context.Context, in *StreamOpts, opts ...grpc.CallOption) (StateGateService_StreamEventsClient, error)
 	// SearchEvents returns an array of immutable historical events for a given object.
 	SearchEvents(ctx context.Context, in *SearchOpts, opts ...grpc.CallOption) (*Events, error)
 }
 
-type eventGateServiceClient struct {
+type stateGateServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewEventGateServiceClient(cc grpc.ClientConnInterface) EventGateServiceClient {
-	return &eventGateServiceClient{cc}
+func NewStateGateServiceClient(cc grpc.ClientConnInterface) StateGateServiceClient {
+	return &stateGateServiceClient{cc}
 }
 
-func (c *eventGateServiceClient) SetObject(ctx context.Context, in *Object, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *stateGateServiceClient) SetObject(ctx context.Context, in *Object, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/eventgate.EventGateService/SetObject", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/stategate.StateGateService/SetObject", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventGateServiceClient) GetObject(ctx context.Context, in *ObjectRef, opts ...grpc.CallOption) (*Object, error) {
+func (c *stateGateServiceClient) GetObject(ctx context.Context, in *ObjectRef, opts ...grpc.CallOption) (*Object, error) {
 	out := new(Object)
-	err := c.cc.Invoke(ctx, "/eventgate.EventGateService/GetObject", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/stategate.StateGateService/GetObject", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventGateServiceClient) StreamEvents(ctx context.Context, in *StreamOpts, opts ...grpc.CallOption) (EventGateService_StreamEventsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_EventGateService_serviceDesc.Streams[0], "/eventgate.EventGateService/StreamEvents", opts...)
+func (c *stateGateServiceClient) StreamEvents(ctx context.Context, in *StreamOpts, opts ...grpc.CallOption) (StateGateService_StreamEventsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_StateGateService_serviceDesc.Streams[0], "/stategate.StateGateService/StreamEvents", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &eventGateServiceStreamEventsClient{stream}
+	x := &stateGateServiceStreamEventsClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -711,16 +711,16 @@ func (c *eventGateServiceClient) StreamEvents(ctx context.Context, in *StreamOpt
 	return x, nil
 }
 
-type EventGateService_StreamEventsClient interface {
+type StateGateService_StreamEventsClient interface {
 	Recv() (*Event, error)
 	grpc.ClientStream
 }
 
-type eventGateServiceStreamEventsClient struct {
+type stateGateServiceStreamEventsClient struct {
 	grpc.ClientStream
 }
 
-func (x *eventGateServiceStreamEventsClient) Recv() (*Event, error) {
+func (x *stateGateServiceStreamEventsClient) Recv() (*Event, error) {
 	m := new(Event)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -728,145 +728,145 @@ func (x *eventGateServiceStreamEventsClient) Recv() (*Event, error) {
 	return m, nil
 }
 
-func (c *eventGateServiceClient) SearchEvents(ctx context.Context, in *SearchOpts, opts ...grpc.CallOption) (*Events, error) {
+func (c *stateGateServiceClient) SearchEvents(ctx context.Context, in *SearchOpts, opts ...grpc.CallOption) (*Events, error) {
 	out := new(Events)
-	err := c.cc.Invoke(ctx, "/eventgate.EventGateService/SearchEvents", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/stategate.StateGateService/SearchEvents", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// EventGateServiceServer is the server API for EventGateService service.
-type EventGateServiceServer interface {
+// StateGateServiceServer is the server API for StateGateService service.
+type StateGateServiceServer interface {
 	// SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
 	SetObject(context.Context, *Object) (*empty.Empty, error)
 	// GetObject gets an object's current state values
 	GetObject(context.Context, *ObjectRef) (*Object, error)
 	// StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
 	// Event Consumers invoke this method.
-	StreamEvents(*StreamOpts, EventGateService_StreamEventsServer) error
+	StreamEvents(*StreamOpts, StateGateService_StreamEventsServer) error
 	// SearchEvents returns an array of immutable historical events for a given object.
 	SearchEvents(context.Context, *SearchOpts) (*Events, error)
 }
 
-// UnimplementedEventGateServiceServer can be embedded to have forward compatible implementations.
-type UnimplementedEventGateServiceServer struct {
+// UnimplementedStateGateServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedStateGateServiceServer struct {
 }
 
-func (*UnimplementedEventGateServiceServer) SetObject(context.Context, *Object) (*empty.Empty, error) {
+func (*UnimplementedStateGateServiceServer) SetObject(context.Context, *Object) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetObject not implemented")
 }
-func (*UnimplementedEventGateServiceServer) GetObject(context.Context, *ObjectRef) (*Object, error) {
+func (*UnimplementedStateGateServiceServer) GetObject(context.Context, *ObjectRef) (*Object, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetObject not implemented")
 }
-func (*UnimplementedEventGateServiceServer) StreamEvents(*StreamOpts, EventGateService_StreamEventsServer) error {
+func (*UnimplementedStateGateServiceServer) StreamEvents(*StreamOpts, StateGateService_StreamEventsServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamEvents not implemented")
 }
-func (*UnimplementedEventGateServiceServer) SearchEvents(context.Context, *SearchOpts) (*Events, error) {
+func (*UnimplementedStateGateServiceServer) SearchEvents(context.Context, *SearchOpts) (*Events, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchEvents not implemented")
 }
 
-func RegisterEventGateServiceServer(s *grpc.Server, srv EventGateServiceServer) {
-	s.RegisterService(&_EventGateService_serviceDesc, srv)
+func RegisterStateGateServiceServer(s *grpc.Server, srv StateGateServiceServer) {
+	s.RegisterService(&_StateGateService_serviceDesc, srv)
 }
 
-func _EventGateService_SetObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StateGateService_SetObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Object)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventGateServiceServer).SetObject(ctx, in)
+		return srv.(StateGateServiceServer).SetObject(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/eventgate.EventGateService/SetObject",
+		FullMethod: "/stategate.StateGateService/SetObject",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventGateServiceServer).SetObject(ctx, req.(*Object))
+		return srv.(StateGateServiceServer).SetObject(ctx, req.(*Object))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EventGateService_GetObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StateGateService_GetObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ObjectRef)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventGateServiceServer).GetObject(ctx, in)
+		return srv.(StateGateServiceServer).GetObject(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/eventgate.EventGateService/GetObject",
+		FullMethod: "/stategate.StateGateService/GetObject",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventGateServiceServer).GetObject(ctx, req.(*ObjectRef))
+		return srv.(StateGateServiceServer).GetObject(ctx, req.(*ObjectRef))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EventGateService_StreamEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _StateGateService_StreamEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(StreamOpts)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(EventGateServiceServer).StreamEvents(m, &eventGateServiceStreamEventsServer{stream})
+	return srv.(StateGateServiceServer).StreamEvents(m, &stateGateServiceStreamEventsServer{stream})
 }
 
-type EventGateService_StreamEventsServer interface {
+type StateGateService_StreamEventsServer interface {
 	Send(*Event) error
 	grpc.ServerStream
 }
 
-type eventGateServiceStreamEventsServer struct {
+type stateGateServiceStreamEventsServer struct {
 	grpc.ServerStream
 }
 
-func (x *eventGateServiceStreamEventsServer) Send(m *Event) error {
+func (x *stateGateServiceStreamEventsServer) Send(m *Event) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _EventGateService_SearchEvents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StateGateService_SearchEvents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SearchOpts)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventGateServiceServer).SearchEvents(ctx, in)
+		return srv.(StateGateServiceServer).SearchEvents(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/eventgate.EventGateService/SearchEvents",
+		FullMethod: "/stategate.StateGateService/SearchEvents",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventGateServiceServer).SearchEvents(ctx, req.(*SearchOpts))
+		return srv.(StateGateServiceServer).SearchEvents(ctx, req.(*SearchOpts))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _EventGateService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "eventgate.EventGateService",
-	HandlerType: (*EventGateServiceServer)(nil),
+var _StateGateService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "stategate.StateGateService",
+	HandlerType: (*StateGateServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "SetObject",
-			Handler:    _EventGateService_SetObject_Handler,
+			Handler:    _StateGateService_SetObject_Handler,
 		},
 		{
 			MethodName: "GetObject",
-			Handler:    _EventGateService_GetObject_Handler,
+			Handler:    _StateGateService_GetObject_Handler,
 		},
 		{
 			MethodName: "SearchEvents",
-			Handler:    _EventGateService_SearchEvents_Handler,
+			Handler:    _StateGateService_SearchEvents_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "StreamEvents",
-			Handler:       _EventGateService_StreamEvents_Handler,
+			Handler:       _StateGateService_StreamEvents_Handler,
 			ServerStreams: true,
 		},
 	},

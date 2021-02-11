@@ -4,12 +4,12 @@ import (
 	"context"
 	"crypto/tls"
 	"fmt"
-	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
-	"github.com/autom8ter/eventgate/internal/auth"
-	"github.com/autom8ter/eventgate/internal/channel"
-	"github.com/autom8ter/eventgate/internal/logger"
-	"github.com/autom8ter/eventgate/internal/service"
-	"github.com/autom8ter/eventgate/internal/storage"
+	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	"github.com/autom8ter/stategate/internal/auth"
+	"github.com/autom8ter/stategate/internal/channel"
+	"github.com/autom8ter/stategate/internal/logger"
+	"github.com/autom8ter/stategate/internal/service"
+	"github.com/autom8ter/stategate/internal/storage"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	grpc_validator "github.com/grpc-ecosystem/go-grpc-middleware/validator"
@@ -116,7 +116,7 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	})
 
 	const (
-		regoQuery = "data.eventgate.authz.allow"
+		regoQuery = "data.stategate.authz.allow"
 	)
 
 	requestPolicy := rego.New(
@@ -175,7 +175,7 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 		return errors.Wrap(err, "failed to setup service")
 	}
 	gserver := grpc.NewServer(gopts...)
-	eventgate.RegisterEventGateServiceServer(gserver, svc)
+	stategate.RegisterStateGateServiceServer(gserver, svc)
 	reflection.Register(gserver)
 	grpc_prometheus.Register(gserver)
 
@@ -200,7 +200,7 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	mux := http.NewServeMux()
 
 	restMux := runtime.NewServeMux()
-	if err := eventgate.RegisterEventGateServiceHandler(ctx, restMux, conn); err != nil {
+	if err := stategate.RegisterStateGateServiceHandler(ctx, restMux, conn); err != nil {
 		return errors.Wrap(err, "failed to register REST endpoints")
 	}
 	mux.Handle("/", restMux)

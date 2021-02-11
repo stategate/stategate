@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package eventgate;
+package stategate;
 
-option go_package = "eventgate";
+option go_package = "stategate";
 
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
@@ -11,8 +11,8 @@ import "google/protobuf/any.proto";
 import "google/protobuf/empty.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
-// EventGateService is an identity-aware API gateway for event-sourcing based applications
-service EventGateService {
+// StateGateService is an identity-aware API gateway for event-sourcing based applications
+service StateGateService {
   // SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
   rpc SetObject(Object) returns(google.protobuf.Empty){
     option (google.api.http) = {

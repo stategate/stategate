@@ -4,7 +4,7 @@ import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty
 import * as schema_pb from './schema_pb';
 
 
-export class EventGateServiceClient {
+export class StateGateServiceClient {
   constructor (hostname: string,
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
@@ -37,7 +37,7 @@ export class EventGateServiceClient {
 
 }
 
-export class EventGateServicePromiseClient {
+export class StateGateServicePromiseClient {
   constructor (hostname: string,
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });

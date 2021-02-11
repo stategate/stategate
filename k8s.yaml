@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: eventgate-system
+  name: stategate-system
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: eventgate-configmap
+  name: stategate-configmap
 data:
-  eventgate.yaml: |
+  stategate.yaml: |
     # port to serve on. metrics server is started on this port+1 if enabled
     port: 8080
     # enable graphQL API
@@ -66,7 +66,7 @@ data:
     # authorization options
     authorization:
       requests: |
-        package eventgate.authz
+        package stategate.authz
 
         default allow = false
 
@@ -75,7 +75,7 @@ data:
           input.claims.name = "John Doe"
         }
       responses: |
-        package eventgate.authz
+        package stategate.authz
 
         default allow = true
 
@@ -83,10 +83,10 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  name: eventgate-service
-  namespace: eventgate-system
+  name: stategate-service
+  namespace: stategate-system
   labels:
-    app: eventgate
+    app: stategate
 spec:
   ports:
   - port: 8080
@@ -95,28 +95,28 @@ spec:
     name: metrics
   clusterIP: None
   selector:
-    app: eventgate
+    app: stategate
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eventgate
-  namespace: eventgate-system
+  name: stategate
+  namespace: stategate-system
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eventgate
+      app: stategate
   template:
     metadata:
       labels:
-        app: eventgate
+        app: stategate
     spec:
       containers:
-        - name: eventgate
+        - name: stategate
           env:
-            - name: EVENTGATE_CONFIG
-              value: /tmp/eventgate.yaml
+            - name: STATEGATE_CONFIG
+              value: /tmp/stategate.yaml
             - name: POD_NAME
               valueFrom:
                 fieldRef:
@@ -129,7 +129,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-          image: "colemanword/eventgate:v0.1.0"
+          image: "colemanword/stategate:v0.2.0"
           imagePullPolicy: Always
           ports:
           - containerPort: 8081
@@ -141,6 +141,6 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: eventgate-configmap
+            name: stategate-configmap
 
 ---

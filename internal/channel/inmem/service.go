@@ -2,10 +2,10 @@ package inmem
 
 import (
 	"context"
-	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
-	"github.com/autom8ter/eventgate/internal/constants"
-	"github.com/autom8ter/eventgate/internal/logger"
 	"github.com/autom8ter/machine/pubsub"
+	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	"github.com/autom8ter/stategate/internal/constants"
+	"github.com/autom8ter/stategate/internal/logger"
 )
 
 type Service struct {
@@ -20,17 +20,17 @@ func NewService(logger *logger.Logger) *Service {
 	}
 }
 
-func (s *Service) Publish(ctx context.Context, event *eventgate.Event) error {
+func (s *Service) Publish(ctx context.Context, event *stategate.Event) error {
 	return s.ps.Publish(event.GetObject().GetType(), event)
 }
 
-func (s *Service) GetChannel(ctx context.Context) (chan *eventgate.Event, error) {
-	events := make(chan *eventgate.Event)
+func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error) {
+	events := make(chan *stategate.Event)
 	go func() {
 		ctx, cancel := context.WithCancel(ctx)
 		defer cancel()
 		s.ps.Subscribe(ctx, constants.BackendChannel, "", func(msg interface{}) bool {
-			events <- msg.(*eventgate.Event)
+			events <- msg.(*stategate.Event)
 			return true
 		})
 	}()

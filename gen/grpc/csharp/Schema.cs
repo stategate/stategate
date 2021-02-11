@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Eventgate {
+namespace Stategate {
 
   /// <summary>Holder for reflection information generated from schema.proto</summary>
   public static partial class SchemaReflection {
@@ -24,7 +24,7 @@ namespace Eventgate {
     static SchemaReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgxzY2hlbWEucHJvdG8SCWV2ZW50Z2F0ZRocZ29vZ2xlL2FwaS9hbm5vdGF0",
+            "CgxzY2hlbWEucHJvdG8SCXN0YXRlZ2F0ZRocZ29vZ2xlL2FwaS9hbm5vdGF0",
             "aW9ucy5wcm90bxocZ29vZ2xlL3Byb3RvYnVmL3N0cnVjdC5wcm90bxofZ29v",
             "Z2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90bxoZZ29vZ2xlL3Byb3RvYnVm",
             "L2FueS5wcm90bxobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5LnByb3RvGjZnaXRo",
@@ -37,28 +37,28 @@ namespace Eventgate {
             "aW4YAyABKAMSCwoDbWF4GAQgASgDEhUKBWxpbWl0GAUgASgDQgbi3x8CEAAS",
             "DgoGb2Zmc2V0GAYgASgDIiIKClN0cmVhbU9wdHMSFAoEdHlwZRgBIAEoCUIG",
             "4t8fAlgBIo4BCgVFdmVudBITCgJpZBgBIAEoCUIH4t8fA5ABABIpCgZvYmpl",
-            "Y3QYAiABKAsyES5ldmVudGdhdGUuT2JqZWN0Qgbi3x8CIAESLwoGY2xhaW1z",
+            "Y3QYAiABKAsyES5zdGF0ZWdhdGUuT2JqZWN0Qgbi3x8CIAESLwoGY2xhaW1z",
             "GAMgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABEhQKBHRp",
             "bWUYBCABKANCBuLfHwIQACIqCgZFdmVudHMSIAoGZXZlbnRzGAEgAygLMhAu",
-            "ZXZlbnRnYXRlLkV2ZW50MvUCChBFdmVudEdhdGVTZXJ2aWNlElcKCVNldE9i",
-            "amVjdBIRLmV2ZW50Z2F0ZS5PYmplY3QaFi5nb29nbGUucHJvdG9idWYuRW1w",
+            "c3RhdGVnYXRlLkV2ZW50MvUCChBTdGF0ZUdhdGVTZXJ2aWNlElcKCVNldE9i",
+            "amVjdBIRLnN0YXRlZ2F0ZS5PYmplY3QaFi5nb29nbGUucHJvdG9idWYuRW1w",
             "dHkiH4LT5JMCGSIXL2FwaS97dHlwZX0vc3RhdGUve2tleX0SVQoJR2V0T2Jq",
-            "ZWN0EhQuZXZlbnRnYXRlLk9iamVjdFJlZhoRLmV2ZW50Z2F0ZS5PYmplY3Qi",
+            "ZWN0EhQuc3RhdGVnYXRlLk9iamVjdFJlZhoRLnN0YXRlZ2F0ZS5PYmplY3Qi",
             "H4LT5JMCGRIXL2FwaS97dHlwZX0vc3RhdGUve2tleX0SVQoMU3RyZWFtRXZl",
-            "bnRzEhUuZXZlbnRnYXRlLlN0cmVhbU9wdHMaEC5ldmVudGdhdGUuRXZlbnQi",
+            "bnRzEhUuc3RhdGVnYXRlLlN0cmVhbU9wdHMaEC5zdGF0ZWdhdGUuRXZlbnQi",
             "GoLT5JMCFBISL2FwaS97dHlwZX0vZXZlbnRzMAESWgoMU2VhcmNoRXZlbnRz",
-            "EhUuZXZlbnRnYXRlLlNlYXJjaE9wdHMaES5ldmVudGdhdGUuRXZlbnRzIiCC",
-            "0+STAhoSGC9hcGkve3R5cGV9L2V2ZW50cy97a2V5fUILWglldmVudGdhdGVi",
+            "EhUuc3RhdGVnYXRlLlNlYXJjaE9wdHMaES5zdGF0ZWdhdGUuRXZlbnRzIiCC",
+            "0+STAhoSGC9hcGkve3R5cGV9L2V2ZW50cy97a2V5fUILWglzdGF0ZWdhdGVi",
             "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.ObjectRef), global::Eventgate.ObjectRef.Parser, new[]{ "Type", "Key" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Object), global::Eventgate.Object.Parser, new[]{ "Type", "Key", "Values" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.SearchOpts), global::Eventgate.SearchOpts.Parser, new[]{ "Type", "Key", "Min", "Max", "Limit", "Offset" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.StreamOpts), global::Eventgate.StreamOpts.Parser, new[]{ "Type" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Event), global::Eventgate.Event.Parser, new[]{ "Id", "Object", "Claims", "Time" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Events), global::Eventgate.Events.Parser, new[]{ "Events_" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.ObjectRef), global::Stategate.ObjectRef.Parser, new[]{ "Type", "Key" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Object), global::Stategate.Object.Parser, new[]{ "Type", "Key", "Values" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchOpts), global::Stategate.SearchOpts.Parser, new[]{ "Type", "Key", "Min", "Max", "Limit", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamOpts), global::Stategate.StreamOpts.Parser, new[]{ "Type" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Event), global::Stategate.Event.Parser, new[]{ "Id", "Object", "Claims", "Time" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Events), global::Stategate.Events.Parser, new[]{ "Events_" }, null, null, null)
           }));
     }
     #endregion
@@ -76,7 +76,7 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -242,7 +242,7 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -445,7 +445,7 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -735,7 +735,7 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -868,7 +868,7 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -913,12 +913,12 @@ namespace Eventgate {
 
     /// <summary>Field number for the "object" field.</summary>
     public const int ObjectFieldNumber = 2;
-    private global::Eventgate.Object object_;
+    private global::Stategate.Object object_;
     /// <summary>
     /// the unmodified
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Eventgate.Object Object {
+    public global::Stategate.Object Object {
       get { return object_; }
       set {
         object_ = value;
@@ -1045,7 +1045,7 @@ namespace Eventgate {
       }
       if (other.object_ != null) {
         if (object_ == null) {
-          object_ = new global::Eventgate.Object();
+          object_ = new global::Stategate.Object();
         }
         Object.MergeFrom(other.Object);
       }
@@ -1075,7 +1075,7 @@ namespace Eventgate {
           }
           case 18: {
             if (object_ == null) {
-              object_ = new global::Eventgate.Object();
+              object_ = new global::Stategate.Object();
             }
             input.ReadMessage(object_);
             break;
@@ -1108,7 +1108,7 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1136,11 +1136,11 @@ namespace Eventgate {
 
     /// <summary>Field number for the "events" field.</summary>
     public const int Events_FieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Eventgate.Event> _repeated_events_codec
-        = pb::FieldCodec.ForMessage(10, global::Eventgate.Event.Parser);
-    private readonly pbc::RepeatedField<global::Eventgate.Event> events_ = new pbc::RepeatedField<global::Eventgate.Event>();
+    private static readonly pb::FieldCodec<global::Stategate.Event> _repeated_events_codec
+        = pb::FieldCodec.ForMessage(10, global::Stategate.Event.Parser);
+    private readonly pbc::RepeatedField<global::Stategate.Event> events_ = new pbc::RepeatedField<global::Stategate.Event>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Eventgate.Event> Events_ {
+    public pbc::RepeatedField<global::Stategate.Event> Events_ {
       get { return events_; }
     }
 

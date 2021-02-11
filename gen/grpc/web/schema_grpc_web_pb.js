@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for eventgate
+ * @fileoverview gRPC-Web generated client stub for stategate
  * @enhanceable
  * @public
  */
@@ -28,7 +28,7 @@ var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb
 
 var github_com_mwitkow_go$proto$validators_validator_pb = require('./github.com/mwitkow/go-proto-validators/validator_pb.js')
 const proto = {};
-proto.eventgate = require('./schema_pb.js');
+proto.stategate = require('./schema_pb.js');
 
 /**
  * @param {string} hostname
@@ -38,7 +38,7 @@ proto.eventgate = require('./schema_pb.js');
  * @struct
  * @final
  */
-proto.eventgate.EventGateServiceClient =
+proto.stategate.StateGateServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -64,7 +64,7 @@ proto.eventgate.EventGateServiceClient =
  * @struct
  * @final
  */
-proto.eventgate.EventGateServicePromiseClient =
+proto.stategate.StateGateServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -85,16 +85,16 @@ proto.eventgate.EventGateServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.eventgate.Object,
+ *   !proto.stategate.Object,
  *   !proto.google.protobuf.Empty>}
  */
-const methodDescriptor_EventGateService_SetObject = new grpc.web.MethodDescriptor(
-  '/eventgate.EventGateService/SetObject',
+const methodDescriptor_StateGateService_SetObject = new grpc.web.MethodDescriptor(
+  '/stategate.StateGateService/SetObject',
   grpc.web.MethodType.UNARY,
-  proto.eventgate.Object,
+  proto.stategate.Object,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.eventgate.Object} request
+   * @param {!proto.stategate.Object} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -107,13 +107,13 @@ const methodDescriptor_EventGateService_SetObject = new grpc.web.MethodDescripto
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.eventgate.Object,
+ *   !proto.stategate.Object,
  *   !proto.google.protobuf.Empty>}
  */
-const methodInfo_EventGateService_SetObject = new grpc.web.AbstractClientBase.MethodInfo(
+const methodInfo_StateGateService_SetObject = new grpc.web.AbstractClientBase.MethodInfo(
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.eventgate.Object} request
+   * @param {!proto.stategate.Object} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -124,7 +124,7 @@ const methodInfo_EventGateService_SetObject = new grpc.web.AbstractClientBase.Me
 
 
 /**
- * @param {!proto.eventgate.Object} request The
+ * @param {!proto.stategate.Object} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -133,269 +133,269 @@ const methodInfo_EventGateService_SetObject = new grpc.web.AbstractClientBase.Me
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.eventgate.EventGateServiceClient.prototype.setObject =
+proto.stategate.StateGateServiceClient.prototype.setObject =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/eventgate.EventGateService/SetObject',
+      '/stategate.StateGateService/SetObject',
       request,
       metadata || {},
-      methodDescriptor_EventGateService_SetObject,
+      methodDescriptor_StateGateService_SetObject,
       callback);
 };
 
 
 /**
- * @param {!proto.eventgate.Object} request The
+ * @param {!proto.stategate.Object} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.eventgate.EventGateServicePromiseClient.prototype.setObject =
+proto.stategate.StateGateServicePromiseClient.prototype.setObject =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/eventgate.EventGateService/SetObject',
+      '/stategate.StateGateService/SetObject',
       request,
       metadata || {},
-      methodDescriptor_EventGateService_SetObject);
+      methodDescriptor_StateGateService_SetObject);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.eventgate.ObjectRef,
- *   !proto.eventgate.Object>}
+ *   !proto.stategate.ObjectRef,
+ *   !proto.stategate.Object>}
  */
-const methodDescriptor_EventGateService_GetObject = new grpc.web.MethodDescriptor(
-  '/eventgate.EventGateService/GetObject',
+const methodDescriptor_StateGateService_GetObject = new grpc.web.MethodDescriptor(
+  '/stategate.StateGateService/GetObject',
   grpc.web.MethodType.UNARY,
-  proto.eventgate.ObjectRef,
-  proto.eventgate.Object,
+  proto.stategate.ObjectRef,
+  proto.stategate.Object,
   /**
-   * @param {!proto.eventgate.ObjectRef} request
+   * @param {!proto.stategate.ObjectRef} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.eventgate.Object.deserializeBinary
+  proto.stategate.Object.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.eventgate.ObjectRef,
- *   !proto.eventgate.Object>}
+ *   !proto.stategate.ObjectRef,
+ *   !proto.stategate.Object>}
  */
-const methodInfo_EventGateService_GetObject = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.eventgate.Object,
+const methodInfo_StateGateService_GetObject = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.stategate.Object,
   /**
-   * @param {!proto.eventgate.ObjectRef} request
+   * @param {!proto.stategate.ObjectRef} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.eventgate.Object.deserializeBinary
+  proto.stategate.Object.deserializeBinary
 );
 
 
 /**
- * @param {!proto.eventgate.ObjectRef} request The
+ * @param {!proto.stategate.ObjectRef} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.eventgate.Object)}
+ * @param {function(?grpc.web.Error, ?proto.stategate.Object)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.eventgate.Object>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.stategate.Object>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.eventgate.EventGateServiceClient.prototype.getObject =
+proto.stategate.StateGateServiceClient.prototype.getObject =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/eventgate.EventGateService/GetObject',
+      '/stategate.StateGateService/GetObject',
       request,
       metadata || {},
-      methodDescriptor_EventGateService_GetObject,
+      methodDescriptor_StateGateService_GetObject,
       callback);
 };
 
 
 /**
- * @param {!proto.eventgate.ObjectRef} request The
+ * @param {!proto.stategate.ObjectRef} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.eventgate.Object>}
+ * @return {!Promise<!proto.stategate.Object>}
  *     Promise that resolves to the response
  */
-proto.eventgate.EventGateServicePromiseClient.prototype.getObject =
+proto.stategate.StateGateServicePromiseClient.prototype.getObject =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/eventgate.EventGateService/GetObject',
+      '/stategate.StateGateService/GetObject',
       request,
       metadata || {},
-      methodDescriptor_EventGateService_GetObject);
+      methodDescriptor_StateGateService_GetObject);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.eventgate.StreamOpts,
- *   !proto.eventgate.Event>}
+ *   !proto.stategate.StreamOpts,
+ *   !proto.stategate.Event>}
  */
-const methodDescriptor_EventGateService_StreamEvents = new grpc.web.MethodDescriptor(
-  '/eventgate.EventGateService/StreamEvents',
+const methodDescriptor_StateGateService_StreamEvents = new grpc.web.MethodDescriptor(
+  '/stategate.StateGateService/StreamEvents',
   grpc.web.MethodType.SERVER_STREAMING,
-  proto.eventgate.StreamOpts,
-  proto.eventgate.Event,
+  proto.stategate.StreamOpts,
+  proto.stategate.Event,
   /**
-   * @param {!proto.eventgate.StreamOpts} request
+   * @param {!proto.stategate.StreamOpts} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.eventgate.Event.deserializeBinary
+  proto.stategate.Event.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.eventgate.StreamOpts,
- *   !proto.eventgate.Event>}
+ *   !proto.stategate.StreamOpts,
+ *   !proto.stategate.Event>}
  */
-const methodInfo_EventGateService_StreamEvents = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.eventgate.Event,
+const methodInfo_StateGateService_StreamEvents = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.stategate.Event,
   /**
-   * @param {!proto.eventgate.StreamOpts} request
+   * @param {!proto.stategate.StreamOpts} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.eventgate.Event.deserializeBinary
+  proto.stategate.Event.deserializeBinary
 );
 
 
 /**
- * @param {!proto.eventgate.StreamOpts} request The request proto
+ * @param {!proto.stategate.StreamOpts} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.eventgate.Event>}
+ * @return {!grpc.web.ClientReadableStream<!proto.stategate.Event>}
  *     The XHR Node Readable Stream
  */
-proto.eventgate.EventGateServiceClient.prototype.streamEvents =
+proto.stategate.StateGateServiceClient.prototype.streamEvents =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/eventgate.EventGateService/StreamEvents',
+      '/stategate.StateGateService/StreamEvents',
       request,
       metadata || {},
-      methodDescriptor_EventGateService_StreamEvents);
+      methodDescriptor_StateGateService_StreamEvents);
 };
 
 
 /**
- * @param {!proto.eventgate.StreamOpts} request The request proto
+ * @param {!proto.stategate.StreamOpts} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.eventgate.Event>}
+ * @return {!grpc.web.ClientReadableStream<!proto.stategate.Event>}
  *     The XHR Node Readable Stream
  */
-proto.eventgate.EventGateServicePromiseClient.prototype.streamEvents =
+proto.stategate.StateGateServicePromiseClient.prototype.streamEvents =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/eventgate.EventGateService/StreamEvents',
+      '/stategate.StateGateService/StreamEvents',
       request,
       metadata || {},
-      methodDescriptor_EventGateService_StreamEvents);
+      methodDescriptor_StateGateService_StreamEvents);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.eventgate.SearchOpts,
- *   !proto.eventgate.Events>}
+ *   !proto.stategate.SearchOpts,
+ *   !proto.stategate.Events>}
  */
-const methodDescriptor_EventGateService_SearchEvents = new grpc.web.MethodDescriptor(
-  '/eventgate.EventGateService/SearchEvents',
+const methodDescriptor_StateGateService_SearchEvents = new grpc.web.MethodDescriptor(
+  '/stategate.StateGateService/SearchEvents',
   grpc.web.MethodType.UNARY,
-  proto.eventgate.SearchOpts,
-  proto.eventgate.Events,
+  proto.stategate.SearchOpts,
+  proto.stategate.Events,
   /**
-   * @param {!proto.eventgate.SearchOpts} request
+   * @param {!proto.stategate.SearchOpts} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.eventgate.Events.deserializeBinary
+  proto.stategate.Events.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.eventgate.SearchOpts,
- *   !proto.eventgate.Events>}
+ *   !proto.stategate.SearchOpts,
+ *   !proto.stategate.Events>}
  */
-const methodInfo_EventGateService_SearchEvents = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.eventgate.Events,
+const methodInfo_StateGateService_SearchEvents = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.stategate.Events,
   /**
-   * @param {!proto.eventgate.SearchOpts} request
+   * @param {!proto.stategate.SearchOpts} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.eventgate.Events.deserializeBinary
+  proto.stategate.Events.deserializeBinary
 );
 
 
 /**
- * @param {!proto.eventgate.SearchOpts} request The
+ * @param {!proto.stategate.SearchOpts} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.eventgate.Events)}
+ * @param {function(?grpc.web.Error, ?proto.stategate.Events)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.eventgate.Events>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.stategate.Events>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.eventgate.EventGateServiceClient.prototype.searchEvents =
+proto.stategate.StateGateServiceClient.prototype.searchEvents =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/eventgate.EventGateService/SearchEvents',
+      '/stategate.StateGateService/SearchEvents',
       request,
       metadata || {},
-      methodDescriptor_EventGateService_SearchEvents,
+      methodDescriptor_StateGateService_SearchEvents,
       callback);
 };
 
 
 /**
- * @param {!proto.eventgate.SearchOpts} request The
+ * @param {!proto.stategate.SearchOpts} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.eventgate.Events>}
+ * @return {!Promise<!proto.stategate.Events>}
  *     Promise that resolves to the response
  */
-proto.eventgate.EventGateServicePromiseClient.prototype.searchEvents =
+proto.stategate.StateGateServicePromiseClient.prototype.searchEvents =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/eventgate.EventGateService/SearchEvents',
+      '/stategate.StateGateService/SearchEvents',
       request,
       metadata || {},
-      methodDescriptor_EventGateService_SearchEvents);
+      methodDescriptor_StateGateService_SearchEvents);
 };
 
 
-module.exports = proto.eventgate;
+module.exports = proto.stategate;
 

@@ -1,3 +1,3 @@
 package constants
 
-const BackendChannel = "eventgate"
+const BackendChannel = "stategate"

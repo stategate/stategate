@@ -5,7 +5,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - default:/tmp/eventgate/mongo
+      - default:/tmp/stategate/mongo
     networks:
       default:
         aliases:

@@ -1,4 +1,4 @@
-module github.com/autom8ter/eventgate
+module github.com/autom8ter/stategate
 
 go 1.15
 
