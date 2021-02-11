@@ -11,6 +11,7 @@ import (
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/structpb"
 	"testing"
+	"time"
 )
 
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
@@ -218,15 +219,15 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 			events, err := client.SearchEvents(ctx, &stategate.SearchOpts{
 				Type:  typ,
 				Key:   key,
-				Min:   0,
+				Min:   time.Now().Truncate(1 * time.Minute).UnixNano(),
 				Max:   0,
 				Limit: 3,
 			})
 			if err != nil {
 				t.Fatal(err)
 			}
-			if len(events.Events) == 0 {
-				t.Fatal("failed to get event history")
+			if len(events.Events) != 3 {
+				t.Fatalf("expected 3 events got: %v", len(events.Events))
 			}
 			t.Log(protojson.Format(events))
 		},
