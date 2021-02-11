@@ -32,30 +32,38 @@ namespace Stategate {
             "cHJvdG8iNgoJT2JqZWN0UmVmEhQKBHR5cGUYASABKAlCBuLfHwJYARITCgNr",
             "ZXkYAiABKAlCBuLfHwJYASJkCgZPYmplY3QSFAoEdHlwZRgBIAEoCUIG4t8f",
             "AlgBEhMKA2tleRgCIAEoCUIG4t8fAlgBEi8KBnZhbHVlcxgDIAEoCzIXLmdv",
-            "b2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgASJ4CgpTZWFyY2hPcHRzEhQK",
-            "BHR5cGUYASABKAlCBuLfHwJYARITCgNrZXkYAiABKAlCBuLfHwJYARILCgNt",
-            "aW4YAyABKAMSCwoDbWF4GAQgASgDEhUKBWxpbWl0GAUgASgDQgbi3x8CEAAS",
-            "DgoGb2Zmc2V0GAYgASgDIiIKClN0cmVhbU9wdHMSFAoEdHlwZRgBIAEoCUIG",
-            "4t8fAlgBIo4BCgVFdmVudBITCgJpZBgBIAEoCUIH4t8fA5ABABIpCgZvYmpl",
-            "Y3QYAiABKAsyES5zdGF0ZWdhdGUuT2JqZWN0Qgbi3x8CIAESLwoGY2xhaW1z",
-            "GAMgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABEhQKBHRp",
-            "bWUYBCABKANCBuLfHwIQACIqCgZFdmVudHMSIAoGZXZlbnRzGAEgAygLMhAu",
-            "c3RhdGVnYXRlLkV2ZW50MvUCChBTdGF0ZUdhdGVTZXJ2aWNlElcKCVNldE9i",
-            "amVjdBIRLnN0YXRlZ2F0ZS5PYmplY3QaFi5nb29nbGUucHJvdG9idWYuRW1w",
-            "dHkiH4LT5JMCGSIXL2FwaS97dHlwZX0vc3RhdGUve2tleX0SVQoJR2V0T2Jq",
-            "ZWN0EhQuc3RhdGVnYXRlLk9iamVjdFJlZhoRLnN0YXRlZ2F0ZS5PYmplY3Qi",
-            "H4LT5JMCGRIXL2FwaS97dHlwZX0vc3RhdGUve2tleX0SVQoMU3RyZWFtRXZl",
-            "bnRzEhUuc3RhdGVnYXRlLlN0cmVhbU9wdHMaEC5zdGF0ZWdhdGUuRXZlbnQi",
-            "GoLT5JMCFBISL2FwaS97dHlwZX0vZXZlbnRzMAESWgoMU2VhcmNoRXZlbnRz",
-            "EhUuc3RhdGVnYXRlLlNlYXJjaE9wdHMaES5zdGF0ZWdhdGUuRXZlbnRzIiCC",
-            "0+STAhoSGC9hcGkve3R5cGV9L2V2ZW50cy97a2V5fUILWglzdGF0ZWdhdGVi",
-            "BnByb3RvMw=="));
+            "b2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgASItCgdPYmplY3RzEiIKB29i",
+            "amVjdHMYASADKAsyES5zdGF0ZWdhdGUuT2JqZWN0IoYBChBTZWFyY2hPYmpl",
+            "Y3RPcHRzEhQKBHR5cGUYASABKAlCBuLfHwJYARI1CgxtYXRjaF92YWx1ZXMY",
+            "AiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAESFQoFbGlt",
+            "aXQYBSABKANCBuLfHwIQABIOCgZvZmZzZXQYBiABKAMifQoPU2VhcmNoRXZl",
+            "bnRPcHRzEhQKBHR5cGUYASABKAlCBuLfHwJYARITCgNrZXkYAiABKAlCBuLf",
+            "HwJYARILCgNtaW4YAyABKAMSCwoDbWF4GAQgASgDEhUKBWxpbWl0GAUgASgD",
+            "Qgbi3x8CEAASDgoGb2Zmc2V0GAYgASgDIiIKClN0cmVhbU9wdHMSFAoEdHlw",
+            "ZRgBIAEoCUIG4t8fAlgBIo4BCgVFdmVudBITCgJpZBgBIAEoCUIH4t8fA5AB",
+            "ABIpCgZvYmplY3QYAiABKAsyES5zdGF0ZWdhdGUuT2JqZWN0Qgbi3x8CIAES",
+            "LwoGY2xhaW1zGAMgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8f",
+            "AiABEhQKBHRpbWUYBCABKANCBuLfHwIQACIqCgZFdmVudHMSIAoGZXZlbnRz",
+            "GAEgAygLMhAuc3RhdGVnYXRlLkV2ZW50MtcDChBTdGF0ZUdhdGVTZXJ2aWNl",
+            "ElcKCVNldE9iamVjdBIRLnN0YXRlZ2F0ZS5PYmplY3QaFi5nb29nbGUucHJv",
+            "dG9idWYuRW1wdHkiH4LT5JMCGSIXL2FwaS97dHlwZX0vc3RhdGUve2tleX0S",
+            "VQoJR2V0T2JqZWN0EhQuc3RhdGVnYXRlLk9iamVjdFJlZhoRLnN0YXRlZ2F0",
+            "ZS5PYmplY3QiH4LT5JMCGRIXL2FwaS97dHlwZX0vc3RhdGUve2tleX0SWwoN",
+            "U2VhcmNoT2JqZWN0cxIbLnN0YXRlZ2F0ZS5TZWFyY2hPYmplY3RPcHRzGhIu",
+            "c3RhdGVnYXRlLk9iamVjdHMiGYLT5JMCExIRL2FwaS97dHlwZX0vc3RhdGUS",
+            "VQoMU3RyZWFtRXZlbnRzEhUuc3RhdGVnYXRlLlN0cmVhbU9wdHMaEC5zdGF0",
+            "ZWdhdGUuRXZlbnQiGoLT5JMCFBISL2FwaS97dHlwZX0vZXZlbnRzMAESXwoM",
+            "U2VhcmNoRXZlbnRzEhouc3RhdGVnYXRlLlNlYXJjaEV2ZW50T3B0cxoRLnN0",
+            "YXRlZ2F0ZS5FdmVudHMiIILT5JMCGhIYL2FwaS97dHlwZX0vZXZlbnRzL3tr",
+            "ZXl9QgtaCXN0YXRlZ2F0ZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.ObjectRef), global::Stategate.ObjectRef.Parser, new[]{ "Type", "Key" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Object), global::Stategate.Object.Parser, new[]{ "Type", "Key", "Values" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchOpts), global::Stategate.SearchOpts.Parser, new[]{ "Type", "Key", "Min", "Max", "Limit", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Objects), global::Stategate.Objects.Parser, new[]{ "Objects_" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchObjectOpts), global::Stategate.SearchObjectOpts.Parser, new[]{ "Type", "MatchValues", "Limit", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEventOpts), global::Stategate.SearchEventOpts.Parser, new[]{ "Type", "Key", "Min", "Max", "Limit", "Offset" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamOpts), global::Stategate.StreamOpts.Parser, new[]{ "Type" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Event), global::Stategate.Event.Parser, new[]{ "Id", "Object", "Claims", "Time" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Events), global::Stategate.Events.Parser, new[]{ "Events_" }, null, null, null)
@@ -435,13 +443,13 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// SearchOpts are options when querying historical events for a given object
+  /// Objects is an array of Object
   /// </summary>
-  public sealed partial class SearchOpts : pb::IMessage<SearchOpts> {
-    private static readonly pb::MessageParser<SearchOpts> _parser = new pb::MessageParser<SearchOpts>(() => new SearchOpts());
+  public sealed partial class Objects : pb::IMessage<Objects> {
+    private static readonly pb::MessageParser<Objects> _parser = new pb::MessageParser<Objects>(() => new Objects());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<SearchOpts> Parser { get { return _parser; } }
+    public static pb::MessageParser<Objects> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -454,14 +462,372 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SearchOpts() {
+    public Objects() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SearchOpts(SearchOpts other) : this() {
+    public Objects(Objects other) : this() {
+      objects_ = other.objects_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Objects Clone() {
+      return new Objects(this);
+    }
+
+    /// <summary>Field number for the "objects" field.</summary>
+    public const int Objects_FieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Stategate.Object> _repeated_objects_codec
+        = pb::FieldCodec.ForMessage(10, global::Stategate.Object.Parser);
+    private readonly pbc::RepeatedField<global::Stategate.Object> objects_ = new pbc::RepeatedField<global::Stategate.Object>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Stategate.Object> Objects_ {
+      get { return objects_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Objects);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Objects other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!objects_.Equals(other.objects_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= objects_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      objects_.WriteTo(output, _repeated_objects_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += objects_.CalculateSize(_repeated_objects_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Objects other) {
+      if (other == null) {
+        return;
+      }
+      objects_.Add(other.objects_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            objects_.AddEntriesFrom(input, _repeated_objects_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  /// SearchObjectOpts are options when querying historical events for a given object
+  /// </summary>
+  public sealed partial class SearchObjectOpts : pb::IMessage<SearchObjectOpts> {
+    private static readonly pb::MessageParser<SearchObjectOpts> _parser = new pb::MessageParser<SearchObjectOpts>(() => new SearchObjectOpts());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SearchObjectOpts> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SearchObjectOpts() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SearchObjectOpts(SearchObjectOpts other) : this() {
+      type_ = other.type_;
+      matchValues_ = other.matchValues_ != null ? other.matchValues_.Clone() : null;
+      limit_ = other.limit_;
+      offset_ = other.offset_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SearchObjectOpts Clone() {
+      return new SearchObjectOpts(this);
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 1;
+    private string type_ = "";
+    /// <summary>
+    /// Object type (ex: user)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Type {
+      get { return type_; }
+      set {
+        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "match_values" field.</summary>
+    public const int MatchValuesFieldNumber = 2;
+    private global::Google.Protobuf.WellKnownTypes.Struct matchValues_;
+    /// <summary>
+    /// match_values filters records that have matching values
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Struct MatchValues {
+      get { return matchValues_; }
+      set {
+        matchValues_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "limit" field.</summary>
+    public const int LimitFieldNumber = 5;
+    private long limit_;
+    /// <summary>
+    /// limit returned events
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long Limit {
+      get { return limit_; }
+      set {
+        limit_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "offset" field.</summary>
+    public const int OffsetFieldNumber = 6;
+    private long offset_;
+    /// <summary>
+    /// offset returned events(pagination)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long Offset {
+      get { return offset_; }
+      set {
+        offset_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SearchObjectOpts);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SearchObjectOpts other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Type != other.Type) return false;
+      if (!object.Equals(MatchValues, other.MatchValues)) return false;
+      if (Limit != other.Limit) return false;
+      if (Offset != other.Offset) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (matchValues_ != null) hash ^= MatchValues.GetHashCode();
+      if (Limit != 0L) hash ^= Limit.GetHashCode();
+      if (Offset != 0L) hash ^= Offset.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Type.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Type);
+      }
+      if (matchValues_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(MatchValues);
+      }
+      if (Limit != 0L) {
+        output.WriteRawTag(40);
+        output.WriteInt64(Limit);
+      }
+      if (Offset != 0L) {
+        output.WriteRawTag(48);
+        output.WriteInt64(Offset);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Type.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      }
+      if (matchValues_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(MatchValues);
+      }
+      if (Limit != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Limit);
+      }
+      if (Offset != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Offset);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SearchObjectOpts other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Type.Length != 0) {
+        Type = other.Type;
+      }
+      if (other.matchValues_ != null) {
+        if (matchValues_ == null) {
+          matchValues_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+        }
+        MatchValues.MergeFrom(other.MatchValues);
+      }
+      if (other.Limit != 0L) {
+        Limit = other.Limit;
+      }
+      if (other.Offset != 0L) {
+        Offset = other.Offset;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Type = input.ReadString();
+            break;
+          }
+          case 18: {
+            if (matchValues_ == null) {
+              matchValues_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+            }
+            input.ReadMessage(matchValues_);
+            break;
+          }
+          case 40: {
+            Limit = input.ReadInt64();
+            break;
+          }
+          case 48: {
+            Offset = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  /// SearchEventOpts are options when querying historical events for a given object
+  /// </summary>
+  public sealed partial class SearchEventOpts : pb::IMessage<SearchEventOpts> {
+    private static readonly pb::MessageParser<SearchEventOpts> _parser = new pb::MessageParser<SearchEventOpts>(() => new SearchEventOpts());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SearchEventOpts> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SearchEventOpts() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SearchEventOpts(SearchEventOpts other) : this() {
       type_ = other.type_;
       key_ = other.key_;
       min_ = other.min_;
@@ -472,8 +838,8 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SearchOpts Clone() {
-      return new SearchOpts(this);
+    public SearchEventOpts Clone() {
+      return new SearchEventOpts(this);
     }
 
     /// <summary>Field number for the "type" field.</summary>
@@ -562,11 +928,11 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as SearchOpts);
+      return Equals(other as SearchEventOpts);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(SearchOpts other) {
+    public bool Equals(SearchEventOpts other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -661,7 +1027,7 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(SearchOpts other) {
+    public void MergeFrom(SearchEventOpts other) {
       if (other == null) {
         return;
       }
@@ -735,7 +1101,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -868,7 +1234,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1108,7 +1474,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

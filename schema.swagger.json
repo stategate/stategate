@@ -53,7 +53,7 @@
     },
     "/api/{type}/events/{key}": {
       "get": {
-        "summary": "SearchEvents returns an array of immutable historical events for a given object.",
+        "summary": "SearchEvents queries events related to a specific object.",
         "operationId": "StateGateService_SearchEvents",
         "responses": {
           "200": {
@@ -99,6 +99,54 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "limit",
+            "description": "limit returned events.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "description": "offset returned events(pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "StateGateService"
+        ]
+      }
+    },
+    "/api/{type}/state": {
+      "get": {
+        "summary": "SearchObjects queries objects of a specific type",
+        "operationId": "StateGateService_SearchObjects",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/stategateObjects"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type",
+            "description": "Object type (ex: user)",
+            "in": "path",
+            "required": true,
+            "type": "string"
           },
           {
             "name": "limit",
@@ -293,6 +341,18 @@
         }
       },
       "title": "Object hold's the current state of an object"
+    },
+    "stategateObjects": {
+      "type": "object",
+      "properties": {
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stategateObject"
+          }
+        }
+      },
+      "title": "Objects is an array of Object"
     }
   }
 }

@@ -10,7 +10,7 @@ A pluggable API and "Application State Gateway" that enforces the [Event Sourcin
 - [API Documentation](https://autom8ter.github.io/stategate/)
                                         
 ## Features
-- [x] [4 simple API Methods](https://github.com/autom8ter/stategate/blob/master/schema.proto#L15) for interacting with application state: `SetObject, GetObject, StreamEvents, SearchEvents`
+- [x] [5 simple API Methods](https://github.com/autom8ter/stategate/blob/master/schema.proto#L15) for interacting with application state: `SetObject, GetObject, SearchObjects, StreamEvents, SearchEvents`
 - [x] Capture all changes to an application's state as a sequence of events.
 - [x] Native [gRPC](https://grpc.io/) support
     - [protobuf schema](schema.proto)

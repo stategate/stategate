@@ -25,6 +25,12 @@ service StateGateService {
       get: "/api/{type}/state/{key}"
     };
   }
+  // SearchObjects queries objects of a specific type
+  rpc SearchObjects(SearchObjectOpts) returns(Objects){
+    option (google.api.http) = {
+      get: "/api/{type}/state"
+    };
+  }
   // StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
   // Event Consumers invoke this method.
   rpc StreamEvents(StreamOpts) returns(stream Event){
@@ -32,8 +38,8 @@ service StateGateService {
       get: "/api/{type}/events"
     };
   }
-  // SearchEvents returns an array of immutable historical events for a given object.
-  rpc SearchEvents(SearchOpts) returns(Events){
+  // SearchEvents queries events related to a specific object.
+  rpc SearchEvents(SearchEventOpts) returns(Events){
     option (google.api.http) = {
       get: "/api/{type}/events/{key}"
     };
@@ -58,8 +64,25 @@ message Object {
   google.protobuf.Struct values = 3[(validator.field) = {msg_exists : true}];
 }
 
-// SearchOpts are options when querying historical events for a given object
-message SearchOpts {
+// Objects is an array of Object
+message Objects {
+  repeated Object objects =1;
+}
+
+// SearchObjectOpts are options when querying historical events for a given object
+message SearchObjectOpts {
+  // Object type (ex: user)
+  string type =1[(validator.field) = {string_not_empty : true}];
+  // match_values filters records that have matching values
+  google.protobuf.Struct match_values = 2[(validator.field) = {msg_exists : true}];
+  // limit returned events
+  int64 limit =5[(validator.field) = {int_gt : 0}];
+  // offset returned events(pagination)
+  int64 offset =6;
+}
+
+// SearchEventOpts are options when querying historical events for a given object
+message SearchEventOpts {
   // Object type (ex: user)
   string type =1[(validator.field) = {string_not_empty : true}];
   // Object key (unique within type)

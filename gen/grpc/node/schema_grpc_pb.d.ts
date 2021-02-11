@@ -10,8 +10,9 @@ import * as grpc from "grpc";
 interface IStateGateServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   setObject: grpc.MethodDefinition<schema_pb.Object, google_protobuf_empty_pb.Empty>;
   getObject: grpc.MethodDefinition<schema_pb.ObjectRef, schema_pb.Object>;
+  searchObjects: grpc.MethodDefinition<schema_pb.SearchObjectOpts, schema_pb.Objects>;
   streamEvents: grpc.MethodDefinition<schema_pb.StreamOpts, schema_pb.Event>;
-  searchEvents: grpc.MethodDefinition<schema_pb.SearchOpts, schema_pb.Events>;
+  searchEvents: grpc.MethodDefinition<schema_pb.SearchEventOpts, schema_pb.Events>;
 }
 
 export const StateGateServiceService: IStateGateServiceService;
@@ -24,9 +25,12 @@ export class StateGateServiceClient extends grpc.Client {
   getObject(argument: schema_pb.ObjectRef, callback: grpc.requestCallback<schema_pb.Object>): grpc.ClientUnaryCall;
   getObject(argument: schema_pb.ObjectRef, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Object>): grpc.ClientUnaryCall;
   getObject(argument: schema_pb.ObjectRef, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Object>): grpc.ClientUnaryCall;
+  searchObjects(argument: schema_pb.SearchObjectOpts, callback: grpc.requestCallback<schema_pb.Objects>): grpc.ClientUnaryCall;
+  searchObjects(argument: schema_pb.SearchObjectOpts, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Objects>): grpc.ClientUnaryCall;
+  searchObjects(argument: schema_pb.SearchObjectOpts, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Objects>): grpc.ClientUnaryCall;
   streamEvents(argument: schema_pb.StreamOpts, metadataOrOptions?: grpc.Metadata | grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.Event>;
   streamEvents(argument: schema_pb.StreamOpts, metadata?: grpc.Metadata | null, options?: grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.Event>;
-  searchEvents(argument: schema_pb.SearchOpts, callback: grpc.requestCallback<schema_pb.Events>): grpc.ClientUnaryCall;
-  searchEvents(argument: schema_pb.SearchOpts, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Events>): grpc.ClientUnaryCall;
-  searchEvents(argument: schema_pb.SearchOpts, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Events>): grpc.ClientUnaryCall;
+  searchEvents(argument: schema_pb.SearchEventOpts, callback: grpc.requestCallback<schema_pb.Events>): grpc.ClientUnaryCall;
+  searchEvents(argument: schema_pb.SearchEventOpts, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Events>): grpc.ClientUnaryCall;
+  searchEvents(argument: schema_pb.SearchEventOpts, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Events>): grpc.ClientUnaryCall;
 }

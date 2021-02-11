@@ -1802,8 +1802,1814 @@ public final class Schema {
 
   }
 
-  public interface SearchOptsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:stategate.SearchOpts)
+  public interface ObjectsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:stategate.Objects)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .stategate.Object objects = 1;</code>
+     */
+    java.util.List<stategate.Schema.Object> 
+        getObjectsList();
+    /**
+     * <code>repeated .stategate.Object objects = 1;</code>
+     */
+    stategate.Schema.Object getObjects(int index);
+    /**
+     * <code>repeated .stategate.Object objects = 1;</code>
+     */
+    int getObjectsCount();
+    /**
+     * <code>repeated .stategate.Object objects = 1;</code>
+     */
+    java.util.List<? extends stategate.Schema.ObjectOrBuilder> 
+        getObjectsOrBuilderList();
+    /**
+     * <code>repeated .stategate.Object objects = 1;</code>
+     */
+    stategate.Schema.ObjectOrBuilder getObjectsOrBuilder(
+        int index);
+  }
+  /**
+   * <pre>
+   * Objects is an array of Object
+   * </pre>
+   *
+   * Protobuf type {@code stategate.Objects}
+   */
+  public  static final class Objects extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:stategate.Objects)
+      ObjectsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Objects.newBuilder() to construct.
+    private Objects(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Objects() {
+      objects_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Objects(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                objects_ = new java.util.ArrayList<stategate.Schema.Object>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              objects_.add(
+                  input.readMessage(stategate.Schema.Object.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          objects_ = java.util.Collections.unmodifiableList(objects_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return stategate.Schema.internal_static_stategate_Objects_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return stategate.Schema.internal_static_stategate_Objects_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              stategate.Schema.Objects.class, stategate.Schema.Objects.Builder.class);
+    }
+
+    public static final int OBJECTS_FIELD_NUMBER = 1;
+    private java.util.List<stategate.Schema.Object> objects_;
+    /**
+     * <code>repeated .stategate.Object objects = 1;</code>
+     */
+    public java.util.List<stategate.Schema.Object> getObjectsList() {
+      return objects_;
+    }
+    /**
+     * <code>repeated .stategate.Object objects = 1;</code>
+     */
+    public java.util.List<? extends stategate.Schema.ObjectOrBuilder> 
+        getObjectsOrBuilderList() {
+      return objects_;
+    }
+    /**
+     * <code>repeated .stategate.Object objects = 1;</code>
+     */
+    public int getObjectsCount() {
+      return objects_.size();
+    }
+    /**
+     * <code>repeated .stategate.Object objects = 1;</code>
+     */
+    public stategate.Schema.Object getObjects(int index) {
+      return objects_.get(index);
+    }
+    /**
+     * <code>repeated .stategate.Object objects = 1;</code>
+     */
+    public stategate.Schema.ObjectOrBuilder getObjectsOrBuilder(
+        int index) {
+      return objects_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < objects_.size(); i++) {
+        output.writeMessage(1, objects_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < objects_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, objects_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof stategate.Schema.Objects)) {
+        return super.equals(obj);
+      }
+      stategate.Schema.Objects other = (stategate.Schema.Objects) obj;
+
+      boolean result = true;
+      result = result && getObjectsList()
+          .equals(other.getObjectsList());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getObjectsCount() > 0) {
+        hash = (37 * hash) + OBJECTS_FIELD_NUMBER;
+        hash = (53 * hash) + getObjectsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static stategate.Schema.Objects parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.Objects parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.Objects parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.Objects parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.Objects parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.Objects parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.Objects parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.Objects parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static stategate.Schema.Objects parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.Objects parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static stategate.Schema.Objects parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.Objects parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(stategate.Schema.Objects prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Objects is an array of Object
+     * </pre>
+     *
+     * Protobuf type {@code stategate.Objects}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:stategate.Objects)
+        stategate.Schema.ObjectsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return stategate.Schema.internal_static_stategate_Objects_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return stategate.Schema.internal_static_stategate_Objects_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                stategate.Schema.Objects.class, stategate.Schema.Objects.Builder.class);
+      }
+
+      // Construct using stategate.Schema.Objects.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getObjectsFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (objectsBuilder_ == null) {
+          objects_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          objectsBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return stategate.Schema.internal_static_stategate_Objects_descriptor;
+      }
+
+      @java.lang.Override
+      public stategate.Schema.Objects getDefaultInstanceForType() {
+        return stategate.Schema.Objects.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public stategate.Schema.Objects build() {
+        stategate.Schema.Objects result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public stategate.Schema.Objects buildPartial() {
+        stategate.Schema.Objects result = new stategate.Schema.Objects(this);
+        int from_bitField0_ = bitField0_;
+        if (objectsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            objects_ = java.util.Collections.unmodifiableList(objects_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.objects_ = objects_;
+        } else {
+          result.objects_ = objectsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof stategate.Schema.Objects) {
+          return mergeFrom((stategate.Schema.Objects)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(stategate.Schema.Objects other) {
+        if (other == stategate.Schema.Objects.getDefaultInstance()) return this;
+        if (objectsBuilder_ == null) {
+          if (!other.objects_.isEmpty()) {
+            if (objects_.isEmpty()) {
+              objects_ = other.objects_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureObjectsIsMutable();
+              objects_.addAll(other.objects_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.objects_.isEmpty()) {
+            if (objectsBuilder_.isEmpty()) {
+              objectsBuilder_.dispose();
+              objectsBuilder_ = null;
+              objects_ = other.objects_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              objectsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getObjectsFieldBuilder() : null;
+            } else {
+              objectsBuilder_.addAllMessages(other.objects_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        stategate.Schema.Objects parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (stategate.Schema.Objects) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<stategate.Schema.Object> objects_ =
+        java.util.Collections.emptyList();
+      private void ensureObjectsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          objects_ = new java.util.ArrayList<stategate.Schema.Object>(objects_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          stategate.Schema.Object, stategate.Schema.Object.Builder, stategate.Schema.ObjectOrBuilder> objectsBuilder_;
+
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public java.util.List<stategate.Schema.Object> getObjectsList() {
+        if (objectsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(objects_);
+        } else {
+          return objectsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public int getObjectsCount() {
+        if (objectsBuilder_ == null) {
+          return objects_.size();
+        } else {
+          return objectsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public stategate.Schema.Object getObjects(int index) {
+        if (objectsBuilder_ == null) {
+          return objects_.get(index);
+        } else {
+          return objectsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public Builder setObjects(
+          int index, stategate.Schema.Object value) {
+        if (objectsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureObjectsIsMutable();
+          objects_.set(index, value);
+          onChanged();
+        } else {
+          objectsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public Builder setObjects(
+          int index, stategate.Schema.Object.Builder builderForValue) {
+        if (objectsBuilder_ == null) {
+          ensureObjectsIsMutable();
+          objects_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          objectsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public Builder addObjects(stategate.Schema.Object value) {
+        if (objectsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureObjectsIsMutable();
+          objects_.add(value);
+          onChanged();
+        } else {
+          objectsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public Builder addObjects(
+          int index, stategate.Schema.Object value) {
+        if (objectsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureObjectsIsMutable();
+          objects_.add(index, value);
+          onChanged();
+        } else {
+          objectsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public Builder addObjects(
+          stategate.Schema.Object.Builder builderForValue) {
+        if (objectsBuilder_ == null) {
+          ensureObjectsIsMutable();
+          objects_.add(builderForValue.build());
+          onChanged();
+        } else {
+          objectsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public Builder addObjects(
+          int index, stategate.Schema.Object.Builder builderForValue) {
+        if (objectsBuilder_ == null) {
+          ensureObjectsIsMutable();
+          objects_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          objectsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public Builder addAllObjects(
+          java.lang.Iterable<? extends stategate.Schema.Object> values) {
+        if (objectsBuilder_ == null) {
+          ensureObjectsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, objects_);
+          onChanged();
+        } else {
+          objectsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public Builder clearObjects() {
+        if (objectsBuilder_ == null) {
+          objects_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          objectsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public Builder removeObjects(int index) {
+        if (objectsBuilder_ == null) {
+          ensureObjectsIsMutable();
+          objects_.remove(index);
+          onChanged();
+        } else {
+          objectsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public stategate.Schema.Object.Builder getObjectsBuilder(
+          int index) {
+        return getObjectsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public stategate.Schema.ObjectOrBuilder getObjectsOrBuilder(
+          int index) {
+        if (objectsBuilder_ == null) {
+          return objects_.get(index);  } else {
+          return objectsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public java.util.List<? extends stategate.Schema.ObjectOrBuilder> 
+           getObjectsOrBuilderList() {
+        if (objectsBuilder_ != null) {
+          return objectsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(objects_);
+        }
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public stategate.Schema.Object.Builder addObjectsBuilder() {
+        return getObjectsFieldBuilder().addBuilder(
+            stategate.Schema.Object.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public stategate.Schema.Object.Builder addObjectsBuilder(
+          int index) {
+        return getObjectsFieldBuilder().addBuilder(
+            index, stategate.Schema.Object.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .stategate.Object objects = 1;</code>
+       */
+      public java.util.List<stategate.Schema.Object.Builder> 
+           getObjectsBuilderList() {
+        return getObjectsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          stategate.Schema.Object, stategate.Schema.Object.Builder, stategate.Schema.ObjectOrBuilder> 
+          getObjectsFieldBuilder() {
+        if (objectsBuilder_ == null) {
+          objectsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              stategate.Schema.Object, stategate.Schema.Object.Builder, stategate.Schema.ObjectOrBuilder>(
+                  objects_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          objects_ = null;
+        }
+        return objectsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:stategate.Objects)
+    }
+
+    // @@protoc_insertion_point(class_scope:stategate.Objects)
+    private static final stategate.Schema.Objects DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new stategate.Schema.Objects();
+    }
+
+    public static stategate.Schema.Objects getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Objects>
+        PARSER = new com.google.protobuf.AbstractParser<Objects>() {
+      @java.lang.Override
+      public Objects parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Objects(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Objects> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Objects> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public stategate.Schema.Objects getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SearchObjectOptsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:stategate.SearchObjectOpts)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Object type (ex: user)
+     * </pre>
+     *
+     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getType();
+    /**
+     * <pre>
+     * Object type (ex: user)
+     * </pre>
+     *
+     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getTypeBytes();
+
+    /**
+     * <pre>
+     * match_values filters records that have matching values
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+     */
+    boolean hasMatchValues();
+    /**
+     * <pre>
+     * match_values filters records that have matching values
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.Struct getMatchValues();
+    /**
+     * <pre>
+     * match_values filters records that have matching values
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.StructOrBuilder getMatchValuesOrBuilder();
+
+    /**
+     * <pre>
+     * limit returned events
+     * </pre>
+     *
+     * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+     */
+    long getLimit();
+
+    /**
+     * <pre>
+     * offset returned events(pagination)
+     * </pre>
+     *
+     * <code>int64 offset = 6;</code>
+     */
+    long getOffset();
+  }
+  /**
+   * <pre>
+   * SearchObjectOpts are options when querying historical events for a given object
+   * </pre>
+   *
+   * Protobuf type {@code stategate.SearchObjectOpts}
+   */
+  public  static final class SearchObjectOpts extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:stategate.SearchObjectOpts)
+      SearchObjectOptsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SearchObjectOpts.newBuilder() to construct.
+    private SearchObjectOpts(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SearchObjectOpts() {
+      type_ = "";
+      limit_ = 0L;
+      offset_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SearchObjectOpts(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              type_ = s;
+              break;
+            }
+            case 18: {
+              com.google.protobuf.Struct.Builder subBuilder = null;
+              if (matchValues_ != null) {
+                subBuilder = matchValues_.toBuilder();
+              }
+              matchValues_ = input.readMessage(com.google.protobuf.Struct.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(matchValues_);
+                matchValues_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 40: {
+
+              limit_ = input.readInt64();
+              break;
+            }
+            case 48: {
+
+              offset_ = input.readInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return stategate.Schema.internal_static_stategate_SearchObjectOpts_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return stategate.Schema.internal_static_stategate_SearchObjectOpts_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              stategate.Schema.SearchObjectOpts.class, stategate.Schema.SearchObjectOpts.Builder.class);
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private volatile java.lang.Object type_;
+    /**
+     * <pre>
+     * Object type (ex: user)
+     * </pre>
+     *
+     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getType() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        type_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Object type (ex: user)
+     * </pre>
+     *
+     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getTypeBytes() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        type_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MATCH_VALUES_FIELD_NUMBER = 2;
+    private com.google.protobuf.Struct matchValues_;
+    /**
+     * <pre>
+     * match_values filters records that have matching values
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+     */
+    public boolean hasMatchValues() {
+      return matchValues_ != null;
+    }
+    /**
+     * <pre>
+     * match_values filters records that have matching values
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.Struct getMatchValues() {
+      return matchValues_ == null ? com.google.protobuf.Struct.getDefaultInstance() : matchValues_;
+    }
+    /**
+     * <pre>
+     * match_values filters records that have matching values
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.StructOrBuilder getMatchValuesOrBuilder() {
+      return getMatchValues();
+    }
+
+    public static final int LIMIT_FIELD_NUMBER = 5;
+    private long limit_;
+    /**
+     * <pre>
+     * limit returned events
+     * </pre>
+     *
+     * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+     */
+    public long getLimit() {
+      return limit_;
+    }
+
+    public static final int OFFSET_FIELD_NUMBER = 6;
+    private long offset_;
+    /**
+     * <pre>
+     * offset returned events(pagination)
+     * </pre>
+     *
+     * <code>int64 offset = 6;</code>
+     */
+    public long getOffset() {
+      return offset_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getTypeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
+      }
+      if (matchValues_ != null) {
+        output.writeMessage(2, getMatchValues());
+      }
+      if (limit_ != 0L) {
+        output.writeInt64(5, limit_);
+      }
+      if (offset_ != 0L) {
+        output.writeInt64(6, offset_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getTypeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
+      }
+      if (matchValues_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getMatchValues());
+      }
+      if (limit_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, limit_);
+      }
+      if (offset_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, offset_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof stategate.Schema.SearchObjectOpts)) {
+        return super.equals(obj);
+      }
+      stategate.Schema.SearchObjectOpts other = (stategate.Schema.SearchObjectOpts) obj;
+
+      boolean result = true;
+      result = result && getType()
+          .equals(other.getType());
+      result = result && (hasMatchValues() == other.hasMatchValues());
+      if (hasMatchValues()) {
+        result = result && getMatchValues()
+            .equals(other.getMatchValues());
+      }
+      result = result && (getLimit()
+          == other.getLimit());
+      result = result && (getOffset()
+          == other.getOffset());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType().hashCode();
+      if (hasMatchValues()) {
+        hash = (37 * hash) + MATCH_VALUES_FIELD_NUMBER;
+        hash = (53 * hash) + getMatchValues().hashCode();
+      }
+      hash = (37 * hash) + LIMIT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getLimit());
+      hash = (37 * hash) + OFFSET_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getOffset());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static stategate.Schema.SearchObjectOpts parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.SearchObjectOpts parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.SearchObjectOpts parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.SearchObjectOpts parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.SearchObjectOpts parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.SearchObjectOpts parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.SearchObjectOpts parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.SearchObjectOpts parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static stategate.Schema.SearchObjectOpts parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.SearchObjectOpts parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static stategate.Schema.SearchObjectOpts parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.SearchObjectOpts parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(stategate.Schema.SearchObjectOpts prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * SearchObjectOpts are options when querying historical events for a given object
+     * </pre>
+     *
+     * Protobuf type {@code stategate.SearchObjectOpts}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:stategate.SearchObjectOpts)
+        stategate.Schema.SearchObjectOptsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return stategate.Schema.internal_static_stategate_SearchObjectOpts_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return stategate.Schema.internal_static_stategate_SearchObjectOpts_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                stategate.Schema.SearchObjectOpts.class, stategate.Schema.SearchObjectOpts.Builder.class);
+      }
+
+      // Construct using stategate.Schema.SearchObjectOpts.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        type_ = "";
+
+        if (matchValuesBuilder_ == null) {
+          matchValues_ = null;
+        } else {
+          matchValues_ = null;
+          matchValuesBuilder_ = null;
+        }
+        limit_ = 0L;
+
+        offset_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return stategate.Schema.internal_static_stategate_SearchObjectOpts_descriptor;
+      }
+
+      @java.lang.Override
+      public stategate.Schema.SearchObjectOpts getDefaultInstanceForType() {
+        return stategate.Schema.SearchObjectOpts.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public stategate.Schema.SearchObjectOpts build() {
+        stategate.Schema.SearchObjectOpts result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public stategate.Schema.SearchObjectOpts buildPartial() {
+        stategate.Schema.SearchObjectOpts result = new stategate.Schema.SearchObjectOpts(this);
+        result.type_ = type_;
+        if (matchValuesBuilder_ == null) {
+          result.matchValues_ = matchValues_;
+        } else {
+          result.matchValues_ = matchValuesBuilder_.build();
+        }
+        result.limit_ = limit_;
+        result.offset_ = offset_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof stategate.Schema.SearchObjectOpts) {
+          return mergeFrom((stategate.Schema.SearchObjectOpts)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(stategate.Schema.SearchObjectOpts other) {
+        if (other == stategate.Schema.SearchObjectOpts.getDefaultInstance()) return this;
+        if (!other.getType().isEmpty()) {
+          type_ = other.type_;
+          onChanged();
+        }
+        if (other.hasMatchValues()) {
+          mergeMatchValues(other.getMatchValues());
+        }
+        if (other.getLimit() != 0L) {
+          setLimit(other.getLimit());
+        }
+        if (other.getOffset() != 0L) {
+          setOffset(other.getOffset());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        stategate.Schema.SearchObjectOpts parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (stategate.Schema.SearchObjectOpts) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object type_ = "";
+      /**
+       * <pre>
+       * Object type (ex: user)
+       * </pre>
+       *
+       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getType() {
+        java.lang.Object ref = type_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          type_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Object type (ex: user)
+       * </pre>
+       *
+       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getTypeBytes() {
+        java.lang.Object ref = type_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          type_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Object type (ex: user)
+       * </pre>
+       *
+       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setType(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Object type (ex: user)
+       * </pre>
+       *
+       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearType() {
+        
+        type_ = getDefaultInstance().getType();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Object type (ex: user)
+       * </pre>
+       *
+       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTypeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.Struct matchValues_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> matchValuesBuilder_;
+      /**
+       * <pre>
+       * match_values filters records that have matching values
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       */
+      public boolean hasMatchValues() {
+        return matchValuesBuilder_ != null || matchValues_ != null;
+      }
+      /**
+       * <pre>
+       * match_values filters records that have matching values
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.Struct getMatchValues() {
+        if (matchValuesBuilder_ == null) {
+          return matchValues_ == null ? com.google.protobuf.Struct.getDefaultInstance() : matchValues_;
+        } else {
+          return matchValuesBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * match_values filters records that have matching values
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder setMatchValues(com.google.protobuf.Struct value) {
+        if (matchValuesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          matchValues_ = value;
+          onChanged();
+        } else {
+          matchValuesBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * match_values filters records that have matching values
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder setMatchValues(
+          com.google.protobuf.Struct.Builder builderForValue) {
+        if (matchValuesBuilder_ == null) {
+          matchValues_ = builderForValue.build();
+          onChanged();
+        } else {
+          matchValuesBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * match_values filters records that have matching values
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder mergeMatchValues(com.google.protobuf.Struct value) {
+        if (matchValuesBuilder_ == null) {
+          if (matchValues_ != null) {
+            matchValues_ =
+              com.google.protobuf.Struct.newBuilder(matchValues_).mergeFrom(value).buildPartial();
+          } else {
+            matchValues_ = value;
+          }
+          onChanged();
+        } else {
+          matchValuesBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * match_values filters records that have matching values
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearMatchValues() {
+        if (matchValuesBuilder_ == null) {
+          matchValues_ = null;
+          onChanged();
+        } else {
+          matchValues_ = null;
+          matchValuesBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * match_values filters records that have matching values
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.Struct.Builder getMatchValuesBuilder() {
+        
+        onChanged();
+        return getMatchValuesFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * match_values filters records that have matching values
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.StructOrBuilder getMatchValuesOrBuilder() {
+        if (matchValuesBuilder_ != null) {
+          return matchValuesBuilder_.getMessageOrBuilder();
+        } else {
+          return matchValues_ == null ?
+              com.google.protobuf.Struct.getDefaultInstance() : matchValues_;
+        }
+      }
+      /**
+       * <pre>
+       * match_values filters records that have matching values
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
+          getMatchValuesFieldBuilder() {
+        if (matchValuesBuilder_ == null) {
+          matchValuesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder>(
+                  getMatchValues(),
+                  getParentForChildren(),
+                  isClean());
+          matchValues_ = null;
+        }
+        return matchValuesBuilder_;
+      }
+
+      private long limit_ ;
+      /**
+       * <pre>
+       * limit returned events
+       * </pre>
+       *
+       * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+       */
+      public long getLimit() {
+        return limit_;
+      }
+      /**
+       * <pre>
+       * limit returned events
+       * </pre>
+       *
+       * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+       */
+      public Builder setLimit(long value) {
+        
+        limit_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * limit returned events
+       * </pre>
+       *
+       * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearLimit() {
+        
+        limit_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long offset_ ;
+      /**
+       * <pre>
+       * offset returned events(pagination)
+       * </pre>
+       *
+       * <code>int64 offset = 6;</code>
+       */
+      public long getOffset() {
+        return offset_;
+      }
+      /**
+       * <pre>
+       * offset returned events(pagination)
+       * </pre>
+       *
+       * <code>int64 offset = 6;</code>
+       */
+      public Builder setOffset(long value) {
+        
+        offset_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * offset returned events(pagination)
+       * </pre>
+       *
+       * <code>int64 offset = 6;</code>
+       */
+      public Builder clearOffset() {
+        
+        offset_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:stategate.SearchObjectOpts)
+    }
+
+    // @@protoc_insertion_point(class_scope:stategate.SearchObjectOpts)
+    private static final stategate.Schema.SearchObjectOpts DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new stategate.Schema.SearchObjectOpts();
+    }
+
+    public static stategate.Schema.SearchObjectOpts getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SearchObjectOpts>
+        PARSER = new com.google.protobuf.AbstractParser<SearchObjectOpts>() {
+      @java.lang.Override
+      public SearchObjectOpts parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SearchObjectOpts(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SearchObjectOpts> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SearchObjectOpts> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public stategate.Schema.SearchObjectOpts getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SearchEventOptsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:stategate.SearchEventOpts)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -1880,21 +3686,21 @@ public final class Schema {
   }
   /**
    * <pre>
-   * SearchOpts are options when querying historical events for a given object
+   * SearchEventOpts are options when querying historical events for a given object
    * </pre>
    *
-   * Protobuf type {@code stategate.SearchOpts}
+   * Protobuf type {@code stategate.SearchEventOpts}
    */
-  public  static final class SearchOpts extends
+  public  static final class SearchEventOpts extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:stategate.SearchOpts)
-      SearchOptsOrBuilder {
+      // @@protoc_insertion_point(message_implements:stategate.SearchEventOpts)
+      SearchEventOptsOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use SearchOpts.newBuilder() to construct.
-    private SearchOpts(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use SearchEventOpts.newBuilder() to construct.
+    private SearchEventOpts(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private SearchOpts() {
+    private SearchEventOpts() {
       type_ = "";
       key_ = "";
       min_ = 0L;
@@ -1908,7 +3714,7 @@ public final class Schema {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private SearchOpts(
+    private SearchEventOpts(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1980,15 +3786,15 @@ public final class Schema {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return stategate.Schema.internal_static_stategate_SearchOpts_descriptor;
+      return stategate.Schema.internal_static_stategate_SearchEventOpts_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return stategate.Schema.internal_static_stategate_SearchOpts_fieldAccessorTable
+      return stategate.Schema.internal_static_stategate_SearchEventOpts_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              stategate.Schema.SearchOpts.class, stategate.Schema.SearchOpts.Builder.class);
+              stategate.Schema.SearchEventOpts.class, stategate.Schema.SearchEventOpts.Builder.class);
     }
 
     public static final int TYPE_FIELD_NUMBER = 1;
@@ -2200,10 +4006,10 @@ public final class Schema {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof stategate.Schema.SearchOpts)) {
+      if (!(obj instanceof stategate.Schema.SearchEventOpts)) {
         return super.equals(obj);
       }
-      stategate.Schema.SearchOpts other = (stategate.Schema.SearchOpts) obj;
+      stategate.Schema.SearchEventOpts other = (stategate.Schema.SearchEventOpts) obj;
 
       boolean result = true;
       result = result && getType()
@@ -2250,69 +4056,69 @@ public final class Schema {
       return hash;
     }
 
-    public static stategate.Schema.SearchOpts parseFrom(
+    public static stategate.Schema.SearchEventOpts parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.SearchOpts parseFrom(
+    public static stategate.Schema.SearchEventOpts parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.SearchOpts parseFrom(
+    public static stategate.Schema.SearchEventOpts parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.SearchOpts parseFrom(
+    public static stategate.Schema.SearchEventOpts parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.SearchOpts parseFrom(byte[] data)
+    public static stategate.Schema.SearchEventOpts parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.SearchOpts parseFrom(
+    public static stategate.Schema.SearchEventOpts parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.SearchOpts parseFrom(java.io.InputStream input)
+    public static stategate.Schema.SearchEventOpts parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.SearchOpts parseFrom(
+    public static stategate.Schema.SearchEventOpts parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.SearchOpts parseDelimitedFrom(java.io.InputStream input)
+    public static stategate.Schema.SearchEventOpts parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static stategate.Schema.SearchOpts parseDelimitedFrom(
+    public static stategate.Schema.SearchEventOpts parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.SearchOpts parseFrom(
+    public static stategate.Schema.SearchEventOpts parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.SearchOpts parseFrom(
+    public static stategate.Schema.SearchEventOpts parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2325,7 +4131,7 @@ public final class Schema {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(stategate.Schema.SearchOpts prototype) {
+    public static Builder newBuilder(stategate.Schema.SearchEventOpts prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2342,29 +4148,29 @@ public final class Schema {
     }
     /**
      * <pre>
-     * SearchOpts are options when querying historical events for a given object
+     * SearchEventOpts are options when querying historical events for a given object
      * </pre>
      *
-     * Protobuf type {@code stategate.SearchOpts}
+     * Protobuf type {@code stategate.SearchEventOpts}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:stategate.SearchOpts)
-        stategate.Schema.SearchOptsOrBuilder {
+        // @@protoc_insertion_point(builder_implements:stategate.SearchEventOpts)
+        stategate.Schema.SearchEventOptsOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return stategate.Schema.internal_static_stategate_SearchOpts_descriptor;
+        return stategate.Schema.internal_static_stategate_SearchEventOpts_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return stategate.Schema.internal_static_stategate_SearchOpts_fieldAccessorTable
+        return stategate.Schema.internal_static_stategate_SearchEventOpts_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                stategate.Schema.SearchOpts.class, stategate.Schema.SearchOpts.Builder.class);
+                stategate.Schema.SearchEventOpts.class, stategate.Schema.SearchEventOpts.Builder.class);
       }
 
-      // Construct using stategate.Schema.SearchOpts.newBuilder()
+      // Construct using stategate.Schema.SearchEventOpts.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2400,17 +4206,17 @@ public final class Schema {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return stategate.Schema.internal_static_stategate_SearchOpts_descriptor;
+        return stategate.Schema.internal_static_stategate_SearchEventOpts_descriptor;
       }
 
       @java.lang.Override
-      public stategate.Schema.SearchOpts getDefaultInstanceForType() {
-        return stategate.Schema.SearchOpts.getDefaultInstance();
+      public stategate.Schema.SearchEventOpts getDefaultInstanceForType() {
+        return stategate.Schema.SearchEventOpts.getDefaultInstance();
       }
 
       @java.lang.Override
-      public stategate.Schema.SearchOpts build() {
-        stategate.Schema.SearchOpts result = buildPartial();
+      public stategate.Schema.SearchEventOpts build() {
+        stategate.Schema.SearchEventOpts result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2418,8 +4224,8 @@ public final class Schema {
       }
 
       @java.lang.Override
-      public stategate.Schema.SearchOpts buildPartial() {
-        stategate.Schema.SearchOpts result = new stategate.Schema.SearchOpts(this);
+      public stategate.Schema.SearchEventOpts buildPartial() {
+        stategate.Schema.SearchEventOpts result = new stategate.Schema.SearchEventOpts(this);
         result.type_ = type_;
         result.key_ = key_;
         result.min_ = min_;
@@ -2464,16 +4270,16 @@ public final class Schema {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof stategate.Schema.SearchOpts) {
-          return mergeFrom((stategate.Schema.SearchOpts)other);
+        if (other instanceof stategate.Schema.SearchEventOpts) {
+          return mergeFrom((stategate.Schema.SearchEventOpts)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(stategate.Schema.SearchOpts other) {
-        if (other == stategate.Schema.SearchOpts.getDefaultInstance()) return this;
+      public Builder mergeFrom(stategate.Schema.SearchEventOpts other) {
+        if (other == stategate.Schema.SearchEventOpts.getDefaultInstance()) return this;
         if (!other.getType().isEmpty()) {
           type_ = other.type_;
           onChanged();
@@ -2509,11 +4315,11 @@ public final class Schema {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        stategate.Schema.SearchOpts parsedMessage = null;
+        stategate.Schema.SearchEventOpts parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (stategate.Schema.SearchOpts) e.getUnfinishedMessage();
+          parsedMessage = (stategate.Schema.SearchEventOpts) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2865,41 +4671,41 @@ public final class Schema {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:stategate.SearchOpts)
+      // @@protoc_insertion_point(builder_scope:stategate.SearchEventOpts)
     }
 
-    // @@protoc_insertion_point(class_scope:stategate.SearchOpts)
-    private static final stategate.Schema.SearchOpts DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:stategate.SearchEventOpts)
+    private static final stategate.Schema.SearchEventOpts DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new stategate.Schema.SearchOpts();
+      DEFAULT_INSTANCE = new stategate.Schema.SearchEventOpts();
     }
 
-    public static stategate.Schema.SearchOpts getDefaultInstance() {
+    public static stategate.Schema.SearchEventOpts getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<SearchOpts>
-        PARSER = new com.google.protobuf.AbstractParser<SearchOpts>() {
+    private static final com.google.protobuf.Parser<SearchEventOpts>
+        PARSER = new com.google.protobuf.AbstractParser<SearchEventOpts>() {
       @java.lang.Override
-      public SearchOpts parsePartialFrom(
+      public SearchEventOpts parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SearchOpts(input, extensionRegistry);
+        return new SearchEventOpts(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<SearchOpts> parser() {
+    public static com.google.protobuf.Parser<SearchEventOpts> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<SearchOpts> getParserForType() {
+    public com.google.protobuf.Parser<SearchEventOpts> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public stategate.Schema.SearchOpts getDefaultInstanceForType() {
+    public stategate.Schema.SearchEventOpts getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5452,10 +7258,20 @@ public final class Schema {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_stategate_Object_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_stategate_SearchOpts_descriptor;
+    internal_static_stategate_Objects_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_stategate_SearchOpts_fieldAccessorTable;
+      internal_static_stategate_Objects_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_stategate_SearchObjectOpts_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_stategate_SearchObjectOpts_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_stategate_SearchEventOpts_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_stategate_SearchEventOpts_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_stategate_StreamOpts_descriptor;
   private static final 
@@ -5489,26 +7305,33 @@ public final class Schema {
       "Ref\022\024\n\004type\030\001 \001(\tB\006\342\337\037\002X\001\022\023\n\003key\030\002 \001(\tB\006" +
       "\342\337\037\002X\001\"d\n\006Object\022\024\n\004type\030\001 \001(\tB\006\342\337\037\002X\001\022\023" +
       "\n\003key\030\002 \001(\tB\006\342\337\037\002X\001\022/\n\006values\030\003 \001(\0132\027.go" +
-      "ogle.protobuf.StructB\006\342\337\037\002 \001\"x\n\nSearchOp" +
-      "ts\022\024\n\004type\030\001 \001(\tB\006\342\337\037\002X\001\022\023\n\003key\030\002 \001(\tB\006\342" +
-      "\337\037\002X\001\022\013\n\003min\030\003 \001(\003\022\013\n\003max\030\004 \001(\003\022\025\n\005limit" +
-      "\030\005 \001(\003B\006\342\337\037\002\020\000\022\016\n\006offset\030\006 \001(\003\"\"\n\nStream" +
-      "Opts\022\024\n\004type\030\001 \001(\tB\006\342\337\037\002X\001\"\216\001\n\005Event\022\023\n\002" +
-      "id\030\001 \001(\tB\007\342\337\037\003\220\001\000\022)\n\006object\030\002 \001(\0132\021.stat" +
-      "egate.ObjectB\006\342\337\037\002 \001\022/\n\006claims\030\003 \001(\0132\027.g" +
-      "oogle.protobuf.StructB\006\342\337\037\002 \001\022\024\n\004time\030\004 " +
-      "\001(\003B\006\342\337\037\002\020\000\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020." +
-      "stategate.Event2\365\002\n\020StateGateService\022W\n\t" +
-      "SetObject\022\021.stategate.Object\032\026.google.pr" +
-      "otobuf.Empty\"\037\202\323\344\223\002\031\"\027/api/{type}/state/" +
-      "{key}\022U\n\tGetObject\022\024.stategate.ObjectRef" +
-      "\032\021.stategate.Object\"\037\202\323\344\223\002\031\022\027/api/{type}" +
-      "/state/{key}\022U\n\014StreamEvents\022\025.stategate" +
-      ".StreamOpts\032\020.stategate.Event\"\032\202\323\344\223\002\024\022\022/" +
-      "api/{type}/events0\001\022Z\n\014SearchEvents\022\025.st" +
-      "ategate.SearchOpts\032\021.stategate.Events\" \202" +
-      "\323\344\223\002\032\022\030/api/{type}/events/{key}B\013Z\tstate" +
-      "gateb\006proto3"
+      "ogle.protobuf.StructB\006\342\337\037\002 \001\"-\n\007Objects\022" +
+      "\"\n\007objects\030\001 \003(\0132\021.stategate.Object\"\206\001\n\020" +
+      "SearchObjectOpts\022\024\n\004type\030\001 \001(\tB\006\342\337\037\002X\001\0225" +
+      "\n\014match_values\030\002 \001(\0132\027.google.protobuf.S" +
+      "tructB\006\342\337\037\002 \001\022\025\n\005limit\030\005 \001(\003B\006\342\337\037\002\020\000\022\016\n\006" +
+      "offset\030\006 \001(\003\"}\n\017SearchEventOpts\022\024\n\004type\030" +
+      "\001 \001(\tB\006\342\337\037\002X\001\022\023\n\003key\030\002 \001(\tB\006\342\337\037\002X\001\022\013\n\003mi" +
+      "n\030\003 \001(\003\022\013\n\003max\030\004 \001(\003\022\025\n\005limit\030\005 \001(\003B\006\342\337\037" +
+      "\002\020\000\022\016\n\006offset\030\006 \001(\003\"\"\n\nStreamOpts\022\024\n\004typ" +
+      "e\030\001 \001(\tB\006\342\337\037\002X\001\"\216\001\n\005Event\022\023\n\002id\030\001 \001(\tB\007\342" +
+      "\337\037\003\220\001\000\022)\n\006object\030\002 \001(\0132\021.stategate.Objec" +
+      "tB\006\342\337\037\002 \001\022/\n\006claims\030\003 \001(\0132\027.google.proto" +
+      "buf.StructB\006\342\337\037\002 \001\022\024\n\004time\030\004 \001(\003B\006\342\337\037\002\020\000" +
+      "\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020.stategate.E" +
+      "vent2\327\003\n\020StateGateService\022W\n\tSetObject\022\021" +
+      ".stategate.Object\032\026.google.protobuf.Empt" +
+      "y\"\037\202\323\344\223\002\031\"\027/api/{type}/state/{key}\022U\n\tGe" +
+      "tObject\022\024.stategate.ObjectRef\032\021.stategat" +
+      "e.Object\"\037\202\323\344\223\002\031\022\027/api/{type}/state/{key" +
+      "}\022[\n\rSearchObjects\022\033.stategate.SearchObj" +
+      "ectOpts\032\022.stategate.Objects\"\031\202\323\344\223\002\023\022\021/ap" +
+      "i/{type}/state\022U\n\014StreamEvents\022\025.statega" +
+      "te.StreamOpts\032\020.stategate.Event\"\032\202\323\344\223\002\024\022" +
+      "\022/api/{type}/events0\001\022_\n\014SearchEvents\022\032." +
+      "stategate.SearchEventOpts\032\021.stategate.Ev" +
+      "ents\" \202\323\344\223\002\032\022\030/api/{type}/events/{key}B\013" +
+      "Z\tstategateb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -5540,26 +7363,38 @@ public final class Schema {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_Object_descriptor,
         new java.lang.String[] { "Type", "Key", "Values", });
-    internal_static_stategate_SearchOpts_descriptor =
+    internal_static_stategate_Objects_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_stategate_SearchOpts_fieldAccessorTable = new
+    internal_static_stategate_Objects_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_stategate_SearchOpts_descriptor,
+        internal_static_stategate_Objects_descriptor,
+        new java.lang.String[] { "Objects", });
+    internal_static_stategate_SearchObjectOpts_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_stategate_SearchObjectOpts_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_stategate_SearchObjectOpts_descriptor,
+        new java.lang.String[] { "Type", "MatchValues", "Limit", "Offset", });
+    internal_static_stategate_SearchEventOpts_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_stategate_SearchEventOpts_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_stategate_SearchEventOpts_descriptor,
         new java.lang.String[] { "Type", "Key", "Min", "Max", "Limit", "Offset", });
     internal_static_stategate_StreamOpts_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_stategate_StreamOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_StreamOpts_descriptor,
         new java.lang.String[] { "Type", });
     internal_static_stategate_Event_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_stategate_Event_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_Event_descriptor,
         new java.lang.String[] { "Id", "Object", "Claims", "Time", });
     internal_static_stategate_Events_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_stategate_Events_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_Events_descriptor,

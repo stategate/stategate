@@ -216,7 +216,7 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 			if err := group.Wait(); err != nil {
 				t.Fatal(err)
 			}
-			events, err := client.SearchEvents(ctx, &stategate.SearchOpts{
+			events, err := client.SearchEvents(ctx, &stategate.SearchEventOpts{
 				Type:  typ,
 				Key:   key,
 				Min:   time.Now().Truncate(1 * time.Minute).UnixNano(),
@@ -230,6 +230,22 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				t.Fatalf("expected 3 events got: %v", len(events.Events))
 			}
 			t.Log(protojson.Format(events))
+			matchers, _ := structpb.NewStruct(map[string]interface{}{
+				"message": "hello world",
+			})
+			objectss, err := client.SearchObjects(ctx, &stategate.SearchObjectOpts{
+				Type:        typ,
+				MatchValues: matchers,
+				Limit:       3,
+				Offset:      0,
+			})
+			if err != nil {
+				t.Fatal(err)
+			}
+			if len(objectss.Objects) != 1 {
+				t.Fatalf("expected 1 object got: %v", len(objectss.Objects))
+			}
+			t.Log(protojson.Format(objectss))
 		},
 	}
 }

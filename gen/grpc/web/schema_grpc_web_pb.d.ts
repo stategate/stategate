@@ -23,13 +23,20 @@ export class StateGateServiceClient {
                response: schema_pb.Object) => void
   ): grpcWeb.ClientReadableStream<schema_pb.Object>;
 
+  searchObjects(
+    request: schema_pb.SearchObjectOpts,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: schema_pb.Objects) => void
+  ): grpcWeb.ClientReadableStream<schema_pb.Objects>;
+
   streamEvents(
     request: schema_pb.StreamOpts,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<schema_pb.Event>;
 
   searchEvents(
-    request: schema_pb.SearchOpts,
+    request: schema_pb.SearchEventOpts,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
                response: schema_pb.Events) => void
@@ -52,13 +59,18 @@ export class StateGateServicePromiseClient {
     metadata?: grpcWeb.Metadata
   ): Promise<schema_pb.Object>;
 
+  searchObjects(
+    request: schema_pb.SearchObjectOpts,
+    metadata?: grpcWeb.Metadata
+  ): Promise<schema_pb.Objects>;
+
   streamEvents(
     request: schema_pb.StreamOpts,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<schema_pb.Event>;
 
   searchEvents(
-    request: schema_pb.SearchOpts,
+    request: schema_pb.SearchEventOpts,
     metadata?: grpcWeb.Metadata
   ): Promise<schema_pb.Events>;
 

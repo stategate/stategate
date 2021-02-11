@@ -17,7 +17,8 @@ type Provider interface {
 	SetObject(ctx context.Context, object *stategate.Object) error
 	SaveEvent(ctx context.Context, event *stategate.Event) error
 	GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, error)
-	SearchEvents(ctx context.Context, ref *stategate.SearchOpts) (*stategate.Events, error)
+	SearchObjects(ctx context.Context, ref *stategate.SearchObjectOpts) (*stategate.Objects, error)
+	SearchEvents(ctx context.Context, ref *stategate.SearchEventOpts) (*stategate.Events, error)
 	Close() error
 }
 

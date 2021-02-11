@@ -24,14 +24,12 @@ func NewProvider(db *mongo.Database) *Provider {
 
 func (p Provider) SetObject(ctx context.Context, object *stategate.Object) error {
 	filter := bson.D{
-		{Key: "key", Value: object.GetKey()},
+		{Key: "_id", Value: object.GetKey()},
 	}
-
-	update := bson.M{
-		"$set": bson.M(object.GetValues().AsMap()),
-	}
-	opts := options.Update().SetUpsert(true)
-	_, err := p.db.Collection(object.GetType()).UpdateOne(ctx, filter, update, opts)
+	data := bson.M(object.GetValues().AsMap())
+	data["_id"] = object.GetKey()
+	opts := options.Replace().SetUpsert(true)
+	_, err := p.db.Collection(object.GetType()).ReplaceOne(ctx, filter, data, opts)
 	if err != nil {
 		return err
 	}
@@ -40,7 +38,7 @@ func (p Provider) SetObject(ctx context.Context, object *stategate.Object) error
 
 func (p Provider) SaveEvent(ctx context.Context, e *stategate.Event) error {
 	_, err := p.db.Collection(fmt.Sprintf("%s_events", e.GetObject().GetType())).InsertOne(ctx, bson.M(map[string]interface{}{
-		"id":   e.Id,
+		"_id":  e.Id,
 		"time": e.GetTime(),
 		"object": bson.M{
 			"type":   e.GetObject().GetType(),
@@ -57,7 +55,7 @@ func (p Provider) SaveEvent(ctx context.Context, e *stategate.Event) error {
 
 func (p *Provider) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, error) {
 	filter := bson.D{
-		{Key: "key", Value: ref.GetKey()},
+		{Key: "_id", Value: ref.GetKey()},
 	}
 	var result bson.M
 
@@ -69,7 +67,7 @@ func (p *Provider) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*st
 	}
 	object := &stategate.Object{
 		Type: ref.GetType(),
-		Key:  cast.ToString(result["key"]),
+		Key:  cast.ToString(result["_id"]),
 	}
 	delete(result, "_id")
 	strct, _ := structpb.NewStruct(result)
@@ -77,7 +75,7 @@ func (p *Provider) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*st
 	return object, nil
 }
 
-func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchOpts) (*stategate.Events, error) {
+func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEventOpts) (*stategate.Events, error) {
 	o := options.Find()
 	if opts.GetLimit() > 0 {
 		o.SetLimit(opts.GetLimit())
@@ -136,6 +134,39 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchOpts)
 		events = append(events, e)
 	}
 	return &stategate.Events{Events: events}, nil
+}
+
+func (p *Provider) SearchObjects(ctx context.Context, opts *stategate.SearchObjectOpts) (*stategate.Objects, error) {
+	o := options.Find()
+	if opts.GetLimit() > 0 {
+		o.SetLimit(opts.GetLimit())
+	}
+	if opts.GetOffset() > 0 {
+		o.SetSkip(opts.GetOffset())
+	}
+
+	cur, err := p.db.Collection(opts.GetType()).Find(ctx, bson.M(opts.GetMatchValues().AsMap()), o)
+	if err != nil {
+		return nil, err
+	}
+	defer cur.Close(ctx)
+	var results []bson.M
+	if err := cur.All(ctx, &results); err != nil {
+		return nil, err
+	}
+	var objects []*stategate.Object
+	for _, r := range results {
+		var o = &stategate.Object{
+			Type:   opts.GetType(),
+			Key:    cast.ToString(r["_id"]),
+			Values: nil,
+		}
+		delete(r, "_id")
+		d, _ := structpb.NewStruct(r)
+		o.Values = d
+		objects = append(objects, o)
+	}
+	return &stategate.Objects{Objects: objects}, nil
 }
 
 func (p *Provider) Close() error {

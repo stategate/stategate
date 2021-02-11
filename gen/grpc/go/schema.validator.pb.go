@@ -5,16 +5,16 @@ package stategate
 
 import (
 	fmt "fmt"
+	math "math"
 	proto "github.com/golang/protobuf/proto"
 	_ "github.com/golang/protobuf/ptypes/any"
 	_ "github.com/golang/protobuf/ptypes/empty"
+	_ "github.com/mwitkow/go-proto-validators"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/struct"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
-	_ "github.com/mwitkow/go-proto-validators"
-	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
-	math "math"
 	regexp "regexp"
+	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -48,7 +48,34 @@ func (this *Object) Validate() error {
 	}
 	return nil
 }
-func (this *SearchOpts) Validate() error {
+func (this *Objects) Validate() error {
+	for _, item := range this.Objects {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Objects", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *SearchObjectOpts) Validate() error {
+	if this.Type == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
+	}
+	if nil == this.MatchValues {
+		return github_com_mwitkow_go_proto_validators.FieldError("MatchValues", fmt.Errorf("message must exist"))
+	}
+	if this.MatchValues != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.MatchValues); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("MatchValues", err)
+		}
+	}
+	if !(this.Limit > 0) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Limit", fmt.Errorf(`value '%v' must be greater than '0'`, this.Limit))
+	}
+	return nil
+}
+func (this *SearchEventOpts) Validate() error {
 	if this.Type == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
 	}

@@ -195,7 +195,15 @@
                 </li>
               
                 <li>
-                  <a href="#stategate.SearchOpts"><span class="badge">M</span>SearchOpts</a>
+                  <a href="#stategate.Objects"><span class="badge">M</span>Objects</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.SearchEventOpts"><span class="badge">M</span>SearchEventOpts</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.SearchObjectOpts"><span class="badge">M</span>SearchObjectOpts</a>
                 </li>
               
                 <li>
@@ -509,8 +517,32 @@
 
         
       
-        <h3 id="stategate.SearchOpts">SearchOpts</h3>
-        <p>SearchOpts are options when querying historical events for a given object</p>
+        <h3 id="stategate.Objects">Objects</h3>
+        <p>Objects is an array of Object</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>objects</td>
+                  <td><a href="#stategate.Object">Object</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="stategate.SearchEventOpts">SearchEventOpts</h3>
+        <p>SearchEventOpts are options when querying historical events for a given object</p>
 
         
           <table class="field-table">
@@ -617,6 +649,100 @@
 
         
       
+        <h3 id="stategate.SearchObjectOpts">SearchObjectOpts</h3>
+        <p>SearchObjectOpts are options when querying historical events for a given object</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Object type (ex: user) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>match_values</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>match_values filters records that have matching values </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>limit returned events </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>offset returned events(pagination) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td>
+                    <ul>
+                    
+                      <li>string_not_empty: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>match_values</td>
+                  <td>
+                    <ul>
+                    
+                      <li>msg_exists: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td>
+                    <ul>
+                    
+                      <li>int_gt: 0</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
         <h3 id="stategate.StreamOpts">StreamOpts</h3>
         <p>StreamOpts are options for consumers looking to stream events</p>
 
@@ -675,7 +801,7 @@
 
       
         <h3 id="stategate.StateGateService">StateGateService</h3>
-        <p>StateGateService is an identity-aware API gateway for event-sourcing based applications</p>
+        <p>A pluggable API and "Application State Gateway" that enforces the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html) for securely persisting & broadcasting application state changes</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -697,6 +823,13 @@
               </tr>
             
               <tr>
+                <td>SearchObjects</td>
+                <td><a href="#stategate.SearchObjectOpts">SearchObjectOpts</a></td>
+                <td><a href="#stategate.Objects">Objects</a></td>
+                <td><p>SearchObjects queries objects of a specific type</p></td>
+              </tr>
+            
+              <tr>
                 <td>StreamEvents</td>
                 <td><a href="#stategate.StreamOpts">StreamOpts</a></td>
                 <td><a href="#stategate.Event">Event</a> stream</td>
@@ -706,9 +839,9 @@ Event Consumers invoke this method.</p></td>
             
               <tr>
                 <td>SearchEvents</td>
-                <td><a href="#stategate.SearchOpts">SearchOpts</a></td>
+                <td><a href="#stategate.SearchEventOpts">SearchEventOpts</a></td>
                 <td><a href="#stategate.Events">Events</a></td>
-                <td><p>SearchEvents returns an array of immutable historical events for a given object.</p></td>
+                <td><p>SearchEvents queries events related to a specific object.</p></td>
               </tr>
             
           </tbody>
@@ -745,6 +878,16 @@ Event Consumers invoke this method.</p></td>
                 <td>GetObject</td>
                 <td>GET</td>
                 <td>/api/{type}/state/{key}</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>SearchObjects</td>
+                <td>GET</td>
+                <td>/api/{type}/state</td>
                 <td></td>
               </tr>
               

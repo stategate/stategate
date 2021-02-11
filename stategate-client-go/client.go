@@ -176,6 +176,11 @@ func (c *Client) GetObject(ctx context.Context, in *stategate.ObjectRef) error {
 	return err
 }
 
+// SearchObjects queries objects of a specific type
+func (c *Client) SearchObjects(ctx context.Context, in *stategate.SearchObjectOpts) (*stategate.Objects, error) {
+	return c.client.SearchObjects(ctx, in)
+}
+
 // SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
 func (c *Client) SetObject(ctx context.Context, in *stategate.Object) error {
 	_, err := c.client.SetObject(ctx, in)
@@ -214,7 +219,7 @@ func (c *Client) StreamEvents(ctx context.Context, in *stategate.StreamOpts, fn 
 }
 
 // SearchEvents returns an array of immutable historical events for a given object.
-func (c *Client) SearchEvents(ctx context.Context, in *stategate.SearchOpts) (*stategate.Events, error) {
+func (c *Client) SearchEvents(ctx context.Context, in *stategate.SearchEventOpts) (*stategate.Events, error) {
 	return c.client.SearchEvents(ctx, in)
 }
 

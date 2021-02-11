@@ -58,34 +58,86 @@ export namespace Object {
   }
 }
 
-export class SearchOpts extends jspb.Message {
-  getType(): string;
-  setType(value: string): SearchOpts;
-
-  getKey(): string;
-  setKey(value: string): SearchOpts;
-
-  getMin(): number;
-  setMin(value: number): SearchOpts;
-
-  getMax(): number;
-  setMax(value: number): SearchOpts;
-
-  getLimit(): number;
-  setLimit(value: number): SearchOpts;
-
-  getOffset(): number;
-  setOffset(value: number): SearchOpts;
+export class Objects extends jspb.Message {
+  getObjectsList(): Array<Object>;
+  setObjectsList(value: Array<Object>): Objects;
+  clearObjectsList(): Objects;
+  addObjects(value?: Object, index?: number): Object;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SearchOpts.AsObject;
-  static toObject(includeInstance: boolean, msg: SearchOpts): SearchOpts.AsObject;
-  static serializeBinaryToWriter(message: SearchOpts, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SearchOpts;
-  static deserializeBinaryFromReader(message: SearchOpts, reader: jspb.BinaryReader): SearchOpts;
+  toObject(includeInstance?: boolean): Objects.AsObject;
+  static toObject(includeInstance: boolean, msg: Objects): Objects.AsObject;
+  static serializeBinaryToWriter(message: Objects, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Objects;
+  static deserializeBinaryFromReader(message: Objects, reader: jspb.BinaryReader): Objects;
 }
 
-export namespace SearchOpts {
+export namespace Objects {
+  export type AsObject = {
+    objectsList: Array<Object.AsObject>,
+  }
+}
+
+export class SearchObjectOpts extends jspb.Message {
+  getType(): string;
+  setType(value: string): SearchObjectOpts;
+
+  getMatchValues(): google_protobuf_struct_pb.Struct | undefined;
+  setMatchValues(value?: google_protobuf_struct_pb.Struct): SearchObjectOpts;
+  hasMatchValues(): boolean;
+  clearMatchValues(): SearchObjectOpts;
+
+  getLimit(): number;
+  setLimit(value: number): SearchObjectOpts;
+
+  getOffset(): number;
+  setOffset(value: number): SearchObjectOpts;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SearchObjectOpts.AsObject;
+  static toObject(includeInstance: boolean, msg: SearchObjectOpts): SearchObjectOpts.AsObject;
+  static serializeBinaryToWriter(message: SearchObjectOpts, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SearchObjectOpts;
+  static deserializeBinaryFromReader(message: SearchObjectOpts, reader: jspb.BinaryReader): SearchObjectOpts;
+}
+
+export namespace SearchObjectOpts {
+  export type AsObject = {
+    type: string,
+    matchValues?: google_protobuf_struct_pb.Struct.AsObject,
+    limit: number,
+    offset: number,
+  }
+}
+
+export class SearchEventOpts extends jspb.Message {
+  getType(): string;
+  setType(value: string): SearchEventOpts;
+
+  getKey(): string;
+  setKey(value: string): SearchEventOpts;
+
+  getMin(): number;
+  setMin(value: number): SearchEventOpts;
+
+  getMax(): number;
+  setMax(value: number): SearchEventOpts;
+
+  getLimit(): number;
+  setLimit(value: number): SearchEventOpts;
+
+  getOffset(): number;
+  setOffset(value: number): SearchEventOpts;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SearchEventOpts.AsObject;
+  static toObject(includeInstance: boolean, msg: SearchEventOpts): SearchEventOpts.AsObject;
+  static serializeBinaryToWriter(message: SearchEventOpts, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SearchEventOpts;
+  static deserializeBinaryFromReader(message: SearchEventOpts, reader: jspb.BinaryReader): SearchEventOpts;
+}
+
+export namespace SearchEventOpts {
   export type AsObject = {
     type: string,
     key: string,

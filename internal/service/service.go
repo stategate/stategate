@@ -112,8 +112,12 @@ func (s Service) StreamEvents(opts *stategate.StreamOpts, server stategate.State
 	return nil
 }
 
-func (s Service) SearchEvents(ctx context.Context, opts *stategate.SearchOpts) (*stategate.Events, error) {
+func (s Service) SearchEvents(ctx context.Context, opts *stategate.SearchEventOpts) (*stategate.Events, error) {
 	return s.storage.SearchEvents(ctx, opts)
+}
+
+func (s Service) SearchObjects(ctx context.Context, opts *stategate.SearchObjectOpts) (*stategate.Objects, error) {
+	return s.storage.SearchObjects(ctx, opts)
 }
 
 func (s Service) Close() error {

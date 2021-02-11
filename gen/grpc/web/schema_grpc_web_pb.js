@@ -245,6 +245,86 @@ proto.stategate.StateGateServicePromiseClient.prototype.getObject =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.stategate.SearchObjectOpts,
+ *   !proto.stategate.Objects>}
+ */
+const methodDescriptor_StateGateService_SearchObjects = new grpc.web.MethodDescriptor(
+  '/stategate.StateGateService/SearchObjects',
+  grpc.web.MethodType.UNARY,
+  proto.stategate.SearchObjectOpts,
+  proto.stategate.Objects,
+  /**
+   * @param {!proto.stategate.SearchObjectOpts} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.stategate.Objects.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.stategate.SearchObjectOpts,
+ *   !proto.stategate.Objects>}
+ */
+const methodInfo_StateGateService_SearchObjects = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.stategate.Objects,
+  /**
+   * @param {!proto.stategate.SearchObjectOpts} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.stategate.Objects.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.stategate.SearchObjectOpts} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.stategate.Objects)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.stategate.Objects>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.stategate.StateGateServiceClient.prototype.searchObjects =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/stategate.StateGateService/SearchObjects',
+      request,
+      metadata || {},
+      methodDescriptor_StateGateService_SearchObjects,
+      callback);
+};
+
+
+/**
+ * @param {!proto.stategate.SearchObjectOpts} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.stategate.Objects>}
+ *     Promise that resolves to the response
+ */
+proto.stategate.StateGateServicePromiseClient.prototype.searchObjects =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/stategate.StateGateService/SearchObjects',
+      request,
+      metadata || {},
+      methodDescriptor_StateGateService_SearchObjects);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.stategate.StreamOpts,
  *   !proto.stategate.Event>}
  */
@@ -320,16 +400,16 @@ proto.stategate.StateGateServicePromiseClient.prototype.streamEvents =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.stategate.SearchOpts,
+ *   !proto.stategate.SearchEventOpts,
  *   !proto.stategate.Events>}
  */
 const methodDescriptor_StateGateService_SearchEvents = new grpc.web.MethodDescriptor(
   '/stategate.StateGateService/SearchEvents',
   grpc.web.MethodType.UNARY,
-  proto.stategate.SearchOpts,
+  proto.stategate.SearchEventOpts,
   proto.stategate.Events,
   /**
-   * @param {!proto.stategate.SearchOpts} request
+   * @param {!proto.stategate.SearchEventOpts} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -342,13 +422,13 @@ const methodDescriptor_StateGateService_SearchEvents = new grpc.web.MethodDescri
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.stategate.SearchOpts,
+ *   !proto.stategate.SearchEventOpts,
  *   !proto.stategate.Events>}
  */
 const methodInfo_StateGateService_SearchEvents = new grpc.web.AbstractClientBase.MethodInfo(
   proto.stategate.Events,
   /**
-   * @param {!proto.stategate.SearchOpts} request
+   * @param {!proto.stategate.SearchEventOpts} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -359,7 +439,7 @@ const methodInfo_StateGateService_SearchEvents = new grpc.web.AbstractClientBase
 
 
 /**
- * @param {!proto.stategate.SearchOpts} request The
+ * @param {!proto.stategate.SearchEventOpts} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -380,7 +460,7 @@ proto.stategate.StateGateServiceClient.prototype.searchEvents =
 
 
 /**
- * @param {!proto.stategate.SearchOpts} request The
+ * @param {!proto.stategate.SearchEventOpts} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
