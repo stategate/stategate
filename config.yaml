@@ -1,13 +1,5 @@
 # port to serve on. metrics server is started on this port+1 if enabled
 port: 8080
-# enable graphQL API
-graphql: true
-# enable rest API
-rest: true
-# enable metrics server
-metrics: true
-# enable grpcweb support
-grpcweb: true
 cors:
   allowed_origins:
     - "*"

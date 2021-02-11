@@ -1,8 +1,8 @@
 # eventgate
 
-A flexible, identity-aware API for microservices following the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html)
+A pluggable backend API that enforces the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html)
 
-![Event-Sourcing](https://microservices.io/i/storingevents.png)
+![Event-Sourcing](./event_sourcing.png)
 
 Status: Proof of Concept
 
@@ -72,6 +72,7 @@ Usage of eventgate:
 ## Sample Config
 
 ```yaml
+
 # port to serve on. metrics server is started on this port+1 if enabled
 port: 8080
 cors:
@@ -93,7 +94,7 @@ logging:
 
 
 backend:
-  # pluggable channel providers: [inmem, redis, nats, stan, kafka]
+  # pluggable channel providers: [inmem, redis, nats, stan, kafka, google-pubsub, aws-sqs]
   channel_provider:
     name: "nats"
     config:
@@ -116,19 +117,23 @@ backend:
 #      client_cert_file: "/tmp/stan.cert"
 #      client_key_file: "/tmp/stan.key"
 
-# pluggable storage providers: [mongo]
+# pluggable storage providers: [mongo, elasticsearch]
+  
   storage_provider:
     name: "mongo"
     config:
       addr: "mongodb://localhost:27017/testing"
       database: "testing"
+#      client_cert_file: "/tmp/mongo.cert"
+#      client_key_file: "/tmp/mongo.key"
+
 
 
 # authentication options
 authentication:
   # json web keys uri for authentication.
   # if empty, inbound jwt's will not be verified.
-  jwks_uri: "https://www.googleapis.com/oauth2/v3/certs"
+  jwks_uri: ""
 
 # authorization options
 authorization:
