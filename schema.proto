@@ -11,7 +11,7 @@ import "google/protobuf/any.proto";
 import "google/protobuf/empty.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
-// StateGateService is an identity-aware API gateway for event-sourcing based applications
+// A pluggable API and "Application State Gateway" that enforces the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html) for securely persisting & broadcasting application state changes
 service StateGateService {
   // SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
   rpc SetObject(Object) returns(google.protobuf.Empty){

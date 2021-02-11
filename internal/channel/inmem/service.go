@@ -21,7 +21,7 @@ func NewService(logger *logger.Logger) *Service {
 }
 
 func (s *Service) Publish(ctx context.Context, event *stategate.Event) error {
-	return s.ps.Publish(event.GetObject().GetType(), event)
+	return s.ps.Publish(constants.BackendChannel, event)
 }
 
 func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error) {

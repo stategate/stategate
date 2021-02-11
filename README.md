@@ -1,6 +1,6 @@
 # stategate
 
-A secure pluggable API that enforces the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html) for persisting & broadcasting application state changes
+A pluggable API and "Application State Gateway" that enforces the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html) for securely persisting & broadcasting application state changes
 
 ![Event-Sourcing](./stategate.png)
 
@@ -11,7 +11,7 @@ A secure pluggable API that enforces the [Event Sourcing Pattern](https://micros
                                         
 ## Features
 - [x] [4 simple API Methods](https://github.com/autom8ter/stategate/blob/master/schema.proto#L15) for interacting with application state: `SetObject, GetObject, StreamEvents, SearchEvents`
-- [x] Capture all changes to an application state as a sequence of events.
+- [x] Capture all changes to an application's state as a sequence of events.
 - [x] Native [gRPC](https://grpc.io/) support
     - [protobuf schema](schema.proto)
 - [x] Embedded REST support `/` (transcoding)
@@ -33,16 +33,19 @@ A secure pluggable API that enforces the [Event Sourcing Pattern](https://micros
 - [x] Structured JSON Logs
 - [x] [Sample Kubernetes Manifest](k8s.yaml)
 - [x] Pluggable "Channel" Providers
+    - [x] In-Memory(won't scale horizontally)
+        - [x] fully-tested
     - [x] Nats
+         - [x] fully-tested
     - [x] Nats Streaming(Stan)
     - [x] Redis
+         - [x] fully-tested
     - [x] Kafka
     - [ ] RabbitMQ
-    - [ ] Google PubSub
-    - [ ] AWS SQS
-    - [ ] Azure Queue
+
 - [x] Pluggable "Storage" Providers
     - [x] MongoDb
+        - [x] fully-tested
     - [ ] PostgreSQL
     - [ ] MySQL
     - [ ] Cassandra
@@ -51,8 +54,8 @@ A secure pluggable API that enforces the [Event Sourcing Pattern](https://micros
 
 ## Goals
 
-- [x] Create a simple API interface for storing state and and subscribing to state changes(events) using pluggable channel & storage providers
-- [x] Capture all changes to an application state as a sequence of events.
+- [x] Create a simple API interface for storing state and subscribing to state changes(events) using pluggable channel & storage providers
+- [x] Capture all changes to an application's state as a sequence of events.
 - [x] Safe to swap backend providers without changing client-side code
 - [x] Type-safe client's generated in many languages
 - [x] Safe to expose to the public internet due to fine-grained authentication/authorization model.

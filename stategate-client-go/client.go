@@ -86,7 +86,7 @@ func streamAuth(tokenSource oauth2.TokenSource, useIDToken bool) grpc.StreamClie
 	}
 }
 
-// NewClient creates a new gRPC stategate client
+// NewClient creates a new stategate client - a pluggable API and "Application State Gateway" that enforces the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html) for securely persisting & broadcasting application state changes
 func NewClient(ctx context.Context, target string, opts ...Opt) (*Client, error) {
 	if target == "" {
 		return nil, errors.New("empty target")
@@ -170,19 +170,20 @@ func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken b
 	), nil
 }
 
-// GetObject gets the current state value of an object
+// GetObject gets an object's current state values
 func (c *Client) GetObject(ctx context.Context, in *stategate.ObjectRef) error {
 	_, err := c.client.GetObject(ctx, in)
 	return err
 }
 
-// Set sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
+// SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
 func (c *Client) SetObject(ctx context.Context, in *stategate.Object) error {
 	_, err := c.client.SetObject(ctx, in)
 	return err
 }
 
-// StreamEvents creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
+// StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
+// Event Consumers invoke this method.
 func (c *Client) StreamEvents(ctx context.Context, in *stategate.StreamOpts, fn func(even *stategate.Event) bool) error {
 	if ctx.Err() != nil {
 		return nil
@@ -212,7 +213,7 @@ func (c *Client) StreamEvents(ctx context.Context, in *stategate.StreamOpts, fn 
 	}
 }
 
-// SearchEvents returns an array of immutable historical events from a given channel.
+// SearchEvents returns an array of immutable historical events for a given object.
 func (c *Client) SearchEvents(ctx context.Context, in *stategate.SearchOpts) (*stategate.Events, error) {
 	return c.client.SearchEvents(ctx, in)
 }

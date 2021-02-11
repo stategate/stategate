@@ -43,9 +43,9 @@ func (p Provider) SaveEvent(ctx context.Context, e *stategate.Event) error {
 		"id":   e.Id,
 		"time": e.GetTime(),
 		"object": bson.M{
-			"type":  e.GetObject().GetType(),
-			"key":   e.GetObject().GetKey(),
-			"value": bson.M(e.GetObject().GetValues().AsMap()),
+			"type":   e.GetObject().GetType(),
+			"key":    e.GetObject().GetKey(),
+			"values": bson.M(e.GetObject().GetValues().AsMap()),
 		},
 		"claims": bson.M(e.GetClaims().AsMap()),
 	}))
@@ -123,7 +123,7 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchOpts)
 		e.Id = cast.ToString(r["id"])
 		object, ok := r["object"].(bson.M)
 		if ok {
-			d, _ := structpb.NewStruct(cast.ToStringMap(object["value"]))
+			d, _ := structpb.NewStruct(object["values"].(bson.M))
 			e.Object.Values = d
 			e.Object.Key = cast.ToString(object["key"])
 			e.Object.Type = cast.ToString(object["type"])

@@ -9,7 +9,6 @@ import (
 	stategate_client_go "github.com/autom8ter/stategate/stategate-client-go"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/protobuf/encoding/protojson"
-	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/structpb"
 	"testing"
 )
@@ -17,7 +16,26 @@ import (
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 
 func TestIntegration(t *testing.T) {
+	testNatsMongo(t)
+	testRedisMongo(t)
+	testInMemMongo(t)
+}
 
+func testRedisMongo(t *testing.T) {
+	natsContainer := framework.NewContainer(t, "redis", "latest", nil)
+	defer natsContainer.Close(t)
+	mongoContainer := framework.NewContainer(t, "mongo", "latest", nil)
+	defer mongoContainer.Close(t)
+	ctx := context.Background()
+	rmgo := redisMongo(t, ctx, natsContainer.GetPort("6379/tcp"), mongoContainer.GetPort("27017/tcp"))
+	framework.Run(t, []*framework.Provider{
+		rmgo,
+	}, []*framework.TestCase{
+		helloWorld(ctx),
+	})
+}
+
+func testNatsMongo(t *testing.T) {
 	natsContainer := framework.NewContainer(t, "nats", "latest", nil)
 	defer natsContainer.Close(t)
 	mongoContainer := framework.NewContainer(t, "mongo", "latest", nil)
@@ -26,6 +44,18 @@ func TestIntegration(t *testing.T) {
 	nmgo := natsMongo(t, ctx, natsContainer.GetPort("4222/tcp"), mongoContainer.GetPort("27017/tcp"))
 	framework.Run(t, []*framework.Provider{
 		nmgo,
+	}, []*framework.TestCase{
+		helloWorld(ctx),
+	})
+}
+
+func testInMemMongo(t *testing.T) {
+	mongoContainer := framework.NewContainer(t, "mongo", "latest", nil)
+	defer mongoContainer.Close(t)
+	ctx := context.Background()
+	mgo := inmemMongo(t, ctx, mongoContainer.GetPort("27017/tcp"))
+	framework.Run(t, []*framework.Provider{
+		mgo,
 	}, []*framework.TestCase{
 		helloWorld(ctx),
 	})
@@ -69,16 +99,93 @@ func natsMongo(t *testing.T, ctx context.Context, natsPort, mongoPort string) *f
 	})
 }
 
+func redisMongo(t *testing.T, ctx context.Context, redisPort, mongoPort string) *framework.Provider {
+	return framework.NewProvider(t, ctx, token, &server.Config{
+		Port: 0,
+		Authorization: &server.Authorization{
+			RequestPolicy: `
+	package stategate.authz
+
+	default allow = false
+
+    allow {
+      input.claims.sub = "1234567890"
+      input.claims.name = "John Doe"
+    }
+`,
+			ResponsePolicy: `
+	package stategate.authz
+
+    default allow = true
+`,
+		},
+
+		Backend: &server.Backend{
+			ChannelProvider: &server.Provider{
+				Name: "redis",
+				Config: map[string]string{
+					"addr": fmt.Sprintf("0.0.0.0:%s", redisPort),
+				},
+			},
+			StorageProvider: &server.Provider{
+				Name: "mongo",
+				Config: map[string]string{
+					"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
+					"database": "testing",
+				},
+			},
+		},
+	})
+}
+
+func inmemMongo(t *testing.T, ctx context.Context, mongoPort string) *framework.Provider {
+	return framework.NewProvider(t, ctx, token, &server.Config{
+		Port: 0,
+		Authorization: &server.Authorization{
+			RequestPolicy: `
+	package stategate.authz
+
+	default allow = false
+
+    allow {
+      input.claims.sub = "1234567890"
+      input.claims.name = "John Doe"
+    }
+`,
+			ResponsePolicy: `
+	package stategate.authz
+
+    default allow = true
+`,
+		},
+
+		Backend: &server.Backend{
+			ChannelProvider: &server.Provider{
+				Name:   "inmem",
+				Config: map[string]string{},
+			},
+			StorageProvider: &server.Provider{
+				Name: "mongo",
+				Config: map[string]string{
+					"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
+					"database": "testing",
+				},
+			},
+		},
+	})
+}
+
 func helloWorld(ctx context.Context) *framework.TestCase {
 	return &framework.TestCase{
 		Name: "hello_world",
 		Func: func(t *testing.T, client *stategate_client_go.Client) {
-			const channelName = "hello_world"
+			const typ = "message"
+			const key = "favorite_quote"
 			group := &errgroup.Group{}
 			group.Go(func() error {
 				count := 0
-				if err := client.StreamEvents(ctx, &stategate.StreamOpts{Type: channelName}, func(even *stategate.Event) bool {
-					t.Logf("received hello world event: %s\n", jsonString(even))
+				if err := client.StreamEvents(ctx, &stategate.StreamOpts{Type: typ}, func(even *stategate.Event) bool {
+					t.Logf("received hello world event: %s\n", protojson.Format(even))
 					count++
 					return count < 3
 				}); err != nil {
@@ -91,8 +198,8 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 					"message": "hello world",
 				})
 				event := &stategate.Object{
-					Type:   channelName,
-					Key:    "colemanword@gmail.com",
+					Type:   typ,
+					Key:    key,
 					Values: data,
 				}
 				for i := 0; i < 3; i++ {
@@ -109,8 +216,8 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				t.Fatal(err)
 			}
 			events, err := client.SearchEvents(ctx, &stategate.SearchOpts{
-				Type:  channelName,
-				Key:   "colemanword@gmail.com",
+				Type:  typ,
+				Key:   key,
 				Min:   0,
 				Max:   0,
 				Limit: 3,
@@ -121,11 +228,7 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 			if len(events.Events) == 0 {
 				t.Fatal("failed to get event history")
 			}
-			t.Log(events.String())
+			t.Log(protojson.Format(events))
 		},
 	}
-}
-
-func jsonString(msg proto.Message) string {
-	return protojson.Format(msg)
 }
