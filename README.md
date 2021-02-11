@@ -2,6 +2,8 @@
 
 A flexible, identity-aware API for microservices following the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html)
 
+![Event-Sourcing](https://microservices.io/i/storingevents.png)
+
 Status: Proof of Concept
 
 [![GoDoc](https://godoc.org/github.com/autom8ter/eventgate?status.svg)](https://godoc.org/github.com/autom8ter/eventgate/eventgate-client-go)
@@ -9,11 +11,11 @@ Status: Proof of Concept
 - [API Documentation](https://autom8ter.github.io/eventgate/)
                                         
 ## Features
-- [x] [Headless](https://en.wikipedia.org/wiki/Headless_software)
-- [x] [3 simple API Methods](https://github.com/autom8ter/eventgate/blob/master/schema.proto#L15) for interacting with events: `Set, Get, Stream, History`
+- [x] [4 simple API Methods](https://github.com/autom8ter/eventgate/blob/master/schema.proto#L15) for interacting with application state: `SetObject, GetObject, StreamEvents, SearchEvents`
+- [x] Capture all changes to an application state as a sequence of events.
 - [x] Native [gRPC](https://grpc.io/) support
     - [protobuf schema](schema.proto)
-- [x] Optional Embedded REST support `/` (transcoding)
+- [x] Embedded REST support `/` (transcoding)
     - [open api schema](schema.swagger.json)
 - [x] Embedded [grpcweb](https://grpc.io/docs/platforms/web/basics/) support (transcoding)
 - [x] Metrics Server(prometheus/pprof)
@@ -50,14 +52,14 @@ Status: Proof of Concept
 
 ## Goals
 
-- [x] Create a universal API interface for publishing and subscribing to events using pluggable channel & storage provider
-- [x] Interact with the API interface in gRPC, REST, and/or graphQL.
+- [x] Create a simple API interface for storing state and and subscribing to state changes(events) using pluggable channel & storage providers
+- [x] Capture all changes to an application state as a sequence of events.
 - [x] Safe to swap backend providers without changing client-side code
 - [x] Type-safe client's generated in many languages
 - [x] Safe to expose to the public internet due to fine-grained authentication/authorization model.
-- [x] Capture a persistant, immutable historical record of all events using a pluggable storage provider
 - [x] Different combinations of Channel & Storage Providers are interoperable.
-- [x] Audit log of events broadcasted by authorized producers
+- [x] Capture a persistant, immutable historical record of all state changes using a pluggable storage provider
+- [x] Store identity(jwt.claims) & timestamp in event logs to capture who is changing what & when
 
 ## Command Line
 
