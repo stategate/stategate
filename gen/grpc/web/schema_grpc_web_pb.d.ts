@@ -9,24 +9,31 @@ export class EventGateServiceClient {
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
 
-  send(
-    request: schema_pb.Event,
+  setObject(
+    request: schema_pb.Object,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
                response: google_protobuf_empty_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
-  receive(
-    request: schema_pb.ReceiveOpts,
-    metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<schema_pb.EventDetail>;
-
-  history(
-    request: schema_pb.HistoryOpts,
+  getObject(
+    request: schema_pb.ObjectRef,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
-               response: schema_pb.EventDetails) => void
-  ): grpcWeb.ClientReadableStream<schema_pb.EventDetails>;
+               response: schema_pb.Object) => void
+  ): grpcWeb.ClientReadableStream<schema_pb.Object>;
+
+  streamEvents(
+    request: schema_pb.StreamOpts,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<schema_pb.Event>;
+
+  searchEvents(
+    request: schema_pb.SearchOpts,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: schema_pb.Events) => void
+  ): grpcWeb.ClientReadableStream<schema_pb.Events>;
 
 }
 
@@ -35,20 +42,25 @@ export class EventGateServicePromiseClient {
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
 
-  send(
-    request: schema_pb.Event,
+  setObject(
+    request: schema_pb.Object,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
-  receive(
-    request: schema_pb.ReceiveOpts,
+  getObject(
+    request: schema_pb.ObjectRef,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<schema_pb.EventDetail>;
+  ): Promise<schema_pb.Object>;
 
-  history(
-    request: schema_pb.HistoryOpts,
+  streamEvents(
+    request: schema_pb.StreamOpts,
     metadata?: grpcWeb.Metadata
-  ): Promise<schema_pb.EventDetails>;
+  ): grpcWeb.ClientReadableStream<schema_pb.Event>;
+
+  searchEvents(
+    request: schema_pb.SearchOpts,
+    metadata?: grpcWeb.Metadata
+  ): Promise<schema_pb.Events>;
 
 }
 

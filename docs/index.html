@@ -183,19 +183,23 @@
                 </li>
               
                 <li>
-                  <a href="#eventgate.EventDetail"><span class="badge">M</span>EventDetail</a>
+                  <a href="#eventgate.Events"><span class="badge">M</span>Events</a>
                 </li>
               
                 <li>
-                  <a href="#eventgate.EventDetails"><span class="badge">M</span>EventDetails</a>
+                  <a href="#eventgate.Object"><span class="badge">M</span>Object</a>
                 </li>
               
                 <li>
-                  <a href="#eventgate.HistoryOpts"><span class="badge">M</span>HistoryOpts</a>
+                  <a href="#eventgate.ObjectRef"><span class="badge">M</span>ObjectRef</a>
                 </li>
               
                 <li>
-                  <a href="#eventgate.ReceiveOpts"><span class="badge">M</span>ReceiveOpts</a>
+                  <a href="#eventgate.SearchOpts"><span class="badge">M</span>SearchOpts</a>
+                </li>
+              
+                <li>
+                  <a href="#eventgate.StreamOpts"><span class="badge">M</span>StreamOpts</a>
                 </li>
               
               
@@ -221,83 +225,7 @@
 
       
         <h3 id="eventgate.Event">Event</h3>
-        <p>Event is a specification for describing event-sourced data</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>channel</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Identifies the channel/subject to which the event will be sent </p></td>
-                </tr>
-              
-                <tr>
-                  <td>data</td>
-                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
-                  <td></td>
-                  <td><p>The event payload(structured). </p></td>
-                </tr>
-              
-                <tr>
-                  <td>metadata</td>
-                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
-                  <td></td>
-                  <td><p>Arbitrary metadata about the event </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Validated Fields</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Field</td>
-                  <td>Validations</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>channel</td>
-                  <td>
-                    <ul>
-                    
-                      <li>string_not_empty: true</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>data</td>
-                  <td>
-                    <ul>
-                    
-                      <li>msg_exists: true</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
-          
-
-        
-      
-        <h3 id="eventgate.EventDetail">EventDetail</h3>
-        <p>EventDetail wraps an Event with additional details.</p>
+        <p>Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.</p><p>Events are persisted to history & broadcasted to interested consumers(Stream) any time an object is created/modified</p>
 
         
           <table class="field-table">
@@ -314,24 +242,10 @@
                 </tr>
               
                 <tr>
-                  <td>channel</td>
-                  <td><a href="#string">string</a></td>
+                  <td>object</td>
+                  <td><a href="#eventgate.Object">Object</a></td>
                   <td></td>
-                  <td><p>Identifies the channel/subject to which the event will be sent </p></td>
-                </tr>
-              
-                <tr>
-                  <td>data</td>
-                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
-                  <td></td>
-                  <td><p>The event payload(structured). </p></td>
-                </tr>
-              
-                <tr>
-                  <td>metadata</td>
-                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
-                  <td></td>
-                  <td><p>Arbitrary metadata about the event </p></td>
+                  <td><p>the unmodified </p></td>
                 </tr>
               
                 <tr>
@@ -343,9 +257,9 @@
               
                 <tr>
                   <td>time</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>Timestamp of when the event was received. </p></td>
+                  <td><p>Timestamp(ns) of when the event was received. </p></td>
                 </tr>
               
             </tbody>
@@ -376,18 +290,7 @@
                 </tr>
               
                 <tr>
-                  <td>channel</td>
-                  <td>
-                    <ul>
-                    
-                      <li>string_not_empty: true</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>data</td>
+                  <td>object</td>
                   <td>
                     <ul>
                     
@@ -413,6 +316,117 @@
                   <td>
                     <ul>
                     
+                      <li>int_gt: 0</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="eventgate.Events">Events</h3>
+        <p>Events is an array of events</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>events</td>
+                  <td><a href="#eventgate.Event">Event</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="eventgate.Object">Object</h3>
+        <p>Object hold's the current state of an object</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Object type (ex: user) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Object key (unique within type) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>values</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>Object values (structured k/v pairs) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td>
+                    <ul>
+                    
+                      <li>string_not_empty: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td>
+                    <ul>
+                    
+                      <li>string_not_empty: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>values</td>
+                  <td>
+                    <ul>
+                    
                       <li>msg_exists: true</li>
                     
                     </ul>
@@ -426,8 +440,8 @@
 
         
       
-        <h3 id="eventgate.EventDetails">EventDetails</h3>
-        <p>EventDetails is an array of event details</p>
+        <h3 id="eventgate.ObjectRef">ObjectRef</h3>
+        <p>ObjectRef is a reference to an existing object</p>
 
         
           <table class="field-table">
@@ -437,21 +451,66 @@
             <tbody>
               
                 <tr>
-                  <td>events</td>
-                  <td><a href="#eventgate.EventDetail">EventDetail</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Object type (ex: user) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Object key (unique within type) </p></td>
                 </tr>
               
             </tbody>
           </table>
 
           
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td>
+                    <ul>
+                    
+                      <li>string_not_empty: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td>
+                    <ul>
+                    
+                      <li>string_not_empty: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
 
         
       
-        <h3 id="eventgate.HistoryOpts">HistoryOpts</h3>
-        <p>HistoryOpts are options when querying historical events</p>
+        <h3 id="eventgate.SearchOpts">SearchOpts</h3>
+        <p>SearchOpts are options when querying historical events for a given object</p>
 
         
           <table class="field-table">
@@ -461,22 +520,29 @@
             <tbody>
               
                 <tr>
-                  <td>channel</td>
+                  <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Object type (ex: user) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Object key (unique within type) </p></td>
                 </tr>
               
                 <tr>
                   <td>min</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td><a href="#int64">int64</a></td>
                   <td></td>
                   <td><p>only return events that occurred after specified min timestamp </p></td>
                 </tr>
               
                 <tr>
                   <td>max</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td><a href="#int64">int64</a></td>
                   <td></td>
                   <td><p>only return events that occurred before specified max timestamp </p></td>
                 </tr>
@@ -512,7 +578,18 @@
               <tbody>
               
                 <tr>
-                  <td>channel</td>
+                  <td>type</td>
+                  <td>
+                    <ul>
+                    
+                      <li>string_not_empty: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
                   <td>
                     <ul>
                     
@@ -540,8 +617,8 @@
 
         
       
-        <h3 id="eventgate.ReceiveOpts">ReceiveOpts</h3>
-        <p>ReceiveOpts filters events before they are received by a consumer</p>
+        <h3 id="eventgate.StreamOpts">StreamOpts</h3>
+        <p>StreamOpts are options for consumers looking to stream events</p>
 
         
           <table class="field-table">
@@ -551,7 +628,7 @@
             <tbody>
               
                 <tr>
-                  <td>channel</td>
+                  <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -574,7 +651,7 @@
               <tbody>
               
                 <tr>
-                  <td>channel</td>
+                  <td>type</td>
                   <td>
                     <ul>
                     
@@ -606,26 +683,32 @@
           <tbody>
             
               <tr>
-                <td>Send</td>
-                <td><a href="#eventgate.Event">Event</a></td>
+                <td>SetObject</td>
+                <td><a href="#eventgate.Object">Object</a></td>
                 <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
-                <td><p>Send broadcasts an event to all consumers on a given channel. Producers invoke this method.</p></td>
+                <td><p>SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers</p></td>
               </tr>
             
               <tr>
-                <td>Receive</td>
-                <td><a href="#eventgate.ReceiveOpts">ReceiveOpts</a></td>
-                <td><a href="#eventgate.EventDetail">EventDetail</a> stream</td>
-                <td><p>Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
+                <td>GetObject</td>
+                <td><a href="#eventgate.ObjectRef">ObjectRef</a></td>
+                <td><a href="#eventgate.Object">Object</a></td>
+                <td><p>GetObject gets an object&#39;s current state values</p></td>
+              </tr>
+            
+              <tr>
+                <td>StreamEvents</td>
+                <td><a href="#eventgate.StreamOpts">StreamOpts</a></td>
+                <td><a href="#eventgate.Event">Event</a> stream</td>
+                <td><p>StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
 Event Consumers invoke this method.</p></td>
               </tr>
             
               <tr>
-                <td>History</td>
-                <td><a href="#eventgate.HistoryOpts">HistoryOpts</a></td>
-                <td><a href="#eventgate.EventDetails">EventDetails</a></td>
-                <td><p>History returns an array of immutable historical events.
-Event Consumers invoke this method.</p></td>
+                <td>SearchEvents</td>
+                <td><a href="#eventgate.SearchOpts">SearchOpts</a></td>
+                <td><a href="#eventgate.Events">Events</a></td>
+                <td><p>SearchEvents returns an array of immutable historical events for a given object.</p></td>
               </tr>
             
           </tbody>
@@ -649,19 +732,9 @@ Event Consumers invoke this method.</p></td>
               
               
               <tr>
-                <td>Send</td>
+                <td>SetObject</td>
                 <td>POST</td>
-                <td>/send</td>
-                <td>*</td>
-              </tr>
-              
-            
-              
-              
-              <tr>
-                <td>Receive</td>
-                <td>GET</td>
-                <td>/receive</td>
+                <td>/api/{type}/state/{key}</td>
                 <td></td>
               </tr>
               
@@ -669,9 +742,29 @@ Event Consumers invoke this method.</p></td>
               
               
               <tr>
-                <td>History</td>
+                <td>GetObject</td>
                 <td>GET</td>
-                <td>/history</td>
+                <td>/api/{type}/state/{key}</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>StreamEvents</td>
+                <td>GET</td>
+                <td>/api/{type}/events</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>SearchEvents</td>
+                <td>GET</td>
+                <td>/api/{type}/events/{key}</td>
                 <td></td>
               </tr>
               

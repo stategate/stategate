@@ -11,7 +11,7 @@ import (
 	_ "github.com/golang/protobuf/ptypes/any"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	_struct "github.com/golang/protobuf/ptypes/struct"
-	timestamp "github.com/golang/protobuf/ptypes/timestamp"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
@@ -30,25 +30,20 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// HistoryOpts are options when querying historical events
-type HistoryOpts struct {
+// ObjectRef is a reference to an existing object
+type ObjectRef struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Channel string `protobuf:"bytes,1,opt,name=channel,proto3" json:"channel,omitempty"`
-	// only return events that occurred after specified min timestamp
-	Min *timestamp.Timestamp `protobuf:"bytes,2,opt,name=min,proto3" json:"min,omitempty"`
-	// only return events that occurred before specified max timestamp
-	Max *timestamp.Timestamp `protobuf:"bytes,3,opt,name=max,proto3" json:"max,omitempty"`
-	// limit returned events
-	Limit int64 `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
-	// offset returned events(pagination)
-	Offset int64 `protobuf:"varint,5,opt,name=offset,proto3" json:"offset,omitempty"`
+	// Object type (ex: user)
+	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	// Object key (unique within type)
+	Key string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
 }
 
-func (x *HistoryOpts) Reset() {
-	*x = HistoryOpts{}
+func (x *ObjectRef) Reset() {
+	*x = ObjectRef{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_schema_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,13 +51,13 @@ func (x *HistoryOpts) Reset() {
 	}
 }
 
-func (x *HistoryOpts) String() string {
+func (x *ObjectRef) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*HistoryOpts) ProtoMessage() {}
+func (*ObjectRef) ProtoMessage() {}
 
-func (x *HistoryOpts) ProtoReflect() protoreflect.Message {
+func (x *ObjectRef) ProtoReflect() protoreflect.Message {
 	mi := &file_schema_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -74,57 +69,41 @@ func (x *HistoryOpts) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use HistoryOpts.ProtoReflect.Descriptor instead.
-func (*HistoryOpts) Descriptor() ([]byte, []int) {
+// Deprecated: Use ObjectRef.ProtoReflect.Descriptor instead.
+func (*ObjectRef) Descriptor() ([]byte, []int) {
 	return file_schema_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *HistoryOpts) GetChannel() string {
+func (x *ObjectRef) GetType() string {
 	if x != nil {
-		return x.Channel
+		return x.Type
 	}
 	return ""
 }
 
-func (x *HistoryOpts) GetMin() *timestamp.Timestamp {
+func (x *ObjectRef) GetKey() string {
 	if x != nil {
-		return x.Min
+		return x.Key
 	}
-	return nil
+	return ""
 }
 
-func (x *HistoryOpts) GetMax() *timestamp.Timestamp {
-	if x != nil {
-		return x.Max
-	}
-	return nil
-}
-
-func (x *HistoryOpts) GetLimit() int64 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-func (x *HistoryOpts) GetOffset() int64 {
-	if x != nil {
-		return x.Offset
-	}
-	return 0
-}
-
-// ReceiveOpts filters events before they are received by a consumer
-type ReceiveOpts struct {
+// Object hold's the current state of an object
+type Object struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Channel string `protobuf:"bytes,1,opt,name=channel,proto3" json:"channel,omitempty"`
+	// Object type (ex: user)
+	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	// Object key (unique within type)
+	Key string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
+	// Object values (structured k/v pairs)
+	Values *_struct.Struct `protobuf:"bytes,3,opt,name=values,proto3" json:"values,omitempty"`
 }
 
-func (x *ReceiveOpts) Reset() {
-	*x = ReceiveOpts{}
+func (x *Object) Reset() {
+	*x = Object{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_schema_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -132,13 +111,13 @@ func (x *ReceiveOpts) Reset() {
 	}
 }
 
-func (x *ReceiveOpts) String() string {
+func (x *Object) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ReceiveOpts) ProtoMessage() {}
+func (*Object) ProtoMessage() {}
 
-func (x *ReceiveOpts) ProtoReflect() protoreflect.Message {
+func (x *Object) ProtoReflect() protoreflect.Message {
 	mi := &file_schema_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -150,36 +129,195 @@ func (x *ReceiveOpts) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ReceiveOpts.ProtoReflect.Descriptor instead.
-func (*ReceiveOpts) Descriptor() ([]byte, []int) {
+// Deprecated: Use Object.ProtoReflect.Descriptor instead.
+func (*Object) Descriptor() ([]byte, []int) {
 	return file_schema_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ReceiveOpts) GetChannel() string {
+func (x *Object) GetType() string {
 	if x != nil {
-		return x.Channel
+		return x.Type
 	}
 	return ""
 }
 
-// Event is a specification for describing event-sourced data
+func (x *Object) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *Object) GetValues() *_struct.Struct {
+	if x != nil {
+		return x.Values
+	}
+	return nil
+}
+
+// SearchOpts are options when querying historical events for a given object
+type SearchOpts struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Object type (ex: user)
+	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	// Object key (unique within type)
+	Key string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
+	// only return events that occurred after specified min timestamp
+	Min int64 `protobuf:"varint,3,opt,name=min,proto3" json:"min,omitempty"`
+	// only return events that occurred before specified max timestamp
+	Max int64 `protobuf:"varint,4,opt,name=max,proto3" json:"max,omitempty"`
+	// limit returned events
+	Limit int64 `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
+	// offset returned events(pagination)
+	Offset int64 `protobuf:"varint,6,opt,name=offset,proto3" json:"offset,omitempty"`
+}
+
+func (x *SearchOpts) Reset() {
+	*x = SearchOpts{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SearchOpts) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchOpts) ProtoMessage() {}
+
+func (x *SearchOpts) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchOpts.ProtoReflect.Descriptor instead.
+func (*SearchOpts) Descriptor() ([]byte, []int) {
+	return file_schema_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *SearchOpts) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *SearchOpts) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *SearchOpts) GetMin() int64 {
+	if x != nil {
+		return x.Min
+	}
+	return 0
+}
+
+func (x *SearchOpts) GetMax() int64 {
+	if x != nil {
+		return x.Max
+	}
+	return 0
+}
+
+func (x *SearchOpts) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *SearchOpts) GetOffset() int64 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+// StreamOpts are options for consumers looking to stream events
+type StreamOpts struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+}
+
+func (x *StreamOpts) Reset() {
+	*x = StreamOpts{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *StreamOpts) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StreamOpts) ProtoMessage() {}
+
+func (x *StreamOpts) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StreamOpts.ProtoReflect.Descriptor instead.
+func (*StreamOpts) Descriptor() ([]byte, []int) {
+	return file_schema_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *StreamOpts) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+// Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.
+// Events are persisted to history & broadcasted to interested consumers(Stream) any time an object is created/modified
 type Event struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Identifies the channel/subject to which the event will be sent
-	Channel string `protobuf:"bytes,30,opt,name=channel,proto3" json:"channel,omitempty"`
-	// The event payload(structured).
-	Data *_struct.Struct `protobuf:"bytes,31,opt,name=data,proto3" json:"data,omitempty"`
-	// Arbitrary metadata about the event
-	Metadata *_struct.Struct `protobuf:"bytes,32,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	// Identifies the event(uuid).
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// the unmodified
+	Object *Object `protobuf:"bytes,2,opt,name=object,proto3" json:"object,omitempty"`
+	// The authentication claims of the event producer.
+	Claims *_struct.Struct `protobuf:"bytes,3,opt,name=claims,proto3" json:"claims,omitempty"`
+	// Timestamp(ns) of when the event was received.
+	Time int64 `protobuf:"varint,4,opt,name=time,proto3" json:"time,omitempty"`
 }
 
 func (x *Event) Reset() {
 	*x = Event{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_schema_proto_msgTypes[2]
+		mi := &file_schema_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -192,7 +330,7 @@ func (x *Event) String() string {
 func (*Event) ProtoMessage() {}
 
 func (x *Event) ProtoReflect() protoreflect.Message {
-	mi := &file_schema_proto_msgTypes[2]
+	mi := &file_schema_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -205,150 +343,63 @@ func (x *Event) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Event.ProtoReflect.Descriptor instead.
 func (*Event) Descriptor() ([]byte, []int) {
-	return file_schema_proto_rawDescGZIP(), []int{2}
+	return file_schema_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *Event) GetChannel() string {
-	if x != nil {
-		return x.Channel
-	}
-	return ""
-}
-
-func (x *Event) GetData() *_struct.Struct {
-	if x != nil {
-		return x.Data
-	}
-	return nil
-}
-
-func (x *Event) GetMetadata() *_struct.Struct {
-	if x != nil {
-		return x.Metadata
-	}
-	return nil
-}
-
-// EventDetail wraps an Event with additional details.
-type EventDetail struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Identifies the event(uuid).
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// Identifies the channel/subject to which the event will be sent
-	Channel string `protobuf:"bytes,30,opt,name=channel,proto3" json:"channel,omitempty"`
-	// The event payload(structured).
-	Data *_struct.Struct `protobuf:"bytes,31,opt,name=data,proto3" json:"data,omitempty"`
-	// Arbitrary metadata about the event
-	Metadata *_struct.Struct `protobuf:"bytes,32,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	// The authentication claims of the event producer.
-	Claims *_struct.Struct `protobuf:"bytes,2,opt,name=claims,proto3" json:"claims,omitempty"`
-	// Timestamp of when the event was received.
-	Time *timestamp.Timestamp `protobuf:"bytes,3,opt,name=time,proto3" json:"time,omitempty"`
-}
-
-func (x *EventDetail) Reset() {
-	*x = EventDetail{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_schema_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *EventDetail) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EventDetail) ProtoMessage() {}
-
-func (x *EventDetail) ProtoReflect() protoreflect.Message {
-	mi := &file_schema_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EventDetail.ProtoReflect.Descriptor instead.
-func (*EventDetail) Descriptor() ([]byte, []int) {
-	return file_schema_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *EventDetail) GetId() string {
+func (x *Event) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *EventDetail) GetChannel() string {
+func (x *Event) GetObject() *Object {
 	if x != nil {
-		return x.Channel
-	}
-	return ""
-}
-
-func (x *EventDetail) GetData() *_struct.Struct {
-	if x != nil {
-		return x.Data
+		return x.Object
 	}
 	return nil
 }
 
-func (x *EventDetail) GetMetadata() *_struct.Struct {
-	if x != nil {
-		return x.Metadata
-	}
-	return nil
-}
-
-func (x *EventDetail) GetClaims() *_struct.Struct {
+func (x *Event) GetClaims() *_struct.Struct {
 	if x != nil {
 		return x.Claims
 	}
 	return nil
 }
 
-func (x *EventDetail) GetTime() *timestamp.Timestamp {
+func (x *Event) GetTime() int64 {
 	if x != nil {
 		return x.Time
 	}
-	return nil
+	return 0
 }
 
-// EventDetails is an array of event details
-type EventDetails struct {
+// Events is an array of events
+type Events struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Events []*EventDetail `protobuf:"bytes,1,rep,name=events,proto3" json:"events,omitempty"`
+	Events []*Event `protobuf:"bytes,1,rep,name=events,proto3" json:"events,omitempty"`
 }
 
-func (x *EventDetails) Reset() {
-	*x = EventDetails{}
+func (x *Events) Reset() {
+	*x = Events{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_schema_proto_msgTypes[4]
+		mi := &file_schema_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *EventDetails) String() string {
+func (x *Events) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*EventDetails) ProtoMessage() {}
+func (*Events) ProtoMessage() {}
 
-func (x *EventDetails) ProtoReflect() protoreflect.Message {
-	mi := &file_schema_proto_msgTypes[4]
+func (x *Events) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -359,12 +410,12 @@ func (x *EventDetails) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use EventDetails.ProtoReflect.Descriptor instead.
-func (*EventDetails) Descriptor() ([]byte, []int) {
-	return file_schema_proto_rawDescGZIP(), []int{4}
+// Deprecated: Use Events.ProtoReflect.Descriptor instead.
+func (*Events) Descriptor() ([]byte, []int) {
+	return file_schema_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *EventDetails) GetEvents() []*EventDetail {
+func (x *Events) GetEvents() []*Event {
 	if x != nil {
 		return x.Events
 	}
@@ -388,71 +439,70 @@ var file_schema_proto_rawDesc = []byte{
 	0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6d, 0x77, 0x69, 0x74, 0x6b,
 	0x6f, 0x77, 0x2f, 0x67, 0x6f, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2d, 0x76, 0x61, 0x6c, 0x69,
 	0x64, 0x61, 0x74, 0x6f, 0x72, 0x73, 0x2f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x6f, 0x72,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xc1, 0x01, 0x0a, 0x0b, 0x48, 0x69, 0x73, 0x74, 0x6f,
-	0x72, 0x79, 0x4f, 0x70, 0x74, 0x73, 0x12, 0x20, 0x0a, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65,
-	0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x58, 0x01, 0x52,
-	0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x2c, 0x0a, 0x03, 0x6d, 0x69, 0x6e, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
-	0x70, 0x52, 0x03, 0x6d, 0x69, 0x6e, 0x12, 0x2c, 0x0a, 0x03, 0x6d, 0x61, 0x78, 0x18, 0x03, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52,
-	0x03, 0x6d, 0x61, 0x78, 0x12, 0x1c, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x04, 0x20,
-	0x01, 0x28, 0x03, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x10, 0x00, 0x52, 0x05, 0x6c, 0x69, 0x6d,
-	0x69, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x05, 0x20, 0x01,
-	0x28, 0x03, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x22, 0x2f, 0x0a, 0x0b, 0x52, 0x65,
-	0x63, 0x65, 0x69, 0x76, 0x65, 0x4f, 0x70, 0x74, 0x73, 0x12, 0x20, 0x0a, 0x07, 0x63, 0x68, 0x61,
-	0x6e, 0x6e, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02,
-	0x58, 0x01, 0x52, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x22, 0x93, 0x01, 0x0a, 0x05,
-	0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x20, 0x0a, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
-	0x18, 0x1e, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x58, 0x01, 0x52, 0x07,
-	0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x33, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18,
-	0x1f, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x42, 0x06,
-	0xe2, 0xdf, 0x1f, 0x02, 0x20, 0x01, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x12, 0x33, 0x0a, 0x08,
-	0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x20, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17,
-	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
-	0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
-	0x61, 0x22, 0xa3, 0x02, 0x0a, 0x0b, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x44, 0x65, 0x74, 0x61, 0x69,
-	0x6c, 0x12, 0x17, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x07, 0xe2,
-	0xdf, 0x1f, 0x03, 0x90, 0x01, 0x00, 0x52, 0x02, 0x69, 0x64, 0x12, 0x20, 0x0a, 0x07, 0x63, 0x68,
-	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x18, 0x1e, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06, 0xe2, 0xdf, 0x1f,
-	0x02, 0x58, 0x01, 0x52, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x33, 0x0a, 0x04,
-	0x64, 0x61, 0x74, 0x61, 0x18, 0x1f, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f,
-	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72,
-	0x75, 0x63, 0x74, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x20, 0x01, 0x52, 0x04, 0x64, 0x61, 0x74,
-	0x61, 0x12, 0x33, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x20, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x08, 0x6d, 0x65,
-	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x37, 0x0a, 0x06, 0x63, 0x6c, 0x61, 0x69, 0x6d, 0x73,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x42,
-	0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x20, 0x01, 0x52, 0x06, 0x63, 0x6c, 0x61, 0x69, 0x6d, 0x73, 0x12,
-	0x36, 0x0a, 0x04, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e,
-	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
-	0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x20,
-	0x01, 0x52, 0x04, 0x74, 0x69, 0x6d, 0x65, 0x22, 0x3e, 0x0a, 0x0c, 0x45, 0x76, 0x65, 0x6e, 0x74,
-	0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x12, 0x2e, 0x0a, 0x06, 0x65, 0x76, 0x65, 0x6e, 0x74,
-	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67,
-	0x61, 0x74, 0x65, 0x2e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52,
-	0x06, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x32, 0xf3, 0x01, 0x0a, 0x10, 0x45, 0x76, 0x65, 0x6e,
-	0x74, 0x47, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x42, 0x0a, 0x04,
-	0x53, 0x65, 0x6e, 0x64, 0x12, 0x10, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65,
-	0x2e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x10,
-	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x0a, 0x22, 0x05, 0x2f, 0x73, 0x65, 0x6e, 0x64, 0x3a, 0x01, 0x2a,
-	0x12, 0x4d, 0x0a, 0x07, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x12, 0x16, 0x2e, 0x65, 0x76,
-	0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x4f,
-	0x70, 0x74, 0x73, 0x1a, 0x16, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e,
-	0x45, 0x76, 0x65, 0x6e, 0x74, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x22, 0x10, 0x82, 0xd3, 0xe4,
-	0x93, 0x02, 0x0a, 0x12, 0x08, 0x2f, 0x72, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x30, 0x01, 0x12,
-	0x4c, 0x0a, 0x07, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x12, 0x16, 0x2e, 0x65, 0x76, 0x65,
-	0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x4f, 0x70,
-	0x74, 0x73, 0x1a, 0x17, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x45,
-	0x76, 0x65, 0x6e, 0x74, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x22, 0x10, 0x82, 0xd3, 0xe4,
-	0x93, 0x02, 0x0a, 0x12, 0x08, 0x2f, 0x68, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x42, 0x0b, 0x5a,
-	0x09, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x41, 0x0a, 0x09, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74,
+	0x52, 0x65, 0x66, 0x12, 0x1a, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x58, 0x01, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12,
+	0x18, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06, 0xe2, 0xdf,
+	0x1f, 0x02, 0x58, 0x01, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x22, 0x77, 0x0a, 0x06, 0x4f, 0x62, 0x6a,
+	0x65, 0x63, 0x74, 0x12, 0x1a, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x58, 0x01, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12,
+	0x18, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06, 0xe2, 0xdf,
+	0x1f, 0x02, 0x58, 0x01, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x37, 0x0a, 0x06, 0x76, 0x61, 0x6c,
+	0x75, 0x65, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67,
+	0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75,
+	0x63, 0x74, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x20, 0x01, 0x52, 0x06, 0x76, 0x61, 0x6c, 0x75,
+	0x65, 0x73, 0x22, 0x9c, 0x01, 0x0a, 0x0a, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x4f, 0x70, 0x74,
+	0x73, 0x12, 0x1a, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42,
+	0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x58, 0x01, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x18, 0x0a,
+	0x03, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02,
+	0x58, 0x01, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x69, 0x6e, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x03, 0x6d, 0x69, 0x6e, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x61, 0x78,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x03, 0x6d, 0x61, 0x78, 0x12, 0x1c, 0x0a, 0x05, 0x6c,
+	0x69, 0x6d, 0x69, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x03, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02,
+	0x10, 0x00, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66,
+	0x73, 0x65, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65,
+	0x74, 0x22, 0x28, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x4f, 0x70, 0x74, 0x73, 0x12,
+	0x1a, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06, 0xe2,
+	0xdf, 0x1f, 0x02, 0x58, 0x01, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0xa8, 0x01, 0x0a, 0x05,
+	0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x17, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x07, 0xe2, 0xdf, 0x1f, 0x03, 0x90, 0x01, 0x00, 0x52, 0x02, 0x69, 0x64, 0x12, 0x31,
+	0x0a, 0x06, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11,
+	0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63,
+	0x74, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x20, 0x01, 0x52, 0x06, 0x6f, 0x62, 0x6a, 0x65, 0x63,
+	0x74, 0x12, 0x37, 0x0a, 0x06, 0x63, 0x6c, 0x61, 0x69, 0x6d, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02,
+	0x20, 0x01, 0x52, 0x06, 0x63, 0x6c, 0x61, 0x69, 0x6d, 0x73, 0x12, 0x1a, 0x0a, 0x04, 0x74, 0x69,
+	0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x42, 0x06, 0xe2, 0xdf, 0x1f, 0x02, 0x10, 0x00,
+	0x52, 0x04, 0x74, 0x69, 0x6d, 0x65, 0x22, 0x32, 0x0a, 0x06, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73,
+	0x12, 0x28, 0x0a, 0x06, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x10, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x45, 0x76, 0x65,
+	0x6e, 0x74, 0x52, 0x06, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x32, 0xf5, 0x02, 0x0a, 0x10, 0x45,
+	0x76, 0x65, 0x6e, 0x74, 0x47, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
+	0x57, 0x0a, 0x09, 0x53, 0x65, 0x74, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x12, 0x11, 0x2e, 0x65,
+	0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x1a,
+	0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x1f, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x19, 0x22,
+	0x17, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x7b, 0x74, 0x79, 0x70, 0x65, 0x7d, 0x2f, 0x73, 0x74, 0x61,
+	0x74, 0x65, 0x2f, 0x7b, 0x6b, 0x65, 0x79, 0x7d, 0x12, 0x55, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x4f,
+	0x62, 0x6a, 0x65, 0x63, 0x74, 0x12, 0x14, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74,
+	0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x65, 0x66, 0x1a, 0x11, 0x2e, 0x65, 0x76,
+	0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x22, 0x1f,
+	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x19, 0x12, 0x17, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x7b, 0x74, 0x79,
+	0x70, 0x65, 0x7d, 0x2f, 0x73, 0x74, 0x61, 0x74, 0x65, 0x2f, 0x7b, 0x6b, 0x65, 0x79, 0x7d, 0x12,
+	0x55, 0x0a, 0x0c, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x12,
+	0x15, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x53, 0x74, 0x72, 0x65,
+	0x61, 0x6d, 0x4f, 0x70, 0x74, 0x73, 0x1a, 0x10, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61,
+	0x74, 0x65, 0x2e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x22, 0x1a, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x14,
+	0x12, 0x12, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x7b, 0x74, 0x79, 0x70, 0x65, 0x7d, 0x2f, 0x65, 0x76,
+	0x65, 0x6e, 0x74, 0x73, 0x30, 0x01, 0x12, 0x5a, 0x0a, 0x0c, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68,
+	0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x15, 0x2e, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61,
+	0x74, 0x65, 0x2e, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x4f, 0x70, 0x74, 0x73, 0x1a, 0x11, 0x2e,
+	0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x2e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73,
+	0x22, 0x20, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x1a, 0x12, 0x18, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x7b,
+	0x74, 0x79, 0x70, 0x65, 0x7d, 0x2f, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x2f, 0x7b, 0x6b, 0x65,
+	0x79, 0x7d, 0x42, 0x0b, 0x5a, 0x09, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x67, 0x61, 0x74, 0x65, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -467,38 +517,35 @@ func file_schema_proto_rawDescGZIP() []byte {
 	return file_schema_proto_rawDescData
 }
 
-var file_schema_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_schema_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_schema_proto_goTypes = []interface{}{
-	(*HistoryOpts)(nil),         // 0: eventgate.HistoryOpts
-	(*ReceiveOpts)(nil),         // 1: eventgate.ReceiveOpts
-	(*Event)(nil),               // 2: eventgate.Event
-	(*EventDetail)(nil),         // 3: eventgate.EventDetail
-	(*EventDetails)(nil),        // 4: eventgate.EventDetails
-	(*timestamp.Timestamp)(nil), // 5: google.protobuf.Timestamp
-	(*_struct.Struct)(nil),      // 6: google.protobuf.Struct
-	(*empty.Empty)(nil),         // 7: google.protobuf.Empty
+	(*ObjectRef)(nil),      // 0: eventgate.ObjectRef
+	(*Object)(nil),         // 1: eventgate.Object
+	(*SearchOpts)(nil),     // 2: eventgate.SearchOpts
+	(*StreamOpts)(nil),     // 3: eventgate.StreamOpts
+	(*Event)(nil),          // 4: eventgate.Event
+	(*Events)(nil),         // 5: eventgate.Events
+	(*_struct.Struct)(nil), // 6: google.protobuf.Struct
+	(*empty.Empty)(nil),    // 7: google.protobuf.Empty
 }
 var file_schema_proto_depIdxs = []int32{
-	5,  // 0: eventgate.HistoryOpts.min:type_name -> google.protobuf.Timestamp
-	5,  // 1: eventgate.HistoryOpts.max:type_name -> google.protobuf.Timestamp
-	6,  // 2: eventgate.Event.data:type_name -> google.protobuf.Struct
-	6,  // 3: eventgate.Event.metadata:type_name -> google.protobuf.Struct
-	6,  // 4: eventgate.EventDetail.data:type_name -> google.protobuf.Struct
-	6,  // 5: eventgate.EventDetail.metadata:type_name -> google.protobuf.Struct
-	6,  // 6: eventgate.EventDetail.claims:type_name -> google.protobuf.Struct
-	5,  // 7: eventgate.EventDetail.time:type_name -> google.protobuf.Timestamp
-	3,  // 8: eventgate.EventDetails.events:type_name -> eventgate.EventDetail
-	2,  // 9: eventgate.EventGateService.Send:input_type -> eventgate.Event
-	1,  // 10: eventgate.EventGateService.Receive:input_type -> eventgate.ReceiveOpts
-	0,  // 11: eventgate.EventGateService.History:input_type -> eventgate.HistoryOpts
-	7,  // 12: eventgate.EventGateService.Send:output_type -> google.protobuf.Empty
-	3,  // 13: eventgate.EventGateService.Receive:output_type -> eventgate.EventDetail
-	4,  // 14: eventgate.EventGateService.History:output_type -> eventgate.EventDetails
-	12, // [12:15] is the sub-list for method output_type
-	9,  // [9:12] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	6, // 0: eventgate.Object.values:type_name -> google.protobuf.Struct
+	1, // 1: eventgate.Event.object:type_name -> eventgate.Object
+	6, // 2: eventgate.Event.claims:type_name -> google.protobuf.Struct
+	4, // 3: eventgate.Events.events:type_name -> eventgate.Event
+	1, // 4: eventgate.EventGateService.SetObject:input_type -> eventgate.Object
+	0, // 5: eventgate.EventGateService.GetObject:input_type -> eventgate.ObjectRef
+	3, // 6: eventgate.EventGateService.StreamEvents:input_type -> eventgate.StreamOpts
+	2, // 7: eventgate.EventGateService.SearchEvents:input_type -> eventgate.SearchOpts
+	7, // 8: eventgate.EventGateService.SetObject:output_type -> google.protobuf.Empty
+	1, // 9: eventgate.EventGateService.GetObject:output_type -> eventgate.Object
+	4, // 10: eventgate.EventGateService.StreamEvents:output_type -> eventgate.Event
+	5, // 11: eventgate.EventGateService.SearchEvents:output_type -> eventgate.Events
+	8, // [8:12] is the sub-list for method output_type
+	4, // [4:8] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_schema_proto_init() }
@@ -508,7 +555,7 @@ func file_schema_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_schema_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*HistoryOpts); i {
+			switch v := v.(*ObjectRef); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -520,7 +567,7 @@ func file_schema_proto_init() {
 			}
 		}
 		file_schema_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReceiveOpts); i {
+			switch v := v.(*Object); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -532,7 +579,7 @@ func file_schema_proto_init() {
 			}
 		}
 		file_schema_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Event); i {
+			switch v := v.(*SearchOpts); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -544,7 +591,7 @@ func file_schema_proto_init() {
 			}
 		}
 		file_schema_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EventDetail); i {
+			switch v := v.(*StreamOpts); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -556,7 +603,19 @@ func file_schema_proto_init() {
 			}
 		}
 		file_schema_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EventDetails); i {
+			switch v := v.(*Event); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Events); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -574,7 +633,7 @@ func file_schema_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_schema_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -600,14 +659,15 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type EventGateServiceClient interface {
-	// Send broadcasts an event to all consumers on a given channel. Producers invoke this method.
-	Send(ctx context.Context, in *Event, opts ...grpc.CallOption) (*empty.Empty, error)
-	// Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
+	// SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
+	SetObject(ctx context.Context, in *Object, opts ...grpc.CallOption) (*empty.Empty, error)
+	// GetObject gets an object's current state values
+	GetObject(ctx context.Context, in *ObjectRef, opts ...grpc.CallOption) (*Object, error)
+	// StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
 	// Event Consumers invoke this method.
-	Receive(ctx context.Context, in *ReceiveOpts, opts ...grpc.CallOption) (EventGateService_ReceiveClient, error)
-	// History returns an array of immutable historical events.
-	// Event Consumers invoke this method.
-	History(ctx context.Context, in *HistoryOpts, opts ...grpc.CallOption) (*EventDetails, error)
+	StreamEvents(ctx context.Context, in *StreamOpts, opts ...grpc.CallOption) (EventGateService_StreamEventsClient, error)
+	// SearchEvents returns an array of immutable historical events for a given object.
+	SearchEvents(ctx context.Context, in *SearchOpts, opts ...grpc.CallOption) (*Events, error)
 }
 
 type eventGateServiceClient struct {
@@ -618,21 +678,30 @@ func NewEventGateServiceClient(cc grpc.ClientConnInterface) EventGateServiceClie
 	return &eventGateServiceClient{cc}
 }
 
-func (c *eventGateServiceClient) Send(ctx context.Context, in *Event, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *eventGateServiceClient) SetObject(ctx context.Context, in *Object, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/eventgate.EventGateService/Send", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/eventgate.EventGateService/SetObject", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventGateServiceClient) Receive(ctx context.Context, in *ReceiveOpts, opts ...grpc.CallOption) (EventGateService_ReceiveClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_EventGateService_serviceDesc.Streams[0], "/eventgate.EventGateService/Receive", opts...)
+func (c *eventGateServiceClient) GetObject(ctx context.Context, in *ObjectRef, opts ...grpc.CallOption) (*Object, error) {
+	out := new(Object)
+	err := c.cc.Invoke(ctx, "/eventgate.EventGateService/GetObject", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &eventGateServiceReceiveClient{stream}
+	return out, nil
+}
+
+func (c *eventGateServiceClient) StreamEvents(ctx context.Context, in *StreamOpts, opts ...grpc.CallOption) (EventGateService_StreamEventsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_EventGateService_serviceDesc.Streams[0], "/eventgate.EventGateService/StreamEvents", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &eventGateServiceStreamEventsClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -642,26 +711,26 @@ func (c *eventGateServiceClient) Receive(ctx context.Context, in *ReceiveOpts, o
 	return x, nil
 }
 
-type EventGateService_ReceiveClient interface {
-	Recv() (*EventDetail, error)
+type EventGateService_StreamEventsClient interface {
+	Recv() (*Event, error)
 	grpc.ClientStream
 }
 
-type eventGateServiceReceiveClient struct {
+type eventGateServiceStreamEventsClient struct {
 	grpc.ClientStream
 }
 
-func (x *eventGateServiceReceiveClient) Recv() (*EventDetail, error) {
-	m := new(EventDetail)
+func (x *eventGateServiceStreamEventsClient) Recv() (*Event, error) {
+	m := new(Event)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *eventGateServiceClient) History(ctx context.Context, in *HistoryOpts, opts ...grpc.CallOption) (*EventDetails, error) {
-	out := new(EventDetails)
-	err := c.cc.Invoke(ctx, "/eventgate.EventGateService/History", in, out, opts...)
+func (c *eventGateServiceClient) SearchEvents(ctx context.Context, in *SearchOpts, opts ...grpc.CallOption) (*Events, error) {
+	out := new(Events)
+	err := c.cc.Invoke(ctx, "/eventgate.EventGateService/SearchEvents", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -670,87 +739,109 @@ func (c *eventGateServiceClient) History(ctx context.Context, in *HistoryOpts, o
 
 // EventGateServiceServer is the server API for EventGateService service.
 type EventGateServiceServer interface {
-	// Send broadcasts an event to all consumers on a given channel. Producers invoke this method.
-	Send(context.Context, *Event) (*empty.Empty, error)
-	// Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
+	// SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
+	SetObject(context.Context, *Object) (*empty.Empty, error)
+	// GetObject gets an object's current state values
+	GetObject(context.Context, *ObjectRef) (*Object, error)
+	// StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
 	// Event Consumers invoke this method.
-	Receive(*ReceiveOpts, EventGateService_ReceiveServer) error
-	// History returns an array of immutable historical events.
-	// Event Consumers invoke this method.
-	History(context.Context, *HistoryOpts) (*EventDetails, error)
+	StreamEvents(*StreamOpts, EventGateService_StreamEventsServer) error
+	// SearchEvents returns an array of immutable historical events for a given object.
+	SearchEvents(context.Context, *SearchOpts) (*Events, error)
 }
 
 // UnimplementedEventGateServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedEventGateServiceServer struct {
 }
 
-func (*UnimplementedEventGateServiceServer) Send(context.Context, *Event) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Send not implemented")
+func (*UnimplementedEventGateServiceServer) SetObject(context.Context, *Object) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetObject not implemented")
 }
-func (*UnimplementedEventGateServiceServer) Receive(*ReceiveOpts, EventGateService_ReceiveServer) error {
-	return status.Errorf(codes.Unimplemented, "method Receive not implemented")
+func (*UnimplementedEventGateServiceServer) GetObject(context.Context, *ObjectRef) (*Object, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetObject not implemented")
 }
-func (*UnimplementedEventGateServiceServer) History(context.Context, *HistoryOpts) (*EventDetails, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method History not implemented")
+func (*UnimplementedEventGateServiceServer) StreamEvents(*StreamOpts, EventGateService_StreamEventsServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamEvents not implemented")
+}
+func (*UnimplementedEventGateServiceServer) SearchEvents(context.Context, *SearchOpts) (*Events, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchEvents not implemented")
 }
 
 func RegisterEventGateServiceServer(s *grpc.Server, srv EventGateServiceServer) {
 	s.RegisterService(&_EventGateService_serviceDesc, srv)
 }
 
-func _EventGateService_Send_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Event)
+func _EventGateService_SetObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Object)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventGateServiceServer).Send(ctx, in)
+		return srv.(EventGateServiceServer).SetObject(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/eventgate.EventGateService/Send",
+		FullMethod: "/eventgate.EventGateService/SetObject",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventGateServiceServer).Send(ctx, req.(*Event))
+		return srv.(EventGateServiceServer).SetObject(ctx, req.(*Object))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EventGateService_Receive_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(ReceiveOpts)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(EventGateServiceServer).Receive(m, &eventGateServiceReceiveServer{stream})
-}
-
-type EventGateService_ReceiveServer interface {
-	Send(*EventDetail) error
-	grpc.ServerStream
-}
-
-type eventGateServiceReceiveServer struct {
-	grpc.ServerStream
-}
-
-func (x *eventGateServiceReceiveServer) Send(m *EventDetail) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _EventGateService_History_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HistoryOpts)
+func _EventGateService_GetObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ObjectRef)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventGateServiceServer).History(ctx, in)
+		return srv.(EventGateServiceServer).GetObject(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/eventgate.EventGateService/History",
+		FullMethod: "/eventgate.EventGateService/GetObject",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventGateServiceServer).History(ctx, req.(*HistoryOpts))
+		return srv.(EventGateServiceServer).GetObject(ctx, req.(*ObjectRef))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EventGateService_StreamEvents_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(StreamOpts)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(EventGateServiceServer).StreamEvents(m, &eventGateServiceStreamEventsServer{stream})
+}
+
+type EventGateService_StreamEventsServer interface {
+	Send(*Event) error
+	grpc.ServerStream
+}
+
+type eventGateServiceStreamEventsServer struct {
+	grpc.ServerStream
+}
+
+func (x *eventGateServiceStreamEventsServer) Send(m *Event) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _EventGateService_SearchEvents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchOpts)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EventGateServiceServer).SearchEvents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/eventgate.EventGateService/SearchEvents",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EventGateServiceServer).SearchEvents(ctx, req.(*SearchOpts))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -760,18 +851,22 @@ var _EventGateService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*EventGateServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Send",
-			Handler:    _EventGateService_Send_Handler,
+			MethodName: "SetObject",
+			Handler:    _EventGateService_SetObject_Handler,
 		},
 		{
-			MethodName: "History",
-			Handler:    _EventGateService_History_Handler,
+			MethodName: "GetObject",
+			Handler:    _EventGateService_GetObject_Handler,
+		},
+		{
+			MethodName: "SearchEvents",
+			Handler:    _EventGateService_SearchEvents_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "Receive",
-			Handler:       _EventGateService_Receive_Handler,
+			StreamName:    "StreamEvents",
+			Handler:       _EventGateService_StreamEvents_Handler,
 			ServerStreams: true,
 		},
 	},

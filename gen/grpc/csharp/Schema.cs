@@ -29,35 +29,36 @@ namespace Eventgate {
             "Z2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90bxoZZ29vZ2xlL3Byb3RvYnVm",
             "L2FueS5wcm90bxobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5LnByb3RvGjZnaXRo",
             "dWIuY29tL213aXRrb3cvZ28tcHJvdG8tdmFsaWRhdG9ycy92YWxpZGF0b3Iu",
-            "cHJvdG8inwEKC0hpc3RvcnlPcHRzEhcKB2NoYW5uZWwYASABKAlCBuLfHwJY",
-            "ARInCgNtaW4YAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEicK",
-            "A21heBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASFQoFbGlt",
-            "aXQYBCABKANCBuLfHwIQABIOCgZvZmZzZXQYBSABKAMiJgoLUmVjZWl2ZU9w",
-            "dHMSFwoHY2hhbm5lbBgBIAEoCUIG4t8fAlgBInoKBUV2ZW50EhcKB2NoYW5u",
-            "ZWwYHiABKAlCBuLfHwJYARItCgRkYXRhGB8gASgLMhcuZ29vZ2xlLnByb3Rv",
-            "YnVmLlN0cnVjdEIG4t8fAiABEikKCG1ldGFkYXRhGCAgASgLMhcuZ29vZ2xl",
-            "LnByb3RvYnVmLlN0cnVjdCL4AQoLRXZlbnREZXRhaWwSEwoCaWQYASABKAlC",
-            "B+LfHwOQAQASFwoHY2hhbm5lbBgeIAEoCUIG4t8fAlgBEi0KBGRhdGEYHyAB",
-            "KAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAESKQoIbWV0YWRh",
-            "dGEYICABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Ei8KBmNsYWltcxgC",
-            "IAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgARIwCgR0aW1l",
-            "GAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIG4t8fAiABIjYK",
-            "DEV2ZW50RGV0YWlscxImCgZldmVudHMYASADKAsyFi5ldmVudGdhdGUuRXZl",
-            "bnREZXRhaWwy8wEKEEV2ZW50R2F0ZVNlcnZpY2USQgoEU2VuZBIQLmV2ZW50",
-            "Z2F0ZS5FdmVudBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIQgtPkkwIKIgUv",
-            "c2VuZDoBKhJNCgdSZWNlaXZlEhYuZXZlbnRnYXRlLlJlY2VpdmVPcHRzGhYu",
-            "ZXZlbnRnYXRlLkV2ZW50RGV0YWlsIhCC0+STAgoSCC9yZWNlaXZlMAESTAoH",
-            "SGlzdG9yeRIWLmV2ZW50Z2F0ZS5IaXN0b3J5T3B0cxoXLmV2ZW50Z2F0ZS5F",
-            "dmVudERldGFpbHMiEILT5JMCChIIL2hpc3RvcnlCC1oJZXZlbnRnYXRlYgZw",
-            "cm90bzM="));
+            "cHJvdG8iNgoJT2JqZWN0UmVmEhQKBHR5cGUYASABKAlCBuLfHwJYARITCgNr",
+            "ZXkYAiABKAlCBuLfHwJYASJkCgZPYmplY3QSFAoEdHlwZRgBIAEoCUIG4t8f",
+            "AlgBEhMKA2tleRgCIAEoCUIG4t8fAlgBEi8KBnZhbHVlcxgDIAEoCzIXLmdv",
+            "b2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgASJ4CgpTZWFyY2hPcHRzEhQK",
+            "BHR5cGUYASABKAlCBuLfHwJYARITCgNrZXkYAiABKAlCBuLfHwJYARILCgNt",
+            "aW4YAyABKAMSCwoDbWF4GAQgASgDEhUKBWxpbWl0GAUgASgDQgbi3x8CEAAS",
+            "DgoGb2Zmc2V0GAYgASgDIiIKClN0cmVhbU9wdHMSFAoEdHlwZRgBIAEoCUIG",
+            "4t8fAlgBIo4BCgVFdmVudBITCgJpZBgBIAEoCUIH4t8fA5ABABIpCgZvYmpl",
+            "Y3QYAiABKAsyES5ldmVudGdhdGUuT2JqZWN0Qgbi3x8CIAESLwoGY2xhaW1z",
+            "GAMgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABEhQKBHRp",
+            "bWUYBCABKANCBuLfHwIQACIqCgZFdmVudHMSIAoGZXZlbnRzGAEgAygLMhAu",
+            "ZXZlbnRnYXRlLkV2ZW50MvUCChBFdmVudEdhdGVTZXJ2aWNlElcKCVNldE9i",
+            "amVjdBIRLmV2ZW50Z2F0ZS5PYmplY3QaFi5nb29nbGUucHJvdG9idWYuRW1w",
+            "dHkiH4LT5JMCGSIXL2FwaS97dHlwZX0vc3RhdGUve2tleX0SVQoJR2V0T2Jq",
+            "ZWN0EhQuZXZlbnRnYXRlLk9iamVjdFJlZhoRLmV2ZW50Z2F0ZS5PYmplY3Qi",
+            "H4LT5JMCGRIXL2FwaS97dHlwZX0vc3RhdGUve2tleX0SVQoMU3RyZWFtRXZl",
+            "bnRzEhUuZXZlbnRnYXRlLlN0cmVhbU9wdHMaEC5ldmVudGdhdGUuRXZlbnQi",
+            "GoLT5JMCFBISL2FwaS97dHlwZX0vZXZlbnRzMAESWgoMU2VhcmNoRXZlbnRz",
+            "EhUuZXZlbnRnYXRlLlNlYXJjaE9wdHMaES5ldmVudGdhdGUuRXZlbnRzIiCC",
+            "0+STAhoSGC9hcGkve3R5cGV9L2V2ZW50cy97a2V5fUILWglldmVudGdhdGVi",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.HistoryOpts), global::Eventgate.HistoryOpts.Parser, new[]{ "Channel", "Min", "Max", "Limit", "Offset" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.ReceiveOpts), global::Eventgate.ReceiveOpts.Parser, new[]{ "Channel" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Event), global::Eventgate.Event.Parser, new[]{ "Channel", "Data", "Metadata" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.EventDetail), global::Eventgate.EventDetail.Parser, new[]{ "Id", "Channel", "Data", "Metadata", "Claims", "Time" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.EventDetails), global::Eventgate.EventDetails.Parser, new[]{ "Events" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.ObjectRef), global::Eventgate.ObjectRef.Parser, new[]{ "Type", "Key" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Object), global::Eventgate.Object.Parser, new[]{ "Type", "Key", "Values" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.SearchOpts), global::Eventgate.SearchOpts.Parser, new[]{ "Type", "Key", "Min", "Max", "Limit", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.StreamOpts), global::Eventgate.StreamOpts.Parser, new[]{ "Type" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Event), global::Eventgate.Event.Parser, new[]{ "Id", "Object", "Claims", "Time" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Eventgate.Events), global::Eventgate.Events.Parser, new[]{ "Events_" }, null, null, null)
           }));
     }
     #endregion
@@ -65,13 +66,13 @@ namespace Eventgate {
   }
   #region Messages
   /// <summary>
-  /// HistoryOpts are options when querying historical events
+  /// ObjectRef is a reference to an existing object
   /// </summary>
-  public sealed partial class HistoryOpts : pb::IMessage<HistoryOpts> {
-    private static readonly pb::MessageParser<HistoryOpts> _parser = new pb::MessageParser<HistoryOpts>(() => new HistoryOpts());
+  public sealed partial class ObjectRef : pb::IMessage<ObjectRef> {
+    private static readonly pb::MessageParser<ObjectRef> _parser = new pb::MessageParser<ObjectRef>(() => new ObjectRef());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<HistoryOpts> Parser { get { return _parser; } }
+    public static pb::MessageParser<ObjectRef> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -84,46 +85,433 @@ namespace Eventgate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public HistoryOpts() {
+    public ObjectRef() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public HistoryOpts(HistoryOpts other) : this() {
-      channel_ = other.channel_;
-      min_ = other.min_ != null ? other.min_.Clone() : null;
-      max_ = other.max_ != null ? other.max_.Clone() : null;
+    public ObjectRef(ObjectRef other) : this() {
+      type_ = other.type_;
+      key_ = other.key_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ObjectRef Clone() {
+      return new ObjectRef(this);
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 1;
+    private string type_ = "";
+    /// <summary>
+    /// Object type (ex: user)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Type {
+      get { return type_; }
+      set {
+        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "key" field.</summary>
+    public const int KeyFieldNumber = 2;
+    private string key_ = "";
+    /// <summary>
+    /// Object key (unique within type)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Key {
+      get { return key_; }
+      set {
+        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ObjectRef);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ObjectRef other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Type != other.Type) return false;
+      if (Key != other.Key) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Type.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Type);
+      }
+      if (Key.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Key);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Type.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      }
+      if (Key.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ObjectRef other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Type.Length != 0) {
+        Type = other.Type;
+      }
+      if (other.Key.Length != 0) {
+        Key = other.Key;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Type = input.ReadString();
+            break;
+          }
+          case 18: {
+            Key = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  /// Object hold's the current state of an object
+  /// </summary>
+  public sealed partial class Object : pb::IMessage<Object> {
+    private static readonly pb::MessageParser<Object> _parser = new pb::MessageParser<Object>(() => new Object());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Object> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Object() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Object(Object other) : this() {
+      type_ = other.type_;
+      key_ = other.key_;
+      values_ = other.values_ != null ? other.values_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Object Clone() {
+      return new Object(this);
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 1;
+    private string type_ = "";
+    /// <summary>
+    /// Object type (ex: user)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Type {
+      get { return type_; }
+      set {
+        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "key" field.</summary>
+    public const int KeyFieldNumber = 2;
+    private string key_ = "";
+    /// <summary>
+    /// Object key (unique within type)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Key {
+      get { return key_; }
+      set {
+        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "values" field.</summary>
+    public const int ValuesFieldNumber = 3;
+    private global::Google.Protobuf.WellKnownTypes.Struct values_;
+    /// <summary>
+    /// Object values (structured k/v pairs)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Struct Values {
+      get { return values_; }
+      set {
+        values_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Object);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Object other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Type != other.Type) return false;
+      if (Key != other.Key) return false;
+      if (!object.Equals(Values, other.Values)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (values_ != null) hash ^= Values.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Type.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Type);
+      }
+      if (Key.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Key);
+      }
+      if (values_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Values);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Type.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      }
+      if (Key.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
+      }
+      if (values_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Values);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Object other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Type.Length != 0) {
+        Type = other.Type;
+      }
+      if (other.Key.Length != 0) {
+        Key = other.Key;
+      }
+      if (other.values_ != null) {
+        if (values_ == null) {
+          values_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+        }
+        Values.MergeFrom(other.Values);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Type = input.ReadString();
+            break;
+          }
+          case 18: {
+            Key = input.ReadString();
+            break;
+          }
+          case 26: {
+            if (values_ == null) {
+              values_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+            }
+            input.ReadMessage(values_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  /// SearchOpts are options when querying historical events for a given object
+  /// </summary>
+  public sealed partial class SearchOpts : pb::IMessage<SearchOpts> {
+    private static readonly pb::MessageParser<SearchOpts> _parser = new pb::MessageParser<SearchOpts>(() => new SearchOpts());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SearchOpts> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SearchOpts() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SearchOpts(SearchOpts other) : this() {
+      type_ = other.type_;
+      key_ = other.key_;
+      min_ = other.min_;
+      max_ = other.max_;
       limit_ = other.limit_;
       offset_ = other.offset_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public HistoryOpts Clone() {
-      return new HistoryOpts(this);
+    public SearchOpts Clone() {
+      return new SearchOpts(this);
     }
 
-    /// <summary>Field number for the "channel" field.</summary>
-    public const int ChannelFieldNumber = 1;
-    private string channel_ = "";
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 1;
+    private string type_ = "";
+    /// <summary>
+    /// Object type (ex: user)
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Channel {
-      get { return channel_; }
+    public string Type {
+      get { return type_; }
       set {
-        channel_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "key" field.</summary>
+    public const int KeyFieldNumber = 2;
+    private string key_ = "";
+    /// <summary>
+    /// Object key (unique within type)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Key {
+      get { return key_; }
+      set {
+        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
     /// <summary>Field number for the "min" field.</summary>
-    public const int MinFieldNumber = 2;
-    private global::Google.Protobuf.WellKnownTypes.Timestamp min_;
+    public const int MinFieldNumber = 3;
+    private long min_;
     /// <summary>
     /// only return events that occurred after specified min timestamp
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Timestamp Min {
+    public long Min {
       get { return min_; }
       set {
         min_ = value;
@@ -131,13 +519,13 @@ namespace Eventgate {
     }
 
     /// <summary>Field number for the "max" field.</summary>
-    public const int MaxFieldNumber = 3;
-    private global::Google.Protobuf.WellKnownTypes.Timestamp max_;
+    public const int MaxFieldNumber = 4;
+    private long max_;
     /// <summary>
     /// only return events that occurred before specified max timestamp
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Timestamp Max {
+    public long Max {
       get { return max_; }
       set {
         max_ = value;
@@ -145,7 +533,7 @@ namespace Eventgate {
     }
 
     /// <summary>Field number for the "limit" field.</summary>
-    public const int LimitFieldNumber = 4;
+    public const int LimitFieldNumber = 5;
     private long limit_;
     /// <summary>
     /// limit returned events
@@ -159,7 +547,7 @@ namespace Eventgate {
     }
 
     /// <summary>Field number for the "offset" field.</summary>
-    public const int OffsetFieldNumber = 5;
+    public const int OffsetFieldNumber = 6;
     private long offset_;
     /// <summary>
     /// offset returned events(pagination)
@@ -174,20 +562,21 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as HistoryOpts);
+      return Equals(other as SearchOpts);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(HistoryOpts other) {
+    public bool Equals(SearchOpts other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Channel != other.Channel) return false;
-      if (!object.Equals(Min, other.Min)) return false;
-      if (!object.Equals(Max, other.Max)) return false;
+      if (Type != other.Type) return false;
+      if (Key != other.Key) return false;
+      if (Min != other.Min) return false;
+      if (Max != other.Max) return false;
       if (Limit != other.Limit) return false;
       if (Offset != other.Offset) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -196,9 +585,10 @@ namespace Eventgate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Channel.Length != 0) hash ^= Channel.GetHashCode();
-      if (min_ != null) hash ^= Min.GetHashCode();
-      if (max_ != null) hash ^= Max.GetHashCode();
+      if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (Min != 0L) hash ^= Min.GetHashCode();
+      if (Max != 0L) hash ^= Max.GetHashCode();
       if (Limit != 0L) hash ^= Limit.GetHashCode();
       if (Offset != 0L) hash ^= Offset.GetHashCode();
       if (_unknownFields != null) {
@@ -214,24 +604,28 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Channel.Length != 0) {
+      if (Type.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteString(Channel);
+        output.WriteString(Type);
       }
-      if (min_ != null) {
+      if (Key.Length != 0) {
         output.WriteRawTag(18);
-        output.WriteMessage(Min);
+        output.WriteString(Key);
       }
-      if (max_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Max);
+      if (Min != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(Min);
+      }
+      if (Max != 0L) {
+        output.WriteRawTag(32);
+        output.WriteInt64(Max);
       }
       if (Limit != 0L) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(40);
         output.WriteInt64(Limit);
       }
       if (Offset != 0L) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(48);
         output.WriteInt64(Offset);
       }
       if (_unknownFields != null) {
@@ -242,14 +636,17 @@ namespace Eventgate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Channel.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Channel);
+      if (Type.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
       }
-      if (min_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Min);
+      if (Key.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
       }
-      if (max_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Max);
+      if (Min != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Min);
+      }
+      if (Max != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Max);
       }
       if (Limit != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(Limit);
@@ -264,24 +661,21 @@ namespace Eventgate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(HistoryOpts other) {
+    public void MergeFrom(SearchOpts other) {
       if (other == null) {
         return;
       }
-      if (other.Channel.Length != 0) {
-        Channel = other.Channel;
+      if (other.Type.Length != 0) {
+        Type = other.Type;
       }
-      if (other.min_ != null) {
-        if (min_ == null) {
-          min_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-        }
-        Min.MergeFrom(other.Min);
+      if (other.Key.Length != 0) {
+        Key = other.Key;
       }
-      if (other.max_ != null) {
-        if (max_ == null) {
-          max_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-        }
-        Max.MergeFrom(other.Max);
+      if (other.Min != 0L) {
+        Min = other.Min;
+      }
+      if (other.Max != 0L) {
+        Max = other.Max;
       }
       if (other.Limit != 0L) {
         Limit = other.Limit;
@@ -301,28 +695,26 @@ namespace Eventgate {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            Channel = input.ReadString();
+            Type = input.ReadString();
             break;
           }
           case 18: {
-            if (min_ == null) {
-              min_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-            }
-            input.ReadMessage(min_);
+            Key = input.ReadString();
             break;
           }
-          case 26: {
-            if (max_ == null) {
-              max_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-            }
-            input.ReadMessage(max_);
+          case 24: {
+            Min = input.ReadInt64();
             break;
           }
           case 32: {
-            Limit = input.ReadInt64();
+            Max = input.ReadInt64();
             break;
           }
           case 40: {
+            Limit = input.ReadInt64();
+            break;
+          }
+          case 48: {
             Offset = input.ReadInt64();
             break;
           }
@@ -333,17 +725,17 @@ namespace Eventgate {
   }
 
   /// <summary>
-  /// ReceiveOpts filters events before they are received by a consumer
+  /// StreamOpts are options for consumers looking to stream events
   /// </summary>
-  public sealed partial class ReceiveOpts : pb::IMessage<ReceiveOpts> {
-    private static readonly pb::MessageParser<ReceiveOpts> _parser = new pb::MessageParser<ReceiveOpts>(() => new ReceiveOpts());
+  public sealed partial class StreamOpts : pb::IMessage<StreamOpts> {
+    private static readonly pb::MessageParser<StreamOpts> _parser = new pb::MessageParser<StreamOpts>(() => new StreamOpts());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ReceiveOpts> Parser { get { return _parser; } }
+    public static pb::MessageParser<StreamOpts> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -352,55 +744,55 @@ namespace Eventgate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReceiveOpts() {
+    public StreamOpts() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReceiveOpts(ReceiveOpts other) : this() {
-      channel_ = other.channel_;
+    public StreamOpts(StreamOpts other) : this() {
+      type_ = other.type_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReceiveOpts Clone() {
-      return new ReceiveOpts(this);
+    public StreamOpts Clone() {
+      return new StreamOpts(this);
     }
 
-    /// <summary>Field number for the "channel" field.</summary>
-    public const int ChannelFieldNumber = 1;
-    private string channel_ = "";
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 1;
+    private string type_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Channel {
-      get { return channel_; }
+    public string Type {
+      get { return type_; }
       set {
-        channel_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ReceiveOpts);
+      return Equals(other as StreamOpts);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ReceiveOpts other) {
+    public bool Equals(StreamOpts other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Channel != other.Channel) return false;
+      if (Type != other.Type) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Channel.Length != 0) hash ^= Channel.GetHashCode();
+      if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -414,9 +806,9 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Channel.Length != 0) {
+      if (Type.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteString(Channel);
+        output.WriteString(Type);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -426,8 +818,8 @@ namespace Eventgate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Channel.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Channel);
+      if (Type.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -436,12 +828,12 @@ namespace Eventgate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ReceiveOpts other) {
+    public void MergeFrom(StreamOpts other) {
       if (other == null) {
         return;
       }
-      if (other.Channel.Length != 0) {
-        Channel = other.Channel;
+      if (other.Type.Length != 0) {
+        Type = other.Type;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -455,7 +847,7 @@ namespace Eventgate {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            Channel = input.ReadString();
+            Type = input.ReadString();
             break;
           }
         }
@@ -465,7 +857,8 @@ namespace Eventgate {
   }
 
   /// <summary>
-  /// Event is a specification for describing event-sourced data
+  /// Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.
+  /// Events are persisted to history &amp; broadcasted to interested consumers(Stream) any time an object is created/modified
   /// </summary>
   public sealed partial class Event : pb::IMessage<Event> {
     private static readonly pb::MessageParser<Event> _parser = new pb::MessageParser<Event>(() => new Event());
@@ -475,7 +868,7 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -492,227 +885,16 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Event(Event other) : this() {
-      channel_ = other.channel_;
-      data_ = other.data_ != null ? other.data_.Clone() : null;
-      metadata_ = other.metadata_ != null ? other.metadata_.Clone() : null;
+      id_ = other.id_;
+      object_ = other.object_ != null ? other.object_.Clone() : null;
+      claims_ = other.claims_ != null ? other.claims_.Clone() : null;
+      time_ = other.time_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Event Clone() {
       return new Event(this);
-    }
-
-    /// <summary>Field number for the "channel" field.</summary>
-    public const int ChannelFieldNumber = 30;
-    private string channel_ = "";
-    /// <summary>
-    /// Identifies the channel/subject to which the event will be sent
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Channel {
-      get { return channel_; }
-      set {
-        channel_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "data" field.</summary>
-    public const int DataFieldNumber = 31;
-    private global::Google.Protobuf.WellKnownTypes.Struct data_;
-    /// <summary>
-    /// The event payload(structured).
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Struct Data {
-      get { return data_; }
-      set {
-        data_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "metadata" field.</summary>
-    public const int MetadataFieldNumber = 32;
-    private global::Google.Protobuf.WellKnownTypes.Struct metadata_;
-    /// <summary>
-    /// Arbitrary metadata about the event
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Struct Metadata {
-      get { return metadata_; }
-      set {
-        metadata_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as Event);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Event other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (Channel != other.Channel) return false;
-      if (!object.Equals(Data, other.Data)) return false;
-      if (!object.Equals(Metadata, other.Metadata)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Channel.Length != 0) hash ^= Channel.GetHashCode();
-      if (data_ != null) hash ^= Data.GetHashCode();
-      if (metadata_ != null) hash ^= Metadata.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (Channel.Length != 0) {
-        output.WriteRawTag(242, 1);
-        output.WriteString(Channel);
-      }
-      if (data_ != null) {
-        output.WriteRawTag(250, 1);
-        output.WriteMessage(Data);
-      }
-      if (metadata_ != null) {
-        output.WriteRawTag(130, 2);
-        output.WriteMessage(Metadata);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (Channel.Length != 0) {
-        size += 2 + pb::CodedOutputStream.ComputeStringSize(Channel);
-      }
-      if (data_ != null) {
-        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Data);
-      }
-      if (metadata_ != null) {
-        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Metadata);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Event other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Channel.Length != 0) {
-        Channel = other.Channel;
-      }
-      if (other.data_ != null) {
-        if (data_ == null) {
-          data_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-        }
-        Data.MergeFrom(other.Data);
-      }
-      if (other.metadata_ != null) {
-        if (metadata_ == null) {
-          metadata_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-        }
-        Metadata.MergeFrom(other.Metadata);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 242: {
-            Channel = input.ReadString();
-            break;
-          }
-          case 250: {
-            if (data_ == null) {
-              data_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-            }
-            input.ReadMessage(data_);
-            break;
-          }
-          case 258: {
-            if (metadata_ == null) {
-              metadata_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-            }
-            input.ReadMessage(metadata_);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  /// <summary>
-  /// EventDetail wraps an Event with additional details.
-  /// </summary>
-  public sealed partial class EventDetail : pb::IMessage<EventDetail> {
-    private static readonly pb::MessageParser<EventDetail> _parser = new pb::MessageParser<EventDetail>(() => new EventDetail());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<EventDetail> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[3]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventDetail() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventDetail(EventDetail other) : this() {
-      id_ = other.id_;
-      channel_ = other.channel_;
-      data_ = other.data_ != null ? other.data_.Clone() : null;
-      metadata_ = other.metadata_ != null ? other.metadata_.Clone() : null;
-      claims_ = other.claims_ != null ? other.claims_.Clone() : null;
-      time_ = other.time_ != null ? other.time_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventDetail Clone() {
-      return new EventDetail(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -729,50 +911,22 @@ namespace Eventgate {
       }
     }
 
-    /// <summary>Field number for the "channel" field.</summary>
-    public const int ChannelFieldNumber = 30;
-    private string channel_ = "";
+    /// <summary>Field number for the "object" field.</summary>
+    public const int ObjectFieldNumber = 2;
+    private global::Eventgate.Object object_;
     /// <summary>
-    /// Identifies the channel/subject to which the event will be sent
+    /// the unmodified
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Channel {
-      get { return channel_; }
+    public global::Eventgate.Object Object {
+      get { return object_; }
       set {
-        channel_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "data" field.</summary>
-    public const int DataFieldNumber = 31;
-    private global::Google.Protobuf.WellKnownTypes.Struct data_;
-    /// <summary>
-    /// The event payload(structured).
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Struct Data {
-      get { return data_; }
-      set {
-        data_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "metadata" field.</summary>
-    public const int MetadataFieldNumber = 32;
-    private global::Google.Protobuf.WellKnownTypes.Struct metadata_;
-    /// <summary>
-    /// Arbitrary metadata about the event
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Struct Metadata {
-      get { return metadata_; }
-      set {
-        metadata_ = value;
+        object_ = value;
       }
     }
 
     /// <summary>Field number for the "claims" field.</summary>
-    public const int ClaimsFieldNumber = 2;
+    public const int ClaimsFieldNumber = 3;
     private global::Google.Protobuf.WellKnownTypes.Struct claims_;
     /// <summary>
     /// The authentication claims of the event producer.
@@ -786,13 +940,13 @@ namespace Eventgate {
     }
 
     /// <summary>Field number for the "time" field.</summary>
-    public const int TimeFieldNumber = 3;
-    private global::Google.Protobuf.WellKnownTypes.Timestamp time_;
+    public const int TimeFieldNumber = 4;
+    private long time_;
     /// <summary>
-    /// Timestamp of when the event was received.
+    /// Timestamp(ns) of when the event was received.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Timestamp Time {
+    public long Time {
       get { return time_; }
       set {
         time_ = value;
@@ -801,11 +955,11 @@ namespace Eventgate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as EventDetail);
+      return Equals(other as Event);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(EventDetail other) {
+    public bool Equals(Event other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -813,11 +967,9 @@ namespace Eventgate {
         return true;
       }
       if (Id != other.Id) return false;
-      if (Channel != other.Channel) return false;
-      if (!object.Equals(Data, other.Data)) return false;
-      if (!object.Equals(Metadata, other.Metadata)) return false;
+      if (!object.Equals(Object, other.Object)) return false;
       if (!object.Equals(Claims, other.Claims)) return false;
-      if (!object.Equals(Time, other.Time)) return false;
+      if (Time != other.Time) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -825,11 +977,9 @@ namespace Eventgate {
     public override int GetHashCode() {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
-      if (Channel.Length != 0) hash ^= Channel.GetHashCode();
-      if (data_ != null) hash ^= Data.GetHashCode();
-      if (metadata_ != null) hash ^= Metadata.GetHashCode();
+      if (object_ != null) hash ^= Object.GetHashCode();
       if (claims_ != null) hash ^= Claims.GetHashCode();
-      if (time_ != null) hash ^= Time.GetHashCode();
+      if (Time != 0L) hash ^= Time.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -847,25 +997,17 @@ namespace Eventgate {
         output.WriteRawTag(10);
         output.WriteString(Id);
       }
-      if (claims_ != null) {
+      if (object_ != null) {
         output.WriteRawTag(18);
+        output.WriteMessage(Object);
+      }
+      if (claims_ != null) {
+        output.WriteRawTag(26);
         output.WriteMessage(Claims);
       }
-      if (time_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Time);
-      }
-      if (Channel.Length != 0) {
-        output.WriteRawTag(242, 1);
-        output.WriteString(Channel);
-      }
-      if (data_ != null) {
-        output.WriteRawTag(250, 1);
-        output.WriteMessage(Data);
-      }
-      if (metadata_ != null) {
-        output.WriteRawTag(130, 2);
-        output.WriteMessage(Metadata);
+      if (Time != 0L) {
+        output.WriteRawTag(32);
+        output.WriteInt64(Time);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -878,20 +1020,14 @@ namespace Eventgate {
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
-      if (Channel.Length != 0) {
-        size += 2 + pb::CodedOutputStream.ComputeStringSize(Channel);
-      }
-      if (data_ != null) {
-        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Data);
-      }
-      if (metadata_ != null) {
-        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Metadata);
+      if (object_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Object);
       }
       if (claims_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Claims);
       }
-      if (time_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Time);
+      if (Time != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Time);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -900,27 +1036,18 @@ namespace Eventgate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(EventDetail other) {
+    public void MergeFrom(Event other) {
       if (other == null) {
         return;
       }
       if (other.Id.Length != 0) {
         Id = other.Id;
       }
-      if (other.Channel.Length != 0) {
-        Channel = other.Channel;
-      }
-      if (other.data_ != null) {
-        if (data_ == null) {
-          data_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+      if (other.object_ != null) {
+        if (object_ == null) {
+          object_ = new global::Eventgate.Object();
         }
-        Data.MergeFrom(other.Data);
-      }
-      if (other.metadata_ != null) {
-        if (metadata_ == null) {
-          metadata_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-        }
-        Metadata.MergeFrom(other.Metadata);
+        Object.MergeFrom(other.Object);
       }
       if (other.claims_ != null) {
         if (claims_ == null) {
@@ -928,11 +1055,8 @@ namespace Eventgate {
         }
         Claims.MergeFrom(other.Claims);
       }
-      if (other.time_ != null) {
-        if (time_ == null) {
-          time_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-        }
-        Time.MergeFrom(other.Time);
+      if (other.Time != 0L) {
+        Time = other.Time;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -950,35 +1074,21 @@ namespace Eventgate {
             break;
           }
           case 18: {
+            if (object_ == null) {
+              object_ = new global::Eventgate.Object();
+            }
+            input.ReadMessage(object_);
+            break;
+          }
+          case 26: {
             if (claims_ == null) {
               claims_ = new global::Google.Protobuf.WellKnownTypes.Struct();
             }
             input.ReadMessage(claims_);
             break;
           }
-          case 26: {
-            if (time_ == null) {
-              time_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-            }
-            input.ReadMessage(time_);
-            break;
-          }
-          case 242: {
-            Channel = input.ReadString();
-            break;
-          }
-          case 250: {
-            if (data_ == null) {
-              data_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-            }
-            input.ReadMessage(data_);
-            break;
-          }
-          case 258: {
-            if (metadata_ == null) {
-              metadata_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-            }
-            input.ReadMessage(metadata_);
+          case 32: {
+            Time = input.ReadInt64();
             break;
           }
         }
@@ -988,17 +1098,17 @@ namespace Eventgate {
   }
 
   /// <summary>
-  /// EventDetails is an array of event details
+  /// Events is an array of events
   /// </summary>
-  public sealed partial class EventDetails : pb::IMessage<EventDetails> {
-    private static readonly pb::MessageParser<EventDetails> _parser = new pb::MessageParser<EventDetails>(() => new EventDetails());
+  public sealed partial class Events : pb::IMessage<Events> {
+    private static readonly pb::MessageParser<Events> _parser = new pb::MessageParser<Events>(() => new Events());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<EventDetails> Parser { get { return _parser; } }
+    public static pb::MessageParser<Events> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Eventgate.SchemaReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1007,40 +1117,40 @@ namespace Eventgate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventDetails() {
+    public Events() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventDetails(EventDetails other) : this() {
+    public Events(Events other) : this() {
       events_ = other.events_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventDetails Clone() {
-      return new EventDetails(this);
+    public Events Clone() {
+      return new Events(this);
     }
 
     /// <summary>Field number for the "events" field.</summary>
-    public const int EventsFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Eventgate.EventDetail> _repeated_events_codec
-        = pb::FieldCodec.ForMessage(10, global::Eventgate.EventDetail.Parser);
-    private readonly pbc::RepeatedField<global::Eventgate.EventDetail> events_ = new pbc::RepeatedField<global::Eventgate.EventDetail>();
+    public const int Events_FieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Eventgate.Event> _repeated_events_codec
+        = pb::FieldCodec.ForMessage(10, global::Eventgate.Event.Parser);
+    private readonly pbc::RepeatedField<global::Eventgate.Event> events_ = new pbc::RepeatedField<global::Eventgate.Event>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Eventgate.EventDetail> Events {
+    public pbc::RepeatedField<global::Eventgate.Event> Events_ {
       get { return events_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as EventDetails);
+      return Equals(other as Events);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(EventDetails other) {
+    public bool Equals(Events other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1085,7 +1195,7 @@ namespace Eventgate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(EventDetails other) {
+    public void MergeFrom(Events other) {
       if (other == null) {
         return;
       }

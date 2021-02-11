@@ -25,51 +25,141 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='eventgate',
   syntax='proto3',
   serialized_options=_b('Z\teventgate'),
-  serialized_pb=_b('\n\x0cschema.proto\x12\teventgate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\"\x9f\x01\n\x0bHistoryOpts\x12\x17\n\x07\x63hannel\x18\x01 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\'\n\x03min\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x03max\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x15\n\x05limit\x18\x04 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x05 \x01(\x03\"&\n\x0bReceiveOpts\x12\x17\n\x07\x63hannel\x18\x01 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\"z\n\x05\x45vent\x12\x17\n\x07\x63hannel\x18\x1e \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12-\n\x04\x64\x61ta\x18\x1f \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12)\n\x08metadata\x18  \x01(\x0b\x32\x17.google.protobuf.Struct\"\xf8\x01\n\x0b\x45ventDetail\x12\x13\n\x02id\x18\x01 \x01(\tB\x07\xe2\xdf\x1f\x03\x90\x01\x00\x12\x17\n\x07\x63hannel\x18\x1e \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12-\n\x04\x64\x61ta\x18\x1f \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12)\n\x08metadata\x18  \x01(\x0b\x32\x17.google.protobuf.Struct\x12/\n\x06\x63laims\x18\x02 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12\x30\n\x04time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x06\xe2\xdf\x1f\x02 \x01\"6\n\x0c\x45ventDetails\x12&\n\x06\x65vents\x18\x01 \x03(\x0b\x32\x16.eventgate.EventDetail2\xf3\x01\n\x10\x45ventGateService\x12\x42\n\x04Send\x12\x10.eventgate.Event\x1a\x16.google.protobuf.Empty\"\x10\x82\xd3\xe4\x93\x02\n\"\x05/send:\x01*\x12M\n\x07Receive\x12\x16.eventgate.ReceiveOpts\x1a\x16.eventgate.EventDetail\"\x10\x82\xd3\xe4\x93\x02\n\x12\x08/receive0\x01\x12L\n\x07History\x12\x16.eventgate.HistoryOpts\x1a\x17.eventgate.EventDetails\"\x10\x82\xd3\xe4\x93\x02\n\x12\x08/historyB\x0bZ\teventgateb\x06proto3')
+  serialized_pb=_b('\n\x0cschema.proto\x12\teventgate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\"6\n\tObjectRef\x12\x14\n\x04type\x18\x01 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\x13\n\x03key\x18\x02 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\"d\n\x06Object\x12\x14\n\x04type\x18\x01 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\x13\n\x03key\x18\x02 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12/\n\x06values\x18\x03 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\"x\n\nSearchOpts\x12\x14\n\x04type\x18\x01 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\x13\n\x03key\x18\x02 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12\x0b\n\x03min\x18\x03 \x01(\x03\x12\x0b\n\x03max\x18\x04 \x01(\x03\x12\x15\n\x05limit\x18\x05 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x06 \x01(\x03\"\"\n\nStreamOpts\x12\x14\n\x04type\x18\x01 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\"\x8e\x01\n\x05\x45vent\x12\x13\n\x02id\x18\x01 \x01(\tB\x07\xe2\xdf\x1f\x03\x90\x01\x00\x12)\n\x06object\x18\x02 \x01(\x0b\x32\x11.eventgate.ObjectB\x06\xe2\xdf\x1f\x02 \x01\x12/\n\x06\x63laims\x18\x03 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12\x14\n\x04time\x18\x04 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\"*\n\x06\x45vents\x12 \n\x06\x65vents\x18\x01 \x03(\x0b\x32\x10.eventgate.Event2\xf5\x02\n\x10\x45ventGateService\x12W\n\tSetObject\x12\x11.eventgate.Object\x1a\x16.google.protobuf.Empty\"\x1f\x82\xd3\xe4\x93\x02\x19\"\x17/api/{type}/state/{key}\x12U\n\tGetObject\x12\x14.eventgate.ObjectRef\x1a\x11.eventgate.Object\"\x1f\x82\xd3\xe4\x93\x02\x19\x12\x17/api/{type}/state/{key}\x12U\n\x0cStreamEvents\x12\x15.eventgate.StreamOpts\x1a\x10.eventgate.Event\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/{type}/events0\x01\x12Z\n\x0cSearchEvents\x12\x15.eventgate.SearchOpts\x1a\x11.eventgate.Events\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/api/{type}/events/{key}B\x0bZ\teventgateb\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_any__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,github_dot_com_dot_mwitkow_dot_go__proto__validators_dot_validator__pb2.DESCRIPTOR,])
 
 
 
 
-_HISTORYOPTS = _descriptor.Descriptor(
-  name='HistoryOpts',
-  full_name='eventgate.HistoryOpts',
+_OBJECTREF = _descriptor.Descriptor(
+  name='ObjectRef',
+  full_name='eventgate.ObjectRef',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='channel', full_name='eventgate.HistoryOpts.channel', index=0,
+      name='type', full_name='eventgate.ObjectRef.type', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='min', full_name='eventgate.HistoryOpts.min', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='key', full_name='eventgate.ObjectRef.key', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=232,
+  serialized_end=286,
+)
+
+
+_OBJECT = _descriptor.Descriptor(
+  name='Object',
+  full_name='eventgate.Object',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
     _descriptor.FieldDescriptor(
-      name='max', full_name='eventgate.HistoryOpts.max', index=2,
+      name='type', full_name='eventgate.Object.type', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='key', full_name='eventgate.Object.key', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='values', full_name='eventgate.Object.values', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\002 \001'), file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=288,
+  serialized_end=388,
+)
+
+
+_SEARCHOPTS = _descriptor.Descriptor(
+  name='SearchOpts',
+  full_name='eventgate.SearchOpts',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='type', full_name='eventgate.SearchOpts.type', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='key', full_name='eventgate.SearchOpts.key', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='min', full_name='eventgate.SearchOpts.min', index=2,
+      number=3, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='limit', full_name='eventgate.HistoryOpts.limit', index=3,
+      name='max', full_name='eventgate.SearchOpts.max', index=3,
       number=4, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='limit', full_name='eventgate.SearchOpts.limit', index=4,
+      number=5, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=_b('\342\337\037\002\020\000'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='offset', full_name='eventgate.HistoryOpts.offset', index=4,
-      number=5, type=3, cpp_type=2, label=1,
+      name='offset', full_name='eventgate.SearchOpts.offset', index=5,
+      number=6, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -86,20 +176,20 @@ _HISTORYOPTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=233,
-  serialized_end=392,
+  serialized_start=390,
+  serialized_end=510,
 )
 
 
-_RECEIVEOPTS = _descriptor.Descriptor(
-  name='ReceiveOpts',
-  full_name='eventgate.ReceiveOpts',
+_STREAMOPTS = _descriptor.Descriptor(
+  name='StreamOpts',
+  full_name='eventgate.StreamOpts',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='channel', full_name='eventgate.ReceiveOpts.channel', index=0,
+      name='type', full_name='eventgate.StreamOpts.type', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -117,8 +207,8 @@ _RECEIVEOPTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=394,
-  serialized_end=432,
+  serialized_start=512,
+  serialized_end=546,
 )
 
 
@@ -130,92 +220,33 @@ _EVENT = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='channel', full_name='eventgate.Event.channel', index=0,
-      number=30, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='data', full_name='eventgate.Event.data', index=1,
-      number=31, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\002 \001'), file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='metadata', full_name='eventgate.Event.metadata', index=2,
-      number=32, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=434,
-  serialized_end=556,
-)
-
-
-_EVENTDETAIL = _descriptor.Descriptor(
-  name='EventDetail',
-  full_name='eventgate.EventDetail',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='id', full_name='eventgate.EventDetail.id', index=0,
+      name='id', full_name='eventgate.Event.id', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=_b('\342\337\037\003\220\001\000'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='channel', full_name='eventgate.EventDetail.channel', index=1,
-      number=30, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\002X\001'), file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='data', full_name='eventgate.EventDetail.data', index=2,
-      number=31, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\002 \001'), file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='metadata', full_name='eventgate.EventDetail.metadata', index=3,
-      number=32, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='claims', full_name='eventgate.EventDetail.claims', index=4,
+      name='object', full_name='eventgate.Event.object', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=_b('\342\337\037\002 \001'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='time', full_name='eventgate.EventDetail.time', index=5,
+      name='claims', full_name='eventgate.Event.claims', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=_b('\342\337\037\002 \001'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='time', full_name='eventgate.Event.time', index=3,
+      number=4, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\002\020\000'), file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -228,20 +259,20 @@ _EVENTDETAIL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=559,
-  serialized_end=807,
+  serialized_start=549,
+  serialized_end=691,
 )
 
 
-_EVENTDETAILS = _descriptor.Descriptor(
-  name='EventDetails',
-  full_name='eventgate.EventDetails',
+_EVENTS = _descriptor.Descriptor(
+  name='Events',
+  full_name='eventgate.Events',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='events', full_name='eventgate.EventDetails.events', index=0,
+      name='events', full_name='eventgate.Events.events', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -259,39 +290,49 @@ _EVENTDETAILS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=809,
-  serialized_end=863,
+  serialized_start=693,
+  serialized_end=735,
 )
 
-_HISTORYOPTS.fields_by_name['min'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_HISTORYOPTS.fields_by_name['max'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_EVENT.fields_by_name['data'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
-_EVENT.fields_by_name['metadata'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
-_EVENTDETAIL.fields_by_name['data'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
-_EVENTDETAIL.fields_by_name['metadata'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
-_EVENTDETAIL.fields_by_name['claims'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
-_EVENTDETAIL.fields_by_name['time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_EVENTDETAILS.fields_by_name['events'].message_type = _EVENTDETAIL
-DESCRIPTOR.message_types_by_name['HistoryOpts'] = _HISTORYOPTS
-DESCRIPTOR.message_types_by_name['ReceiveOpts'] = _RECEIVEOPTS
+_OBJECT.fields_by_name['values'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
+_EVENT.fields_by_name['object'].message_type = _OBJECT
+_EVENT.fields_by_name['claims'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
+_EVENTS.fields_by_name['events'].message_type = _EVENT
+DESCRIPTOR.message_types_by_name['ObjectRef'] = _OBJECTREF
+DESCRIPTOR.message_types_by_name['Object'] = _OBJECT
+DESCRIPTOR.message_types_by_name['SearchOpts'] = _SEARCHOPTS
+DESCRIPTOR.message_types_by_name['StreamOpts'] = _STREAMOPTS
 DESCRIPTOR.message_types_by_name['Event'] = _EVENT
-DESCRIPTOR.message_types_by_name['EventDetail'] = _EVENTDETAIL
-DESCRIPTOR.message_types_by_name['EventDetails'] = _EVENTDETAILS
+DESCRIPTOR.message_types_by_name['Events'] = _EVENTS
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-HistoryOpts = _reflection.GeneratedProtocolMessageType('HistoryOpts', (_message.Message,), dict(
-  DESCRIPTOR = _HISTORYOPTS,
+ObjectRef = _reflection.GeneratedProtocolMessageType('ObjectRef', (_message.Message,), dict(
+  DESCRIPTOR = _OBJECTREF,
   __module__ = 'schema_pb2'
-  # @@protoc_insertion_point(class_scope:eventgate.HistoryOpts)
+  # @@protoc_insertion_point(class_scope:eventgate.ObjectRef)
   ))
-_sym_db.RegisterMessage(HistoryOpts)
+_sym_db.RegisterMessage(ObjectRef)
 
-ReceiveOpts = _reflection.GeneratedProtocolMessageType('ReceiveOpts', (_message.Message,), dict(
-  DESCRIPTOR = _RECEIVEOPTS,
+Object = _reflection.GeneratedProtocolMessageType('Object', (_message.Message,), dict(
+  DESCRIPTOR = _OBJECT,
   __module__ = 'schema_pb2'
-  # @@protoc_insertion_point(class_scope:eventgate.ReceiveOpts)
+  # @@protoc_insertion_point(class_scope:eventgate.Object)
   ))
-_sym_db.RegisterMessage(ReceiveOpts)
+_sym_db.RegisterMessage(Object)
+
+SearchOpts = _reflection.GeneratedProtocolMessageType('SearchOpts', (_message.Message,), dict(
+  DESCRIPTOR = _SEARCHOPTS,
+  __module__ = 'schema_pb2'
+  # @@protoc_insertion_point(class_scope:eventgate.SearchOpts)
+  ))
+_sym_db.RegisterMessage(SearchOpts)
+
+StreamOpts = _reflection.GeneratedProtocolMessageType('StreamOpts', (_message.Message,), dict(
+  DESCRIPTOR = _STREAMOPTS,
+  __module__ = 'schema_pb2'
+  # @@protoc_insertion_point(class_scope:eventgate.StreamOpts)
+  ))
+_sym_db.RegisterMessage(StreamOpts)
 
 Event = _reflection.GeneratedProtocolMessageType('Event', (_message.Message,), dict(
   DESCRIPTOR = _EVENT,
@@ -300,32 +341,28 @@ Event = _reflection.GeneratedProtocolMessageType('Event', (_message.Message,), d
   ))
 _sym_db.RegisterMessage(Event)
 
-EventDetail = _reflection.GeneratedProtocolMessageType('EventDetail', (_message.Message,), dict(
-  DESCRIPTOR = _EVENTDETAIL,
+Events = _reflection.GeneratedProtocolMessageType('Events', (_message.Message,), dict(
+  DESCRIPTOR = _EVENTS,
   __module__ = 'schema_pb2'
-  # @@protoc_insertion_point(class_scope:eventgate.EventDetail)
+  # @@protoc_insertion_point(class_scope:eventgate.Events)
   ))
-_sym_db.RegisterMessage(EventDetail)
-
-EventDetails = _reflection.GeneratedProtocolMessageType('EventDetails', (_message.Message,), dict(
-  DESCRIPTOR = _EVENTDETAILS,
-  __module__ = 'schema_pb2'
-  # @@protoc_insertion_point(class_scope:eventgate.EventDetails)
-  ))
-_sym_db.RegisterMessage(EventDetails)
+_sym_db.RegisterMessage(Events)
 
 
 DESCRIPTOR._options = None
-_HISTORYOPTS.fields_by_name['channel']._options = None
-_HISTORYOPTS.fields_by_name['limit']._options = None
-_RECEIVEOPTS.fields_by_name['channel']._options = None
-_EVENT.fields_by_name['channel']._options = None
-_EVENT.fields_by_name['data']._options = None
-_EVENTDETAIL.fields_by_name['id']._options = None
-_EVENTDETAIL.fields_by_name['channel']._options = None
-_EVENTDETAIL.fields_by_name['data']._options = None
-_EVENTDETAIL.fields_by_name['claims']._options = None
-_EVENTDETAIL.fields_by_name['time']._options = None
+_OBJECTREF.fields_by_name['type']._options = None
+_OBJECTREF.fields_by_name['key']._options = None
+_OBJECT.fields_by_name['type']._options = None
+_OBJECT.fields_by_name['key']._options = None
+_OBJECT.fields_by_name['values']._options = None
+_SEARCHOPTS.fields_by_name['type']._options = None
+_SEARCHOPTS.fields_by_name['key']._options = None
+_SEARCHOPTS.fields_by_name['limit']._options = None
+_STREAMOPTS.fields_by_name['type']._options = None
+_EVENT.fields_by_name['id']._options = None
+_EVENT.fields_by_name['object']._options = None
+_EVENT.fields_by_name['claims']._options = None
+_EVENT.fields_by_name['time']._options = None
 
 _EVENTGATESERVICE = _descriptor.ServiceDescriptor(
   name='EventGateService',
@@ -333,35 +370,44 @@ _EVENTGATESERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=866,
-  serialized_end=1109,
+  serialized_start=738,
+  serialized_end=1111,
   methods=[
   _descriptor.MethodDescriptor(
-    name='Send',
-    full_name='eventgate.EventGateService.Send',
+    name='SetObject',
+    full_name='eventgate.EventGateService.SetObject',
     index=0,
     containing_service=None,
-    input_type=_EVENT,
+    input_type=_OBJECT,
     output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
-    serialized_options=_b('\202\323\344\223\002\n\"\005/send:\001*'),
+    serialized_options=_b('\202\323\344\223\002\031\"\027/api/{type}/state/{key}'),
   ),
   _descriptor.MethodDescriptor(
-    name='Receive',
-    full_name='eventgate.EventGateService.Receive',
+    name='GetObject',
+    full_name='eventgate.EventGateService.GetObject',
     index=1,
     containing_service=None,
-    input_type=_RECEIVEOPTS,
-    output_type=_EVENTDETAIL,
-    serialized_options=_b('\202\323\344\223\002\n\022\010/receive'),
+    input_type=_OBJECTREF,
+    output_type=_OBJECT,
+    serialized_options=_b('\202\323\344\223\002\031\022\027/api/{type}/state/{key}'),
   ),
   _descriptor.MethodDescriptor(
-    name='History',
-    full_name='eventgate.EventGateService.History',
+    name='StreamEvents',
+    full_name='eventgate.EventGateService.StreamEvents',
     index=2,
     containing_service=None,
-    input_type=_HISTORYOPTS,
-    output_type=_EVENTDETAILS,
-    serialized_options=_b('\202\323\344\223\002\n\022\010/history'),
+    input_type=_STREAMOPTS,
+    output_type=_EVENT,
+    serialized_options=_b('\202\323\344\223\002\024\022\022/api/{type}/events'),
+  ),
+  _descriptor.MethodDescriptor(
+    name='SearchEvents',
+    full_name='eventgate.EventGateService.SearchEvents',
+    index=3,
+    containing_service=None,
+    input_type=_SEARCHOPTS,
+    output_type=_EVENTS,
+    serialized_options=_b('\202\323\344\223\002\032\022\030/api/{type}/events/{key}'),
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_EVENTGATESERVICE)

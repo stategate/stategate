@@ -170,18 +170,24 @@ func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken b
 	), nil
 }
 
-// Send broadcasts an event to all consumers on a given channel
-func (c *Client) Send(ctx context.Context, in *eventgate.Event) error {
-	_, err := c.client.Send(ctx, in)
+// GetObject gets the current state value of an object
+func (c *Client) GetObject(ctx context.Context, in *eventgate.ObjectRef) error {
+	_, err := c.client.GetObject(ctx, in)
 	return err
 }
 
-// Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
-func (c *Client) Receive(ctx context.Context, in *eventgate.ReceiveOpts, fn func(even *eventgate.EventDetail) bool) error {
+// Set sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
+func (c *Client) SetObject(ctx context.Context, in *eventgate.Object) error {
+	_, err := c.client.SetObject(ctx, in)
+	return err
+}
+
+// StreamEvents creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
+func (c *Client) StreamEvents(ctx context.Context, in *eventgate.StreamOpts, fn func(even *eventgate.Event) bool) error {
 	if ctx.Err() != nil {
 		return nil
 	}
-	stream, err := c.client.Receive(ctx, in)
+	stream, err := c.client.StreamEvents(ctx, in)
 	if err != nil {
 		return err
 	}
@@ -206,9 +212,9 @@ func (c *Client) Receive(ctx context.Context, in *eventgate.ReceiveOpts, fn func
 	}
 }
 
-// History returns an array of immutable historical events from a given channel.
-func (c *Client) History(ctx context.Context, in *eventgate.HistoryOpts) (*eventgate.EventDetails, error) {
-	return c.client.History(ctx, in)
+// SearchEvents returns an array of immutable historical events from a given channel.
+func (c *Client) SearchEvents(ctx context.Context, in *eventgate.SearchOpts) (*eventgate.Events, error) {
+	return c.client.SearchEvents(ctx, in)
 }
 
 // Close closes the gRPC client connection

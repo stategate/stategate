@@ -11,15 +11,24 @@
     "application/json"
   ],
   "paths": {
-    "/history": {
+    "/api/{type}/events": {
       "get": {
-        "summary": "History returns an array of immutable historical events.\nEvent Consumers invoke this method.",
-        "operationId": "EventGateService_History",
+        "summary": "StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.\nEvent Consumers invoke this method.",
+        "operationId": "EventGateService_StreamEvents",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/definitions/eventgateEventDetails"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/eventgateEvent"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of eventgateEvent"
             }
           },
           "default": {
@@ -31,9 +40,48 @@
         },
         "parameters": [
           {
-            "name": "channel",
-            "in": "query",
-            "required": false,
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EventGateService"
+        ]
+      }
+    },
+    "/api/{type}/events/{key}": {
+      "get": {
+        "summary": "SearchEvents returns an array of immutable historical events for a given object.",
+        "operationId": "EventGateService_SearchEvents",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eventgateEvents"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type",
+            "description": "Object type (ex: user)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "Object key (unique within type)",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
@@ -42,7 +90,7 @@
             "in": "query",
             "required": false,
             "type": "string",
-            "format": "date-time"
+            "format": "int64"
           },
           {
             "name": "max",
@@ -50,7 +98,7 @@
             "in": "query",
             "required": false,
             "type": "string",
-            "format": "date-time"
+            "format": "int64"
           },
           {
             "name": "limit",
@@ -74,24 +122,15 @@
         ]
       }
     },
-    "/receive": {
+    "/api/{type}/state/{key}": {
       "get": {
-        "summary": "Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.\nEvent Consumers invoke this method.",
-        "operationId": "EventGateService_Receive",
+        "summary": "GetObject gets an object's current state values",
+        "operationId": "EventGateService_GetObject",
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/eventgateEventDetail"
-                },
-                "error": {
-                  "$ref": "#/definitions/rpcStatus"
-                }
-              },
-              "title": "Stream result of eventgateEventDetail"
+              "$ref": "#/definitions/eventgateObject"
             }
           },
           "default": {
@@ -103,21 +142,27 @@
         },
         "parameters": [
           {
-            "name": "channel",
-            "in": "query",
-            "required": false,
+            "name": "type",
+            "description": "Object type (ex: user)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "Object key (unique within type)",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
         "tags": [
           "EventGateService"
         ]
-      }
-    },
-    "/send": {
+      },
       "post": {
-        "summary": "Send broadcasts an event to all consumers on a given channel. Producers invoke this method.",
-        "operationId": "EventGateService_Send",
+        "summary": "SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers",
+        "operationId": "EventGateService_SetObject",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -134,12 +179,18 @@
         },
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
+            "name": "type",
+            "description": "Object type (ex: user)",
+            "in": "path",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/eventgateEvent"
-            }
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "Object key (unique within type)",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -152,39 +203,13 @@
     "eventgateEvent": {
       "type": "object",
       "properties": {
-        "channel": {
-          "type": "string",
-          "title": "Identifies the channel/subject to which the event will be sent"
-        },
-        "data": {
-          "type": "object",
-          "description": "The event payload(structured)."
-        },
-        "metadata": {
-          "type": "object",
-          "title": "Arbitrary metadata about the event"
-        }
-      },
-      "title": "Event is a specification for describing event-sourced data"
-    },
-    "eventgateEventDetail": {
-      "type": "object",
-      "properties": {
         "id": {
           "type": "string",
           "description": "Identifies the event(uuid)."
         },
-        "channel": {
-          "type": "string",
-          "title": "Identifies the channel/subject to which the event will be sent"
-        },
-        "data": {
-          "type": "object",
-          "description": "The event payload(structured)."
-        },
-        "metadata": {
-          "type": "object",
-          "title": "Arbitrary metadata about the event"
+        "object": {
+          "$ref": "#/definitions/eventgateObject",
+          "title": "the unmodified"
         },
         "claims": {
           "type": "object",
@@ -192,23 +217,41 @@
         },
         "time": {
           "type": "string",
-          "format": "date-time",
-          "description": "Timestamp of when the event was received."
+          "format": "int64",
+          "description": "Timestamp(ns) of when the event was received."
         }
       },
-      "description": "EventDetail wraps an Event with additional details."
+      "title": "Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.\nEvents are persisted to history \u0026 broadcasted to interested consumers(Stream) any time an object is created/modified"
     },
-    "eventgateEventDetails": {
+    "eventgateEvents": {
       "type": "object",
       "properties": {
         "events": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/eventgateEventDetail"
+            "$ref": "#/definitions/eventgateEvent"
           }
         }
       },
-      "title": "EventDetails is an array of event details"
+      "title": "Events is an array of events"
+    },
+    "eventgateObject": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Object type (ex: user)"
+        },
+        "key": {
+          "type": "string",
+          "title": "Object key (unique within type)"
+        },
+        "values": {
+          "type": "object",
+          "title": "Object values (structured k/v pairs)"
+        }
+      },
+      "title": "Object hold's the current state of an object"
     },
     "protobufAny": {
       "type": "object",

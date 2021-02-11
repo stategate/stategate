@@ -77,7 +77,7 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 			group := &errgroup.Group{}
 			group.Go(func() error {
 				count := 0
-				if err := client.Receive(ctx, &eventgate.ReceiveOpts{Channel: channelName}, func(even *eventgate.EventDetail) bool {
+				if err := client.StreamEvents(ctx, &eventgate.StreamOpts{Type: channelName}, func(even *eventgate.Event) bool {
 					t.Logf("received hello world event: %s\n", jsonString(even))
 					count++
 					return count < 3
@@ -90,19 +90,14 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				data, _ := structpb.NewStruct(map[string]interface{}{
 					"message": "hello world",
 				})
-				metadata, _ := structpb.NewStruct(map[string]interface{}{
-					"type": "conversation",
-				})
-				event := &eventgate.Event{
-					Channel:  channelName,
-					Data:     data,
-					Metadata: metadata,
+				event := &eventgate.Object{
+					Type:   channelName,
+					Key:    "colemanword@gmail.com",
+					Values: data,
 				}
 				for i := 0; i < 3; i++ {
-					index := i
-					event.Metadata.Fields["index"] = structpb.NewNumberValue(float64(index))
-					t.Log("sending event")
-					if err := client.Send(context.Background(), event); err != nil {
+					t.Log("setting object")
+					if err := client.SetObject(context.Background(), event); err != nil {
 						return err
 					}
 				}
@@ -113,6 +108,20 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 			if err := group.Wait(); err != nil {
 				t.Fatal(err)
 			}
+			events, err := client.SearchEvents(ctx, &eventgate.SearchOpts{
+				Type:  channelName,
+				Key:   "colemanword@gmail.com",
+				Min:   0,
+				Max:   0,
+				Limit: 3,
+			})
+			if err != nil {
+				t.Fatal(err)
+			}
+			if len(events.Events) == 0 {
+				t.Fatal("failed to get event history")
+			}
+			t.Log(events.String())
 		},
 	}
 }

@@ -9,30 +9,37 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Event is a specification for describing event-sourced data
+ * Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.
+ * Events are persisted to history & broadcasted to interested consumers(Stream) any time an object is created/modified
  *
  * Generated from protobuf message <code>eventgate.Event</code>
  */
 class Event extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifies the channel/subject to which the event will be sent
+     * Identifies the event(uuid).
      *
-     * Generated from protobuf field <code>string channel = 30 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
      */
-    private $channel = '';
+    private $id = '';
     /**
-     * The event payload(structured).
+     * the unmodified
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 31 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.eventgate.Object object = 2 [(.validator.field) = {</code>
      */
-    private $data = null;
+    private $object = null;
     /**
-     * Arbitrary metadata about the event
+     * The authentication claims of the event producer.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 32;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct claims = 3 [(.validator.field) = {</code>
      */
-    private $metadata = null;
+    private $claims = null;
+    /**
+     * Timestamp(ns) of when the event was received.
+     *
+     * Generated from protobuf field <code>int64 time = 4 [(.validator.field) = {</code>
+     */
+    private $time = 0;
 
     /**
      * Constructor.
@@ -40,12 +47,14 @@ class Event extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $channel
-     *           Identifies the channel/subject to which the event will be sent
-     *     @type \Google\Protobuf\Struct $data
-     *           The event payload(structured).
-     *     @type \Google\Protobuf\Struct $metadata
-     *           Arbitrary metadata about the event
+     *     @type string $id
+     *           Identifies the event(uuid).
+     *     @type \Eventgate\Object $object
+     *           the unmodified
+     *     @type \Google\Protobuf\Struct $claims
+     *           The authentication claims of the event producer.
+     *     @type int|string $time
+     *           Timestamp(ns) of when the event was received.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,79 +63,105 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies the channel/subject to which the event will be sent
+     * Identifies the event(uuid).
      *
-     * Generated from protobuf field <code>string channel = 30 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
      * @return string
      */
-    public function getChannel()
+    public function getId()
     {
-        return $this->channel;
+        return $this->id;
     }
 
     /**
-     * Identifies the channel/subject to which the event will be sent
+     * Identifies the event(uuid).
      *
-     * Generated from protobuf field <code>string channel = 30 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
-    public function setChannel($var)
+    public function setId($var)
     {
         GPBUtil::checkString($var, True);
-        $this->channel = $var;
+        $this->id = $var;
 
         return $this;
     }
 
     /**
-     * The event payload(structured).
+     * the unmodified
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 31 [(.validator.field) = {</code>
-     * @return \Google\Protobuf\Struct
+     * Generated from protobuf field <code>.eventgate.Object object = 2 [(.validator.field) = {</code>
+     * @return \Eventgate\Object
      */
-    public function getData()
+    public function getObject()
     {
-        return $this->data;
+        return $this->object;
     }
 
     /**
-     * The event payload(structured).
+     * the unmodified
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct data = 31 [(.validator.field) = {</code>
-     * @param \Google\Protobuf\Struct $var
+     * Generated from protobuf field <code>.eventgate.Object object = 2 [(.validator.field) = {</code>
+     * @param \Eventgate\Object $var
      * @return $this
      */
-    public function setData($var)
+    public function setObject($var)
     {
-        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
-        $this->data = $var;
+        GPBUtil::checkMessage($var, \Eventgate\Object::class);
+        $this->object = $var;
 
         return $this;
     }
 
     /**
-     * Arbitrary metadata about the event
+     * The authentication claims of the event producer.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 32;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct claims = 3 [(.validator.field) = {</code>
      * @return \Google\Protobuf\Struct
      */
-    public function getMetadata()
+    public function getClaims()
     {
-        return $this->metadata;
+        return $this->claims;
     }
 
     /**
-     * Arbitrary metadata about the event
+     * The authentication claims of the event producer.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 32;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct claims = 3 [(.validator.field) = {</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
-    public function setMetadata($var)
+    public function setClaims($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
-        $this->metadata = $var;
+        $this->claims = $var;
+
+        return $this;
+    }
+
+    /**
+     * Timestamp(ns) of when the event was received.
+     *
+     * Generated from protobuf field <code>int64 time = 4 [(.validator.field) = {</code>
+     * @return int|string
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    /**
+     * Timestamp(ns) of when the event was received.
+     *
+     * Generated from protobuf field <code>int64 time = 4 [(.validator.field) = {</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTime($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->time = $var;
 
         return $this;
     }

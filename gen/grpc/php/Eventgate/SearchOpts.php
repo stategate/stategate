@@ -9,11 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * HistoryOpts are options when querying historical events for a given object
+ * SearchOpts are options when querying historical events for a given object
  *
- * Generated from protobuf message <code>eventgate.HistoryOpts</code>
+ * Generated from protobuf message <code>eventgate.SearchOpts</code>
  */
-class HistoryOpts extends \Google\Protobuf\Internal\Message
+class SearchOpts extends \Google\Protobuf\Internal\Message
 {
     /**
      * Object type (ex: user)

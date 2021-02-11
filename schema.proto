@@ -13,74 +13,86 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 // EventGateService is an identity-aware API gateway for event-sourcing based applications
 service EventGateService {
-  // Send broadcasts an event to all consumers on a given channel. Producers invoke this method.
-  rpc Send(Event) returns(google.protobuf.Empty){
+  // SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
+  rpc SetObject(Object) returns(google.protobuf.Empty){
     option (google.api.http) = {
-      post: "/send"
-      body: "*"
+      post: "/api/{type}/state/{key}"
     };
   }
-  // Receive creates an event stream/subscription to a given channel until fn returns false OR the context cancels.
-  // Event Consumers invoke this method.
-  rpc Receive(ReceiveOpts) returns(stream EventDetail){
+  // GetObject gets an object's current state values
+  rpc GetObject(ObjectRef) returns(Object){
     option (google.api.http) = {
-      get: "/receive"
+      get: "/api/{type}/state/{key}"
     };
   }
-  // History returns an array of immutable historical events.
+  // StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
   // Event Consumers invoke this method.
-  rpc History(HistoryOpts) returns(EventDetails){
+  rpc StreamEvents(StreamOpts) returns(stream Event){
     option (google.api.http) = {
-      get: "/history"
+      get: "/api/{type}/events"
+    };
+  }
+  // SearchEvents returns an array of immutable historical events for a given object.
+  rpc SearchEvents(SearchOpts) returns(Events){
+    option (google.api.http) = {
+      get: "/api/{type}/events/{key}"
     };
   }
 }
 
-// HistoryOpts are options when querying historical events
-message HistoryOpts {
-  string channel =1[(validator.field) = {string_not_empty : true}];
+// ObjectRef is a reference to an existing object
+message ObjectRef {
+  // Object type (ex: user)
+  string type =1[(validator.field) = {string_not_empty : true}];
+  // Object key (unique within type)
+  string key =2[(validator.field) = {string_not_empty : true}];
+}
+
+// Object hold's the current state of an object
+message Object {
+  // Object type (ex: user)
+  string type =1[(validator.field) = {string_not_empty : true}];
+  // Object key (unique within type)
+  string key =2[(validator.field) = {string_not_empty : true}];
+  // Object values (structured k/v pairs)
+  google.protobuf.Struct values = 3[(validator.field) = {msg_exists : true}];
+}
+
+// SearchOpts are options when querying historical events for a given object
+message SearchOpts {
+  // Object type (ex: user)
+  string type =1[(validator.field) = {string_not_empty : true}];
+  // Object key (unique within type)
+  string key =2[(validator.field) = {string_not_empty : true}];
   // only return events that occurred after specified min timestamp
-  google.protobuf.Timestamp min = 2;
+  int64 min = 3;
   // only return events that occurred before specified max timestamp
-  google.protobuf.Timestamp max = 3;
+  int64 max = 4;
   // limit returned events
-  int64 limit =4[(validator.field) = {int_gt : 0}];;
+  int64 limit =5[(validator.field) = {int_gt : 0}];
   // offset returned events(pagination)
-  int64 offset =5;
+  int64 offset =6;
 }
 
-// ReceiveOpts filters events before they are received by a consumer
-message ReceiveOpts {
-  string channel =1[(validator.field) = {string_not_empty : true}];
+// StreamOpts are options for consumers looking to stream events
+message StreamOpts {
+  string type =1[(validator.field) = {string_not_empty : true}];
 }
 
-// Event is a specification for describing event-sourced data
+// Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.
+// Events are persisted to history & broadcasted to interested consumers(Stream) any time an object is created/modified
 message Event {
-  // Identifies the channel/subject to which the event will be sent
-  string channel = 30[(validator.field) = {string_not_empty : true}];
-  // The event payload(structured).
-  google.protobuf.Struct data = 31[(validator.field) = {msg_exists : true}];
-  // Arbitrary metadata about the event
-  google.protobuf.Struct metadata =32;
-}
-
-// EventDetail wraps an Event with additional details.
-message EventDetail {
   // Identifies the event(uuid).
   string id = 1[(validator.field) = {uuid_ver : 0}];
-  // Identifies the channel/subject to which the event will be sent
-  string channel = 30[(validator.field) = {string_not_empty : true}];
-  // The event payload(structured).
-  google.protobuf.Struct data = 31[(validator.field) = {msg_exists : true}];
-  // Arbitrary metadata about the event
-  google.protobuf.Struct metadata =32;
+  // the unmodified
+  Object object = 2[(validator.field) = {msg_exists : true}];
   // The authentication claims of the event producer.
-  google.protobuf.Struct claims =2[(validator.field) = {msg_exists : true}];
-  // Timestamp of when the event was received.
-  google.protobuf.Timestamp time =3[(validator.field) = {msg_exists : true}];
+  google.protobuf.Struct claims =3[(validator.field) = {msg_exists : true}];
+  // Timestamp(ns) of when the event was received.
+  int64 time =4[(validator.field) = {int_gt : 0}];
 }
 
-// EventDetails is an array of event details
-message EventDetails {
-  repeated EventDetail events =1;
+// Events is an array of events
+message Events {
+  repeated Event events =1;
 }

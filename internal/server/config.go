@@ -7,10 +7,6 @@ import (
 
 type Config struct {
 	Port           int64           `yaml:"port"`
-	Metrics        bool            `yaml:"metrics"`
-	Rest           bool            `yaml:"rest"`
-	GraphQL        bool            `yaml:"graphql"`
-	GrpcWeb        bool            `yaml:"grpcweb"`
 	TLS            *TLS            `yaml:"tls"`
 	Cors           *Cors           `yaml:"cors"`
 	Logging        *Logging        `yaml:"logging"`

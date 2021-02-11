@@ -85,16 +85,16 @@ proto.eventgate.EventGateServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.eventgate.Event,
+ *   !proto.eventgate.Object,
  *   !proto.google.protobuf.Empty>}
  */
-const methodDescriptor_EventGateService_Send = new grpc.web.MethodDescriptor(
-  '/eventgate.EventGateService/Send',
+const methodDescriptor_EventGateService_SetObject = new grpc.web.MethodDescriptor(
+  '/eventgate.EventGateService/SetObject',
   grpc.web.MethodType.UNARY,
-  proto.eventgate.Event,
+  proto.eventgate.Object,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.eventgate.Event} request
+   * @param {!proto.eventgate.Object} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -107,13 +107,13 @@ const methodDescriptor_EventGateService_Send = new grpc.web.MethodDescriptor(
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.eventgate.Event,
+ *   !proto.eventgate.Object,
  *   !proto.google.protobuf.Empty>}
  */
-const methodInfo_EventGateService_Send = new grpc.web.AbstractClientBase.MethodInfo(
+const methodInfo_EventGateService_SetObject = new grpc.web.AbstractClientBase.MethodInfo(
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.eventgate.Event} request
+   * @param {!proto.eventgate.Object} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -124,7 +124,7 @@ const methodInfo_EventGateService_Send = new grpc.web.AbstractClientBase.MethodI
 
 
 /**
- * @param {!proto.eventgate.Event} request The
+ * @param {!proto.eventgate.Object} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -133,187 +133,267 @@ const methodInfo_EventGateService_Send = new grpc.web.AbstractClientBase.MethodI
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.eventgate.EventGateServiceClient.prototype.send =
+proto.eventgate.EventGateServiceClient.prototype.setObject =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/eventgate.EventGateService/Send',
+      '/eventgate.EventGateService/SetObject',
       request,
       metadata || {},
-      methodDescriptor_EventGateService_Send,
+      methodDescriptor_EventGateService_SetObject,
       callback);
 };
 
 
 /**
- * @param {!proto.eventgate.Event} request The
+ * @param {!proto.eventgate.Object} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.eventgate.EventGateServicePromiseClient.prototype.send =
+proto.eventgate.EventGateServicePromiseClient.prototype.setObject =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/eventgate.EventGateService/Send',
+      '/eventgate.EventGateService/SetObject',
       request,
       metadata || {},
-      methodDescriptor_EventGateService_Send);
+      methodDescriptor_EventGateService_SetObject);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.eventgate.ReceiveOpts,
- *   !proto.eventgate.EventDetail>}
+ *   !proto.eventgate.ObjectRef,
+ *   !proto.eventgate.Object>}
  */
-const methodDescriptor_EventGateService_Receive = new grpc.web.MethodDescriptor(
-  '/eventgate.EventGateService/Receive',
-  grpc.web.MethodType.SERVER_STREAMING,
-  proto.eventgate.ReceiveOpts,
-  proto.eventgate.EventDetail,
-  /**
-   * @param {!proto.eventgate.ReceiveOpts} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.eventgate.EventDetail.deserializeBinary
-);
-
-
-/**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.eventgate.ReceiveOpts,
- *   !proto.eventgate.EventDetail>}
- */
-const methodInfo_EventGateService_Receive = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.eventgate.EventDetail,
-  /**
-   * @param {!proto.eventgate.ReceiveOpts} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.eventgate.EventDetail.deserializeBinary
-);
-
-
-/**
- * @param {!proto.eventgate.ReceiveOpts} request The request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.eventgate.EventDetail>}
- *     The XHR Node Readable Stream
- */
-proto.eventgate.EventGateServiceClient.prototype.receive =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/eventgate.EventGateService/Receive',
-      request,
-      metadata || {},
-      methodDescriptor_EventGateService_Receive);
-};
-
-
-/**
- * @param {!proto.eventgate.ReceiveOpts} request The request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.eventgate.EventDetail>}
- *     The XHR Node Readable Stream
- */
-proto.eventgate.EventGateServicePromiseClient.prototype.receive =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/eventgate.EventGateService/Receive',
-      request,
-      metadata || {},
-      methodDescriptor_EventGateService_Receive);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.eventgate.HistoryOpts,
- *   !proto.eventgate.EventDetails>}
- */
-const methodDescriptor_EventGateService_History = new grpc.web.MethodDescriptor(
-  '/eventgate.EventGateService/History',
+const methodDescriptor_EventGateService_GetObject = new grpc.web.MethodDescriptor(
+  '/eventgate.EventGateService/GetObject',
   grpc.web.MethodType.UNARY,
-  proto.eventgate.HistoryOpts,
-  proto.eventgate.EventDetails,
+  proto.eventgate.ObjectRef,
+  proto.eventgate.Object,
   /**
-   * @param {!proto.eventgate.HistoryOpts} request
+   * @param {!proto.eventgate.ObjectRef} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.eventgate.EventDetails.deserializeBinary
+  proto.eventgate.Object.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.eventgate.HistoryOpts,
- *   !proto.eventgate.EventDetails>}
+ *   !proto.eventgate.ObjectRef,
+ *   !proto.eventgate.Object>}
  */
-const methodInfo_EventGateService_History = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.eventgate.EventDetails,
+const methodInfo_EventGateService_GetObject = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.eventgate.Object,
   /**
-   * @param {!proto.eventgate.HistoryOpts} request
+   * @param {!proto.eventgate.ObjectRef} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.eventgate.EventDetails.deserializeBinary
+  proto.eventgate.Object.deserializeBinary
 );
 
 
 /**
- * @param {!proto.eventgate.HistoryOpts} request The
+ * @param {!proto.eventgate.ObjectRef} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.eventgate.EventDetails)}
+ * @param {function(?grpc.web.Error, ?proto.eventgate.Object)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.eventgate.EventDetails>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.eventgate.Object>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.eventgate.EventGateServiceClient.prototype.history =
+proto.eventgate.EventGateServiceClient.prototype.getObject =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/eventgate.EventGateService/History',
+      '/eventgate.EventGateService/GetObject',
       request,
       metadata || {},
-      methodDescriptor_EventGateService_History,
+      methodDescriptor_EventGateService_GetObject,
       callback);
 };
 
 
 /**
- * @param {!proto.eventgate.HistoryOpts} request The
+ * @param {!proto.eventgate.ObjectRef} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.eventgate.EventDetails>}
+ * @return {!Promise<!proto.eventgate.Object>}
  *     Promise that resolves to the response
  */
-proto.eventgate.EventGateServicePromiseClient.prototype.history =
+proto.eventgate.EventGateServicePromiseClient.prototype.getObject =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/eventgate.EventGateService/History',
+      '/eventgate.EventGateService/GetObject',
       request,
       metadata || {},
-      methodDescriptor_EventGateService_History);
+      methodDescriptor_EventGateService_GetObject);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.eventgate.StreamOpts,
+ *   !proto.eventgate.Event>}
+ */
+const methodDescriptor_EventGateService_StreamEvents = new grpc.web.MethodDescriptor(
+  '/eventgate.EventGateService/StreamEvents',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.eventgate.StreamOpts,
+  proto.eventgate.Event,
+  /**
+   * @param {!proto.eventgate.StreamOpts} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.eventgate.Event.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.eventgate.StreamOpts,
+ *   !proto.eventgate.Event>}
+ */
+const methodInfo_EventGateService_StreamEvents = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.eventgate.Event,
+  /**
+   * @param {!proto.eventgate.StreamOpts} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.eventgate.Event.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.eventgate.StreamOpts} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.eventgate.Event>}
+ *     The XHR Node Readable Stream
+ */
+proto.eventgate.EventGateServiceClient.prototype.streamEvents =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/eventgate.EventGateService/StreamEvents',
+      request,
+      metadata || {},
+      methodDescriptor_EventGateService_StreamEvents);
+};
+
+
+/**
+ * @param {!proto.eventgate.StreamOpts} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.eventgate.Event>}
+ *     The XHR Node Readable Stream
+ */
+proto.eventgate.EventGateServicePromiseClient.prototype.streamEvents =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/eventgate.EventGateService/StreamEvents',
+      request,
+      metadata || {},
+      methodDescriptor_EventGateService_StreamEvents);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.eventgate.SearchOpts,
+ *   !proto.eventgate.Events>}
+ */
+const methodDescriptor_EventGateService_SearchEvents = new grpc.web.MethodDescriptor(
+  '/eventgate.EventGateService/SearchEvents',
+  grpc.web.MethodType.UNARY,
+  proto.eventgate.SearchOpts,
+  proto.eventgate.Events,
+  /**
+   * @param {!proto.eventgate.SearchOpts} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.eventgate.Events.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.eventgate.SearchOpts,
+ *   !proto.eventgate.Events>}
+ */
+const methodInfo_EventGateService_SearchEvents = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.eventgate.Events,
+  /**
+   * @param {!proto.eventgate.SearchOpts} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.eventgate.Events.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.eventgate.SearchOpts} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.eventgate.Events)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.eventgate.Events>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.eventgate.EventGateServiceClient.prototype.searchEvents =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/eventgate.EventGateService/SearchEvents',
+      request,
+      metadata || {},
+      methodDescriptor_EventGateService_SearchEvents,
+      callback);
+};
+
+
+/**
+ * @param {!proto.eventgate.SearchOpts} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.eventgate.Events>}
+ *     Promise that resolves to the response
+ */
+proto.eventgate.EventGateServicePromiseClient.prototype.searchEvents =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/eventgate.EventGateService/SearchEvents',
+      request,
+      metadata || {},
+      methodDescriptor_EventGateService_SearchEvents);
 };
 
 

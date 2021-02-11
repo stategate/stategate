@@ -5,16 +5,16 @@ package eventgate
 
 import (
 	fmt "fmt"
+	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/any"
-	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/golang/protobuf/ptypes/struct"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
+	_ "github.com/golang/protobuf/ptypes/any"
+	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/mwitkow/go-proto-validators"
-	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
-	math "math"
 	regexp "regexp"
+	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -22,71 +22,63 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-func (this *HistoryOpts) Validate() error {
-	if this.Channel == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Channel", fmt.Errorf(`value '%v' must not be an empty string`, this.Channel))
+func (this *ObjectRef) Validate() error {
+	if this.Type == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
 	}
-	if this.Min != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Min); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Min", err)
+	if this.Key == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must not be an empty string`, this.Key))
+	}
+	return nil
+}
+func (this *Object) Validate() error {
+	if this.Type == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
+	}
+	if this.Key == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must not be an empty string`, this.Key))
+	}
+	if nil == this.Values {
+		return github_com_mwitkow_go_proto_validators.FieldError("Values", fmt.Errorf("message must exist"))
+	}
+	if this.Values != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Values); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Values", err)
 		}
 	}
-	if this.Max != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Max); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Max", err)
-		}
+	return nil
+}
+func (this *SearchOpts) Validate() error {
+	if this.Type == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
+	}
+	if this.Key == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must not be an empty string`, this.Key))
 	}
 	if !(this.Limit > 0) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Limit", fmt.Errorf(`value '%v' must be greater than '0'`, this.Limit))
 	}
 	return nil
 }
-func (this *ReceiveOpts) Validate() error {
-	if this.Channel == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Channel", fmt.Errorf(`value '%v' must not be an empty string`, this.Channel))
+func (this *StreamOpts) Validate() error {
+	if this.Type == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
 	}
 	return nil
 }
+
+var _regex_Event_Id = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
 func (this *Event) Validate() error {
-	if this.Channel == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Channel", fmt.Errorf(`value '%v' must not be an empty string`, this.Channel))
-	}
-	if nil == this.Data {
-		return github_com_mwitkow_go_proto_validators.FieldError("Data", fmt.Errorf("message must exist"))
-	}
-	if this.Data != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
-		}
-	}
-	if this.Metadata != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Metadata); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Metadata", err)
-		}
-	}
-	return nil
-}
-
-var _regex_EventDetail_Id = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
-
-func (this *EventDetail) Validate() error {
-	if !_regex_EventDetail_Id.MatchString(this.Id) {
+	if !_regex_Event_Id.MatchString(this.Id) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.Id))
 	}
-	if this.Channel == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Channel", fmt.Errorf(`value '%v' must not be an empty string`, this.Channel))
+	if nil == this.Object {
+		return github_com_mwitkow_go_proto_validators.FieldError("Object", fmt.Errorf("message must exist"))
 	}
-	if nil == this.Data {
-		return github_com_mwitkow_go_proto_validators.FieldError("Data", fmt.Errorf("message must exist"))
-	}
-	if this.Data != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
-		}
-	}
-	if this.Metadata != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Metadata); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Metadata", err)
+	if this.Object != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Object); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Object", err)
 		}
 	}
 	if nil == this.Claims {
@@ -97,17 +89,12 @@ func (this *EventDetail) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("Claims", err)
 		}
 	}
-	if nil == this.Time {
-		return github_com_mwitkow_go_proto_validators.FieldError("Time", fmt.Errorf("message must exist"))
-	}
-	if this.Time != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Time); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Time", err)
-		}
+	if !(this.Time > 0) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Time", fmt.Errorf(`value '%v' must be greater than '0'`, this.Time))
 	}
 	return nil
 }
-func (this *EventDetails) Validate() error {
+func (this *Events) Validate() error {
 	for _, item := range this.Events {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {

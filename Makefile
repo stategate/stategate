@@ -1,4 +1,4 @@
-version := "0.0.23"
+version := "0.1.0"
 
 .DEFAULT_GOAL := help
 
@@ -11,12 +11,6 @@ help:
 
 run:
 	@go run cmd/eventgate/main.go
-
-gen: gql helm proto
-
-helm:
-	cd chart; helm package .
-	helm repo index .
 
 patch: ## bump sem version by 1 patch
 	bumpversion patch --allow-dirty
@@ -42,10 +36,6 @@ proto: ## regenerate gRPC code
 	@echo "generating protobuf code..."
 	@docker run -v `pwd`:/defs namely/prototool:latest generate
 	@go fmt ./...
-
-.PHONY: gql
-gql: ## regenerate graphql code
-	@gqlgen generate
 
 .PHONY: up
 up: ## start local containers

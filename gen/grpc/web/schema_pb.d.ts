@@ -8,75 +8,128 @@ import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty
 import * as github_com_mwitkow_go$proto$validators_validator_pb from './github.com/mwitkow/go-proto-validators/validator_pb';
 
 
-export class HistoryOpts extends jspb.Message {
-  getChannel(): string;
-  setChannel(value: string): HistoryOpts;
+export class ObjectRef extends jspb.Message {
+  getType(): string;
+  setType(value: string): ObjectRef;
 
-  getMin(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setMin(value?: google_protobuf_timestamp_pb.Timestamp): HistoryOpts;
-  hasMin(): boolean;
-  clearMin(): HistoryOpts;
-
-  getMax(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setMax(value?: google_protobuf_timestamp_pb.Timestamp): HistoryOpts;
-  hasMax(): boolean;
-  clearMax(): HistoryOpts;
-
-  getLimit(): number;
-  setLimit(value: number): HistoryOpts;
-
-  getOffset(): number;
-  setOffset(value: number): HistoryOpts;
+  getKey(): string;
+  setKey(value: string): ObjectRef;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): HistoryOpts.AsObject;
-  static toObject(includeInstance: boolean, msg: HistoryOpts): HistoryOpts.AsObject;
-  static serializeBinaryToWriter(message: HistoryOpts, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): HistoryOpts;
-  static deserializeBinaryFromReader(message: HistoryOpts, reader: jspb.BinaryReader): HistoryOpts;
+  toObject(includeInstance?: boolean): ObjectRef.AsObject;
+  static toObject(includeInstance: boolean, msg: ObjectRef): ObjectRef.AsObject;
+  static serializeBinaryToWriter(message: ObjectRef, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ObjectRef;
+  static deserializeBinaryFromReader(message: ObjectRef, reader: jspb.BinaryReader): ObjectRef;
 }
 
-export namespace HistoryOpts {
+export namespace ObjectRef {
   export type AsObject = {
-    channel: string,
-    min?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    max?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    type: string,
+    key: string,
+  }
+}
+
+export class Object extends jspb.Message {
+  getType(): string;
+  setType(value: string): Object;
+
+  getKey(): string;
+  setKey(value: string): Object;
+
+  getValues(): google_protobuf_struct_pb.Struct | undefined;
+  setValues(value?: google_protobuf_struct_pb.Struct): Object;
+  hasValues(): boolean;
+  clearValues(): Object;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Object.AsObject;
+  static toObject(includeInstance: boolean, msg: Object): Object.AsObject;
+  static serializeBinaryToWriter(message: Object, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Object;
+  static deserializeBinaryFromReader(message: Object, reader: jspb.BinaryReader): Object;
+}
+
+export namespace Object {
+  export type AsObject = {
+    type: string,
+    key: string,
+    values?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class SearchOpts extends jspb.Message {
+  getType(): string;
+  setType(value: string): SearchOpts;
+
+  getKey(): string;
+  setKey(value: string): SearchOpts;
+
+  getMin(): number;
+  setMin(value: number): SearchOpts;
+
+  getMax(): number;
+  setMax(value: number): SearchOpts;
+
+  getLimit(): number;
+  setLimit(value: number): SearchOpts;
+
+  getOffset(): number;
+  setOffset(value: number): SearchOpts;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SearchOpts.AsObject;
+  static toObject(includeInstance: boolean, msg: SearchOpts): SearchOpts.AsObject;
+  static serializeBinaryToWriter(message: SearchOpts, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SearchOpts;
+  static deserializeBinaryFromReader(message: SearchOpts, reader: jspb.BinaryReader): SearchOpts;
+}
+
+export namespace SearchOpts {
+  export type AsObject = {
+    type: string,
+    key: string,
+    min: number,
+    max: number,
     limit: number,
     offset: number,
   }
 }
 
-export class ReceiveOpts extends jspb.Message {
-  getChannel(): string;
-  setChannel(value: string): ReceiveOpts;
+export class StreamOpts extends jspb.Message {
+  getType(): string;
+  setType(value: string): StreamOpts;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ReceiveOpts.AsObject;
-  static toObject(includeInstance: boolean, msg: ReceiveOpts): ReceiveOpts.AsObject;
-  static serializeBinaryToWriter(message: ReceiveOpts, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ReceiveOpts;
-  static deserializeBinaryFromReader(message: ReceiveOpts, reader: jspb.BinaryReader): ReceiveOpts;
+  toObject(includeInstance?: boolean): StreamOpts.AsObject;
+  static toObject(includeInstance: boolean, msg: StreamOpts): StreamOpts.AsObject;
+  static serializeBinaryToWriter(message: StreamOpts, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StreamOpts;
+  static deserializeBinaryFromReader(message: StreamOpts, reader: jspb.BinaryReader): StreamOpts;
 }
 
-export namespace ReceiveOpts {
+export namespace StreamOpts {
   export type AsObject = {
-    channel: string,
+    type: string,
   }
 }
 
 export class Event extends jspb.Message {
-  getChannel(): string;
-  setChannel(value: string): Event;
+  getId(): string;
+  setId(value: string): Event;
 
-  getData(): google_protobuf_struct_pb.Struct | undefined;
-  setData(value?: google_protobuf_struct_pb.Struct): Event;
-  hasData(): boolean;
-  clearData(): Event;
+  getObject(): Object | undefined;
+  setObject(value?: Object): Event;
+  hasObject(): boolean;
+  clearObject(): Event;
 
-  getMetadata(): google_protobuf_struct_pb.Struct | undefined;
-  setMetadata(value?: google_protobuf_struct_pb.Struct): Event;
-  hasMetadata(): boolean;
-  clearMetadata(): Event;
+  getClaims(): google_protobuf_struct_pb.Struct | undefined;
+  setClaims(value?: google_protobuf_struct_pb.Struct): Event;
+  hasClaims(): boolean;
+  clearClaims(): Event;
+
+  getTime(): number;
+  setTime(value: number): Event;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Event.AsObject;
@@ -88,75 +141,30 @@ export class Event extends jspb.Message {
 
 export namespace Event {
   export type AsObject = {
-    channel: string,
-    data?: google_protobuf_struct_pb.Struct.AsObject,
-    metadata?: google_protobuf_struct_pb.Struct.AsObject,
-  }
-}
-
-export class EventDetail extends jspb.Message {
-  getId(): string;
-  setId(value: string): EventDetail;
-
-  getChannel(): string;
-  setChannel(value: string): EventDetail;
-
-  getData(): google_protobuf_struct_pb.Struct | undefined;
-  setData(value?: google_protobuf_struct_pb.Struct): EventDetail;
-  hasData(): boolean;
-  clearData(): EventDetail;
-
-  getMetadata(): google_protobuf_struct_pb.Struct | undefined;
-  setMetadata(value?: google_protobuf_struct_pb.Struct): EventDetail;
-  hasMetadata(): boolean;
-  clearMetadata(): EventDetail;
-
-  getClaims(): google_protobuf_struct_pb.Struct | undefined;
-  setClaims(value?: google_protobuf_struct_pb.Struct): EventDetail;
-  hasClaims(): boolean;
-  clearClaims(): EventDetail;
-
-  getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setTime(value?: google_protobuf_timestamp_pb.Timestamp): EventDetail;
-  hasTime(): boolean;
-  clearTime(): EventDetail;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): EventDetail.AsObject;
-  static toObject(includeInstance: boolean, msg: EventDetail): EventDetail.AsObject;
-  static serializeBinaryToWriter(message: EventDetail, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): EventDetail;
-  static deserializeBinaryFromReader(message: EventDetail, reader: jspb.BinaryReader): EventDetail;
-}
-
-export namespace EventDetail {
-  export type AsObject = {
     id: string,
-    channel: string,
-    data?: google_protobuf_struct_pb.Struct.AsObject,
-    metadata?: google_protobuf_struct_pb.Struct.AsObject,
+    object?: Object.AsObject,
     claims?: google_protobuf_struct_pb.Struct.AsObject,
-    time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    time: number,
   }
 }
 
-export class EventDetails extends jspb.Message {
-  getEventsList(): Array<EventDetail>;
-  setEventsList(value: Array<EventDetail>): EventDetails;
-  clearEventsList(): EventDetails;
-  addEvents(value?: EventDetail, index?: number): EventDetail;
+export class Events extends jspb.Message {
+  getEventsList(): Array<Event>;
+  setEventsList(value: Array<Event>): Events;
+  clearEventsList(): Events;
+  addEvents(value?: Event, index?: number): Event;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): EventDetails.AsObject;
-  static toObject(includeInstance: boolean, msg: EventDetails): EventDetails.AsObject;
-  static serializeBinaryToWriter(message: EventDetails, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): EventDetails;
-  static deserializeBinaryFromReader(message: EventDetails, reader: jspb.BinaryReader): EventDetails;
+  toObject(includeInstance?: boolean): Events.AsObject;
+  static toObject(includeInstance: boolean, msg: Events): Events.AsObject;
+  static serializeBinaryToWriter(message: Events, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Events;
+  static deserializeBinaryFromReader(message: Events, reader: jspb.BinaryReader): Events;
 }
 
-export namespace EventDetails {
+export namespace Events {
   export type AsObject = {
-    eventsList: Array<EventDetail.AsObject>,
+    eventsList: Array<Event.AsObject>,
   }
 }
 

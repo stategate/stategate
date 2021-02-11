@@ -6,9 +6,9 @@ import (
 	"fmt"
 	eventgate "github.com/autom8ter/eventgate/gen/grpc/go"
 	"github.com/autom8ter/eventgate/internal/auth"
-	"github.com/autom8ter/eventgate/internal/gql"
+	"github.com/autom8ter/eventgate/internal/channel"
 	"github.com/autom8ter/eventgate/internal/logger"
-	"github.com/autom8ter/eventgate/internal/providers"
+	"github.com/autom8ter/eventgate/internal/service"
 	"github.com/autom8ter/eventgate/internal/storage"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
@@ -83,39 +83,37 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 
 	var metricServer *http.Server
 
-	if c.Metrics {
-		router := http.NewServeMux()
-		router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-			w.WriteHeader(http.StatusOK)
-		})
-		router.Handle("/metrics", promhttp.Handler())
-		router.HandleFunc("/debug/pprof/", pprof.Index)
-		router.HandleFunc("/debug/pprof/cmdline", pprof.Cmdline)
-		router.HandleFunc("/debug/pprof/profile", pprof.Profile)
-		router.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
-		router.HandleFunc("/debug/pprof/trace", pprof.Trace)
-		metricServer = &http.Server{Handler: router}
-		if tlsConfig != nil {
-			metricServer.TLSConfig = tlsConfig
-			metricServer.TLSNextProto = map[string]func(*http.Server, *tls.Conn, http.Handler){}
-		}
-		group.Go(func() error {
-			addr, err := net.ResolveTCPAddr("tcp", fmt.Sprintf(":%v", c.Port+1))
-			if err != nil {
-				return errors.Wrap(err, "failed to create metrics listener")
-			}
-			metricsLis, err := net.ListenTCP("tcp", addr)
-			if err != nil {
-				return errors.Wrap(err, "failed to create metrics listener")
-			}
-			defer metricsLis.Close()
-			lgger.Debug("starting metrics server", zap.String("address", metricsLis.Addr().String()))
-			if err := metricServer.Serve(metricsLis); err != nil && err != http.ErrServerClosed {
-				return errors.Wrap(err, "metrics server failure")
-			}
-			return nil
-		})
+	router := http.NewServeMux()
+	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+	})
+	router.Handle("/metrics", promhttp.Handler())
+	router.HandleFunc("/debug/pprof/", pprof.Index)
+	router.HandleFunc("/debug/pprof/cmdline", pprof.Cmdline)
+	router.HandleFunc("/debug/pprof/profile", pprof.Profile)
+	router.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
+	router.HandleFunc("/debug/pprof/trace", pprof.Trace)
+	metricServer = &http.Server{Handler: router}
+	if tlsConfig != nil {
+		metricServer.TLSConfig = tlsConfig
+		metricServer.TLSNextProto = map[string]func(*http.Server, *tls.Conn, http.Handler){}
 	}
+	group.Go(func() error {
+		addr, err := net.ResolveTCPAddr("tcp", fmt.Sprintf(":%v", c.Port+1))
+		if err != nil {
+			return errors.Wrap(err, "failed to create metrics listener")
+		}
+		metricsLis, err := net.ListenTCP("tcp", addr)
+		if err != nil {
+			return errors.Wrap(err, "failed to create metrics listener")
+		}
+		defer metricsLis.Close()
+		lgger.Debug("starting metrics server", zap.String("address", metricsLis.Addr().String()))
+		if err := metricServer.Serve(metricsLis); err != nil && err != http.ErrServerClosed {
+			return errors.Wrap(err, "metrics server failure")
+		}
+		return nil
+	})
 
 	const (
 		regoQuery = "data.eventgate.authz.allow"
@@ -162,22 +160,22 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	if tlsConfig != nil {
 		gopts = append(gopts, grpc.Creds(credentials.NewTLS(tlsConfig)))
 	}
-	var strg storage.Provider
-	if c.Backend.StorageProvider != nil && c.Backend.StorageProvider.Name != "" {
-		strg, err = providers.GetStorageProvider(providers.StorageProvider(c.Backend.StorageProvider.Name), lgger, c.Backend.StorageProvider.Config)
-		if err != nil {
-			return errors.Wrap(err, "failed to setup storage provider")
-		}
-		defer strg.Close()
+	strgProvider, err := storage.GetStorageProvider(storage.ProviderName(c.Backend.StorageProvider.Name), lgger, c.Backend.StorageProvider.Config)
+	if err != nil {
+		return errors.Wrap(err, "failed to setup storage provider")
 	}
-
-	service, closer, err := providers.GetChannelProvider(providers.ChannelProvider(c.Backend.ChannelProvider.Name), strg, lgger, c.Backend.ChannelProvider.Config)
+	defer strgProvider.Close()
+	channelProvider, err := channel.GetChannelProvider(channel.ProviderName(c.Backend.ChannelProvider.Name), lgger, c.Backend.ChannelProvider.Config)
 	if err != nil {
 		return errors.Wrap(err, "failed to setup channel provider")
 	}
-	defer closer()
+	defer channelProvider.Close()
+	svc, err := service.NewService(strgProvider, channelProvider, lgger)
+	if err != nil {
+		return errors.Wrap(err, "failed to setup service")
+	}
 	gserver := grpc.NewServer(gopts...)
-	eventgate.RegisterEventGateServiceServer(gserver, service)
+	eventgate.RegisterEventGateServiceServer(gserver, svc)
 	reflection.Register(gserver)
 	grpc_prometheus.Register(gserver)
 
@@ -200,62 +198,51 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	}
 	defer conn.Close()
 	mux := http.NewServeMux()
-	if c.GraphQL {
-		resolver := gql.NewResolver(eventgate.NewEventGateServiceClient(conn), lgger)
-		mux.Handle("/graphql", resolver.QueryHandler())
-	}
 
-	if c.Rest {
-		restMux := runtime.NewServeMux()
-		if err := eventgate.RegisterEventGateServiceHandler(ctx, restMux, conn); err != nil {
-			return errors.Wrap(err, "failed to register REST endpoints")
-		}
-		mux.Handle("/", restMux)
+	restMux := runtime.NewServeMux()
+	if err := eventgate.RegisterEventGateServiceHandler(ctx, restMux, conn); err != nil {
+		return errors.Wrap(err, "failed to register REST endpoints")
 	}
+	mux.Handle("/", restMux)
 
 	var httpServer *http.Server
-	if c.GraphQL || c.Rest {
-		httpServer = &http.Server{
-			Handler: mux,
-		}
-		if tlsConfig != nil {
-			httpServer.TLSConfig = tlsConfig
-			httpServer.TLSNextProto = map[string]func(*http.Server, *tls.Conn, http.Handler){}
-		}
-		if c.GrpcWeb {
-			wrappedGrpc := grpcweb.WrapServer(
-				gserver,
-				grpcweb.WithWebsockets(true),
-				grpcweb.WithWebsocketPingInterval(15*time.Second),
-			)
-			httpServer.Handler = http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
-				if wrappedGrpc.IsGrpcWebRequest(req) {
-					wrappedGrpc.ServeHTTP(resp, req)
-				} else {
-					mux.ServeHTTP(resp, req)
-				}
-			})
-			if c.Cors != nil {
-				c := cors.New(cors.Options{
-					AllowedOrigins: c.Cors.AllowedOrigins,
-					AllowedMethods: c.Cors.AllowedMethods,
-					AllowedHeaders: c.Cors.AllowedHeaders,
-					ExposedHeaders: c.Cors.ExposedHeaders,
-				})
-				httpServer.Handler = c.Handler(httpServer.Handler)
-			}
-		}
-
-		group.Go(func() error {
-			httpMatchermatcher := apiMux.Match(cmux.Any())
-			defer httpMatchermatcher.Close()
-			lgger.Debug("starting http server", zap.String("address", httpMatchermatcher.Addr().String()))
-			if err := httpServer.Serve(httpMatchermatcher); err != nil && err != http.ErrServerClosed {
-				return errors.Wrap(err, "http server failure")
-			}
-			return nil
-		})
+	httpServer = &http.Server{
+		Handler: mux,
 	}
+	if tlsConfig != nil {
+		httpServer.TLSConfig = tlsConfig
+		httpServer.TLSNextProto = map[string]func(*http.Server, *tls.Conn, http.Handler){}
+	}
+	wrappedGrpc := grpcweb.WrapServer(
+		gserver,
+		grpcweb.WithWebsockets(true),
+		grpcweb.WithWebsocketPingInterval(15*time.Second),
+	)
+	httpServer.Handler = http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
+		if wrappedGrpc.IsGrpcWebRequest(req) {
+			wrappedGrpc.ServeHTTP(resp, req)
+		} else {
+			mux.ServeHTTP(resp, req)
+		}
+	})
+	if c.Cors != nil {
+		c := cors.New(cors.Options{
+			AllowedOrigins: c.Cors.AllowedOrigins,
+			AllowedMethods: c.Cors.AllowedMethods,
+			AllowedHeaders: c.Cors.AllowedHeaders,
+			ExposedHeaders: c.Cors.ExposedHeaders,
+		})
+		httpServer.Handler = c.Handler(httpServer.Handler)
+	}
+	group.Go(func() error {
+		httpMatchermatcher := apiMux.Match(cmux.Any())
+		defer httpMatchermatcher.Close()
+		lgger.Debug("starting http server", zap.String("address", httpMatchermatcher.Addr().String()))
+		if err := httpServer.Serve(httpMatchermatcher); err != nil && err != http.ErrServerClosed && !strings.Contains(err.Error(), "use of closed network connection") {
+			return errors.Wrap(err, "http server failure")
+		}
+		return nil
+	})
 	group.Go(func() error {
 		ctx, cancel := context.WithCancel(ctx)
 		defer cancel()
@@ -272,22 +259,16 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 		defer shutdowncancel()
 		shutdownGroup, shutdownctx := errgroup.WithContext(shutdownctx)
 
-		if httpServer != nil {
-			shutdownGroup.Go(func() error {
-				if err := httpServer.Shutdown(shutdownctx); err != nil {
-					return errors.Wrap(err, "http server shutdown failure")
-				}
-				return nil
-			})
-		}
-		if metricServer != nil {
-			shutdownGroup.Go(func() error {
-				if err := metricServer.Shutdown(shutdownctx); err != nil {
-					return errors.Wrap(err, "metric server shutdown failure")
-				}
-				return nil
-			})
-		}
+		shutdownGroup.Go(func() error {
+			httpServer.Shutdown(shutdownctx)
+			lgger.Debug("shutdown http server")
+			return nil
+		})
+		shutdownGroup.Go(func() error {
+			metricServer.Shutdown(shutdownctx)
+			lgger.Debug("shutdown metrics server")
+			return nil
+		})
 		shutdownGroup.Go(func() error {
 			stopped := make(chan struct{})
 			go func() {
