@@ -171,9 +171,8 @@ func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken b
 }
 
 // GetObject gets an object's current state values
-func (c *Client) GetObject(ctx context.Context, in *stategate.ObjectRef) error {
-	_, err := c.client.GetObject(ctx, in)
-	return err
+func (c *Client) GetObject(ctx context.Context, in *stategate.ObjectRef) (*stategate.Object, error) {
+	return c.client.GetObject(ctx, in)
 }
 
 // SearchObjects queries objects of a specific type
