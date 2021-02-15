@@ -58,10 +58,7 @@ func NewService(storage storage.Provider, channel channel.Provider, lgger *logge
 }
 
 func (s Service) SetObject(ctx context.Context, object *stategate.Object) (*empty.Empty, error) {
-	c, ok := auth.GetContext(ctx)
-	if !ok {
-		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
-	}
+	c, _ := auth.GetContext(ctx)
 	group := &errgroup.Group{}
 	claims, _ := structpb.NewStruct(c.Claims)
 
@@ -93,10 +90,6 @@ func (s Service) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stat
 }
 
 func (s Service) StreamEvents(opts *stategate.StreamOpts, server stategate.StateGateService_StreamEventsServer) error {
-	_, ok := auth.GetContext(server.Context())
-	if !ok {
-		return status.Error(codes.Unauthenticated, "unauthenticated")
-	}
 	if err := s.ps.Subscribe(server.Context(), opts.GetType(), "", func(msg interface{}) bool {
 		if event, ok := msg.(*stategate.Event); ok {
 			if err := server.Send(event); err != nil {

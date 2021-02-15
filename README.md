@@ -63,95 +63,36 @@ A pluggable API and "Application State Gateway" that enforces the [Event Sourcin
 - [x] Capture a persistant, immutable historical record of all state changes using a pluggable storage provider
 - [x] Store identity(jwt.claims) & timestamp in event logs to capture who is changing what & when
 
-## Command Line
-
-```
-stategate -h
-Usage of stategate:
-      --config string   path to config file (env: STATEGATE_CONFIG) (default "config.yaml")
-```
-
-## Sample Config
+## Environmental Variables
 
 ```yaml
+# port to serve on (optional). defaults to 8080
+STATEGATE_PORT=8080
+# enable debug logs (optional)
+STATEGATE_DEBUG=true
+# disable all authentication & authorization(jwks, request policies, response policies) (optional)
+STATEGATE_AUTH_DISABLED=false
+# tls cert file (optional)
+STATEGATE_TLS_CERT_FILE=/tmp/certs/stategate.cert
+# tls key file (optional)
+STATEGATE_TLS_KEY_FILE=/tmp/certs/stategate.key
 
-# port to serve on. metrics server is started on this port+1 if enabled
-port: 8080
-cors:
-  allowed_origins:
-    - "*"
-  allowed_methods:
-    - "POST"
-    - "PUT"
-    - "GET"
-    - "OPTIONS"
-  allowed_headers:
-    - "*"
-#tls:
-#  cert_file: "/tmp/server.cert"
-#  key_file: "/tmp/server.key"
-logging:
-  # enable debug logs
-  debug: true
+# JSON Web Key Set remote URI used for fetching jwt signing keys for verification/validation (optional)
+STATEGATE_JWKS_URI=https://www.googleapis.com/oauth2/v3/certs
 
+# base64 encoded OPA rego policy executed on inbound requests from clients (optional)
+STATEGATE_REQUEST_POLICY=cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB0cnVl
+# base64 encoded OPA rego policy executed on responses sent to clients (optional)
+STATEGATE_RESPONSE_POLICY=cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB0cnVl
+# channel provider configuration(JSON) options: [inmem, redis, nats, stan, kafka] REQUIRED
+STATEGATE_CHANNEL_PROVIDER={ "name": "redis", "addr": "localhost:6379" }
+# STATEGATE_CHANNEL_PROVIDER={ "name": "nats", "addr": "localhost:4222" }
+# STATEGATE_CHANNEL_PROVIDER={ "name": "stan", "addr": "localhost:4222" }
+# STATEGATE_CHANNEL_PROVIDER={ "name": "inmem" }
 
-backend:
-  # pluggable channel providers: [inmem, redis, nats, stan, kafka, google-pubsub, aws-sqs]
-  channel_provider:
-    name: "nats"
-    config:
-      addr: "0.0.0.0:4444"
-#     client_cert_file: "/tmp/nats.cert"
-#     client_key_file: "/tmp/nats.key"
-#  channel_provider:
-#    name: "redis"
-#    config:
-#      addr: "0.0.0.0:6379"
-#      user: "default"
-#      password: "admin1234"
-#      client_cert_file: "/tmp/redis.cert"
-#      client_key_file: "/tmp/redis.key"
+# storage provider configuration(JSON) options: [mongo] REQUIRED
+STATEGATE_STORAGE_PROVIDER={ "name": "mongo", "database": "testing", "addr": "mongodb://localhost:27017/testing" }
 
-#  channel_provider:
-#    name: "stan"
-#    config:
-#      addr: "0.0.0.0:4444"
-#      client_cert_file: "/tmp/stan.cert"
-#      client_key_file: "/tmp/stan.key"
-
-# pluggable storage providers: [mongo, elasticsearch]
-  
-  storage_provider:
-    name: "mongo"
-    config:
-      addr: "mongodb://localhost:27017/testing"
-      database: "testing"
-#      client_cert_file: "/tmp/mongo.cert"
-#      client_key_file: "/tmp/mongo.key"
-
-
-
-# authentication options
-authentication:
-  # json web keys uri for authentication.
-  # if empty, inbound jwt's will not be verified.
-  jwks_uri: ""
-
-# authorization options
-authorization:
-  requests: |
-    package stategate.authz
-
-    default allow = false
-
-    allow {
-      input.claims.sub = "1234567890"
-      input.claims.name = "John Doe"
-    }
-  responses: |
-    package stategate.authz
-
-    default allow = true
 
 ```
 

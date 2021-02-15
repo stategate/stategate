@@ -46,12 +46,18 @@ func SetContext(ctx context.Context, contxt *Context) context.Context {
 }
 
 func GetContext(ctx context.Context) (*Context, bool) {
-	if ctx.Value(userCtxKey) == nil {
-		return nil, false
-	}
 	data, ok := ctx.Value(userCtxKey).(*Context)
 	if ok {
 		return data.copy(), true
+	} else {
+		return &Context{
+			authPayload:  "",
+			Claims:       map[string]interface{}{},
+			Method:       "",
+			Metadata:     map[string]string{},
+			Body:         map[string]interface{}{},
+			ClientStream: false,
+			ServerStream: false,
+		}, false
 	}
-	return data, ok
 }

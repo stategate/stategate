@@ -64,8 +64,8 @@ func testInMemMongo(t *testing.T) {
 
 func natsMongo(t *testing.T, ctx context.Context, natsPort, mongoPort string) *framework.Provider {
 	return framework.NewProvider(t, ctx, token, &server.Config{
-		Authorization: &server.Authorization{
-			RequestPolicy: `
+		AuthDisabled: true,
+		RequestPolicy: `
 	package stategate.authz
 
 	default allow = false
@@ -75,36 +75,28 @@ func natsMongo(t *testing.T, ctx context.Context, natsPort, mongoPort string) *f
       input.claims.name = "John Doe"
     }
 `,
-			ResponsePolicy: `
+		ResponsePolicy: `
 	package stategate.authz
 
     default allow = true
 `,
+		ChannelProvider: map[string]string{
+			"name": "nats",
+			"addr": fmt.Sprintf("0.0.0.0:%s", natsPort),
 		},
-
-		Backend: &server.Backend{
-			ChannelProvider: &server.Provider{
-				Name: "nats",
-				Config: map[string]string{
-					"addr": fmt.Sprintf("0.0.0.0:%s", natsPort),
-				},
-			},
-			StorageProvider: &server.Provider{
-				Name: "mongo",
-				Config: map[string]string{
-					"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
-					"database": "testing",
-				},
-			},
+		StorageProvider: map[string]string{
+			"name":     "mongo",
+			"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
+			"database": "testing",
 		},
 	})
 }
 
 func redisMongo(t *testing.T, ctx context.Context, redisPort, mongoPort string) *framework.Provider {
 	return framework.NewProvider(t, ctx, token, &server.Config{
-		Port: 0,
-		Authorization: &server.Authorization{
-			RequestPolicy: `
+		Port:         0,
+		AuthDisabled: true,
+		RequestPolicy: `
 	package stategate.authz
 
 	default allow = false
@@ -114,36 +106,28 @@ func redisMongo(t *testing.T, ctx context.Context, redisPort, mongoPort string) 
       input.claims.name = "John Doe"
     }
 `,
-			ResponsePolicy: `
+		ResponsePolicy: `
 	package stategate.authz
 
     default allow = true
 `,
+		ChannelProvider: map[string]string{
+			"name": "redis",
+			"addr": fmt.Sprintf("0.0.0.0:%s", redisPort),
 		},
-
-		Backend: &server.Backend{
-			ChannelProvider: &server.Provider{
-				Name: "redis",
-				Config: map[string]string{
-					"addr": fmt.Sprintf("0.0.0.0:%s", redisPort),
-				},
-			},
-			StorageProvider: &server.Provider{
-				Name: "mongo",
-				Config: map[string]string{
-					"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
-					"database": "testing",
-				},
-			},
+		StorageProvider: map[string]string{
+			"name":     "mongo",
+			"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
+			"database": "testing",
 		},
 	})
 }
 
 func inmemMongo(t *testing.T, ctx context.Context, mongoPort string) *framework.Provider {
 	return framework.NewProvider(t, ctx, token, &server.Config{
-		Port: 0,
-		Authorization: &server.Authorization{
-			RequestPolicy: `
+		Port:         0,
+		AuthDisabled: true,
+		RequestPolicy: `
 	package stategate.authz
 
 	default allow = false
@@ -153,25 +137,18 @@ func inmemMongo(t *testing.T, ctx context.Context, mongoPort string) *framework.
       input.claims.name = "John Doe"
     }
 `,
-			ResponsePolicy: `
+		ResponsePolicy: `
 	package stategate.authz
 
     default allow = true
 `,
+		ChannelProvider: map[string]string{
+			"name": "inmem",
 		},
-
-		Backend: &server.Backend{
-			ChannelProvider: &server.Provider{
-				Name:   "inmem",
-				Config: map[string]string{},
-			},
-			StorageProvider: &server.Provider{
-				Name: "mongo",
-				Config: map[string]string{
-					"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
-					"database": "testing",
-				},
-			},
+		StorageProvider: map[string]string{
+			"name":     "mongo",
+			"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
+			"database": "testing",
 		},
 	})
 }

@@ -30,9 +30,13 @@ const (
 
 var AllProviderNames = []ProviderName{MONGO_STORAGE}
 
-func GetStorageProvider(provider ProviderName, lgger *logger.Logger, providerConfig map[string]string) (Provider, error) {
+func GetStorageProvider(lgger *logger.Logger, providerConfig map[string]string) (Provider, error) {
 	if providerConfig == nil {
 		return nil, errors.Errorf("empty backend storage provider config")
+	}
+	name := providerConfig["name"]
+	if name == "" {
+		return nil, errors.New("storage provider: empty name")
 	}
 	var tlsConfig *tls.Config
 	if providerConfig["client_cert_file"] != "" && providerConfig["client_key_file"] != "" {
@@ -45,7 +49,7 @@ func GetStorageProvider(provider ProviderName, lgger *logger.Logger, providerCon
 			Certificates: []tls.Certificate{cer},
 		}
 	}
-	switch provider {
+	switch ProviderName(name) {
 	case MONGO_STORAGE:
 		db := providerConfig["database"]
 		if db == "" {
@@ -72,6 +76,6 @@ func GetStorageProvider(provider ProviderName, lgger *logger.Logger, providerCon
 		}
 		return mongo.NewProvider(client.Database(db)), nil
 	default:
-		return nil, errors.Errorf("unsupported backend provider: %s. must be one of: %v", provider, AllProviderNames)
+		return nil, errors.Errorf("unsupported backend provider: %s. must be one of: %v", name, AllProviderNames)
 	}
 }

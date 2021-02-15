@@ -16,10 +16,8 @@ import (
 	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
-	"github.com/open-policy-agent/opa/rego"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/rs/cors"
 	"github.com/soheilhy/cmux"
 	"go.uber.org/zap"
 	"golang.org/x/sync/errgroup"
@@ -45,8 +43,8 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 		tlsConfig *tls.Config
 	)
 
-	if c.TLS != nil && c.TLS.Key != "" && c.TLS.Cert != "" {
-		cer, err := tls.LoadX509KeyPair(c.TLS.Cert, c.TLS.Key)
+	if c.TLSKeyFile != "" && c.TLSCertFile != "" {
+		cer, err := tls.LoadX509KeyPair(c.TLSCertFile, c.TLSKeyFile)
 		if err != nil {
 			lgger.Error("failed to load tls config", zap.Error(err))
 			return err
@@ -114,45 +112,25 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 		}
 		return nil
 	})
-
-	const (
-		regoQuery = "data.stategate.authz.allow"
-	)
-
-	requestPolicy := rego.New(
-		rego.Query(regoQuery),
-		rego.Module("requests.rego", c.Authorization.RequestPolicy),
-	)
-	respPolicy := rego.New(
-		rego.Query(regoQuery),
-		rego.Module("responses.rego", c.Authorization.ResponsePolicy),
-	)
-	a, err := auth.NewAuth(c.Authentication.JwksURI, lgger, requestPolicy, respPolicy)
-	if err != nil {
-		return err
-	}
 	unary := []grpc.UnaryServerInterceptor{
 		grpc_prometheus.UnaryServerInterceptor,
 		grpc_zap.UnaryServerInterceptor(lgger.Zap()),
-		a.UnaryInterceptor(),
-		grpc_validator.UnaryServerInterceptor(),
-		grpc_recovery.UnaryServerInterceptor(),
 	}
 	stream := []grpc.StreamServerInterceptor{
 		grpc_prometheus.StreamServerInterceptor,
 		grpc_zap.StreamServerInterceptor(lgger.Zap()),
-		a.StreamInterceptor(),
-		grpc_validator.StreamServerInterceptor(),
-		grpc_recovery.StreamServerInterceptor(),
 	}
-	if c.Logging.Payloads {
-		unary = append(unary, grpc_zap.PayloadUnaryServerInterceptor(lgger.Zap(), func(ctx context.Context, fullMethodName string, servingObject interface{}) bool {
-			return true
-		}))
-		stream = append(stream, grpc_zap.PayloadStreamServerInterceptor(lgger.Zap(), func(ctx context.Context, fullMethodName string, servingObject interface{}) bool {
-			return true
-		}))
+	if !c.AuthDisabled {
+		a, err := auth.NewAuth(c.RequestPolicy, c.ResponsePolicy, c.JWKSUri, lgger)
+		if err != nil {
+			return err
+		}
+		unary = append(unary, a.UnaryInterceptor())
+		stream = append(stream, a.StreamInterceptor())
 	}
+	unary = append(unary, grpc_validator.UnaryServerInterceptor(), grpc_recovery.UnaryServerInterceptor())
+	stream = append(stream, grpc_validator.StreamServerInterceptor(), grpc_recovery.StreamServerInterceptor())
+
 	gopts := []grpc.ServerOption{
 		grpc.ChainUnaryInterceptor(unary...),
 		grpc.ChainStreamInterceptor(stream...),
@@ -160,12 +138,12 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	if tlsConfig != nil {
 		gopts = append(gopts, grpc.Creds(credentials.NewTLS(tlsConfig)))
 	}
-	strgProvider, err := storage.GetStorageProvider(storage.ProviderName(c.Backend.StorageProvider.Name), lgger, c.Backend.StorageProvider.Config)
+	strgProvider, err := storage.GetStorageProvider(lgger, c.StorageProvider)
 	if err != nil {
 		return errors.Wrap(err, "failed to setup storage provider")
 	}
 	defer strgProvider.Close()
-	channelProvider, err := channel.GetChannelProvider(channel.ProviderName(c.Backend.ChannelProvider.Name), lgger, c.Backend.ChannelProvider.Config)
+	channelProvider, err := channel.GetChannelProvider(lgger, c.ChannelProvider)
 	if err != nil {
 		return errors.Wrap(err, "failed to setup channel provider")
 	}
@@ -225,15 +203,6 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 			mux.ServeHTTP(resp, req)
 		}
 	})
-	if c.Cors != nil {
-		c := cors.New(cors.Options{
-			AllowedOrigins: c.Cors.AllowedOrigins,
-			AllowedMethods: c.Cors.AllowedMethods,
-			AllowedHeaders: c.Cors.AllowedHeaders,
-			ExposedHeaders: c.Cors.ExposedHeaders,
-		})
-		httpServer.Handler = c.Handler(httpServer.Handler)
-	}
 	group.Go(func() error {
 		httpMatchermatcher := apiMux.Match(cmux.Any())
 		defer httpMatchermatcher.Close()

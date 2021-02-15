@@ -41,24 +41,43 @@ type Auth struct {
 	responsePolicy rego.PreparedEvalQuery
 }
 
-func NewAuth(jwksUri string, logger2 *logger.Logger, reqPolicy, respPolicy *rego.Rego) (*Auth, error) {
-	respeval, err := respPolicy.PrepareForEval(context.Background())
-	if err != nil {
-		return nil, err
-	}
-	reqeval, err := reqPolicy.PrepareForEval(context.Background())
-	if err != nil {
-		return nil, err
-	}
-
+func NewAuth(reqPolicy, respPolicy, jwks string, logger2 *logger.Logger) (*Auth, error) {
 	a := &Auth{
-		jwksUri:        jwksUri,
-		jwksSet:        nil,
-		mu:             sync.RWMutex{},
-		logger:         logger2,
-		requestPolicy:  reqeval,
-		responsePolicy: respeval,
+		jwksSet: nil,
+		mu:      sync.RWMutex{},
+		logger:  logger2,
 	}
+	const (
+		regoQuery = "data.stategate.authz.allow"
+	)
+	reqPolicyBytes, err := base64.StdEncoding.DecodeString(reqPolicy)
+	if err != nil {
+		return nil, err
+	}
+	respPolicyBytes, err := base64.StdEncoding.DecodeString(respPolicy)
+	if err != nil {
+		return nil, err
+	}
+	requestPolicy := rego.New(
+		rego.Query(regoQuery),
+		rego.Module("requests.rego", string(reqPolicyBytes)),
+	)
+	responsePolicy := rego.New(
+		rego.Query(regoQuery),
+		rego.Module("responses.rego", string(respPolicyBytes)),
+	)
+
+	respeval, err := responsePolicy.PrepareForEval(context.Background())
+	if err != nil {
+		return nil, err
+	}
+	reqeval, err := requestPolicy.PrepareForEval(context.Background())
+	if err != nil {
+		return nil, err
+	}
+	a.requestPolicy = reqeval
+	a.responsePolicy = respeval
+	a.jwksUri = jwks
 	return a, a.RefreshJWKS()
 }
 

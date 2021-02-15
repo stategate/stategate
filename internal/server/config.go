@@ -1,115 +1,111 @@
 package server
 
 import (
-	"gopkg.in/yaml.v2"
-	"io/ioutil"
+	"encoding/json"
+	"github.com/pkg/errors"
+	"os"
+	"strconv"
 )
 
 type Config struct {
-	Port           int64           `yaml:"port"`
-	TLS            *TLS            `yaml:"tls"`
-	Cors           *Cors           `yaml:"cors"`
-	Logging        *Logging        `yaml:"logging"`
-	Authorization  *Authorization  `yaml:"authorization"`
-	Authentication *Authentication `yaml:"authentication"`
-	Backend        *Backend        `yaml:"backend"`
+	Port            int64
+	Debug           bool
+	TLSCertFile     string
+	TLSKeyFile      string
+	AuthDisabled    bool
+	JWKSUri         string
+	RequestPolicy   string
+	ResponsePolicy  string
+	ChannelProvider map[string]string
+	StorageProvider map[string]string
 }
 
-type Cors struct {
-	// Normalized list of plain allowed origins
-	AllowedOrigins []string `yaml:"allowed_origins"`
-	// Normalized list of allowed headers
-	AllowedHeaders []string `yaml:"allowed_headers"`
-	// Normalized list of allowed methods
-	AllowedMethods []string `yaml:"allowed_methods"`
-	// Normalized list of exposed headers
-	ExposedHeaders []string `yaml:"exposed_headers"`
-}
-
-type TLS struct {
-	Cert string `yaml:"cert_file"`
-	Key  string `yaml:"key_file"`
-}
-
-type Backend struct {
-	ChannelProvider *Provider `yaml:"channel_provider"`
-	StorageProvider *Provider `yaml:"storage_provider"`
-}
-
-type Provider struct {
-	Name   string            `yaml:"name"`
-	Config map[string]string `yaml:"config"`
-}
-
-type Authentication struct {
-	JwksURI string `yaml:"jwks_uri"`
-}
-
-type Authorization struct {
-	RequestPolicy  string `yaml:"requests"`
-	ResponsePolicy string `yaml:"responses"`
-}
-
-type Logging struct {
-	Debug    bool `yaml:"debug"`
-	Payloads bool `yaml:"payloads"`
+func (c *Config) LoadEnv() error {
+	var (
+		port            = os.Getenv("STATEGATE_PORT")
+		debug           = os.Getenv("STATEGATE_DEBUG")
+		tlsCertFile     = os.Getenv("STATEGATE_TLS_CERT_FILE")
+		tlsKeyFile      = os.Getenv("STATEGATE_TLS_KEY_FILE")
+		authDisabled    = os.Getenv("STATEGATE_AUTH_DISABLED")
+		jwksURI         = os.Getenv("STATEGATE_JWKS_URI")
+		requestPolicy   = os.Getenv("STATEGATE_REQUEST_POLICY")
+		responsePolicy  = os.Getenv("STATEGATE_RESPONSE_POLICY")
+		channelProvider = os.Getenv("STATEGATE_CHANNEL_PROVIDER")
+		storageProvider = os.Getenv("STATEGATE_STORAGE_PROVIDER")
+	)
+	if port != "" {
+		p, err := strconv.Atoi(port)
+		if err != nil {
+			return err
+		}
+		c.Port = int64(p)
+	}
+	if debug != "" {
+		this, _ := strconv.ParseBool(debug)
+		c.Debug = this
+	}
+	if tlsCertFile != "" {
+		c.TLSCertFile = tlsCertFile
+	}
+	if tlsKeyFile != "" {
+		c.TLSCertFile = tlsKeyFile
+	}
+	if authDisabled != "" {
+		this, _ := strconv.ParseBool(authDisabled)
+		c.AuthDisabled = this
+	}
+	if jwksURI != "" {
+		c.JWKSUri = jwksURI
+	}
+	if requestPolicy != "" {
+		c.RequestPolicy = requestPolicy
+	}
+	if responsePolicy != "" {
+		c.ResponsePolicy = responsePolicy
+	}
+	if channelProvider != "" {
+		provider := map[string]string{}
+		if err := json.Unmarshal([]byte(channelProvider), &provider); err != nil {
+			return errors.Wrap(err, "failed to unmarshal channel provider JSON")
+		}
+		c.ChannelProvider = provider
+	}
+	if storageProvider != "" {
+		provider := map[string]string{}
+		if err := json.Unmarshal([]byte(storageProvider), &provider); err != nil {
+			return errors.Wrap(err, "failed to unmarshal storage provider JSON")
+		}
+		c.StorageProvider = provider
+	}
+	return nil
 }
 
 func (c *Config) SetDefaults() {
 	if c.Port == 0 {
 		c.Port = 8080
 	}
-	if c.Logging == nil {
-		c.Logging = &Logging{}
-	}
-	if c.Authentication == nil {
-		c.Authentication = &Authentication{}
-	}
-	if c.Authorization == nil {
-		c.Authorization = &Authorization{}
-	}
-	if c.Authorization.RequestPolicy == "" {
+	if c.RequestPolicy == "" && !c.AuthDisabled {
 		// target = data.stategate.requests.authz.allow
-		c.Authorization.RequestPolicy = `
-		package stategate.authz
-
-		default allow = false
-`
+		c.RequestPolicy = "cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSBmYWxzZQ=="
 	}
-	if c.Authorization.ResponsePolicy == "" {
+	if c.ResponsePolicy == "" && !c.AuthDisabled {
 		// target = data.stategate.responses.authz.allow
-		c.Authorization.ResponsePolicy = `
-		package stategate.authz
-
-		default allow = false
-`
-	}
-	if c.Backend == nil {
-		c.Backend = &Backend{}
-	}
-	if c.Backend.ChannelProvider == nil {
-		c.Backend.ChannelProvider = &Provider{}
-	}
-	if c.Backend.StorageProvider == nil {
-		c.Backend.StorageProvider = &Provider{}
-	}
-	if c.Backend.StorageProvider.Config == nil {
-		c.Backend.StorageProvider.Config = map[string]string{}
-	}
-	if c.Backend.ChannelProvider.Config == nil {
-		c.Backend.ChannelProvider.Config = map[string]string{}
+		c.ResponsePolicy = "cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSBmYWxzZQ=="
 	}
 }
 
-func ConfigFromFile(path string) (*Config, error) {
-	bits, err := ioutil.ReadFile(path)
-	if err != nil {
-		return nil, err
+func (c *Config) Validate() error {
+	if c.Port <= 0 {
+		return errors.New("config: empty port")
 	}
-	c := &Config{}
-	if err := yaml.UnmarshalStrict(bits, c); err != nil {
-		return nil, err
+	if c.ChannelProvider == nil {
+		return errors.New("config: empty channel provider")
 	}
-	c.SetDefaults()
-	return c, nil
+	if c.StorageProvider == nil {
+		return errors.New("config: empty storage provider")
+	}
+	if c.StorageProvider == nil {
+		return errors.New("config: empty storage provider")
+	}
+	return nil
 }

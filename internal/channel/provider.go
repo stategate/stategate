@@ -42,9 +42,13 @@ const (
 
 var AllProviderNames = []ProviderName{INMEM, REDIS, NATS, STAN, KAFKA}
 
-func GetChannelProvider(provider ProviderName, lgger *logger.Logger, providerConfig map[string]string) (Provider, error) {
+func GetChannelProvider(lgger *logger.Logger, providerConfig map[string]string) (Provider, error) {
 	if providerConfig == nil {
 		return nil, errors.Errorf("empty backend channel provider config")
+	}
+	name := providerConfig["name"]
+	if name == "" {
+		return nil, errors.New("storage provider: empty name")
 	}
 	var tlsConfig *tls.Config
 	if providerConfig["client_cert_file"] != "" && providerConfig["client_key_file"] != "" {
@@ -57,7 +61,7 @@ func GetChannelProvider(provider ProviderName, lgger *logger.Logger, providerCon
 			Certificates: []tls.Certificate{cer},
 		}
 	}
-	switch provider {
+	switch ProviderName(name) {
 	case INMEM:
 		svc := inmem.NewService(lgger)
 		return svc, nil
@@ -194,6 +198,6 @@ func GetChannelProvider(provider ProviderName, lgger *logger.Logger, providerCon
 		}
 		return svc, nil
 	default:
-		return nil, errors.Errorf("unsupported backend provider: %s. must be one of: %v", provider, AllProviderNames)
+		return nil, errors.Errorf("unsupported backend provider: %s. must be one of: %v", name, AllProviderNames)
 	}
 }

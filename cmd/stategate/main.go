@@ -3,34 +3,34 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/autom8ter/stategate/internal/helpers"
 	"github.com/autom8ter/stategate/internal/logger"
 	"github.com/autom8ter/stategate/internal/server"
-	"github.com/spf13/pflag"
+	"github.com/joho/godotenv"
+	"github.com/spf13/cast"
 	"go.uber.org/zap"
 )
 
-var (
-	configPath string
-)
-
 func init() {
-	pflag.CommandLine.StringVar(&configPath, "config", helpers.EnvOr("STATEGATE_CONFIG", "config.yaml"), "path to config file (env: STATEGATE_CONFIG)")
-	pflag.Parse()
+	godotenv.Load()
 }
 
 func main() {
-	c, err := server.ConfigFromFile(configPath)
-	if err != nil {
-		fmt.Printf("failed to read config file: %s", err.Error())
+	c := &server.Config{}
+	if err := c.LoadEnv(); err != nil {
+		fmt.Printf("failed to read environmental variables: %s", err.Error())
+		return
+	}
+	c.SetDefaults()
+	if err := c.Validate(); err != nil {
+		fmt.Printf("failed to validate config: %s", err.Error())
 		return
 	}
 	var lgger = logger.New(
-		c.Logging.Debug,
-		zap.String("channel_provider", c.Backend.ChannelProvider.Name),
-		zap.String("storage_provider", c.Backend.StorageProvider.Name),
+		c.Debug,
+		zap.Any("channel_provider", cast.ToString(c.ChannelProvider["name"])),
+		zap.Any("storage_provider", cast.ToString(c.StorageProvider["name"])),
 	)
-	lgger.Debug("loaded config", zap.Any("config", c))
+	lgger.Debug("loaded config from env", zap.Any("config", c))
 	if err := server.ListenAndServe(context.Background(), lgger, c); err != nil {
 		lgger.Error("stategate server failure", zap.Error(err))
 	}
