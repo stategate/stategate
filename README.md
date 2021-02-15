@@ -12,6 +12,7 @@ A pluggable API and "Application State Gateway" that enforces the [Event Sourcin
 ## Features
 - [x] [5 simple API Methods](https://github.com/autom8ter/stategate/blob/master/schema.proto#L15) for interacting with application state: `SetObject, GetObject, SearchObjects, StreamEvents, SearchEvents`
 - [x] Capture all changes to an application's state as a sequence of events.
+- [x] Stateless & horizontally scaleable
 - [x] Native [gRPC](https://grpc.io/) support
     - [protobuf schema](schema.proto)
 - [x] Embedded REST support `/` (transcoding)
@@ -32,6 +33,7 @@ A pluggable API and "Application State Gateway" that enforces the [Event Sourcin
     - [ ] Ruby
 - [x] Structured JSON Logs
 - [x] [Sample Kubernetes Manifest](k8s.yaml)
+- [x] [Sample Docker Compose](docker-compose.yml)
 - [x] Pluggable "Channel" Providers
     - [x] In-Memory(won't scale horizontally)
         - [x] fully-tested
@@ -50,7 +52,6 @@ A pluggable API and "Application State Gateway" that enforces the [Event Sourcin
     - [ ] MySQL
     - [ ] Cassandra
 
-## Concepts
 
 ## Goals
 
@@ -62,6 +63,17 @@ A pluggable API and "Application State Gateway" that enforces the [Event Sourcin
 - [x] Different combinations of Channel & Storage Providers are interoperable.
 - [x] Capture a persistant, immutable historical record of all state changes using a pluggable storage provider
 - [x] Store identity(jwt.claims) & timestamp in event logs to capture who is changing what & when
+- [x] Easy deployment model - fully configureable via environmental variables
+
+## Concepts
+
+- Storage Provider: A stategate storage provider is a pluggable, 3rd party database storage service. Storage providers
+provide persistance for all objects & events and should be scaled independently of stategate instances.
+
+
+- Channel Provider: A stategate channel provider is a pluggable, 3rd party message-queue/channel service. Channel providers
+provide a way for stategate to broadcast events to itself while scaling horizontally. Channel providers should be scaled independently of stategate instances.
+
 
 ## Environmental Variables
 
