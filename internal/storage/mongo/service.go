@@ -4,12 +4,11 @@ import (
 	"context"
 	"fmt"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	"github.com/autom8ter/stategate/internal/errorz"
 	"github.com/spf13/cast"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/structpb"
 	"time"
 )
@@ -22,7 +21,7 @@ func NewProvider(db *mongo.Database) *Provider {
 	return &Provider{db: db}
 }
 
-func (p Provider) SetObject(ctx context.Context, object *stategate.Object) error {
+func (p Provider) SetObject(ctx context.Context, object *stategate.Object) *errorz.Error {
 	filter := bson.D{
 		{Key: "_id", Value: object.GetKey()},
 	}
@@ -31,12 +30,20 @@ func (p Provider) SetObject(ctx context.Context, object *stategate.Object) error
 	opts := options.Replace().SetUpsert(true)
 	_, err := p.db.Collection(object.GetType()).ReplaceOne(ctx, filter, data, opts)
 	if err != nil {
-		return err
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to set object",
+			Err:  err,
+			Metadata: map[string]string{
+				"object_key":  object.GetKey(),
+				"object_type": object.GetType(),
+			},
+		}
 	}
 	return nil
 }
 
-func (p Provider) SaveEvent(ctx context.Context, e *stategate.Event) error {
+func (p Provider) SaveEvent(ctx context.Context, e *stategate.Event) *errorz.Error {
 	_, err := p.db.Collection(fmt.Sprintf("%s_events", e.GetObject().GetType())).InsertOne(ctx, bson.M(map[string]interface{}{
 		"_id":  e.Id,
 		"time": e.GetTime(),
@@ -48,12 +55,20 @@ func (p Provider) SaveEvent(ctx context.Context, e *stategate.Event) error {
 		"claims": bson.M(e.GetClaims().AsMap()),
 	}))
 	if err != nil {
-		return err
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to set object",
+			Err:  err,
+			Metadata: map[string]string{
+				"object_key":  e.GetObject().GetKey(),
+				"object_type": e.GetObject().GetType(),
+			},
+		}
 	}
 	return nil
 }
 
-func (p *Provider) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, error) {
+func (p *Provider) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, *errorz.Error) {
 	filter := bson.D{
 		{Key: "_id", Value: ref.GetKey()},
 	}
@@ -61,9 +76,19 @@ func (p *Provider) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*st
 
 	if err := p.db.Collection(ref.GetType()).FindOne(ctx, filter).Decode(&result); err != nil {
 		if err == mongo.ErrNoDocuments {
-			return nil, status.Error(codes.NotFound, "not found")
+			return nil, &errorz.Error{
+				Type:     errorz.ErrNotFound,
+				Info:     "failed to find object",
+				Err:      err,
+				Metadata: map[string]string{},
+			}
 		}
-		return nil, err
+		return nil, &errorz.Error{
+			Type:     errorz.ErrUnknown,
+			Info:     "failed to find object",
+			Err:      err,
+			Metadata: map[string]string{},
+		}
 	}
 	object := &stategate.Object{
 		Type: ref.GetType(),
@@ -75,7 +100,7 @@ func (p *Provider) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*st
 	return object, nil
 }
 
-func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEventOpts) (*stategate.Events, error) {
+func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEventOpts) (*stategate.Events, *errorz.Error) {
 	o := options.Find()
 	if opts.GetLimit() > 0 {
 		o.SetLimit(opts.GetLimit())
@@ -103,12 +128,30 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 	}
 	cur, err := p.db.Collection(fmt.Sprintf("%s_events", opts.GetType())).Find(ctx, filter, o)
 	if err != nil {
-		return nil, err
+		if err == mongo.ErrNoDocuments {
+			return nil, &errorz.Error{
+				Type:     errorz.ErrNotFound,
+				Info:     "failed to search events",
+				Err:      err,
+				Metadata: map[string]string{},
+			}
+		}
+		return nil, &errorz.Error{
+			Type:     errorz.ErrUnknown,
+			Info:     "failed to search events",
+			Err:      err,
+			Metadata: map[string]string{},
+		}
 	}
 	defer cur.Close(ctx)
 	var results []bson.M
 	if err := cur.All(ctx, &results); err != nil {
-		return nil, err
+		return nil, &errorz.Error{
+			Type:     errorz.ErrUnknown,
+			Info:     "failed to scan events",
+			Err:      err,
+			Metadata: map[string]string{},
+		}
 	}
 	var events []*stategate.Event
 	for _, r := range results {
@@ -136,7 +179,7 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 	return &stategate.Events{Events: events}, nil
 }
 
-func (p *Provider) SearchObjects(ctx context.Context, opts *stategate.SearchObjectOpts) (*stategate.Objects, error) {
+func (p *Provider) SearchObjects(ctx context.Context, opts *stategate.SearchObjectOpts) (*stategate.Objects, *errorz.Error) {
 	o := options.Find()
 	if opts.GetLimit() > 0 {
 		o.SetLimit(opts.GetLimit())
@@ -147,12 +190,30 @@ func (p *Provider) SearchObjects(ctx context.Context, opts *stategate.SearchObje
 
 	cur, err := p.db.Collection(opts.GetType()).Find(ctx, bson.M(opts.GetMatchValues().AsMap()), o)
 	if err != nil {
-		return nil, err
+		if err == mongo.ErrNoDocuments {
+			return nil, &errorz.Error{
+				Type:     errorz.ErrNotFound,
+				Info:     "failed to search objects",
+				Err:      err,
+				Metadata: map[string]string{},
+			}
+		}
+		return nil, &errorz.Error{
+			Type:     errorz.ErrUnknown,
+			Info:     "failed to search objects",
+			Err:      err,
+			Metadata: map[string]string{},
+		}
 	}
 	defer cur.Close(ctx)
 	var results []bson.M
 	if err := cur.All(ctx, &results); err != nil {
-		return nil, err
+		return nil, &errorz.Error{
+			Type:     errorz.ErrUnknown,
+			Info:     "failed to scan objects",
+			Err:      err,
+			Metadata: map[string]string{},
+		}
 	}
 	var objects []*stategate.Object
 	for _, r := range results {

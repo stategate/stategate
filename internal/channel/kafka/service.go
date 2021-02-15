@@ -3,6 +3,7 @@ package kafka
 import (
 	"context"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	"github.com/autom8ter/stategate/internal/errorz"
 	"github.com/autom8ter/stategate/internal/logger"
 	"github.com/golang/protobuf/proto"
 	"github.com/segmentio/kafka-go"
@@ -16,16 +17,34 @@ type Service struct {
 	writer *kafka.Writer
 }
 
-func (s *Service) Publish(ctx context.Context, event *stategate.Event) error {
+func (s *Service) Publish(ctx context.Context, event *stategate.Event) *errorz.Error {
 	bits, err := proto.Marshal(event)
 	if err != nil {
-		return err
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to encode event",
+			Err:  err,
+			Metadata: map[string]string{
+				"object_key":  event.GetObject().GetKey(),
+				"object_type": event.GetObject().GetType(),
+				"event_id":    event.GetId(),
+			},
+		}
 	}
 	if err := s.writer.WriteMessages(ctx, kafka.Message{
 		Key:   []byte(event.Id),
 		Value: bits,
 	}); err != nil {
-		return err
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to publish event",
+			Err:  err,
+			Metadata: map[string]string{
+				"object_key":  event.GetObject().GetKey(),
+				"object_type": event.GetObject().GetType(),
+				"event_id":    event.GetId(),
+			},
+		}
 	}
 	return nil
 }
@@ -41,7 +60,7 @@ func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error)
 				msg, err := s.reader.ReadMessage(context.Background())
 				if err != nil {
 					s.logger.Error("failed to read event", zap.Error(err))
-					return
+					continue
 				}
 				var event stategate.Event
 				if err := proto.Unmarshal(msg.Value, &event); err != nil {

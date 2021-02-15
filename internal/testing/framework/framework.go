@@ -7,11 +7,12 @@ import (
 	"github.com/autom8ter/stategate/internal/server"
 	stategate_client_go "github.com/autom8ter/stategate/stategate-client-go"
 	"github.com/ory/dockertest/v3"
+	"github.com/spf13/cast"
+	"go.uber.org/zap"
 	"golang.org/x/oauth2"
 	"golang.org/x/sync/errgroup"
 	"os"
 	"testing"
-	"time"
 )
 
 func init() {
@@ -75,19 +76,22 @@ func NewProvider(t *testing.T, ctx context.Context, jwt string, config *server.C
 	config.SetDefaults()
 	ctx, cancel := context.WithCancel(ctx)
 	group, ctx := errgroup.WithContext(ctx)
+	var lgger = logger.New(
+		config.Debug,
+		zap.Any("channel_provider", cast.ToString(config.ChannelProvider["name"])),
+		zap.Any("storage_provider", cast.ToString(config.StorageProvider["name"])),
+	)
 	f := &Provider{
 		ctx:    ctx,
 		cancel: cancel,
 		config: config,
 		group:  group,
-		lgger:  logger.New(true),
+		lgger:  lgger,
 		client: nil,
 	}
-	time.Sleep(1 * time.Second)
 	f.group.Go(func() error {
 		return server.ListenAndServe(f.ctx, f.lgger, f.config)
 	})
-	time.Sleep(1 * time.Second)
 	client, err := stategate_client_go.NewClient(
 		ctx,
 		fmt.Sprintf("localhost:%v", f.config.Port),

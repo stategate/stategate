@@ -4,6 +4,7 @@ import (
 	"context"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
 	"github.com/autom8ter/stategate/internal/constants"
+	"github.com/autom8ter/stategate/internal/errorz"
 	"github.com/autom8ter/stategate/internal/logger"
 	"github.com/golang/protobuf/proto"
 	"github.com/nats-io/nats.go"
@@ -23,13 +24,31 @@ func NewService(logger *logger.Logger, conn *nats.Conn) (*Service, error) {
 	}, nil
 }
 
-func (s *Service) Publish(ctx context.Context, event *stategate.Event) error {
+func (s *Service) Publish(ctx context.Context, event *stategate.Event) *errorz.Error {
 	bits, err := proto.Marshal(event)
 	if err != nil {
-		return err
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to encode event",
+			Err:  err,
+			Metadata: map[string]string{
+				"object_key":  event.GetObject().GetKey(),
+				"object_type": event.GetObject().GetType(),
+				"event_id":    event.GetId(),
+			},
+		}
 	}
 	if err := s.conn.Publish(constants.BackendChannel, bits); err != nil {
-		return err
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to publish event",
+			Err:  err,
+			Metadata: map[string]string{
+				"object_key":  event.GetObject().GetKey(),
+				"object_type": event.GetObject().GetType(),
+				"event_id":    event.GetId(),
+			},
+		}
 	}
 	return nil
 }

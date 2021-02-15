@@ -135,7 +135,7 @@ func NewClient(ctx context.Context, target string, opts ...Opt) (*Client, error)
 	)
 	conn, err := grpc.DialContext(ctx, target, dialopts...)
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrap(err, "failed to create stategate client")
 	}
 	return &Client{
 		client: stategate.NewStateGateServiceClient(conn),
@@ -190,9 +190,6 @@ func (c *Client) SetObject(ctx context.Context, in *stategate.Object) error {
 // StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
 // Event Consumers invoke this method.
 func (c *Client) StreamEvents(ctx context.Context, in *stategate.StreamOpts, fn func(even *stategate.Event) bool) error {
-	if ctx.Err() != nil {
-		return nil
-	}
 	stream, err := c.client.StreamEvents(ctx, in)
 	if err != nil {
 		return err

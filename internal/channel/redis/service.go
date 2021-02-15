@@ -4,6 +4,7 @@ import (
 	"context"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
 	"github.com/autom8ter/stategate/internal/constants"
+	"github.com/autom8ter/stategate/internal/errorz"
 	"github.com/autom8ter/stategate/internal/logger"
 	"github.com/go-redis/redis/v8"
 	"github.com/golang/protobuf/proto"
@@ -20,19 +21,37 @@ func NewService(logger *logger.Logger, conn *redis.Client) *Service {
 	return &Service{eventsChan: constants.BackendChannel, logger: logger, conn: conn}
 }
 
-func (s *Service) Publish(ctx context.Context, event *stategate.Event) error {
+func (s *Service) Publish(ctx context.Context, event *stategate.Event) *errorz.Error {
 	bits, err := proto.Marshal(event)
 	if err != nil {
-		return err
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to encode event",
+			Err:  err,
+			Metadata: map[string]string{
+				"object_key":  event.GetObject().GetKey(),
+				"object_type": event.GetObject().GetType(),
+				"event_id":    event.GetId(),
+			},
+		}
 	}
 	if _, err := s.conn.Publish(ctx, s.eventsChan, bits).Result(); err != nil {
-		return err
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to publish event",
+			Err:  err,
+			Metadata: map[string]string{
+				"object_key":  event.GetObject().GetKey(),
+				"object_type": event.GetObject().GetType(),
+				"event_id":    event.GetId(),
+			},
+		}
 	}
 	return nil
 }
 
 func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error) {
-	sub := s.conn.Subscribe(context.Background(), s.eventsChan)
+	sub := s.conn.Subscribe(ctx, s.eventsChan)
 	events := make(chan *stategate.Event)
 	go func() {
 		ch := sub.Channel()
@@ -47,7 +66,7 @@ func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error)
 				var event stategate.Event
 				if err := proto.Unmarshal([]byte(msg.Payload), &event); err != nil {
 					s.logger.Error("failed to unmarshal event", zap.Error(err))
-					return
+					continue
 				}
 				events <- &event
 			}

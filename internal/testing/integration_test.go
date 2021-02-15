@@ -15,6 +15,7 @@ import (
 )
 
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+const allowAll = "cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB0cnVl"
 
 func TestIntegration(t *testing.T) {
 	testNatsMongo(t)
@@ -64,22 +65,9 @@ func testInMemMongo(t *testing.T) {
 
 func natsMongo(t *testing.T, ctx context.Context, natsPort, mongoPort string) *framework.Provider {
 	return framework.NewProvider(t, ctx, token, &server.Config{
-		AuthDisabled: true,
-		RequestPolicy: `
-	package stategate.authz
-
-	default allow = false
-
-    allow {
-      input.claims.sub = "1234567890"
-      input.claims.name = "John Doe"
-    }
-`,
-		ResponsePolicy: `
-	package stategate.authz
-
-    default allow = true
-`,
+		AuthDisabled:   false,
+		RequestPolicy:  allowAll,
+		ResponsePolicy: allowAll,
 		ChannelProvider: map[string]string{
 			"name": "nats",
 			"addr": fmt.Sprintf("0.0.0.0:%s", natsPort),
@@ -94,23 +82,10 @@ func natsMongo(t *testing.T, ctx context.Context, natsPort, mongoPort string) *f
 
 func redisMongo(t *testing.T, ctx context.Context, redisPort, mongoPort string) *framework.Provider {
 	return framework.NewProvider(t, ctx, token, &server.Config{
-		Port:         0,
-		AuthDisabled: true,
-		RequestPolicy: `
-	package stategate.authz
-
-	default allow = false
-
-    allow {
-      input.claims.sub = "1234567890"
-      input.claims.name = "John Doe"
-    }
-`,
-		ResponsePolicy: `
-	package stategate.authz
-
-    default allow = true
-`,
+		Port:           0,
+		AuthDisabled:   false,
+		RequestPolicy:  allowAll,
+		ResponsePolicy: allowAll,
 		ChannelProvider: map[string]string{
 			"name": "redis",
 			"addr": fmt.Sprintf("0.0.0.0:%s", redisPort),
@@ -125,23 +100,10 @@ func redisMongo(t *testing.T, ctx context.Context, redisPort, mongoPort string) 
 
 func inmemMongo(t *testing.T, ctx context.Context, mongoPort string) *framework.Provider {
 	return framework.NewProvider(t, ctx, token, &server.Config{
-		Port:         0,
-		AuthDisabled: true,
-		RequestPolicy: `
-	package stategate.authz
-
-	default allow = false
-
-    allow {
-      input.claims.sub = "1234567890"
-      input.claims.name = "John Doe"
-    }
-`,
-		ResponsePolicy: `
-	package stategate.authz
-
-    default allow = true
-`,
+		Port:           0,
+		AuthDisabled:   false,
+		RequestPolicy:  allowAll,
+		ResponsePolicy: allowAll,
 		ChannelProvider: map[string]string{
 			"name": "inmem",
 		},

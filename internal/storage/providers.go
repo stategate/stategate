@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/tls"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	"github.com/autom8ter/stategate/internal/errorz"
 	"github.com/autom8ter/stategate/internal/logger"
 	"github.com/autom8ter/stategate/internal/storage/mongo"
 	"github.com/pkg/errors"
@@ -14,11 +15,11 @@ import (
 )
 
 type Provider interface {
-	SetObject(ctx context.Context, object *stategate.Object) error
-	SaveEvent(ctx context.Context, event *stategate.Event) error
-	GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, error)
-	SearchObjects(ctx context.Context, ref *stategate.SearchObjectOpts) (*stategate.Objects, error)
-	SearchEvents(ctx context.Context, ref *stategate.SearchEventOpts) (*stategate.Events, error)
+	SetObject(ctx context.Context, object *stategate.Object) *errorz.Error
+	SaveEvent(ctx context.Context, event *stategate.Event) *errorz.Error
+	GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, *errorz.Error)
+	SearchObjects(ctx context.Context, ref *stategate.SearchObjectOpts) (*stategate.Objects, *errorz.Error)
+	SearchEvents(ctx context.Context, ref *stategate.SearchEventOpts) (*stategate.Events, *errorz.Error)
 	Close() error
 }
 

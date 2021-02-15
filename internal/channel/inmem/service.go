@@ -5,6 +5,7 @@ import (
 	"github.com/autom8ter/machine/pubsub"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
 	"github.com/autom8ter/stategate/internal/constants"
+	"github.com/autom8ter/stategate/internal/errorz"
 	"github.com/autom8ter/stategate/internal/logger"
 )
 
@@ -20,8 +21,20 @@ func NewService(logger *logger.Logger) *Service {
 	}
 }
 
-func (s *Service) Publish(ctx context.Context, event *stategate.Event) error {
-	return s.ps.Publish(constants.BackendChannel, event)
+func (s *Service) Publish(ctx context.Context, event *stategate.Event) *errorz.Error {
+	if err := s.ps.Publish(constants.BackendChannel, event); err != nil {
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to publish event",
+			Err:  err,
+			Metadata: map[string]string{
+				"object_key":  event.GetObject().GetKey(),
+				"object_type": event.GetObject().GetType(),
+				"event_id":    event.GetId(),
+			},
+		}
+	}
+	return nil
 }
 
 func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error) {

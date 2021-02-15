@@ -11,6 +11,7 @@ import (
 	"github.com/autom8ter/stategate/internal/channel/redis"
 	"github.com/autom8ter/stategate/internal/channel/stan"
 	"github.com/autom8ter/stategate/internal/constants"
+	"github.com/autom8ter/stategate/internal/errorz"
 	"github.com/autom8ter/stategate/internal/logger"
 	rediss "github.com/go-redis/redis/v8"
 	"github.com/nats-io/nats.go"
@@ -25,7 +26,7 @@ import (
 )
 
 type Provider interface {
-	Publish(ctx context.Context, event *stategate.Event) error
+	Publish(ctx context.Context, event *stategate.Event) *errorz.Error
 	GetChannel(ctx context.Context) (chan *stategate.Event, error)
 	Close() error
 }
