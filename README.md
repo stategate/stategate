@@ -23,7 +23,7 @@ What is Event Sourcing?
     - `SearchObjects` queries objects of a specific type
     - `StreamEvents` creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
     - `SearchEvents` queries events related to a specific object.
-    
+- [x] Multi-Tenant
 - [x] Capture all changes to an application's state as a sequence of events.
 - [x] Stateless & horizontally scaleable
 - [x] Native [gRPC](https://grpc.io/) support

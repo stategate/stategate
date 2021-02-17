@@ -100,10 +100,8 @@ export class SearchObjectOpts extends jspb.Message {
   getType(): string;
   setType(value: string): void;
 
-  hasMatchValues(): boolean;
-  clearMatchValues(): void;
-  getMatchValues(): google_protobuf_struct_pb.Struct | undefined;
-  setMatchValues(value?: google_protobuf_struct_pb.Struct): void;
+  getQueryString(): string;
+  setQueryString(value: string): void;
 
   getLimit(): number;
   setLimit(value: number): void;
@@ -125,7 +123,7 @@ export namespace SearchObjectOpts {
   export type AsObject = {
     tenant: string,
     type: string,
-    matchValues?: google_protobuf_struct_pb.Struct.AsObject,
+    queryString: string,
     limit: number,
     offset: number,
   }

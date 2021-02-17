@@ -171,6 +171,13 @@
             "type": "string"
           },
           {
+            "name": "queryString",
+            "description": "json string to filter records that have values match k/v pairs ex: { \"message\": \"hello world\" }.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "limit",
             "description": "limit returned objects.",
             "in": "query",

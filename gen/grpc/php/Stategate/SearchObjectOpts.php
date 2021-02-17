@@ -28,11 +28,11 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
      */
     private $type = '';
     /**
-     * filter records that match k/v pairs
+     * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct match_values = 3;</code>
+     * Generated from protobuf field <code>string query_string = 3;</code>
      */
-    private $match_values = null;
+    private $query_string = '';
     /**
      * limit returned objects
      *
@@ -56,8 +56,8 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
      *           the object's tenant(ex: acme)
      *     @type string $type
      *           Object type (ex: user)
-     *     @type \Google\Protobuf\Struct $match_values
-     *           filter records that match k/v pairs
+     *     @type string $query_string
+     *           json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      *     @type int|string $limit
      *           limit returned objects
      *     @type int|string $offset
@@ -122,27 +122,27 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * filter records that match k/v pairs
+     * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct match_values = 3;</code>
-     * @return \Google\Protobuf\Struct
+     * Generated from protobuf field <code>string query_string = 3;</code>
+     * @return string
      */
-    public function getMatchValues()
+    public function getQueryString()
     {
-        return $this->match_values;
+        return $this->query_string;
     }
 
     /**
-     * filter records that match k/v pairs
+     * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct match_values = 3;</code>
-     * @param \Google\Protobuf\Struct $var
+     * Generated from protobuf field <code>string query_string = 3;</code>
+     * @param string $var
      * @return $this
      */
-    public function setMatchValues($var)
+    public function setQueryString($var)
     {
-        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
-        $this->match_values = $var;
+        GPBUtil::checkString($var, True);
+        $this->query_string = $var;
 
         return $this;
     }

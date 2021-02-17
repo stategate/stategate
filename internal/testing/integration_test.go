@@ -180,13 +180,10 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				t.Fatalf("expected 3 events got: %v", len(events.Events))
 			}
 			t.Log(protojson.Format(events))
-			matchers, _ := structpb.NewStruct(map[string]interface{}{
-				"message": "hello world",
-			})
 			objectss, err := client.SearchObjects(ctx, &stategate.SearchObjectOpts{
 				Tenant:      "acme",
 				Type:        typ,
-				MatchValues: matchers,
+				QueryString: `{ "message": "hello world" }`,
 				Limit:       3,
 				Offset:      0,
 			})

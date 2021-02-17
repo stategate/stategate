@@ -678,7 +678,7 @@ proto.stategate.SearchObjectOpts.toObject = function(includeInstance, msg) {
   var f, obj = {
     tenant: jspb.Message.getFieldWithDefault(msg, 1, ""),
     type: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    matchValues: (f = msg.getMatchValues()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
+    queryString: jspb.Message.getFieldWithDefault(msg, 3, ""),
     limit: jspb.Message.getFieldWithDefault(msg, 4, 0),
     offset: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
@@ -726,9 +726,8 @@ proto.stategate.SearchObjectOpts.deserializeBinaryFromReader = function(msg, rea
       msg.setType(value);
       break;
     case 3:
-      var value = new google_protobuf_struct_pb.Struct;
-      reader.readMessage(value,google_protobuf_struct_pb.Struct.deserializeBinaryFromReader);
-      msg.setMatchValues(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setQueryString(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readInt64());
@@ -781,12 +780,11 @@ proto.stategate.SearchObjectOpts.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getMatchValues();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getQueryString();
+  if (f.length > 0) {
+    writer.writeString(
       3,
-      f,
-      google_protobuf_struct_pb.Struct.serializeBinaryToWriter
+      f
     );
   }
   f = message.getLimit();
@@ -837,32 +835,17 @@ proto.stategate.SearchObjectOpts.prototype.setType = function(value) {
 
 
 /**
- * optional google.protobuf.Struct match_values = 3;
- * @return {?proto.google.protobuf.Struct}
+ * optional string query_string = 3;
+ * @return {string}
  */
-proto.stategate.SearchObjectOpts.prototype.getMatchValues = function() {
-  return /** @type{?proto.google.protobuf.Struct} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 3));
+proto.stategate.SearchObjectOpts.prototype.getQueryString = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
-/** @param {?proto.google.protobuf.Struct|undefined} value */
-proto.stategate.SearchObjectOpts.prototype.setMatchValues = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
-};
-
-
-proto.stategate.SearchObjectOpts.prototype.clearMatchValues = function() {
-  this.setMatchValues(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.stategate.SearchObjectOpts.prototype.hasMatchValues = function() {
-  return jspb.Message.getField(this, 3) != null;
+/** @param {string} value */
+proto.stategate.SearchObjectOpts.prototype.setQueryString = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

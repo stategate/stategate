@@ -2980,28 +2980,21 @@ public final class Schema {
 
     /**
      * <pre>
-     * filter records that match k/v pairs
+     * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      * </pre>
      *
-     * <code>.google.protobuf.Struct match_values = 3;</code>
+     * <code>string query_string = 3;</code>
      */
-    boolean hasMatchValues();
+    java.lang.String getQueryString();
     /**
      * <pre>
-     * filter records that match k/v pairs
+     * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      * </pre>
      *
-     * <code>.google.protobuf.Struct match_values = 3;</code>
+     * <code>string query_string = 3;</code>
      */
-    com.google.protobuf.Struct getMatchValues();
-    /**
-     * <pre>
-     * filter records that match k/v pairs
-     * </pre>
-     *
-     * <code>.google.protobuf.Struct match_values = 3;</code>
-     */
-    com.google.protobuf.StructOrBuilder getMatchValuesOrBuilder();
+    com.google.protobuf.ByteString
+        getQueryStringBytes();
 
     /**
      * <pre>
@@ -3040,6 +3033,7 @@ public final class Schema {
     private SearchObjectOpts() {
       tenant_ = "";
       type_ = "";
+      queryString_ = "";
       limit_ = 0L;
       offset_ = 0L;
     }
@@ -3081,16 +3075,9 @@ public final class Schema {
               break;
             }
             case 26: {
-              com.google.protobuf.Struct.Builder subBuilder = null;
-              if (matchValues_ != null) {
-                subBuilder = matchValues_.toBuilder();
-              }
-              matchValues_ = input.readMessage(com.google.protobuf.Struct.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(matchValues_);
-                matchValues_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              queryString_ = s;
               break;
             }
             case 32: {
@@ -3219,37 +3206,46 @@ public final class Schema {
       }
     }
 
-    public static final int MATCH_VALUES_FIELD_NUMBER = 3;
-    private com.google.protobuf.Struct matchValues_;
+    public static final int QUERY_STRING_FIELD_NUMBER = 3;
+    private volatile java.lang.Object queryString_;
     /**
      * <pre>
-     * filter records that match k/v pairs
+     * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      * </pre>
      *
-     * <code>.google.protobuf.Struct match_values = 3;</code>
+     * <code>string query_string = 3;</code>
      */
-    public boolean hasMatchValues() {
-      return matchValues_ != null;
+    public java.lang.String getQueryString() {
+      java.lang.Object ref = queryString_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        queryString_ = s;
+        return s;
+      }
     }
     /**
      * <pre>
-     * filter records that match k/v pairs
+     * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      * </pre>
      *
-     * <code>.google.protobuf.Struct match_values = 3;</code>
+     * <code>string query_string = 3;</code>
      */
-    public com.google.protobuf.Struct getMatchValues() {
-      return matchValues_ == null ? com.google.protobuf.Struct.getDefaultInstance() : matchValues_;
-    }
-    /**
-     * <pre>
-     * filter records that match k/v pairs
-     * </pre>
-     *
-     * <code>.google.protobuf.Struct match_values = 3;</code>
-     */
-    public com.google.protobuf.StructOrBuilder getMatchValuesOrBuilder() {
-      return getMatchValues();
+    public com.google.protobuf.ByteString
+        getQueryStringBytes() {
+      java.lang.Object ref = queryString_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        queryString_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int LIMIT_FIELD_NUMBER = 4;
@@ -3298,8 +3294,8 @@ public final class Schema {
       if (!getTypeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
       }
-      if (matchValues_ != null) {
-        output.writeMessage(3, getMatchValues());
+      if (!getQueryStringBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, queryString_);
       }
       if (limit_ != 0L) {
         output.writeInt64(4, limit_);
@@ -3322,9 +3318,8 @@ public final class Schema {
       if (!getTypeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
       }
-      if (matchValues_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getMatchValues());
+      if (!getQueryStringBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, queryString_);
       }
       if (limit_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -3354,11 +3349,8 @@ public final class Schema {
           .equals(other.getTenant());
       result = result && getType()
           .equals(other.getType());
-      result = result && (hasMatchValues() == other.hasMatchValues());
-      if (hasMatchValues()) {
-        result = result && getMatchValues()
-            .equals(other.getMatchValues());
-      }
+      result = result && getQueryString()
+          .equals(other.getQueryString());
       result = result && (getLimit()
           == other.getLimit());
       result = result && (getOffset()
@@ -3378,10 +3370,8 @@ public final class Schema {
       hash = (53 * hash) + getTenant().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
-      if (hasMatchValues()) {
-        hash = (37 * hash) + MATCH_VALUES_FIELD_NUMBER;
-        hash = (53 * hash) + getMatchValues().hashCode();
-      }
+      hash = (37 * hash) + QUERY_STRING_FIELD_NUMBER;
+      hash = (53 * hash) + getQueryString().hashCode();
       hash = (37 * hash) + LIMIT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getLimit());
@@ -3529,12 +3519,8 @@ public final class Schema {
 
         type_ = "";
 
-        if (matchValuesBuilder_ == null) {
-          matchValues_ = null;
-        } else {
-          matchValues_ = null;
-          matchValuesBuilder_ = null;
-        }
+        queryString_ = "";
+
         limit_ = 0L;
 
         offset_ = 0L;
@@ -3567,11 +3553,7 @@ public final class Schema {
         stategate.Schema.SearchObjectOpts result = new stategate.Schema.SearchObjectOpts(this);
         result.tenant_ = tenant_;
         result.type_ = type_;
-        if (matchValuesBuilder_ == null) {
-          result.matchValues_ = matchValues_;
-        } else {
-          result.matchValues_ = matchValuesBuilder_.build();
-        }
+        result.queryString_ = queryString_;
         result.limit_ = limit_;
         result.offset_ = offset_;
         onBuilt();
@@ -3630,8 +3612,9 @@ public final class Schema {
           type_ = other.type_;
           onChanged();
         }
-        if (other.hasMatchValues()) {
-          mergeMatchValues(other.getMatchValues());
+        if (!other.getQueryString().isEmpty()) {
+          queryString_ = other.queryString_;
+          onChanged();
         }
         if (other.getLimit() != 0L) {
           setLimit(other.getLimit());
@@ -3846,157 +3829,93 @@ public final class Schema {
         return this;
       }
 
-      private com.google.protobuf.Struct matchValues_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> matchValuesBuilder_;
+      private java.lang.Object queryString_ = "";
       /**
        * <pre>
-       * filter records that match k/v pairs
+       * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 3;</code>
+       * <code>string query_string = 3;</code>
        */
-      public boolean hasMatchValues() {
-        return matchValuesBuilder_ != null || matchValues_ != null;
-      }
-      /**
-       * <pre>
-       * filter records that match k/v pairs
-       * </pre>
-       *
-       * <code>.google.protobuf.Struct match_values = 3;</code>
-       */
-      public com.google.protobuf.Struct getMatchValues() {
-        if (matchValuesBuilder_ == null) {
-          return matchValues_ == null ? com.google.protobuf.Struct.getDefaultInstance() : matchValues_;
+      public java.lang.String getQueryString() {
+        java.lang.Object ref = queryString_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          queryString_ = s;
+          return s;
         } else {
-          return matchValuesBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
        * <pre>
-       * filter records that match k/v pairs
+       * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 3;</code>
+       * <code>string query_string = 3;</code>
        */
-      public Builder setMatchValues(com.google.protobuf.Struct value) {
-        if (matchValuesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          matchValues_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getQueryStringBytes() {
+        java.lang.Object ref = queryString_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          queryString_ = b;
+          return b;
         } else {
-          matchValuesBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
        * <pre>
-       * filter records that match k/v pairs
+       * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 3;</code>
+       * <code>string query_string = 3;</code>
        */
-      public Builder setMatchValues(
-          com.google.protobuf.Struct.Builder builderForValue) {
-        if (matchValuesBuilder_ == null) {
-          matchValues_ = builderForValue.build();
-          onChanged();
-        } else {
-          matchValuesBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * filter records that match k/v pairs
-       * </pre>
-       *
-       * <code>.google.protobuf.Struct match_values = 3;</code>
-       */
-      public Builder mergeMatchValues(com.google.protobuf.Struct value) {
-        if (matchValuesBuilder_ == null) {
-          if (matchValues_ != null) {
-            matchValues_ =
-              com.google.protobuf.Struct.newBuilder(matchValues_).mergeFrom(value).buildPartial();
-          } else {
-            matchValues_ = value;
-          }
-          onChanged();
-        } else {
-          matchValuesBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * filter records that match k/v pairs
-       * </pre>
-       *
-       * <code>.google.protobuf.Struct match_values = 3;</code>
-       */
-      public Builder clearMatchValues() {
-        if (matchValuesBuilder_ == null) {
-          matchValues_ = null;
-          onChanged();
-        } else {
-          matchValues_ = null;
-          matchValuesBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * filter records that match k/v pairs
-       * </pre>
-       *
-       * <code>.google.protobuf.Struct match_values = 3;</code>
-       */
-      public com.google.protobuf.Struct.Builder getMatchValuesBuilder() {
-        
+      public Builder setQueryString(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        queryString_ = value;
         onChanged();
-        return getMatchValuesFieldBuilder().getBuilder();
+        return this;
       }
       /**
        * <pre>
-       * filter records that match k/v pairs
+       * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 3;</code>
+       * <code>string query_string = 3;</code>
        */
-      public com.google.protobuf.StructOrBuilder getMatchValuesOrBuilder() {
-        if (matchValuesBuilder_ != null) {
-          return matchValuesBuilder_.getMessageOrBuilder();
-        } else {
-          return matchValues_ == null ?
-              com.google.protobuf.Struct.getDefaultInstance() : matchValues_;
-        }
+      public Builder clearQueryString() {
+        
+        queryString_ = getDefaultInstance().getQueryString();
+        onChanged();
+        return this;
       }
       /**
        * <pre>
-       * filter records that match k/v pairs
+       * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 3;</code>
+       * <code>string query_string = 3;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
-          getMatchValuesFieldBuilder() {
-        if (matchValuesBuilder_ == null) {
-          matchValuesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder>(
-                  getMatchValues(),
-                  getParentForChildren(),
-                  isClean());
-          matchValues_ = null;
-        }
-        return matchValuesBuilder_;
+      public Builder setQueryStringBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        queryString_ = value;
+        onChanged();
+        return this;
       }
 
       private long limit_ ;
@@ -8209,38 +8128,37 @@ public final class Schema {
       "^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030" +
       "\003 \001(\tB\013\342\337\037\007\n\005^\\S+$\022/\n\006values\030\004 \001(\0132\027.goo" +
       "gle.protobuf.StructB\006\342\337\037\002 \001\"-\n\007Objects\022\"" +
-      "\n\007objects\030\001 \003(\0132\021.stategate.Object\"\240\001\n\020S" +
+      "\n\007objects\030\001 \003(\0132\021.stategate.Object\"\207\001\n\020S" +
       "earchObjectOpts\022\033\n\006tenant\030\001 \001(\tB\013\342\337\037\007\n\005^" +
-      "\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022-\n\014match" +
-      "_values\030\003 \001(\0132\027.google.protobuf.Struct\022\025" +
-      "\n\005limit\030\004 \001(\003B\006\342\337\037\002\020\000\022\016\n\006offset\030\005 \001(\003\"\227\001" +
-      "\n\017SearchEventOpts\022\033\n\006tenant\030\001 \001(\tB\013\342\337\037\007\n" +
-      "\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\013\n\003key" +
-      "\030\003 \001(\t\022\013\n\003min\030\004 \001(\003\022\013\n\003max\030\005 \001(\003\022\025\n\005limi" +
-      "t\030\006 \001(\003B\006\342\337\037\002\020\000\022\016\n\006offset\030\007 \001(\003\"D\n\nStrea" +
-      "mOpts\022\033\n\006tenant\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004ty" +
-      "pe\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\"\216\001\n\005Event\022\023\n\002id\030\001 " +
-      "\001(\tB\007\342\337\037\003\220\001\000\022)\n\006object\030\002 \001(\0132\021.stategate" +
-      ".ObjectB\006\342\337\037\002 \001\022/\n\006claims\030\003 \001(\0132\027.google" +
-      ".protobuf.StructB\006\342\337\037\002 \001\022\024\n\004time\030\004 \001(\003B\006" +
-      "\342\337\037\002\020\000\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020.state" +
-      "gate.Event2\344\004\n\020StateGateService\022`\n\tSetOb" +
-      "ject\022\021.stategate.Object\032\026.google.protobu" +
-      "f.Empty\"(\202\323\344\223\002\"\" /api/{tenant}/{type}/st" +
-      "ate/{key}\022^\n\tGetObject\022\024.stategate.Objec" +
-      "tRef\032\021.stategate.Object\"(\202\323\344\223\002\"\022 /api/{t" +
-      "enant}/{type}/state/{key}\022d\n\rSearchObjec" +
-      "ts\022\033.stategate.SearchObjectOpts\032\022.stateg" +
-      "ate.Objects\"\"\202\323\344\223\002\034\022\032/api/{tenant}/{type" +
-      "}/state\022]\n\tDelObject\022\024.stategate.ObjectR" +
-      "ef\032\026.google.protobuf.Empty\"\"\202\323\344\223\002\034*\032/api" +
-      "/{tenant}/{type}/state\022e\n\014StreamEvents\022\025" +
-      ".stategate.StreamOpts\032\020.stategate.Event\"" +
-      "*\202\323\344\223\002$\022\"/api/{tenant}/{type}/events/str" +
-      "eam0\001\022b\n\014SearchEvents\022\032.stategate.Search" +
-      "EventOpts\032\021.stategate.Events\"#\202\323\344\223\002\035\022\033/a" +
-      "pi/{tenant}/{type}/eventsB\013Z\tstategateb\006" +
-      "proto3"
+      "\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014query" +
+      "_string\030\003 \001(\t\022\025\n\005limit\030\004 \001(\003B\006\342\337\037\002\020\000\022\016\n\006" +
+      "offset\030\005 \001(\003\"\227\001\n\017SearchEventOpts\022\033\n\006tena" +
+      "nt\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037" +
+      "\007\n\005^\\S+$\022\013\n\003key\030\003 \001(\t\022\013\n\003min\030\004 \001(\003\022\013\n\003ma" +
+      "x\030\005 \001(\003\022\025\n\005limit\030\006 \001(\003B\006\342\337\037\002\020\000\022\016\n\006offset" +
+      "\030\007 \001(\003\"D\n\nStreamOpts\022\033\n\006tenant\030\001 \001(\tB\013\342\337" +
+      "\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\"\216\001\n" +
+      "\005Event\022\023\n\002id\030\001 \001(\tB\007\342\337\037\003\220\001\000\022)\n\006object\030\002 " +
+      "\001(\0132\021.stategate.ObjectB\006\342\337\037\002 \001\022/\n\006claims" +
+      "\030\003 \001(\0132\027.google.protobuf.StructB\006\342\337\037\002 \001\022" +
+      "\024\n\004time\030\004 \001(\003B\006\342\337\037\002\020\000\"*\n\006Events\022 \n\006event" +
+      "s\030\001 \003(\0132\020.stategate.Event2\344\004\n\020StateGateS" +
+      "ervice\022`\n\tSetObject\022\021.stategate.Object\032\026" +
+      ".google.protobuf.Empty\"(\202\323\344\223\002\"\" /api/{te" +
+      "nant}/{type}/state/{key}\022^\n\tGetObject\022\024." +
+      "stategate.ObjectRef\032\021.stategate.Object\"(" +
+      "\202\323\344\223\002\"\022 /api/{tenant}/{type}/state/{key}" +
+      "\022d\n\rSearchObjects\022\033.stategate.SearchObje" +
+      "ctOpts\032\022.stategate.Objects\"\"\202\323\344\223\002\034\022\032/api" +
+      "/{tenant}/{type}/state\022]\n\tDelObject\022\024.st" +
+      "ategate.ObjectRef\032\026.google.protobuf.Empt" +
+      "y\"\"\202\323\344\223\002\034*\032/api/{tenant}/{type}/state\022e\n" +
+      "\014StreamEvents\022\025.stategate.StreamOpts\032\020.s" +
+      "tategate.Event\"*\202\323\344\223\002$\022\"/api/{tenant}/{t" +
+      "ype}/events/stream0\001\022b\n\014SearchEvents\022\032.s" +
+      "tategate.SearchEventOpts\032\021.stategate.Eve" +
+      "nts\"#\202\323\344\223\002\035\022\033/api/{tenant}/{type}/events" +
+      "B\013Z\tstategateb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8283,7 +8201,7 @@ public final class Schema {
     internal_static_stategate_SearchObjectOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_SearchObjectOpts_descriptor,
-        new java.lang.String[] { "Tenant", "Type", "MatchValues", "Limit", "Offset", });
+        new java.lang.String[] { "Tenant", "Type", "QueryString", "Limit", "Offset", });
     internal_static_stategate_SearchEventOpts_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_stategate_SearchEventOpts_fieldAccessorTable = new

@@ -2,6 +2,7 @@ package mongo
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
 	"github.com/autom8ter/stategate/internal/errorz"
@@ -251,8 +252,15 @@ func (p *Provider) SearchObjects(ctx context.Context, opts *stategate.SearchObje
 		o.SetSkip(opts.GetOffset())
 	}
 	filter := bson.M{}
-	if opts.GetMatchValues() != nil {
-		filter = opts.GetMatchValues().AsMap()
+	if opts.GetQueryString() != "" {
+		if err := json.Unmarshal([]byte(opts.GetQueryString()), &filter); err != nil {
+			return nil, &errorz.Error{
+				Type:     errorz.ErrUnknown,
+				Info:     "failed to decode query string",
+				Err:      err,
+				Metadata: map[string]string{},
+			}
+		}
 	}
 
 	cur, err := p.db.Collection(collectionName(false, opts.GetTenant(), opts.GetType())).Find(ctx, filter, o)

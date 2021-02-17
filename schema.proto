@@ -85,8 +85,8 @@ message SearchObjectOpts {
   string tenant =1[(validator.field) = {regex : "^\\S+$"}];
   // Object type (ex: user)
   string type =2[(validator.field) = {regex : "^\\S+$"}];
-  // filter records that match k/v pairs
-  google.protobuf.Struct match_values = 3;
+  // json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
+  string query_string = 3;
   // limit returned objects
   int64 limit =4[(validator.field) = {int_gt : 0}];
   // offset returned events(pagination)

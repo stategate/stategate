@@ -35,41 +35,40 @@ namespace Stategate {
             "XlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJ",
             "Qgvi3x8HCgVeXFMrJBIvCgZ2YWx1ZXMYBCABKAsyFy5nb29nbGUucHJvdG9i",
             "dWYuU3RydWN0Qgbi3x8CIAEiLQoHT2JqZWN0cxIiCgdvYmplY3RzGAEgAygL",
-            "MhEuc3RhdGVnYXRlLk9iamVjdCKgAQoQU2VhcmNoT2JqZWN0T3B0cxIbCgZ0",
+            "MhEuc3RhdGVnYXRlLk9iamVjdCKHAQoQU2VhcmNoT2JqZWN0T3B0cxIbCgZ0",
             "ZW5hbnQYASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcK",
-            "BV5cUyskEi0KDG1hdGNoX3ZhbHVlcxgDIAEoCzIXLmdvb2dsZS5wcm90b2J1",
-            "Zi5TdHJ1Y3QSFQoFbGltaXQYBCABKANCBuLfHwIQABIOCgZvZmZzZXQYBSAB",
-            "KAMilwEKD1NlYXJjaEV2ZW50T3B0cxIbCgZ0ZW5hbnQYASABKAlCC+LfHwcK",
-            "BV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcKBV5cUyskEgsKA2tleRgDIAEo",
-            "CRILCgNtaW4YBCABKAMSCwoDbWF4GAUgASgDEhUKBWxpbWl0GAYgASgDQgbi",
-            "3x8CEAASDgoGb2Zmc2V0GAcgASgDIkQKClN0cmVhbU9wdHMSGwoGdGVuYW50",
-            "GAEgASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMr",
-            "JCKOAQoFRXZlbnQSEwoCaWQYASABKAlCB+LfHwOQAQASKQoGb2JqZWN0GAIg",
-            "ASgLMhEuc3RhdGVnYXRlLk9iamVjdEIG4t8fAiABEi8KBmNsYWltcxgDIAEo",
-            "CzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgARIUCgR0aW1lGAQg",
-            "ASgDQgbi3x8CEAAiKgoGRXZlbnRzEiAKBmV2ZW50cxgBIAMoCzIQLnN0YXRl",
-            "Z2F0ZS5FdmVudDLkBAoQU3RhdGVHYXRlU2VydmljZRJgCglTZXRPYmplY3QS",
-            "ES5zdGF0ZWdhdGUuT2JqZWN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IiiC",
-            "0+STAiIiIC9hcGkve3RlbmFudH0ve3R5cGV9L3N0YXRlL3trZXl9El4KCUdl",
-            "dE9iamVjdBIULnN0YXRlZ2F0ZS5PYmplY3RSZWYaES5zdGF0ZWdhdGUuT2Jq",
-            "ZWN0IiiC0+STAiISIC9hcGkve3RlbmFudH0ve3R5cGV9L3N0YXRlL3trZXl9",
-            "EmQKDVNlYXJjaE9iamVjdHMSGy5zdGF0ZWdhdGUuU2VhcmNoT2JqZWN0T3B0",
-            "cxoSLnN0YXRlZ2F0ZS5PYmplY3RzIiKC0+STAhwSGi9hcGkve3RlbmFudH0v",
-            "e3R5cGV9L3N0YXRlEl0KCURlbE9iamVjdBIULnN0YXRlZ2F0ZS5PYmplY3RS",
-            "ZWYaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiIoLT5JMCHCoaL2FwaS97dGVu",
-            "YW50fS97dHlwZX0vc3RhdGUSZQoMU3RyZWFtRXZlbnRzEhUuc3RhdGVnYXRl",
-            "LlN0cmVhbU9wdHMaEC5zdGF0ZWdhdGUuRXZlbnQiKoLT5JMCJBIiL2FwaS97",
-            "dGVuYW50fS97dHlwZX0vZXZlbnRzL3N0cmVhbTABEmIKDFNlYXJjaEV2ZW50",
-            "cxIaLnN0YXRlZ2F0ZS5TZWFyY2hFdmVudE9wdHMaES5zdGF0ZWdhdGUuRXZl",
-            "bnRzIiOC0+STAh0SGy9hcGkve3RlbmFudH0ve3R5cGV9L2V2ZW50c0ILWglz",
-            "dGF0ZWdhdGViBnByb3RvMw=="));
+            "BV5cUyskEhQKDHF1ZXJ5X3N0cmluZxgDIAEoCRIVCgVsaW1pdBgEIAEoA0IG",
+            "4t8fAhAAEg4KBm9mZnNldBgFIAEoAyKXAQoPU2VhcmNoRXZlbnRPcHRzEhsK",
+            "BnRlbmFudBgBIAEoCUIL4t8fBwoFXlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8f",
+            "BwoFXlxTKyQSCwoDa2V5GAMgASgJEgsKA21pbhgEIAEoAxILCgNtYXgYBSAB",
+            "KAMSFQoFbGltaXQYBiABKANCBuLfHwIQABIOCgZvZmZzZXQYByABKAMiRAoK",
+            "U3RyZWFtT3B0cxIbCgZ0ZW5hbnQYASABKAlCC+LfHwcKBV5cUyskEhkKBHR5",
+            "cGUYAiABKAlCC+LfHwcKBV5cUyskIo4BCgVFdmVudBITCgJpZBgBIAEoCUIH",
+            "4t8fA5ABABIpCgZvYmplY3QYAiABKAsyES5zdGF0ZWdhdGUuT2JqZWN0Qgbi",
+            "3x8CIAESLwoGY2xhaW1zGAMgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVj",
+            "dEIG4t8fAiABEhQKBHRpbWUYBCABKANCBuLfHwIQACIqCgZFdmVudHMSIAoG",
+            "ZXZlbnRzGAEgAygLMhAuc3RhdGVnYXRlLkV2ZW50MuQEChBTdGF0ZUdhdGVT",
+            "ZXJ2aWNlEmAKCVNldE9iamVjdBIRLnN0YXRlZ2F0ZS5PYmplY3QaFi5nb29n",
+            "bGUucHJvdG9idWYuRW1wdHkiKILT5JMCIiIgL2FwaS97dGVuYW50fS97dHlw",
+            "ZX0vc3RhdGUve2tleX0SXgoJR2V0T2JqZWN0EhQuc3RhdGVnYXRlLk9iamVj",
+            "dFJlZhoRLnN0YXRlZ2F0ZS5PYmplY3QiKILT5JMCIhIgL2FwaS97dGVuYW50",
+            "fS97dHlwZX0vc3RhdGUve2tleX0SZAoNU2VhcmNoT2JqZWN0cxIbLnN0YXRl",
+            "Z2F0ZS5TZWFyY2hPYmplY3RPcHRzGhIuc3RhdGVnYXRlLk9iamVjdHMiIoLT",
+            "5JMCHBIaL2FwaS97dGVuYW50fS97dHlwZX0vc3RhdGUSXQoJRGVsT2JqZWN0",
+            "EhQuc3RhdGVnYXRlLk9iamVjdFJlZhoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0",
+            "eSIigtPkkwIcKhovYXBpL3t0ZW5hbnR9L3t0eXBlfS9zdGF0ZRJlCgxTdHJl",
+            "YW1FdmVudHMSFS5zdGF0ZWdhdGUuU3RyZWFtT3B0cxoQLnN0YXRlZ2F0ZS5F",
+            "dmVudCIqgtPkkwIkEiIvYXBpL3t0ZW5hbnR9L3t0eXBlfS9ldmVudHMvc3Ry",
+            "ZWFtMAESYgoMU2VhcmNoRXZlbnRzEhouc3RhdGVnYXRlLlNlYXJjaEV2ZW50",
+            "T3B0cxoRLnN0YXRlZ2F0ZS5FdmVudHMiI4LT5JMCHRIbL2FwaS97dGVuYW50",
+            "fS97dHlwZX0vZXZlbnRzQgtaCXN0YXRlZ2F0ZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.ObjectRef), global::Stategate.ObjectRef.Parser, new[]{ "Tenant", "Type", "Key" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Object), global::Stategate.Object.Parser, new[]{ "Tenant", "Type", "Key", "Values" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Objects), global::Stategate.Objects.Parser, new[]{ "Objects_" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchObjectOpts), global::Stategate.SearchObjectOpts.Parser, new[]{ "Tenant", "Type", "MatchValues", "Limit", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchObjectOpts), global::Stategate.SearchObjectOpts.Parser, new[]{ "Tenant", "Type", "QueryString", "Limit", "Offset" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEventOpts), global::Stategate.SearchEventOpts.Parser, new[]{ "Tenant", "Type", "Key", "Min", "Max", "Limit", "Offset" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamOpts), global::Stategate.StreamOpts.Parser, new[]{ "Tenant", "Type" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Event), global::Stategate.Event.Parser, new[]{ "Id", "Object", "Claims", "Time" }, null, null, null),
@@ -665,7 +664,7 @@ namespace Stategate {
     public SearchObjectOpts(SearchObjectOpts other) : this() {
       tenant_ = other.tenant_;
       type_ = other.type_;
-      matchValues_ = other.matchValues_ != null ? other.matchValues_.Clone() : null;
+      queryString_ = other.queryString_;
       limit_ = other.limit_;
       offset_ = other.offset_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -704,17 +703,17 @@ namespace Stategate {
       }
     }
 
-    /// <summary>Field number for the "match_values" field.</summary>
-    public const int MatchValuesFieldNumber = 3;
-    private global::Google.Protobuf.WellKnownTypes.Struct matchValues_;
+    /// <summary>Field number for the "query_string" field.</summary>
+    public const int QueryStringFieldNumber = 3;
+    private string queryString_ = "";
     /// <summary>
-    /// filter records that match k/v pairs
+    /// json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Struct MatchValues {
-      get { return matchValues_; }
+    public string QueryString {
+      get { return queryString_; }
       set {
-        matchValues_ = value;
+        queryString_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -761,7 +760,7 @@ namespace Stategate {
       }
       if (Tenant != other.Tenant) return false;
       if (Type != other.Type) return false;
-      if (!object.Equals(MatchValues, other.MatchValues)) return false;
+      if (QueryString != other.QueryString) return false;
       if (Limit != other.Limit) return false;
       if (Offset != other.Offset) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -772,7 +771,7 @@ namespace Stategate {
       int hash = 1;
       if (Tenant.Length != 0) hash ^= Tenant.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
-      if (matchValues_ != null) hash ^= MatchValues.GetHashCode();
+      if (QueryString.Length != 0) hash ^= QueryString.GetHashCode();
       if (Limit != 0L) hash ^= Limit.GetHashCode();
       if (Offset != 0L) hash ^= Offset.GetHashCode();
       if (_unknownFields != null) {
@@ -796,9 +795,9 @@ namespace Stategate {
         output.WriteRawTag(18);
         output.WriteString(Type);
       }
-      if (matchValues_ != null) {
+      if (QueryString.Length != 0) {
         output.WriteRawTag(26);
-        output.WriteMessage(MatchValues);
+        output.WriteString(QueryString);
       }
       if (Limit != 0L) {
         output.WriteRawTag(32);
@@ -822,8 +821,8 @@ namespace Stategate {
       if (Type.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
       }
-      if (matchValues_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(MatchValues);
+      if (QueryString.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(QueryString);
       }
       if (Limit != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(Limit);
@@ -848,11 +847,8 @@ namespace Stategate {
       if (other.Type.Length != 0) {
         Type = other.Type;
       }
-      if (other.matchValues_ != null) {
-        if (matchValues_ == null) {
-          matchValues_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-        }
-        MatchValues.MergeFrom(other.MatchValues);
+      if (other.QueryString.Length != 0) {
+        QueryString = other.QueryString;
       }
       if (other.Limit != 0L) {
         Limit = other.Limit;
@@ -880,10 +876,7 @@ namespace Stategate {
             break;
           }
           case 26: {
-            if (matchValues_ == null) {
-              matchValues_ = new global::Google.Protobuf.WellKnownTypes.Struct();
-            }
-            input.ReadMessage(matchValues_);
+            QueryString = input.ReadString();
             break;
           }
           case 32: {
