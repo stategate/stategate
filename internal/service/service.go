@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"fmt"
 	"github.com/autom8ter/machine/pubsub"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
 	"github.com/autom8ter/stategate/internal/auth"
@@ -44,7 +45,7 @@ func NewService(storage storage.Provider, channel channel.Provider, lgger *logge
 			case <-ctx.Done():
 				return
 			case event := <-ch:
-				if err := svc.ps.Publish(event.GetObject().GetType(), event); err != nil {
+				if err := svc.ps.Publish(channelName(event.GetObject().GetTenant(), event.GetObject().GetType()), event); err != nil {
 					svc.lgger.Error("failed to unmarshal event", zap.Error(err))
 				}
 			}
@@ -97,8 +98,16 @@ func (s Service) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stat
 	return obj, nil
 }
 
+func (s Service) DelObject(ctx context.Context, ref *stategate.ObjectRef) (*empty.Empty, error) {
+	if err := s.storage.DelObject(ctx, ref); err != nil {
+		err.Log(s.lgger)
+		return nil, err.Public()
+	}
+	return &empty.Empty{}, nil
+}
+
 func (s Service) StreamEvents(opts *stategate.StreamOpts, server stategate.StateGateService_StreamEventsServer) error {
-	if err := s.ps.Subscribe(server.Context(), opts.GetType(), "", func(msg interface{}) bool {
+	if err := s.ps.Subscribe(server.Context(), channelName(opts.GetTenant(), opts.GetType()), "", func(msg interface{}) bool {
 		if err := server.Send(msg.(*stategate.Event)); err != nil {
 			e := &errorz.Error{
 				Type:     errorz.ErrUnknown,
@@ -150,4 +159,8 @@ func (s Service) Close() error {
 	}
 	s.ps.Close()
 	return nil
+}
+
+func channelName(tenant, typ string) string {
+	return fmt.Sprintf("%s.%s", tenant, typ)
 }

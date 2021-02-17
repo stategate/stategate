@@ -20,10 +20,28 @@ public final class Schema {
 
     /**
      * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getTenant();
+    /**
+     * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getTenantBytes();
+
+    /**
+     * <pre>
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     java.lang.String getType();
     /**
@@ -31,7 +49,7 @@ public final class Schema {
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
         getTypeBytes();
@@ -41,7 +59,7 @@ public final class Schema {
      * Object key (unique within type)
      * </pre>
      *
-     * <code>string key = 2 [(.validator.field) = { ... }</code>
+     * <code>string key = 3 [(.validator.field) = { ... }</code>
      */
     java.lang.String getKey();
     /**
@@ -49,7 +67,7 @@ public final class Schema {
      * Object key (unique within type)
      * </pre>
      *
-     * <code>string key = 2 [(.validator.field) = { ... }</code>
+     * <code>string key = 3 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
         getKeyBytes();
@@ -71,6 +89,7 @@ public final class Schema {
       super(builder);
     }
     private ObjectRef() {
+      tenant_ = "";
       type_ = "";
       key_ = "";
     }
@@ -102,10 +121,16 @@ public final class Schema {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              type_ = s;
+              tenant_ = s;
               break;
             }
             case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              type_ = s;
+              break;
+            }
+            case 26: {
               java.lang.String s = input.readStringRequireUtf8();
 
               key_ = s;
@@ -143,14 +168,56 @@ public final class Schema {
               stategate.Schema.ObjectRef.class, stategate.Schema.ObjectRef.Builder.class);
     }
 
-    public static final int TYPE_FIELD_NUMBER = 1;
+    public static final int TENANT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object tenant_;
+    /**
+     * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getTenant() {
+      java.lang.Object ref = tenant_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        tenant_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getTenantBytes() {
+      java.lang.Object ref = tenant_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        tenant_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 2;
     private volatile java.lang.Object type_;
     /**
      * <pre>
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     public java.lang.String getType() {
       java.lang.Object ref = type_;
@@ -169,7 +236,7 @@ public final class Schema {
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.ByteString
         getTypeBytes() {
@@ -185,14 +252,14 @@ public final class Schema {
       }
     }
 
-    public static final int KEY_FIELD_NUMBER = 2;
+    public static final int KEY_FIELD_NUMBER = 3;
     private volatile java.lang.Object key_;
     /**
      * <pre>
      * Object key (unique within type)
      * </pre>
      *
-     * <code>string key = 2 [(.validator.field) = { ... }</code>
+     * <code>string key = 3 [(.validator.field) = { ... }</code>
      */
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
@@ -211,7 +278,7 @@ public final class Schema {
      * Object key (unique within type)
      * </pre>
      *
-     * <code>string key = 2 [(.validator.field) = { ... }</code>
+     * <code>string key = 3 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.ByteString
         getKeyBytes() {
@@ -241,11 +308,14 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!getTenantBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tenant_);
+      }
       if (!getTypeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
       }
       if (!getKeyBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, key_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, key_);
       }
       unknownFields.writeTo(output);
     }
@@ -256,11 +326,14 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
+      if (!getTenantBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tenant_);
+      }
       if (!getTypeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
       }
       if (!getKeyBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, key_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, key_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -278,6 +351,8 @@ public final class Schema {
       stategate.Schema.ObjectRef other = (stategate.Schema.ObjectRef) obj;
 
       boolean result = true;
+      result = result && getTenant()
+          .equals(other.getTenant());
       result = result && getType()
           .equals(other.getType());
       result = result && getKey()
@@ -293,6 +368,8 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TENANT_FIELD_NUMBER;
+      hash = (53 * hash) + getTenant().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
       hash = (37 * hash) + KEY_FIELD_NUMBER;
@@ -434,6 +511,8 @@ public final class Schema {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        tenant_ = "";
+
         type_ = "";
 
         key_ = "";
@@ -464,6 +543,7 @@ public final class Schema {
       @java.lang.Override
       public stategate.Schema.ObjectRef buildPartial() {
         stategate.Schema.ObjectRef result = new stategate.Schema.ObjectRef(this);
+        result.tenant_ = tenant_;
         result.type_ = type_;
         result.key_ = key_;
         onBuilt();
@@ -514,6 +594,10 @@ public final class Schema {
 
       public Builder mergeFrom(stategate.Schema.ObjectRef other) {
         if (other == stategate.Schema.ObjectRef.getDefaultInstance()) return this;
+        if (!other.getTenant().isEmpty()) {
+          tenant_ = other.tenant_;
+          onChanged();
+        }
         if (!other.getType().isEmpty()) {
           type_ = other.type_;
           onChanged();
@@ -551,13 +635,102 @@ public final class Schema {
         return this;
       }
 
+      private java.lang.Object tenant_ = "";
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getTenant() {
+        java.lang.Object ref = tenant_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          tenant_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getTenantBytes() {
+        java.lang.Object ref = tenant_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          tenant_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTenant(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        tenant_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearTenant() {
+        
+        tenant_ = getDefaultInstance().getTenant();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTenantBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        tenant_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object type_ = "";
       /**
        * <pre>
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public java.lang.String getType() {
         java.lang.Object ref = type_;
@@ -576,7 +749,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.ByteString
           getTypeBytes() {
@@ -596,7 +769,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder setType(
           java.lang.String value) {
@@ -613,7 +786,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder clearType() {
         
@@ -626,7 +799,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder setTypeBytes(
           com.google.protobuf.ByteString value) {
@@ -646,7 +819,7 @@ public final class Schema {
        * Object key (unique within type)
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
        */
       public java.lang.String getKey() {
         java.lang.Object ref = key_;
@@ -665,7 +838,7 @@ public final class Schema {
        * Object key (unique within type)
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
@@ -685,7 +858,7 @@ public final class Schema {
        * Object key (unique within type)
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
        */
       public Builder setKey(
           java.lang.String value) {
@@ -702,7 +875,7 @@ public final class Schema {
        * Object key (unique within type)
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
        */
       public Builder clearKey() {
         
@@ -715,7 +888,7 @@ public final class Schema {
        * Object key (unique within type)
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
@@ -787,10 +960,28 @@ public final class Schema {
 
     /**
      * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getTenant();
+    /**
+     * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getTenantBytes();
+
+    /**
+     * <pre>
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     java.lang.String getType();
     /**
@@ -798,7 +989,7 @@ public final class Schema {
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
         getTypeBytes();
@@ -808,7 +999,7 @@ public final class Schema {
      * Object key (unique within type)
      * </pre>
      *
-     * <code>string key = 2 [(.validator.field) = { ... }</code>
+     * <code>string key = 3 [(.validator.field) = { ... }</code>
      */
     java.lang.String getKey();
     /**
@@ -816,7 +1007,7 @@ public final class Schema {
      * Object key (unique within type)
      * </pre>
      *
-     * <code>string key = 2 [(.validator.field) = { ... }</code>
+     * <code>string key = 3 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
         getKeyBytes();
@@ -826,7 +1017,7 @@ public final class Schema {
      * Object values (structured k/v pairs)
      * </pre>
      *
-     * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
      */
     boolean hasValues();
     /**
@@ -834,7 +1025,7 @@ public final class Schema {
      * Object values (structured k/v pairs)
      * </pre>
      *
-     * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.Struct getValues();
     /**
@@ -842,7 +1033,7 @@ public final class Schema {
      * Object values (structured k/v pairs)
      * </pre>
      *
-     * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.StructOrBuilder getValuesOrBuilder();
   }
@@ -863,6 +1054,7 @@ public final class Schema {
       super(builder);
     }
     private Object() {
+      tenant_ = "";
       type_ = "";
       key_ = "";
     }
@@ -894,16 +1086,22 @@ public final class Schema {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              type_ = s;
+              tenant_ = s;
               break;
             }
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              key_ = s;
+              type_ = s;
               break;
             }
             case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              key_ = s;
+              break;
+            }
+            case 34: {
               com.google.protobuf.Struct.Builder subBuilder = null;
               if (values_ != null) {
                 subBuilder = values_.toBuilder();
@@ -948,14 +1146,56 @@ public final class Schema {
               stategate.Schema.Object.class, stategate.Schema.Object.Builder.class);
     }
 
-    public static final int TYPE_FIELD_NUMBER = 1;
+    public static final int TENANT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object tenant_;
+    /**
+     * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getTenant() {
+      java.lang.Object ref = tenant_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        tenant_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getTenantBytes() {
+      java.lang.Object ref = tenant_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        tenant_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 2;
     private volatile java.lang.Object type_;
     /**
      * <pre>
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     public java.lang.String getType() {
       java.lang.Object ref = type_;
@@ -974,7 +1214,7 @@ public final class Schema {
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.ByteString
         getTypeBytes() {
@@ -990,14 +1230,14 @@ public final class Schema {
       }
     }
 
-    public static final int KEY_FIELD_NUMBER = 2;
+    public static final int KEY_FIELD_NUMBER = 3;
     private volatile java.lang.Object key_;
     /**
      * <pre>
      * Object key (unique within type)
      * </pre>
      *
-     * <code>string key = 2 [(.validator.field) = { ... }</code>
+     * <code>string key = 3 [(.validator.field) = { ... }</code>
      */
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
@@ -1016,7 +1256,7 @@ public final class Schema {
      * Object key (unique within type)
      * </pre>
      *
-     * <code>string key = 2 [(.validator.field) = { ... }</code>
+     * <code>string key = 3 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.ByteString
         getKeyBytes() {
@@ -1032,14 +1272,14 @@ public final class Schema {
       }
     }
 
-    public static final int VALUES_FIELD_NUMBER = 3;
+    public static final int VALUES_FIELD_NUMBER = 4;
     private com.google.protobuf.Struct values_;
     /**
      * <pre>
      * Object values (structured k/v pairs)
      * </pre>
      *
-     * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
      */
     public boolean hasValues() {
       return values_ != null;
@@ -1049,7 +1289,7 @@ public final class Schema {
      * Object values (structured k/v pairs)
      * </pre>
      *
-     * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.Struct getValues() {
       return values_ == null ? com.google.protobuf.Struct.getDefaultInstance() : values_;
@@ -1059,7 +1299,7 @@ public final class Schema {
      * Object values (structured k/v pairs)
      * </pre>
      *
-     * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.StructOrBuilder getValuesOrBuilder() {
       return getValues();
@@ -1079,14 +1319,17 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!getTenantBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tenant_);
+      }
       if (!getTypeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
       }
       if (!getKeyBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, key_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, key_);
       }
       if (values_ != null) {
-        output.writeMessage(3, getValues());
+        output.writeMessage(4, getValues());
       }
       unknownFields.writeTo(output);
     }
@@ -1097,15 +1340,18 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
+      if (!getTenantBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tenant_);
+      }
       if (!getTypeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
       }
       if (!getKeyBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, key_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, key_);
       }
       if (values_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getValues());
+          .computeMessageSize(4, getValues());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1123,6 +1369,8 @@ public final class Schema {
       stategate.Schema.Object other = (stategate.Schema.Object) obj;
 
       boolean result = true;
+      result = result && getTenant()
+          .equals(other.getTenant());
       result = result && getType()
           .equals(other.getType());
       result = result && getKey()
@@ -1143,6 +1391,8 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TENANT_FIELD_NUMBER;
+      hash = (53 * hash) + getTenant().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
       hash = (37 * hash) + KEY_FIELD_NUMBER;
@@ -1288,6 +1538,8 @@ public final class Schema {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        tenant_ = "";
+
         type_ = "";
 
         key_ = "";
@@ -1324,6 +1576,7 @@ public final class Schema {
       @java.lang.Override
       public stategate.Schema.Object buildPartial() {
         stategate.Schema.Object result = new stategate.Schema.Object(this);
+        result.tenant_ = tenant_;
         result.type_ = type_;
         result.key_ = key_;
         if (valuesBuilder_ == null) {
@@ -1379,6 +1632,10 @@ public final class Schema {
 
       public Builder mergeFrom(stategate.Schema.Object other) {
         if (other == stategate.Schema.Object.getDefaultInstance()) return this;
+        if (!other.getTenant().isEmpty()) {
+          tenant_ = other.tenant_;
+          onChanged();
+        }
         if (!other.getType().isEmpty()) {
           type_ = other.type_;
           onChanged();
@@ -1419,13 +1676,102 @@ public final class Schema {
         return this;
       }
 
+      private java.lang.Object tenant_ = "";
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getTenant() {
+        java.lang.Object ref = tenant_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          tenant_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getTenantBytes() {
+        java.lang.Object ref = tenant_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          tenant_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTenant(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        tenant_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearTenant() {
+        
+        tenant_ = getDefaultInstance().getTenant();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTenantBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        tenant_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object type_ = "";
       /**
        * <pre>
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public java.lang.String getType() {
         java.lang.Object ref = type_;
@@ -1444,7 +1790,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.ByteString
           getTypeBytes() {
@@ -1464,7 +1810,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder setType(
           java.lang.String value) {
@@ -1481,7 +1827,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder clearType() {
         
@@ -1494,7 +1840,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder setTypeBytes(
           com.google.protobuf.ByteString value) {
@@ -1514,7 +1860,7 @@ public final class Schema {
        * Object key (unique within type)
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
        */
       public java.lang.String getKey() {
         java.lang.Object ref = key_;
@@ -1533,7 +1879,7 @@ public final class Schema {
        * Object key (unique within type)
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
@@ -1553,7 +1899,7 @@ public final class Schema {
        * Object key (unique within type)
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
        */
       public Builder setKey(
           java.lang.String value) {
@@ -1570,7 +1916,7 @@ public final class Schema {
        * Object key (unique within type)
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
        */
       public Builder clearKey() {
         
@@ -1583,7 +1929,7 @@ public final class Schema {
        * Object key (unique within type)
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
@@ -1605,7 +1951,7 @@ public final class Schema {
        * Object values (structured k/v pairs)
        * </pre>
        *
-       * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
        */
       public boolean hasValues() {
         return valuesBuilder_ != null || values_ != null;
@@ -1615,7 +1961,7 @@ public final class Schema {
        * Object values (structured k/v pairs)
        * </pre>
        *
-       * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.Struct getValues() {
         if (valuesBuilder_ == null) {
@@ -1629,7 +1975,7 @@ public final class Schema {
        * Object values (structured k/v pairs)
        * </pre>
        *
-       * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
        */
       public Builder setValues(com.google.protobuf.Struct value) {
         if (valuesBuilder_ == null) {
@@ -1649,7 +1995,7 @@ public final class Schema {
        * Object values (structured k/v pairs)
        * </pre>
        *
-       * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
        */
       public Builder setValues(
           com.google.protobuf.Struct.Builder builderForValue) {
@@ -1667,7 +2013,7 @@ public final class Schema {
        * Object values (structured k/v pairs)
        * </pre>
        *
-       * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
        */
       public Builder mergeValues(com.google.protobuf.Struct value) {
         if (valuesBuilder_ == null) {
@@ -1689,7 +2035,7 @@ public final class Schema {
        * Object values (structured k/v pairs)
        * </pre>
        *
-       * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
        */
       public Builder clearValues() {
         if (valuesBuilder_ == null) {
@@ -1707,7 +2053,7 @@ public final class Schema {
        * Object values (structured k/v pairs)
        * </pre>
        *
-       * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.Struct.Builder getValuesBuilder() {
         
@@ -1719,7 +2065,7 @@ public final class Schema {
        * Object values (structured k/v pairs)
        * </pre>
        *
-       * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.StructOrBuilder getValuesOrBuilder() {
         if (valuesBuilder_ != null) {
@@ -1734,7 +2080,7 @@ public final class Schema {
        * Object values (structured k/v pairs)
        * </pre>
        *
-       * <code>.google.protobuf.Struct values = 3 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
@@ -2598,10 +2944,28 @@ public final class Schema {
 
     /**
      * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getTenant();
+    /**
+     * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getTenantBytes();
+
+    /**
+     * <pre>
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     java.lang.String getType();
     /**
@@ -2609,42 +2973,42 @@ public final class Schema {
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
         getTypeBytes();
 
     /**
      * <pre>
-     * match_values filters records that have matching values
+     * filter records that match k/v pairs
      * </pre>
      *
-     * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct match_values = 3;</code>
      */
     boolean hasMatchValues();
     /**
      * <pre>
-     * match_values filters records that have matching values
+     * filter records that match k/v pairs
      * </pre>
      *
-     * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct match_values = 3;</code>
      */
     com.google.protobuf.Struct getMatchValues();
     /**
      * <pre>
-     * match_values filters records that have matching values
+     * filter records that match k/v pairs
      * </pre>
      *
-     * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct match_values = 3;</code>
      */
     com.google.protobuf.StructOrBuilder getMatchValuesOrBuilder();
 
     /**
      * <pre>
-     * limit returned events
+     * limit returned objects
      * </pre>
      *
-     * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+     * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
      */
     long getLimit();
 
@@ -2653,7 +3017,7 @@ public final class Schema {
      * offset returned events(pagination)
      * </pre>
      *
-     * <code>int64 offset = 6;</code>
+     * <code>int64 offset = 5;</code>
      */
     long getOffset();
   }
@@ -2674,6 +3038,7 @@ public final class Schema {
       super(builder);
     }
     private SearchObjectOpts() {
+      tenant_ = "";
       type_ = "";
       limit_ = 0L;
       offset_ = 0L;
@@ -2706,10 +3071,16 @@ public final class Schema {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              type_ = s;
+              tenant_ = s;
               break;
             }
             case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              type_ = s;
+              break;
+            }
+            case 26: {
               com.google.protobuf.Struct.Builder subBuilder = null;
               if (matchValues_ != null) {
                 subBuilder = matchValues_.toBuilder();
@@ -2722,12 +3093,12 @@ public final class Schema {
 
               break;
             }
-            case 40: {
+            case 32: {
 
               limit_ = input.readInt64();
               break;
             }
-            case 48: {
+            case 40: {
 
               offset_ = input.readInt64();
               break;
@@ -2764,14 +3135,56 @@ public final class Schema {
               stategate.Schema.SearchObjectOpts.class, stategate.Schema.SearchObjectOpts.Builder.class);
     }
 
-    public static final int TYPE_FIELD_NUMBER = 1;
+    public static final int TENANT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object tenant_;
+    /**
+     * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getTenant() {
+      java.lang.Object ref = tenant_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        tenant_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getTenantBytes() {
+      java.lang.Object ref = tenant_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        tenant_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 2;
     private volatile java.lang.Object type_;
     /**
      * <pre>
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     public java.lang.String getType() {
       java.lang.Object ref = type_;
@@ -2790,7 +3203,7 @@ public final class Schema {
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.ByteString
         getTypeBytes() {
@@ -2806,60 +3219,60 @@ public final class Schema {
       }
     }
 
-    public static final int MATCH_VALUES_FIELD_NUMBER = 2;
+    public static final int MATCH_VALUES_FIELD_NUMBER = 3;
     private com.google.protobuf.Struct matchValues_;
     /**
      * <pre>
-     * match_values filters records that have matching values
+     * filter records that match k/v pairs
      * </pre>
      *
-     * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct match_values = 3;</code>
      */
     public boolean hasMatchValues() {
       return matchValues_ != null;
     }
     /**
      * <pre>
-     * match_values filters records that have matching values
+     * filter records that match k/v pairs
      * </pre>
      *
-     * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct match_values = 3;</code>
      */
     public com.google.protobuf.Struct getMatchValues() {
       return matchValues_ == null ? com.google.protobuf.Struct.getDefaultInstance() : matchValues_;
     }
     /**
      * <pre>
-     * match_values filters records that have matching values
+     * filter records that match k/v pairs
      * </pre>
      *
-     * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+     * <code>.google.protobuf.Struct match_values = 3;</code>
      */
     public com.google.protobuf.StructOrBuilder getMatchValuesOrBuilder() {
       return getMatchValues();
     }
 
-    public static final int LIMIT_FIELD_NUMBER = 5;
+    public static final int LIMIT_FIELD_NUMBER = 4;
     private long limit_;
     /**
      * <pre>
-     * limit returned events
+     * limit returned objects
      * </pre>
      *
-     * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+     * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
      */
     public long getLimit() {
       return limit_;
     }
 
-    public static final int OFFSET_FIELD_NUMBER = 6;
+    public static final int OFFSET_FIELD_NUMBER = 5;
     private long offset_;
     /**
      * <pre>
      * offset returned events(pagination)
      * </pre>
      *
-     * <code>int64 offset = 6;</code>
+     * <code>int64 offset = 5;</code>
      */
     public long getOffset() {
       return offset_;
@@ -2879,17 +3292,20 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!getTenantBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tenant_);
+      }
       if (!getTypeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
       }
       if (matchValues_ != null) {
-        output.writeMessage(2, getMatchValues());
+        output.writeMessage(3, getMatchValues());
       }
       if (limit_ != 0L) {
-        output.writeInt64(5, limit_);
+        output.writeInt64(4, limit_);
       }
       if (offset_ != 0L) {
-        output.writeInt64(6, offset_);
+        output.writeInt64(5, offset_);
       }
       unknownFields.writeTo(output);
     }
@@ -2900,20 +3316,23 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
+      if (!getTenantBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tenant_);
+      }
       if (!getTypeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
       }
       if (matchValues_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getMatchValues());
+          .computeMessageSize(3, getMatchValues());
       }
       if (limit_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, limit_);
+          .computeInt64Size(4, limit_);
       }
       if (offset_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(6, offset_);
+          .computeInt64Size(5, offset_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2931,6 +3350,8 @@ public final class Schema {
       stategate.Schema.SearchObjectOpts other = (stategate.Schema.SearchObjectOpts) obj;
 
       boolean result = true;
+      result = result && getTenant()
+          .equals(other.getTenant());
       result = result && getType()
           .equals(other.getType());
       result = result && (hasMatchValues() == other.hasMatchValues());
@@ -2953,6 +3374,8 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TENANT_FIELD_NUMBER;
+      hash = (53 * hash) + getTenant().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
       if (hasMatchValues()) {
@@ -3102,6 +3525,8 @@ public final class Schema {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        tenant_ = "";
+
         type_ = "";
 
         if (matchValuesBuilder_ == null) {
@@ -3140,6 +3565,7 @@ public final class Schema {
       @java.lang.Override
       public stategate.Schema.SearchObjectOpts buildPartial() {
         stategate.Schema.SearchObjectOpts result = new stategate.Schema.SearchObjectOpts(this);
+        result.tenant_ = tenant_;
         result.type_ = type_;
         if (matchValuesBuilder_ == null) {
           result.matchValues_ = matchValues_;
@@ -3196,6 +3622,10 @@ public final class Schema {
 
       public Builder mergeFrom(stategate.Schema.SearchObjectOpts other) {
         if (other == stategate.Schema.SearchObjectOpts.getDefaultInstance()) return this;
+        if (!other.getTenant().isEmpty()) {
+          tenant_ = other.tenant_;
+          onChanged();
+        }
         if (!other.getType().isEmpty()) {
           type_ = other.type_;
           onChanged();
@@ -3238,13 +3668,102 @@ public final class Schema {
         return this;
       }
 
+      private java.lang.Object tenant_ = "";
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getTenant() {
+        java.lang.Object ref = tenant_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          tenant_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getTenantBytes() {
+        java.lang.Object ref = tenant_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          tenant_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTenant(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        tenant_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearTenant() {
+        
+        tenant_ = getDefaultInstance().getTenant();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTenantBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        tenant_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object type_ = "";
       /**
        * <pre>
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public java.lang.String getType() {
         java.lang.Object ref = type_;
@@ -3263,7 +3782,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.ByteString
           getTypeBytes() {
@@ -3283,7 +3802,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder setType(
           java.lang.String value) {
@@ -3300,7 +3819,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder clearType() {
         
@@ -3313,7 +3832,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder setTypeBytes(
           com.google.protobuf.ByteString value) {
@@ -3332,20 +3851,20 @@ public final class Schema {
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> matchValuesBuilder_;
       /**
        * <pre>
-       * match_values filters records that have matching values
+       * filter records that match k/v pairs
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct match_values = 3;</code>
        */
       public boolean hasMatchValues() {
         return matchValuesBuilder_ != null || matchValues_ != null;
       }
       /**
        * <pre>
-       * match_values filters records that have matching values
+       * filter records that match k/v pairs
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct match_values = 3;</code>
        */
       public com.google.protobuf.Struct getMatchValues() {
         if (matchValuesBuilder_ == null) {
@@ -3356,10 +3875,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * match_values filters records that have matching values
+       * filter records that match k/v pairs
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct match_values = 3;</code>
        */
       public Builder setMatchValues(com.google.protobuf.Struct value) {
         if (matchValuesBuilder_ == null) {
@@ -3376,10 +3895,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * match_values filters records that have matching values
+       * filter records that match k/v pairs
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct match_values = 3;</code>
        */
       public Builder setMatchValues(
           com.google.protobuf.Struct.Builder builderForValue) {
@@ -3394,10 +3913,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * match_values filters records that have matching values
+       * filter records that match k/v pairs
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct match_values = 3;</code>
        */
       public Builder mergeMatchValues(com.google.protobuf.Struct value) {
         if (matchValuesBuilder_ == null) {
@@ -3416,10 +3935,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * match_values filters records that have matching values
+       * filter records that match k/v pairs
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct match_values = 3;</code>
        */
       public Builder clearMatchValues() {
         if (matchValuesBuilder_ == null) {
@@ -3434,10 +3953,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * match_values filters records that have matching values
+       * filter records that match k/v pairs
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct match_values = 3;</code>
        */
       public com.google.protobuf.Struct.Builder getMatchValuesBuilder() {
         
@@ -3446,10 +3965,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * match_values filters records that have matching values
+       * filter records that match k/v pairs
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct match_values = 3;</code>
        */
       public com.google.protobuf.StructOrBuilder getMatchValuesOrBuilder() {
         if (matchValuesBuilder_ != null) {
@@ -3461,10 +3980,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * match_values filters records that have matching values
+       * filter records that match k/v pairs
        * </pre>
        *
-       * <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = { ... }</code>
+       * <code>.google.protobuf.Struct match_values = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
@@ -3483,20 +4002,20 @@ public final class Schema {
       private long limit_ ;
       /**
        * <pre>
-       * limit returned events
+       * limit returned objects
        * </pre>
        *
-       * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+       * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
        */
       public long getLimit() {
         return limit_;
       }
       /**
        * <pre>
-       * limit returned events
+       * limit returned objects
        * </pre>
        *
-       * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+       * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
        */
       public Builder setLimit(long value) {
         
@@ -3506,10 +4025,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * limit returned events
+       * limit returned objects
        * </pre>
        *
-       * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+       * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
        */
       public Builder clearLimit() {
         
@@ -3524,7 +4043,7 @@ public final class Schema {
        * offset returned events(pagination)
        * </pre>
        *
-       * <code>int64 offset = 6;</code>
+       * <code>int64 offset = 5;</code>
        */
       public long getOffset() {
         return offset_;
@@ -3534,7 +4053,7 @@ public final class Schema {
        * offset returned events(pagination)
        * </pre>
        *
-       * <code>int64 offset = 6;</code>
+       * <code>int64 offset = 5;</code>
        */
       public Builder setOffset(long value) {
         
@@ -3547,7 +4066,7 @@ public final class Schema {
        * offset returned events(pagination)
        * </pre>
        *
-       * <code>int64 offset = 6;</code>
+       * <code>int64 offset = 5;</code>
        */
       public Builder clearOffset() {
         
@@ -3614,10 +4133,28 @@ public final class Schema {
 
     /**
      * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getTenant();
+    /**
+     * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getTenantBytes();
+
+    /**
+     * <pre>
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     java.lang.String getType();
     /**
@@ -3625,62 +4162,62 @@ public final class Schema {
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
         getTypeBytes();
 
     /**
      * <pre>
-     * Object key (unique within type)
+     * filter events belonging to a particular object
      * </pre>
      *
-     * <code>string key = 2 [(.validator.field) = { ... }</code>
+     * <code>string key = 3;</code>
      */
     java.lang.String getKey();
     /**
      * <pre>
-     * Object key (unique within type)
+     * filter events belonging to a particular object
      * </pre>
      *
-     * <code>string key = 2 [(.validator.field) = { ... }</code>
+     * <code>string key = 3;</code>
      */
     com.google.protobuf.ByteString
         getKeyBytes();
 
     /**
      * <pre>
-     * only return events that occurred after specified min timestamp
+     * only return object events that occurred after specified min timestamp
      * </pre>
      *
-     * <code>int64 min = 3;</code>
+     * <code>int64 min = 4;</code>
      */
     long getMin();
 
     /**
      * <pre>
-     * only return events that occurred before specified max timestamp
+     * only return object events that occurred before specified max timestamp
      * </pre>
      *
-     * <code>int64 max = 4;</code>
+     * <code>int64 max = 5;</code>
      */
     long getMax();
 
     /**
      * <pre>
-     * limit returned events
+     * limit returned object events
      * </pre>
      *
-     * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+     * <code>int64 limit = 6 [(.validator.field) = { ... }</code>
      */
     long getLimit();
 
     /**
      * <pre>
-     * offset returned events(pagination)
+     * offset returned object events(pagination)
      * </pre>
      *
-     * <code>int64 offset = 6;</code>
+     * <code>int64 offset = 7;</code>
      */
     long getOffset();
   }
@@ -3701,6 +4238,7 @@ public final class Schema {
       super(builder);
     }
     private SearchEventOpts() {
+      tenant_ = "";
       type_ = "";
       key_ = "";
       min_ = 0L;
@@ -3736,31 +4274,37 @@ public final class Schema {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              type_ = s;
+              tenant_ = s;
               break;
             }
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              key_ = s;
+              type_ = s;
               break;
             }
-            case 24: {
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              min_ = input.readInt64();
+              key_ = s;
               break;
             }
             case 32: {
 
-              max_ = input.readInt64();
+              min_ = input.readInt64();
               break;
             }
             case 40: {
 
-              limit_ = input.readInt64();
+              max_ = input.readInt64();
               break;
             }
             case 48: {
+
+              limit_ = input.readInt64();
+              break;
+            }
+            case 56: {
 
               offset_ = input.readInt64();
               break;
@@ -3797,14 +4341,56 @@ public final class Schema {
               stategate.Schema.SearchEventOpts.class, stategate.Schema.SearchEventOpts.Builder.class);
     }
 
-    public static final int TYPE_FIELD_NUMBER = 1;
+    public static final int TENANT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object tenant_;
+    /**
+     * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getTenant() {
+      java.lang.Object ref = tenant_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        tenant_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * the object's tenant(ex: acme)
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getTenantBytes() {
+      java.lang.Object ref = tenant_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        tenant_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 2;
     private volatile java.lang.Object type_;
     /**
      * <pre>
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     public java.lang.String getType() {
       java.lang.Object ref = type_;
@@ -3823,7 +4409,7 @@ public final class Schema {
      * Object type (ex: user)
      * </pre>
      *
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.ByteString
         getTypeBytes() {
@@ -3839,14 +4425,14 @@ public final class Schema {
       }
     }
 
-    public static final int KEY_FIELD_NUMBER = 2;
+    public static final int KEY_FIELD_NUMBER = 3;
     private volatile java.lang.Object key_;
     /**
      * <pre>
-     * Object key (unique within type)
+     * filter events belonging to a particular object
      * </pre>
      *
-     * <code>string key = 2 [(.validator.field) = { ... }</code>
+     * <code>string key = 3;</code>
      */
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
@@ -3862,10 +4448,10 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Object key (unique within type)
+     * filter events belonging to a particular object
      * </pre>
      *
-     * <code>string key = 2 [(.validator.field) = { ... }</code>
+     * <code>string key = 3;</code>
      */
     public com.google.protobuf.ByteString
         getKeyBytes() {
@@ -3881,53 +4467,53 @@ public final class Schema {
       }
     }
 
-    public static final int MIN_FIELD_NUMBER = 3;
+    public static final int MIN_FIELD_NUMBER = 4;
     private long min_;
     /**
      * <pre>
-     * only return events that occurred after specified min timestamp
+     * only return object events that occurred after specified min timestamp
      * </pre>
      *
-     * <code>int64 min = 3;</code>
+     * <code>int64 min = 4;</code>
      */
     public long getMin() {
       return min_;
     }
 
-    public static final int MAX_FIELD_NUMBER = 4;
+    public static final int MAX_FIELD_NUMBER = 5;
     private long max_;
     /**
      * <pre>
-     * only return events that occurred before specified max timestamp
+     * only return object events that occurred before specified max timestamp
      * </pre>
      *
-     * <code>int64 max = 4;</code>
+     * <code>int64 max = 5;</code>
      */
     public long getMax() {
       return max_;
     }
 
-    public static final int LIMIT_FIELD_NUMBER = 5;
+    public static final int LIMIT_FIELD_NUMBER = 6;
     private long limit_;
     /**
      * <pre>
-     * limit returned events
+     * limit returned object events
      * </pre>
      *
-     * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+     * <code>int64 limit = 6 [(.validator.field) = { ... }</code>
      */
     public long getLimit() {
       return limit_;
     }
 
-    public static final int OFFSET_FIELD_NUMBER = 6;
+    public static final int OFFSET_FIELD_NUMBER = 7;
     private long offset_;
     /**
      * <pre>
-     * offset returned events(pagination)
+     * offset returned object events(pagination)
      * </pre>
      *
-     * <code>int64 offset = 6;</code>
+     * <code>int64 offset = 7;</code>
      */
     public long getOffset() {
       return offset_;
@@ -3947,23 +4533,26 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!getTenantBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tenant_);
+      }
       if (!getTypeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
       }
       if (!getKeyBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, key_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, key_);
       }
       if (min_ != 0L) {
-        output.writeInt64(3, min_);
+        output.writeInt64(4, min_);
       }
       if (max_ != 0L) {
-        output.writeInt64(4, max_);
+        output.writeInt64(5, max_);
       }
       if (limit_ != 0L) {
-        output.writeInt64(5, limit_);
+        output.writeInt64(6, limit_);
       }
       if (offset_ != 0L) {
-        output.writeInt64(6, offset_);
+        output.writeInt64(7, offset_);
       }
       unknownFields.writeTo(output);
     }
@@ -3974,27 +4563,30 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
+      if (!getTenantBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tenant_);
+      }
       if (!getTypeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
       }
       if (!getKeyBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, key_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, key_);
       }
       if (min_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, min_);
+          .computeInt64Size(4, min_);
       }
       if (max_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, max_);
+          .computeInt64Size(5, max_);
       }
       if (limit_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, limit_);
+          .computeInt64Size(6, limit_);
       }
       if (offset_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(6, offset_);
+          .computeInt64Size(7, offset_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4012,6 +4604,8 @@ public final class Schema {
       stategate.Schema.SearchEventOpts other = (stategate.Schema.SearchEventOpts) obj;
 
       boolean result = true;
+      result = result && getTenant()
+          .equals(other.getTenant());
       result = result && getType()
           .equals(other.getType());
       result = result && getKey()
@@ -4035,6 +4629,8 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TENANT_FIELD_NUMBER;
+      hash = (53 * hash) + getTenant().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
       hash = (37 * hash) + KEY_FIELD_NUMBER;
@@ -4188,6 +4784,8 @@ public final class Schema {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        tenant_ = "";
+
         type_ = "";
 
         key_ = "";
@@ -4226,6 +4824,7 @@ public final class Schema {
       @java.lang.Override
       public stategate.Schema.SearchEventOpts buildPartial() {
         stategate.Schema.SearchEventOpts result = new stategate.Schema.SearchEventOpts(this);
+        result.tenant_ = tenant_;
         result.type_ = type_;
         result.key_ = key_;
         result.min_ = min_;
@@ -4280,6 +4879,10 @@ public final class Schema {
 
       public Builder mergeFrom(stategate.Schema.SearchEventOpts other) {
         if (other == stategate.Schema.SearchEventOpts.getDefaultInstance()) return this;
+        if (!other.getTenant().isEmpty()) {
+          tenant_ = other.tenant_;
+          onChanged();
+        }
         if (!other.getType().isEmpty()) {
           type_ = other.type_;
           onChanged();
@@ -4329,13 +4932,102 @@ public final class Schema {
         return this;
       }
 
+      private java.lang.Object tenant_ = "";
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getTenant() {
+        java.lang.Object ref = tenant_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          tenant_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getTenantBytes() {
+        java.lang.Object ref = tenant_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          tenant_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTenant(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        tenant_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearTenant() {
+        
+        tenant_ = getDefaultInstance().getTenant();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the object's tenant(ex: acme)
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTenantBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        tenant_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object type_ = "";
       /**
        * <pre>
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public java.lang.String getType() {
         java.lang.Object ref = type_;
@@ -4354,7 +5046,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.ByteString
           getTypeBytes() {
@@ -4374,7 +5066,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder setType(
           java.lang.String value) {
@@ -4391,7 +5083,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder clearType() {
         
@@ -4404,7 +5096,7 @@ public final class Schema {
        * Object type (ex: user)
        * </pre>
        *
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder setTypeBytes(
           com.google.protobuf.ByteString value) {
@@ -4421,10 +5113,10 @@ public final class Schema {
       private java.lang.Object key_ = "";
       /**
        * <pre>
-       * Object key (unique within type)
+       * filter events belonging to a particular object
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3;</code>
        */
       public java.lang.String getKey() {
         java.lang.Object ref = key_;
@@ -4440,10 +5132,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object key (unique within type)
+       * filter events belonging to a particular object
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3;</code>
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
@@ -4460,10 +5152,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object key (unique within type)
+       * filter events belonging to a particular object
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3;</code>
        */
       public Builder setKey(
           java.lang.String value) {
@@ -4477,10 +5169,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object key (unique within type)
+       * filter events belonging to a particular object
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3;</code>
        */
       public Builder clearKey() {
         
@@ -4490,10 +5182,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object key (unique within type)
+       * filter events belonging to a particular object
        * </pre>
        *
-       * <code>string key = 2 [(.validator.field) = { ... }</code>
+       * <code>string key = 3;</code>
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
@@ -4510,20 +5202,20 @@ public final class Schema {
       private long min_ ;
       /**
        * <pre>
-       * only return events that occurred after specified min timestamp
+       * only return object events that occurred after specified min timestamp
        * </pre>
        *
-       * <code>int64 min = 3;</code>
+       * <code>int64 min = 4;</code>
        */
       public long getMin() {
         return min_;
       }
       /**
        * <pre>
-       * only return events that occurred after specified min timestamp
+       * only return object events that occurred after specified min timestamp
        * </pre>
        *
-       * <code>int64 min = 3;</code>
+       * <code>int64 min = 4;</code>
        */
       public Builder setMin(long value) {
         
@@ -4533,10 +5225,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * only return events that occurred after specified min timestamp
+       * only return object events that occurred after specified min timestamp
        * </pre>
        *
-       * <code>int64 min = 3;</code>
+       * <code>int64 min = 4;</code>
        */
       public Builder clearMin() {
         
@@ -4548,20 +5240,20 @@ public final class Schema {
       private long max_ ;
       /**
        * <pre>
-       * only return events that occurred before specified max timestamp
+       * only return object events that occurred before specified max timestamp
        * </pre>
        *
-       * <code>int64 max = 4;</code>
+       * <code>int64 max = 5;</code>
        */
       public long getMax() {
         return max_;
       }
       /**
        * <pre>
-       * only return events that occurred before specified max timestamp
+       * only return object events that occurred before specified max timestamp
        * </pre>
        *
-       * <code>int64 max = 4;</code>
+       * <code>int64 max = 5;</code>
        */
       public Builder setMax(long value) {
         
@@ -4571,10 +5263,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * only return events that occurred before specified max timestamp
+       * only return object events that occurred before specified max timestamp
        * </pre>
        *
-       * <code>int64 max = 4;</code>
+       * <code>int64 max = 5;</code>
        */
       public Builder clearMax() {
         
@@ -4586,20 +5278,20 @@ public final class Schema {
       private long limit_ ;
       /**
        * <pre>
-       * limit returned events
+       * limit returned object events
        * </pre>
        *
-       * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+       * <code>int64 limit = 6 [(.validator.field) = { ... }</code>
        */
       public long getLimit() {
         return limit_;
       }
       /**
        * <pre>
-       * limit returned events
+       * limit returned object events
        * </pre>
        *
-       * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+       * <code>int64 limit = 6 [(.validator.field) = { ... }</code>
        */
       public Builder setLimit(long value) {
         
@@ -4609,10 +5301,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * limit returned events
+       * limit returned object events
        * </pre>
        *
-       * <code>int64 limit = 5 [(.validator.field) = { ... }</code>
+       * <code>int64 limit = 6 [(.validator.field) = { ... }</code>
        */
       public Builder clearLimit() {
         
@@ -4624,20 +5316,20 @@ public final class Schema {
       private long offset_ ;
       /**
        * <pre>
-       * offset returned events(pagination)
+       * offset returned object events(pagination)
        * </pre>
        *
-       * <code>int64 offset = 6;</code>
+       * <code>int64 offset = 7;</code>
        */
       public long getOffset() {
         return offset_;
       }
       /**
        * <pre>
-       * offset returned events(pagination)
+       * offset returned object events(pagination)
        * </pre>
        *
-       * <code>int64 offset = 6;</code>
+       * <code>int64 offset = 7;</code>
        */
       public Builder setOffset(long value) {
         
@@ -4647,10 +5339,10 @@ public final class Schema {
       }
       /**
        * <pre>
-       * offset returned events(pagination)
+       * offset returned object events(pagination)
        * </pre>
        *
-       * <code>int64 offset = 6;</code>
+       * <code>int64 offset = 7;</code>
        */
       public Builder clearOffset() {
         
@@ -4716,11 +5408,37 @@ public final class Schema {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <pre>
+     * the tenant of the object (ex: acme) that triggered the event
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getTenant();
+    /**
+     * <pre>
+     * the tenant of the object (ex: acme) that triggered the event
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getTenantBytes();
+
+    /**
+     * <pre>
+     * the type of the object (ex: user) that triggered the event
+     * </pre>
+     *
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     java.lang.String getType();
     /**
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <pre>
+     * the type of the object (ex: user) that triggered the event
+     * </pre>
+     *
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
         getTypeBytes();
@@ -4742,6 +5460,7 @@ public final class Schema {
       super(builder);
     }
     private StreamOpts() {
+      tenant_ = "";
       type_ = "";
     }
 
@@ -4770,6 +5489,12 @@ public final class Schema {
               done = true;
               break;
             case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              tenant_ = s;
+              break;
+            }
+            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               type_ = s;
@@ -4807,10 +5532,56 @@ public final class Schema {
               stategate.Schema.StreamOpts.class, stategate.Schema.StreamOpts.Builder.class);
     }
 
-    public static final int TYPE_FIELD_NUMBER = 1;
+    public static final int TENANT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object tenant_;
+    /**
+     * <pre>
+     * the tenant of the object (ex: acme) that triggered the event
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getTenant() {
+      java.lang.Object ref = tenant_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        tenant_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * the tenant of the object (ex: acme) that triggered the event
+     * </pre>
+     *
+     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getTenantBytes() {
+      java.lang.Object ref = tenant_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        tenant_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 2;
     private volatile java.lang.Object type_;
     /**
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <pre>
+     * the type of the object (ex: user) that triggered the event
+     * </pre>
+     *
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     public java.lang.String getType() {
       java.lang.Object ref = type_;
@@ -4825,7 +5596,11 @@ public final class Schema {
       }
     }
     /**
-     * <code>string type = 1 [(.validator.field) = { ... }</code>
+     * <pre>
+     * the type of the object (ex: user) that triggered the event
+     * </pre>
+     *
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.ByteString
         getTypeBytes() {
@@ -4855,8 +5630,11 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!getTenantBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tenant_);
+      }
       if (!getTypeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
       }
       unknownFields.writeTo(output);
     }
@@ -4867,8 +5645,11 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
+      if (!getTenantBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tenant_);
+      }
       if (!getTypeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4886,6 +5667,8 @@ public final class Schema {
       stategate.Schema.StreamOpts other = (stategate.Schema.StreamOpts) obj;
 
       boolean result = true;
+      result = result && getTenant()
+          .equals(other.getTenant());
       result = result && getType()
           .equals(other.getType());
       result = result && unknownFields.equals(other.unknownFields);
@@ -4899,6 +5682,8 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TENANT_FIELD_NUMBER;
+      hash = (53 * hash) + getTenant().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -5038,6 +5823,8 @@ public final class Schema {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        tenant_ = "";
+
         type_ = "";
 
         return this;
@@ -5066,6 +5853,7 @@ public final class Schema {
       @java.lang.Override
       public stategate.Schema.StreamOpts buildPartial() {
         stategate.Schema.StreamOpts result = new stategate.Schema.StreamOpts(this);
+        result.tenant_ = tenant_;
         result.type_ = type_;
         onBuilt();
         return result;
@@ -5115,6 +5903,10 @@ public final class Schema {
 
       public Builder mergeFrom(stategate.Schema.StreamOpts other) {
         if (other == stategate.Schema.StreamOpts.getDefaultInstance()) return this;
+        if (!other.getTenant().isEmpty()) {
+          tenant_ = other.tenant_;
+          onChanged();
+        }
         if (!other.getType().isEmpty()) {
           type_ = other.type_;
           onChanged();
@@ -5148,9 +5940,102 @@ public final class Schema {
         return this;
       }
 
+      private java.lang.Object tenant_ = "";
+      /**
+       * <pre>
+       * the tenant of the object (ex: acme) that triggered the event
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getTenant() {
+        java.lang.Object ref = tenant_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          tenant_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the tenant of the object (ex: acme) that triggered the event
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getTenantBytes() {
+        java.lang.Object ref = tenant_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          tenant_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the tenant of the object (ex: acme) that triggered the event
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTenant(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        tenant_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the tenant of the object (ex: acme) that triggered the event
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearTenant() {
+        
+        tenant_ = getDefaultInstance().getTenant();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the tenant of the object (ex: acme) that triggered the event
+       * </pre>
+       *
+       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTenantBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        tenant_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object type_ = "";
       /**
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <pre>
+       * the type of the object (ex: user) that triggered the event
+       * </pre>
+       *
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public java.lang.String getType() {
         java.lang.Object ref = type_;
@@ -5165,7 +6050,11 @@ public final class Schema {
         }
       }
       /**
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <pre>
+       * the type of the object (ex: user) that triggered the event
+       * </pre>
+       *
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.ByteString
           getTypeBytes() {
@@ -5181,7 +6070,11 @@ public final class Schema {
         }
       }
       /**
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <pre>
+       * the type of the object (ex: user) that triggered the event
+       * </pre>
+       *
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder setType(
           java.lang.String value) {
@@ -5194,7 +6087,11 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <pre>
+       * the type of the object (ex: user) that triggered the event
+       * </pre>
+       *
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder clearType() {
         
@@ -5203,7 +6100,11 @@ public final class Schema {
         return this;
       }
       /**
-       * <code>string type = 1 [(.validator.field) = { ... }</code>
+       * <pre>
+       * the type of the object (ex: user) that triggered the event
+       * </pre>
+       *
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
        */
       public Builder setTypeBytes(
           com.google.protobuf.ByteString value) {
@@ -7301,37 +8202,45 @@ public final class Schema {
       "proto\032\037google/protobuf/timestamp.proto\032\031" +
       "google/protobuf/any.proto\032\033google/protob" +
       "uf/empty.proto\0326github.com/mwitkow/go-pr" +
-      "oto-validators/validator.proto\"6\n\tObject" +
-      "Ref\022\024\n\004type\030\001 \001(\tB\006\342\337\037\002X\001\022\023\n\003key\030\002 \001(\tB\006" +
-      "\342\337\037\002X\001\"d\n\006Object\022\024\n\004type\030\001 \001(\tB\006\342\337\037\002X\001\022\023" +
-      "\n\003key\030\002 \001(\tB\006\342\337\037\002X\001\022/\n\006values\030\003 \001(\0132\027.go" +
-      "ogle.protobuf.StructB\006\342\337\037\002 \001\"-\n\007Objects\022" +
-      "\"\n\007objects\030\001 \003(\0132\021.stategate.Object\"\206\001\n\020" +
-      "SearchObjectOpts\022\024\n\004type\030\001 \001(\tB\006\342\337\037\002X\001\0225" +
-      "\n\014match_values\030\002 \001(\0132\027.google.protobuf.S" +
-      "tructB\006\342\337\037\002 \001\022\025\n\005limit\030\005 \001(\003B\006\342\337\037\002\020\000\022\016\n\006" +
-      "offset\030\006 \001(\003\"}\n\017SearchEventOpts\022\024\n\004type\030" +
-      "\001 \001(\tB\006\342\337\037\002X\001\022\023\n\003key\030\002 \001(\tB\006\342\337\037\002X\001\022\013\n\003mi" +
-      "n\030\003 \001(\003\022\013\n\003max\030\004 \001(\003\022\025\n\005limit\030\005 \001(\003B\006\342\337\037" +
-      "\002\020\000\022\016\n\006offset\030\006 \001(\003\"\"\n\nStreamOpts\022\024\n\004typ" +
-      "e\030\001 \001(\tB\006\342\337\037\002X\001\"\216\001\n\005Event\022\023\n\002id\030\001 \001(\tB\007\342" +
-      "\337\037\003\220\001\000\022)\n\006object\030\002 \001(\0132\021.stategate.Objec" +
-      "tB\006\342\337\037\002 \001\022/\n\006claims\030\003 \001(\0132\027.google.proto" +
-      "buf.StructB\006\342\337\037\002 \001\022\024\n\004time\030\004 \001(\003B\006\342\337\037\002\020\000" +
-      "\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020.stategate.E" +
-      "vent2\327\003\n\020StateGateService\022W\n\tSetObject\022\021" +
-      ".stategate.Object\032\026.google.protobuf.Empt" +
-      "y\"\037\202\323\344\223\002\031\"\027/api/{type}/state/{key}\022U\n\tGe" +
-      "tObject\022\024.stategate.ObjectRef\032\021.stategat" +
-      "e.Object\"\037\202\323\344\223\002\031\022\027/api/{type}/state/{key" +
-      "}\022[\n\rSearchObjects\022\033.stategate.SearchObj" +
-      "ectOpts\032\022.stategate.Objects\"\031\202\323\344\223\002\023\022\021/ap" +
-      "i/{type}/state\022U\n\014StreamEvents\022\025.statega" +
-      "te.StreamOpts\032\020.stategate.Event\"\032\202\323\344\223\002\024\022" +
-      "\022/api/{type}/events0\001\022_\n\014SearchEvents\022\032." +
-      "stategate.SearchEventOpts\032\021.stategate.Ev" +
-      "ents\" \202\323\344\223\002\032\022\030/api/{type}/events/{key}B\013" +
-      "Z\tstategateb\006proto3"
+      "oto-validators/validator.proto\"]\n\tObject" +
+      "Ref\022\033\n\006tenant\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type" +
+      "\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030\003 \001(\tB\013\342\337\037\007\n\005" +
+      "^\\S+$\"\213\001\n\006Object\022\033\n\006tenant\030\001 \001(\tB\013\342\337\037\007\n\005" +
+      "^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030" +
+      "\003 \001(\tB\013\342\337\037\007\n\005^\\S+$\022/\n\006values\030\004 \001(\0132\027.goo" +
+      "gle.protobuf.StructB\006\342\337\037\002 \001\"-\n\007Objects\022\"" +
+      "\n\007objects\030\001 \003(\0132\021.stategate.Object\"\240\001\n\020S" +
+      "earchObjectOpts\022\033\n\006tenant\030\001 \001(\tB\013\342\337\037\007\n\005^" +
+      "\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022-\n\014match" +
+      "_values\030\003 \001(\0132\027.google.protobuf.Struct\022\025" +
+      "\n\005limit\030\004 \001(\003B\006\342\337\037\002\020\000\022\016\n\006offset\030\005 \001(\003\"\227\001" +
+      "\n\017SearchEventOpts\022\033\n\006tenant\030\001 \001(\tB\013\342\337\037\007\n" +
+      "\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\013\n\003key" +
+      "\030\003 \001(\t\022\013\n\003min\030\004 \001(\003\022\013\n\003max\030\005 \001(\003\022\025\n\005limi" +
+      "t\030\006 \001(\003B\006\342\337\037\002\020\000\022\016\n\006offset\030\007 \001(\003\"D\n\nStrea" +
+      "mOpts\022\033\n\006tenant\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004ty" +
+      "pe\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\"\216\001\n\005Event\022\023\n\002id\030\001 " +
+      "\001(\tB\007\342\337\037\003\220\001\000\022)\n\006object\030\002 \001(\0132\021.stategate" +
+      ".ObjectB\006\342\337\037\002 \001\022/\n\006claims\030\003 \001(\0132\027.google" +
+      ".protobuf.StructB\006\342\337\037\002 \001\022\024\n\004time\030\004 \001(\003B\006" +
+      "\342\337\037\002\020\000\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020.state" +
+      "gate.Event2\344\004\n\020StateGateService\022`\n\tSetOb" +
+      "ject\022\021.stategate.Object\032\026.google.protobu" +
+      "f.Empty\"(\202\323\344\223\002\"\" /api/{tenant}/{type}/st" +
+      "ate/{key}\022^\n\tGetObject\022\024.stategate.Objec" +
+      "tRef\032\021.stategate.Object\"(\202\323\344\223\002\"\022 /api/{t" +
+      "enant}/{type}/state/{key}\022d\n\rSearchObjec" +
+      "ts\022\033.stategate.SearchObjectOpts\032\022.stateg" +
+      "ate.Objects\"\"\202\323\344\223\002\034\022\032/api/{tenant}/{type" +
+      "}/state\022]\n\tDelObject\022\024.stategate.ObjectR" +
+      "ef\032\026.google.protobuf.Empty\"\"\202\323\344\223\002\034*\032/api" +
+      "/{tenant}/{type}/state\022e\n\014StreamEvents\022\025" +
+      ".stategate.StreamOpts\032\020.stategate.Event\"" +
+      "*\202\323\344\223\002$\022\"/api/{tenant}/{type}/events/str" +
+      "eam0\001\022b\n\014SearchEvents\022\032.stategate.Search" +
+      "EventOpts\032\021.stategate.Events\"#\202\323\344\223\002\035\022\033/a" +
+      "pi/{tenant}/{type}/eventsB\013Z\tstategateb\006" +
+      "proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -7356,13 +8265,13 @@ public final class Schema {
     internal_static_stategate_ObjectRef_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_ObjectRef_descriptor,
-        new java.lang.String[] { "Type", "Key", });
+        new java.lang.String[] { "Tenant", "Type", "Key", });
     internal_static_stategate_Object_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_stategate_Object_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_Object_descriptor,
-        new java.lang.String[] { "Type", "Key", "Values", });
+        new java.lang.String[] { "Tenant", "Type", "Key", "Values", });
     internal_static_stategate_Objects_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_stategate_Objects_fieldAccessorTable = new
@@ -7374,19 +8283,19 @@ public final class Schema {
     internal_static_stategate_SearchObjectOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_SearchObjectOpts_descriptor,
-        new java.lang.String[] { "Type", "MatchValues", "Limit", "Offset", });
+        new java.lang.String[] { "Tenant", "Type", "MatchValues", "Limit", "Offset", });
     internal_static_stategate_SearchEventOpts_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_stategate_SearchEventOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_SearchEventOpts_descriptor,
-        new java.lang.String[] { "Type", "Key", "Min", "Max", "Limit", "Offset", });
+        new java.lang.String[] { "Tenant", "Type", "Key", "Min", "Max", "Limit", "Offset", });
     internal_static_stategate_StreamOpts_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_stategate_StreamOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_StreamOpts_descriptor,
-        new java.lang.String[] { "Type", });
+        new java.lang.String[] { "Tenant", "Type", });
     internal_static_stategate_Event_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_stategate_Event_fieldAccessorTable = new

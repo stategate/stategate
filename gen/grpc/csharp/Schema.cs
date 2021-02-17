@@ -29,42 +29,49 @@ namespace Stategate {
             "Z2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90bxoZZ29vZ2xlL3Byb3RvYnVm",
             "L2FueS5wcm90bxobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5LnByb3RvGjZnaXRo",
             "dWIuY29tL213aXRrb3cvZ28tcHJvdG8tdmFsaWRhdG9ycy92YWxpZGF0b3Iu",
-            "cHJvdG8iNgoJT2JqZWN0UmVmEhQKBHR5cGUYASABKAlCBuLfHwJYARITCgNr",
-            "ZXkYAiABKAlCBuLfHwJYASJkCgZPYmplY3QSFAoEdHlwZRgBIAEoCUIG4t8f",
-            "AlgBEhMKA2tleRgCIAEoCUIG4t8fAlgBEi8KBnZhbHVlcxgDIAEoCzIXLmdv",
-            "b2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgASItCgdPYmplY3RzEiIKB29i",
-            "amVjdHMYASADKAsyES5zdGF0ZWdhdGUuT2JqZWN0IoYBChBTZWFyY2hPYmpl",
-            "Y3RPcHRzEhQKBHR5cGUYASABKAlCBuLfHwJYARI1CgxtYXRjaF92YWx1ZXMY",
-            "AiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAESFQoFbGlt",
-            "aXQYBSABKANCBuLfHwIQABIOCgZvZmZzZXQYBiABKAMifQoPU2VhcmNoRXZl",
-            "bnRPcHRzEhQKBHR5cGUYASABKAlCBuLfHwJYARITCgNrZXkYAiABKAlCBuLf",
-            "HwJYARILCgNtaW4YAyABKAMSCwoDbWF4GAQgASgDEhUKBWxpbWl0GAUgASgD",
-            "Qgbi3x8CEAASDgoGb2Zmc2V0GAYgASgDIiIKClN0cmVhbU9wdHMSFAoEdHlw",
-            "ZRgBIAEoCUIG4t8fAlgBIo4BCgVFdmVudBITCgJpZBgBIAEoCUIH4t8fA5AB",
-            "ABIpCgZvYmplY3QYAiABKAsyES5zdGF0ZWdhdGUuT2JqZWN0Qgbi3x8CIAES",
-            "LwoGY2xhaW1zGAMgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8f",
-            "AiABEhQKBHRpbWUYBCABKANCBuLfHwIQACIqCgZFdmVudHMSIAoGZXZlbnRz",
-            "GAEgAygLMhAuc3RhdGVnYXRlLkV2ZW50MtcDChBTdGF0ZUdhdGVTZXJ2aWNl",
-            "ElcKCVNldE9iamVjdBIRLnN0YXRlZ2F0ZS5PYmplY3QaFi5nb29nbGUucHJv",
-            "dG9idWYuRW1wdHkiH4LT5JMCGSIXL2FwaS97dHlwZX0vc3RhdGUve2tleX0S",
-            "VQoJR2V0T2JqZWN0EhQuc3RhdGVnYXRlLk9iamVjdFJlZhoRLnN0YXRlZ2F0",
-            "ZS5PYmplY3QiH4LT5JMCGRIXL2FwaS97dHlwZX0vc3RhdGUve2tleX0SWwoN",
-            "U2VhcmNoT2JqZWN0cxIbLnN0YXRlZ2F0ZS5TZWFyY2hPYmplY3RPcHRzGhIu",
-            "c3RhdGVnYXRlLk9iamVjdHMiGYLT5JMCExIRL2FwaS97dHlwZX0vc3RhdGUS",
-            "VQoMU3RyZWFtRXZlbnRzEhUuc3RhdGVnYXRlLlN0cmVhbU9wdHMaEC5zdGF0",
-            "ZWdhdGUuRXZlbnQiGoLT5JMCFBISL2FwaS97dHlwZX0vZXZlbnRzMAESXwoM",
-            "U2VhcmNoRXZlbnRzEhouc3RhdGVnYXRlLlNlYXJjaEV2ZW50T3B0cxoRLnN0",
-            "YXRlZ2F0ZS5FdmVudHMiIILT5JMCGhIYL2FwaS97dHlwZX0vZXZlbnRzL3tr",
-            "ZXl9QgtaCXN0YXRlZ2F0ZWIGcHJvdG8z"));
+            "cHJvdG8iXQoJT2JqZWN0UmVmEhsKBnRlbmFudBgBIAEoCUIL4t8fBwoFXlxT",
+            "KyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJQgvi",
+            "3x8HCgVeXFMrJCKLAQoGT2JqZWN0EhsKBnRlbmFudBgBIAEoCUIL4t8fBwoF",
+            "XlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJ",
+            "Qgvi3x8HCgVeXFMrJBIvCgZ2YWx1ZXMYBCABKAsyFy5nb29nbGUucHJvdG9i",
+            "dWYuU3RydWN0Qgbi3x8CIAEiLQoHT2JqZWN0cxIiCgdvYmplY3RzGAEgAygL",
+            "MhEuc3RhdGVnYXRlLk9iamVjdCKgAQoQU2VhcmNoT2JqZWN0T3B0cxIbCgZ0",
+            "ZW5hbnQYASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcK",
+            "BV5cUyskEi0KDG1hdGNoX3ZhbHVlcxgDIAEoCzIXLmdvb2dsZS5wcm90b2J1",
+            "Zi5TdHJ1Y3QSFQoFbGltaXQYBCABKANCBuLfHwIQABIOCgZvZmZzZXQYBSAB",
+            "KAMilwEKD1NlYXJjaEV2ZW50T3B0cxIbCgZ0ZW5hbnQYASABKAlCC+LfHwcK",
+            "BV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcKBV5cUyskEgsKA2tleRgDIAEo",
+            "CRILCgNtaW4YBCABKAMSCwoDbWF4GAUgASgDEhUKBWxpbWl0GAYgASgDQgbi",
+            "3x8CEAASDgoGb2Zmc2V0GAcgASgDIkQKClN0cmVhbU9wdHMSGwoGdGVuYW50",
+            "GAEgASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMr",
+            "JCKOAQoFRXZlbnQSEwoCaWQYASABKAlCB+LfHwOQAQASKQoGb2JqZWN0GAIg",
+            "ASgLMhEuc3RhdGVnYXRlLk9iamVjdEIG4t8fAiABEi8KBmNsYWltcxgDIAEo",
+            "CzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgARIUCgR0aW1lGAQg",
+            "ASgDQgbi3x8CEAAiKgoGRXZlbnRzEiAKBmV2ZW50cxgBIAMoCzIQLnN0YXRl",
+            "Z2F0ZS5FdmVudDLkBAoQU3RhdGVHYXRlU2VydmljZRJgCglTZXRPYmplY3QS",
+            "ES5zdGF0ZWdhdGUuT2JqZWN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IiiC",
+            "0+STAiIiIC9hcGkve3RlbmFudH0ve3R5cGV9L3N0YXRlL3trZXl9El4KCUdl",
+            "dE9iamVjdBIULnN0YXRlZ2F0ZS5PYmplY3RSZWYaES5zdGF0ZWdhdGUuT2Jq",
+            "ZWN0IiiC0+STAiISIC9hcGkve3RlbmFudH0ve3R5cGV9L3N0YXRlL3trZXl9",
+            "EmQKDVNlYXJjaE9iamVjdHMSGy5zdGF0ZWdhdGUuU2VhcmNoT2JqZWN0T3B0",
+            "cxoSLnN0YXRlZ2F0ZS5PYmplY3RzIiKC0+STAhwSGi9hcGkve3RlbmFudH0v",
+            "e3R5cGV9L3N0YXRlEl0KCURlbE9iamVjdBIULnN0YXRlZ2F0ZS5PYmplY3RS",
+            "ZWYaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiIoLT5JMCHCoaL2FwaS97dGVu",
+            "YW50fS97dHlwZX0vc3RhdGUSZQoMU3RyZWFtRXZlbnRzEhUuc3RhdGVnYXRl",
+            "LlN0cmVhbU9wdHMaEC5zdGF0ZWdhdGUuRXZlbnQiKoLT5JMCJBIiL2FwaS97",
+            "dGVuYW50fS97dHlwZX0vZXZlbnRzL3N0cmVhbTABEmIKDFNlYXJjaEV2ZW50",
+            "cxIaLnN0YXRlZ2F0ZS5TZWFyY2hFdmVudE9wdHMaES5zdGF0ZWdhdGUuRXZl",
+            "bnRzIiOC0+STAh0SGy9hcGkve3RlbmFudH0ve3R5cGV9L2V2ZW50c0ILWglz",
+            "dGF0ZWdhdGViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.ObjectRef), global::Stategate.ObjectRef.Parser, new[]{ "Type", "Key" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Object), global::Stategate.Object.Parser, new[]{ "Type", "Key", "Values" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.ObjectRef), global::Stategate.ObjectRef.Parser, new[]{ "Tenant", "Type", "Key" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Object), global::Stategate.Object.Parser, new[]{ "Tenant", "Type", "Key", "Values" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Objects), global::Stategate.Objects.Parser, new[]{ "Objects_" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchObjectOpts), global::Stategate.SearchObjectOpts.Parser, new[]{ "Type", "MatchValues", "Limit", "Offset" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEventOpts), global::Stategate.SearchEventOpts.Parser, new[]{ "Type", "Key", "Min", "Max", "Limit", "Offset" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamOpts), global::Stategate.StreamOpts.Parser, new[]{ "Type" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchObjectOpts), global::Stategate.SearchObjectOpts.Parser, new[]{ "Tenant", "Type", "MatchValues", "Limit", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEventOpts), global::Stategate.SearchEventOpts.Parser, new[]{ "Tenant", "Type", "Key", "Min", "Max", "Limit", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamOpts), global::Stategate.StreamOpts.Parser, new[]{ "Tenant", "Type" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Event), global::Stategate.Event.Parser, new[]{ "Id", "Object", "Claims", "Time" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Events), global::Stategate.Events.Parser, new[]{ "Events_" }, null, null, null)
           }));
@@ -101,6 +108,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ObjectRef(ObjectRef other) : this() {
+      tenant_ = other.tenant_;
       type_ = other.type_;
       key_ = other.key_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -111,8 +119,22 @@ namespace Stategate {
       return new ObjectRef(this);
     }
 
+    /// <summary>Field number for the "tenant" field.</summary>
+    public const int TenantFieldNumber = 1;
+    private string tenant_ = "";
+    /// <summary>
+    /// the object's tenant(ex: acme)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Tenant {
+      get { return tenant_; }
+      set {
+        tenant_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "type" field.</summary>
-    public const int TypeFieldNumber = 1;
+    public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
     /// Object type (ex: user)
@@ -126,7 +148,7 @@ namespace Stategate {
     }
 
     /// <summary>Field number for the "key" field.</summary>
-    public const int KeyFieldNumber = 2;
+    public const int KeyFieldNumber = 3;
     private string key_ = "";
     /// <summary>
     /// Object key (unique within type)
@@ -152,6 +174,7 @@ namespace Stategate {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Tenant != other.Tenant) return false;
       if (Type != other.Type) return false;
       if (Key != other.Key) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -160,6 +183,7 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (Tenant.Length != 0) hash ^= Tenant.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (Key.Length != 0) hash ^= Key.GetHashCode();
       if (_unknownFields != null) {
@@ -175,12 +199,16 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Type.Length != 0) {
+      if (Tenant.Length != 0) {
         output.WriteRawTag(10);
+        output.WriteString(Tenant);
+      }
+      if (Type.Length != 0) {
+        output.WriteRawTag(18);
         output.WriteString(Type);
       }
       if (Key.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteString(Key);
       }
       if (_unknownFields != null) {
@@ -191,6 +219,9 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (Tenant.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Tenant);
+      }
       if (Type.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
       }
@@ -207,6 +238,9 @@ namespace Stategate {
     public void MergeFrom(ObjectRef other) {
       if (other == null) {
         return;
+      }
+      if (other.Tenant.Length != 0) {
+        Tenant = other.Tenant;
       }
       if (other.Type.Length != 0) {
         Type = other.Type;
@@ -226,10 +260,14 @@ namespace Stategate {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            Type = input.ReadString();
+            Tenant = input.ReadString();
             break;
           }
           case 18: {
+            Type = input.ReadString();
+            break;
+          }
+          case 26: {
             Key = input.ReadString();
             break;
           }
@@ -267,6 +305,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Object(Object other) : this() {
+      tenant_ = other.tenant_;
       type_ = other.type_;
       key_ = other.key_;
       values_ = other.values_ != null ? other.values_.Clone() : null;
@@ -278,8 +317,22 @@ namespace Stategate {
       return new Object(this);
     }
 
+    /// <summary>Field number for the "tenant" field.</summary>
+    public const int TenantFieldNumber = 1;
+    private string tenant_ = "";
+    /// <summary>
+    /// the object's tenant(ex: acme)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Tenant {
+      get { return tenant_; }
+      set {
+        tenant_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "type" field.</summary>
-    public const int TypeFieldNumber = 1;
+    public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
     /// Object type (ex: user)
@@ -293,7 +346,7 @@ namespace Stategate {
     }
 
     /// <summary>Field number for the "key" field.</summary>
-    public const int KeyFieldNumber = 2;
+    public const int KeyFieldNumber = 3;
     private string key_ = "";
     /// <summary>
     /// Object key (unique within type)
@@ -307,7 +360,7 @@ namespace Stategate {
     }
 
     /// <summary>Field number for the "values" field.</summary>
-    public const int ValuesFieldNumber = 3;
+    public const int ValuesFieldNumber = 4;
     private global::Google.Protobuf.WellKnownTypes.Struct values_;
     /// <summary>
     /// Object values (structured k/v pairs)
@@ -333,6 +386,7 @@ namespace Stategate {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Tenant != other.Tenant) return false;
       if (Type != other.Type) return false;
       if (Key != other.Key) return false;
       if (!object.Equals(Values, other.Values)) return false;
@@ -342,6 +396,7 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (Tenant.Length != 0) hash ^= Tenant.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (Key.Length != 0) hash ^= Key.GetHashCode();
       if (values_ != null) hash ^= Values.GetHashCode();
@@ -358,16 +413,20 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Type.Length != 0) {
+      if (Tenant.Length != 0) {
         output.WriteRawTag(10);
+        output.WriteString(Tenant);
+      }
+      if (Type.Length != 0) {
+        output.WriteRawTag(18);
         output.WriteString(Type);
       }
       if (Key.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteString(Key);
       }
       if (values_ != null) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(34);
         output.WriteMessage(Values);
       }
       if (_unknownFields != null) {
@@ -378,6 +437,9 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (Tenant.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Tenant);
+      }
       if (Type.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
       }
@@ -397,6 +459,9 @@ namespace Stategate {
     public void MergeFrom(Object other) {
       if (other == null) {
         return;
+      }
+      if (other.Tenant.Length != 0) {
+        Tenant = other.Tenant;
       }
       if (other.Type.Length != 0) {
         Type = other.Type;
@@ -422,14 +487,18 @@ namespace Stategate {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            Type = input.ReadString();
+            Tenant = input.ReadString();
             break;
           }
           case 18: {
-            Key = input.ReadString();
+            Type = input.ReadString();
             break;
           }
           case 26: {
+            Key = input.ReadString();
+            break;
+          }
+          case 34: {
             if (values_ == null) {
               values_ = new global::Google.Protobuf.WellKnownTypes.Struct();
             }
@@ -594,6 +663,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SearchObjectOpts(SearchObjectOpts other) : this() {
+      tenant_ = other.tenant_;
       type_ = other.type_;
       matchValues_ = other.matchValues_ != null ? other.matchValues_.Clone() : null;
       limit_ = other.limit_;
@@ -606,8 +676,22 @@ namespace Stategate {
       return new SearchObjectOpts(this);
     }
 
+    /// <summary>Field number for the "tenant" field.</summary>
+    public const int TenantFieldNumber = 1;
+    private string tenant_ = "";
+    /// <summary>
+    /// the object's tenant(ex: acme)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Tenant {
+      get { return tenant_; }
+      set {
+        tenant_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "type" field.</summary>
-    public const int TypeFieldNumber = 1;
+    public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
     /// Object type (ex: user)
@@ -621,10 +705,10 @@ namespace Stategate {
     }
 
     /// <summary>Field number for the "match_values" field.</summary>
-    public const int MatchValuesFieldNumber = 2;
+    public const int MatchValuesFieldNumber = 3;
     private global::Google.Protobuf.WellKnownTypes.Struct matchValues_;
     /// <summary>
-    /// match_values filters records that have matching values
+    /// filter records that match k/v pairs
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Google.Protobuf.WellKnownTypes.Struct MatchValues {
@@ -635,10 +719,10 @@ namespace Stategate {
     }
 
     /// <summary>Field number for the "limit" field.</summary>
-    public const int LimitFieldNumber = 5;
+    public const int LimitFieldNumber = 4;
     private long limit_;
     /// <summary>
-    /// limit returned events
+    /// limit returned objects
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Limit {
@@ -649,7 +733,7 @@ namespace Stategate {
     }
 
     /// <summary>Field number for the "offset" field.</summary>
-    public const int OffsetFieldNumber = 6;
+    public const int OffsetFieldNumber = 5;
     private long offset_;
     /// <summary>
     /// offset returned events(pagination)
@@ -675,6 +759,7 @@ namespace Stategate {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Tenant != other.Tenant) return false;
       if (Type != other.Type) return false;
       if (!object.Equals(MatchValues, other.MatchValues)) return false;
       if (Limit != other.Limit) return false;
@@ -685,6 +770,7 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (Tenant.Length != 0) hash ^= Tenant.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (matchValues_ != null) hash ^= MatchValues.GetHashCode();
       if (Limit != 0L) hash ^= Limit.GetHashCode();
@@ -702,20 +788,24 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Type.Length != 0) {
+      if (Tenant.Length != 0) {
         output.WriteRawTag(10);
+        output.WriteString(Tenant);
+      }
+      if (Type.Length != 0) {
+        output.WriteRawTag(18);
         output.WriteString(Type);
       }
       if (matchValues_ != null) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteMessage(MatchValues);
       }
       if (Limit != 0L) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(32);
         output.WriteInt64(Limit);
       }
       if (Offset != 0L) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(40);
         output.WriteInt64(Offset);
       }
       if (_unknownFields != null) {
@@ -726,6 +816,9 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (Tenant.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Tenant);
+      }
       if (Type.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
       }
@@ -748,6 +841,9 @@ namespace Stategate {
     public void MergeFrom(SearchObjectOpts other) {
       if (other == null) {
         return;
+      }
+      if (other.Tenant.Length != 0) {
+        Tenant = other.Tenant;
       }
       if (other.Type.Length != 0) {
         Type = other.Type;
@@ -776,21 +872,25 @@ namespace Stategate {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            Type = input.ReadString();
+            Tenant = input.ReadString();
             break;
           }
           case 18: {
+            Type = input.ReadString();
+            break;
+          }
+          case 26: {
             if (matchValues_ == null) {
               matchValues_ = new global::Google.Protobuf.WellKnownTypes.Struct();
             }
             input.ReadMessage(matchValues_);
             break;
           }
-          case 40: {
+          case 32: {
             Limit = input.ReadInt64();
             break;
           }
-          case 48: {
+          case 40: {
             Offset = input.ReadInt64();
             break;
           }
@@ -828,6 +928,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SearchEventOpts(SearchEventOpts other) : this() {
+      tenant_ = other.tenant_;
       type_ = other.type_;
       key_ = other.key_;
       min_ = other.min_;
@@ -842,8 +943,22 @@ namespace Stategate {
       return new SearchEventOpts(this);
     }
 
+    /// <summary>Field number for the "tenant" field.</summary>
+    public const int TenantFieldNumber = 1;
+    private string tenant_ = "";
+    /// <summary>
+    /// the object's tenant(ex: acme)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Tenant {
+      get { return tenant_; }
+      set {
+        tenant_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "type" field.</summary>
-    public const int TypeFieldNumber = 1;
+    public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
     /// Object type (ex: user)
@@ -857,10 +972,10 @@ namespace Stategate {
     }
 
     /// <summary>Field number for the "key" field.</summary>
-    public const int KeyFieldNumber = 2;
+    public const int KeyFieldNumber = 3;
     private string key_ = "";
     /// <summary>
-    /// Object key (unique within type)
+    /// filter events belonging to a particular object
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Key {
@@ -871,10 +986,10 @@ namespace Stategate {
     }
 
     /// <summary>Field number for the "min" field.</summary>
-    public const int MinFieldNumber = 3;
+    public const int MinFieldNumber = 4;
     private long min_;
     /// <summary>
-    /// only return events that occurred after specified min timestamp
+    /// only return object events that occurred after specified min timestamp
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Min {
@@ -885,10 +1000,10 @@ namespace Stategate {
     }
 
     /// <summary>Field number for the "max" field.</summary>
-    public const int MaxFieldNumber = 4;
+    public const int MaxFieldNumber = 5;
     private long max_;
     /// <summary>
-    /// only return events that occurred before specified max timestamp
+    /// only return object events that occurred before specified max timestamp
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Max {
@@ -899,10 +1014,10 @@ namespace Stategate {
     }
 
     /// <summary>Field number for the "limit" field.</summary>
-    public const int LimitFieldNumber = 5;
+    public const int LimitFieldNumber = 6;
     private long limit_;
     /// <summary>
-    /// limit returned events
+    /// limit returned object events
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Limit {
@@ -913,10 +1028,10 @@ namespace Stategate {
     }
 
     /// <summary>Field number for the "offset" field.</summary>
-    public const int OffsetFieldNumber = 6;
+    public const int OffsetFieldNumber = 7;
     private long offset_;
     /// <summary>
-    /// offset returned events(pagination)
+    /// offset returned object events(pagination)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Offset {
@@ -939,6 +1054,7 @@ namespace Stategate {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Tenant != other.Tenant) return false;
       if (Type != other.Type) return false;
       if (Key != other.Key) return false;
       if (Min != other.Min) return false;
@@ -951,6 +1067,7 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (Tenant.Length != 0) hash ^= Tenant.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (Key.Length != 0) hash ^= Key.GetHashCode();
       if (Min != 0L) hash ^= Min.GetHashCode();
@@ -970,28 +1087,32 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Type.Length != 0) {
+      if (Tenant.Length != 0) {
         output.WriteRawTag(10);
+        output.WriteString(Tenant);
+      }
+      if (Type.Length != 0) {
+        output.WriteRawTag(18);
         output.WriteString(Type);
       }
       if (Key.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteString(Key);
       }
       if (Min != 0L) {
-        output.WriteRawTag(24);
+        output.WriteRawTag(32);
         output.WriteInt64(Min);
       }
       if (Max != 0L) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(40);
         output.WriteInt64(Max);
       }
       if (Limit != 0L) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(48);
         output.WriteInt64(Limit);
       }
       if (Offset != 0L) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(56);
         output.WriteInt64(Offset);
       }
       if (_unknownFields != null) {
@@ -1002,6 +1123,9 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (Tenant.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Tenant);
+      }
       if (Type.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
       }
@@ -1030,6 +1154,9 @@ namespace Stategate {
     public void MergeFrom(SearchEventOpts other) {
       if (other == null) {
         return;
+      }
+      if (other.Tenant.Length != 0) {
+        Tenant = other.Tenant;
       }
       if (other.Type.Length != 0) {
         Type = other.Type;
@@ -1061,26 +1188,30 @@ namespace Stategate {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            Type = input.ReadString();
+            Tenant = input.ReadString();
             break;
           }
           case 18: {
+            Type = input.ReadString();
+            break;
+          }
+          case 26: {
             Key = input.ReadString();
             break;
           }
-          case 24: {
+          case 32: {
             Min = input.ReadInt64();
             break;
           }
-          case 32: {
+          case 40: {
             Max = input.ReadInt64();
             break;
           }
-          case 40: {
+          case 48: {
             Limit = input.ReadInt64();
             break;
           }
-          case 48: {
+          case 56: {
             Offset = input.ReadInt64();
             break;
           }
@@ -1118,6 +1249,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public StreamOpts(StreamOpts other) : this() {
+      tenant_ = other.tenant_;
       type_ = other.type_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -1127,9 +1259,26 @@ namespace Stategate {
       return new StreamOpts(this);
     }
 
+    /// <summary>Field number for the "tenant" field.</summary>
+    public const int TenantFieldNumber = 1;
+    private string tenant_ = "";
+    /// <summary>
+    /// the tenant of the object (ex: acme) that triggered the event
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Tenant {
+      get { return tenant_; }
+      set {
+        tenant_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "type" field.</summary>
-    public const int TypeFieldNumber = 1;
+    public const int TypeFieldNumber = 2;
     private string type_ = "";
+    /// <summary>
+    /// the type of the object (ex: user) that triggered the event
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
       get { return type_; }
@@ -1151,6 +1300,7 @@ namespace Stategate {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Tenant != other.Tenant) return false;
       if (Type != other.Type) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1158,6 +1308,7 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (Tenant.Length != 0) hash ^= Tenant.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1172,8 +1323,12 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Type.Length != 0) {
+      if (Tenant.Length != 0) {
         output.WriteRawTag(10);
+        output.WriteString(Tenant);
+      }
+      if (Type.Length != 0) {
+        output.WriteRawTag(18);
         output.WriteString(Type);
       }
       if (_unknownFields != null) {
@@ -1184,6 +1339,9 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (Tenant.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Tenant);
+      }
       if (Type.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
       }
@@ -1197,6 +1355,9 @@ namespace Stategate {
     public void MergeFrom(StreamOpts other) {
       if (other == null) {
         return;
+      }
+      if (other.Tenant.Length != 0) {
+        Tenant = other.Tenant;
       }
       if (other.Type.Length != 0) {
         Type = other.Type;
@@ -1213,6 +1374,10 @@ namespace Stategate {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
+            Tenant = input.ReadString();
+            break;
+          }
+          case 18: {
             Type = input.ReadString();
             break;
           }

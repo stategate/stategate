@@ -16,7 +16,14 @@ What is Event Sourcing?
 - [API Documentation](https://autom8ter.github.io/stategate/)
                                         
 ## Features
-- [x] [5 simple API Methods](https://github.com/autom8ter/stategate/blob/master/schema.proto#L15) for interacting with application state: `SetObject, GetObject, SearchObjects, StreamEvents, SearchEvents`
+- [x] [6 simple API Methods](https://github.com/autom8ter/stategate/blob/master/schema.proto#L15) for interacting with application state: 
+    - `SetObject` sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
+    - `GetObject` gets an object's current state values
+    - `DelObject` hard deletes an object & all of it's events
+    - `SearchObjects` queries objects of a specific type
+    - `StreamEvents` creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
+    - `SearchEvents` queries events related to a specific object.
+    
 - [x] Capture all changes to an application's state as a sequence of events.
 - [x] Stateless & horizontally scaleable
 - [x] Native [gRPC](https://grpc.io/) support

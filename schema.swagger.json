@@ -11,7 +11,85 @@
     "application/json"
   ],
   "paths": {
-    "/api/{type}/events": {
+    "/api/{tenant}/{type}/events": {
+      "get": {
+        "summary": "SearchEvents queries events related to a specific object.",
+        "operationId": "StateGateService_SearchEvents",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/stategateEvents"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tenant",
+            "description": "the object's tenant(ex: acme)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "Object type (ex: user)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "filter events belonging to a particular object.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "min",
+            "description": "only return object events that occurred after specified min timestamp.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "max",
+            "description": "only return object events that occurred before specified max timestamp.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "limit",
+            "description": "limit returned object events.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "description": "offset returned object events(pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "StateGateService"
+        ]
+      }
+    },
+    "/api/{tenant}/{type}/events/stream": {
       "get": {
         "summary": "StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.\nEvent Consumers invoke this method.",
         "operationId": "StateGateService_StreamEvents",
@@ -40,7 +118,15 @@
         },
         "parameters": [
           {
+            "name": "tenant",
+            "description": "the tenant of the object (ex: acme) that triggered the event",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "type",
+            "description": "the type of the object (ex: user) that triggered the event",
             "in": "path",
             "required": true,
             "type": "string"
@@ -51,78 +137,7 @@
         ]
       }
     },
-    "/api/{type}/events/{key}": {
-      "get": {
-        "summary": "SearchEvents queries events related to a specific object.",
-        "operationId": "StateGateService_SearchEvents",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/stategateEvents"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "type",
-            "description": "Object type (ex: user)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "key",
-            "description": "Object key (unique within type)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "min",
-            "description": "only return events that occurred after specified min timestamp.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "max",
-            "description": "only return events that occurred before specified max timestamp.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "limit",
-            "description": "limit returned events.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "offset",
-            "description": "offset returned events(pagination).",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "StateGateService"
-        ]
-      }
-    },
-    "/api/{type}/state": {
+    "/api/{tenant}/{type}/state": {
       "get": {
         "summary": "SearchObjects queries objects of a specific type",
         "operationId": "StateGateService_SearchObjects",
@@ -142,6 +157,13 @@
         },
         "parameters": [
           {
+            "name": "tenant",
+            "description": "the object's tenant(ex: acme)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "type",
             "description": "Object type (ex: user)",
             "in": "path",
@@ -150,7 +172,7 @@
           },
           {
             "name": "limit",
-            "description": "limit returned events.",
+            "description": "limit returned objects.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -168,9 +190,53 @@
         "tags": [
           "StateGateService"
         ]
+      },
+      "delete": {
+        "summary": "DelObject hard deletes an object \u0026 all of it's events",
+        "operationId": "StateGateService_DelObject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tenant",
+            "description": "the object's tenant(ex: acme)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "Object type (ex: user)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "Object key (unique within type).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "StateGateService"
+        ]
       }
     },
-    "/api/{type}/state/{key}": {
+    "/api/{tenant}/{type}/state/{key}": {
       "get": {
         "summary": "GetObject gets an object's current state values",
         "operationId": "StateGateService_GetObject",
@@ -189,6 +255,13 @@
           }
         },
         "parameters": [
+          {
+            "name": "tenant",
+            "description": "the object's tenant(ex: acme)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "type",
             "description": "Object type (ex: user)",
@@ -226,6 +299,13 @@
           }
         },
         "parameters": [
+          {
+            "name": "tenant",
+            "description": "the object's tenant(ex: acme)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "type",
             "description": "Object type (ex: user)",
@@ -327,6 +407,10 @@
     "stategateObject": {
       "type": "object",
       "properties": {
+        "tenant": {
+          "type": "string",
+          "title": "the object's tenant(ex: acme)"
+        },
         "type": {
           "type": "string",
           "title": "Object type (ex: user)"

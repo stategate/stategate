@@ -28,7 +28,7 @@ func (p Provider) SetObject(ctx context.Context, object *stategate.Object) *erro
 	data := bson.M(object.GetValues().AsMap())
 	data["_id"] = object.GetKey()
 	opts := options.Replace().SetUpsert(true)
-	_, err := p.db.Collection(object.GetType()).ReplaceOne(ctx, filter, data, opts)
+	_, err := p.db.Collection(collectionName(false, object.GetTenant(), object.GetType())).ReplaceOne(ctx, filter, data, opts)
 	if err != nil {
 		return &errorz.Error{
 			Type: errorz.ErrUnknown,
@@ -44,11 +44,10 @@ func (p Provider) SetObject(ctx context.Context, object *stategate.Object) *erro
 }
 
 func (p Provider) SaveEvent(ctx context.Context, e *stategate.Event) *errorz.Error {
-	_, err := p.db.Collection(fmt.Sprintf("%s_events", e.GetObject().GetType())).InsertOne(ctx, bson.M(map[string]interface{}{
+	_, err := p.db.Collection(collectionName(true, e.GetObject().GetTenant(), e.GetObject().GetType())).InsertOne(ctx, bson.M(map[string]interface{}{
 		"_id":  e.Id,
 		"time": e.GetTime(),
 		"object": bson.M{
-			"type":   e.GetObject().GetType(),
 			"key":    e.GetObject().GetKey(),
 			"values": bson.M(e.GetObject().GetValues().AsMap()),
 		},
@@ -74,7 +73,7 @@ func (p *Provider) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*st
 	}
 	var result bson.M
 
-	if err := p.db.Collection(ref.GetType()).FindOne(ctx, filter).Decode(&result); err != nil {
+	if err := p.db.Collection(collectionName(false, ref.GetTenant(), ref.GetType())).FindOne(ctx, filter).Decode(&result); err != nil {
 		if err == mongo.ErrNoDocuments {
 			return nil, &errorz.Error{
 				Type:     errorz.ErrNotFound,
@@ -91,13 +90,75 @@ func (p *Provider) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*st
 		}
 	}
 	object := &stategate.Object{
-		Type: ref.GetType(),
-		Key:  cast.ToString(result["_id"]),
+		Tenant: ref.GetTenant(),
+		Type:   ref.GetType(),
+		Key:    cast.ToString(result["_id"]),
 	}
 	delete(result, "_id")
 	strct, _ := structpb.NewStruct(result)
 	object.Values = strct
 	return object, nil
+}
+
+func (p *Provider) DelObject(ctx context.Context, ref *stategate.ObjectRef) *errorz.Error {
+	{
+		filter := bson.D{
+			{
+				Key:   "object.key",
+				Value: ref.GetKey(),
+			},
+		}
+
+		if _, err := p.db.Collection(collectionName(true, ref.GetTenant(), ref.GetType())).DeleteMany(ctx, filter); err != nil {
+			if err == mongo.ErrNoDocuments {
+				return &errorz.Error{
+					Type: errorz.ErrNotFound,
+					Info: "failed to find & delete events",
+					Err:  err,
+					Metadata: map[string]string{
+						"object_key":  ref.GetKey(),
+						"object_type": ref.GetType(),
+					},
+				}
+			}
+			return &errorz.Error{
+				Type: errorz.ErrUnknown,
+				Info: "failed to delete events",
+				Err:  err,
+				Metadata: map[string]string{
+					"object_key":  ref.GetKey(),
+					"object_type": ref.GetType(),
+				},
+			}
+		}
+	}
+
+	filter := bson.D{
+		{Key: "_id", Value: ref.GetKey()},
+	}
+	if err := p.db.Collection(collectionName(false, ref.GetTenant(), ref.GetType())).FindOneAndDelete(ctx, filter).Err(); err != nil {
+		if err == mongo.ErrNoDocuments {
+			return &errorz.Error{
+				Type: errorz.ErrNotFound,
+				Info: "failed to find object",
+				Err:  err,
+				Metadata: map[string]string{
+					"object_key":  ref.GetKey(),
+					"object_type": ref.GetType(),
+				},
+			}
+		}
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to delete object",
+			Err:  err,
+			Metadata: map[string]string{
+				"object_key":  ref.GetKey(),
+				"object_type": ref.GetType(),
+			},
+		}
+	}
+	return nil
 }
 
 func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEventOpts) (*stategate.Events, *errorz.Error) {
@@ -108,11 +169,12 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 	if opts.GetOffset() > 0 {
 		o.SetSkip(opts.GetOffset())
 	}
-	filter := bson.D{
-		{
+	filter := bson.D{}
+	if opts.GetKey() != "" {
+		filter = append(filter, bson.E{
 			Key:   "object.key",
 			Value: opts.GetKey(),
-		},
+		})
 	}
 	if opts.Min > 0 {
 		filter = append(filter, bson.E{
@@ -126,7 +188,7 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 			Value: bson.M{"$lte": opts.GetMax()},
 		})
 	}
-	cur, err := p.db.Collection(fmt.Sprintf("%s_events", opts.GetType())).Find(ctx, filter, o)
+	cur, err := p.db.Collection(collectionName(true, opts.GetTenant(), opts.GetType())).Find(ctx, filter, o)
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
 			return nil, &errorz.Error{
@@ -167,7 +229,8 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 			d, _ := structpb.NewStruct(object["values"].(bson.M))
 			e.Object.Values = d
 			e.Object.Key = cast.ToString(object["key"])
-			e.Object.Type = cast.ToString(object["type"])
+			e.Object.Type = opts.GetType()
+			e.Object.Tenant = opts.GetTenant()
 		}
 		claims, ok := r["claims"].(bson.M)
 		if ok {
@@ -187,8 +250,12 @@ func (p *Provider) SearchObjects(ctx context.Context, opts *stategate.SearchObje
 	if opts.GetOffset() > 0 {
 		o.SetSkip(opts.GetOffset())
 	}
+	filter := bson.M{}
+	if opts.GetMatchValues() != nil {
+		filter = opts.GetMatchValues().AsMap()
+	}
 
-	cur, err := p.db.Collection(opts.GetType()).Find(ctx, bson.M(opts.GetMatchValues().AsMap()), o)
+	cur, err := p.db.Collection(collectionName(false, opts.GetTenant(), opts.GetType())).Find(ctx, filter, o)
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
 			return nil, &errorz.Error{
@@ -218,6 +285,7 @@ func (p *Provider) SearchObjects(ctx context.Context, opts *stategate.SearchObje
 	var objects []*stategate.Object
 	for _, r := range results {
 		var o = &stategate.Object{
+			Tenant: opts.GetTenant(),
 			Type:   opts.GetType(),
 			Key:    cast.ToString(r["_id"]),
 			Values: nil,
@@ -234,4 +302,11 @@ func (p *Provider) Close() error {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	return p.db.Client().Disconnect(ctx)
+}
+
+func collectionName(isEvent bool, tenant, typ string) string {
+	if isEvent {
+		return fmt.Sprintf("%s.%s_events", tenant, typ)
+	}
+	return fmt.Sprintf("%s.%s", tenant, typ)
 }

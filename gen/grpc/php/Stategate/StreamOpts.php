@@ -16,7 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class StreamOpts extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * the tenant of the object (ex: acme) that triggered the event
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     */
+    private $tenant = '';
+    /**
+     * the type of the object (ex: user) that triggered the event
+     *
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
 
@@ -26,7 +34,10 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $tenant
+     *           the tenant of the object (ex: acme) that triggered the event
      *     @type string $type
+     *           the type of the object (ex: user) that triggered the event
      * }
      */
     public function __construct($data = NULL) {
@@ -35,7 +46,35 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * the tenant of the object (ex: acme) that triggered the event
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * @return string
+     */
+    public function getTenant()
+    {
+        return $this->tenant;
+    }
+
+    /**
+     * the tenant of the object (ex: acme) that triggered the event
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTenant($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tenant = $var;
+
+        return $this;
+    }
+
+    /**
+     * the type of the object (ex: user) that triggered the event
+     *
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
      */
     public function getType()
@@ -44,7 +83,9 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * the type of the object (ex: user) that triggered the event
+     *
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */

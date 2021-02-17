@@ -124,7 +124,16 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 			group := &errgroup.Group{}
 			group.Go(func() error {
 				count := 0
-				if err := client.StreamEvents(ctx, &stategate.StreamOpts{Type: typ}, func(even *stategate.Event) bool {
+				if err := client.StreamEvents(ctx, &stategate.StreamOpts{
+					Tenant: "acme",
+					Type:   typ,
+				}, func(even *stategate.Event) bool {
+					if err := even.Validate(); err != nil {
+						t.Fatal(err)
+					}
+					if err := even.GetObject().Validate(); err != nil {
+						t.Fatal(err)
+					}
 					t.Logf("received hello world event: %s\n", protojson.Format(even))
 					count++
 					return count < 3
@@ -138,6 +147,7 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 					"message": "hello world",
 				})
 				event := &stategate.Object{
+					Tenant: "acme",
 					Type:   typ,
 					Key:    key,
 					Values: data,
@@ -156,11 +166,12 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				t.Fatal(err)
 			}
 			events, err := client.SearchEvents(ctx, &stategate.SearchEventOpts{
-				Type:  typ,
-				Key:   key,
-				Min:   time.Now().Truncate(1 * time.Minute).UnixNano(),
-				Max:   0,
-				Limit: 3,
+				Tenant: "acme",
+				Type:   typ,
+				Key:    key,
+				Min:    time.Now().Truncate(1 * time.Minute).UnixNano(),
+				Max:    0,
+				Limit:  3,
 			})
 			if err != nil {
 				t.Fatal(err)
@@ -173,6 +184,7 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				"message": "hello world",
 			})
 			objectss, err := client.SearchObjects(ctx, &stategate.SearchObjectOpts{
+				Tenant:      "acme",
 				Type:        typ,
 				MatchValues: matchers,
 				Limit:       3,

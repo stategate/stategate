@@ -372,6 +372,13 @@
             <tbody>
               
                 <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the object&#39;s tenant(ex: acme) </p></td>
+                </tr>
+              
+                <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -409,11 +416,22 @@
               <tbody>
               
                 <tr>
+                  <td>tenant</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
                   <td>type</td>
                   <td>
                     <ul>
                     
-                      <li>string_not_empty: true</li>
+                      <li>regex: ^\S&#43;$</li>
                     
                     </ul>
                   </td>
@@ -424,7 +442,7 @@
                   <td>
                     <ul>
                     
-                      <li>string_not_empty: true</li>
+                      <li>regex: ^\S&#43;$</li>
                     
                     </ul>
                   </td>
@@ -459,6 +477,13 @@
             <tbody>
               
                 <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the object&#39;s tenant(ex: acme) </p></td>
+                </tr>
+              
+                <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -489,11 +514,22 @@
               <tbody>
               
                 <tr>
+                  <td>tenant</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
                   <td>type</td>
                   <td>
                     <ul>
                     
-                      <li>string_not_empty: true</li>
+                      <li>regex: ^\S&#43;$</li>
                     
                     </ul>
                   </td>
@@ -504,7 +540,7 @@
                   <td>
                     <ul>
                     
-                      <li>string_not_empty: true</li>
+                      <li>regex: ^\S&#43;$</li>
                     
                     </ul>
                   </td>
@@ -552,6 +588,13 @@
             <tbody>
               
                 <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the object&#39;s tenant(ex: acme) </p></td>
+                </tr>
+              
+                <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -562,35 +605,35 @@
                   <td>key</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Object key (unique within type) </p></td>
+                  <td><p>filter events belonging to a particular object </p></td>
                 </tr>
               
                 <tr>
                   <td>min</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>only return events that occurred after specified min timestamp </p></td>
+                  <td><p>only return object events that occurred after specified min timestamp </p></td>
                 </tr>
               
                 <tr>
                   <td>max</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>only return events that occurred before specified max timestamp </p></td>
+                  <td><p>only return object events that occurred before specified max timestamp </p></td>
                 </tr>
               
                 <tr>
                   <td>limit</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>limit returned events </p></td>
+                  <td><p>limit returned object events </p></td>
                 </tr>
               
                 <tr>
                   <td>offset</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>offset returned events(pagination) </p></td>
+                  <td><p>offset returned object events(pagination) </p></td>
                 </tr>
               
             </tbody>
@@ -610,22 +653,22 @@
               <tbody>
               
                 <tr>
-                  <td>type</td>
+                  <td>tenant</td>
                   <td>
                     <ul>
                     
-                      <li>string_not_empty: true</li>
+                      <li>regex: ^\S&#43;$</li>
                     
                     </ul>
                   </td>
                 </tr>
               
                 <tr>
-                  <td>key</td>
+                  <td>type</td>
                   <td>
                     <ul>
                     
-                      <li>string_not_empty: true</li>
+                      <li>regex: ^\S&#43;$</li>
                     
                     </ul>
                   </td>
@@ -660,6 +703,13 @@
             <tbody>
               
                 <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the object&#39;s tenant(ex: acme) </p></td>
+                </tr>
+              
+                <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -670,14 +720,14 @@
                   <td>match_values</td>
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td></td>
-                  <td><p>match_values filters records that have matching values </p></td>
+                  <td><p>filter records that match k/v pairs </p></td>
                 </tr>
               
                 <tr>
                   <td>limit</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>limit returned events </p></td>
+                  <td><p>limit returned objects </p></td>
                 </tr>
               
                 <tr>
@@ -704,22 +754,22 @@
               <tbody>
               
                 <tr>
-                  <td>type</td>
+                  <td>tenant</td>
                   <td>
                     <ul>
                     
-                      <li>string_not_empty: true</li>
+                      <li>regex: ^\S&#43;$</li>
                     
                     </ul>
                   </td>
                 </tr>
               
                 <tr>
-                  <td>match_values</td>
+                  <td>type</td>
                   <td>
                     <ul>
                     
-                      <li>msg_exists: true</li>
+                      <li>regex: ^\S&#43;$</li>
                     
                     </ul>
                   </td>
@@ -754,10 +804,17 @@
             <tbody>
               
                 <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the tenant of the object (ex: acme) that triggered the event </p></td>
+                </tr>
+              
+                <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>the type of the object (ex: user) that triggered the event </p></td>
                 </tr>
               
             </tbody>
@@ -777,11 +834,22 @@
               <tbody>
               
                 <tr>
+                  <td>tenant</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
                   <td>type</td>
                   <td>
                     <ul>
                     
-                      <li>string_not_empty: true</li>
+                      <li>regex: ^\S&#43;$</li>
                     
                     </ul>
                   </td>
@@ -830,6 +898,13 @@
               </tr>
             
               <tr>
+                <td>DelObject</td>
+                <td><a href="#stategate.ObjectRef">ObjectRef</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>DelObject hard deletes an object &amp; all of it&#39;s events</p></td>
+              </tr>
+            
+              <tr>
                 <td>StreamEvents</td>
                 <td><a href="#stategate.StreamOpts">StreamOpts</a></td>
                 <td><a href="#stategate.Event">Event</a> stream</td>
@@ -867,7 +942,7 @@ Event Consumers invoke this method.</p></td>
               <tr>
                 <td>SetObject</td>
                 <td>POST</td>
-                <td>/api/{type}/state/{key}</td>
+                <td>/api/{tenant}/{type}/state/{key}</td>
                 <td></td>
               </tr>
               
@@ -877,7 +952,7 @@ Event Consumers invoke this method.</p></td>
               <tr>
                 <td>GetObject</td>
                 <td>GET</td>
-                <td>/api/{type}/state/{key}</td>
+                <td>/api/{tenant}/{type}/state/{key}</td>
                 <td></td>
               </tr>
               
@@ -887,7 +962,17 @@ Event Consumers invoke this method.</p></td>
               <tr>
                 <td>SearchObjects</td>
                 <td>GET</td>
-                <td>/api/{type}/state</td>
+                <td>/api/{tenant}/{type}/state</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>DelObject</td>
+                <td>DELETE</td>
+                <td>/api/{tenant}/{type}/state</td>
                 <td></td>
               </tr>
               
@@ -897,7 +982,7 @@ Event Consumers invoke this method.</p></td>
               <tr>
                 <td>StreamEvents</td>
                 <td>GET</td>
-                <td>/api/{type}/events</td>
+                <td>/api/{tenant}/{type}/events/stream</td>
                 <td></td>
               </tr>
               
@@ -907,7 +992,7 @@ Event Consumers invoke this method.</p></td>
               <tr>
                 <td>SearchEvents</td>
                 <td>GET</td>
-                <td>/api/{type}/events/{key}</td>
+                <td>/api/{tenant}/{type}/events</td>
                 <td></td>
               </tr>
               

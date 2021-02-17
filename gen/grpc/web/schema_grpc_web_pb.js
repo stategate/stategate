@@ -325,6 +325,86 @@ proto.stategate.StateGateServicePromiseClient.prototype.searchObjects =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.stategate.ObjectRef,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodDescriptor_StateGateService_DelObject = new grpc.web.MethodDescriptor(
+  '/stategate.StateGateService/DelObject',
+  grpc.web.MethodType.UNARY,
+  proto.stategate.ObjectRef,
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.stategate.ObjectRef} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.stategate.ObjectRef,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodInfo_StateGateService_DelObject = new grpc.web.AbstractClientBase.MethodInfo(
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.stategate.ObjectRef} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.stategate.ObjectRef} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.stategate.StateGateServiceClient.prototype.delObject =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/stategate.StateGateService/DelObject',
+      request,
+      metadata || {},
+      methodDescriptor_StateGateService_DelObject,
+      callback);
+};
+
+
+/**
+ * @param {!proto.stategate.ObjectRef} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.stategate.StateGateServicePromiseClient.prototype.delObject =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/stategate.StateGateService/DelObject',
+      request,
+      metadata || {},
+      methodDescriptor_StateGateService_DelObject);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.stategate.StreamOpts,
  *   !proto.stategate.Event>}
  */

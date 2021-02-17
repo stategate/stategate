@@ -16,39 +16,45 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchEventOpts extends \Google\Protobuf\Internal\Message
 {
     /**
+     * the object's tenant(ex: acme)
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     */
+    private $tenant = '';
+    /**
      * Object type (ex: user)
      *
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
-     * Object key (unique within type)
+     * filter events belonging to a particular object
      *
-     * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string key = 3;</code>
      */
     private $key = '';
     /**
-     * only return events that occurred after specified min timestamp
+     * only return object events that occurred after specified min timestamp
      *
-     * Generated from protobuf field <code>int64 min = 3;</code>
+     * Generated from protobuf field <code>int64 min = 4;</code>
      */
     private $min = 0;
     /**
-     * only return events that occurred before specified max timestamp
+     * only return object events that occurred before specified max timestamp
      *
-     * Generated from protobuf field <code>int64 max = 4;</code>
+     * Generated from protobuf field <code>int64 max = 5;</code>
      */
     private $max = 0;
     /**
-     * limit returned events
+     * limit returned object events
      *
-     * Generated from protobuf field <code>int64 limit = 5 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>int64 limit = 6 [(.validator.field) = {</code>
      */
     private $limit = 0;
     /**
-     * offset returned events(pagination)
+     * offset returned object events(pagination)
      *
-     * Generated from protobuf field <code>int64 offset = 6;</code>
+     * Generated from protobuf field <code>int64 offset = 7;</code>
      */
     private $offset = 0;
 
@@ -58,18 +64,20 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $tenant
+     *           the object's tenant(ex: acme)
      *     @type string $type
      *           Object type (ex: user)
      *     @type string $key
-     *           Object key (unique within type)
+     *           filter events belonging to a particular object
      *     @type int|string $min
-     *           only return events that occurred after specified min timestamp
+     *           only return object events that occurred after specified min timestamp
      *     @type int|string $max
-     *           only return events that occurred before specified max timestamp
+     *           only return object events that occurred before specified max timestamp
      *     @type int|string $limit
-     *           limit returned events
+     *           limit returned object events
      *     @type int|string $offset
-     *           offset returned events(pagination)
+     *           offset returned object events(pagination)
      * }
      */
     public function __construct($data = NULL) {
@@ -78,9 +86,35 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * the object's tenant(ex: acme)
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * @return string
+     */
+    public function getTenant()
+    {
+        return $this->tenant;
+    }
+
+    /**
+     * the object's tenant(ex: acme)
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTenant($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tenant = $var;
+
+        return $this;
+    }
+
+    /**
      * Object type (ex: user)
      *
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
      */
     public function getType()
@@ -91,7 +125,7 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     /**
      * Object type (ex: user)
      *
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
@@ -104,9 +138,9 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object key (unique within type)
+     * filter events belonging to a particular object
      *
-     * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string key = 3;</code>
      * @return string
      */
     public function getKey()
@@ -115,9 +149,9 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object key (unique within type)
+     * filter events belonging to a particular object
      *
-     * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string key = 3;</code>
      * @param string $var
      * @return $this
      */
@@ -130,9 +164,9 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * only return events that occurred after specified min timestamp
+     * only return object events that occurred after specified min timestamp
      *
-     * Generated from protobuf field <code>int64 min = 3;</code>
+     * Generated from protobuf field <code>int64 min = 4;</code>
      * @return int|string
      */
     public function getMin()
@@ -141,9 +175,9 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * only return events that occurred after specified min timestamp
+     * only return object events that occurred after specified min timestamp
      *
-     * Generated from protobuf field <code>int64 min = 3;</code>
+     * Generated from protobuf field <code>int64 min = 4;</code>
      * @param int|string $var
      * @return $this
      */
@@ -156,9 +190,9 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * only return events that occurred before specified max timestamp
+     * only return object events that occurred before specified max timestamp
      *
-     * Generated from protobuf field <code>int64 max = 4;</code>
+     * Generated from protobuf field <code>int64 max = 5;</code>
      * @return int|string
      */
     public function getMax()
@@ -167,9 +201,9 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * only return events that occurred before specified max timestamp
+     * only return object events that occurred before specified max timestamp
      *
-     * Generated from protobuf field <code>int64 max = 4;</code>
+     * Generated from protobuf field <code>int64 max = 5;</code>
      * @param int|string $var
      * @return $this
      */
@@ -182,9 +216,9 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * limit returned events
+     * limit returned object events
      *
-     * Generated from protobuf field <code>int64 limit = 5 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>int64 limit = 6 [(.validator.field) = {</code>
      * @return int|string
      */
     public function getLimit()
@@ -193,9 +227,9 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * limit returned events
+     * limit returned object events
      *
-     * Generated from protobuf field <code>int64 limit = 5 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>int64 limit = 6 [(.validator.field) = {</code>
      * @param int|string $var
      * @return $this
      */
@@ -208,9 +242,9 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * offset returned events(pagination)
+     * offset returned object events(pagination)
      *
-     * Generated from protobuf field <code>int64 offset = 6;</code>
+     * Generated from protobuf field <code>int64 offset = 7;</code>
      * @return int|string
      */
     public function getOffset()
@@ -219,9 +253,9 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * offset returned events(pagination)
+     * offset returned object events(pagination)
      *
-     * Generated from protobuf field <code>int64 offset = 6;</code>
+     * Generated from protobuf field <code>int64 offset = 7;</code>
      * @param int|string $var
      * @return $this
      */

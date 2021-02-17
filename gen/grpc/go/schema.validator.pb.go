@@ -22,21 +22,36 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+var _regex_ObjectRef_Tenant = regexp.MustCompile(`^\S+$`)
+var _regex_ObjectRef_Type = regexp.MustCompile(`^\S+$`)
+var _regex_ObjectRef_Key = regexp.MustCompile(`^\S+$`)
+
 func (this *ObjectRef) Validate() error {
-	if this.Type == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
+	if !_regex_ObjectRef_Tenant.MatchString(this.Tenant) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Tenant", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Tenant))
 	}
-	if this.Key == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must not be an empty string`, this.Key))
+	if !_regex_ObjectRef_Type.MatchString(this.Type) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
+	}
+	if !_regex_ObjectRef_Key.MatchString(this.Key) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Key))
 	}
 	return nil
 }
+
+var _regex_Object_Tenant = regexp.MustCompile(`^\S+$`)
+var _regex_Object_Type = regexp.MustCompile(`^\S+$`)
+var _regex_Object_Key = regexp.MustCompile(`^\S+$`)
+
 func (this *Object) Validate() error {
-	if this.Type == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
+	if !_regex_Object_Tenant.MatchString(this.Tenant) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Tenant", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Tenant))
 	}
-	if this.Key == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must not be an empty string`, this.Key))
+	if !_regex_Object_Type.MatchString(this.Type) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
+	}
+	if !_regex_Object_Key.MatchString(this.Key) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Key))
 	}
 	if nil == this.Values {
 		return github_com_mwitkow_go_proto_validators.FieldError("Values", fmt.Errorf("message must exist"))
@@ -58,12 +73,16 @@ func (this *Objects) Validate() error {
 	}
 	return nil
 }
+
+var _regex_SearchObjectOpts_Tenant = regexp.MustCompile(`^\S+$`)
+var _regex_SearchObjectOpts_Type = regexp.MustCompile(`^\S+$`)
+
 func (this *SearchObjectOpts) Validate() error {
-	if this.Type == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
+	if !_regex_SearchObjectOpts_Tenant.MatchString(this.Tenant) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Tenant", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Tenant))
 	}
-	if nil == this.MatchValues {
-		return github_com_mwitkow_go_proto_validators.FieldError("MatchValues", fmt.Errorf("message must exist"))
+	if !_regex_SearchObjectOpts_Type.MatchString(this.Type) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
 	}
 	if this.MatchValues != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.MatchValues); err != nil {
@@ -75,21 +94,32 @@ func (this *SearchObjectOpts) Validate() error {
 	}
 	return nil
 }
+
+var _regex_SearchEventOpts_Tenant = regexp.MustCompile(`^\S+$`)
+var _regex_SearchEventOpts_Type = regexp.MustCompile(`^\S+$`)
+
 func (this *SearchEventOpts) Validate() error {
-	if this.Type == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
+	if !_regex_SearchEventOpts_Tenant.MatchString(this.Tenant) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Tenant", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Tenant))
 	}
-	if this.Key == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must not be an empty string`, this.Key))
+	if !_regex_SearchEventOpts_Type.MatchString(this.Type) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
 	}
 	if !(this.Limit > 0) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Limit", fmt.Errorf(`value '%v' must be greater than '0'`, this.Limit))
 	}
 	return nil
 }
+
+var _regex_StreamOpts_Tenant = regexp.MustCompile(`^\S+$`)
+var _regex_StreamOpts_Type = regexp.MustCompile(`^\S+$`)
+
 func (this *StreamOpts) Validate() error {
-	if this.Type == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must not be an empty string`, this.Type))
+	if !_regex_StreamOpts_Tenant.MatchString(this.Tenant) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Tenant", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Tenant))
+	}
+	if !_regex_StreamOpts_Type.MatchString(this.Type) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
 	}
 	return nil
 }

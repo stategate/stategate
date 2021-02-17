@@ -16,27 +16,33 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchObjectOpts extends \Google\Protobuf\Internal\Message
 {
     /**
+     * the object's tenant(ex: acme)
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     */
+    private $tenant = '';
+    /**
      * Object type (ex: user)
      *
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
-     * match_values filters records that have matching values
+     * filter records that match k/v pairs
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct match_values = 3;</code>
      */
     private $match_values = null;
     /**
-     * limit returned events
+     * limit returned objects
      *
-     * Generated from protobuf field <code>int64 limit = 5 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
      */
     private $limit = 0;
     /**
      * offset returned events(pagination)
      *
-     * Generated from protobuf field <code>int64 offset = 6;</code>
+     * Generated from protobuf field <code>int64 offset = 5;</code>
      */
     private $offset = 0;
 
@@ -46,12 +52,14 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $tenant
+     *           the object's tenant(ex: acme)
      *     @type string $type
      *           Object type (ex: user)
      *     @type \Google\Protobuf\Struct $match_values
-     *           match_values filters records that have matching values
+     *           filter records that match k/v pairs
      *     @type int|string $limit
-     *           limit returned events
+     *           limit returned objects
      *     @type int|string $offset
      *           offset returned events(pagination)
      * }
@@ -62,9 +70,35 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * the object's tenant(ex: acme)
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * @return string
+     */
+    public function getTenant()
+    {
+        return $this->tenant;
+    }
+
+    /**
+     * the object's tenant(ex: acme)
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTenant($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tenant = $var;
+
+        return $this;
+    }
+
+    /**
      * Object type (ex: user)
      *
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
      */
     public function getType()
@@ -75,7 +109,7 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     /**
      * Object type (ex: user)
      *
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
@@ -88,9 +122,9 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * match_values filters records that have matching values
+     * filter records that match k/v pairs
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct match_values = 3;</code>
      * @return \Google\Protobuf\Struct
      */
     public function getMatchValues()
@@ -99,9 +133,9 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * match_values filters records that have matching values
+     * filter records that match k/v pairs
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct match_values = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct match_values = 3;</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
@@ -114,9 +148,9 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * limit returned events
+     * limit returned objects
      *
-     * Generated from protobuf field <code>int64 limit = 5 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
      * @return int|string
      */
     public function getLimit()
@@ -125,9 +159,9 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * limit returned events
+     * limit returned objects
      *
-     * Generated from protobuf field <code>int64 limit = 5 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
      * @param int|string $var
      * @return $this
      */
@@ -142,7 +176,7 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     /**
      * offset returned events(pagination)
      *
-     * Generated from protobuf field <code>int64 offset = 6;</code>
+     * Generated from protobuf field <code>int64 offset = 5;</code>
      * @return int|string
      */
     public function getOffset()
@@ -153,7 +187,7 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     /**
      * offset returned events(pagination)
      *
-     * Generated from protobuf field <code>int64 offset = 6;</code>
+     * Generated from protobuf field <code>int64 offset = 5;</code>
      * @param int|string $var
      * @return $this
      */

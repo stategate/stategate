@@ -16,21 +16,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class Object extends \Google\Protobuf\Internal\Message
 {
     /**
+     * the object's tenant(ex: acme)
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     */
+    private $tenant = '';
+    /**
      * Object type (ex: user)
      *
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
      * Object key (unique within type)
      *
-     * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      */
     private $key = '';
     /**
      * Object values (structured k/v pairs)
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct values = 3 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct values = 4 [(.validator.field) = {</code>
      */
     private $values = null;
 
@@ -40,6 +46,8 @@ class Object extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $tenant
+     *           the object's tenant(ex: acme)
      *     @type string $type
      *           Object type (ex: user)
      *     @type string $key
@@ -54,9 +62,35 @@ class Object extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * the object's tenant(ex: acme)
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * @return string
+     */
+    public function getTenant()
+    {
+        return $this->tenant;
+    }
+
+    /**
+     * the object's tenant(ex: acme)
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTenant($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tenant = $var;
+
+        return $this;
+    }
+
+    /**
      * Object type (ex: user)
      *
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
      */
     public function getType()
@@ -67,7 +101,7 @@ class Object extends \Google\Protobuf\Internal\Message
     /**
      * Object type (ex: user)
      *
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
@@ -82,7 +116,7 @@ class Object extends \Google\Protobuf\Internal\Message
     /**
      * Object key (unique within type)
      *
-     * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @return string
      */
     public function getKey()
@@ -93,7 +127,7 @@ class Object extends \Google\Protobuf\Internal\Message
     /**
      * Object key (unique within type)
      *
-     * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
@@ -108,7 +142,7 @@ class Object extends \Google\Protobuf\Internal\Message
     /**
      * Object values (structured k/v pairs)
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct values = 3 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct values = 4 [(.validator.field) = {</code>
      * @return \Google\Protobuf\Struct
      */
     public function getValues()
@@ -119,7 +153,7 @@ class Object extends \Google\Protobuf\Internal\Message
     /**
      * Object values (structured k/v pairs)
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct values = 3 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct values = 4 [(.validator.field) = {</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */

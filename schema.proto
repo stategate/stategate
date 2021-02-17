@@ -16,52 +16,62 @@ service StateGateService {
   // SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
   rpc SetObject(Object) returns(google.protobuf.Empty){
     option (google.api.http) = {
-      post: "/api/{type}/state/{key}"
+      post: "/api/{tenant}/{type}/state/{key}"
     };
   }
   // GetObject gets an object's current state values
   rpc GetObject(ObjectRef) returns(Object){
     option (google.api.http) = {
-      get: "/api/{type}/state/{key}"
+      get: "/api/{tenant}/{type}/state/{key}"
     };
   }
   // SearchObjects queries objects of a specific type
   rpc SearchObjects(SearchObjectOpts) returns(Objects){
     option (google.api.http) = {
-      get: "/api/{type}/state"
+      get: "/api/{tenant}/{type}/state"
+    };
+  }
+  // DelObject hard deletes an object & all of it's events
+  rpc DelObject(ObjectRef) returns(google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/{tenant}/{type}/state"
     };
   }
   // StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
   // Event Consumers invoke this method.
   rpc StreamEvents(StreamOpts) returns(stream Event){
     option (google.api.http) = {
-      get: "/api/{type}/events"
+      get: "/api/{tenant}/{type}/events/stream"
     };
   }
   // SearchEvents queries events related to a specific object.
   rpc SearchEvents(SearchEventOpts) returns(Events){
     option (google.api.http) = {
-      get: "/api/{type}/events/{key}"
+      get: "/api/{tenant}/{type}/events"
     };
   }
 }
 
 // ObjectRef is a reference to an existing object
 message ObjectRef {
+  // the object's tenant(ex: acme)
+  string tenant =1[(validator.field) = {regex : "^\\S+$"}];
   // Object type (ex: user)
-  string type =1[(validator.field) = {string_not_empty : true}];
+  string type =2[(validator.field) = {regex : "^\\S+$"}];
   // Object key (unique within type)
-  string key =2[(validator.field) = {string_not_empty : true}];
+  string key =3[(validator.field) = {regex : "^\\S+$"}];
 }
 
 // Object hold's the current state of an object
 message Object {
+  // the object's tenant(ex: acme)
+  string tenant =1[(validator.field) = {regex : "^\\S+$"}];
   // Object type (ex: user)
-  string type =1[(validator.field) = {string_not_empty : true}];
+  string type =2[(validator.field) = {regex : "^\\S+$"}];
   // Object key (unique within type)
-  string key =2[(validator.field) = {string_not_empty : true}];
+  string key =3[(validator.field) = {regex : "^\\S+$"}];
   // Object values (structured k/v pairs)
-  google.protobuf.Struct values = 3[(validator.field) = {msg_exists : true}];
+  google.protobuf.Struct values = 4[(validator.field) = {msg_exists : true}];
 }
 
 // Objects is an array of Object
@@ -71,35 +81,42 @@ message Objects {
 
 // SearchObjectOpts are options when querying historical events for a given object
 message SearchObjectOpts {
+  // the object's tenant(ex: acme)
+  string tenant =1[(validator.field) = {regex : "^\\S+$"}];
   // Object type (ex: user)
-  string type =1[(validator.field) = {string_not_empty : true}];
-  // match_values filters records that have matching values
-  google.protobuf.Struct match_values = 2[(validator.field) = {msg_exists : true}];
-  // limit returned events
-  int64 limit =5[(validator.field) = {int_gt : 0}];
+  string type =2[(validator.field) = {regex : "^\\S+$"}];
+  // filter records that match k/v pairs
+  google.protobuf.Struct match_values = 3;
+  // limit returned objects
+  int64 limit =4[(validator.field) = {int_gt : 0}];
   // offset returned events(pagination)
-  int64 offset =6;
+  int64 offset =5;
 }
 
 // SearchEventOpts are options when querying historical events for a given object
 message SearchEventOpts {
+  // the object's tenant(ex: acme)
+  string tenant =1[(validator.field) = {regex : "^\\S+$"}];
   // Object type (ex: user)
-  string type =1[(validator.field) = {string_not_empty : true}];
-  // Object key (unique within type)
-  string key =2[(validator.field) = {string_not_empty : true}];
-  // only return events that occurred after specified min timestamp
-  int64 min = 3;
-  // only return events that occurred before specified max timestamp
-  int64 max = 4;
-  // limit returned events
-  int64 limit =5[(validator.field) = {int_gt : 0}];
-  // offset returned events(pagination)
-  int64 offset =6;
+  string type =2[(validator.field) = {regex : "^\\S+$"}];
+  // filter events belonging to a particular object
+  string key = 3;
+  // only return object events that occurred after specified min timestamp
+  int64 min = 4;
+  // only return object events that occurred before specified max timestamp
+  int64 max = 5;
+  // limit returned object events
+  int64 limit =6[(validator.field) = {int_gt : 0}];
+  // offset returned object events(pagination)
+  int64 offset =7;
 }
 
 // StreamOpts are options for consumers looking to stream events
 message StreamOpts {
-  string type =1[(validator.field) = {string_not_empty : true}];
+  // the tenant of the object (ex: acme) that triggered the event
+  string tenant =1[(validator.field) = {regex : "^\\S+$"}];
+  // the type of the object (ex: user) that triggered the event
+  string type =2[(validator.field) = {regex : "^\\S+$"}];
 }
 
 // Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.

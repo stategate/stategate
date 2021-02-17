@@ -30,6 +30,13 @@ export class StateGateServiceClient {
                response: schema_pb.Objects) => void
   ): grpcWeb.ClientReadableStream<schema_pb.Objects>;
 
+  delObject(
+    request: schema_pb.ObjectRef,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: google_protobuf_empty_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
   streamEvents(
     request: schema_pb.StreamOpts,
     metadata?: grpcWeb.Metadata
@@ -63,6 +70,11 @@ export class StateGateServicePromiseClient {
     request: schema_pb.SearchObjectOpts,
     metadata?: grpcWeb.Metadata
   ): Promise<schema_pb.Objects>;
+
+  delObject(
+    request: schema_pb.ObjectRef,
+    metadata?: grpcWeb.Metadata
+  ): Promise<google_protobuf_empty_pb.Empty>;
 
   streamEvents(
     request: schema_pb.StreamOpts,

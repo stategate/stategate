@@ -16,15 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class ObjectRef extends \Google\Protobuf\Internal\Message
 {
     /**
+     * the object's tenant(ex: acme)
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     */
+    private $tenant = '';
+    /**
      * Object type (ex: user)
      *
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
      * Object key (unique within type)
      *
-     * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      */
     private $key = '';
 
@@ -34,6 +40,8 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $tenant
+     *           the object's tenant(ex: acme)
      *     @type string $type
      *           Object type (ex: user)
      *     @type string $key
@@ -46,9 +54,35 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * the object's tenant(ex: acme)
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * @return string
+     */
+    public function getTenant()
+    {
+        return $this->tenant;
+    }
+
+    /**
+     * the object's tenant(ex: acme)
+     *
+     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTenant($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tenant = $var;
+
+        return $this;
+    }
+
+    /**
      * Object type (ex: user)
      *
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
      */
     public function getType()
@@ -59,7 +93,7 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
     /**
      * Object type (ex: user)
      *
-     * Generated from protobuf field <code>string type = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
@@ -74,7 +108,7 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
     /**
      * Object key (unique within type)
      *
-     * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @return string
      */
     public function getKey()
@@ -85,7 +119,7 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
     /**
      * Object key (unique within type)
      *
-     * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
