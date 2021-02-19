@@ -112,40 +112,6 @@ func (p *Provider) GetState(ctx context.Context, ref *stategate.StateRef) (*stat
 }
 
 func (p *Provider) DelState(ctx context.Context, ref *stategate.StateRef) *errorz.Error {
-	{
-		filter := bson.D{
-			{
-				Key:   "state.key",
-				Value: ref.GetKey(),
-			},
-		}
-
-		if _, err := p.db.Collection(collectionName(true, ref.GetDomain(), ref.GetType())).DeleteMany(ctx, filter); err != nil {
-			if err == mongo.ErrNoDocuments {
-				return &errorz.Error{
-					Type: errorz.ErrNotFound,
-					Info: "failed to find & delete events",
-					Err:  err,
-					Metadata: map[string]string{
-						"state_key":    ref.GetKey(),
-						"state_type":   ref.GetType(),
-						"state_domain": ref.GetDomain(),
-					},
-				}
-			}
-			return &errorz.Error{
-				Type: errorz.ErrUnknown,
-				Info: "failed to delete events",
-				Err:  err,
-				Metadata: map[string]string{
-					"state_key":    ref.GetKey(),
-					"state_type":   ref.GetType(),
-					"state_domain": ref.GetDomain(),
-				},
-			}
-		}
-	}
-
 	filter := bson.D{
 		{Key: "_id", Value: ref.GetKey()},
 	}

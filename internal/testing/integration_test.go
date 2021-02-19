@@ -34,6 +34,7 @@ func testRedisMongo(t *testing.T) {
 		rmgo,
 	}, []*framework.TestCase{
 		helloWorld(ctx),
+		transaction(ctx),
 	})
 }
 
@@ -48,6 +49,7 @@ func testNatsMongo(t *testing.T) {
 		nmgo,
 	}, []*framework.TestCase{
 		helloWorld(ctx),
+		transaction(ctx),
 	})
 }
 
@@ -60,6 +62,7 @@ func testInMemMongo(t *testing.T) {
 		mgo,
 	}, []*framework.TestCase{
 		helloWorld(ctx),
+		transaction(ctx),
 	})
 }
 
@@ -113,6 +116,52 @@ func inmemMongo(t *testing.T, ctx context.Context, mongoPort string) *framework.
 			"database": "testing",
 		},
 	})
+}
+
+func transaction(ctx context.Context) *framework.TestCase {
+	return &framework.TestCase{
+		Name: "distributed_transaction",
+		Func: func(t *testing.T, eclient *stategate_client_go.EventClient, oclient *stategate_client_go.StateClient) {
+			group, ctx := errgroup.WithContext(ctx)
+			var (
+				typ = "user"
+				key = fmt.Sprintf("testing_%v", time.Now().UnixNano())
+			)
+
+			group.Go(func() error {
+				return eclient.Stream(ctx, &stategate.StreamOpts{
+					Domain: "accounting",
+					Type:   typ,
+				}, func(even *stategate.Event) bool {
+					t.Logf("got streamed event: %s", even.String())
+					return false
+				})
+			})
+
+			data, _ := structpb.NewStruct(map[string]interface{}{
+				"name": "coleman",
+			})
+			if err := oclient.Set(ctx, &stategate.State{
+				Domain: "accounting",
+				Type:   typ,
+				Key:    key,
+				Values: data,
+			}); err != nil {
+				t.Fatal(err)
+			}
+			_, err := oclient.Get(ctx, &stategate.StateRef{
+				Domain: "accounting",
+				Type:   typ,
+				Key:    key,
+			})
+			if err != nil {
+				t.Fatal(err)
+			}
+			if err := group.Wait(); err != nil {
+				t.Fatal(err.Error())
+			}
+		},
+	}
 }
 
 func helloWorld(ctx context.Context) *framework.TestCase {

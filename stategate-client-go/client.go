@@ -249,6 +249,12 @@ func (c *StateClient) Set(ctx context.Context, in *stategate.State) error {
 	return err
 }
 
+// Del deletes an application state value(k/v pairs)
+func (c *StateClient) Del(ctx context.Context, in *stategate.StateRef) error {
+	_, err := c.client.Del(ctx, in)
+	return err
+}
+
 // Close closes the gRPC client connection
 func (c *StateClient) Close() error {
 	return c.conn.Close()
