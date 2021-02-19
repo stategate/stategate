@@ -98,7 +98,7 @@
     },
     "/api/events/stream": {
       "get": {
-        "summary": "Stream creates an event stream/subscription to a given application state value type until fn returns false OR the context cancels.",
+        "summary": "Stream creates an event stream/subscription to a given state type/domain. Glob matching is supported.",
         "operationId": "EventService_Stream",
         "responses": {
           "200": {
@@ -126,14 +126,14 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the domain of the application state value (ex: acme) that triggered the event.",
+            "description": "the domain of the application state value (ex: acme) that triggered the event\n* indicates any domain.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "the type of the application state value (ex: user) that triggered the event.",
+            "description": "the type of the application state value (ex: user) that triggered the event\n* indicates any type.",
             "in": "query",
             "required": false,
             "type": "string"

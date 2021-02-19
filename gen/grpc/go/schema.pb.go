@@ -427,8 +427,10 @@ type StreamOpts struct {
 	unknownFields protoimpl.UnknownFields
 
 	// the domain of the application state value (ex: acme) that triggered the event
+	// * indicates any domain
 	Domain string `protobuf:"bytes,1,opt,name=domain,proto3" json:"domain,omitempty"`
 	// the type of the application state value (ex: user) that triggered the event
+	// * indicates any type
 	Type string `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
 }
 
@@ -1102,7 +1104,7 @@ var _StateService_serviceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type EventServiceClient interface {
-	// Stream creates an event stream/subscription to a given application state value type until fn returns false OR the context cancels.
+	// Stream creates an event stream/subscription to a given state type/domain. Glob matching is supported.
 	Stream(ctx context.Context, in *StreamOpts, opts ...grpc.CallOption) (EventService_StreamClient, error)
 	// Search queries events related to a specific application state value.
 	Search(ctx context.Context, in *SearchEventOpts, opts ...grpc.CallOption) (*Events, error)
@@ -1159,7 +1161,7 @@ func (c *eventServiceClient) Search(ctx context.Context, in *SearchEventOpts, op
 
 // EventServiceServer is the server API for EventService service.
 type EventServiceServer interface {
-	// Stream creates an event stream/subscription to a given application state value type until fn returns false OR the context cancels.
+	// Stream creates an event stream/subscription to a given state type/domain. Glob matching is supported.
 	Stream(*StreamOpts, EventService_StreamServer) error
 	// Search queries events related to a specific application state value.
 	Search(context.Context, *SearchEventOpts) (*Events, error)

@@ -818,14 +818,16 @@
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the domain of the application state value (ex: acme) that triggered the event </p></td>
+                  <td><p>the domain of the application state value (ex: acme) that triggered the event
+* indicates any domain </p></td>
                 </tr>
               
                 <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the type of the application state value (ex: user) that triggered the event </p></td>
+                  <td><p>the type of the application state value (ex: user) that triggered the event
+* indicates any type </p></td>
                 </tr>
               
             </tbody>
@@ -891,7 +893,7 @@
                 <td>Stream</td>
                 <td><a href="#stategate.StreamOpts">StreamOpts</a></td>
                 <td><a href="#stategate.Event">Event</a> stream</td>
-                <td><p>Stream creates an event stream/subscription to a given application state value type until fn returns false OR the context cancels.</p></td>
+                <td><p>Stream creates an event stream/subscription to a given state type/domain. Glob matching is supported.</p></td>
               </tr>
             
               <tr>

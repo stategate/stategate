@@ -1290,6 +1290,7 @@ namespace Stategate {
     private string domain_ = "";
     /// <summary>
     /// the domain of the application state value (ex: acme) that triggered the event
+    /// * indicates any domain
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -1304,6 +1305,7 @@ namespace Stategate {
     private string type_ = "";
     /// <summary>
     /// the type of the application state value (ex: user) that triggered the event
+    /// * indicates any type
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {

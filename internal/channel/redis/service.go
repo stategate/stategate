@@ -29,9 +29,9 @@ func (s *Service) Publish(ctx context.Context, event *stategate.Event) *errorz.E
 			Info: "failed to encode event",
 			Err:  err,
 			Metadata: map[string]string{
-				"object_key":  event.GetState().GetKey(),
-				"object_type": event.GetState().GetType(),
-				"event_id":    event.GetId(),
+				"state_key":  event.GetState().GetKey(),
+				"state_type": event.GetState().GetType(),
+				"event_id":   event.GetId(),
 			},
 		}
 	}
@@ -41,9 +41,9 @@ func (s *Service) Publish(ctx context.Context, event *stategate.Event) *errorz.E
 			Info: "failed to publish event",
 			Err:  err,
 			Metadata: map[string]string{
-				"object_key":  event.GetState().GetKey(),
-				"object_type": event.GetState().GetType(),
-				"event_id":    event.GetId(),
+				"state_key":  event.GetState().GetKey(),
+				"state_type": event.GetState().GetType(),
+				"event_id":   event.GetId(),
 			},
 		}
 	}

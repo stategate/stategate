@@ -21,7 +21,7 @@ What is Event Sourcing?
     - `/stategate.StateService/Get` gets an application state value(k/v pairs)
     - `/stategate.StateService/Del` deletes an application state value(k/v pairs)
     - `/stategate.StateService/Search` queries application state of a specific type/domain
-    - `/stategate.EventService/Stream` creates an event stream/subscription to a given state type/domain
+    - `/stategate.EventService/Stream` creates an event stream/subscription to a given state type/domain. Glob matching is supported.
     - `/stategate.EventService/Search` queries historical events
 - [x] Capture all changes to an application's state as a sequence of events.
 - [x] Stateless & horizontally scaleable

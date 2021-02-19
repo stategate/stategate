@@ -13,7 +13,6 @@ import (
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
 	"go.uber.org/zap"
-	"golang.org/x/sync/errgroup"
 	"google.golang.org/protobuf/types/known/structpb"
 	"time"
 )
@@ -56,7 +55,6 @@ func NewService(storage storage.Provider, channel channel.Provider, lgger *logge
 
 func (s Service) setState(ctx context.Context, object *stategate.State) (*empty.Empty, error) {
 	c, _ := auth.GetContext(ctx)
-	group := &errgroup.Group{}
 	claims, _ := structpb.NewStruct(c.Claims)
 
 	e := &stategate.Event{
@@ -65,23 +63,15 @@ func (s Service) setState(ctx context.Context, object *stategate.State) (*empty.
 		Claims: claims,
 		Time:   time.Now().UnixNano(),
 	}
-	group.Go(func() error {
-		if err := s.storage.SetState(ctx, object); err != nil {
-			err.Log(s.lgger)
-			return err.Public()
-		}
-		return nil
-	})
-	group.Go(func() error {
-		if err := s.storage.SaveEvent(ctx, e); err != nil {
-			err.Log(s.lgger)
-			return err.Public()
-		}
-		return nil
-	})
-	if err := group.Wait(); err != nil {
-		return nil, err
+	if err := s.storage.SetState(ctx, object); err != nil {
+		err.Log(s.lgger)
+		return nil, err.Public()
 	}
+	if err := s.storage.SaveEvent(ctx, e); err != nil {
+		err.Log(s.lgger)
+		return nil, err.Public()
+	}
+
 	if err := s.channel.Publish(ctx, e); err != nil {
 		err.Log(s.lgger)
 		return nil, err.Public()
@@ -107,7 +97,7 @@ func (s Service) delState(ctx context.Context, ref *stategate.StateRef) (*empty.
 }
 
 func (s Service) streamEvents(opts *stategate.StreamOpts, server stategate.EventService_StreamServer) error {
-	if err := s.ps.Subscribe(server.Context(), channelName(opts.GetDomain(), opts.GetType()), "", func(msg interface{}) bool {
+	if err := s.ps.Subscribe(server.Context(), channelName(opts.GetDomain(), opts.GetType()), func(msg interface{}) bool {
 		if err := server.Send(msg.(*stategate.Event)); err != nil {
 			e := &errorz.Error{
 				Type:     errorz.ErrUnknown,

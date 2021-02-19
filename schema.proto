@@ -86,7 +86,7 @@ message SearchStateOpts {
 
 // EventService serves API methods related to stategate Event Consumers
 service EventService {
-  // Stream creates an event stream/subscription to a given application state value type until fn returns false OR the context cancels.
+  // Stream creates an event stream/subscription to a given state type/domain. Glob matching is supported.
   rpc Stream(StreamOpts) returns(stream Event) {
     option (google.api.http) = {
       get: "/api/events/stream"
@@ -123,8 +123,10 @@ message SearchEventOpts {
 // StreamOpts are options for consumers looking to stream events
 message StreamOpts {
   // the domain of the application state value (ex: acme) that triggered the event
+  // * indicates any domain
   string domain =1[(validator.field) = {regex : "^\\S+$"}];
   // the type of the application state value (ex: user) that triggered the event
+  // * indicates any type
   string type =2[(validator.field) = {regex : "^\\S+$"}];
 }
 

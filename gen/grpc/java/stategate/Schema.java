@@ -5506,6 +5506,7 @@ public final class Schema {
     /**
      * <pre>
      * the domain of the application state value (ex: acme) that triggered the event
+     * * indicates any domain
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -5514,6 +5515,7 @@ public final class Schema {
     /**
      * <pre>
      * the domain of the application state value (ex: acme) that triggered the event
+     * * indicates any domain
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -5524,6 +5526,7 @@ public final class Schema {
     /**
      * <pre>
      * the type of the application state value (ex: user) that triggered the event
+     * * indicates any type
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -5532,6 +5535,7 @@ public final class Schema {
     /**
      * <pre>
      * the type of the application state value (ex: user) that triggered the event
+     * * indicates any type
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -5633,6 +5637,7 @@ public final class Schema {
     /**
      * <pre>
      * the domain of the application state value (ex: acme) that triggered the event
+     * * indicates any domain
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -5652,6 +5657,7 @@ public final class Schema {
     /**
      * <pre>
      * the domain of the application state value (ex: acme) that triggered the event
+     * * indicates any domain
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -5675,6 +5681,7 @@ public final class Schema {
     /**
      * <pre>
      * the type of the application state value (ex: user) that triggered the event
+     * * indicates any type
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -5694,6 +5701,7 @@ public final class Schema {
     /**
      * <pre>
      * the type of the application state value (ex: user) that triggered the event
+     * * indicates any type
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -6040,6 +6048,7 @@ public final class Schema {
       /**
        * <pre>
        * the domain of the application state value (ex: acme) that triggered the event
+       * * indicates any domain
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -6059,6 +6068,7 @@ public final class Schema {
       /**
        * <pre>
        * the domain of the application state value (ex: acme) that triggered the event
+       * * indicates any domain
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -6079,6 +6089,7 @@ public final class Schema {
       /**
        * <pre>
        * the domain of the application state value (ex: acme) that triggered the event
+       * * indicates any domain
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -6096,6 +6107,7 @@ public final class Schema {
       /**
        * <pre>
        * the domain of the application state value (ex: acme) that triggered the event
+       * * indicates any domain
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -6109,6 +6121,7 @@ public final class Schema {
       /**
        * <pre>
        * the domain of the application state value (ex: acme) that triggered the event
+       * * indicates any domain
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -6129,6 +6142,7 @@ public final class Schema {
       /**
        * <pre>
        * the type of the application state value (ex: user) that triggered the event
+       * * indicates any type
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -6148,6 +6162,7 @@ public final class Schema {
       /**
        * <pre>
        * the type of the application state value (ex: user) that triggered the event
+       * * indicates any type
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -6168,6 +6183,7 @@ public final class Schema {
       /**
        * <pre>
        * the type of the application state value (ex: user) that triggered the event
+       * * indicates any type
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -6185,6 +6201,7 @@ public final class Schema {
       /**
        * <pre>
        * the type of the application state value (ex: user) that triggered the event
+       * * indicates any type
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -6198,6 +6215,7 @@ public final class Schema {
       /**
        * <pre>
        * the type of the application state value (ex: user) that triggered the event
+       * * indicates any type
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>

@@ -17,12 +17,14 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
 {
     /**
      * the domain of the application state value (ex: acme) that triggered the event
+     * * indicates any domain
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
     private $domain = '';
     /**
      * the type of the application state value (ex: user) that triggered the event
+     * * indicates any type
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
@@ -36,8 +38,10 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
      *
      *     @type string $domain
      *           the domain of the application state value (ex: acme) that triggered the event
+     *           * indicates any domain
      *     @type string $type
      *           the type of the application state value (ex: user) that triggered the event
+     *           * indicates any type
      * }
      */
     public function __construct($data = NULL) {
@@ -47,6 +51,7 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
 
     /**
      * the domain of the application state value (ex: acme) that triggered the event
+     * * indicates any domain
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
@@ -58,6 +63,7 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
 
     /**
      * the domain of the application state value (ex: acme) that triggered the event
+     * * indicates any domain
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -73,6 +79,7 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
 
     /**
      * the type of the application state value (ex: user) that triggered the event
+     * * indicates any type
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
@@ -84,6 +91,7 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
 
     /**
      * the type of the application state value (ex: user) that triggered the event
+     * * indicates any type
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
