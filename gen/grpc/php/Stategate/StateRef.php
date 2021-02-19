@@ -9,26 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ObjectRef is a reference to an existing object
+ * StateRef is a reference to an existing application state value
  *
- * Generated from protobuf message <code>stategate.ObjectRef</code>
+ * Generated from protobuf message <code>stategate.StateRef</code>
  */
-class ObjectRef extends \Google\Protobuf\Internal\Message
+class StateRef extends \Google\Protobuf\Internal\Message
 {
     /**
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
     private $domain = '';
     /**
-     * Object type (ex: user)
+     * State type (ex: user)
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
-     * Object key (unique within type)
+     * State key (unique within type)
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      */
@@ -41,11 +41,11 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $domain
-     *           the object's business domain(ex: accounting)
+     *           the application state value's business domain(ex: accounting)
      *     @type string $type
-     *           Object type (ex: user)
+     *           State type (ex: user)
      *     @type string $key
-     *           Object key (unique within type)
+     *           State key (unique within type)
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +54,7 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
@@ -65,7 +65,7 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -80,7 +80,7 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object type (ex: user)
+     * State type (ex: user)
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
@@ -91,7 +91,7 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object type (ex: user)
+     * State type (ex: user)
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
@@ -106,7 +106,7 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object key (unique within type)
+     * State key (unique within type)
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @return string
@@ -117,7 +117,7 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object key (unique within type)
+     * State key (unique within type)
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @param string $var

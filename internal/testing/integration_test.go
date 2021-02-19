@@ -118,7 +118,7 @@ func inmemMongo(t *testing.T, ctx context.Context, mongoPort string) *framework.
 func helloWorld(ctx context.Context) *framework.TestCase {
 	return &framework.TestCase{
 		Name: "hello_world",
-		Func: func(t *testing.T, eclient *stategate_client_go.EventClient, oclient *stategate_client_go.ObjectClient) {
+		Func: func(t *testing.T, eclient *stategate_client_go.EventClient, oclient *stategate_client_go.StateClient) {
 			const typ = "message"
 			const key = "favorite_quote"
 			group := &errgroup.Group{}
@@ -131,7 +131,7 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 					if err := even.Validate(); err != nil {
 						t.Fatal(err)
 					}
-					if err := even.GetObject().Validate(); err != nil {
+					if err := even.GetState().Validate(); err != nil {
 						t.Fatal(err)
 					}
 					t.Logf("received hello world event: %s\n", protojson.Format(even))
@@ -146,7 +146,7 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				data, _ := structpb.NewStruct(map[string]interface{}{
 					"message": "hello world",
 				})
-				event := &stategate.Object{
+				event := &stategate.State{
 					Domain: "acme",
 					Type:   typ,
 					Key:    key,
@@ -180,7 +180,7 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				t.Fatalf("expected 3 events got: %v", len(events.Events))
 			}
 			t.Log(protojson.Format(events))
-			objectss, err := oclient.Search(ctx, &stategate.SearchObjectOpts{
+			objectss, err := oclient.Search(ctx, &stategate.SearchStateOpts{
 				Domain:      "acme",
 				Type:        typ,
 				QueryString: `{ "message": "hello world" }`,
@@ -190,8 +190,8 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if len(objectss.Objects) != 1 {
-				t.Fatalf("expected 1 object got: %v", len(objectss.Objects))
+			if len(objectss.StateValues) != 1 {
+				t.Fatalf("expected 1 object got: %v", len(objectss.StateValues))
 			}
 			t.Log(protojson.Format(objectss))
 		},

@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class StreamOpts extends \Google\Protobuf\Internal\Message
 {
     /**
-     * the domain of the object (ex: acme) that triggered the event
+     * the domain of the application state value (ex: acme) that triggered the event
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
     private $domain = '';
     /**
-     * the type of the object (ex: user) that triggered the event
+     * the type of the application state value (ex: user) that triggered the event
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
@@ -35,9 +35,9 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $domain
-     *           the domain of the object (ex: acme) that triggered the event
+     *           the domain of the application state value (ex: acme) that triggered the event
      *     @type string $type
-     *           the type of the object (ex: user) that triggered the event
+     *           the type of the application state value (ex: user) that triggered the event
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the domain of the object (ex: acme) that triggered the event
+     * the domain of the application state value (ex: acme) that triggered the event
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
@@ -57,7 +57,7 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the domain of the object (ex: acme) that triggered the event
+     * the domain of the application state value (ex: acme) that triggered the event
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -72,7 +72,7 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the type of the object (ex: user) that triggered the event
+     * the type of the application state value (ex: user) that triggered the event
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
@@ -83,7 +83,7 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the type of the object (ex: user) that triggered the event
+     * the type of the application state value (ex: user) that triggered the event
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var

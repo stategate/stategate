@@ -32,11 +32,11 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_ObjectService_Set_0 = &utilities.DoubleArray{Encoding: map[string]int{"domain": 0, "type": 1, "key": 2}, Base: []int{1, 1, 2, 3, 0, 0, 0}, Check: []int{0, 1, 1, 1, 2, 3, 4}}
+	filter_StateService_Set_0 = &utilities.DoubleArray{Encoding: map[string]int{"domain": 0, "type": 1, "key": 2}, Base: []int{1, 1, 2, 3, 0, 0, 0}, Check: []int{0, 1, 1, 1, 2, 3, 4}}
 )
 
-func request_ObjectService_Set_0(ctx context.Context, marshaler runtime.Marshaler, client ObjectServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Object
+func request_StateService_Set_0(ctx context.Context, marshaler runtime.Marshaler, client StateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq State
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -79,7 +79,7 @@ func request_ObjectService_Set_0(ctx context.Context, marshaler runtime.Marshale
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ObjectService_Set_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StateService_Set_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -88,8 +88,8 @@ func request_ObjectService_Set_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_ObjectService_Set_0(ctx context.Context, marshaler runtime.Marshaler, server ObjectServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Object
+func local_request_StateService_Set_0(ctx context.Context, marshaler runtime.Marshaler, server StateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq State
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -132,7 +132,7 @@ func local_request_ObjectService_Set_0(ctx context.Context, marshaler runtime.Ma
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ObjectService_Set_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StateService_Set_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -141,8 +141,8 @@ func local_request_ObjectService_Set_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_ObjectService_Get_0(ctx context.Context, marshaler runtime.Marshaler, client ObjectServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ObjectRef
+func request_StateService_Get_0(ctx context.Context, marshaler runtime.Marshaler, client StateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq StateRef
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -187,8 +187,8 @@ func request_ObjectService_Get_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_ObjectService_Get_0(ctx context.Context, marshaler runtime.Marshaler, server ObjectServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ObjectRef
+func local_request_StateService_Get_0(ctx context.Context, marshaler runtime.Marshaler, server StateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq StateRef
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -233,8 +233,8 @@ func local_request_ObjectService_Get_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_ObjectService_Del_0(ctx context.Context, marshaler runtime.Marshaler, client ObjectServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ObjectRef
+func request_StateService_Del_0(ctx context.Context, marshaler runtime.Marshaler, client StateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq StateRef
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -279,8 +279,8 @@ func request_ObjectService_Del_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_ObjectService_Del_0(ctx context.Context, marshaler runtime.Marshaler, server ObjectServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ObjectRef
+func local_request_StateService_Del_0(ctx context.Context, marshaler runtime.Marshaler, server StateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq StateRef
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -326,17 +326,17 @@ func local_request_ObjectService_Del_0(ctx context.Context, marshaler runtime.Ma
 }
 
 var (
-	filter_ObjectService_Search_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_StateService_Search_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_ObjectService_Search_0(ctx context.Context, marshaler runtime.Marshaler, client ObjectServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SearchObjectOpts
+func request_StateService_Search_0(ctx context.Context, marshaler runtime.Marshaler, client StateServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SearchStateOpts
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ObjectService_Search_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StateService_Search_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -345,14 +345,14 @@ func request_ObjectService_Search_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_ObjectService_Search_0(ctx context.Context, marshaler runtime.Marshaler, server ObjectServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SearchObjectOpts
+func local_request_StateService_Search_0(ctx context.Context, marshaler runtime.Marshaler, server StateServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SearchStateOpts
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ObjectService_Search_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StateService_Search_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -425,24 +425,24 @@ func local_request_EventService_Search_0(ctx context.Context, marshaler runtime.
 
 }
 
-// RegisterObjectServiceHandlerServer registers the http handlers for service ObjectService to "mux".
-// UnaryRPC     :call ObjectServiceServer directly.
+// RegisterStateServiceHandlerServer registers the http handlers for service StateService to "mux".
+// UnaryRPC     :call StateServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterObjectServiceHandlerFromEndpoint instead.
-func RegisterObjectServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ObjectServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterStateServiceHandlerFromEndpoint instead.
+func RegisterStateServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server StateServiceServer) error {
 
-	mux.Handle("POST", pattern_ObjectService_Set_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_StateService_Set_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/stategate.ObjectService/Set")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/stategate.StateService/Set")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ObjectService_Set_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StateService_Set_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -450,22 +450,22 @@ func RegisterObjectServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_ObjectService_Set_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateService_Set_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ObjectService_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StateService_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/stategate.ObjectService/Get")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/stategate.StateService/Get")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ObjectService_Get_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StateService_Get_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -473,22 +473,22 @@ func RegisterObjectServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_ObjectService_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateService_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_ObjectService_Del_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_StateService_Del_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/stategate.ObjectService/Del")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/stategate.StateService/Del")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ObjectService_Del_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StateService_Del_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -496,22 +496,22 @@ func RegisterObjectServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_ObjectService_Del_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateService_Del_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ObjectService_Search_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StateService_Search_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/stategate.ObjectService/Search")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/stategate.StateService/Search")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ObjectService_Search_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_StateService_Search_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -519,7 +519,7 @@ func RegisterObjectServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_ObjectService_Search_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateService_Search_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -565,9 +565,9 @@ func RegisterEventServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 	return nil
 }
 
-// RegisterObjectServiceHandlerFromEndpoint is same as RegisterObjectServiceHandler but
+// RegisterStateServiceHandlerFromEndpoint is same as RegisterStateServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterObjectServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterStateServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -587,99 +587,99 @@ func RegisterObjectServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.
 		}()
 	}()
 
-	return RegisterObjectServiceHandler(ctx, mux, conn)
+	return RegisterStateServiceHandler(ctx, mux, conn)
 }
 
-// RegisterObjectServiceHandler registers the http handlers for service ObjectService to "mux".
+// RegisterStateServiceHandler registers the http handlers for service StateService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterObjectServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterObjectServiceHandlerClient(ctx, mux, NewObjectServiceClient(conn))
+func RegisterStateServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterStateServiceHandlerClient(ctx, mux, NewStateServiceClient(conn))
 }
 
-// RegisterObjectServiceHandlerClient registers the http handlers for service ObjectService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "ObjectServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ObjectServiceClient"
+// RegisterStateServiceHandlerClient registers the http handlers for service StateService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "StateServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "StateServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "ObjectServiceClient" to call the correct interceptors.
-func RegisterObjectServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ObjectServiceClient) error {
+// "StateServiceClient" to call the correct interceptors.
+func RegisterStateServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client StateServiceClient) error {
 
-	mux.Handle("POST", pattern_ObjectService_Set_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_StateService_Set_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/stategate.ObjectService/Set")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/stategate.StateService/Set")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ObjectService_Set_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StateService_Set_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ObjectService_Set_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateService_Set_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ObjectService_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StateService_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/stategate.ObjectService/Get")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/stategate.StateService/Get")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ObjectService_Get_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StateService_Get_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ObjectService_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateService_Get_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_ObjectService_Del_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_StateService_Del_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/stategate.ObjectService/Del")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/stategate.StateService/Del")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ObjectService_Del_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StateService_Del_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ObjectService_Del_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateService_Del_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_ObjectService_Search_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_StateService_Search_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/stategate.ObjectService/Search")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/stategate.StateService/Search")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ObjectService_Search_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_StateService_Search_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ObjectService_Search_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_StateService_Search_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -687,23 +687,23 @@ func RegisterObjectServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 }
 
 var (
-	pattern_ObjectService_Set_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "objects", "ref", "domain", "type", "key"}, ""))
+	pattern_StateService_Set_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "state", "ref", "domain", "type", "key"}, ""))
 
-	pattern_ObjectService_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "objects", "ref", "domain", "type", "key"}, ""))
+	pattern_StateService_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "state", "ref", "domain", "type", "key"}, ""))
 
-	pattern_ObjectService_Del_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "objects", "ref", "domain", "type", "key"}, ""))
+	pattern_StateService_Del_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "state", "ref", "domain", "type", "key"}, ""))
 
-	pattern_ObjectService_Search_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "objects", "search"}, ""))
+	pattern_StateService_Search_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "state", "search"}, ""))
 )
 
 var (
-	forward_ObjectService_Set_0 = runtime.ForwardResponseMessage
+	forward_StateService_Set_0 = runtime.ForwardResponseMessage
 
-	forward_ObjectService_Get_0 = runtime.ForwardResponseMessage
+	forward_StateService_Get_0 = runtime.ForwardResponseMessage
 
-	forward_ObjectService_Del_0 = runtime.ForwardResponseMessage
+	forward_StateService_Del_0 = runtime.ForwardResponseMessage
 
-	forward_ObjectService_Search_0 = runtime.ForwardResponseMessage
+	forward_StateService_Search_0 = runtime.ForwardResponseMessage
 )
 
 // RegisterEventServiceHandlerFromEndpoint is same as RegisterEventServiceHandler but

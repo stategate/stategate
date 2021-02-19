@@ -9,32 +9,33 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Object hold's the current state of an object
+ * State represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+ * Services/Users should use state related methods to persist & interact with the current state of an application/domain.
  *
- * Generated from protobuf message <code>stategate.Object</code>
+ * Generated from protobuf message <code>stategate.State</code>
  */
-class Object extends \Google\Protobuf\Internal\Message
+class State extends \Google\Protobuf\Internal\Message
 {
     /**
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
     private $domain = '';
     /**
-     * Object type (ex: user)
+     * State type (ex: user)
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
-     * Object key (unique within type)
+     * State key (unique within type)
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      */
     private $key = '';
     /**
-     * Object values (k/v pairs)
+     * State values (k/v pairs)
      *
      * Generated from protobuf field <code>.google.protobuf.Struct values = 4 [(.validator.field) = {</code>
      */
@@ -47,13 +48,13 @@ class Object extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $domain
-     *           the object's business domain(ex: accounting)
+     *           the application state value's business domain(ex: accounting)
      *     @type string $type
-     *           Object type (ex: user)
+     *           State type (ex: user)
      *     @type string $key
-     *           Object key (unique within type)
+     *           State key (unique within type)
      *     @type \Google\Protobuf\Struct $values
-     *           Object values (k/v pairs)
+     *           State values (k/v pairs)
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +63,7 @@ class Object extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
@@ -73,7 +74,7 @@ class Object extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -88,7 +89,7 @@ class Object extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object type (ex: user)
+     * State type (ex: user)
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
@@ -99,7 +100,7 @@ class Object extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object type (ex: user)
+     * State type (ex: user)
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
@@ -114,7 +115,7 @@ class Object extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object key (unique within type)
+     * State key (unique within type)
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @return string
@@ -125,7 +126,7 @@ class Object extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object key (unique within type)
+     * State key (unique within type)
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @param string $var
@@ -140,7 +141,7 @@ class Object extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object values (k/v pairs)
+     * State values (k/v pairs)
      *
      * Generated from protobuf field <code>.google.protobuf.Struct values = 4 [(.validator.field) = {</code>
      * @return \Google\Protobuf\Struct
@@ -151,7 +152,7 @@ class Object extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object values (k/v pairs)
+     * State values (k/v pairs)
      *
      * Generated from protobuf field <code>.google.protobuf.Struct values = 4 [(.validator.field) = {</code>
      * @param \Google\Protobuf\Struct $var

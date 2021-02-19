@@ -17,12 +17,12 @@ What is Event Sourcing?
                                         
 ## Features
 - [x] [6 simple API Methods](https://github.com/autom8ter/stategate/blob/master/schema.proto#L15) for interacting with application state: 
-    - `SetObject` sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
-    - `GetObject` gets an object's current state values
-    - `DelObject` hard deletes an object & all of it's events
-    - `SearchObjects` queries objects of a specific type
-    - `StreamEvents` creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
-    - `SearchEvents` queries events related to a specific object.
+    - `/stategate.StateService/Set` sets an application state value(k/v pairs) adds it to the event log, then broadcast the event to all interested consumers(Stream method)
+    - `/stategate.StateService/Get` gets an application state value(k/v pairs)
+    - `/stategate.StateService/Del` deletes an application state value(k/v pairs)
+    - `/stategate.StateService/Search` queries application state of a specific type/domain
+    - `/stategate.EventService/Stream` creates an event stream/subscription to a given state type/domain
+    - `/stategate.EventService/Search` queries historical events
 - [x] Capture all changes to an application's state as a sequence of events.
 - [x] Stateless & horizontally scaleable
 - [x] Native [gRPC](https://grpc.io/) support
@@ -80,18 +80,17 @@ What is Event Sourcing?
 ## Concepts
 
 - Storage Provider: A stategate storage provider is a pluggable, 3rd party database storage service. 
-    - Storage providers provide persistance for all objects & events and should be scaled independently of stategate instances.
-
+    - Storage providers provide persistance for all current state/events and should be scaled independently of stategate instances.
 
 - Channel Provider: A stategate channel provider is a pluggable, 3rd party message-queue/channel service. 
     - Channel providers provide a way for stategate to broadcast events to itself while scaling horizontally. 
     - Channel providers should be scaled independently of stategate instances.
 
-- Object: An object represents a single record(k/v pairs) with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
-    - Services/Users should use object related methods to persist & interact with the current state of an application/domain.
-- Event: an event represents a state change to an object- events are persisted and then emitted to consumers anytime an object is created/updated. 
+- State: state represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+    - Services/Users should use state related methods to persist & interact with the current state of an application/domain.
+- Event: an event represents a state change- events are persisted and then emitted to consumers anytime state is created/updated. 
     - Events are immutable after creation and may be searched.
-    - Event Consumers may search events to query the previous state(s) of an object
+    - Event Consumers may search events to query the previous state(s) of an state
     
 
 ## Environmental Variables

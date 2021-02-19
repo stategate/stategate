@@ -9,8 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.
- * Events are persisted to history & broadcasted to interested consumers(Stream) any time an object is created/modified
+ * Event is primitive that represents a single state change
+ * Events are persisted to history & broadcasted to interested consumers(Stream) any time an application state value is created/modified
+ * Events are immutable after creation and may be searched.
+ * Event Consumers may search events to query previous state
  *
  * Generated from protobuf message <code>stategate.Event</code>
  */
@@ -23,11 +25,11 @@ class Event extends \Google\Protobuf\Internal\Message
      */
     private $id = '';
     /**
-     * the unmodified
+     * state after it has been mutated
      *
-     * Generated from protobuf field <code>.stategate.Object object = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.stategate.State state = 2 [(.validator.field) = {</code>
      */
-    private $object = null;
+    private $state = null;
     /**
      * The authentication claims of the event producer.
      *
@@ -49,8 +51,8 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           Identifies the event(uuid).
-     *     @type \Stategate\Object $object
-     *           the unmodified
+     *     @type \Stategate\State $state
+     *           state after it has been mutated
      *     @type \Google\Protobuf\Struct $claims
      *           The authentication claims of the event producer.
      *     @type int|string $time
@@ -89,27 +91,27 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the unmodified
+     * state after it has been mutated
      *
-     * Generated from protobuf field <code>.stategate.Object object = 2 [(.validator.field) = {</code>
-     * @return \Stategate\Object
+     * Generated from protobuf field <code>.stategate.State state = 2 [(.validator.field) = {</code>
+     * @return \Stategate\State
      */
-    public function getObject()
+    public function getState()
     {
-        return $this->object;
+        return $this->state;
     }
 
     /**
-     * the unmodified
+     * state after it has been mutated
      *
-     * Generated from protobuf field <code>.stategate.Object object = 2 [(.validator.field) = {</code>
-     * @param \Stategate\Object $var
+     * Generated from protobuf field <code>.stategate.State state = 2 [(.validator.field) = {</code>
+     * @param \Stategate\State $var
      * @return $this
      */
-    public function setObject($var)
+    public function setState($var)
     {
-        GPBUtil::checkMessage($var, \Stategate\Object::class);
-        $this->object = $var;
+        GPBUtil::checkMessage($var, \Stategate\State::class);
+        $this->state = $var;
 
         return $this;
     }

@@ -14,13 +14,13 @@ public final class Schema {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface ObjectRefOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:stategate.ObjectRef)
+  public interface StateRefOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:stategate.StateRef)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -28,7 +28,7 @@ public final class Schema {
     java.lang.String getDomain();
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -38,7 +38,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -46,7 +46,7 @@ public final class Schema {
     java.lang.String getType();
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -56,7 +56,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * Object key (unique within type)
+     * State key (unique within type)
      * </pre>
      *
      * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -64,7 +64,7 @@ public final class Schema {
     java.lang.String getKey();
     /**
      * <pre>
-     * Object key (unique within type)
+     * State key (unique within type)
      * </pre>
      *
      * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -74,21 +74,21 @@ public final class Schema {
   }
   /**
    * <pre>
-   * ObjectRef is a reference to an existing object
+   * StateRef is a reference to an existing application state value
    * </pre>
    *
-   * Protobuf type {@code stategate.ObjectRef}
+   * Protobuf type {@code stategate.StateRef}
    */
-  public  static final class ObjectRef extends
+  public  static final class StateRef extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:stategate.ObjectRef)
-      ObjectRefOrBuilder {
+      // @@protoc_insertion_point(message_implements:stategate.StateRef)
+      StateRefOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ObjectRef.newBuilder() to construct.
-    private ObjectRef(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use StateRef.newBuilder() to construct.
+    private StateRef(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ObjectRef() {
+    private StateRef() {
       domain_ = "";
       type_ = "";
       key_ = "";
@@ -99,7 +99,7 @@ public final class Schema {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ObjectRef(
+    private StateRef(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -157,22 +157,22 @@ public final class Schema {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return stategate.Schema.internal_static_stategate_ObjectRef_descriptor;
+      return stategate.Schema.internal_static_stategate_StateRef_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return stategate.Schema.internal_static_stategate_ObjectRef_fieldAccessorTable
+      return stategate.Schema.internal_static_stategate_StateRef_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              stategate.Schema.ObjectRef.class, stategate.Schema.ObjectRef.Builder.class);
+              stategate.Schema.StateRef.class, stategate.Schema.StateRef.Builder.class);
     }
 
     public static final int DOMAIN_FIELD_NUMBER = 1;
     private volatile java.lang.Object domain_;
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -191,7 +191,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -214,7 +214,7 @@ public final class Schema {
     private volatile java.lang.Object type_;
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -233,7 +233,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -256,7 +256,7 @@ public final class Schema {
     private volatile java.lang.Object key_;
     /**
      * <pre>
-     * Object key (unique within type)
+     * State key (unique within type)
      * </pre>
      *
      * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -275,7 +275,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Object key (unique within type)
+     * State key (unique within type)
      * </pre>
      *
      * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -345,10 +345,10 @@ public final class Schema {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof stategate.Schema.ObjectRef)) {
+      if (!(obj instanceof stategate.Schema.StateRef)) {
         return super.equals(obj);
       }
-      stategate.Schema.ObjectRef other = (stategate.Schema.ObjectRef) obj;
+      stategate.Schema.StateRef other = (stategate.Schema.StateRef) obj;
 
       boolean result = true;
       result = result && getDomain()
@@ -379,69 +379,69 @@ public final class Schema {
       return hash;
     }
 
-    public static stategate.Schema.ObjectRef parseFrom(
+    public static stategate.Schema.StateRef parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.ObjectRef parseFrom(
+    public static stategate.Schema.StateRef parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.ObjectRef parseFrom(
+    public static stategate.Schema.StateRef parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.ObjectRef parseFrom(
+    public static stategate.Schema.StateRef parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.ObjectRef parseFrom(byte[] data)
+    public static stategate.Schema.StateRef parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.ObjectRef parseFrom(
+    public static stategate.Schema.StateRef parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.ObjectRef parseFrom(java.io.InputStream input)
+    public static stategate.Schema.StateRef parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.ObjectRef parseFrom(
+    public static stategate.Schema.StateRef parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.ObjectRef parseDelimitedFrom(java.io.InputStream input)
+    public static stategate.Schema.StateRef parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static stategate.Schema.ObjectRef parseDelimitedFrom(
+    public static stategate.Schema.StateRef parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.ObjectRef parseFrom(
+    public static stategate.Schema.StateRef parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.ObjectRef parseFrom(
+    public static stategate.Schema.StateRef parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -454,7 +454,7 @@ public final class Schema {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(stategate.Schema.ObjectRef prototype) {
+    public static Builder newBuilder(stategate.Schema.StateRef prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -471,29 +471,29 @@ public final class Schema {
     }
     /**
      * <pre>
-     * ObjectRef is a reference to an existing object
+     * StateRef is a reference to an existing application state value
      * </pre>
      *
-     * Protobuf type {@code stategate.ObjectRef}
+     * Protobuf type {@code stategate.StateRef}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:stategate.ObjectRef)
-        stategate.Schema.ObjectRefOrBuilder {
+        // @@protoc_insertion_point(builder_implements:stategate.StateRef)
+        stategate.Schema.StateRefOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return stategate.Schema.internal_static_stategate_ObjectRef_descriptor;
+        return stategate.Schema.internal_static_stategate_StateRef_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return stategate.Schema.internal_static_stategate_ObjectRef_fieldAccessorTable
+        return stategate.Schema.internal_static_stategate_StateRef_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                stategate.Schema.ObjectRef.class, stategate.Schema.ObjectRef.Builder.class);
+                stategate.Schema.StateRef.class, stategate.Schema.StateRef.Builder.class);
       }
 
-      // Construct using stategate.Schema.ObjectRef.newBuilder()
+      // Construct using stategate.Schema.StateRef.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -523,17 +523,17 @@ public final class Schema {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return stategate.Schema.internal_static_stategate_ObjectRef_descriptor;
+        return stategate.Schema.internal_static_stategate_StateRef_descriptor;
       }
 
       @java.lang.Override
-      public stategate.Schema.ObjectRef getDefaultInstanceForType() {
-        return stategate.Schema.ObjectRef.getDefaultInstance();
+      public stategate.Schema.StateRef getDefaultInstanceForType() {
+        return stategate.Schema.StateRef.getDefaultInstance();
       }
 
       @java.lang.Override
-      public stategate.Schema.ObjectRef build() {
-        stategate.Schema.ObjectRef result = buildPartial();
+      public stategate.Schema.StateRef build() {
+        stategate.Schema.StateRef result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -541,8 +541,8 @@ public final class Schema {
       }
 
       @java.lang.Override
-      public stategate.Schema.ObjectRef buildPartial() {
-        stategate.Schema.ObjectRef result = new stategate.Schema.ObjectRef(this);
+      public stategate.Schema.StateRef buildPartial() {
+        stategate.Schema.StateRef result = new stategate.Schema.StateRef(this);
         result.domain_ = domain_;
         result.type_ = type_;
         result.key_ = key_;
@@ -584,16 +584,16 @@ public final class Schema {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof stategate.Schema.ObjectRef) {
-          return mergeFrom((stategate.Schema.ObjectRef)other);
+        if (other instanceof stategate.Schema.StateRef) {
+          return mergeFrom((stategate.Schema.StateRef)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(stategate.Schema.ObjectRef other) {
-        if (other == stategate.Schema.ObjectRef.getDefaultInstance()) return this;
+      public Builder mergeFrom(stategate.Schema.StateRef other) {
+        if (other == stategate.Schema.StateRef.getDefaultInstance()) return this;
         if (!other.getDomain().isEmpty()) {
           domain_ = other.domain_;
           onChanged();
@@ -621,11 +621,11 @@ public final class Schema {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        stategate.Schema.ObjectRef parsedMessage = null;
+        stategate.Schema.StateRef parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (stategate.Schema.ObjectRef) e.getUnfinishedMessage();
+          parsedMessage = (stategate.Schema.StateRef) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -638,7 +638,7 @@ public final class Schema {
       private java.lang.Object domain_ = "";
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -657,7 +657,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -677,7 +677,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -694,7 +694,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -707,7 +707,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -727,7 +727,7 @@ public final class Schema {
       private java.lang.Object type_ = "";
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -746,7 +746,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -766,7 +766,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -783,7 +783,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -796,7 +796,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -816,7 +816,7 @@ public final class Schema {
       private java.lang.Object key_ = "";
       /**
        * <pre>
-       * Object key (unique within type)
+       * State key (unique within type)
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -835,7 +835,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object key (unique within type)
+       * State key (unique within type)
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -855,7 +855,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object key (unique within type)
+       * State key (unique within type)
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -872,7 +872,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object key (unique within type)
+       * State key (unique within type)
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -885,7 +885,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object key (unique within type)
+       * State key (unique within type)
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -914,53 +914,53 @@ public final class Schema {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:stategate.ObjectRef)
+      // @@protoc_insertion_point(builder_scope:stategate.StateRef)
     }
 
-    // @@protoc_insertion_point(class_scope:stategate.ObjectRef)
-    private static final stategate.Schema.ObjectRef DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:stategate.StateRef)
+    private static final stategate.Schema.StateRef DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new stategate.Schema.ObjectRef();
+      DEFAULT_INSTANCE = new stategate.Schema.StateRef();
     }
 
-    public static stategate.Schema.ObjectRef getDefaultInstance() {
+    public static stategate.Schema.StateRef getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ObjectRef>
-        PARSER = new com.google.protobuf.AbstractParser<ObjectRef>() {
+    private static final com.google.protobuf.Parser<StateRef>
+        PARSER = new com.google.protobuf.AbstractParser<StateRef>() {
       @java.lang.Override
-      public ObjectRef parsePartialFrom(
+      public StateRef parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ObjectRef(input, extensionRegistry);
+        return new StateRef(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ObjectRef> parser() {
+    public static com.google.protobuf.Parser<StateRef> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ObjectRef> getParserForType() {
+    public com.google.protobuf.Parser<StateRef> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public stategate.Schema.ObjectRef getDefaultInstanceForType() {
+    public stategate.Schema.StateRef getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface ObjectOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:stategate.Object)
+  public interface StateOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:stategate.State)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -968,7 +968,7 @@ public final class Schema {
     java.lang.String getDomain();
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -978,7 +978,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -986,7 +986,7 @@ public final class Schema {
     java.lang.String getType();
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -996,7 +996,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * Object key (unique within type)
+     * State key (unique within type)
      * </pre>
      *
      * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -1004,7 +1004,7 @@ public final class Schema {
     java.lang.String getKey();
     /**
      * <pre>
-     * Object key (unique within type)
+     * State key (unique within type)
      * </pre>
      *
      * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -1014,7 +1014,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * Object values (k/v pairs)
+     * State values (k/v pairs)
      * </pre>
      *
      * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1022,7 +1022,7 @@ public final class Schema {
     boolean hasValues();
     /**
      * <pre>
-     * Object values (k/v pairs)
+     * State values (k/v pairs)
      * </pre>
      *
      * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1030,7 +1030,7 @@ public final class Schema {
     com.google.protobuf.Struct getValues();
     /**
      * <pre>
-     * Object values (k/v pairs)
+     * State values (k/v pairs)
      * </pre>
      *
      * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1039,21 +1039,22 @@ public final class Schema {
   }
   /**
    * <pre>
-   * Object hold's the current state of an object
+   * State represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+   * Services/Users should use state related methods to persist &amp; interact with the current state of an application/domain.
    * </pre>
    *
-   * Protobuf type {@code stategate.Object}
+   * Protobuf type {@code stategate.State}
    */
-  public  static final class Object extends
+  public  static final class State extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:stategate.Object)
-      ObjectOrBuilder {
+      // @@protoc_insertion_point(message_implements:stategate.State)
+      StateOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use Object.newBuilder() to construct.
-    private Object(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use State.newBuilder() to construct.
+    private State(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private Object() {
+    private State() {
       domain_ = "";
       type_ = "";
       key_ = "";
@@ -1064,7 +1065,7 @@ public final class Schema {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Object(
+    private State(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1135,22 +1136,22 @@ public final class Schema {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return stategate.Schema.internal_static_stategate_Object_descriptor;
+      return stategate.Schema.internal_static_stategate_State_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return stategate.Schema.internal_static_stategate_Object_fieldAccessorTable
+      return stategate.Schema.internal_static_stategate_State_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              stategate.Schema.Object.class, stategate.Schema.Object.Builder.class);
+              stategate.Schema.State.class, stategate.Schema.State.Builder.class);
     }
 
     public static final int DOMAIN_FIELD_NUMBER = 1;
     private volatile java.lang.Object domain_;
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -1169,7 +1170,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -1192,7 +1193,7 @@ public final class Schema {
     private volatile java.lang.Object type_;
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -1211,7 +1212,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -1234,7 +1235,7 @@ public final class Schema {
     private volatile java.lang.Object key_;
     /**
      * <pre>
-     * Object key (unique within type)
+     * State key (unique within type)
      * </pre>
      *
      * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -1253,7 +1254,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Object key (unique within type)
+     * State key (unique within type)
      * </pre>
      *
      * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -1276,7 +1277,7 @@ public final class Schema {
     private com.google.protobuf.Struct values_;
     /**
      * <pre>
-     * Object values (k/v pairs)
+     * State values (k/v pairs)
      * </pre>
      *
      * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1286,7 +1287,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Object values (k/v pairs)
+     * State values (k/v pairs)
      * </pre>
      *
      * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1296,7 +1297,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Object values (k/v pairs)
+     * State values (k/v pairs)
      * </pre>
      *
      * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1363,10 +1364,10 @@ public final class Schema {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof stategate.Schema.Object)) {
+      if (!(obj instanceof stategate.Schema.State)) {
         return super.equals(obj);
       }
-      stategate.Schema.Object other = (stategate.Schema.Object) obj;
+      stategate.Schema.State other = (stategate.Schema.State) obj;
 
       boolean result = true;
       result = result && getDomain()
@@ -1406,69 +1407,69 @@ public final class Schema {
       return hash;
     }
 
-    public static stategate.Schema.Object parseFrom(
+    public static stategate.Schema.State parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.Object parseFrom(
+    public static stategate.Schema.State parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.Object parseFrom(
+    public static stategate.Schema.State parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.Object parseFrom(
+    public static stategate.Schema.State parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.Object parseFrom(byte[] data)
+    public static stategate.Schema.State parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.Object parseFrom(
+    public static stategate.Schema.State parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.Object parseFrom(java.io.InputStream input)
+    public static stategate.Schema.State parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.Object parseFrom(
+    public static stategate.Schema.State parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.Object parseDelimitedFrom(java.io.InputStream input)
+    public static stategate.Schema.State parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static stategate.Schema.Object parseDelimitedFrom(
+    public static stategate.Schema.State parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.Object parseFrom(
+    public static stategate.Schema.State parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.Object parseFrom(
+    public static stategate.Schema.State parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1481,7 +1482,7 @@ public final class Schema {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(stategate.Schema.Object prototype) {
+    public static Builder newBuilder(stategate.Schema.State prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1498,29 +1499,30 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Object hold's the current state of an object
+     * State represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+     * Services/Users should use state related methods to persist &amp; interact with the current state of an application/domain.
      * </pre>
      *
-     * Protobuf type {@code stategate.Object}
+     * Protobuf type {@code stategate.State}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:stategate.Object)
-        stategate.Schema.ObjectOrBuilder {
+        // @@protoc_insertion_point(builder_implements:stategate.State)
+        stategate.Schema.StateOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return stategate.Schema.internal_static_stategate_Object_descriptor;
+        return stategate.Schema.internal_static_stategate_State_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return stategate.Schema.internal_static_stategate_Object_fieldAccessorTable
+        return stategate.Schema.internal_static_stategate_State_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                stategate.Schema.Object.class, stategate.Schema.Object.Builder.class);
+                stategate.Schema.State.class, stategate.Schema.State.Builder.class);
       }
 
-      // Construct using stategate.Schema.Object.newBuilder()
+      // Construct using stategate.Schema.State.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1556,17 +1558,17 @@ public final class Schema {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return stategate.Schema.internal_static_stategate_Object_descriptor;
+        return stategate.Schema.internal_static_stategate_State_descriptor;
       }
 
       @java.lang.Override
-      public stategate.Schema.Object getDefaultInstanceForType() {
-        return stategate.Schema.Object.getDefaultInstance();
+      public stategate.Schema.State getDefaultInstanceForType() {
+        return stategate.Schema.State.getDefaultInstance();
       }
 
       @java.lang.Override
-      public stategate.Schema.Object build() {
-        stategate.Schema.Object result = buildPartial();
+      public stategate.Schema.State build() {
+        stategate.Schema.State result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1574,8 +1576,8 @@ public final class Schema {
       }
 
       @java.lang.Override
-      public stategate.Schema.Object buildPartial() {
-        stategate.Schema.Object result = new stategate.Schema.Object(this);
+      public stategate.Schema.State buildPartial() {
+        stategate.Schema.State result = new stategate.Schema.State(this);
         result.domain_ = domain_;
         result.type_ = type_;
         result.key_ = key_;
@@ -1622,16 +1624,16 @@ public final class Schema {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof stategate.Schema.Object) {
-          return mergeFrom((stategate.Schema.Object)other);
+        if (other instanceof stategate.Schema.State) {
+          return mergeFrom((stategate.Schema.State)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(stategate.Schema.Object other) {
-        if (other == stategate.Schema.Object.getDefaultInstance()) return this;
+      public Builder mergeFrom(stategate.Schema.State other) {
+        if (other == stategate.Schema.State.getDefaultInstance()) return this;
         if (!other.getDomain().isEmpty()) {
           domain_ = other.domain_;
           onChanged();
@@ -1662,11 +1664,11 @@ public final class Schema {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        stategate.Schema.Object parsedMessage = null;
+        stategate.Schema.State parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (stategate.Schema.Object) e.getUnfinishedMessage();
+          parsedMessage = (stategate.Schema.State) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1679,7 +1681,7 @@ public final class Schema {
       private java.lang.Object domain_ = "";
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -1698,7 +1700,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -1718,7 +1720,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -1735,7 +1737,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -1748,7 +1750,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -1768,7 +1770,7 @@ public final class Schema {
       private java.lang.Object type_ = "";
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -1787,7 +1789,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -1807,7 +1809,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -1824,7 +1826,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -1837,7 +1839,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -1857,7 +1859,7 @@ public final class Schema {
       private java.lang.Object key_ = "";
       /**
        * <pre>
-       * Object key (unique within type)
+       * State key (unique within type)
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -1876,7 +1878,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object key (unique within type)
+       * State key (unique within type)
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -1896,7 +1898,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object key (unique within type)
+       * State key (unique within type)
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -1913,7 +1915,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object key (unique within type)
+       * State key (unique within type)
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -1926,7 +1928,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object key (unique within type)
+       * State key (unique within type)
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -1948,7 +1950,7 @@ public final class Schema {
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> valuesBuilder_;
       /**
        * <pre>
-       * Object values (k/v pairs)
+       * State values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1958,7 +1960,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (k/v pairs)
+       * State values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1972,7 +1974,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (k/v pairs)
+       * State values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1992,7 +1994,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (k/v pairs)
+       * State values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -2010,7 +2012,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (k/v pairs)
+       * State values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -2032,7 +2034,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (k/v pairs)
+       * State values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -2050,7 +2052,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (k/v pairs)
+       * State values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -2062,7 +2064,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (k/v pairs)
+       * State values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -2077,7 +2079,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (k/v pairs)
+       * State values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -2108,92 +2110,92 @@ public final class Schema {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:stategate.Object)
+      // @@protoc_insertion_point(builder_scope:stategate.State)
     }
 
-    // @@protoc_insertion_point(class_scope:stategate.Object)
-    private static final stategate.Schema.Object DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:stategate.State)
+    private static final stategate.Schema.State DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new stategate.Schema.Object();
+      DEFAULT_INSTANCE = new stategate.Schema.State();
     }
 
-    public static stategate.Schema.Object getDefaultInstance() {
+    public static stategate.Schema.State getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<Object>
-        PARSER = new com.google.protobuf.AbstractParser<Object>() {
+    private static final com.google.protobuf.Parser<State>
+        PARSER = new com.google.protobuf.AbstractParser<State>() {
       @java.lang.Override
-      public Object parsePartialFrom(
+      public State parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Object(input, extensionRegistry);
+        return new State(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<Object> parser() {
+    public static com.google.protobuf.Parser<State> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<Object> getParserForType() {
+    public com.google.protobuf.Parser<State> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public stategate.Schema.Object getDefaultInstanceForType() {
+    public stategate.Schema.State getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface ObjectsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:stategate.Objects)
+  public interface StateValuesOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:stategate.StateValues)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .stategate.Object objects = 1;</code>
+     * <code>repeated .stategate.State state_values = 1;</code>
      */
-    java.util.List<stategate.Schema.Object> 
-        getObjectsList();
+    java.util.List<stategate.Schema.State> 
+        getStateValuesList();
     /**
-     * <code>repeated .stategate.Object objects = 1;</code>
+     * <code>repeated .stategate.State state_values = 1;</code>
      */
-    stategate.Schema.Object getObjects(int index);
+    stategate.Schema.State getStateValues(int index);
     /**
-     * <code>repeated .stategate.Object objects = 1;</code>
+     * <code>repeated .stategate.State state_values = 1;</code>
      */
-    int getObjectsCount();
+    int getStateValuesCount();
     /**
-     * <code>repeated .stategate.Object objects = 1;</code>
+     * <code>repeated .stategate.State state_values = 1;</code>
      */
-    java.util.List<? extends stategate.Schema.ObjectOrBuilder> 
-        getObjectsOrBuilderList();
+    java.util.List<? extends stategate.Schema.StateOrBuilder> 
+        getStateValuesOrBuilderList();
     /**
-     * <code>repeated .stategate.Object objects = 1;</code>
+     * <code>repeated .stategate.State state_values = 1;</code>
      */
-    stategate.Schema.ObjectOrBuilder getObjectsOrBuilder(
+    stategate.Schema.StateOrBuilder getStateValuesOrBuilder(
         int index);
   }
   /**
    * <pre>
-   * Objects is an array of Object
+   * States is an array of State
    * </pre>
    *
-   * Protobuf type {@code stategate.Objects}
+   * Protobuf type {@code stategate.StateValues}
    */
-  public  static final class Objects extends
+  public  static final class StateValues extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:stategate.Objects)
-      ObjectsOrBuilder {
+      // @@protoc_insertion_point(message_implements:stategate.StateValues)
+      StateValuesOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use Objects.newBuilder() to construct.
-    private Objects(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use StateValues.newBuilder() to construct.
+    private StateValues(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private Objects() {
-      objects_ = java.util.Collections.emptyList();
+    private StateValues() {
+      stateValues_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -2201,7 +2203,7 @@ public final class Schema {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Objects(
+    private StateValues(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2222,11 +2224,11 @@ public final class Schema {
               break;
             case 10: {
               if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                objects_ = new java.util.ArrayList<stategate.Schema.Object>();
+                stateValues_ = new java.util.ArrayList<stategate.Schema.State>();
                 mutable_bitField0_ |= 0x00000001;
               }
-              objects_.add(
-                  input.readMessage(stategate.Schema.Object.parser(), extensionRegistry));
+              stateValues_.add(
+                  input.readMessage(stategate.Schema.State.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -2245,7 +2247,7 @@ public final class Schema {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-          objects_ = java.util.Collections.unmodifiableList(objects_);
+          stateValues_ = java.util.Collections.unmodifiableList(stateValues_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -2253,50 +2255,50 @@ public final class Schema {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return stategate.Schema.internal_static_stategate_Objects_descriptor;
+      return stategate.Schema.internal_static_stategate_StateValues_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return stategate.Schema.internal_static_stategate_Objects_fieldAccessorTable
+      return stategate.Schema.internal_static_stategate_StateValues_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              stategate.Schema.Objects.class, stategate.Schema.Objects.Builder.class);
+              stategate.Schema.StateValues.class, stategate.Schema.StateValues.Builder.class);
     }
 
-    public static final int OBJECTS_FIELD_NUMBER = 1;
-    private java.util.List<stategate.Schema.Object> objects_;
+    public static final int STATE_VALUES_FIELD_NUMBER = 1;
+    private java.util.List<stategate.Schema.State> stateValues_;
     /**
-     * <code>repeated .stategate.Object objects = 1;</code>
+     * <code>repeated .stategate.State state_values = 1;</code>
      */
-    public java.util.List<stategate.Schema.Object> getObjectsList() {
-      return objects_;
+    public java.util.List<stategate.Schema.State> getStateValuesList() {
+      return stateValues_;
     }
     /**
-     * <code>repeated .stategate.Object objects = 1;</code>
+     * <code>repeated .stategate.State state_values = 1;</code>
      */
-    public java.util.List<? extends stategate.Schema.ObjectOrBuilder> 
-        getObjectsOrBuilderList() {
-      return objects_;
+    public java.util.List<? extends stategate.Schema.StateOrBuilder> 
+        getStateValuesOrBuilderList() {
+      return stateValues_;
     }
     /**
-     * <code>repeated .stategate.Object objects = 1;</code>
+     * <code>repeated .stategate.State state_values = 1;</code>
      */
-    public int getObjectsCount() {
-      return objects_.size();
+    public int getStateValuesCount() {
+      return stateValues_.size();
     }
     /**
-     * <code>repeated .stategate.Object objects = 1;</code>
+     * <code>repeated .stategate.State state_values = 1;</code>
      */
-    public stategate.Schema.Object getObjects(int index) {
-      return objects_.get(index);
+    public stategate.Schema.State getStateValues(int index) {
+      return stateValues_.get(index);
     }
     /**
-     * <code>repeated .stategate.Object objects = 1;</code>
+     * <code>repeated .stategate.State state_values = 1;</code>
      */
-    public stategate.Schema.ObjectOrBuilder getObjectsOrBuilder(
+    public stategate.Schema.StateOrBuilder getStateValuesOrBuilder(
         int index) {
-      return objects_.get(index);
+      return stateValues_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2313,8 +2315,8 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < objects_.size(); i++) {
-        output.writeMessage(1, objects_.get(i));
+      for (int i = 0; i < stateValues_.size(); i++) {
+        output.writeMessage(1, stateValues_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -2325,9 +2327,9 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
-      for (int i = 0; i < objects_.size(); i++) {
+      for (int i = 0; i < stateValues_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, objects_.get(i));
+          .computeMessageSize(1, stateValues_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2339,14 +2341,14 @@ public final class Schema {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof stategate.Schema.Objects)) {
+      if (!(obj instanceof stategate.Schema.StateValues)) {
         return super.equals(obj);
       }
-      stategate.Schema.Objects other = (stategate.Schema.Objects) obj;
+      stategate.Schema.StateValues other = (stategate.Schema.StateValues) obj;
 
       boolean result = true;
-      result = result && getObjectsList()
-          .equals(other.getObjectsList());
+      result = result && getStateValuesList()
+          .equals(other.getStateValuesList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -2358,78 +2360,78 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (getObjectsCount() > 0) {
-        hash = (37 * hash) + OBJECTS_FIELD_NUMBER;
-        hash = (53 * hash) + getObjectsList().hashCode();
+      if (getStateValuesCount() > 0) {
+        hash = (37 * hash) + STATE_VALUES_FIELD_NUMBER;
+        hash = (53 * hash) + getStateValuesList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static stategate.Schema.Objects parseFrom(
+    public static stategate.Schema.StateValues parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.Objects parseFrom(
+    public static stategate.Schema.StateValues parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.Objects parseFrom(
+    public static stategate.Schema.StateValues parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.Objects parseFrom(
+    public static stategate.Schema.StateValues parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.Objects parseFrom(byte[] data)
+    public static stategate.Schema.StateValues parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.Objects parseFrom(
+    public static stategate.Schema.StateValues parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.Objects parseFrom(java.io.InputStream input)
+    public static stategate.Schema.StateValues parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.Objects parseFrom(
+    public static stategate.Schema.StateValues parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.Objects parseDelimitedFrom(java.io.InputStream input)
+    public static stategate.Schema.StateValues parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static stategate.Schema.Objects parseDelimitedFrom(
+    public static stategate.Schema.StateValues parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.Objects parseFrom(
+    public static stategate.Schema.StateValues parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.Objects parseFrom(
+    public static stategate.Schema.StateValues parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2442,7 +2444,7 @@ public final class Schema {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(stategate.Schema.Objects prototype) {
+    public static Builder newBuilder(stategate.Schema.StateValues prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2459,29 +2461,29 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Objects is an array of Object
+     * States is an array of State
      * </pre>
      *
-     * Protobuf type {@code stategate.Objects}
+     * Protobuf type {@code stategate.StateValues}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:stategate.Objects)
-        stategate.Schema.ObjectsOrBuilder {
+        // @@protoc_insertion_point(builder_implements:stategate.StateValues)
+        stategate.Schema.StateValuesOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return stategate.Schema.internal_static_stategate_Objects_descriptor;
+        return stategate.Schema.internal_static_stategate_StateValues_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return stategate.Schema.internal_static_stategate_Objects_fieldAccessorTable
+        return stategate.Schema.internal_static_stategate_StateValues_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                stategate.Schema.Objects.class, stategate.Schema.Objects.Builder.class);
+                stategate.Schema.StateValues.class, stategate.Schema.StateValues.Builder.class);
       }
 
-      // Construct using stategate.Schema.Objects.newBuilder()
+      // Construct using stategate.Schema.StateValues.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2494,17 +2496,17 @@ public final class Schema {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getObjectsFieldBuilder();
+          getStateValuesFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (objectsBuilder_ == null) {
-          objects_ = java.util.Collections.emptyList();
+        if (stateValuesBuilder_ == null) {
+          stateValues_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
         } else {
-          objectsBuilder_.clear();
+          stateValuesBuilder_.clear();
         }
         return this;
       }
@@ -2512,17 +2514,17 @@ public final class Schema {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return stategate.Schema.internal_static_stategate_Objects_descriptor;
+        return stategate.Schema.internal_static_stategate_StateValues_descriptor;
       }
 
       @java.lang.Override
-      public stategate.Schema.Objects getDefaultInstanceForType() {
-        return stategate.Schema.Objects.getDefaultInstance();
+      public stategate.Schema.StateValues getDefaultInstanceForType() {
+        return stategate.Schema.StateValues.getDefaultInstance();
       }
 
       @java.lang.Override
-      public stategate.Schema.Objects build() {
-        stategate.Schema.Objects result = buildPartial();
+      public stategate.Schema.StateValues build() {
+        stategate.Schema.StateValues result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2530,17 +2532,17 @@ public final class Schema {
       }
 
       @java.lang.Override
-      public stategate.Schema.Objects buildPartial() {
-        stategate.Schema.Objects result = new stategate.Schema.Objects(this);
+      public stategate.Schema.StateValues buildPartial() {
+        stategate.Schema.StateValues result = new stategate.Schema.StateValues(this);
         int from_bitField0_ = bitField0_;
-        if (objectsBuilder_ == null) {
+        if (stateValuesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            objects_ = java.util.Collections.unmodifiableList(objects_);
+            stateValues_ = java.util.Collections.unmodifiableList(stateValues_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
-          result.objects_ = objects_;
+          result.stateValues_ = stateValues_;
         } else {
-          result.objects_ = objectsBuilder_.build();
+          result.stateValues_ = stateValuesBuilder_.build();
         }
         onBuilt();
         return result;
@@ -2580,39 +2582,39 @@ public final class Schema {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof stategate.Schema.Objects) {
-          return mergeFrom((stategate.Schema.Objects)other);
+        if (other instanceof stategate.Schema.StateValues) {
+          return mergeFrom((stategate.Schema.StateValues)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(stategate.Schema.Objects other) {
-        if (other == stategate.Schema.Objects.getDefaultInstance()) return this;
-        if (objectsBuilder_ == null) {
-          if (!other.objects_.isEmpty()) {
-            if (objects_.isEmpty()) {
-              objects_ = other.objects_;
+      public Builder mergeFrom(stategate.Schema.StateValues other) {
+        if (other == stategate.Schema.StateValues.getDefaultInstance()) return this;
+        if (stateValuesBuilder_ == null) {
+          if (!other.stateValues_.isEmpty()) {
+            if (stateValues_.isEmpty()) {
+              stateValues_ = other.stateValues_;
               bitField0_ = (bitField0_ & ~0x00000001);
             } else {
-              ensureObjectsIsMutable();
-              objects_.addAll(other.objects_);
+              ensureStateValuesIsMutable();
+              stateValues_.addAll(other.stateValues_);
             }
             onChanged();
           }
         } else {
-          if (!other.objects_.isEmpty()) {
-            if (objectsBuilder_.isEmpty()) {
-              objectsBuilder_.dispose();
-              objectsBuilder_ = null;
-              objects_ = other.objects_;
+          if (!other.stateValues_.isEmpty()) {
+            if (stateValuesBuilder_.isEmpty()) {
+              stateValuesBuilder_.dispose();
+              stateValuesBuilder_ = null;
+              stateValues_ = other.stateValues_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              objectsBuilder_ = 
+              stateValuesBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getObjectsFieldBuilder() : null;
+                   getStateValuesFieldBuilder() : null;
             } else {
-              objectsBuilder_.addAllMessages(other.objects_);
+              stateValuesBuilder_.addAllMessages(other.stateValues_);
             }
           }
         }
@@ -2631,11 +2633,11 @@ public final class Schema {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        stategate.Schema.Objects parsedMessage = null;
+        stategate.Schema.StateValues parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (stategate.Schema.Objects) e.getUnfinishedMessage();
+          parsedMessage = (stategate.Schema.StateValues) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2646,244 +2648,244 @@ public final class Schema {
       }
       private int bitField0_;
 
-      private java.util.List<stategate.Schema.Object> objects_ =
+      private java.util.List<stategate.Schema.State> stateValues_ =
         java.util.Collections.emptyList();
-      private void ensureObjectsIsMutable() {
+      private void ensureStateValuesIsMutable() {
         if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-          objects_ = new java.util.ArrayList<stategate.Schema.Object>(objects_);
+          stateValues_ = new java.util.ArrayList<stategate.Schema.State>(stateValues_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          stategate.Schema.Object, stategate.Schema.Object.Builder, stategate.Schema.ObjectOrBuilder> objectsBuilder_;
+          stategate.Schema.State, stategate.Schema.State.Builder, stategate.Schema.StateOrBuilder> stateValuesBuilder_;
 
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public java.util.List<stategate.Schema.Object> getObjectsList() {
-        if (objectsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(objects_);
+      public java.util.List<stategate.Schema.State> getStateValuesList() {
+        if (stateValuesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(stateValues_);
         } else {
-          return objectsBuilder_.getMessageList();
+          return stateValuesBuilder_.getMessageList();
         }
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public int getObjectsCount() {
-        if (objectsBuilder_ == null) {
-          return objects_.size();
+      public int getStateValuesCount() {
+        if (stateValuesBuilder_ == null) {
+          return stateValues_.size();
         } else {
-          return objectsBuilder_.getCount();
+          return stateValuesBuilder_.getCount();
         }
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public stategate.Schema.Object getObjects(int index) {
-        if (objectsBuilder_ == null) {
-          return objects_.get(index);
+      public stategate.Schema.State getStateValues(int index) {
+        if (stateValuesBuilder_ == null) {
+          return stateValues_.get(index);
         } else {
-          return objectsBuilder_.getMessage(index);
+          return stateValuesBuilder_.getMessage(index);
         }
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public Builder setObjects(
-          int index, stategate.Schema.Object value) {
-        if (objectsBuilder_ == null) {
+      public Builder setStateValues(
+          int index, stategate.Schema.State value) {
+        if (stateValuesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureObjectsIsMutable();
-          objects_.set(index, value);
+          ensureStateValuesIsMutable();
+          stateValues_.set(index, value);
           onChanged();
         } else {
-          objectsBuilder_.setMessage(index, value);
+          stateValuesBuilder_.setMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public Builder setObjects(
-          int index, stategate.Schema.Object.Builder builderForValue) {
-        if (objectsBuilder_ == null) {
-          ensureObjectsIsMutable();
-          objects_.set(index, builderForValue.build());
+      public Builder setStateValues(
+          int index, stategate.Schema.State.Builder builderForValue) {
+        if (stateValuesBuilder_ == null) {
+          ensureStateValuesIsMutable();
+          stateValues_.set(index, builderForValue.build());
           onChanged();
         } else {
-          objectsBuilder_.setMessage(index, builderForValue.build());
+          stateValuesBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public Builder addObjects(stategate.Schema.Object value) {
-        if (objectsBuilder_ == null) {
+      public Builder addStateValues(stategate.Schema.State value) {
+        if (stateValuesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureObjectsIsMutable();
-          objects_.add(value);
+          ensureStateValuesIsMutable();
+          stateValues_.add(value);
           onChanged();
         } else {
-          objectsBuilder_.addMessage(value);
+          stateValuesBuilder_.addMessage(value);
         }
         return this;
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public Builder addObjects(
-          int index, stategate.Schema.Object value) {
-        if (objectsBuilder_ == null) {
+      public Builder addStateValues(
+          int index, stategate.Schema.State value) {
+        if (stateValuesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureObjectsIsMutable();
-          objects_.add(index, value);
+          ensureStateValuesIsMutable();
+          stateValues_.add(index, value);
           onChanged();
         } else {
-          objectsBuilder_.addMessage(index, value);
+          stateValuesBuilder_.addMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public Builder addObjects(
-          stategate.Schema.Object.Builder builderForValue) {
-        if (objectsBuilder_ == null) {
-          ensureObjectsIsMutable();
-          objects_.add(builderForValue.build());
+      public Builder addStateValues(
+          stategate.Schema.State.Builder builderForValue) {
+        if (stateValuesBuilder_ == null) {
+          ensureStateValuesIsMutable();
+          stateValues_.add(builderForValue.build());
           onChanged();
         } else {
-          objectsBuilder_.addMessage(builderForValue.build());
+          stateValuesBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public Builder addObjects(
-          int index, stategate.Schema.Object.Builder builderForValue) {
-        if (objectsBuilder_ == null) {
-          ensureObjectsIsMutable();
-          objects_.add(index, builderForValue.build());
+      public Builder addStateValues(
+          int index, stategate.Schema.State.Builder builderForValue) {
+        if (stateValuesBuilder_ == null) {
+          ensureStateValuesIsMutable();
+          stateValues_.add(index, builderForValue.build());
           onChanged();
         } else {
-          objectsBuilder_.addMessage(index, builderForValue.build());
+          stateValuesBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public Builder addAllObjects(
-          java.lang.Iterable<? extends stategate.Schema.Object> values) {
-        if (objectsBuilder_ == null) {
-          ensureObjectsIsMutable();
+      public Builder addAllStateValues(
+          java.lang.Iterable<? extends stategate.Schema.State> values) {
+        if (stateValuesBuilder_ == null) {
+          ensureStateValuesIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, objects_);
+              values, stateValues_);
           onChanged();
         } else {
-          objectsBuilder_.addAllMessages(values);
+          stateValuesBuilder_.addAllMessages(values);
         }
         return this;
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public Builder clearObjects() {
-        if (objectsBuilder_ == null) {
-          objects_ = java.util.Collections.emptyList();
+      public Builder clearStateValues() {
+        if (stateValuesBuilder_ == null) {
+          stateValues_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
-          objectsBuilder_.clear();
+          stateValuesBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public Builder removeObjects(int index) {
-        if (objectsBuilder_ == null) {
-          ensureObjectsIsMutable();
-          objects_.remove(index);
+      public Builder removeStateValues(int index) {
+        if (stateValuesBuilder_ == null) {
+          ensureStateValuesIsMutable();
+          stateValues_.remove(index);
           onChanged();
         } else {
-          objectsBuilder_.remove(index);
+          stateValuesBuilder_.remove(index);
         }
         return this;
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public stategate.Schema.Object.Builder getObjectsBuilder(
+      public stategate.Schema.State.Builder getStateValuesBuilder(
           int index) {
-        return getObjectsFieldBuilder().getBuilder(index);
+        return getStateValuesFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public stategate.Schema.ObjectOrBuilder getObjectsOrBuilder(
+      public stategate.Schema.StateOrBuilder getStateValuesOrBuilder(
           int index) {
-        if (objectsBuilder_ == null) {
-          return objects_.get(index);  } else {
-          return objectsBuilder_.getMessageOrBuilder(index);
+        if (stateValuesBuilder_ == null) {
+          return stateValues_.get(index);  } else {
+          return stateValuesBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public java.util.List<? extends stategate.Schema.ObjectOrBuilder> 
-           getObjectsOrBuilderList() {
-        if (objectsBuilder_ != null) {
-          return objectsBuilder_.getMessageOrBuilderList();
+      public java.util.List<? extends stategate.Schema.StateOrBuilder> 
+           getStateValuesOrBuilderList() {
+        if (stateValuesBuilder_ != null) {
+          return stateValuesBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(objects_);
+          return java.util.Collections.unmodifiableList(stateValues_);
         }
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public stategate.Schema.Object.Builder addObjectsBuilder() {
-        return getObjectsFieldBuilder().addBuilder(
-            stategate.Schema.Object.getDefaultInstance());
+      public stategate.Schema.State.Builder addStateValuesBuilder() {
+        return getStateValuesFieldBuilder().addBuilder(
+            stategate.Schema.State.getDefaultInstance());
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public stategate.Schema.Object.Builder addObjectsBuilder(
+      public stategate.Schema.State.Builder addStateValuesBuilder(
           int index) {
-        return getObjectsFieldBuilder().addBuilder(
-            index, stategate.Schema.Object.getDefaultInstance());
+        return getStateValuesFieldBuilder().addBuilder(
+            index, stategate.Schema.State.getDefaultInstance());
       }
       /**
-       * <code>repeated .stategate.Object objects = 1;</code>
+       * <code>repeated .stategate.State state_values = 1;</code>
        */
-      public java.util.List<stategate.Schema.Object.Builder> 
-           getObjectsBuilderList() {
-        return getObjectsFieldBuilder().getBuilderList();
+      public java.util.List<stategate.Schema.State.Builder> 
+           getStateValuesBuilderList() {
+        return getStateValuesFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          stategate.Schema.Object, stategate.Schema.Object.Builder, stategate.Schema.ObjectOrBuilder> 
-          getObjectsFieldBuilder() {
-        if (objectsBuilder_ == null) {
-          objectsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              stategate.Schema.Object, stategate.Schema.Object.Builder, stategate.Schema.ObjectOrBuilder>(
-                  objects_,
+          stategate.Schema.State, stategate.Schema.State.Builder, stategate.Schema.StateOrBuilder> 
+          getStateValuesFieldBuilder() {
+        if (stateValuesBuilder_ == null) {
+          stateValuesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              stategate.Schema.State, stategate.Schema.State.Builder, stategate.Schema.StateOrBuilder>(
+                  stateValues_,
                   ((bitField0_ & 0x00000001) == 0x00000001),
                   getParentForChildren(),
                   isClean());
-          objects_ = null;
+          stateValues_ = null;
         }
-        return objectsBuilder_;
+        return stateValuesBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -2898,53 +2900,53 @@ public final class Schema {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:stategate.Objects)
+      // @@protoc_insertion_point(builder_scope:stategate.StateValues)
     }
 
-    // @@protoc_insertion_point(class_scope:stategate.Objects)
-    private static final stategate.Schema.Objects DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:stategate.StateValues)
+    private static final stategate.Schema.StateValues DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new stategate.Schema.Objects();
+      DEFAULT_INSTANCE = new stategate.Schema.StateValues();
     }
 
-    public static stategate.Schema.Objects getDefaultInstance() {
+    public static stategate.Schema.StateValues getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<Objects>
-        PARSER = new com.google.protobuf.AbstractParser<Objects>() {
+    private static final com.google.protobuf.Parser<StateValues>
+        PARSER = new com.google.protobuf.AbstractParser<StateValues>() {
       @java.lang.Override
-      public Objects parsePartialFrom(
+      public StateValues parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Objects(input, extensionRegistry);
+        return new StateValues(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<Objects> parser() {
+    public static com.google.protobuf.Parser<StateValues> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<Objects> getParserForType() {
+    public com.google.protobuf.Parser<StateValues> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public stategate.Schema.Objects getDefaultInstanceForType() {
+    public stategate.Schema.StateValues getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface SearchObjectOptsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:stategate.SearchObjectOpts)
+  public interface SearchStateOptsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:stategate.SearchStateOpts)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -2952,7 +2954,7 @@ public final class Schema {
     java.lang.String getDomain();
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -2962,7 +2964,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -2970,7 +2972,7 @@ public final class Schema {
     java.lang.String getType();
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -2998,7 +3000,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * limit returned objects
+     * limit returned state
      * </pre>
      *
      * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
@@ -3016,22 +3018,22 @@ public final class Schema {
   }
   /**
    * <pre>
-   * SearchObjectOpts are options when querying the current values of object(s).
+   * SearchStateOpts are options when querying the current values of application state value(s).
    * If historical values are needed, SearchEvents should be used
    * </pre>
    *
-   * Protobuf type {@code stategate.SearchObjectOpts}
+   * Protobuf type {@code stategate.SearchStateOpts}
    */
-  public  static final class SearchObjectOpts extends
+  public  static final class SearchStateOpts extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:stategate.SearchObjectOpts)
-      SearchObjectOptsOrBuilder {
+      // @@protoc_insertion_point(message_implements:stategate.SearchStateOpts)
+      SearchStateOptsOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use SearchObjectOpts.newBuilder() to construct.
-    private SearchObjectOpts(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use SearchStateOpts.newBuilder() to construct.
+    private SearchStateOpts(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private SearchObjectOpts() {
+    private SearchStateOpts() {
       domain_ = "";
       type_ = "";
       queryString_ = "";
@@ -3044,7 +3046,7 @@ public final class Schema {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private SearchObjectOpts(
+    private SearchStateOpts(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3112,22 +3114,22 @@ public final class Schema {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return stategate.Schema.internal_static_stategate_SearchObjectOpts_descriptor;
+      return stategate.Schema.internal_static_stategate_SearchStateOpts_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return stategate.Schema.internal_static_stategate_SearchObjectOpts_fieldAccessorTable
+      return stategate.Schema.internal_static_stategate_SearchStateOpts_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              stategate.Schema.SearchObjectOpts.class, stategate.Schema.SearchObjectOpts.Builder.class);
+              stategate.Schema.SearchStateOpts.class, stategate.Schema.SearchStateOpts.Builder.class);
     }
 
     public static final int DOMAIN_FIELD_NUMBER = 1;
     private volatile java.lang.Object domain_;
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -3146,7 +3148,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -3169,7 +3171,7 @@ public final class Schema {
     private volatile java.lang.Object type_;
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -3188,7 +3190,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -3253,7 +3255,7 @@ public final class Schema {
     private long limit_;
     /**
      * <pre>
-     * limit returned objects
+     * limit returned state
      * </pre>
      *
      * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
@@ -3340,10 +3342,10 @@ public final class Schema {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof stategate.Schema.SearchObjectOpts)) {
+      if (!(obj instanceof stategate.Schema.SearchStateOpts)) {
         return super.equals(obj);
       }
-      stategate.Schema.SearchObjectOpts other = (stategate.Schema.SearchObjectOpts) obj;
+      stategate.Schema.SearchStateOpts other = (stategate.Schema.SearchStateOpts) obj;
 
       boolean result = true;
       result = result && getDomain()
@@ -3384,69 +3386,69 @@ public final class Schema {
       return hash;
     }
 
-    public static stategate.Schema.SearchObjectOpts parseFrom(
+    public static stategate.Schema.SearchStateOpts parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.SearchObjectOpts parseFrom(
+    public static stategate.Schema.SearchStateOpts parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.SearchObjectOpts parseFrom(
+    public static stategate.Schema.SearchStateOpts parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.SearchObjectOpts parseFrom(
+    public static stategate.Schema.SearchStateOpts parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.SearchObjectOpts parseFrom(byte[] data)
+    public static stategate.Schema.SearchStateOpts parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.SearchObjectOpts parseFrom(
+    public static stategate.Schema.SearchStateOpts parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.SearchObjectOpts parseFrom(java.io.InputStream input)
+    public static stategate.Schema.SearchStateOpts parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.SearchObjectOpts parseFrom(
+    public static stategate.Schema.SearchStateOpts parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.SearchObjectOpts parseDelimitedFrom(java.io.InputStream input)
+    public static stategate.Schema.SearchStateOpts parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static stategate.Schema.SearchObjectOpts parseDelimitedFrom(
+    public static stategate.Schema.SearchStateOpts parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.SearchObjectOpts parseFrom(
+    public static stategate.Schema.SearchStateOpts parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.SearchObjectOpts parseFrom(
+    public static stategate.Schema.SearchStateOpts parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3459,7 +3461,7 @@ public final class Schema {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(stategate.Schema.SearchObjectOpts prototype) {
+    public static Builder newBuilder(stategate.Schema.SearchStateOpts prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -3476,30 +3478,30 @@ public final class Schema {
     }
     /**
      * <pre>
-     * SearchObjectOpts are options when querying the current values of object(s).
+     * SearchStateOpts are options when querying the current values of application state value(s).
      * If historical values are needed, SearchEvents should be used
      * </pre>
      *
-     * Protobuf type {@code stategate.SearchObjectOpts}
+     * Protobuf type {@code stategate.SearchStateOpts}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:stategate.SearchObjectOpts)
-        stategate.Schema.SearchObjectOptsOrBuilder {
+        // @@protoc_insertion_point(builder_implements:stategate.SearchStateOpts)
+        stategate.Schema.SearchStateOptsOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return stategate.Schema.internal_static_stategate_SearchObjectOpts_descriptor;
+        return stategate.Schema.internal_static_stategate_SearchStateOpts_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return stategate.Schema.internal_static_stategate_SearchObjectOpts_fieldAccessorTable
+        return stategate.Schema.internal_static_stategate_SearchStateOpts_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                stategate.Schema.SearchObjectOpts.class, stategate.Schema.SearchObjectOpts.Builder.class);
+                stategate.Schema.SearchStateOpts.class, stategate.Schema.SearchStateOpts.Builder.class);
       }
 
-      // Construct using stategate.Schema.SearchObjectOpts.newBuilder()
+      // Construct using stategate.Schema.SearchStateOpts.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -3533,17 +3535,17 @@ public final class Schema {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return stategate.Schema.internal_static_stategate_SearchObjectOpts_descriptor;
+        return stategate.Schema.internal_static_stategate_SearchStateOpts_descriptor;
       }
 
       @java.lang.Override
-      public stategate.Schema.SearchObjectOpts getDefaultInstanceForType() {
-        return stategate.Schema.SearchObjectOpts.getDefaultInstance();
+      public stategate.Schema.SearchStateOpts getDefaultInstanceForType() {
+        return stategate.Schema.SearchStateOpts.getDefaultInstance();
       }
 
       @java.lang.Override
-      public stategate.Schema.SearchObjectOpts build() {
-        stategate.Schema.SearchObjectOpts result = buildPartial();
+      public stategate.Schema.SearchStateOpts build() {
+        stategate.Schema.SearchStateOpts result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -3551,8 +3553,8 @@ public final class Schema {
       }
 
       @java.lang.Override
-      public stategate.Schema.SearchObjectOpts buildPartial() {
-        stategate.Schema.SearchObjectOpts result = new stategate.Schema.SearchObjectOpts(this);
+      public stategate.Schema.SearchStateOpts buildPartial() {
+        stategate.Schema.SearchStateOpts result = new stategate.Schema.SearchStateOpts(this);
         result.domain_ = domain_;
         result.type_ = type_;
         result.queryString_ = queryString_;
@@ -3596,16 +3598,16 @@ public final class Schema {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof stategate.Schema.SearchObjectOpts) {
-          return mergeFrom((stategate.Schema.SearchObjectOpts)other);
+        if (other instanceof stategate.Schema.SearchStateOpts) {
+          return mergeFrom((stategate.Schema.SearchStateOpts)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(stategate.Schema.SearchObjectOpts other) {
-        if (other == stategate.Schema.SearchObjectOpts.getDefaultInstance()) return this;
+      public Builder mergeFrom(stategate.Schema.SearchStateOpts other) {
+        if (other == stategate.Schema.SearchStateOpts.getDefaultInstance()) return this;
         if (!other.getDomain().isEmpty()) {
           domain_ = other.domain_;
           onChanged();
@@ -3639,11 +3641,11 @@ public final class Schema {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        stategate.Schema.SearchObjectOpts parsedMessage = null;
+        stategate.Schema.SearchStateOpts parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (stategate.Schema.SearchObjectOpts) e.getUnfinishedMessage();
+          parsedMessage = (stategate.Schema.SearchStateOpts) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3656,7 +3658,7 @@ public final class Schema {
       private java.lang.Object domain_ = "";
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -3675,7 +3677,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -3695,7 +3697,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -3712,7 +3714,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -3725,7 +3727,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -3745,7 +3747,7 @@ public final class Schema {
       private java.lang.Object type_ = "";
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -3764,7 +3766,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -3784,7 +3786,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -3801,7 +3803,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -3814,7 +3816,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -3923,7 +3925,7 @@ public final class Schema {
       private long limit_ ;
       /**
        * <pre>
-       * limit returned objects
+       * limit returned state
        * </pre>
        *
        * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
@@ -3933,7 +3935,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * limit returned objects
+       * limit returned state
        * </pre>
        *
        * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
@@ -3946,7 +3948,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * limit returned objects
+       * limit returned state
        * </pre>
        *
        * <code>int64 limit = 4 [(.validator.field) = { ... }</code>
@@ -4008,41 +4010,41 @@ public final class Schema {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:stategate.SearchObjectOpts)
+      // @@protoc_insertion_point(builder_scope:stategate.SearchStateOpts)
     }
 
-    // @@protoc_insertion_point(class_scope:stategate.SearchObjectOpts)
-    private static final stategate.Schema.SearchObjectOpts DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:stategate.SearchStateOpts)
+    private static final stategate.Schema.SearchStateOpts DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new stategate.Schema.SearchObjectOpts();
+      DEFAULT_INSTANCE = new stategate.Schema.SearchStateOpts();
     }
 
-    public static stategate.Schema.SearchObjectOpts getDefaultInstance() {
+    public static stategate.Schema.SearchStateOpts getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<SearchObjectOpts>
-        PARSER = new com.google.protobuf.AbstractParser<SearchObjectOpts>() {
+    private static final com.google.protobuf.Parser<SearchStateOpts>
+        PARSER = new com.google.protobuf.AbstractParser<SearchStateOpts>() {
       @java.lang.Override
-      public SearchObjectOpts parsePartialFrom(
+      public SearchStateOpts parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SearchObjectOpts(input, extensionRegistry);
+        return new SearchStateOpts(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<SearchObjectOpts> parser() {
+    public static com.google.protobuf.Parser<SearchStateOpts> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<SearchObjectOpts> getParserForType() {
+    public com.google.protobuf.Parser<SearchStateOpts> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public stategate.Schema.SearchObjectOpts getDefaultInstanceForType() {
+    public stategate.Schema.SearchStateOpts getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4054,7 +4056,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -4062,7 +4064,7 @@ public final class Schema {
     java.lang.String getDomain();
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -4072,7 +4074,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -4080,7 +4082,7 @@ public final class Schema {
     java.lang.String getType();
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -4090,7 +4092,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * filter events belonging to a particular object
+     * filter events belonging to a particular application state value
      * </pre>
      *
      * <code>string key = 3;</code>
@@ -4098,7 +4100,7 @@ public final class Schema {
     java.lang.String getKey();
     /**
      * <pre>
-     * filter events belonging to a particular object
+     * filter events belonging to a particular application state value
      * </pre>
      *
      * <code>string key = 3;</code>
@@ -4108,7 +4110,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+     * json string to filter records that have application state value's with values that match k/v pairs ex: { "message": "hello world" }
      * </pre>
      *
      * <code>string query_string = 4;</code>
@@ -4116,7 +4118,7 @@ public final class Schema {
     java.lang.String getQueryString();
     /**
      * <pre>
-     * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+     * json string to filter records that have application state value's with values that match k/v pairs ex: { "message": "hello world" }
      * </pre>
      *
      * <code>string query_string = 4;</code>
@@ -4126,7 +4128,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * only return object events that occurred after specified min timestamp
+     * only return application state value events that occurred after specified min timestamp
      * </pre>
      *
      * <code>int64 min = 5;</code>
@@ -4135,7 +4137,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * only return object events that occurred before specified max timestamp
+     * only return application state value events that occurred before specified max timestamp
      * </pre>
      *
      * <code>int64 max = 6;</code>
@@ -4144,7 +4146,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * limit returned object events
+     * limit returned application state value events
      * </pre>
      *
      * <code>int64 limit = 7 [(.validator.field) = { ... }</code>
@@ -4153,7 +4155,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * offset returned object events(pagination)
+     * offset returned application state value events(pagination)
      * </pre>
      *
      * <code>int64 offset = 8;</code>
@@ -4162,7 +4164,7 @@ public final class Schema {
   }
   /**
    * <pre>
-   * SearchEventOpts are options when querying historical events for a given object
+   * SearchEventOpts are options when querying historical events for a given application state value
    * </pre>
    *
    * Protobuf type {@code stategate.SearchEventOpts}
@@ -4291,7 +4293,7 @@ public final class Schema {
     private volatile java.lang.Object domain_;
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -4310,7 +4312,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -4333,7 +4335,7 @@ public final class Schema {
     private volatile java.lang.Object type_;
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -4352,7 +4354,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Object type (ex: user)
+     * State type (ex: user)
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -4375,7 +4377,7 @@ public final class Schema {
     private volatile java.lang.Object key_;
     /**
      * <pre>
-     * filter events belonging to a particular object
+     * filter events belonging to a particular application state value
      * </pre>
      *
      * <code>string key = 3;</code>
@@ -4394,7 +4396,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * filter events belonging to a particular object
+     * filter events belonging to a particular application state value
      * </pre>
      *
      * <code>string key = 3;</code>
@@ -4417,7 +4419,7 @@ public final class Schema {
     private volatile java.lang.Object queryString_;
     /**
      * <pre>
-     * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+     * json string to filter records that have application state value's with values that match k/v pairs ex: { "message": "hello world" }
      * </pre>
      *
      * <code>string query_string = 4;</code>
@@ -4436,7 +4438,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+     * json string to filter records that have application state value's with values that match k/v pairs ex: { "message": "hello world" }
      * </pre>
      *
      * <code>string query_string = 4;</code>
@@ -4459,7 +4461,7 @@ public final class Schema {
     private long min_;
     /**
      * <pre>
-     * only return object events that occurred after specified min timestamp
+     * only return application state value events that occurred after specified min timestamp
      * </pre>
      *
      * <code>int64 min = 5;</code>
@@ -4472,7 +4474,7 @@ public final class Schema {
     private long max_;
     /**
      * <pre>
-     * only return object events that occurred before specified max timestamp
+     * only return application state value events that occurred before specified max timestamp
      * </pre>
      *
      * <code>int64 max = 6;</code>
@@ -4485,7 +4487,7 @@ public final class Schema {
     private long limit_;
     /**
      * <pre>
-     * limit returned object events
+     * limit returned application state value events
      * </pre>
      *
      * <code>int64 limit = 7 [(.validator.field) = { ... }</code>
@@ -4498,7 +4500,7 @@ public final class Schema {
     private long offset_;
     /**
      * <pre>
-     * offset returned object events(pagination)
+     * offset returned application state value events(pagination)
      * </pre>
      *
      * <code>int64 offset = 8;</code>
@@ -4742,7 +4744,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * SearchEventOpts are options when querying historical events for a given object
+     * SearchEventOpts are options when querying historical events for a given application state value
      * </pre>
      *
      * Protobuf type {@code stategate.SearchEventOpts}
@@ -4940,7 +4942,7 @@ public final class Schema {
       private java.lang.Object domain_ = "";
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -4959,7 +4961,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -4979,7 +4981,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -4996,7 +4998,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -5009,7 +5011,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's business domain(ex: accounting)
+       * the application state value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -5029,7 +5031,7 @@ public final class Schema {
       private java.lang.Object type_ = "";
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -5048,7 +5050,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -5068,7 +5070,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -5085,7 +5087,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -5098,7 +5100,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object type (ex: user)
+       * State type (ex: user)
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -5118,7 +5120,7 @@ public final class Schema {
       private java.lang.Object key_ = "";
       /**
        * <pre>
-       * filter events belonging to a particular object
+       * filter events belonging to a particular application state value
        * </pre>
        *
        * <code>string key = 3;</code>
@@ -5137,7 +5139,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * filter events belonging to a particular object
+       * filter events belonging to a particular application state value
        * </pre>
        *
        * <code>string key = 3;</code>
@@ -5157,7 +5159,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * filter events belonging to a particular object
+       * filter events belonging to a particular application state value
        * </pre>
        *
        * <code>string key = 3;</code>
@@ -5174,7 +5176,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * filter events belonging to a particular object
+       * filter events belonging to a particular application state value
        * </pre>
        *
        * <code>string key = 3;</code>
@@ -5187,7 +5189,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * filter events belonging to a particular object
+       * filter events belonging to a particular application state value
        * </pre>
        *
        * <code>string key = 3;</code>
@@ -5207,7 +5209,7 @@ public final class Schema {
       private java.lang.Object queryString_ = "";
       /**
        * <pre>
-       * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+       * json string to filter records that have application state value's with values that match k/v pairs ex: { "message": "hello world" }
        * </pre>
        *
        * <code>string query_string = 4;</code>
@@ -5226,7 +5228,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+       * json string to filter records that have application state value's with values that match k/v pairs ex: { "message": "hello world" }
        * </pre>
        *
        * <code>string query_string = 4;</code>
@@ -5246,7 +5248,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+       * json string to filter records that have application state value's with values that match k/v pairs ex: { "message": "hello world" }
        * </pre>
        *
        * <code>string query_string = 4;</code>
@@ -5263,7 +5265,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+       * json string to filter records that have application state value's with values that match k/v pairs ex: { "message": "hello world" }
        * </pre>
        *
        * <code>string query_string = 4;</code>
@@ -5276,7 +5278,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+       * json string to filter records that have application state value's with values that match k/v pairs ex: { "message": "hello world" }
        * </pre>
        *
        * <code>string query_string = 4;</code>
@@ -5296,7 +5298,7 @@ public final class Schema {
       private long min_ ;
       /**
        * <pre>
-       * only return object events that occurred after specified min timestamp
+       * only return application state value events that occurred after specified min timestamp
        * </pre>
        *
        * <code>int64 min = 5;</code>
@@ -5306,7 +5308,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * only return object events that occurred after specified min timestamp
+       * only return application state value events that occurred after specified min timestamp
        * </pre>
        *
        * <code>int64 min = 5;</code>
@@ -5319,7 +5321,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * only return object events that occurred after specified min timestamp
+       * only return application state value events that occurred after specified min timestamp
        * </pre>
        *
        * <code>int64 min = 5;</code>
@@ -5334,7 +5336,7 @@ public final class Schema {
       private long max_ ;
       /**
        * <pre>
-       * only return object events that occurred before specified max timestamp
+       * only return application state value events that occurred before specified max timestamp
        * </pre>
        *
        * <code>int64 max = 6;</code>
@@ -5344,7 +5346,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * only return object events that occurred before specified max timestamp
+       * only return application state value events that occurred before specified max timestamp
        * </pre>
        *
        * <code>int64 max = 6;</code>
@@ -5357,7 +5359,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * only return object events that occurred before specified max timestamp
+       * only return application state value events that occurred before specified max timestamp
        * </pre>
        *
        * <code>int64 max = 6;</code>
@@ -5372,7 +5374,7 @@ public final class Schema {
       private long limit_ ;
       /**
        * <pre>
-       * limit returned object events
+       * limit returned application state value events
        * </pre>
        *
        * <code>int64 limit = 7 [(.validator.field) = { ... }</code>
@@ -5382,7 +5384,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * limit returned object events
+       * limit returned application state value events
        * </pre>
        *
        * <code>int64 limit = 7 [(.validator.field) = { ... }</code>
@@ -5395,7 +5397,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * limit returned object events
+       * limit returned application state value events
        * </pre>
        *
        * <code>int64 limit = 7 [(.validator.field) = { ... }</code>
@@ -5410,7 +5412,7 @@ public final class Schema {
       private long offset_ ;
       /**
        * <pre>
-       * offset returned object events(pagination)
+       * offset returned application state value events(pagination)
        * </pre>
        *
        * <code>int64 offset = 8;</code>
@@ -5420,7 +5422,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * offset returned object events(pagination)
+       * offset returned application state value events(pagination)
        * </pre>
        *
        * <code>int64 offset = 8;</code>
@@ -5433,7 +5435,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * offset returned object events(pagination)
+       * offset returned application state value events(pagination)
        * </pre>
        *
        * <code>int64 offset = 8;</code>
@@ -5503,7 +5505,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * the domain of the object (ex: acme) that triggered the event
+     * the domain of the application state value (ex: acme) that triggered the event
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -5511,7 +5513,7 @@ public final class Schema {
     java.lang.String getDomain();
     /**
      * <pre>
-     * the domain of the object (ex: acme) that triggered the event
+     * the domain of the application state value (ex: acme) that triggered the event
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -5521,7 +5523,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * the type of the object (ex: user) that triggered the event
+     * the type of the application state value (ex: user) that triggered the event
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -5529,7 +5531,7 @@ public final class Schema {
     java.lang.String getType();
     /**
      * <pre>
-     * the type of the object (ex: user) that triggered the event
+     * the type of the application state value (ex: user) that triggered the event
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -5630,7 +5632,7 @@ public final class Schema {
     private volatile java.lang.Object domain_;
     /**
      * <pre>
-     * the domain of the object (ex: acme) that triggered the event
+     * the domain of the application state value (ex: acme) that triggered the event
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -5649,7 +5651,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * the domain of the object (ex: acme) that triggered the event
+     * the domain of the application state value (ex: acme) that triggered the event
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -5672,7 +5674,7 @@ public final class Schema {
     private volatile java.lang.Object type_;
     /**
      * <pre>
-     * the type of the object (ex: user) that triggered the event
+     * the type of the application state value (ex: user) that triggered the event
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -5691,7 +5693,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * the type of the object (ex: user) that triggered the event
+     * the type of the application state value (ex: user) that triggered the event
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -6037,7 +6039,7 @@ public final class Schema {
       private java.lang.Object domain_ = "";
       /**
        * <pre>
-       * the domain of the object (ex: acme) that triggered the event
+       * the domain of the application state value (ex: acme) that triggered the event
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -6056,7 +6058,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the domain of the object (ex: acme) that triggered the event
+       * the domain of the application state value (ex: acme) that triggered the event
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -6076,7 +6078,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the domain of the object (ex: acme) that triggered the event
+       * the domain of the application state value (ex: acme) that triggered the event
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -6093,7 +6095,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the domain of the object (ex: acme) that triggered the event
+       * the domain of the application state value (ex: acme) that triggered the event
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -6106,7 +6108,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the domain of the object (ex: acme) that triggered the event
+       * the domain of the application state value (ex: acme) that triggered the event
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -6126,7 +6128,7 @@ public final class Schema {
       private java.lang.Object type_ = "";
       /**
        * <pre>
-       * the type of the object (ex: user) that triggered the event
+       * the type of the application state value (ex: user) that triggered the event
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -6145,7 +6147,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the type of the object (ex: user) that triggered the event
+       * the type of the application state value (ex: user) that triggered the event
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -6165,7 +6167,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the type of the object (ex: user) that triggered the event
+       * the type of the application state value (ex: user) that triggered the event
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -6182,7 +6184,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the type of the object (ex: user) that triggered the event
+       * the type of the application state value (ex: user) that triggered the event
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -6195,7 +6197,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the type of the object (ex: user) that triggered the event
+       * the type of the application state value (ex: user) that triggered the event
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -6288,28 +6290,28 @@ public final class Schema {
 
     /**
      * <pre>
-     * the unmodified
+     * state after it has been mutated
      * </pre>
      *
-     * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+     * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
      */
-    boolean hasObject();
+    boolean hasState();
     /**
      * <pre>
-     * the unmodified
+     * state after it has been mutated
      * </pre>
      *
-     * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+     * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
      */
-    stategate.Schema.Object getObject();
+    stategate.Schema.State getState();
     /**
      * <pre>
-     * the unmodified
+     * state after it has been mutated
      * </pre>
      *
-     * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+     * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
      */
-    stategate.Schema.ObjectOrBuilder getObjectOrBuilder();
+    stategate.Schema.StateOrBuilder getStateOrBuilder();
 
     /**
      * <pre>
@@ -6347,8 +6349,10 @@ public final class Schema {
   }
   /**
    * <pre>
-   * Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.
-   * Events are persisted to history &amp; broadcasted to interested consumers(Stream) any time an object is created/modified
+   * Event is primitive that represents a single state change
+   * Events are persisted to history &amp; broadcasted to interested consumers(Stream) any time an application state value is created/modified
+   * Events are immutable after creation and may be searched.
+   * Event Consumers may search events to query previous state
    * </pre>
    *
    * Protobuf type {@code stategate.Event}
@@ -6398,14 +6402,14 @@ public final class Schema {
               break;
             }
             case 18: {
-              stategate.Schema.Object.Builder subBuilder = null;
-              if (object_ != null) {
-                subBuilder = object_.toBuilder();
+              stategate.Schema.State.Builder subBuilder = null;
+              if (state_ != null) {
+                subBuilder = state_.toBuilder();
               }
-              object_ = input.readMessage(stategate.Schema.Object.parser(), extensionRegistry);
+              state_ = input.readMessage(stategate.Schema.State.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(object_);
-                object_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(state_);
+                state_ = subBuilder.buildPartial();
               }
 
               break;
@@ -6502,37 +6506,37 @@ public final class Schema {
       }
     }
 
-    public static final int OBJECT_FIELD_NUMBER = 2;
-    private stategate.Schema.Object object_;
+    public static final int STATE_FIELD_NUMBER = 2;
+    private stategate.Schema.State state_;
     /**
      * <pre>
-     * the unmodified
+     * state after it has been mutated
      * </pre>
      *
-     * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+     * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
      */
-    public boolean hasObject() {
-      return object_ != null;
+    public boolean hasState() {
+      return state_ != null;
     }
     /**
      * <pre>
-     * the unmodified
+     * state after it has been mutated
      * </pre>
      *
-     * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+     * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
      */
-    public stategate.Schema.Object getObject() {
-      return object_ == null ? stategate.Schema.Object.getDefaultInstance() : object_;
+    public stategate.Schema.State getState() {
+      return state_ == null ? stategate.Schema.State.getDefaultInstance() : state_;
     }
     /**
      * <pre>
-     * the unmodified
+     * state after it has been mutated
      * </pre>
      *
-     * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+     * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
      */
-    public stategate.Schema.ObjectOrBuilder getObjectOrBuilder() {
-      return getObject();
+    public stategate.Schema.StateOrBuilder getStateOrBuilder() {
+      return getState();
     }
 
     public static final int CLAIMS_FIELD_NUMBER = 3;
@@ -6598,8 +6602,8 @@ public final class Schema {
       if (!getIdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
       }
-      if (object_ != null) {
-        output.writeMessage(2, getObject());
+      if (state_ != null) {
+        output.writeMessage(2, getState());
       }
       if (claims_ != null) {
         output.writeMessage(3, getClaims());
@@ -6619,9 +6623,9 @@ public final class Schema {
       if (!getIdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
       }
-      if (object_ != null) {
+      if (state_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getObject());
+          .computeMessageSize(2, getState());
       }
       if (claims_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -6649,10 +6653,10 @@ public final class Schema {
       boolean result = true;
       result = result && getId()
           .equals(other.getId());
-      result = result && (hasObject() == other.hasObject());
-      if (hasObject()) {
-        result = result && getObject()
-            .equals(other.getObject());
+      result = result && (hasState() == other.hasState());
+      if (hasState()) {
+        result = result && getState()
+            .equals(other.getState());
       }
       result = result && (hasClaims() == other.hasClaims());
       if (hasClaims()) {
@@ -6674,9 +6678,9 @@ public final class Schema {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ID_FIELD_NUMBER;
       hash = (53 * hash) + getId().hashCode();
-      if (hasObject()) {
-        hash = (37 * hash) + OBJECT_FIELD_NUMBER;
-        hash = (53 * hash) + getObject().hashCode();
+      if (hasState()) {
+        hash = (37 * hash) + STATE_FIELD_NUMBER;
+        hash = (53 * hash) + getState().hashCode();
       }
       if (hasClaims()) {
         hash = (37 * hash) + CLAIMS_FIELD_NUMBER;
@@ -6782,8 +6786,10 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.
-     * Events are persisted to history &amp; broadcasted to interested consumers(Stream) any time an object is created/modified
+     * Event is primitive that represents a single state change
+     * Events are persisted to history &amp; broadcasted to interested consumers(Stream) any time an application state value is created/modified
+     * Events are immutable after creation and may be searched.
+     * Event Consumers may search events to query previous state
      * </pre>
      *
      * Protobuf type {@code stategate.Event}
@@ -6825,11 +6831,11 @@ public final class Schema {
         super.clear();
         id_ = "";
 
-        if (objectBuilder_ == null) {
-          object_ = null;
+        if (stateBuilder_ == null) {
+          state_ = null;
         } else {
-          object_ = null;
-          objectBuilder_ = null;
+          state_ = null;
+          stateBuilder_ = null;
         }
         if (claimsBuilder_ == null) {
           claims_ = null;
@@ -6866,10 +6872,10 @@ public final class Schema {
       public stategate.Schema.Event buildPartial() {
         stategate.Schema.Event result = new stategate.Schema.Event(this);
         result.id_ = id_;
-        if (objectBuilder_ == null) {
-          result.object_ = object_;
+        if (stateBuilder_ == null) {
+          result.state_ = state_;
         } else {
-          result.object_ = objectBuilder_.build();
+          result.state_ = stateBuilder_.build();
         }
         if (claimsBuilder_ == null) {
           result.claims_ = claims_;
@@ -6929,8 +6935,8 @@ public final class Schema {
           id_ = other.id_;
           onChanged();
         }
-        if (other.hasObject()) {
-          mergeObject(other.getObject());
+        if (other.hasState()) {
+          mergeState(other.getState());
         }
         if (other.hasClaims()) {
           mergeClaims(other.getClaims());
@@ -7056,157 +7062,157 @@ public final class Schema {
         return this;
       }
 
-      private stategate.Schema.Object object_ = null;
+      private stategate.Schema.State state_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
-          stategate.Schema.Object, stategate.Schema.Object.Builder, stategate.Schema.ObjectOrBuilder> objectBuilder_;
+          stategate.Schema.State, stategate.Schema.State.Builder, stategate.Schema.StateOrBuilder> stateBuilder_;
       /**
        * <pre>
-       * the unmodified
+       * state after it has been mutated
        * </pre>
        *
-       * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+       * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
        */
-      public boolean hasObject() {
-        return objectBuilder_ != null || object_ != null;
+      public boolean hasState() {
+        return stateBuilder_ != null || state_ != null;
       }
       /**
        * <pre>
-       * the unmodified
+       * state after it has been mutated
        * </pre>
        *
-       * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+       * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
        */
-      public stategate.Schema.Object getObject() {
-        if (objectBuilder_ == null) {
-          return object_ == null ? stategate.Schema.Object.getDefaultInstance() : object_;
+      public stategate.Schema.State getState() {
+        if (stateBuilder_ == null) {
+          return state_ == null ? stategate.Schema.State.getDefaultInstance() : state_;
         } else {
-          return objectBuilder_.getMessage();
+          return stateBuilder_.getMessage();
         }
       }
       /**
        * <pre>
-       * the unmodified
+       * state after it has been mutated
        * </pre>
        *
-       * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+       * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
        */
-      public Builder setObject(stategate.Schema.Object value) {
-        if (objectBuilder_ == null) {
+      public Builder setState(stategate.Schema.State value) {
+        if (stateBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          object_ = value;
+          state_ = value;
           onChanged();
         } else {
-          objectBuilder_.setMessage(value);
+          stateBuilder_.setMessage(value);
         }
 
         return this;
       }
       /**
        * <pre>
-       * the unmodified
+       * state after it has been mutated
        * </pre>
        *
-       * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+       * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
        */
-      public Builder setObject(
-          stategate.Schema.Object.Builder builderForValue) {
-        if (objectBuilder_ == null) {
-          object_ = builderForValue.build();
+      public Builder setState(
+          stategate.Schema.State.Builder builderForValue) {
+        if (stateBuilder_ == null) {
+          state_ = builderForValue.build();
           onChanged();
         } else {
-          objectBuilder_.setMessage(builderForValue.build());
+          stateBuilder_.setMessage(builderForValue.build());
         }
 
         return this;
       }
       /**
        * <pre>
-       * the unmodified
+       * state after it has been mutated
        * </pre>
        *
-       * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+       * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
        */
-      public Builder mergeObject(stategate.Schema.Object value) {
-        if (objectBuilder_ == null) {
-          if (object_ != null) {
-            object_ =
-              stategate.Schema.Object.newBuilder(object_).mergeFrom(value).buildPartial();
+      public Builder mergeState(stategate.Schema.State value) {
+        if (stateBuilder_ == null) {
+          if (state_ != null) {
+            state_ =
+              stategate.Schema.State.newBuilder(state_).mergeFrom(value).buildPartial();
           } else {
-            object_ = value;
+            state_ = value;
           }
           onChanged();
         } else {
-          objectBuilder_.mergeFrom(value);
+          stateBuilder_.mergeFrom(value);
         }
 
         return this;
       }
       /**
        * <pre>
-       * the unmodified
+       * state after it has been mutated
        * </pre>
        *
-       * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+       * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
        */
-      public Builder clearObject() {
-        if (objectBuilder_ == null) {
-          object_ = null;
+      public Builder clearState() {
+        if (stateBuilder_ == null) {
+          state_ = null;
           onChanged();
         } else {
-          object_ = null;
-          objectBuilder_ = null;
+          state_ = null;
+          stateBuilder_ = null;
         }
 
         return this;
       }
       /**
        * <pre>
-       * the unmodified
+       * state after it has been mutated
        * </pre>
        *
-       * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+       * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
        */
-      public stategate.Schema.Object.Builder getObjectBuilder() {
+      public stategate.Schema.State.Builder getStateBuilder() {
         
         onChanged();
-        return getObjectFieldBuilder().getBuilder();
+        return getStateFieldBuilder().getBuilder();
       }
       /**
        * <pre>
-       * the unmodified
+       * state after it has been mutated
        * </pre>
        *
-       * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+       * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
        */
-      public stategate.Schema.ObjectOrBuilder getObjectOrBuilder() {
-        if (objectBuilder_ != null) {
-          return objectBuilder_.getMessageOrBuilder();
+      public stategate.Schema.StateOrBuilder getStateOrBuilder() {
+        if (stateBuilder_ != null) {
+          return stateBuilder_.getMessageOrBuilder();
         } else {
-          return object_ == null ?
-              stategate.Schema.Object.getDefaultInstance() : object_;
+          return state_ == null ?
+              stategate.Schema.State.getDefaultInstance() : state_;
         }
       }
       /**
        * <pre>
-       * the unmodified
+       * state after it has been mutated
        * </pre>
        *
-       * <code>.stategate.Object object = 2 [(.validator.field) = { ... }</code>
+       * <code>.stategate.State state = 2 [(.validator.field) = { ... }</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          stategate.Schema.Object, stategate.Schema.Object.Builder, stategate.Schema.ObjectOrBuilder> 
-          getObjectFieldBuilder() {
-        if (objectBuilder_ == null) {
-          objectBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              stategate.Schema.Object, stategate.Schema.Object.Builder, stategate.Schema.ObjectOrBuilder>(
-                  getObject(),
+          stategate.Schema.State, stategate.Schema.State.Builder, stategate.Schema.StateOrBuilder> 
+          getStateFieldBuilder() {
+        if (stateBuilder_ == null) {
+          stateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              stategate.Schema.State, stategate.Schema.State.Builder, stategate.Schema.StateOrBuilder>(
+                  getState(),
                   getParentForChildren(),
                   isClean());
-          object_ = null;
+          state_ = null;
         }
-        return objectBuilder_;
+        return stateBuilder_;
       }
 
       private com.google.protobuf.Struct claims_ = null;
@@ -8243,25 +8249,25 @@ public final class Schema {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_stategate_ObjectRef_descriptor;
+    internal_static_stategate_StateRef_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_stategate_ObjectRef_fieldAccessorTable;
+      internal_static_stategate_StateRef_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_stategate_Object_descriptor;
+    internal_static_stategate_State_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_stategate_Object_fieldAccessorTable;
+      internal_static_stategate_State_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_stategate_Objects_descriptor;
+    internal_static_stategate_StateValues_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_stategate_Objects_fieldAccessorTable;
+      internal_static_stategate_StateValues_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_stategate_SearchObjectOpts_descriptor;
+    internal_static_stategate_SearchStateOpts_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_stategate_SearchObjectOpts_fieldAccessorTable;
+      internal_static_stategate_SearchStateOpts_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_stategate_SearchEventOpts_descriptor;
   private static final 
@@ -8296,44 +8302,44 @@ public final class Schema {
       "proto\032\037google/protobuf/timestamp.proto\032\031" +
       "google/protobuf/any.proto\032\033google/protob" +
       "uf/empty.proto\0326github.com/mwitkow/go-pr" +
-      "oto-validators/validator.proto\"]\n\tObject" +
-      "Ref\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type" +
-      "\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030\003 \001(\tB\013\342\337\037\007\n\005" +
-      "^\\S+$\"\213\001\n\006Object\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005" +
-      "^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030" +
-      "\003 \001(\tB\013\342\337\037\007\n\005^\\S+$\022/\n\006values\030\004 \001(\0132\027.goo" +
-      "gle.protobuf.StructB\006\342\337\037\002 \001\"-\n\007Objects\022\"" +
-      "\n\007objects\030\001 \003(\0132\021.stategate.Object\"\207\001\n\020S" +
-      "earchObjectOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^" +
-      "\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014query" +
-      "_string\030\003 \001(\t\022\025\n\005limit\030\004 \001(\003B\006\342\337\037\002\020\000\022\016\n\006" +
-      "offset\030\005 \001(\003\"\255\001\n\017SearchEventOpts\022\033\n\006doma" +
-      "in\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037" +
-      "\007\n\005^\\S+$\022\013\n\003key\030\003 \001(\t\022\024\n\014query_string\030\004 " +
-      "\001(\t\022\013\n\003min\030\005 \001(\003\022\013\n\003max\030\006 \001(\003\022\025\n\005limit\030\007" +
-      " \001(\003B\006\342\337\037\002\020\000\022\016\n\006offset\030\010 \001(\003\"D\n\nStreamOp" +
-      "ts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030" +
-      "\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\"\216\001\n\005Event\022\023\n\002id\030\001 \001(\t" +
-      "B\007\342\337\037\003\220\001\000\022)\n\006object\030\002 \001(\0132\021.stategate.Ob" +
-      "jectB\006\342\337\037\002 \001\022/\n\006claims\030\003 \001(\0132\027.google.pr" +
-      "otobuf.StructB\006\342\337\037\002 \001\022\024\n\004time\030\004 \001(\003B\006\342\337\037" +
-      "\002\020\000\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020.stategat" +
-      "e.Event2\216\003\n\rObjectService\022`\n\003Set\022\021.state" +
-      "gate.Object\032\026.google.protobuf.Empty\".\202\323\344" +
-      "\223\002(\"&/api/objects/ref/{domain}/{type}/{k" +
-      "ey}\022^\n\003Get\022\024.stategate.ObjectRef\032\021.state" +
-      "gate.Object\".\202\323\344\223\002(\022&/api/objects/ref/{d" +
-      "omain}/{type}/{key}\022c\n\003Del\022\024.stategate.O" +
-      "bjectRef\032\026.google.protobuf.Empty\".\202\323\344\223\002(" +
-      "*&/api/objects/ref/{domain}/{type}/{key}" +
-      "\022V\n\006Search\022\033.stategate.SearchObjectOpts\032" +
-      "\022.stategate.Objects\"\033\202\323\344\223\002\025\022\023/api/object" +
-      "s/search2\264\001\n\014EventService\022O\n\006Stream\022\025.st" +
-      "ategate.StreamOpts\032\020.stategate.Event\"\032\202\323" +
-      "\344\223\002\024\022\022/api/events/stream0\001\022S\n\006Search\022\032.s" +
-      "tategate.SearchEventOpts\032\021.stategate.Eve" +
-      "nts\"\032\202\323\344\223\002\024\022\022/api/events/searchB\013Z\tstate" +
-      "gateb\006proto3"
+      "oto-validators/validator.proto\"\\\n\010StateR" +
+      "ef\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030" +
+      "\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030\003 \001(\tB\013\342\337\037\007\n\005^" +
+      "\\S+$\"\212\001\n\005State\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\" +
+      "S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030\003 " +
+      "\001(\tB\013\342\337\037\007\n\005^\\S+$\022/\n\006values\030\004 \001(\0132\027.googl" +
+      "e.protobuf.StructB\006\342\337\037\002 \001\"5\n\013StateValues" +
+      "\022&\n\014state_values\030\001 \003(\0132\020.stategate.State" +
+      "\"\206\001\n\017SearchStateOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337" +
+      "\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014" +
+      "query_string\030\003 \001(\t\022\025\n\005limit\030\004 \001(\003B\006\342\337\037\002\020" +
+      "\000\022\016\n\006offset\030\005 \001(\003\"\255\001\n\017SearchEventOpts\022\033\n" +
+      "\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\t" +
+      "B\013\342\337\037\007\n\005^\\S+$\022\013\n\003key\030\003 \001(\t\022\024\n\014query_stri" +
+      "ng\030\004 \001(\t\022\013\n\003min\030\005 \001(\003\022\013\n\003max\030\006 \001(\003\022\025\n\005li" +
+      "mit\030\007 \001(\003B\006\342\337\037\002\020\000\022\016\n\006offset\030\010 \001(\003\"D\n\nStr" +
+      "eamOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004" +
+      "type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\"\214\001\n\005Event\022\023\n\002id\030" +
+      "\001 \001(\tB\007\342\337\037\003\220\001\000\022\'\n\005state\030\002 \001(\0132\020.stategat" +
+      "e.StateB\006\342\337\037\002 \001\022/\n\006claims\030\003 \001(\0132\027.google" +
+      ".protobuf.StructB\006\342\337\037\002 \001\022\024\n\004time\030\004 \001(\003B\006" +
+      "\342\337\037\002\020\000\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020.state" +
+      "gate.Event2\204\003\n\014StateService\022]\n\003Set\022\020.sta" +
+      "tegate.State\032\026.google.protobuf.Empty\",\202\323" +
+      "\344\223\002&\"$/api/state/ref/{domain}/{type}/{ke" +
+      "y}\022Z\n\003Get\022\023.stategate.StateRef\032\020.statega" +
+      "te.State\",\202\323\344\223\002&\022$/api/state/ref/{domain" +
+      "}/{type}/{key}\022`\n\003Del\022\023.stategate.StateR" +
+      "ef\032\026.google.protobuf.Empty\",\202\323\344\223\002&*$/api" +
+      "/state/ref/{domain}/{type}/{key}\022W\n\006Sear" +
+      "ch\022\032.stategate.SearchStateOpts\032\026.statega" +
+      "te.StateValues\"\031\202\323\344\223\002\023\022\021/api/state/searc" +
+      "h2\264\001\n\014EventService\022O\n\006Stream\022\025.stategate" +
+      ".StreamOpts\032\020.stategate.Event\"\032\202\323\344\223\002\024\022\022/" +
+      "api/events/stream0\001\022S\n\006Search\022\032.stategat" +
+      "e.SearchEventOpts\032\021.stategate.Events\"\032\202\323" +
+      "\344\223\002\024\022\022/api/events/searchB\013Z\tstategateb\006p" +
+      "roto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8353,29 +8359,29 @@ public final class Schema {
           com.google.protobuf.EmptyProto.getDescriptor(),
           validator.Validator.getDescriptor(),
         }, assigner);
-    internal_static_stategate_ObjectRef_descriptor =
+    internal_static_stategate_StateRef_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_stategate_ObjectRef_fieldAccessorTable = new
+    internal_static_stategate_StateRef_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_stategate_ObjectRef_descriptor,
+        internal_static_stategate_StateRef_descriptor,
         new java.lang.String[] { "Domain", "Type", "Key", });
-    internal_static_stategate_Object_descriptor =
+    internal_static_stategate_State_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_stategate_Object_fieldAccessorTable = new
+    internal_static_stategate_State_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_stategate_Object_descriptor,
+        internal_static_stategate_State_descriptor,
         new java.lang.String[] { "Domain", "Type", "Key", "Values", });
-    internal_static_stategate_Objects_descriptor =
+    internal_static_stategate_StateValues_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_stategate_Objects_fieldAccessorTable = new
+    internal_static_stategate_StateValues_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_stategate_Objects_descriptor,
-        new java.lang.String[] { "Objects", });
-    internal_static_stategate_SearchObjectOpts_descriptor =
+        internal_static_stategate_StateValues_descriptor,
+        new java.lang.String[] { "StateValues", });
+    internal_static_stategate_SearchStateOpts_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_stategate_SearchObjectOpts_fieldAccessorTable = new
+    internal_static_stategate_SearchStateOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_stategate_SearchObjectOpts_descriptor,
+        internal_static_stategate_SearchStateOpts_descriptor,
         new java.lang.String[] { "Domain", "Type", "QueryString", "Limit", "Offset", });
     internal_static_stategate_SearchEventOpts_descriptor =
       getDescriptor().getMessageTypes().get(4);
@@ -8394,7 +8400,7 @@ public final class Schema {
     internal_static_stategate_Event_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_Event_descriptor,
-        new java.lang.String[] { "Id", "Object", "Claims", "Time", });
+        new java.lang.String[] { "Id", "State", "Claims", "Time", });
     internal_static_stategate_Events_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_stategate_Events_fieldAccessorTable = new

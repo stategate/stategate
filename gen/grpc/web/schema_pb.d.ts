@@ -8,25 +8,25 @@ import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty
 import * as github_com_mwitkow_go$proto$validators_validator_pb from './github.com/mwitkow/go-proto-validators/validator_pb';
 
 
-export class ObjectRef extends jspb.Message {
+export class StateRef extends jspb.Message {
   getDomain(): string;
-  setDomain(value: string): ObjectRef;
+  setDomain(value: string): StateRef;
 
   getType(): string;
-  setType(value: string): ObjectRef;
+  setType(value: string): StateRef;
 
   getKey(): string;
-  setKey(value: string): ObjectRef;
+  setKey(value: string): StateRef;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ObjectRef.AsObject;
-  static toObject(includeInstance: boolean, msg: ObjectRef): ObjectRef.AsObject;
-  static serializeBinaryToWriter(message: ObjectRef, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ObjectRef;
-  static deserializeBinaryFromReader(message: ObjectRef, reader: jspb.BinaryReader): ObjectRef;
+  toObject(includeInstance?: boolean): StateRef.AsObject;
+  static toObject(includeInstance: boolean, msg: StateRef): StateRef.AsObject;
+  static serializeBinaryToWriter(message: StateRef, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StateRef;
+  static deserializeBinaryFromReader(message: StateRef, reader: jspb.BinaryReader): StateRef;
 }
 
-export namespace ObjectRef {
+export namespace StateRef {
   export type AsObject = {
     domain: string,
     type: string,
@@ -34,30 +34,30 @@ export namespace ObjectRef {
   }
 }
 
-export class Object extends jspb.Message {
+export class State extends jspb.Message {
   getDomain(): string;
-  setDomain(value: string): Object;
+  setDomain(value: string): State;
 
   getType(): string;
-  setType(value: string): Object;
+  setType(value: string): State;
 
   getKey(): string;
-  setKey(value: string): Object;
+  setKey(value: string): State;
 
   getValues(): google_protobuf_struct_pb.Struct | undefined;
-  setValues(value?: google_protobuf_struct_pb.Struct): Object;
+  setValues(value?: google_protobuf_struct_pb.Struct): State;
   hasValues(): boolean;
-  clearValues(): Object;
+  clearValues(): State;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Object.AsObject;
-  static toObject(includeInstance: boolean, msg: Object): Object.AsObject;
-  static serializeBinaryToWriter(message: Object, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Object;
-  static deserializeBinaryFromReader(message: Object, reader: jspb.BinaryReader): Object;
+  toObject(includeInstance?: boolean): State.AsObject;
+  static toObject(includeInstance: boolean, msg: State): State.AsObject;
+  static serializeBinaryToWriter(message: State, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): State;
+  static deserializeBinaryFromReader(message: State, reader: jspb.BinaryReader): State;
 }
 
-export namespace Object {
+export namespace State {
   export type AsObject = {
     domain: string,
     type: string,
@@ -66,51 +66,51 @@ export namespace Object {
   }
 }
 
-export class Objects extends jspb.Message {
-  getObjectsList(): Array<Object>;
-  setObjectsList(value: Array<Object>): Objects;
-  clearObjectsList(): Objects;
-  addObjects(value?: Object, index?: number): Object;
+export class StateValues extends jspb.Message {
+  getStateValuesList(): Array<State>;
+  setStateValuesList(value: Array<State>): StateValues;
+  clearStateValuesList(): StateValues;
+  addStateValues(value?: State, index?: number): State;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Objects.AsObject;
-  static toObject(includeInstance: boolean, msg: Objects): Objects.AsObject;
-  static serializeBinaryToWriter(message: Objects, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Objects;
-  static deserializeBinaryFromReader(message: Objects, reader: jspb.BinaryReader): Objects;
+  toObject(includeInstance?: boolean): StateValues.AsObject;
+  static toObject(includeInstance: boolean, msg: StateValues): StateValues.AsObject;
+  static serializeBinaryToWriter(message: StateValues, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StateValues;
+  static deserializeBinaryFromReader(message: StateValues, reader: jspb.BinaryReader): StateValues;
 }
 
-export namespace Objects {
+export namespace StateValues {
   export type AsObject = {
-    objectsList: Array<Object.AsObject>,
+    stateValuesList: Array<State.AsObject>,
   }
 }
 
-export class SearchObjectOpts extends jspb.Message {
+export class SearchStateOpts extends jspb.Message {
   getDomain(): string;
-  setDomain(value: string): SearchObjectOpts;
+  setDomain(value: string): SearchStateOpts;
 
   getType(): string;
-  setType(value: string): SearchObjectOpts;
+  setType(value: string): SearchStateOpts;
 
   getQueryString(): string;
-  setQueryString(value: string): SearchObjectOpts;
+  setQueryString(value: string): SearchStateOpts;
 
   getLimit(): number;
-  setLimit(value: number): SearchObjectOpts;
+  setLimit(value: number): SearchStateOpts;
 
   getOffset(): number;
-  setOffset(value: number): SearchObjectOpts;
+  setOffset(value: number): SearchStateOpts;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SearchObjectOpts.AsObject;
-  static toObject(includeInstance: boolean, msg: SearchObjectOpts): SearchObjectOpts.AsObject;
-  static serializeBinaryToWriter(message: SearchObjectOpts, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SearchObjectOpts;
-  static deserializeBinaryFromReader(message: SearchObjectOpts, reader: jspb.BinaryReader): SearchObjectOpts;
+  toObject(includeInstance?: boolean): SearchStateOpts.AsObject;
+  static toObject(includeInstance: boolean, msg: SearchStateOpts): SearchStateOpts.AsObject;
+  static serializeBinaryToWriter(message: SearchStateOpts, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SearchStateOpts;
+  static deserializeBinaryFromReader(message: SearchStateOpts, reader: jspb.BinaryReader): SearchStateOpts;
 }
 
-export namespace SearchObjectOpts {
+export namespace SearchStateOpts {
   export type AsObject = {
     domain: string,
     type: string,
@@ -192,10 +192,10 @@ export class Event extends jspb.Message {
   getId(): string;
   setId(value: string): Event;
 
-  getObject(): Object | undefined;
-  setObject(value?: Object): Event;
-  hasObject(): boolean;
-  clearObject(): Event;
+  getState(): State | undefined;
+  setState(value?: State): Event;
+  hasState(): boolean;
+  clearState(): Event;
 
   getClaims(): google_protobuf_struct_pb.Struct | undefined;
   setClaims(value?: google_protobuf_struct_pb.Struct): Event;
@@ -216,7 +216,7 @@ export class Event extends jspb.Message {
 export namespace Event {
   export type AsObject = {
     id: string,
-    object?: Object.AsObject,
+    state?: State.AsObject,
     claims?: google_protobuf_struct_pb.Struct.AsObject,
     time: number,
   }

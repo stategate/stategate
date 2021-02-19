@@ -187,23 +187,23 @@
                 </li>
               
                 <li>
-                  <a href="#stategate.Object"><span class="badge">M</span>Object</a>
-                </li>
-              
-                <li>
-                  <a href="#stategate.ObjectRef"><span class="badge">M</span>ObjectRef</a>
-                </li>
-              
-                <li>
-                  <a href="#stategate.Objects"><span class="badge">M</span>Objects</a>
-                </li>
-              
-                <li>
                   <a href="#stategate.SearchEventOpts"><span class="badge">M</span>SearchEventOpts</a>
                 </li>
               
                 <li>
-                  <a href="#stategate.SearchObjectOpts"><span class="badge">M</span>SearchObjectOpts</a>
+                  <a href="#stategate.SearchStateOpts"><span class="badge">M</span>SearchStateOpts</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.State"><span class="badge">M</span>State</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.StateRef"><span class="badge">M</span>StateRef</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.StateValues"><span class="badge">M</span>StateValues</a>
                 </li>
               
                 <li>
@@ -218,7 +218,7 @@
                 </li>
               
                 <li>
-                  <a href="#stategate.ObjectService"><span class="badge">S</span>ObjectService</a>
+                  <a href="#stategate.StateService"><span class="badge">S</span>StateService</a>
                 </li>
               
             </ul>
@@ -237,7 +237,7 @@
 
       
         <h3 id="stategate.Event">Event</h3>
-        <p>Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.</p><p>Events are persisted to history & broadcasted to interested consumers(Stream) any time an object is created/modified</p>
+        <p>Event is primitive that represents a single state change</p><p>Events are persisted to history & broadcasted to interested consumers(Stream) any time an application state value is created/modified</p><p>Events are immutable after creation and may be searched.</p><p>Event Consumers may search events to query previous state</p>
 
         
           <table class="field-table">
@@ -254,10 +254,10 @@
                 </tr>
               
                 <tr>
-                  <td>object</td>
-                  <td><a href="#stategate.Object">Object</a></td>
+                  <td>state</td>
+                  <td><a href="#stategate.State">State</a></td>
                   <td></td>
-                  <td><p>the unmodified </p></td>
+                  <td><p>state after it has been mutated </p></td>
                 </tr>
               
                 <tr>
@@ -302,7 +302,7 @@
                 </tr>
               
                 <tr>
-                  <td>object</td>
+                  <td>state</td>
                   <td>
                     <ul>
                     
@@ -365,224 +365,8 @@
 
         
       
-        <h3 id="stategate.Object">Object</h3>
-        <p>Object hold's the current state of an object</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>domain</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>the object&#39;s business domain(ex: accounting) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Object type (ex: user) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Object key (unique within type) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>values</td>
-                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
-                  <td></td>
-                  <td><p>Object values (k/v pairs) </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Validated Fields</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Field</td>
-                  <td>Validations</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>domain</td>
-                  <td>
-                    <ul>
-                    
-                      <li>regex: ^\S&#43;$</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td>
-                    <ul>
-                    
-                      <li>regex: ^\S&#43;$</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>key</td>
-                  <td>
-                    <ul>
-                    
-                      <li>regex: ^\S&#43;$</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>values</td>
-                  <td>
-                    <ul>
-                    
-                      <li>msg_exists: true</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
-          
-
-        
-      
-        <h3 id="stategate.ObjectRef">ObjectRef</h3>
-        <p>ObjectRef is a reference to an existing object</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>domain</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>the object&#39;s business domain(ex: accounting) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Object type (ex: user) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Object key (unique within type) </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Validated Fields</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Field</td>
-                  <td>Validations</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>domain</td>
-                  <td>
-                    <ul>
-                    
-                      <li>regex: ^\S&#43;$</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td>
-                    <ul>
-                    
-                      <li>regex: ^\S&#43;$</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>key</td>
-                  <td>
-                    <ul>
-                    
-                      <li>regex: ^\S&#43;$</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
-          
-
-        
-      
-        <h3 id="stategate.Objects">Objects</h3>
-        <p>Objects is an array of Object</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>objects</td>
-                  <td><a href="#stategate.Object">Object</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="stategate.SearchEventOpts">SearchEventOpts</h3>
-        <p>SearchEventOpts are options when querying historical events for a given object</p>
+        <p>SearchEventOpts are options when querying historical events for a given application state value</p>
 
         
           <table class="field-table">
@@ -595,56 +379,56 @@
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the object&#39;s business domain(ex: accounting) </p></td>
+                  <td><p>the application state value&#39;s business domain(ex: accounting) </p></td>
                 </tr>
               
                 <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Object type (ex: user) </p></td>
+                  <td><p>State type (ex: user) </p></td>
                 </tr>
               
                 <tr>
                   <td>key</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>filter events belonging to a particular object </p></td>
+                  <td><p>filter events belonging to a particular application state value </p></td>
                 </tr>
               
                 <tr>
                   <td>query_string</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>json string to filter records that have object&#39;s with values that match k/v pairs ex: { &#34;message&#34;: &#34;hello world&#34; } </p></td>
+                  <td><p>json string to filter records that have application state value&#39;s with values that match k/v pairs ex: { &#34;message&#34;: &#34;hello world&#34; } </p></td>
                 </tr>
               
                 <tr>
                   <td>min</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>only return object events that occurred after specified min timestamp </p></td>
+                  <td><p>only return application state value events that occurred after specified min timestamp </p></td>
                 </tr>
               
                 <tr>
                   <td>max</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>only return object events that occurred before specified max timestamp </p></td>
+                  <td><p>only return application state value events that occurred before specified max timestamp </p></td>
                 </tr>
               
                 <tr>
                   <td>limit</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>limit returned object events </p></td>
+                  <td><p>limit returned application state value events </p></td>
                 </tr>
               
                 <tr>
                   <td>offset</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>offset returned object events(pagination) </p></td>
+                  <td><p>offset returned application state value events(pagination) </p></td>
                 </tr>
               
             </tbody>
@@ -703,8 +487,8 @@
 
         
       
-        <h3 id="stategate.SearchObjectOpts">SearchObjectOpts</h3>
-        <p>SearchObjectOpts are options when querying the current values of object(s).</p><p>If historical values are needed, SearchEvents should be used</p>
+        <h3 id="stategate.SearchStateOpts">SearchStateOpts</h3>
+        <p>SearchStateOpts are options when querying the current values of application state value(s).</p><p>If historical values are needed, SearchEvents should be used</p>
 
         
           <table class="field-table">
@@ -717,14 +501,14 @@
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the object&#39;s business domain(ex: accounting) </p></td>
+                  <td><p>the application state value&#39;s business domain(ex: accounting) </p></td>
                 </tr>
               
                 <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Object type (ex: user) </p></td>
+                  <td><p>State type (ex: user) </p></td>
                 </tr>
               
                 <tr>
@@ -738,7 +522,7 @@
                   <td>limit</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>limit returned objects </p></td>
+                  <td><p>limit returned state </p></td>
                 </tr>
               
                 <tr>
@@ -804,6 +588,222 @@
 
         
       
+        <h3 id="stategate.State">State</h3>
+        <p>State represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)</p><p>Services/Users should use state related methods to persist & interact with the current state of an application/domain.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the application state value&#39;s business domain(ex: accounting) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>State type (ex: user) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>State key (unique within type) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>values</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>State values (k/v pairs) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>values</td>
+                  <td>
+                    <ul>
+                    
+                      <li>msg_exists: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="stategate.StateRef">StateRef</h3>
+        <p>StateRef is a reference to an existing application state value</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the application state value&#39;s business domain(ex: accounting) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>State type (ex: user) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>State key (unique within type) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="stategate.StateValues">StateValues</h3>
+        <p>States is an array of State</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>state_values</td>
+                  <td><a href="#stategate.State">State</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="stategate.StreamOpts">StreamOpts</h3>
         <p>StreamOpts are options for consumers looking to stream events</p>
 
@@ -818,14 +818,14 @@
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the domain of the object (ex: acme) that triggered the event </p></td>
+                  <td><p>the domain of the application state value (ex: acme) that triggered the event </p></td>
                 </tr>
               
                 <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the type of the object (ex: user) that triggered the event </p></td>
+                  <td><p>the type of the application state value (ex: user) that triggered the event </p></td>
                 </tr>
               
             </tbody>
@@ -891,14 +891,14 @@
                 <td>Stream</td>
                 <td><a href="#stategate.StreamOpts">StreamOpts</a></td>
                 <td><a href="#stategate.Event">Event</a> stream</td>
-                <td><p>Stream creates an event stream/subscription to a given object type until fn returns false OR the context cancels.</p></td>
+                <td><p>Stream creates an event stream/subscription to a given application state value type until fn returns false OR the context cancels.</p></td>
               </tr>
             
               <tr>
                 <td>Search</td>
                 <td><a href="#stategate.SearchEventOpts">SearchEventOpts</a></td>
                 <td><a href="#stategate.Events">Events</a></td>
-                <td><p>Search queries events related to a specific object.</p></td>
+                <td><p>Search queries events related to a specific application state value.</p></td>
               </tr>
             
           </tbody>
@@ -943,8 +943,8 @@
           </table>
           
         
-        <h3 id="stategate.ObjectService">ObjectService</h3>
-        <p>ObjectService serves API methods related to stategate Object producers</p>
+        <h3 id="stategate.StateService">StateService</h3>
+        <p>StateService serves API methods related to stategate State producers</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -953,30 +953,30 @@
             
               <tr>
                 <td>Set</td>
-                <td><a href="#stategate.Object">Object</a></td>
+                <td><a href="#stategate.State">State</a></td>
                 <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
-                <td><p>Set sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers</p></td>
+                <td><p>Set sets the current state value of an application state value, adds it to the event log, then broadcast the event to all interested consumers</p></td>
               </tr>
             
               <tr>
                 <td>Get</td>
-                <td><a href="#stategate.ObjectRef">ObjectRef</a></td>
-                <td><a href="#stategate.Object">Object</a></td>
-                <td><p>Get gets an object&#39;s current state values</p></td>
+                <td><a href="#stategate.StateRef">StateRef</a></td>
+                <td><a href="#stategate.State">State</a></td>
+                <td><p>Get gets an application state value&#39;s current state values</p></td>
               </tr>
             
               <tr>
                 <td>Del</td>
-                <td><a href="#stategate.ObjectRef">ObjectRef</a></td>
+                <td><a href="#stategate.StateRef">StateRef</a></td>
                 <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
-                <td><p>Del hard deletes an object. Object&#39;s may be recovered via the Event store.</p></td>
+                <td><p>Del hard deletes current state. State may be recovered via the Event store.</p></td>
               </tr>
             
               <tr>
                 <td>Search</td>
-                <td><a href="#stategate.SearchObjectOpts">SearchObjectOpts</a></td>
-                <td><a href="#stategate.Objects">Objects</a></td>
-                <td><p>Search queries objects belonging to a particular domain &amp; of a specific type</p></td>
+                <td><a href="#stategate.SearchStateOpts">SearchStateOpts</a></td>
+                <td><a href="#stategate.StateValues">StateValues</a></td>
+                <td><p>Search queries state belonging to a particular domain &amp; of a specific type</p></td>
               </tr>
             
           </tbody>
@@ -1002,7 +1002,7 @@
               <tr>
                 <td>Set</td>
                 <td>POST</td>
-                <td>/api/objects/ref/{domain}/{type}/{key}</td>
+                <td>/api/state/ref/{domain}/{type}/{key}</td>
                 <td></td>
               </tr>
               
@@ -1012,7 +1012,7 @@
               <tr>
                 <td>Get</td>
                 <td>GET</td>
-                <td>/api/objects/ref/{domain}/{type}/{key}</td>
+                <td>/api/state/ref/{domain}/{type}/{key}</td>
                 <td></td>
               </tr>
               
@@ -1022,7 +1022,7 @@
               <tr>
                 <td>Del</td>
                 <td>DELETE</td>
-                <td>/api/objects/ref/{domain}/{type}/{key}</td>
+                <td>/api/state/ref/{domain}/{type}/{key}</td>
                 <td></td>
               </tr>
               
@@ -1032,7 +1032,7 @@
               <tr>
                 <td>Search</td>
                 <td>GET</td>
-                <td>/api/objects/search</td>
+                <td>/api/state/search</td>
                 <td></td>
               </tr>
               

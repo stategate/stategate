@@ -19,11 +19,11 @@ var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb
 var github_com_mwitkow_go$proto$validators_validator_pb = require('./github.com/mwitkow/go-proto-validators/validator_pb.js');
 goog.exportSymbol('proto.stategate.Event', null, global);
 goog.exportSymbol('proto.stategate.Events', null, global);
-goog.exportSymbol('proto.stategate.Object', null, global);
-goog.exportSymbol('proto.stategate.ObjectRef', null, global);
-goog.exportSymbol('proto.stategate.Objects', null, global);
 goog.exportSymbol('proto.stategate.SearchEventOpts', null, global);
-goog.exportSymbol('proto.stategate.SearchObjectOpts', null, global);
+goog.exportSymbol('proto.stategate.SearchStateOpts', null, global);
+goog.exportSymbol('proto.stategate.State', null, global);
+goog.exportSymbol('proto.stategate.StateRef', null, global);
+goog.exportSymbol('proto.stategate.StateValues', null, global);
 goog.exportSymbol('proto.stategate.StreamOpts', null, global);
 
 /**
@@ -36,12 +36,12 @@ goog.exportSymbol('proto.stategate.StreamOpts', null, global);
  * @extends {jspb.Message}
  * @constructor
  */
-proto.stategate.ObjectRef = function(opt_data) {
+proto.stategate.StateRef = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.stategate.ObjectRef, jspb.Message);
+goog.inherits(proto.stategate.StateRef, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.stategate.ObjectRef.displayName = 'proto.stategate.ObjectRef';
+  proto.stategate.StateRef.displayName = 'proto.stategate.StateRef';
 }
 
 
@@ -56,8 +56,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.stategate.ObjectRef.prototype.toObject = function(opt_includeInstance) {
-  return proto.stategate.ObjectRef.toObject(opt_includeInstance, this);
+proto.stategate.StateRef.prototype.toObject = function(opt_includeInstance) {
+  return proto.stategate.StateRef.toObject(opt_includeInstance, this);
 };
 
 
@@ -66,11 +66,11 @@ proto.stategate.ObjectRef.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.stategate.ObjectRef} msg The msg instance to transform.
+ * @param {!proto.stategate.StateRef} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.stategate.ObjectRef.toObject = function(includeInstance, msg) {
+proto.stategate.StateRef.toObject = function(includeInstance, msg) {
   var f, obj = {
     domain: jspb.Message.getFieldWithDefault(msg, 1, ""),
     type: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -88,23 +88,23 @@ proto.stategate.ObjectRef.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.stategate.ObjectRef}
+ * @return {!proto.stategate.StateRef}
  */
-proto.stategate.ObjectRef.deserializeBinary = function(bytes) {
+proto.stategate.StateRef.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.stategate.ObjectRef;
-  return proto.stategate.ObjectRef.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.stategate.StateRef;
+  return proto.stategate.StateRef.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.stategate.ObjectRef} msg The message object to deserialize into.
+ * @param {!proto.stategate.StateRef} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.stategate.ObjectRef}
+ * @return {!proto.stategate.StateRef}
  */
-proto.stategate.ObjectRef.deserializeBinaryFromReader = function(msg, reader) {
+proto.stategate.StateRef.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -136,9 +136,9 @@ proto.stategate.ObjectRef.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.stategate.ObjectRef.prototype.serializeBinary = function() {
+proto.stategate.StateRef.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.stategate.ObjectRef.serializeBinaryToWriter(this, writer);
+  proto.stategate.StateRef.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -146,11 +146,11 @@ proto.stategate.ObjectRef.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.stategate.ObjectRef} message
+ * @param {!proto.stategate.StateRef} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.stategate.ObjectRef.serializeBinaryToWriter = function(message, writer) {
+proto.stategate.StateRef.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getDomain();
   if (f.length > 0) {
@@ -180,13 +180,13 @@ proto.stategate.ObjectRef.serializeBinaryToWriter = function(message, writer) {
  * optional string domain = 1;
  * @return {string}
  */
-proto.stategate.ObjectRef.prototype.getDomain = function() {
+proto.stategate.StateRef.prototype.getDomain = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.ObjectRef.prototype.setDomain = function(value) {
+proto.stategate.StateRef.prototype.setDomain = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -195,13 +195,13 @@ proto.stategate.ObjectRef.prototype.setDomain = function(value) {
  * optional string type = 2;
  * @return {string}
  */
-proto.stategate.ObjectRef.prototype.getType = function() {
+proto.stategate.StateRef.prototype.getType = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.ObjectRef.prototype.setType = function(value) {
+proto.stategate.StateRef.prototype.setType = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -210,13 +210,13 @@ proto.stategate.ObjectRef.prototype.setType = function(value) {
  * optional string key = 3;
  * @return {string}
  */
-proto.stategate.ObjectRef.prototype.getKey = function() {
+proto.stategate.StateRef.prototype.getKey = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.ObjectRef.prototype.setKey = function(value) {
+proto.stategate.StateRef.prototype.setKey = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -232,12 +232,12 @@ proto.stategate.ObjectRef.prototype.setKey = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.stategate.Object = function(opt_data) {
+proto.stategate.State = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.stategate.Object, jspb.Message);
+goog.inherits(proto.stategate.State, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.stategate.Object.displayName = 'proto.stategate.Object';
+  proto.stategate.State.displayName = 'proto.stategate.State';
 }
 
 
@@ -252,8 +252,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.stategate.Object.prototype.toObject = function(opt_includeInstance) {
-  return proto.stategate.Object.toObject(opt_includeInstance, this);
+proto.stategate.State.prototype.toObject = function(opt_includeInstance) {
+  return proto.stategate.State.toObject(opt_includeInstance, this);
 };
 
 
@@ -262,11 +262,11 @@ proto.stategate.Object.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.stategate.Object} msg The msg instance to transform.
+ * @param {!proto.stategate.State} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.stategate.Object.toObject = function(includeInstance, msg) {
+proto.stategate.State.toObject = function(includeInstance, msg) {
   var f, obj = {
     domain: jspb.Message.getFieldWithDefault(msg, 1, ""),
     type: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -285,23 +285,23 @@ proto.stategate.Object.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.stategate.Object}
+ * @return {!proto.stategate.State}
  */
-proto.stategate.Object.deserializeBinary = function(bytes) {
+proto.stategate.State.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.stategate.Object;
-  return proto.stategate.Object.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.stategate.State;
+  return proto.stategate.State.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.stategate.Object} msg The message object to deserialize into.
+ * @param {!proto.stategate.State} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.stategate.Object}
+ * @return {!proto.stategate.State}
  */
-proto.stategate.Object.deserializeBinaryFromReader = function(msg, reader) {
+proto.stategate.State.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -338,9 +338,9 @@ proto.stategate.Object.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.stategate.Object.prototype.serializeBinary = function() {
+proto.stategate.State.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.stategate.Object.serializeBinaryToWriter(this, writer);
+  proto.stategate.State.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -348,11 +348,11 @@ proto.stategate.Object.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.stategate.Object} message
+ * @param {!proto.stategate.State} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.stategate.Object.serializeBinaryToWriter = function(message, writer) {
+proto.stategate.State.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getDomain();
   if (f.length > 0) {
@@ -390,13 +390,13 @@ proto.stategate.Object.serializeBinaryToWriter = function(message, writer) {
  * optional string domain = 1;
  * @return {string}
  */
-proto.stategate.Object.prototype.getDomain = function() {
+proto.stategate.State.prototype.getDomain = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.Object.prototype.setDomain = function(value) {
+proto.stategate.State.prototype.setDomain = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -405,13 +405,13 @@ proto.stategate.Object.prototype.setDomain = function(value) {
  * optional string type = 2;
  * @return {string}
  */
-proto.stategate.Object.prototype.getType = function() {
+proto.stategate.State.prototype.getType = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.Object.prototype.setType = function(value) {
+proto.stategate.State.prototype.setType = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -420,13 +420,13 @@ proto.stategate.Object.prototype.setType = function(value) {
  * optional string key = 3;
  * @return {string}
  */
-proto.stategate.Object.prototype.getKey = function() {
+proto.stategate.State.prototype.getKey = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.Object.prototype.setKey = function(value) {
+proto.stategate.State.prototype.setKey = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -435,19 +435,19 @@ proto.stategate.Object.prototype.setKey = function(value) {
  * optional google.protobuf.Struct values = 4;
  * @return {?proto.google.protobuf.Struct}
  */
-proto.stategate.Object.prototype.getValues = function() {
+proto.stategate.State.prototype.getValues = function() {
   return /** @type{?proto.google.protobuf.Struct} */ (
     jspb.Message.getWrapperField(this, google_protobuf_struct_pb.Struct, 4));
 };
 
 
 /** @param {?proto.google.protobuf.Struct|undefined} value */
-proto.stategate.Object.prototype.setValues = function(value) {
+proto.stategate.State.prototype.setValues = function(value) {
   jspb.Message.setWrapperField(this, 4, value);
 };
 
 
-proto.stategate.Object.prototype.clearValues = function() {
+proto.stategate.State.prototype.clearValues = function() {
   this.setValues(undefined);
 };
 
@@ -456,7 +456,7 @@ proto.stategate.Object.prototype.clearValues = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.stategate.Object.prototype.hasValues = function() {
+proto.stategate.State.prototype.hasValues = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -472,19 +472,19 @@ proto.stategate.Object.prototype.hasValues = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.stategate.Objects = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.stategate.Objects.repeatedFields_, null);
+proto.stategate.StateValues = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.stategate.StateValues.repeatedFields_, null);
 };
-goog.inherits(proto.stategate.Objects, jspb.Message);
+goog.inherits(proto.stategate.StateValues, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.stategate.Objects.displayName = 'proto.stategate.Objects';
+  proto.stategate.StateValues.displayName = 'proto.stategate.StateValues';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.stategate.Objects.repeatedFields_ = [1];
+proto.stategate.StateValues.repeatedFields_ = [1];
 
 
 
@@ -499,8 +499,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.stategate.Objects.prototype.toObject = function(opt_includeInstance) {
-  return proto.stategate.Objects.toObject(opt_includeInstance, this);
+proto.stategate.StateValues.prototype.toObject = function(opt_includeInstance) {
+  return proto.stategate.StateValues.toObject(opt_includeInstance, this);
 };
 
 
@@ -509,14 +509,14 @@ proto.stategate.Objects.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.stategate.Objects} msg The msg instance to transform.
+ * @param {!proto.stategate.StateValues} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.stategate.Objects.toObject = function(includeInstance, msg) {
+proto.stategate.StateValues.toObject = function(includeInstance, msg) {
   var f, obj = {
-    objectsList: jspb.Message.toObjectList(msg.getObjectsList(),
-    proto.stategate.Object.toObject, includeInstance)
+    stateValuesList: jspb.Message.toObjectList(msg.getStateValuesList(),
+    proto.stategate.State.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -530,23 +530,23 @@ proto.stategate.Objects.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.stategate.Objects}
+ * @return {!proto.stategate.StateValues}
  */
-proto.stategate.Objects.deserializeBinary = function(bytes) {
+proto.stategate.StateValues.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.stategate.Objects;
-  return proto.stategate.Objects.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.stategate.StateValues;
+  return proto.stategate.StateValues.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.stategate.Objects} msg The message object to deserialize into.
+ * @param {!proto.stategate.StateValues} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.stategate.Objects}
+ * @return {!proto.stategate.StateValues}
  */
-proto.stategate.Objects.deserializeBinaryFromReader = function(msg, reader) {
+proto.stategate.StateValues.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -554,9 +554,9 @@ proto.stategate.Objects.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.stategate.Object;
-      reader.readMessage(value,proto.stategate.Object.deserializeBinaryFromReader);
-      msg.addObjects(value);
+      var value = new proto.stategate.State;
+      reader.readMessage(value,proto.stategate.State.deserializeBinaryFromReader);
+      msg.addStateValues(value);
       break;
     default:
       reader.skipField();
@@ -571,9 +571,9 @@ proto.stategate.Objects.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.stategate.Objects.prototype.serializeBinary = function() {
+proto.stategate.StateValues.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.stategate.Objects.serializeBinaryToWriter(this, writer);
+  proto.stategate.StateValues.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -581,51 +581,51 @@ proto.stategate.Objects.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.stategate.Objects} message
+ * @param {!proto.stategate.StateValues} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.stategate.Objects.serializeBinaryToWriter = function(message, writer) {
+proto.stategate.StateValues.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getObjectsList();
+  f = message.getStateValuesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.stategate.Object.serializeBinaryToWriter
+      proto.stategate.State.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * repeated Object objects = 1;
- * @return {!Array<!proto.stategate.Object>}
+ * repeated State state_values = 1;
+ * @return {!Array<!proto.stategate.State>}
  */
-proto.stategate.Objects.prototype.getObjectsList = function() {
-  return /** @type{!Array<!proto.stategate.Object>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.stategate.Object, 1));
+proto.stategate.StateValues.prototype.getStateValuesList = function() {
+  return /** @type{!Array<!proto.stategate.State>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.stategate.State, 1));
 };
 
 
-/** @param {!Array<!proto.stategate.Object>} value */
-proto.stategate.Objects.prototype.setObjectsList = function(value) {
+/** @param {!Array<!proto.stategate.State>} value */
+proto.stategate.StateValues.prototype.setStateValuesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.stategate.Object=} opt_value
+ * @param {!proto.stategate.State=} opt_value
  * @param {number=} opt_index
- * @return {!proto.stategate.Object}
+ * @return {!proto.stategate.State}
  */
-proto.stategate.Objects.prototype.addObjects = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.stategate.Object, opt_index);
+proto.stategate.StateValues.prototype.addStateValues = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.stategate.State, opt_index);
 };
 
 
-proto.stategate.Objects.prototype.clearObjectsList = function() {
-  this.setObjectsList([]);
+proto.stategate.StateValues.prototype.clearStateValuesList = function() {
+  this.setStateValuesList([]);
 };
 
 
@@ -640,12 +640,12 @@ proto.stategate.Objects.prototype.clearObjectsList = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.stategate.SearchObjectOpts = function(opt_data) {
+proto.stategate.SearchStateOpts = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.stategate.SearchObjectOpts, jspb.Message);
+goog.inherits(proto.stategate.SearchStateOpts, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.stategate.SearchObjectOpts.displayName = 'proto.stategate.SearchObjectOpts';
+  proto.stategate.SearchStateOpts.displayName = 'proto.stategate.SearchStateOpts';
 }
 
 
@@ -660,8 +660,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.stategate.SearchObjectOpts.prototype.toObject = function(opt_includeInstance) {
-  return proto.stategate.SearchObjectOpts.toObject(opt_includeInstance, this);
+proto.stategate.SearchStateOpts.prototype.toObject = function(opt_includeInstance) {
+  return proto.stategate.SearchStateOpts.toObject(opt_includeInstance, this);
 };
 
 
@@ -670,11 +670,11 @@ proto.stategate.SearchObjectOpts.prototype.toObject = function(opt_includeInstan
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.stategate.SearchObjectOpts} msg The msg instance to transform.
+ * @param {!proto.stategate.SearchStateOpts} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.stategate.SearchObjectOpts.toObject = function(includeInstance, msg) {
+proto.stategate.SearchStateOpts.toObject = function(includeInstance, msg) {
   var f, obj = {
     domain: jspb.Message.getFieldWithDefault(msg, 1, ""),
     type: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -694,23 +694,23 @@ proto.stategate.SearchObjectOpts.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.stategate.SearchObjectOpts}
+ * @return {!proto.stategate.SearchStateOpts}
  */
-proto.stategate.SearchObjectOpts.deserializeBinary = function(bytes) {
+proto.stategate.SearchStateOpts.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.stategate.SearchObjectOpts;
-  return proto.stategate.SearchObjectOpts.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.stategate.SearchStateOpts;
+  return proto.stategate.SearchStateOpts.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.stategate.SearchObjectOpts} msg The message object to deserialize into.
+ * @param {!proto.stategate.SearchStateOpts} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.stategate.SearchObjectOpts}
+ * @return {!proto.stategate.SearchStateOpts}
  */
-proto.stategate.SearchObjectOpts.deserializeBinaryFromReader = function(msg, reader) {
+proto.stategate.SearchStateOpts.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -750,9 +750,9 @@ proto.stategate.SearchObjectOpts.deserializeBinaryFromReader = function(msg, rea
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.stategate.SearchObjectOpts.prototype.serializeBinary = function() {
+proto.stategate.SearchStateOpts.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.stategate.SearchObjectOpts.serializeBinaryToWriter(this, writer);
+  proto.stategate.SearchStateOpts.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -760,11 +760,11 @@ proto.stategate.SearchObjectOpts.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.stategate.SearchObjectOpts} message
+ * @param {!proto.stategate.SearchStateOpts} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.stategate.SearchObjectOpts.serializeBinaryToWriter = function(message, writer) {
+proto.stategate.SearchStateOpts.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getDomain();
   if (f.length > 0) {
@@ -808,13 +808,13 @@ proto.stategate.SearchObjectOpts.serializeBinaryToWriter = function(message, wri
  * optional string domain = 1;
  * @return {string}
  */
-proto.stategate.SearchObjectOpts.prototype.getDomain = function() {
+proto.stategate.SearchStateOpts.prototype.getDomain = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.SearchObjectOpts.prototype.setDomain = function(value) {
+proto.stategate.SearchStateOpts.prototype.setDomain = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -823,13 +823,13 @@ proto.stategate.SearchObjectOpts.prototype.setDomain = function(value) {
  * optional string type = 2;
  * @return {string}
  */
-proto.stategate.SearchObjectOpts.prototype.getType = function() {
+proto.stategate.SearchStateOpts.prototype.getType = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.SearchObjectOpts.prototype.setType = function(value) {
+proto.stategate.SearchStateOpts.prototype.setType = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -838,13 +838,13 @@ proto.stategate.SearchObjectOpts.prototype.setType = function(value) {
  * optional string query_string = 3;
  * @return {string}
  */
-proto.stategate.SearchObjectOpts.prototype.getQueryString = function() {
+proto.stategate.SearchStateOpts.prototype.getQueryString = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.SearchObjectOpts.prototype.setQueryString = function(value) {
+proto.stategate.SearchStateOpts.prototype.setQueryString = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -853,13 +853,13 @@ proto.stategate.SearchObjectOpts.prototype.setQueryString = function(value) {
  * optional int64 limit = 4;
  * @return {number}
  */
-proto.stategate.SearchObjectOpts.prototype.getLimit = function() {
+proto.stategate.SearchStateOpts.prototype.getLimit = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
 /** @param {number} value */
-proto.stategate.SearchObjectOpts.prototype.setLimit = function(value) {
+proto.stategate.SearchStateOpts.prototype.setLimit = function(value) {
   jspb.Message.setProto3IntField(this, 4, value);
 };
 
@@ -868,13 +868,13 @@ proto.stategate.SearchObjectOpts.prototype.setLimit = function(value) {
  * optional int64 offset = 5;
  * @return {number}
  */
-proto.stategate.SearchObjectOpts.prototype.getOffset = function() {
+proto.stategate.SearchStateOpts.prototype.getOffset = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
 /** @param {number} value */
-proto.stategate.SearchObjectOpts.prototype.setOffset = function(value) {
+proto.stategate.SearchStateOpts.prototype.setOffset = function(value) {
   jspb.Message.setProto3IntField(this, 5, value);
 };
 
@@ -1427,7 +1427,7 @@ proto.stategate.Event.prototype.toObject = function(opt_includeInstance) {
 proto.stategate.Event.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    object: (f = msg.getObject()) && proto.stategate.Object.toObject(includeInstance, f),
+    state: (f = msg.getState()) && proto.stategate.State.toObject(includeInstance, f),
     claims: (f = msg.getClaims()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f),
     time: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
@@ -1471,9 +1471,9 @@ proto.stategate.Event.deserializeBinaryFromReader = function(msg, reader) {
       msg.setId(value);
       break;
     case 2:
-      var value = new proto.stategate.Object;
-      reader.readMessage(value,proto.stategate.Object.deserializeBinaryFromReader);
-      msg.setObject(value);
+      var value = new proto.stategate.State;
+      reader.readMessage(value,proto.stategate.State.deserializeBinaryFromReader);
+      msg.setState(value);
       break;
     case 3:
       var value = new google_protobuf_struct_pb.Struct;
@@ -1520,12 +1520,12 @@ proto.stategate.Event.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getObject();
+  f = message.getState();
   if (f != null) {
     writer.writeMessage(
       2,
       f,
-      proto.stategate.Object.serializeBinaryToWriter
+      proto.stategate.State.serializeBinaryToWriter
     );
   }
   f = message.getClaims();
@@ -1562,23 +1562,23 @@ proto.stategate.Event.prototype.setId = function(value) {
 
 
 /**
- * optional Object object = 2;
- * @return {?proto.stategate.Object}
+ * optional State state = 2;
+ * @return {?proto.stategate.State}
  */
-proto.stategate.Event.prototype.getObject = function() {
-  return /** @type{?proto.stategate.Object} */ (
-    jspb.Message.getWrapperField(this, proto.stategate.Object, 2));
+proto.stategate.Event.prototype.getState = function() {
+  return /** @type{?proto.stategate.State} */ (
+    jspb.Message.getWrapperField(this, proto.stategate.State, 2));
 };
 
 
-/** @param {?proto.stategate.Object|undefined} value */
-proto.stategate.Event.prototype.setObject = function(value) {
+/** @param {?proto.stategate.State|undefined} value */
+proto.stategate.Event.prototype.setState = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.stategate.Event.prototype.clearObject = function() {
-  this.setObject(undefined);
+proto.stategate.Event.prototype.clearState = function() {
+  this.setState(undefined);
 };
 
 
@@ -1586,7 +1586,7 @@ proto.stategate.Event.prototype.clearObject = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.stategate.Event.prototype.hasObject = function() {
+proto.stategate.Event.prototype.hasState = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 

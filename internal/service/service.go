@@ -45,7 +45,7 @@ func NewService(storage storage.Provider, channel channel.Provider, lgger *logge
 			case <-ctx.Done():
 				return
 			case event := <-ch:
-				if err := svc.ps.Publish(channelName(event.GetObject().GetDomain(), event.GetObject().GetType()), event); err != nil {
+				if err := svc.ps.Publish(channelName(event.GetState().GetDomain(), event.GetState().GetType()), event); err != nil {
 					svc.lgger.Error("failed to unmarshal event", zap.Error(err))
 				}
 			}
@@ -54,19 +54,19 @@ func NewService(storage storage.Provider, channel channel.Provider, lgger *logge
 	return svc, nil
 }
 
-func (s Service) setObject(ctx context.Context, object *stategate.Object) (*empty.Empty, error) {
+func (s Service) setState(ctx context.Context, object *stategate.State) (*empty.Empty, error) {
 	c, _ := auth.GetContext(ctx)
 	group := &errgroup.Group{}
 	claims, _ := structpb.NewStruct(c.Claims)
 
 	e := &stategate.Event{
 		Id:     uuid.New().String(),
-		Object: object,
+		State:  object,
 		Claims: claims,
 		Time:   time.Now().UnixNano(),
 	}
 	group.Go(func() error {
-		if err := s.storage.SetObject(ctx, object); err != nil {
+		if err := s.storage.SetState(ctx, object); err != nil {
 			err.Log(s.lgger)
 			return err.Public()
 		}
@@ -89,8 +89,8 @@ func (s Service) setObject(ctx context.Context, object *stategate.Object) (*empt
 	return &empty.Empty{}, nil
 }
 
-func (s Service) getObject(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, error) {
-	obj, err := s.storage.GetObject(ctx, ref)
+func (s Service) getState(ctx context.Context, ref *stategate.StateRef) (*stategate.State, error) {
+	obj, err := s.storage.GetState(ctx, ref)
 	if err != nil {
 		err.Log(s.lgger)
 		return nil, err.Public()
@@ -98,8 +98,8 @@ func (s Service) getObject(ctx context.Context, ref *stategate.ObjectRef) (*stat
 	return obj, nil
 }
 
-func (s Service) delObject(ctx context.Context, ref *stategate.ObjectRef) (*empty.Empty, error) {
-	if err := s.storage.DelObject(ctx, ref); err != nil {
+func (s Service) delState(ctx context.Context, ref *stategate.StateRef) (*empty.Empty, error) {
+	if err := s.storage.DelState(ctx, ref); err != nil {
 		err.Log(s.lgger)
 		return nil, err.Public()
 	}
@@ -140,8 +140,8 @@ func (s Service) searchEvents(ctx context.Context, opts *stategate.SearchEventOp
 	return events, nil
 }
 
-func (s Service) searchObjects(ctx context.Context, opts *stategate.SearchObjectOpts) (*stategate.Objects, error) {
-	objects, err := s.storage.SearchObjects(ctx, opts)
+func (s Service) searchStates(ctx context.Context, opts *stategate.SearchStateOpts) (*stategate.StateValues, error) {
+	objects, err := s.storage.SearchState(ctx, opts)
 	if err != nil {
 		err.Log(s.lgger)
 		return nil, err.Public()
@@ -165,7 +165,7 @@ func (s *Service) EventServiceServer() stategate.EventServiceServer {
 	return &eventService{svc: s}
 }
 
-func (s *Service) ObjectServiceServer() stategate.ObjectServiceServer {
+func (s *Service) StateServiceServer() stategate.StateServiceServer {
 	return &objectService{svc: s}
 }
 
@@ -185,20 +185,20 @@ type objectService struct {
 	svc *Service
 }
 
-func (o objectService) Set(ctx context.Context, object *stategate.Object) (*empty.Empty, error) {
-	return o.svc.setObject(ctx, object)
+func (o objectService) Set(ctx context.Context, object *stategate.State) (*empty.Empty, error) {
+	return o.svc.setState(ctx, object)
 }
 
-func (o objectService) Get(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, error) {
-	return o.svc.getObject(ctx, ref)
+func (o objectService) Get(ctx context.Context, ref *stategate.StateRef) (*stategate.State, error) {
+	return o.svc.getState(ctx, ref)
 }
 
-func (o objectService) Del(ctx context.Context, ref *stategate.ObjectRef) (*empty.Empty, error) {
-	return o.svc.delObject(ctx, ref)
+func (o objectService) Del(ctx context.Context, ref *stategate.StateRef) (*empty.Empty, error) {
+	return o.svc.delState(ctx, ref)
 }
 
-func (o objectService) Search(ctx context.Context, opts *stategate.SearchObjectOpts) (*stategate.Objects, error) {
-	return o.svc.searchObjects(ctx, opts)
+func (o objectService) Search(ctx context.Context, opts *stategate.SearchStateOpts) (*stategate.StateValues, error) {
+	return o.svc.searchStates(ctx, opts)
 }
 
 func channelName(tenant, typ string) string {

@@ -9,21 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * SearchObjectOpts are options when querying the current values of object(s).
+ * SearchStateOpts are options when querying the current values of application state value(s).
  * If historical values are needed, SearchEvents should be used
  *
- * Generated from protobuf message <code>stategate.SearchObjectOpts</code>
+ * Generated from protobuf message <code>stategate.SearchStateOpts</code>
  */
-class SearchObjectOpts extends \Google\Protobuf\Internal\Message
+class SearchStateOpts extends \Google\Protobuf\Internal\Message
 {
     /**
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
     private $domain = '';
     /**
-     * Object type (ex: user)
+     * State type (ex: user)
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
@@ -35,7 +35,7 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
      */
     private $query_string = '';
     /**
-     * limit returned objects
+     * limit returned state
      *
      * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
      */
@@ -54,13 +54,13 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $domain
-     *           the object's business domain(ex: accounting)
+     *           the application state value's business domain(ex: accounting)
      *     @type string $type
-     *           Object type (ex: user)
+     *           State type (ex: user)
      *     @type string $query_string
      *           json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      *     @type int|string $limit
-     *           limit returned objects
+     *           limit returned state
      *     @type int|string $offset
      *           offset returned events(pagination)
      * }
@@ -71,7 +71,7 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
@@ -82,7 +82,7 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the object's business domain(ex: accounting)
+     * the application state value's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -97,7 +97,7 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object type (ex: user)
+     * State type (ex: user)
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
@@ -108,7 +108,7 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object type (ex: user)
+     * State type (ex: user)
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
@@ -149,7 +149,7 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * limit returned objects
+     * limit returned state
      *
      * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
      * @return int|string
@@ -160,7 +160,7 @@ class SearchObjectOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * limit returned objects
+     * limit returned state
      *
      * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
      * @param int|string $var

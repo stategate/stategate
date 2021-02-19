@@ -4,38 +4,38 @@ import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty
 import * as schema_pb from './schema_pb';
 
 
-export class ObjectServiceClient {
+export class StateServiceClient {
   constructor (hostname: string,
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
 
   set(
-    request: schema_pb.Object,
+    request: schema_pb.State,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
                response: google_protobuf_empty_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
   get(
-    request: schema_pb.ObjectRef,
+    request: schema_pb.StateRef,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
-               response: schema_pb.Object) => void
-  ): grpcWeb.ClientReadableStream<schema_pb.Object>;
+               response: schema_pb.State) => void
+  ): grpcWeb.ClientReadableStream<schema_pb.State>;
 
   del(
-    request: schema_pb.ObjectRef,
+    request: schema_pb.StateRef,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
                response: google_protobuf_empty_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
   search(
-    request: schema_pb.SearchObjectOpts,
+    request: schema_pb.SearchStateOpts,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
-               response: schema_pb.Objects) => void
-  ): grpcWeb.ClientReadableStream<schema_pb.Objects>;
+               response: schema_pb.StateValues) => void
+  ): grpcWeb.ClientReadableStream<schema_pb.StateValues>;
 
 }
 
@@ -58,30 +58,30 @@ export class EventServiceClient {
 
 }
 
-export class ObjectServicePromiseClient {
+export class StateServicePromiseClient {
   constructor (hostname: string,
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
 
   set(
-    request: schema_pb.Object,
+    request: schema_pb.State,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
   get(
-    request: schema_pb.ObjectRef,
+    request: schema_pb.StateRef,
     metadata?: grpcWeb.Metadata
-  ): Promise<schema_pb.Object>;
+  ): Promise<schema_pb.State>;
 
   del(
-    request: schema_pb.ObjectRef,
+    request: schema_pb.StateRef,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
   search(
-    request: schema_pb.SearchObjectOpts,
+    request: schema_pb.SearchStateOpts,
     metadata?: grpcWeb.Metadata
-  ): Promise<schema_pb.Objects>;
+  ): Promise<schema_pb.StateValues>;
 
 }
 

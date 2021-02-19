@@ -5,16 +5,16 @@ package stategate
 
 import (
 	fmt "fmt"
-	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/mwitkow/go-proto-validators"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
-	_ "github.com/golang/protobuf/ptypes/struct"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/golang/protobuf/ptypes/any"
 	_ "github.com/golang/protobuf/ptypes/empty"
-	regexp "regexp"
+	_ "github.com/golang/protobuf/ptypes/struct"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
+	_ "github.com/mwitkow/go-proto-validators"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
+	math "math"
+	regexp "regexp"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -22,35 +22,35 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-var _regex_ObjectRef_Domain = regexp.MustCompile(`^\S+$`)
-var _regex_ObjectRef_Type = regexp.MustCompile(`^\S+$`)
-var _regex_ObjectRef_Key = regexp.MustCompile(`^\S+$`)
+var _regex_StateRef_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_StateRef_Type = regexp.MustCompile(`^\S+$`)
+var _regex_StateRef_Key = regexp.MustCompile(`^\S+$`)
 
-func (this *ObjectRef) Validate() error {
-	if !_regex_ObjectRef_Domain.MatchString(this.Domain) {
+func (this *StateRef) Validate() error {
+	if !_regex_StateRef_Domain.MatchString(this.Domain) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
 	}
-	if !_regex_ObjectRef_Type.MatchString(this.Type) {
+	if !_regex_StateRef_Type.MatchString(this.Type) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
 	}
-	if !_regex_ObjectRef_Key.MatchString(this.Key) {
+	if !_regex_StateRef_Key.MatchString(this.Key) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Key))
 	}
 	return nil
 }
 
-var _regex_Object_Domain = regexp.MustCompile(`^\S+$`)
-var _regex_Object_Type = regexp.MustCompile(`^\S+$`)
-var _regex_Object_Key = regexp.MustCompile(`^\S+$`)
+var _regex_State_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_State_Type = regexp.MustCompile(`^\S+$`)
+var _regex_State_Key = regexp.MustCompile(`^\S+$`)
 
-func (this *Object) Validate() error {
-	if !_regex_Object_Domain.MatchString(this.Domain) {
+func (this *State) Validate() error {
+	if !_regex_State_Domain.MatchString(this.Domain) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
 	}
-	if !_regex_Object_Type.MatchString(this.Type) {
+	if !_regex_State_Type.MatchString(this.Type) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
 	}
-	if !_regex_Object_Key.MatchString(this.Key) {
+	if !_regex_State_Key.MatchString(this.Key) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Key))
 	}
 	if nil == this.Values {
@@ -63,25 +63,25 @@ func (this *Object) Validate() error {
 	}
 	return nil
 }
-func (this *Objects) Validate() error {
-	for _, item := range this.Objects {
+func (this *StateValues) Validate() error {
+	for _, item := range this.StateValues {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("Objects", err)
+				return github_com_mwitkow_go_proto_validators.FieldError("StateValues", err)
 			}
 		}
 	}
 	return nil
 }
 
-var _regex_SearchObjectOpts_Domain = regexp.MustCompile(`^\S+$`)
-var _regex_SearchObjectOpts_Type = regexp.MustCompile(`^\S+$`)
+var _regex_SearchStateOpts_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_SearchStateOpts_Type = regexp.MustCompile(`^\S+$`)
 
-func (this *SearchObjectOpts) Validate() error {
-	if !_regex_SearchObjectOpts_Domain.MatchString(this.Domain) {
+func (this *SearchStateOpts) Validate() error {
+	if !_regex_SearchStateOpts_Domain.MatchString(this.Domain) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
 	}
-	if !_regex_SearchObjectOpts_Type.MatchString(this.Type) {
+	if !_regex_SearchStateOpts_Type.MatchString(this.Type) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
 	}
 	if !(this.Limit > 0) {
@@ -125,12 +125,12 @@ func (this *Event) Validate() error {
 	if !_regex_Event_Id.MatchString(this.Id) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.Id))
 	}
-	if nil == this.Object {
-		return github_com_mwitkow_go_proto_validators.FieldError("Object", fmt.Errorf("message must exist"))
+	if nil == this.State {
+		return github_com_mwitkow_go_proto_validators.FieldError("State", fmt.Errorf("message must exist"))
 	}
-	if this.Object != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Object); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Object", err)
+	if this.State != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.State); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("State", err)
 		}
 	}
 	if nil == this.Claims {

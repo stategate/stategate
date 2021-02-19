@@ -22,23 +22,23 @@ func NewProvider(db *mongo.Database) *Provider {
 	return &Provider{db: db}
 }
 
-func (p Provider) SetObject(ctx context.Context, object *stategate.Object) *errorz.Error {
+func (p Provider) SetState(ctx context.Context, state *stategate.State) *errorz.Error {
 	filter := bson.D{
-		{Key: "_id", Value: object.GetKey()},
+		{Key: "_id", Value: state.GetKey()},
 	}
-	data := bson.M(object.GetValues().AsMap())
-	data["_id"] = object.GetKey()
+	data := bson.M(state.GetValues().AsMap())
+	data["_id"] = state.GetKey()
 	opts := options.Replace().SetUpsert(true)
-	_, err := p.db.Collection(collectionName(false, object.GetDomain(), object.GetType())).ReplaceOne(ctx, filter, data, opts)
+	_, err := p.db.Collection(collectionName(false, state.GetDomain(), state.GetType())).ReplaceOne(ctx, filter, data, opts)
 	if err != nil {
 		return &errorz.Error{
 			Type: errorz.ErrUnknown,
-			Info: "failed to set object",
+			Info: "failed to set state",
 			Err:  err,
 			Metadata: map[string]string{
-				"object_key":    object.GetKey(),
-				"object_type":   object.GetType(),
-				"object_domain": object.GetDomain(),
+				"state_key":    state.GetKey(),
+				"state_type":   state.GetType(),
+				"state_domain": state.GetDomain(),
 			},
 		}
 	}
@@ -46,31 +46,31 @@ func (p Provider) SetObject(ctx context.Context, object *stategate.Object) *erro
 }
 
 func (p Provider) SaveEvent(ctx context.Context, e *stategate.Event) *errorz.Error {
-	_, err := p.db.Collection(collectionName(true, e.GetObject().GetDomain(), e.GetObject().GetType())).InsertOne(ctx, bson.M(map[string]interface{}{
+	_, err := p.db.Collection(collectionName(true, e.GetState().GetDomain(), e.GetState().GetType())).InsertOne(ctx, bson.M(map[string]interface{}{
 		"_id":  e.Id,
 		"time": e.GetTime(),
-		"object": bson.M{
-			"key":    e.GetObject().GetKey(),
-			"values": bson.M(e.GetObject().GetValues().AsMap()),
+		"state": bson.M{
+			"key":    e.GetState().GetKey(),
+			"values": bson.M(e.GetState().GetValues().AsMap()),
 		},
 		"claims": bson.M(e.GetClaims().AsMap()),
 	}))
 	if err != nil {
 		return &errorz.Error{
 			Type: errorz.ErrUnknown,
-			Info: "failed to set object",
+			Info: "failed to set state",
 			Err:  err,
 			Metadata: map[string]string{
-				"object_key":    e.GetObject().GetKey(),
-				"object_type":   e.GetObject().GetType(),
-				"object_domain": e.GetObject().GetDomain(),
+				"state_key":    e.GetState().GetKey(),
+				"state_type":   e.GetState().GetType(),
+				"state_domain": e.GetState().GetDomain(),
 			},
 		}
 	}
 	return nil
 }
 
-func (p *Provider) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, *errorz.Error) {
+func (p *Provider) GetState(ctx context.Context, ref *stategate.StateRef) (*stategate.State, *errorz.Error) {
 	filter := bson.D{
 		{Key: "_id", Value: ref.GetKey()},
 	}
@@ -80,42 +80,42 @@ func (p *Provider) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*st
 		if err == mongo.ErrNoDocuments {
 			return nil, &errorz.Error{
 				Type: errorz.ErrNotFound,
-				Info: "failed to find object",
+				Info: "failed to find state",
 				Err:  err,
 				Metadata: map[string]string{
-					"object_key":    ref.GetKey(),
-					"object_type":   ref.GetType(),
-					"object_domain": ref.GetDomain(),
+					"state_key":    ref.GetKey(),
+					"state_type":   ref.GetType(),
+					"state_domain": ref.GetDomain(),
 				},
 			}
 		}
 		return nil, &errorz.Error{
 			Type: errorz.ErrUnknown,
-			Info: "failed to find object",
+			Info: "failed to find state",
 			Err:  err,
 			Metadata: map[string]string{
-				"object_key":    ref.GetKey(),
-				"object_type":   ref.GetType(),
-				"object_domain": ref.GetDomain(),
+				"state_key":    ref.GetKey(),
+				"state_type":   ref.GetType(),
+				"state_domain": ref.GetDomain(),
 			},
 		}
 	}
-	object := &stategate.Object{
+	state := &stategate.State{
 		Domain: ref.GetDomain(),
 		Type:   ref.GetType(),
 		Key:    cast.ToString(result["_id"]),
 	}
 	delete(result, "_id")
 	strct, _ := structpb.NewStruct(result)
-	object.Values = strct
-	return object, nil
+	state.Values = strct
+	return state, nil
 }
 
-func (p *Provider) DelObject(ctx context.Context, ref *stategate.ObjectRef) *errorz.Error {
+func (p *Provider) DelState(ctx context.Context, ref *stategate.StateRef) *errorz.Error {
 	{
 		filter := bson.D{
 			{
-				Key:   "object.key",
+				Key:   "state.key",
 				Value: ref.GetKey(),
 			},
 		}
@@ -127,9 +127,9 @@ func (p *Provider) DelObject(ctx context.Context, ref *stategate.ObjectRef) *err
 					Info: "failed to find & delete events",
 					Err:  err,
 					Metadata: map[string]string{
-						"object_key":    ref.GetKey(),
-						"object_type":   ref.GetType(),
-						"object_domain": ref.GetDomain(),
+						"state_key":    ref.GetKey(),
+						"state_type":   ref.GetType(),
+						"state_domain": ref.GetDomain(),
 					},
 				}
 			}
@@ -138,9 +138,9 @@ func (p *Provider) DelObject(ctx context.Context, ref *stategate.ObjectRef) *err
 				Info: "failed to delete events",
 				Err:  err,
 				Metadata: map[string]string{
-					"object_key":    ref.GetKey(),
-					"object_type":   ref.GetType(),
-					"object_domain": ref.GetDomain(),
+					"state_key":    ref.GetKey(),
+					"state_type":   ref.GetType(),
+					"state_domain": ref.GetDomain(),
 				},
 			}
 		}
@@ -153,23 +153,23 @@ func (p *Provider) DelObject(ctx context.Context, ref *stategate.ObjectRef) *err
 		if err == mongo.ErrNoDocuments {
 			return &errorz.Error{
 				Type: errorz.ErrNotFound,
-				Info: "failed to find object",
+				Info: "failed to find state",
 				Err:  err,
 				Metadata: map[string]string{
-					"object_key":    ref.GetKey(),
-					"object_type":   ref.GetType(),
-					"object_domain": ref.GetDomain(),
+					"state_key":    ref.GetKey(),
+					"state_type":   ref.GetType(),
+					"state_domain": ref.GetDomain(),
 				},
 			}
 		}
 		return &errorz.Error{
 			Type: errorz.ErrUnknown,
-			Info: "failed to delete object",
+			Info: "failed to delete state",
 			Err:  err,
 			Metadata: map[string]string{
-				"object_key":    ref.GetKey(),
-				"object_type":   ref.GetType(),
-				"object_domain": ref.GetDomain(),
+				"state_key":    ref.GetKey(),
+				"state_type":   ref.GetType(),
+				"state_domain": ref.GetDomain(),
 			},
 		}
 	}
@@ -187,7 +187,7 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 	filter := bson.D{}
 	if opts.GetKey() != "" {
 		filter = append(filter, bson.E{
-			Key:   "object.key",
+			Key:   "state.key",
 			Value: opts.GetKey(),
 		})
 	}
@@ -211,9 +211,9 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 				Info: "failed to search events",
 				Err:  err,
 				Metadata: map[string]string{
-					"object_key":    opts.GetKey(),
-					"object_type":   opts.GetType(),
-					"object_domain": opts.GetDomain(),
+					"state_key":    opts.GetKey(),
+					"state_type":   opts.GetType(),
+					"state_domain": opts.GetDomain(),
 				},
 			}
 		}
@@ -222,9 +222,9 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 			Info: "failed to search events",
 			Err:  err,
 			Metadata: map[string]string{
-				"object_key":    opts.GetKey(),
-				"object_type":   opts.GetType(),
-				"object_domain": opts.GetDomain(),
+				"state_key":    opts.GetKey(),
+				"state_type":   opts.GetType(),
+				"state_domain": opts.GetDomain(),
 			},
 		}
 	}
@@ -236,9 +236,9 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 			Info: "failed to scan events",
 			Err:  err,
 			Metadata: map[string]string{
-				"object_key":    opts.GetKey(),
-				"object_type":   opts.GetType(),
-				"object_domain": opts.GetDomain(),
+				"state_key":    opts.GetKey(),
+				"state_type":   opts.GetType(),
+				"state_domain": opts.GetDomain(),
 			},
 		}
 	}
@@ -246,18 +246,18 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 	for _, r := range results {
 		var e = &stategate.Event{
 			Id:     "",
-			Object: &stategate.Object{},
+			State:  &stategate.State{},
 			Claims: nil,
 			Time:   cast.ToInt64(r["time"]),
 		}
 		e.Id = cast.ToString(r["id"])
-		object, ok := r["object"].(bson.M)
+		state, ok := r["state"].(bson.M)
 		if ok {
-			d, _ := structpb.NewStruct(object["values"].(bson.M))
-			e.Object.Values = d
-			e.Object.Key = cast.ToString(object["key"])
-			e.Object.Type = opts.GetType()
-			e.Object.Domain = opts.GetDomain()
+			d, _ := structpb.NewStruct(state["values"].(bson.M))
+			e.State.Values = d
+			e.State.Key = cast.ToString(state["key"])
+			e.State.Type = opts.GetType()
+			e.State.Domain = opts.GetDomain()
 		}
 		claims, ok := r["claims"].(bson.M)
 		if ok {
@@ -269,7 +269,7 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 	return &stategate.Events{Events: events}, nil
 }
 
-func (p *Provider) SearchObjects(ctx context.Context, opts *stategate.SearchObjectOpts) (*stategate.Objects, *errorz.Error) {
+func (p *Provider) SearchState(ctx context.Context, opts *stategate.SearchStateOpts) (*stategate.StateValues, *errorz.Error) {
 	o := options.Find()
 	if opts.GetLimit() > 0 {
 		o.SetLimit(opts.GetLimit())
@@ -285,8 +285,8 @@ func (p *Provider) SearchObjects(ctx context.Context, opts *stategate.SearchObje
 				Info: "failed to decode query string",
 				Err:  err,
 				Metadata: map[string]string{
-					"object_type":   opts.GetType(),
-					"object_domain": opts.GetDomain(),
+					"state_type":   opts.GetType(),
+					"state_domain": opts.GetDomain(),
 				},
 			}
 		}
@@ -297,21 +297,21 @@ func (p *Provider) SearchObjects(ctx context.Context, opts *stategate.SearchObje
 		if err == mongo.ErrNoDocuments {
 			return nil, &errorz.Error{
 				Type: errorz.ErrNotFound,
-				Info: "failed to search objects",
+				Info: "failed to search states",
 				Err:  err,
 				Metadata: map[string]string{
-					"object_type":   opts.GetType(),
-					"object_domain": opts.GetDomain(),
+					"state_type":   opts.GetType(),
+					"state_domain": opts.GetDomain(),
 				},
 			}
 		}
 		return nil, &errorz.Error{
 			Type: errorz.ErrUnknown,
-			Info: "failed to search objects",
+			Info: "failed to search states",
 			Err:  err,
 			Metadata: map[string]string{
-				"object_type":   opts.GetType(),
-				"object_domain": opts.GetDomain(),
+				"state_type":   opts.GetType(),
+				"state_domain": opts.GetDomain(),
 			},
 		}
 	}
@@ -320,17 +320,17 @@ func (p *Provider) SearchObjects(ctx context.Context, opts *stategate.SearchObje
 	if err := cur.All(ctx, &results); err != nil {
 		return nil, &errorz.Error{
 			Type: errorz.ErrUnknown,
-			Info: "failed to scan objects",
+			Info: "failed to scan states",
 			Err:  err,
 			Metadata: map[string]string{
-				"object_type":   opts.GetType(),
-				"object_domain": opts.GetDomain(),
+				"state_type":   opts.GetType(),
+				"state_domain": opts.GetDomain(),
 			},
 		}
 	}
-	var objects []*stategate.Object
+	var states []*stategate.State
 	for _, r := range results {
-		var o = &stategate.Object{
+		var o = &stategate.State{
 			Domain: opts.GetDomain(),
 			Type:   opts.GetType(),
 			Key:    cast.ToString(r["_id"]),
@@ -339,10 +339,10 @@ func (p *Provider) SearchObjects(ctx context.Context, opts *stategate.SearchObje
 		delete(r, "_id")
 		d, _ := structpb.NewStruct(r)
 		o.Values = d
-		objects = append(objects, o)
+		states = append(states, o)
 	}
-	return &stategate.Objects{
-		Objects: objects,
+	return &stategate.StateValues{
+		StateValues: states,
 	}, nil
 }
 

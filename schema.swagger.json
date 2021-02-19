@@ -13,7 +13,7 @@
   "paths": {
     "/api/events/search": {
       "get": {
-        "summary": "Search queries events related to a specific object.",
+        "summary": "Search queries events related to a specific application state value.",
         "operationId": "EventService_Search",
         "responses": {
           "200": {
@@ -32,35 +32,35 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the object's business domain(ex: accounting).",
+            "description": "the application state value's business domain(ex: accounting).",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "Object type (ex: user).",
+            "description": "State type (ex: user).",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "key",
-            "description": "filter events belonging to a particular object.",
+            "description": "filter events belonging to a particular application state value.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "queryString",
-            "description": "json string to filter records that have object's with values that match k/v pairs ex: { \"message\": \"hello world\" }.",
+            "description": "json string to filter records that have application state value's with values that match k/v pairs ex: { \"message\": \"hello world\" }.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "min",
-            "description": "only return object events that occurred after specified min timestamp.",
+            "description": "only return application state value events that occurred after specified min timestamp.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -68,7 +68,7 @@
           },
           {
             "name": "max",
-            "description": "only return object events that occurred before specified max timestamp.",
+            "description": "only return application state value events that occurred before specified max timestamp.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -76,7 +76,7 @@
           },
           {
             "name": "limit",
-            "description": "limit returned object events.",
+            "description": "limit returned application state value events.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -84,7 +84,7 @@
           },
           {
             "name": "offset",
-            "description": "offset returned object events(pagination).",
+            "description": "offset returned application state value events(pagination).",
             "in": "query",
             "required": false,
             "type": "string",
@@ -98,7 +98,7 @@
     },
     "/api/events/stream": {
       "get": {
-        "summary": "Stream creates an event stream/subscription to a given object type until fn returns false OR the context cancels.",
+        "summary": "Stream creates an event stream/subscription to a given application state value type until fn returns false OR the context cancels.",
         "operationId": "EventService_Stream",
         "responses": {
           "200": {
@@ -126,14 +126,14 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the domain of the object (ex: acme) that triggered the event.",
+            "description": "the domain of the application state value (ex: acme) that triggered the event.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "the type of the object (ex: user) that triggered the event.",
+            "description": "the type of the application state value (ex: user) that triggered the event.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -144,15 +144,15 @@
         ]
       }
     },
-    "/api/objects/ref/{domain}/{type}/{key}": {
+    "/api/state/ref/{domain}/{type}/{key}": {
       "get": {
-        "summary": "Get gets an object's current state values",
-        "operationId": "ObjectService_Get",
+        "summary": "Get gets an application state value's current state values",
+        "operationId": "StateService_Get",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/stategateObject"
+              "$ref": "#/definitions/stategateState"
             }
           },
           "default": {
@@ -165,33 +165,33 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the object's business domain(ex: accounting)",
+            "description": "the application state value's business domain(ex: accounting)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "Object type (ex: user)",
+            "description": "State type (ex: user)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "key",
-            "description": "Object key (unique within type)",
+            "description": "State key (unique within type)",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "tags": [
-          "ObjectService"
+          "StateService"
         ]
       },
       "delete": {
-        "summary": "Del hard deletes an object. Object's may be recovered via the Event store.",
-        "operationId": "ObjectService_Del",
+        "summary": "Del hard deletes current state. State may be recovered via the Event store.",
+        "operationId": "StateService_Del",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -209,33 +209,33 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the object's business domain(ex: accounting)",
+            "description": "the application state value's business domain(ex: accounting)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "Object type (ex: user)",
+            "description": "State type (ex: user)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "key",
-            "description": "Object key (unique within type)",
+            "description": "State key (unique within type)",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "tags": [
-          "ObjectService"
+          "StateService"
         ]
       },
       "post": {
-        "summary": "Set sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers",
-        "operationId": "ObjectService_Set",
+        "summary": "Set sets the current state value of an application state value, adds it to the event log, then broadcast the event to all interested consumers",
+        "operationId": "StateService_Set",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -253,40 +253,40 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the object's business domain(ex: accounting)",
+            "description": "the application state value's business domain(ex: accounting)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "Object type (ex: user)",
+            "description": "State type (ex: user)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "key",
-            "description": "Object key (unique within type)",
+            "description": "State key (unique within type)",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "tags": [
-          "ObjectService"
+          "StateService"
         ]
       }
     },
-    "/api/objects/search": {
+    "/api/state/search": {
       "get": {
-        "summary": "Search queries objects belonging to a particular domain \u0026 of a specific type",
-        "operationId": "ObjectService_Search",
+        "summary": "Search queries state belonging to a particular domain \u0026 of a specific type",
+        "operationId": "StateService_Search",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/stategateObjects"
+              "$ref": "#/definitions/stategateStateValues"
             }
           },
           "default": {
@@ -299,14 +299,14 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the object's business domain(ex: accounting).",
+            "description": "the application state value's business domain(ex: accounting).",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "Object type (ex: user).",
+            "description": "State type (ex: user).",
             "in": "query",
             "required": false,
             "type": "string"
@@ -320,7 +320,7 @@
           },
           {
             "name": "limit",
-            "description": "limit returned objects.",
+            "description": "limit returned state.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -336,7 +336,7 @@
           }
         ],
         "tags": [
-          "ObjectService"
+          "StateService"
         ]
       }
     }
@@ -390,9 +390,9 @@
           "type": "string",
           "description": "Identifies the event(uuid)."
         },
-        "object": {
-          "$ref": "#/definitions/stategateObject",
-          "title": "the unmodified"
+        "state": {
+          "$ref": "#/definitions/stategateState",
+          "title": "state after it has been mutated"
         },
         "claims": {
           "type": "object",
@@ -404,7 +404,7 @@
           "description": "Timestamp(ns) of when the event was received."
         }
       },
-      "title": "Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.\nEvents are persisted to history \u0026 broadcasted to interested consumers(Stream) any time an object is created/modified"
+      "title": "Event is primitive that represents a single state change\nEvents are persisted to history \u0026 broadcasted to interested consumers(Stream) any time an application state value is created/modified\nEvents are immutable after creation and may be searched.\nEvent Consumers may search events to query previous state"
     },
     "stategateEvents": {
       "type": "object",
@@ -418,39 +418,39 @@
       },
       "title": "Events is an array of events"
     },
-    "stategateObject": {
+    "stategateState": {
       "type": "object",
       "properties": {
         "domain": {
           "type": "string",
-          "title": "the object's business domain(ex: accounting)"
+          "title": "the application state value's business domain(ex: accounting)"
         },
         "type": {
           "type": "string",
-          "title": "Object type (ex: user)"
+          "title": "State type (ex: user)"
         },
         "key": {
           "type": "string",
-          "title": "Object key (unique within type)"
+          "title": "State key (unique within type)"
         },
         "values": {
           "type": "object",
-          "title": "Object values (k/v pairs)"
+          "title": "State values (k/v pairs)"
         }
       },
-      "title": "Object hold's the current state of an object"
+      "description": "State represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)\nServices/Users should use state related methods to persist \u0026 interact with the current state of an application/domain."
     },
-    "stategateObjects": {
+    "stategateStateValues": {
       "type": "object",
       "properties": {
-        "objects": {
+        "stateValues": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/stategateObject"
+            "$ref": "#/definitions/stategateState"
           }
         }
       },
-      "title": "Objects is an array of Object"
+      "title": "States is an array of State"
     }
   }
 }

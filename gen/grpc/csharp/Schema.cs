@@ -29,49 +29,49 @@ namespace Stategate {
             "Z2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90bxoZZ29vZ2xlL3Byb3RvYnVm",
             "L2FueS5wcm90bxobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5LnByb3RvGjZnaXRo",
             "dWIuY29tL213aXRrb3cvZ28tcHJvdG8tdmFsaWRhdG9ycy92YWxpZGF0b3Iu",
-            "cHJvdG8iXQoJT2JqZWN0UmVmEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxT",
-            "KyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJQgvi",
-            "3x8HCgVeXFMrJCKLAQoGT2JqZWN0EhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoF",
-            "XlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJ",
-            "Qgvi3x8HCgVeXFMrJBIvCgZ2YWx1ZXMYBCABKAsyFy5nb29nbGUucHJvdG9i",
-            "dWYuU3RydWN0Qgbi3x8CIAEiLQoHT2JqZWN0cxIiCgdvYmplY3RzGAEgAygL",
-            "MhEuc3RhdGVnYXRlLk9iamVjdCKHAQoQU2VhcmNoT2JqZWN0T3B0cxIbCgZk",
-            "b21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcK",
-            "BV5cUyskEhQKDHF1ZXJ5X3N0cmluZxgDIAEoCRIVCgVsaW1pdBgEIAEoA0IG",
-            "4t8fAhAAEg4KBm9mZnNldBgFIAEoAyKtAQoPU2VhcmNoRXZlbnRPcHRzEhsK",
-            "BmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8f",
-            "BwoFXlxTKyQSCwoDa2V5GAMgASgJEhQKDHF1ZXJ5X3N0cmluZxgEIAEoCRIL",
-            "CgNtaW4YBSABKAMSCwoDbWF4GAYgASgDEhUKBWxpbWl0GAcgASgDQgbi3x8C",
-            "EAASDgoGb2Zmc2V0GAggASgDIkQKClN0cmVhbU9wdHMSGwoGZG9tYWluGAEg",
-            "ASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMrJCKO",
-            "AQoFRXZlbnQSEwoCaWQYASABKAlCB+LfHwOQAQASKQoGb2JqZWN0GAIgASgL",
-            "MhEuc3RhdGVnYXRlLk9iamVjdEIG4t8fAiABEi8KBmNsYWltcxgDIAEoCzIX",
-            "Lmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgARIUCgR0aW1lGAQgASgD",
-            "Qgbi3x8CEAAiKgoGRXZlbnRzEiAKBmV2ZW50cxgBIAMoCzIQLnN0YXRlZ2F0",
-            "ZS5FdmVudDKOAwoNT2JqZWN0U2VydmljZRJgCgNTZXQSES5zdGF0ZWdhdGUu",
-            "T2JqZWN0GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5Ii6C0+STAigiJi9hcGkv",
-            "b2JqZWN0cy9yZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9El4KA0dldBIULnN0",
-            "YXRlZ2F0ZS5PYmplY3RSZWYaES5zdGF0ZWdhdGUuT2JqZWN0Ii6C0+STAigS",
-            "Ji9hcGkvb2JqZWN0cy9yZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9EmMKA0Rl",
-            "bBIULnN0YXRlZ2F0ZS5PYmplY3RSZWYaFi5nb29nbGUucHJvdG9idWYuRW1w",
-            "dHkiLoLT5JMCKComL2FwaS9vYmplY3RzL3JlZi97ZG9tYWlufS97dHlwZX0v",
-            "e2tleX0SVgoGU2VhcmNoEhsuc3RhdGVnYXRlLlNlYXJjaE9iamVjdE9wdHMa",
-            "Ei5zdGF0ZWdhdGUuT2JqZWN0cyIbgtPkkwIVEhMvYXBpL29iamVjdHMvc2Vh",
-            "cmNoMrQBCgxFdmVudFNlcnZpY2USTwoGU3RyZWFtEhUuc3RhdGVnYXRlLlN0",
-            "cmVhbU9wdHMaEC5zdGF0ZWdhdGUuRXZlbnQiGoLT5JMCFBISL2FwaS9ldmVu",
-            "dHMvc3RyZWFtMAESUwoGU2VhcmNoEhouc3RhdGVnYXRlLlNlYXJjaEV2ZW50",
-            "T3B0cxoRLnN0YXRlZ2F0ZS5FdmVudHMiGoLT5JMCFBISL2FwaS9ldmVudHMv",
-            "c2VhcmNoQgtaCXN0YXRlZ2F0ZWIGcHJvdG8z"));
+            "cHJvdG8iXAoIU3RhdGVSZWYSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMr",
+            "JBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMrJBIYCgNrZXkYAyABKAlCC+Lf",
+            "HwcKBV5cUyskIooBCgVTdGF0ZRIbCgZkb21haW4YASABKAlCC+LfHwcKBV5c",
+            "UyskEhkKBHR5cGUYAiABKAlCC+LfHwcKBV5cUyskEhgKA2tleRgDIAEoCUIL",
+            "4t8fBwoFXlxTKyQSLwoGdmFsdWVzGAQgASgLMhcuZ29vZ2xlLnByb3RvYnVm",
+            "LlN0cnVjdEIG4t8fAiABIjUKC1N0YXRlVmFsdWVzEiYKDHN0YXRlX3ZhbHVl",
+            "cxgBIAMoCzIQLnN0YXRlZ2F0ZS5TdGF0ZSKGAQoPU2VhcmNoU3RhdGVPcHRz",
+            "EhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxTKyQSGQoEdHlwZRgCIAEoCUIL",
+            "4t8fBwoFXlxTKyQSFAoMcXVlcnlfc3RyaW5nGAMgASgJEhUKBWxpbWl0GAQg",
+            "ASgDQgbi3x8CEAASDgoGb2Zmc2V0GAUgASgDIq0BCg9TZWFyY2hFdmVudE9w",
+            "dHMSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAIgASgJ",
+            "Qgvi3x8HCgVeXFMrJBILCgNrZXkYAyABKAkSFAoMcXVlcnlfc3RyaW5nGAQg",
+            "ASgJEgsKA21pbhgFIAEoAxILCgNtYXgYBiABKAMSFQoFbGltaXQYByABKANC",
+            "BuLfHwIQABIOCgZvZmZzZXQYCCABKAMiRAoKU3RyZWFtT3B0cxIbCgZkb21h",
+            "aW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcKBV5c",
+            "UyskIowBCgVFdmVudBITCgJpZBgBIAEoCUIH4t8fA5ABABInCgVzdGF0ZRgC",
+            "IAEoCzIQLnN0YXRlZ2F0ZS5TdGF0ZUIG4t8fAiABEi8KBmNsYWltcxgDIAEo",
+            "CzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgARIUCgR0aW1lGAQg",
+            "ASgDQgbi3x8CEAAiKgoGRXZlbnRzEiAKBmV2ZW50cxgBIAMoCzIQLnN0YXRl",
+            "Z2F0ZS5FdmVudDKEAwoMU3RhdGVTZXJ2aWNlEl0KA1NldBIQLnN0YXRlZ2F0",
+            "ZS5TdGF0ZRoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIsgtPkkwImIiQvYXBp",
+            "L3N0YXRlL3JlZi97ZG9tYWlufS97dHlwZX0ve2tleX0SWgoDR2V0EhMuc3Rh",
+            "dGVnYXRlLlN0YXRlUmVmGhAuc3RhdGVnYXRlLlN0YXRlIiyC0+STAiYSJC9h",
+            "cGkvc3RhdGUvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJgCgNEZWwSEy5z",
+            "dGF0ZWdhdGUuU3RhdGVSZWYaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiLILT",
+            "5JMCJiokL2FwaS9zdGF0ZS9yZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9ElcK",
+            "BlNlYXJjaBIaLnN0YXRlZ2F0ZS5TZWFyY2hTdGF0ZU9wdHMaFi5zdGF0ZWdh",
+            "dGUuU3RhdGVWYWx1ZXMiGYLT5JMCExIRL2FwaS9zdGF0ZS9zZWFyY2gytAEK",
+            "DEV2ZW50U2VydmljZRJPCgZTdHJlYW0SFS5zdGF0ZWdhdGUuU3RyZWFtT3B0",
+            "cxoQLnN0YXRlZ2F0ZS5FdmVudCIagtPkkwIUEhIvYXBpL2V2ZW50cy9zdHJl",
+            "YW0wARJTCgZTZWFyY2gSGi5zdGF0ZWdhdGUuU2VhcmNoRXZlbnRPcHRzGhEu",
+            "c3RhdGVnYXRlLkV2ZW50cyIagtPkkwIUEhIvYXBpL2V2ZW50cy9zZWFyY2hC",
+            "C1oJc3RhdGVnYXRlYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.ObjectRef), global::Stategate.ObjectRef.Parser, new[]{ "Domain", "Type", "Key" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Object), global::Stategate.Object.Parser, new[]{ "Domain", "Type", "Key", "Values" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Objects), global::Stategate.Objects.Parser, new[]{ "Objects_" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchObjectOpts), global::Stategate.SearchObjectOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Limit", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StateRef), global::Stategate.StateRef.Parser, new[]{ "Domain", "Type", "Key" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.State), global::Stategate.State.Parser, new[]{ "Domain", "Type", "Key", "Values" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StateValues), global::Stategate.StateValues.Parser, new[]{ "StateValues_" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchStateOpts), global::Stategate.SearchStateOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Limit", "Offset" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEventOpts), global::Stategate.SearchEventOpts.Parser, new[]{ "Domain", "Type", "Key", "QueryString", "Min", "Max", "Limit", "Offset" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamOpts), global::Stategate.StreamOpts.Parser, new[]{ "Domain", "Type" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Event), global::Stategate.Event.Parser, new[]{ "Id", "Object", "Claims", "Time" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Event), global::Stategate.Event.Parser, new[]{ "Id", "State", "Claims", "Time" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Events), global::Stategate.Events.Parser, new[]{ "Events_" }, null, null, null)
           }));
     }
@@ -80,13 +80,13 @@ namespace Stategate {
   }
   #region Messages
   /// <summary>
-  /// ObjectRef is a reference to an existing object
+  /// StateRef is a reference to an existing application state value
   /// </summary>
-  public sealed partial class ObjectRef : pb::IMessage<ObjectRef> {
-    private static readonly pb::MessageParser<ObjectRef> _parser = new pb::MessageParser<ObjectRef>(() => new ObjectRef());
+  public sealed partial class StateRef : pb::IMessage<StateRef> {
+    private static readonly pb::MessageParser<StateRef> _parser = new pb::MessageParser<StateRef>(() => new StateRef());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ObjectRef> Parser { get { return _parser; } }
+    public static pb::MessageParser<StateRef> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -99,14 +99,14 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ObjectRef() {
+    public StateRef() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ObjectRef(ObjectRef other) : this() {
+    public StateRef(StateRef other) : this() {
       domain_ = other.domain_;
       type_ = other.type_;
       key_ = other.key_;
@@ -114,15 +114,15 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ObjectRef Clone() {
-      return new ObjectRef(this);
+    public StateRef Clone() {
+      return new StateRef(this);
     }
 
     /// <summary>Field number for the "domain" field.</summary>
     public const int DomainFieldNumber = 1;
     private string domain_ = "";
     /// <summary>
-    /// the object's business domain(ex: accounting)
+    /// the application state value's business domain(ex: accounting)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -136,7 +136,7 @@ namespace Stategate {
     public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
-    /// Object type (ex: user)
+    /// State type (ex: user)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
@@ -150,7 +150,7 @@ namespace Stategate {
     public const int KeyFieldNumber = 3;
     private string key_ = "";
     /// <summary>
-    /// Object key (unique within type)
+    /// State key (unique within type)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Key {
@@ -162,11 +162,11 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ObjectRef);
+      return Equals(other as StateRef);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ObjectRef other) {
+    public bool Equals(StateRef other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -234,7 +234,7 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ObjectRef other) {
+    public void MergeFrom(StateRef other) {
       if (other == null) {
         return;
       }
@@ -277,13 +277,14 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// Object hold's the current state of an object
+  /// State represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+  /// Services/Users should use state related methods to persist &amp; interact with the current state of an application/domain.
   /// </summary>
-  public sealed partial class Object : pb::IMessage<Object> {
-    private static readonly pb::MessageParser<Object> _parser = new pb::MessageParser<Object>(() => new Object());
+  public sealed partial class State : pb::IMessage<State> {
+    private static readonly pb::MessageParser<State> _parser = new pb::MessageParser<State>(() => new State());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<Object> Parser { get { return _parser; } }
+    public static pb::MessageParser<State> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -296,14 +297,14 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Object() {
+    public State() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Object(Object other) : this() {
+    public State(State other) : this() {
       domain_ = other.domain_;
       type_ = other.type_;
       key_ = other.key_;
@@ -312,15 +313,15 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Object Clone() {
-      return new Object(this);
+    public State Clone() {
+      return new State(this);
     }
 
     /// <summary>Field number for the "domain" field.</summary>
     public const int DomainFieldNumber = 1;
     private string domain_ = "";
     /// <summary>
-    /// the object's business domain(ex: accounting)
+    /// the application state value's business domain(ex: accounting)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -334,7 +335,7 @@ namespace Stategate {
     public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
-    /// Object type (ex: user)
+    /// State type (ex: user)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
@@ -348,7 +349,7 @@ namespace Stategate {
     public const int KeyFieldNumber = 3;
     private string key_ = "";
     /// <summary>
-    /// Object key (unique within type)
+    /// State key (unique within type)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Key {
@@ -362,7 +363,7 @@ namespace Stategate {
     public const int ValuesFieldNumber = 4;
     private global::Google.Protobuf.WellKnownTypes.Struct values_;
     /// <summary>
-    /// Object values (k/v pairs)
+    /// State values (k/v pairs)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Google.Protobuf.WellKnownTypes.Struct Values {
@@ -374,11 +375,11 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as Object);
+      return Equals(other as State);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Object other) {
+    public bool Equals(State other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -455,7 +456,7 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Object other) {
+    public void MergeFrom(State other) {
       if (other == null) {
         return;
       }
@@ -511,13 +512,13 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// Objects is an array of Object
+  /// States is an array of State
   /// </summary>
-  public sealed partial class Objects : pb::IMessage<Objects> {
-    private static readonly pb::MessageParser<Objects> _parser = new pb::MessageParser<Objects>(() => new Objects());
+  public sealed partial class StateValues : pb::IMessage<StateValues> {
+    private static readonly pb::MessageParser<StateValues> _parser = new pb::MessageParser<StateValues>(() => new StateValues());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<Objects> Parser { get { return _parser; } }
+    public static pb::MessageParser<StateValues> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -530,54 +531,54 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Objects() {
+    public StateValues() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Objects(Objects other) : this() {
-      objects_ = other.objects_.Clone();
+    public StateValues(StateValues other) : this() {
+      stateValues_ = other.stateValues_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Objects Clone() {
-      return new Objects(this);
+    public StateValues Clone() {
+      return new StateValues(this);
     }
 
-    /// <summary>Field number for the "objects" field.</summary>
-    public const int Objects_FieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Stategate.Object> _repeated_objects_codec
-        = pb::FieldCodec.ForMessage(10, global::Stategate.Object.Parser);
-    private readonly pbc::RepeatedField<global::Stategate.Object> objects_ = new pbc::RepeatedField<global::Stategate.Object>();
+    /// <summary>Field number for the "state_values" field.</summary>
+    public const int StateValues_FieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Stategate.State> _repeated_stateValues_codec
+        = pb::FieldCodec.ForMessage(10, global::Stategate.State.Parser);
+    private readonly pbc::RepeatedField<global::Stategate.State> stateValues_ = new pbc::RepeatedField<global::Stategate.State>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Stategate.Object> Objects_ {
-      get { return objects_; }
+    public pbc::RepeatedField<global::Stategate.State> StateValues_ {
+      get { return stateValues_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as Objects);
+      return Equals(other as StateValues);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Objects other) {
+    public bool Equals(StateValues other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!objects_.Equals(other.objects_)) return false;
+      if(!stateValues_.Equals(other.stateValues_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= objects_.GetHashCode();
+      hash ^= stateValues_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -591,7 +592,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      objects_.WriteTo(output, _repeated_objects_codec);
+      stateValues_.WriteTo(output, _repeated_stateValues_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -600,7 +601,7 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      size += objects_.CalculateSize(_repeated_objects_codec);
+      size += stateValues_.CalculateSize(_repeated_stateValues_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -608,11 +609,11 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Objects other) {
+    public void MergeFrom(StateValues other) {
       if (other == null) {
         return;
       }
-      objects_.Add(other.objects_);
+      stateValues_.Add(other.stateValues_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -625,7 +626,7 @@ namespace Stategate {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            objects_.AddEntriesFrom(input, _repeated_objects_codec);
+            stateValues_.AddEntriesFrom(input, _repeated_stateValues_codec);
             break;
           }
         }
@@ -635,14 +636,14 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// SearchObjectOpts are options when querying the current values of object(s).
+  /// SearchStateOpts are options when querying the current values of application state value(s).
   /// If historical values are needed, SearchEvents should be used
   /// </summary>
-  public sealed partial class SearchObjectOpts : pb::IMessage<SearchObjectOpts> {
-    private static readonly pb::MessageParser<SearchObjectOpts> _parser = new pb::MessageParser<SearchObjectOpts>(() => new SearchObjectOpts());
+  public sealed partial class SearchStateOpts : pb::IMessage<SearchStateOpts> {
+    private static readonly pb::MessageParser<SearchStateOpts> _parser = new pb::MessageParser<SearchStateOpts>(() => new SearchStateOpts());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<SearchObjectOpts> Parser { get { return _parser; } }
+    public static pb::MessageParser<SearchStateOpts> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -655,14 +656,14 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SearchObjectOpts() {
+    public SearchStateOpts() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SearchObjectOpts(SearchObjectOpts other) : this() {
+    public SearchStateOpts(SearchStateOpts other) : this() {
       domain_ = other.domain_;
       type_ = other.type_;
       queryString_ = other.queryString_;
@@ -672,15 +673,15 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SearchObjectOpts Clone() {
-      return new SearchObjectOpts(this);
+    public SearchStateOpts Clone() {
+      return new SearchStateOpts(this);
     }
 
     /// <summary>Field number for the "domain" field.</summary>
     public const int DomainFieldNumber = 1;
     private string domain_ = "";
     /// <summary>
-    /// the object's business domain(ex: accounting)
+    /// the application state value's business domain(ex: accounting)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -694,7 +695,7 @@ namespace Stategate {
     public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
-    /// Object type (ex: user)
+    /// State type (ex: user)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
@@ -722,7 +723,7 @@ namespace Stategate {
     public const int LimitFieldNumber = 4;
     private long limit_;
     /// <summary>
-    /// limit returned objects
+    /// limit returned state
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Limit {
@@ -748,11 +749,11 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as SearchObjectOpts);
+      return Equals(other as SearchStateOpts);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(SearchObjectOpts other) {
+    public bool Equals(SearchStateOpts other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -838,7 +839,7 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(SearchObjectOpts other) {
+    public void MergeFrom(SearchStateOpts other) {
       if (other == null) {
         return;
       }
@@ -895,7 +896,7 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// SearchEventOpts are options when querying historical events for a given object
+  /// SearchEventOpts are options when querying historical events for a given application state value
   /// </summary>
   public sealed partial class SearchEventOpts : pb::IMessage<SearchEventOpts> {
     private static readonly pb::MessageParser<SearchEventOpts> _parser = new pb::MessageParser<SearchEventOpts>(() => new SearchEventOpts());
@@ -942,7 +943,7 @@ namespace Stategate {
     public const int DomainFieldNumber = 1;
     private string domain_ = "";
     /// <summary>
-    /// the object's business domain(ex: accounting)
+    /// the application state value's business domain(ex: accounting)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -956,7 +957,7 @@ namespace Stategate {
     public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
-    /// Object type (ex: user)
+    /// State type (ex: user)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
@@ -970,7 +971,7 @@ namespace Stategate {
     public const int KeyFieldNumber = 3;
     private string key_ = "";
     /// <summary>
-    /// filter events belonging to a particular object
+    /// filter events belonging to a particular application state value
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Key {
@@ -984,7 +985,7 @@ namespace Stategate {
     public const int QueryStringFieldNumber = 4;
     private string queryString_ = "";
     /// <summary>
-    /// json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+    /// json string to filter records that have application state value's with values that match k/v pairs ex: { "message": "hello world" }
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string QueryString {
@@ -998,7 +999,7 @@ namespace Stategate {
     public const int MinFieldNumber = 5;
     private long min_;
     /// <summary>
-    /// only return object events that occurred after specified min timestamp
+    /// only return application state value events that occurred after specified min timestamp
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Min {
@@ -1012,7 +1013,7 @@ namespace Stategate {
     public const int MaxFieldNumber = 6;
     private long max_;
     /// <summary>
-    /// only return object events that occurred before specified max timestamp
+    /// only return application state value events that occurred before specified max timestamp
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Max {
@@ -1026,7 +1027,7 @@ namespace Stategate {
     public const int LimitFieldNumber = 7;
     private long limit_;
     /// <summary>
-    /// limit returned object events
+    /// limit returned application state value events
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Limit {
@@ -1040,7 +1041,7 @@ namespace Stategate {
     public const int OffsetFieldNumber = 8;
     private long offset_;
     /// <summary>
-    /// offset returned object events(pagination)
+    /// offset returned application state value events(pagination)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Offset {
@@ -1288,7 +1289,7 @@ namespace Stategate {
     public const int DomainFieldNumber = 1;
     private string domain_ = "";
     /// <summary>
-    /// the domain of the object (ex: acme) that triggered the event
+    /// the domain of the application state value (ex: acme) that triggered the event
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -1302,7 +1303,7 @@ namespace Stategate {
     public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
-    /// the type of the object (ex: user) that triggered the event
+    /// the type of the application state value (ex: user) that triggered the event
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
@@ -1413,8 +1414,10 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// Event is primitive that represents a single state change to an object, who triggered it, and the time it occurred.
-  /// Events are persisted to history &amp; broadcasted to interested consumers(Stream) any time an object is created/modified
+  /// Event is primitive that represents a single state change
+  /// Events are persisted to history &amp; broadcasted to interested consumers(Stream) any time an application state value is created/modified
+  /// Events are immutable after creation and may be searched.
+  /// Event Consumers may search events to query previous state
   /// </summary>
   public sealed partial class Event : pb::IMessage<Event> {
     private static readonly pb::MessageParser<Event> _parser = new pb::MessageParser<Event>(() => new Event());
@@ -1442,7 +1445,7 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Event(Event other) : this() {
       id_ = other.id_;
-      object_ = other.object_ != null ? other.object_.Clone() : null;
+      state_ = other.state_ != null ? other.state_.Clone() : null;
       claims_ = other.claims_ != null ? other.claims_.Clone() : null;
       time_ = other.time_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -1467,17 +1470,17 @@ namespace Stategate {
       }
     }
 
-    /// <summary>Field number for the "object" field.</summary>
-    public const int ObjectFieldNumber = 2;
-    private global::Stategate.Object object_;
+    /// <summary>Field number for the "state" field.</summary>
+    public const int StateFieldNumber = 2;
+    private global::Stategate.State state_;
     /// <summary>
-    /// the unmodified
+    /// state after it has been mutated
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Stategate.Object Object {
-      get { return object_; }
+    public global::Stategate.State State {
+      get { return state_; }
       set {
-        object_ = value;
+        state_ = value;
       }
     }
 
@@ -1523,7 +1526,7 @@ namespace Stategate {
         return true;
       }
       if (Id != other.Id) return false;
-      if (!object.Equals(Object, other.Object)) return false;
+      if (!object.Equals(State, other.State)) return false;
       if (!object.Equals(Claims, other.Claims)) return false;
       if (Time != other.Time) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -1533,7 +1536,7 @@ namespace Stategate {
     public override int GetHashCode() {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
-      if (object_ != null) hash ^= Object.GetHashCode();
+      if (state_ != null) hash ^= State.GetHashCode();
       if (claims_ != null) hash ^= Claims.GetHashCode();
       if (Time != 0L) hash ^= Time.GetHashCode();
       if (_unknownFields != null) {
@@ -1553,9 +1556,9 @@ namespace Stategate {
         output.WriteRawTag(10);
         output.WriteString(Id);
       }
-      if (object_ != null) {
+      if (state_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(Object);
+        output.WriteMessage(State);
       }
       if (claims_ != null) {
         output.WriteRawTag(26);
@@ -1576,8 +1579,8 @@ namespace Stategate {
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
-      if (object_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Object);
+      if (state_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(State);
       }
       if (claims_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Claims);
@@ -1599,11 +1602,11 @@ namespace Stategate {
       if (other.Id.Length != 0) {
         Id = other.Id;
       }
-      if (other.object_ != null) {
-        if (object_ == null) {
-          object_ = new global::Stategate.Object();
+      if (other.state_ != null) {
+        if (state_ == null) {
+          state_ = new global::Stategate.State();
         }
-        Object.MergeFrom(other.Object);
+        State.MergeFrom(other.State);
       }
       if (other.claims_ != null) {
         if (claims_ == null) {
@@ -1630,10 +1633,10 @@ namespace Stategate {
             break;
           }
           case 18: {
-            if (object_ == null) {
-              object_ = new global::Stategate.Object();
+            if (state_ == null) {
+              state_ = new global::Stategate.State();
             }
-            input.ReadMessage(object_);
+            input.ReadMessage(state_);
             break;
           }
           case 26: {

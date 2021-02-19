@@ -143,8 +143,8 @@ func NewEventClient(ctx context.Context, target string, opts ...Opt) (*EventClie
 	}, nil
 }
 
-// NewObjectClient creates a new stategate object client
-func NewObjectClient(ctx context.Context, target string, opts ...Opt) (*ObjectClient, error) {
+// NewStateClient creates a new stategate state client
+func NewStateClient(ctx context.Context, target string, opts ...Opt) (*StateClient, error) {
 	if target == "" {
 		return nil, errors.New("empty target")
 	}
@@ -194,8 +194,8 @@ func NewObjectClient(ctx context.Context, target string, opts ...Opt) (*ObjectCl
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to create stategate client")
 	}
-	return &ObjectClient{
-		client: stategate.NewObjectServiceClient(conn),
+	return &StateClient{
+		client: stategate.NewStateServiceClient(conn),
 		conn:   conn,
 	}, nil
 }
@@ -206,9 +206,9 @@ type EventClient struct {
 	conn   *grpc.ClientConn
 }
 
-// ObjectClient is a stategate ObjectService gRPC client
-type ObjectClient struct {
-	client stategate.ObjectServiceClient
+// StateClient is a stategate StateService gRPC client
+type StateClient struct {
+	client stategate.StateServiceClient
 	conn   *grpc.ClientConn
 }
 
@@ -233,28 +233,28 @@ func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken b
 	), nil
 }
 
-// Get gets an object's current state values
-func (c *ObjectClient) Get(ctx context.Context, in *stategate.ObjectRef) (*stategate.Object, error) {
+// Get gets an state's current state values
+func (c *StateClient) Get(ctx context.Context, in *stategate.StateRef) (*stategate.State, error) {
 	return c.client.Get(ctx, in)
 }
 
-// Search queries objects of a specific type
-func (c *ObjectClient) Search(ctx context.Context, in *stategate.SearchObjectOpts) (*stategate.Objects, error) {
+// Search queries states of a specific type
+func (c *StateClient) Search(ctx context.Context, in *stategate.SearchStateOpts) (*stategate.StateValues, error) {
 	return c.client.Search(ctx, in)
 }
 
-// Set sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
-func (c *ObjectClient) Set(ctx context.Context, in *stategate.Object) error {
+// Set sets the current state value of an state, adds it to the event log, then broadcast the event to all interested consumers
+func (c *StateClient) Set(ctx context.Context, in *stategate.State) error {
 	_, err := c.client.Set(ctx, in)
 	return err
 }
 
 // Close closes the gRPC client connection
-func (c *ObjectClient) Close() error {
+func (c *StateClient) Close() error {
 	return c.conn.Close()
 }
 
-// Stream creates an event stream/subscription to a given object type/domain until fn returns false OR the context cancels.
+// Stream creates an event stream/subscription to a given state type/domain until fn returns false OR the context cancels.
 func (c *EventClient) Stream(ctx context.Context, in *stategate.StreamOpts, fn func(even *stategate.Event) bool) error {
 	stream, err := c.client.Stream(ctx, in)
 	if err != nil {
@@ -281,7 +281,7 @@ func (c *EventClient) Stream(ctx context.Context, in *stategate.StreamOpts, fn f
 	}
 }
 
-// SearchEvents returns an array of immutable historical events for a given object.
+// SearchEvents returns an array of immutable historical events for a given state.
 func (c *EventClient) Search(ctx context.Context, in *stategate.SearchEventOpts) (*stategate.Events, error) {
 	return c.client.Search(ctx, in)
 }
