@@ -45,7 +45,7 @@ func NewService(storage storage.Provider, channel channel.Provider, lgger *logge
 			case <-ctx.Done():
 				return
 			case event := <-ch:
-				if err := svc.ps.Publish(channelName(event.GetObject().GetTenant(), event.GetObject().GetType()), event); err != nil {
+				if err := svc.ps.Publish(channelName(event.GetObject().GetDomain(), event.GetObject().GetType()), event); err != nil {
 					svc.lgger.Error("failed to unmarshal event", zap.Error(err))
 				}
 			}
@@ -54,7 +54,7 @@ func NewService(storage storage.Provider, channel channel.Provider, lgger *logge
 	return svc, nil
 }
 
-func (s Service) SetObject(ctx context.Context, object *stategate.Object) (*empty.Empty, error) {
+func (s Service) setObject(ctx context.Context, object *stategate.Object) (*empty.Empty, error) {
 	c, _ := auth.GetContext(ctx)
 	group := &errgroup.Group{}
 	claims, _ := structpb.NewStruct(c.Claims)
@@ -89,7 +89,7 @@ func (s Service) SetObject(ctx context.Context, object *stategate.Object) (*empt
 	return &empty.Empty{}, nil
 }
 
-func (s Service) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, error) {
+func (s Service) getObject(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, error) {
 	obj, err := s.storage.GetObject(ctx, ref)
 	if err != nil {
 		err.Log(s.lgger)
@@ -98,7 +98,7 @@ func (s Service) GetObject(ctx context.Context, ref *stategate.ObjectRef) (*stat
 	return obj, nil
 }
 
-func (s Service) DelObject(ctx context.Context, ref *stategate.ObjectRef) (*empty.Empty, error) {
+func (s Service) delObject(ctx context.Context, ref *stategate.ObjectRef) (*empty.Empty, error) {
 	if err := s.storage.DelObject(ctx, ref); err != nil {
 		err.Log(s.lgger)
 		return nil, err.Public()
@@ -106,8 +106,8 @@ func (s Service) DelObject(ctx context.Context, ref *stategate.ObjectRef) (*empt
 	return &empty.Empty{}, nil
 }
 
-func (s Service) StreamEvents(opts *stategate.StreamOpts, server stategate.StateGateService_StreamEventsServer) error {
-	if err := s.ps.Subscribe(server.Context(), channelName(opts.GetTenant(), opts.GetType()), "", func(msg interface{}) bool {
+func (s Service) streamEvents(opts *stategate.StreamOpts, server stategate.EventService_StreamServer) error {
+	if err := s.ps.Subscribe(server.Context(), channelName(opts.GetDomain(), opts.GetType()), "", func(msg interface{}) bool {
 		if err := server.Send(msg.(*stategate.Event)); err != nil {
 			e := &errorz.Error{
 				Type:     errorz.ErrUnknown,
@@ -131,7 +131,7 @@ func (s Service) StreamEvents(opts *stategate.StreamOpts, server stategate.State
 	return nil
 }
 
-func (s Service) SearchEvents(ctx context.Context, opts *stategate.SearchEventOpts) (*stategate.Events, error) {
+func (s Service) searchEvents(ctx context.Context, opts *stategate.SearchEventOpts) (*stategate.Events, error) {
 	events, err := s.storage.SearchEvents(ctx, opts)
 	if err != nil {
 		err.Log(s.lgger)
@@ -140,7 +140,7 @@ func (s Service) SearchEvents(ctx context.Context, opts *stategate.SearchEventOp
 	return events, nil
 }
 
-func (s Service) SearchObjects(ctx context.Context, opts *stategate.SearchObjectOpts) (*stategate.Objects, error) {
+func (s Service) searchObjects(ctx context.Context, opts *stategate.SearchObjectOpts) (*stategate.Objects, error) {
 	objects, err := s.storage.SearchObjects(ctx, opts)
 	if err != nil {
 		err.Log(s.lgger)
@@ -159,6 +159,46 @@ func (s Service) Close() error {
 	}
 	s.ps.Close()
 	return nil
+}
+
+func (s *Service) EventServiceServer() stategate.EventServiceServer {
+	return &eventService{svc: s}
+}
+
+func (s *Service) ObjectServiceServer() stategate.ObjectServiceServer {
+	return &objectService{svc: s}
+}
+
+type eventService struct {
+	svc *Service
+}
+
+func (e eventService) Stream(opts *stategate.StreamOpts, server stategate.EventService_StreamServer) error {
+	return e.svc.streamEvents(opts, server)
+}
+
+func (e eventService) Search(ctx context.Context, opts *stategate.SearchEventOpts) (*stategate.Events, error) {
+	return e.svc.searchEvents(ctx, opts)
+}
+
+type objectService struct {
+	svc *Service
+}
+
+func (o objectService) Set(ctx context.Context, object *stategate.Object) (*empty.Empty, error) {
+	return o.svc.setObject(ctx, object)
+}
+
+func (o objectService) Get(ctx context.Context, ref *stategate.ObjectRef) (*stategate.Object, error) {
+	return o.svc.getObject(ctx, ref)
+}
+
+func (o objectService) Del(ctx context.Context, ref *stategate.ObjectRef) (*empty.Empty, error) {
+	return o.svc.delObject(ctx, ref)
+}
+
+func (o objectService) Search(ctx context.Context, opts *stategate.SearchObjectOpts) (*stategate.Objects, error) {
+	return o.svc.searchObjects(ctx, opts)
 }
 
 func channelName(tenant, typ string) string {

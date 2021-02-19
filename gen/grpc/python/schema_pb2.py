@@ -25,7 +25,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='stategate',
   syntax='proto3',
   serialized_options=_b('Z\tstategate'),
-  serialized_pb=_b('\n\x0cschema.proto\x12\tstategate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\"]\n\tObjectRef\x12\x1b\n\x06tenant\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"\x8b\x01\n\x06Object\x12\x1b\n\x06tenant\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12/\n\x06values\x18\x04 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\"-\n\x07Objects\x12\"\n\x07objects\x18\x01 \x03(\x0b\x32\x11.stategate.Object\"\x87\x01\n\x10SearchObjectOpts\x12\x1b\n\x06tenant\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x14\n\x0cquery_string\x18\x03 \x01(\t\x12\x15\n\x05limit\x18\x04 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x05 \x01(\x03\"\x97\x01\n\x0fSearchEventOpts\x12\x1b\n\x06tenant\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x0b\n\x03key\x18\x03 \x01(\t\x12\x0b\n\x03min\x18\x04 \x01(\x03\x12\x0b\n\x03max\x18\x05 \x01(\x03\x12\x15\n\x05limit\x18\x06 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x07 \x01(\x03\"D\n\nStreamOpts\x12\x1b\n\x06tenant\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"\x8e\x01\n\x05\x45vent\x12\x13\n\x02id\x18\x01 \x01(\tB\x07\xe2\xdf\x1f\x03\x90\x01\x00\x12)\n\x06object\x18\x02 \x01(\x0b\x32\x11.stategate.ObjectB\x06\xe2\xdf\x1f\x02 \x01\x12/\n\x06\x63laims\x18\x03 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12\x14\n\x04time\x18\x04 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\"*\n\x06\x45vents\x12 \n\x06\x65vents\x18\x01 \x03(\x0b\x32\x10.stategate.Event2\xe4\x04\n\x10StateGateService\x12`\n\tSetObject\x12\x11.stategate.Object\x1a\x16.google.protobuf.Empty\"(\x82\xd3\xe4\x93\x02\"\" /api/{tenant}/{type}/state/{key}\x12^\n\tGetObject\x12\x14.stategate.ObjectRef\x1a\x11.stategate.Object\"(\x82\xd3\xe4\x93\x02\"\x12 /api/{tenant}/{type}/state/{key}\x12\x64\n\rSearchObjects\x12\x1b.stategate.SearchObjectOpts\x1a\x12.stategate.Objects\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/api/{tenant}/{type}/state\x12]\n\tDelObject\x12\x14.stategate.ObjectRef\x1a\x16.google.protobuf.Empty\"\"\x82\xd3\xe4\x93\x02\x1c*\x1a/api/{tenant}/{type}/state\x12\x65\n\x0cStreamEvents\x12\x15.stategate.StreamOpts\x1a\x10.stategate.Event\"*\x82\xd3\xe4\x93\x02$\x12\"/api/{tenant}/{type}/events/stream0\x01\x12\x62\n\x0cSearchEvents\x12\x1a.stategate.SearchEventOpts\x1a\x11.stategate.Events\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/{tenant}/{type}/eventsB\x0bZ\tstategateb\x06proto3')
+  serialized_pb=_b('\n\x0cschema.proto\x12\tstategate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\"]\n\tObjectRef\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"\x8b\x01\n\x06Object\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12/\n\x06values\x18\x04 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\"-\n\x07Objects\x12\"\n\x07objects\x18\x01 \x03(\x0b\x32\x11.stategate.Object\"\x87\x01\n\x10SearchObjectOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x14\n\x0cquery_string\x18\x03 \x01(\t\x12\x15\n\x05limit\x18\x04 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x05 \x01(\x03\"\xad\x01\n\x0fSearchEventOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x0b\n\x03key\x18\x03 \x01(\t\x12\x14\n\x0cquery_string\x18\x04 \x01(\t\x12\x0b\n\x03min\x18\x05 \x01(\x03\x12\x0b\n\x03max\x18\x06 \x01(\x03\x12\x15\n\x05limit\x18\x07 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x08 \x01(\x03\"D\n\nStreamOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"\x8e\x01\n\x05\x45vent\x12\x13\n\x02id\x18\x01 \x01(\tB\x07\xe2\xdf\x1f\x03\x90\x01\x00\x12)\n\x06object\x18\x02 \x01(\x0b\x32\x11.stategate.ObjectB\x06\xe2\xdf\x1f\x02 \x01\x12/\n\x06\x63laims\x18\x03 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12\x14\n\x04time\x18\x04 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\"*\n\x06\x45vents\x12 \n\x06\x65vents\x18\x01 \x03(\x0b\x32\x10.stategate.Event2\x8e\x03\n\rObjectService\x12`\n\x03Set\x12\x11.stategate.Object\x1a\x16.google.protobuf.Empty\".\x82\xd3\xe4\x93\x02(\"&/api/objects/ref/{domain}/{type}/{key}\x12^\n\x03Get\x12\x14.stategate.ObjectRef\x1a\x11.stategate.Object\".\x82\xd3\xe4\x93\x02(\x12&/api/objects/ref/{domain}/{type}/{key}\x12\x63\n\x03\x44\x65l\x12\x14.stategate.ObjectRef\x1a\x16.google.protobuf.Empty\".\x82\xd3\xe4\x93\x02(*&/api/objects/ref/{domain}/{type}/{key}\x12V\n\x06Search\x12\x1b.stategate.SearchObjectOpts\x1a\x12.stategate.Objects\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/api/objects/search2\xb4\x01\n\x0c\x45ventService\x12O\n\x06Stream\x12\x15.stategate.StreamOpts\x1a\x10.stategate.Event\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/events/stream0\x01\x12S\n\x06Search\x12\x1a.stategate.SearchEventOpts\x1a\x11.stategate.Events\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/events/searchB\x0bZ\tstategateb\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_any__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,github_dot_com_dot_mwitkow_dot_go__proto__validators_dot_validator__pb2.DESCRIPTOR,])
 
@@ -40,7 +40,7 @@ _OBJECTREF = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='tenant', full_name='stategate.ObjectRef.tenant', index=0,
+      name='domain', full_name='stategate.ObjectRef.domain', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -85,7 +85,7 @@ _OBJECT = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='tenant', full_name='stategate.Object.tenant', index=0,
+      name='domain', full_name='stategate.Object.domain', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -168,7 +168,7 @@ _SEARCHOBJECTOPTS = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='tenant', full_name='stategate.SearchObjectOpts.tenant', index=0,
+      name='domain', full_name='stategate.SearchObjectOpts.domain', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -227,7 +227,7 @@ _SEARCHEVENTOPTS = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='tenant', full_name='stategate.SearchEventOpts.tenant', index=0,
+      name='domain', full_name='stategate.SearchEventOpts.domain', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -248,29 +248,36 @@ _SEARCHEVENTOPTS = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='min', full_name='stategate.SearchEventOpts.min', index=3,
-      number=4, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
+      name='query_string', full_name='stategate.SearchEventOpts.query_string', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='max', full_name='stategate.SearchEventOpts.max', index=4,
+      name='min', full_name='stategate.SearchEventOpts.min', index=4,
       number=5, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='limit', full_name='stategate.SearchEventOpts.limit', index=5,
+      name='max', full_name='stategate.SearchEventOpts.max', index=5,
       number=6, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='limit', full_name='stategate.SearchEventOpts.limit', index=6,
+      number=7, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=_b('\342\337\037\002\020\000'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='offset', full_name='stategate.SearchEventOpts.offset', index=6,
-      number=7, type=3, cpp_type=2, label=1,
+      name='offset', full_name='stategate.SearchEventOpts.offset', index=7,
+      number=8, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -288,7 +295,7 @@ _SEARCHEVENTOPTS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=655,
-  serialized_end=806,
+  serialized_end=828,
 )
 
 
@@ -300,7 +307,7 @@ _STREAMOPTS = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='tenant', full_name='stategate.StreamOpts.tenant', index=0,
+      name='domain', full_name='stategate.StreamOpts.domain', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -325,8 +332,8 @@ _STREAMOPTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=808,
-  serialized_end=876,
+  serialized_start=830,
+  serialized_end=898,
 )
 
 
@@ -377,8 +384,8 @@ _EVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=879,
-  serialized_end=1021,
+  serialized_start=901,
+  serialized_end=1043,
 )
 
 
@@ -408,8 +415,8 @@ _EVENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1023,
-  serialized_end=1065,
+  serialized_start=1045,
+  serialized_end=1087,
 )
 
 _OBJECT.fields_by_name['values'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
@@ -485,92 +492,107 @@ _sym_db.RegisterMessage(Events)
 
 
 DESCRIPTOR._options = None
-_OBJECTREF.fields_by_name['tenant']._options = None
+_OBJECTREF.fields_by_name['domain']._options = None
 _OBJECTREF.fields_by_name['type']._options = None
 _OBJECTREF.fields_by_name['key']._options = None
-_OBJECT.fields_by_name['tenant']._options = None
+_OBJECT.fields_by_name['domain']._options = None
 _OBJECT.fields_by_name['type']._options = None
 _OBJECT.fields_by_name['key']._options = None
 _OBJECT.fields_by_name['values']._options = None
-_SEARCHOBJECTOPTS.fields_by_name['tenant']._options = None
+_SEARCHOBJECTOPTS.fields_by_name['domain']._options = None
 _SEARCHOBJECTOPTS.fields_by_name['type']._options = None
 _SEARCHOBJECTOPTS.fields_by_name['limit']._options = None
-_SEARCHEVENTOPTS.fields_by_name['tenant']._options = None
+_SEARCHEVENTOPTS.fields_by_name['domain']._options = None
 _SEARCHEVENTOPTS.fields_by_name['type']._options = None
 _SEARCHEVENTOPTS.fields_by_name['limit']._options = None
-_STREAMOPTS.fields_by_name['tenant']._options = None
+_STREAMOPTS.fields_by_name['domain']._options = None
 _STREAMOPTS.fields_by_name['type']._options = None
 _EVENT.fields_by_name['id']._options = None
 _EVENT.fields_by_name['object']._options = None
 _EVENT.fields_by_name['claims']._options = None
 _EVENT.fields_by_name['time']._options = None
 
-_STATEGATESERVICE = _descriptor.ServiceDescriptor(
-  name='StateGateService',
-  full_name='stategate.StateGateService',
+_OBJECTSERVICE = _descriptor.ServiceDescriptor(
+  name='ObjectService',
+  full_name='stategate.ObjectService',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=1068,
-  serialized_end=1680,
+  serialized_start=1090,
+  serialized_end=1488,
   methods=[
   _descriptor.MethodDescriptor(
-    name='SetObject',
-    full_name='stategate.StateGateService.SetObject',
+    name='Set',
+    full_name='stategate.ObjectService.Set',
     index=0,
     containing_service=None,
     input_type=_OBJECT,
     output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
-    serialized_options=_b('\202\323\344\223\002\"\" /api/{tenant}/{type}/state/{key}'),
+    serialized_options=_b('\202\323\344\223\002(\"&/api/objects/ref/{domain}/{type}/{key}'),
   ),
   _descriptor.MethodDescriptor(
-    name='GetObject',
-    full_name='stategate.StateGateService.GetObject',
+    name='Get',
+    full_name='stategate.ObjectService.Get',
     index=1,
     containing_service=None,
     input_type=_OBJECTREF,
     output_type=_OBJECT,
-    serialized_options=_b('\202\323\344\223\002\"\022 /api/{tenant}/{type}/state/{key}'),
+    serialized_options=_b('\202\323\344\223\002(\022&/api/objects/ref/{domain}/{type}/{key}'),
   ),
   _descriptor.MethodDescriptor(
-    name='SearchObjects',
-    full_name='stategate.StateGateService.SearchObjects',
+    name='Del',
+    full_name='stategate.ObjectService.Del',
     index=2,
-    containing_service=None,
-    input_type=_SEARCHOBJECTOPTS,
-    output_type=_OBJECTS,
-    serialized_options=_b('\202\323\344\223\002\034\022\032/api/{tenant}/{type}/state'),
-  ),
-  _descriptor.MethodDescriptor(
-    name='DelObject',
-    full_name='stategate.StateGateService.DelObject',
-    index=3,
     containing_service=None,
     input_type=_OBJECTREF,
     output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
-    serialized_options=_b('\202\323\344\223\002\034*\032/api/{tenant}/{type}/state'),
+    serialized_options=_b('\202\323\344\223\002(*&/api/objects/ref/{domain}/{type}/{key}'),
   ),
   _descriptor.MethodDescriptor(
-    name='StreamEvents',
-    full_name='stategate.StateGateService.StreamEvents',
-    index=4,
+    name='Search',
+    full_name='stategate.ObjectService.Search',
+    index=3,
+    containing_service=None,
+    input_type=_SEARCHOBJECTOPTS,
+    output_type=_OBJECTS,
+    serialized_options=_b('\202\323\344\223\002\025\022\023/api/objects/search'),
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_OBJECTSERVICE)
+
+DESCRIPTOR.services_by_name['ObjectService'] = _OBJECTSERVICE
+
+
+_EVENTSERVICE = _descriptor.ServiceDescriptor(
+  name='EventService',
+  full_name='stategate.EventService',
+  file=DESCRIPTOR,
+  index=1,
+  serialized_options=None,
+  serialized_start=1491,
+  serialized_end=1671,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='Stream',
+    full_name='stategate.EventService.Stream',
+    index=0,
     containing_service=None,
     input_type=_STREAMOPTS,
     output_type=_EVENT,
-    serialized_options=_b('\202\323\344\223\002$\022\"/api/{tenant}/{type}/events/stream'),
+    serialized_options=_b('\202\323\344\223\002\024\022\022/api/events/stream'),
   ),
   _descriptor.MethodDescriptor(
-    name='SearchEvents',
-    full_name='stategate.StateGateService.SearchEvents',
-    index=5,
+    name='Search',
+    full_name='stategate.EventService.Search',
+    index=1,
     containing_service=None,
     input_type=_SEARCHEVENTOPTS,
     output_type=_EVENTS,
-    serialized_options=_b('\202\323\344\223\002\035\022\033/api/{tenant}/{type}/events'),
+    serialized_options=_b('\202\323\344\223\002\024\022\022/api/events/search'),
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_STATEGATESERVICE)
+_sym_db.RegisterServiceDescriptor(_EVENTSERVICE)
 
-DESCRIPTOR.services_by_name['StateGateService'] = _STATEGATESERVICE
+DESCRIPTOR.services_by_name['EventService'] = _EVENTSERVICE
 
 # @@protoc_insertion_point(module_scope)

@@ -153,7 +153,8 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 		return errors.Wrap(err, "failed to setup service")
 	}
 	gserver := grpc.NewServer(gopts...)
-	stategate.RegisterStateGateServiceServer(gserver, svc)
+	stategate.RegisterEventServiceServer(gserver, svc.EventServiceServer())
+	stategate.RegisterObjectServiceServer(gserver, svc.ObjectServiceServer())
 	reflection.Register(gserver)
 	grpc_prometheus.Register(gserver)
 
@@ -178,8 +179,11 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	mux := http.NewServeMux()
 
 	restMux := runtime.NewServeMux()
-	if err := stategate.RegisterStateGateServiceHandler(ctx, restMux, conn); err != nil {
-		return errors.Wrap(err, "failed to register REST endpoints")
+	if err := stategate.RegisterEventServiceHandler(ctx, restMux, conn); err != nil {
+		return errors.Wrap(err, "failed to register REST event endpoints")
+	}
+	if err := stategate.RegisterObjectServiceHandler(ctx, restMux, conn); err != nil {
+		return errors.Wrap(err, "failed to register REST object endpoints")
 	}
 	mux.Handle("/", restMux)
 

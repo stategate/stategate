@@ -118,14 +118,14 @@ func inmemMongo(t *testing.T, ctx context.Context, mongoPort string) *framework.
 func helloWorld(ctx context.Context) *framework.TestCase {
 	return &framework.TestCase{
 		Name: "hello_world",
-		Func: func(t *testing.T, client *stategate_client_go.Client) {
+		Func: func(t *testing.T, eclient *stategate_client_go.EventClient, oclient *stategate_client_go.ObjectClient) {
 			const typ = "message"
 			const key = "favorite_quote"
 			group := &errgroup.Group{}
 			group.Go(func() error {
 				count := 0
-				if err := client.StreamEvents(ctx, &stategate.StreamOpts{
-					Tenant: "acme",
+				if err := eclient.Stream(ctx, &stategate.StreamOpts{
+					Domain: "acme",
 					Type:   typ,
 				}, func(even *stategate.Event) bool {
 					if err := even.Validate(); err != nil {
@@ -147,14 +147,14 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 					"message": "hello world",
 				})
 				event := &stategate.Object{
-					Tenant: "acme",
+					Domain: "acme",
 					Type:   typ,
 					Key:    key,
 					Values: data,
 				}
 				for i := 0; i < 3; i++ {
 					t.Log("setting object")
-					if err := client.SetObject(context.Background(), event); err != nil {
+					if err := oclient.Set(context.Background(), event); err != nil {
 						return err
 					}
 				}
@@ -165,8 +165,8 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 			if err := group.Wait(); err != nil {
 				t.Fatal(err)
 			}
-			events, err := client.SearchEvents(ctx, &stategate.SearchEventOpts{
-				Tenant: "acme",
+			events, err := eclient.Search(ctx, &stategate.SearchEventOpts{
+				Domain: "acme",
 				Type:   typ,
 				Key:    key,
 				Min:    time.Now().Truncate(1 * time.Minute).UnixNano(),
@@ -180,8 +180,8 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				t.Fatalf("expected 3 events got: %v", len(events.Events))
 			}
 			t.Log(protojson.Format(events))
-			objectss, err := client.SearchObjects(ctx, &stategate.SearchObjectOpts{
-				Tenant:      "acme",
+			objectss, err := oclient.Search(ctx, &stategate.SearchObjectOpts{
+				Domain:      "acme",
 				Type:        typ,
 				QueryString: `{ "message": "hello world" }`,
 				Limit:       3,

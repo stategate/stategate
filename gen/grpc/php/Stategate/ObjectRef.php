@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ObjectRef extends \Google\Protobuf\Internal\Message
 {
     /**
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      *
-     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
-    private $tenant = '';
+    private $domain = '';
     /**
      * Object type (ex: user)
      *
@@ -40,8 +40,8 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $tenant
-     *           the object's tenant(ex: acme)
+     *     @type string $domain
+     *           the object's business domain(ex: accounting)
      *     @type string $type
      *           Object type (ex: user)
      *     @type string $key
@@ -54,27 +54,27 @@ class ObjectRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      *
-     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
      */
-    public function getTenant()
+    public function getDomain()
     {
-        return $this->tenant;
+        return $this->domain;
     }
 
     /**
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      *
-     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
-    public function setTenant($var)
+    public function setDomain($var)
     {
         GPBUtil::checkString($var, True);
-        $this->tenant = $var;
+        $this->domain = $var;
 
         return $this;
     }

@@ -9,8 +9,8 @@ import * as github_com_mwitkow_go$proto$validators_validator_pb from './github.c
 
 
 export class ObjectRef extends jspb.Message {
-  getTenant(): string;
-  setTenant(value: string): ObjectRef;
+  getDomain(): string;
+  setDomain(value: string): ObjectRef;
 
   getType(): string;
   setType(value: string): ObjectRef;
@@ -28,15 +28,15 @@ export class ObjectRef extends jspb.Message {
 
 export namespace ObjectRef {
   export type AsObject = {
-    tenant: string,
+    domain: string,
     type: string,
     key: string,
   }
 }
 
 export class Object extends jspb.Message {
-  getTenant(): string;
-  setTenant(value: string): Object;
+  getDomain(): string;
+  setDomain(value: string): Object;
 
   getType(): string;
   setType(value: string): Object;
@@ -59,7 +59,7 @@ export class Object extends jspb.Message {
 
 export namespace Object {
   export type AsObject = {
-    tenant: string,
+    domain: string,
     type: string,
     key: string,
     values?: google_protobuf_struct_pb.Struct.AsObject,
@@ -87,8 +87,8 @@ export namespace Objects {
 }
 
 export class SearchObjectOpts extends jspb.Message {
-  getTenant(): string;
-  setTenant(value: string): SearchObjectOpts;
+  getDomain(): string;
+  setDomain(value: string): SearchObjectOpts;
 
   getType(): string;
   setType(value: string): SearchObjectOpts;
@@ -112,7 +112,7 @@ export class SearchObjectOpts extends jspb.Message {
 
 export namespace SearchObjectOpts {
   export type AsObject = {
-    tenant: string,
+    domain: string,
     type: string,
     queryString: string,
     limit: number,
@@ -121,14 +121,17 @@ export namespace SearchObjectOpts {
 }
 
 export class SearchEventOpts extends jspb.Message {
-  getTenant(): string;
-  setTenant(value: string): SearchEventOpts;
+  getDomain(): string;
+  setDomain(value: string): SearchEventOpts;
 
   getType(): string;
   setType(value: string): SearchEventOpts;
 
   getKey(): string;
   setKey(value: string): SearchEventOpts;
+
+  getQueryString(): string;
+  setQueryString(value: string): SearchEventOpts;
 
   getMin(): number;
   setMin(value: number): SearchEventOpts;
@@ -152,9 +155,10 @@ export class SearchEventOpts extends jspb.Message {
 
 export namespace SearchEventOpts {
   export type AsObject = {
-    tenant: string,
+    domain: string,
     type: string,
     key: string,
+    queryString: string,
     min: number,
     max: number,
     limit: number,
@@ -163,8 +167,8 @@ export namespace SearchEventOpts {
 }
 
 export class StreamOpts extends jspb.Message {
-  getTenant(): string;
-  setTenant(value: string): StreamOpts;
+  getDomain(): string;
+  setDomain(value: string): StreamOpts;
 
   getType(): string;
   setType(value: string): StreamOpts;
@@ -179,7 +183,7 @@ export class StreamOpts extends jspb.Message {
 
 export namespace StreamOpts {
   export type AsObject = {
-    tenant: string,
+    domain: string,
     type: string,
   }
 }

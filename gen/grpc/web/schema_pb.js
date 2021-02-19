@@ -72,7 +72,7 @@ proto.stategate.ObjectRef.prototype.toObject = function(opt_includeInstance) {
  */
 proto.stategate.ObjectRef.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tenant: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    domain: jspb.Message.getFieldWithDefault(msg, 1, ""),
     type: jspb.Message.getFieldWithDefault(msg, 2, ""),
     key: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
@@ -113,7 +113,7 @@ proto.stategate.ObjectRef.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTenant(value);
+      msg.setDomain(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -152,7 +152,7 @@ proto.stategate.ObjectRef.prototype.serializeBinary = function() {
  */
 proto.stategate.ObjectRef.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getTenant();
+  f = message.getDomain();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -177,16 +177,16 @@ proto.stategate.ObjectRef.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string tenant = 1;
+ * optional string domain = 1;
  * @return {string}
  */
-proto.stategate.ObjectRef.prototype.getTenant = function() {
+proto.stategate.ObjectRef.prototype.getDomain = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.ObjectRef.prototype.setTenant = function(value) {
+proto.stategate.ObjectRef.prototype.setDomain = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -268,7 +268,7 @@ proto.stategate.Object.prototype.toObject = function(opt_includeInstance) {
  */
 proto.stategate.Object.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tenant: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    domain: jspb.Message.getFieldWithDefault(msg, 1, ""),
     type: jspb.Message.getFieldWithDefault(msg, 2, ""),
     key: jspb.Message.getFieldWithDefault(msg, 3, ""),
     values: (f = msg.getValues()) && google_protobuf_struct_pb.Struct.toObject(includeInstance, f)
@@ -310,7 +310,7 @@ proto.stategate.Object.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTenant(value);
+      msg.setDomain(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -354,7 +354,7 @@ proto.stategate.Object.prototype.serializeBinary = function() {
  */
 proto.stategate.Object.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getTenant();
+  f = message.getDomain();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -387,16 +387,16 @@ proto.stategate.Object.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string tenant = 1;
+ * optional string domain = 1;
  * @return {string}
  */
-proto.stategate.Object.prototype.getTenant = function() {
+proto.stategate.Object.prototype.getDomain = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.Object.prototype.setTenant = function(value) {
+proto.stategate.Object.prototype.setDomain = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -676,7 +676,7 @@ proto.stategate.SearchObjectOpts.prototype.toObject = function(opt_includeInstan
  */
 proto.stategate.SearchObjectOpts.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tenant: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    domain: jspb.Message.getFieldWithDefault(msg, 1, ""),
     type: jspb.Message.getFieldWithDefault(msg, 2, ""),
     queryString: jspb.Message.getFieldWithDefault(msg, 3, ""),
     limit: jspb.Message.getFieldWithDefault(msg, 4, 0),
@@ -719,7 +719,7 @@ proto.stategate.SearchObjectOpts.deserializeBinaryFromReader = function(msg, rea
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTenant(value);
+      msg.setDomain(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -766,7 +766,7 @@ proto.stategate.SearchObjectOpts.prototype.serializeBinary = function() {
  */
 proto.stategate.SearchObjectOpts.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getTenant();
+  f = message.getDomain();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -805,16 +805,16 @@ proto.stategate.SearchObjectOpts.serializeBinaryToWriter = function(message, wri
 
 
 /**
- * optional string tenant = 1;
+ * optional string domain = 1;
  * @return {string}
  */
-proto.stategate.SearchObjectOpts.prototype.getTenant = function() {
+proto.stategate.SearchObjectOpts.prototype.getDomain = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.SearchObjectOpts.prototype.setTenant = function(value) {
+proto.stategate.SearchObjectOpts.prototype.setDomain = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -926,13 +926,14 @@ proto.stategate.SearchEventOpts.prototype.toObject = function(opt_includeInstanc
  */
 proto.stategate.SearchEventOpts.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tenant: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    domain: jspb.Message.getFieldWithDefault(msg, 1, ""),
     type: jspb.Message.getFieldWithDefault(msg, 2, ""),
     key: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    min: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    max: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    limit: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    offset: jspb.Message.getFieldWithDefault(msg, 7, 0)
+    queryString: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    min: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    max: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    limit: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    offset: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -971,7 +972,7 @@ proto.stategate.SearchEventOpts.deserializeBinaryFromReader = function(msg, read
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTenant(value);
+      msg.setDomain(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -982,18 +983,22 @@ proto.stategate.SearchEventOpts.deserializeBinaryFromReader = function(msg, read
       msg.setKey(value);
       break;
     case 4:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setMin(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setQueryString(value);
       break;
     case 5:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setMax(value);
+      msg.setMin(value);
       break;
     case 6:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setLimit(value);
+      msg.setMax(value);
       break;
     case 7:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setLimit(value);
+      break;
+    case 8:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setOffset(value);
       break;
@@ -1026,7 +1031,7 @@ proto.stategate.SearchEventOpts.prototype.serializeBinary = function() {
  */
 proto.stategate.SearchEventOpts.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getTenant();
+  f = message.getDomain();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1047,31 +1052,38 @@ proto.stategate.SearchEventOpts.serializeBinaryToWriter = function(message, writ
       f
     );
   }
-  f = message.getMin();
-  if (f !== 0) {
-    writer.writeInt64(
+  f = message.getQueryString();
+  if (f.length > 0) {
+    writer.writeString(
       4,
       f
     );
   }
-  f = message.getMax();
+  f = message.getMin();
   if (f !== 0) {
     writer.writeInt64(
       5,
       f
     );
   }
-  f = message.getLimit();
+  f = message.getMax();
   if (f !== 0) {
     writer.writeInt64(
       6,
       f
     );
   }
-  f = message.getOffset();
+  f = message.getLimit();
   if (f !== 0) {
     writer.writeInt64(
       7,
+      f
+    );
+  }
+  f = message.getOffset();
+  if (f !== 0) {
+    writer.writeInt64(
+      8,
       f
     );
   }
@@ -1079,16 +1091,16 @@ proto.stategate.SearchEventOpts.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional string tenant = 1;
+ * optional string domain = 1;
  * @return {string}
  */
-proto.stategate.SearchEventOpts.prototype.getTenant = function() {
+proto.stategate.SearchEventOpts.prototype.getDomain = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.SearchEventOpts.prototype.setTenant = function(value) {
+proto.stategate.SearchEventOpts.prototype.setDomain = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -1124,62 +1136,77 @@ proto.stategate.SearchEventOpts.prototype.setKey = function(value) {
 
 
 /**
- * optional int64 min = 4;
- * @return {number}
+ * optional string query_string = 4;
+ * @return {string}
  */
-proto.stategate.SearchEventOpts.prototype.getMin = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+proto.stategate.SearchEventOpts.prototype.getQueryString = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
-/** @param {number} value */
-proto.stategate.SearchEventOpts.prototype.setMin = function(value) {
-  jspb.Message.setProto3IntField(this, 4, value);
+/** @param {string} value */
+proto.stategate.SearchEventOpts.prototype.setQueryString = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional int64 max = 5;
+ * optional int64 min = 5;
  * @return {number}
  */
-proto.stategate.SearchEventOpts.prototype.getMax = function() {
+proto.stategate.SearchEventOpts.prototype.getMin = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
 /** @param {number} value */
-proto.stategate.SearchEventOpts.prototype.setMax = function(value) {
+proto.stategate.SearchEventOpts.prototype.setMin = function(value) {
   jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
 /**
- * optional int64 limit = 6;
+ * optional int64 max = 6;
  * @return {number}
  */
-proto.stategate.SearchEventOpts.prototype.getLimit = function() {
+proto.stategate.SearchEventOpts.prototype.getMax = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
 /** @param {number} value */
-proto.stategate.SearchEventOpts.prototype.setLimit = function(value) {
+proto.stategate.SearchEventOpts.prototype.setMax = function(value) {
   jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional int64 offset = 7;
+ * optional int64 limit = 7;
  * @return {number}
  */
-proto.stategate.SearchEventOpts.prototype.getOffset = function() {
+proto.stategate.SearchEventOpts.prototype.getLimit = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
 
 /** @param {number} value */
-proto.stategate.SearchEventOpts.prototype.setOffset = function(value) {
+proto.stategate.SearchEventOpts.prototype.setLimit = function(value) {
   jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional int64 offset = 8;
+ * @return {number}
+ */
+proto.stategate.SearchEventOpts.prototype.getOffset = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/** @param {number} value */
+proto.stategate.SearchEventOpts.prototype.setOffset = function(value) {
+  jspb.Message.setProto3IntField(this, 8, value);
 };
 
 
@@ -1230,7 +1257,7 @@ proto.stategate.StreamOpts.prototype.toObject = function(opt_includeInstance) {
  */
 proto.stategate.StreamOpts.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tenant: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    domain: jspb.Message.getFieldWithDefault(msg, 1, ""),
     type: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -1270,7 +1297,7 @@ proto.stategate.StreamOpts.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setTenant(value);
+      msg.setDomain(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -1305,7 +1332,7 @@ proto.stategate.StreamOpts.prototype.serializeBinary = function() {
  */
 proto.stategate.StreamOpts.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getTenant();
+  f = message.getDomain();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1323,16 +1350,16 @@ proto.stategate.StreamOpts.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string tenant = 1;
+ * optional string domain = 1;
  * @return {string}
  */
-proto.stategate.StreamOpts.prototype.getTenant = function() {
+proto.stategate.StreamOpts.prototype.getDomain = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.stategate.StreamOpts.prototype.setTenant = function(value) {
+proto.stategate.StreamOpts.prototype.setDomain = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 

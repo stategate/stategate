@@ -11,10 +11,10 @@
     "application/json"
   ],
   "paths": {
-    "/api/{tenant}/{type}/events": {
+    "/api/events/search": {
       "get": {
-        "summary": "SearchEvents queries events related to a specific object.",
-        "operationId": "StateGateService_SearchEvents",
+        "summary": "Search queries events related to a specific object.",
+        "operationId": "EventService_Search",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -31,22 +31,29 @@
         },
         "parameters": [
           {
-            "name": "tenant",
-            "description": "the object's tenant(ex: acme)",
-            "in": "path",
-            "required": true,
+            "name": "domain",
+            "description": "the object's business domain(ex: accounting).",
+            "in": "query",
+            "required": false,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "Object type (ex: user)",
-            "in": "path",
-            "required": true,
+            "description": "Object type (ex: user).",
+            "in": "query",
+            "required": false,
             "type": "string"
           },
           {
             "name": "key",
             "description": "filter events belonging to a particular object.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "queryString",
+            "description": "json string to filter records that have object's with values that match k/v pairs ex: { \"message\": \"hello world\" }.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -85,14 +92,14 @@
           }
         ],
         "tags": [
-          "StateGateService"
+          "EventService"
         ]
       }
     },
-    "/api/{tenant}/{type}/events/stream": {
+    "/api/events/stream": {
       "get": {
-        "summary": "StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.\nEvent Consumers invoke this method.",
-        "operationId": "StateGateService_StreamEvents",
+        "summary": "Stream creates an event stream/subscription to a given object type until fn returns false OR the context cancels.",
+        "operationId": "EventService_Stream",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -118,29 +125,163 @@
         },
         "parameters": [
           {
-            "name": "tenant",
-            "description": "the tenant of the object (ex: acme) that triggered the event",
+            "name": "domain",
+            "description": "the domain of the object (ex: acme) that triggered the event.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "the type of the object (ex: user) that triggered the event.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EventService"
+        ]
+      }
+    },
+    "/api/objects/ref/{domain}/{type}/{key}": {
+      "get": {
+        "summary": "Get gets an object's current state values",
+        "operationId": "ObjectService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/stategateObject"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the object's business domain(ex: accounting)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "the type of the object (ex: user) that triggered the event",
+            "description": "Object type (ex: user)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "Object key (unique within type)",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "tags": [
-          "StateGateService"
+          "ObjectService"
+        ]
+      },
+      "delete": {
+        "summary": "Del hard deletes an object. Object's may be recovered via the Event store.",
+        "operationId": "ObjectService_Del",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the object's business domain(ex: accounting)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "Object type (ex: user)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "Object key (unique within type)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ObjectService"
+        ]
+      },
+      "post": {
+        "summary": "Set sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers",
+        "operationId": "ObjectService_Set",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the object's business domain(ex: accounting)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "Object type (ex: user)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "Object key (unique within type)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ObjectService"
         ]
       }
     },
-    "/api/{tenant}/{type}/state": {
+    "/api/objects/search": {
       "get": {
-        "summary": "SearchObjects queries objects of a specific type",
-        "operationId": "StateGateService_SearchObjects",
+        "summary": "Search queries objects belonging to a particular domain \u0026 of a specific type",
+        "operationId": "ObjectService_Search",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -157,17 +298,17 @@
         },
         "parameters": [
           {
-            "name": "tenant",
-            "description": "the object's tenant(ex: acme)",
-            "in": "path",
-            "required": true,
+            "name": "domain",
+            "description": "the object's business domain(ex: accounting).",
+            "in": "query",
+            "required": false,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "Object type (ex: user)",
-            "in": "path",
-            "required": true,
+            "description": "Object type (ex: user).",
+            "in": "query",
+            "required": false,
             "type": "string"
           },
           {
@@ -195,141 +336,7 @@
           }
         ],
         "tags": [
-          "StateGateService"
-        ]
-      },
-      "delete": {
-        "summary": "DelObject hard deletes an object \u0026 all of it's events",
-        "operationId": "StateGateService_DelObject",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "tenant",
-            "description": "the object's tenant(ex: acme)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "description": "Object type (ex: user)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "key",
-            "description": "Object key (unique within type).",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "StateGateService"
-        ]
-      }
-    },
-    "/api/{tenant}/{type}/state/{key}": {
-      "get": {
-        "summary": "GetObject gets an object's current state values",
-        "operationId": "StateGateService_GetObject",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/stategateObject"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "tenant",
-            "description": "the object's tenant(ex: acme)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "description": "Object type (ex: user)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "key",
-            "description": "Object key (unique within type)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "StateGateService"
-        ]
-      },
-      "post": {
-        "summary": "SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers",
-        "operationId": "StateGateService_SetObject",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "tenant",
-            "description": "the object's tenant(ex: acme)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "description": "Object type (ex: user)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "key",
-            "description": "Object key (unique within type)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "StateGateService"
+          "ObjectService"
         ]
       }
     }
@@ -414,9 +421,9 @@
     "stategateObject": {
       "type": "object",
       "properties": {
-        "tenant": {
+        "domain": {
           "type": "string",
-          "title": "the object's tenant(ex: acme)"
+          "title": "the object's business domain(ex: accounting)"
         },
         "type": {
           "type": "string",
@@ -428,7 +435,7 @@
         },
         "values": {
           "type": "object",
-          "title": "Object values (structured k/v pairs)"
+          "title": "Object values (k/v pairs)"
         }
       },
       "title": "Object hold's the current state of an object"

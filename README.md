@@ -23,7 +23,6 @@ What is Event Sourcing?
     - `SearchObjects` queries objects of a specific type
     - `StreamEvents` creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
     - `SearchEvents` queries events related to a specific object.
-- [x] Multi-Tenant
 - [x] Capture all changes to an application's state as a sequence of events.
 - [x] Stateless & horizontally scaleable
 - [x] Native [gRPC](https://grpc.io/) support
@@ -80,13 +79,20 @@ What is Event Sourcing?
 
 ## Concepts
 
-- Storage Provider: A stategate storage provider is a pluggable, 3rd party database storage service. Storage providers
-provide persistance for all objects & events and should be scaled independently of stategate instances.
+- Storage Provider: A stategate storage provider is a pluggable, 3rd party database storage service. 
+    - Storage providers provide persistance for all objects & events and should be scaled independently of stategate instances.
 
 
-- Channel Provider: A stategate channel provider is a pluggable, 3rd party message-queue/channel service. Channel providers
-provide a way for stategate to broadcast events to itself while scaling horizontally. Channel providers should be scaled independently of stategate instances.
+- Channel Provider: A stategate channel provider is a pluggable, 3rd party message-queue/channel service. 
+    - Channel providers provide a way for stategate to broadcast events to itself while scaling horizontally. 
+    - Channel providers should be scaled independently of stategate instances.
 
+- Object: An object represents a single record(k/v pairs) with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+    - Services/Users should use object related methods to persist & interact with the current state of an application/domain.
+- Event: an event represents a state change to an object- events are persisted and then emitted to consumers anytime an object is created/updated. 
+    - Events are immutable after creation and may be searched.
+    - Event Consumers may search events to query the previous state(s) of an object
+    
 
 ## Environmental Variables
 

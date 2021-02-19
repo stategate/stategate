@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchEventOpts extends \Google\Protobuf\Internal\Message
 {
     /**
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      *
-     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
-    private $tenant = '';
+    private $domain = '';
     /**
      * Object type (ex: user)
      *
@@ -34,27 +34,33 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
      */
     private $key = '';
     /**
+     * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+     *
+     * Generated from protobuf field <code>string query_string = 4;</code>
+     */
+    private $query_string = '';
+    /**
      * only return object events that occurred after specified min timestamp
      *
-     * Generated from protobuf field <code>int64 min = 4;</code>
+     * Generated from protobuf field <code>int64 min = 5;</code>
      */
     private $min = 0;
     /**
      * only return object events that occurred before specified max timestamp
      *
-     * Generated from protobuf field <code>int64 max = 5;</code>
+     * Generated from protobuf field <code>int64 max = 6;</code>
      */
     private $max = 0;
     /**
      * limit returned object events
      *
-     * Generated from protobuf field <code>int64 limit = 6 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>int64 limit = 7 [(.validator.field) = {</code>
      */
     private $limit = 0;
     /**
      * offset returned object events(pagination)
      *
-     * Generated from protobuf field <code>int64 offset = 7;</code>
+     * Generated from protobuf field <code>int64 offset = 8;</code>
      */
     private $offset = 0;
 
@@ -64,12 +70,14 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $tenant
-     *           the object's tenant(ex: acme)
+     *     @type string $domain
+     *           the object's business domain(ex: accounting)
      *     @type string $type
      *           Object type (ex: user)
      *     @type string $key
      *           filter events belonging to a particular object
+     *     @type string $query_string
+     *           json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
      *     @type int|string $min
      *           only return object events that occurred after specified min timestamp
      *     @type int|string $max
@@ -86,27 +94,27 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      *
-     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
      */
-    public function getTenant()
+    public function getDomain()
     {
-        return $this->tenant;
+        return $this->domain;
     }
 
     /**
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      *
-     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
-    public function setTenant($var)
+    public function setDomain($var)
     {
         GPBUtil::checkString($var, True);
-        $this->tenant = $var;
+        $this->domain = $var;
 
         return $this;
     }
@@ -164,9 +172,35 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+     *
+     * Generated from protobuf field <code>string query_string = 4;</code>
+     * @return string
+     */
+    public function getQueryString()
+    {
+        return $this->query_string;
+    }
+
+    /**
+     * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+     *
+     * Generated from protobuf field <code>string query_string = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setQueryString($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->query_string = $var;
+
+        return $this;
+    }
+
+    /**
      * only return object events that occurred after specified min timestamp
      *
-     * Generated from protobuf field <code>int64 min = 4;</code>
+     * Generated from protobuf field <code>int64 min = 5;</code>
      * @return int|string
      */
     public function getMin()
@@ -177,7 +211,7 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     /**
      * only return object events that occurred after specified min timestamp
      *
-     * Generated from protobuf field <code>int64 min = 4;</code>
+     * Generated from protobuf field <code>int64 min = 5;</code>
      * @param int|string $var
      * @return $this
      */
@@ -192,7 +226,7 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     /**
      * only return object events that occurred before specified max timestamp
      *
-     * Generated from protobuf field <code>int64 max = 5;</code>
+     * Generated from protobuf field <code>int64 max = 6;</code>
      * @return int|string
      */
     public function getMax()
@@ -203,7 +237,7 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     /**
      * only return object events that occurred before specified max timestamp
      *
-     * Generated from protobuf field <code>int64 max = 5;</code>
+     * Generated from protobuf field <code>int64 max = 6;</code>
      * @param int|string $var
      * @return $this
      */
@@ -218,7 +252,7 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     /**
      * limit returned object events
      *
-     * Generated from protobuf field <code>int64 limit = 6 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>int64 limit = 7 [(.validator.field) = {</code>
      * @return int|string
      */
     public function getLimit()
@@ -229,7 +263,7 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     /**
      * limit returned object events
      *
-     * Generated from protobuf field <code>int64 limit = 6 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>int64 limit = 7 [(.validator.field) = {</code>
      * @param int|string $var
      * @return $this
      */
@@ -244,7 +278,7 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     /**
      * offset returned object events(pagination)
      *
-     * Generated from protobuf field <code>int64 offset = 7;</code>
+     * Generated from protobuf field <code>int64 offset = 8;</code>
      * @return int|string
      */
     public function getOffset()
@@ -255,7 +289,7 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     /**
      * offset returned object events(pagination)
      *
-     * Generated from protobuf field <code>int64 offset = 7;</code>
+     * Generated from protobuf field <code>int64 offset = 8;</code>
      * @param int|string $var
      * @return $this
      */

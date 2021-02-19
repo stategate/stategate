@@ -214,7 +214,11 @@
               
               
                 <li>
-                  <a href="#stategate.StateGateService"><span class="badge">S</span>StateGateService</a>
+                  <a href="#stategate.EventService"><span class="badge">S</span>EventService</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.ObjectService"><span class="badge">S</span>ObjectService</a>
                 </li>
               
             </ul>
@@ -372,10 +376,10 @@
             <tbody>
               
                 <tr>
-                  <td>tenant</td>
+                  <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the object&#39;s tenant(ex: acme) </p></td>
+                  <td><p>the object&#39;s business domain(ex: accounting) </p></td>
                 </tr>
               
                 <tr>
@@ -396,7 +400,7 @@
                   <td>values</td>
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td></td>
-                  <td><p>Object values (structured k/v pairs) </p></td>
+                  <td><p>Object values (k/v pairs) </p></td>
                 </tr>
               
             </tbody>
@@ -416,7 +420,7 @@
               <tbody>
               
                 <tr>
-                  <td>tenant</td>
+                  <td>domain</td>
                   <td>
                     <ul>
                     
@@ -477,10 +481,10 @@
             <tbody>
               
                 <tr>
-                  <td>tenant</td>
+                  <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the object&#39;s tenant(ex: acme) </p></td>
+                  <td><p>the object&#39;s business domain(ex: accounting) </p></td>
                 </tr>
               
                 <tr>
@@ -514,7 +518,7 @@
               <tbody>
               
                 <tr>
-                  <td>tenant</td>
+                  <td>domain</td>
                   <td>
                     <ul>
                     
@@ -588,10 +592,10 @@
             <tbody>
               
                 <tr>
-                  <td>tenant</td>
+                  <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the object&#39;s tenant(ex: acme) </p></td>
+                  <td><p>the object&#39;s business domain(ex: accounting) </p></td>
                 </tr>
               
                 <tr>
@@ -606,6 +610,13 @@
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>filter events belonging to a particular object </p></td>
+                </tr>
+              
+                <tr>
+                  <td>query_string</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>json string to filter records that have object&#39;s with values that match k/v pairs ex: { &#34;message&#34;: &#34;hello world&#34; } </p></td>
                 </tr>
               
                 <tr>
@@ -653,7 +664,7 @@
               <tbody>
               
                 <tr>
-                  <td>tenant</td>
+                  <td>domain</td>
                   <td>
                     <ul>
                     
@@ -693,7 +704,7 @@
         
       
         <h3 id="stategate.SearchObjectOpts">SearchObjectOpts</h3>
-        <p>SearchObjectOpts are options when querying historical events for a given object</p>
+        <p>SearchObjectOpts are options when querying the current values of object(s).</p><p>If historical values are needed, SearchEvents should be used</p>
 
         
           <table class="field-table">
@@ -703,10 +714,10 @@
             <tbody>
               
                 <tr>
-                  <td>tenant</td>
+                  <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the object&#39;s tenant(ex: acme) </p></td>
+                  <td><p>the object&#39;s business domain(ex: accounting) </p></td>
                 </tr>
               
                 <tr>
@@ -754,7 +765,7 @@
               <tbody>
               
                 <tr>
-                  <td>tenant</td>
+                  <td>domain</td>
                   <td>
                     <ul>
                     
@@ -804,10 +815,10 @@
             <tbody>
               
                 <tr>
-                  <td>tenant</td>
+                  <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the tenant of the object (ex: acme) that triggered the event </p></td>
+                  <td><p>the domain of the object (ex: acme) that triggered the event </p></td>
                 </tr>
               
                 <tr>
@@ -834,7 +845,7 @@
               <tbody>
               
                 <tr>
-                  <td>tenant</td>
+                  <td>domain</td>
                   <td>
                     <ul>
                     
@@ -868,8 +879,8 @@
       
 
       
-        <h3 id="stategate.StateGateService">StateGateService</h3>
-        <p>A pluggable API and "Application State Gateway" that enforces the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html) for securely persisting & broadcasting application state changes</p>
+        <h3 id="stategate.EventService">EventService</h3>
+        <p>EventService serves API methods related to stategate Event Consumers</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -877,46 +888,17 @@
           <tbody>
             
               <tr>
-                <td>SetObject</td>
-                <td><a href="#stategate.Object">Object</a></td>
-                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
-                <td><p>SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers</p></td>
-              </tr>
-            
-              <tr>
-                <td>GetObject</td>
-                <td><a href="#stategate.ObjectRef">ObjectRef</a></td>
-                <td><a href="#stategate.Object">Object</a></td>
-                <td><p>GetObject gets an object&#39;s current state values</p></td>
-              </tr>
-            
-              <tr>
-                <td>SearchObjects</td>
-                <td><a href="#stategate.SearchObjectOpts">SearchObjectOpts</a></td>
-                <td><a href="#stategate.Objects">Objects</a></td>
-                <td><p>SearchObjects queries objects of a specific type</p></td>
-              </tr>
-            
-              <tr>
-                <td>DelObject</td>
-                <td><a href="#stategate.ObjectRef">ObjectRef</a></td>
-                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
-                <td><p>DelObject hard deletes an object &amp; all of it&#39;s events</p></td>
-              </tr>
-            
-              <tr>
-                <td>StreamEvents</td>
+                <td>Stream</td>
                 <td><a href="#stategate.StreamOpts">StreamOpts</a></td>
                 <td><a href="#stategate.Event">Event</a> stream</td>
-                <td><p>StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
-Event Consumers invoke this method.</p></td>
+                <td><p>Stream creates an event stream/subscription to a given object type until fn returns false OR the context cancels.</p></td>
               </tr>
             
               <tr>
-                <td>SearchEvents</td>
+                <td>Search</td>
                 <td><a href="#stategate.SearchEventOpts">SearchEventOpts</a></td>
                 <td><a href="#stategate.Events">Events</a></td>
-                <td><p>SearchEvents queries events related to a specific object.</p></td>
+                <td><p>Search queries events related to a specific object.</p></td>
               </tr>
             
           </tbody>
@@ -940,9 +922,87 @@ Event Consumers invoke this method.</p></td>
               
               
               <tr>
-                <td>SetObject</td>
+                <td>Stream</td>
+                <td>GET</td>
+                <td>/api/events/stream</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>Search</td>
+                <td>GET</td>
+                <td>/api/events/search</td>
+                <td></td>
+              </tr>
+              
+            
+            </tbody>
+          </table>
+          
+        
+        <h3 id="stategate.ObjectService">ObjectService</h3>
+        <p>ObjectService serves API methods related to stategate Object producers</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Set</td>
+                <td><a href="#stategate.Object">Object</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Set sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers</p></td>
+              </tr>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#stategate.ObjectRef">ObjectRef</a></td>
+                <td><a href="#stategate.Object">Object</a></td>
+                <td><p>Get gets an object&#39;s current state values</p></td>
+              </tr>
+            
+              <tr>
+                <td>Del</td>
+                <td><a href="#stategate.ObjectRef">ObjectRef</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Del hard deletes an object. Object&#39;s may be recovered via the Event store.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Search</td>
+                <td><a href="#stategate.SearchObjectOpts">SearchObjectOpts</a></td>
+                <td><a href="#stategate.Objects">Objects</a></td>
+                <td><p>Search queries objects belonging to a particular domain &amp; of a specific type</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+          
+          
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+            
+              
+              
+              <tr>
+                <td>Set</td>
                 <td>POST</td>
-                <td>/api/{tenant}/{type}/state/{key}</td>
+                <td>/api/objects/ref/{domain}/{type}/{key}</td>
                 <td></td>
               </tr>
               
@@ -950,9 +1010,9 @@ Event Consumers invoke this method.</p></td>
               
               
               <tr>
-                <td>GetObject</td>
+                <td>Get</td>
                 <td>GET</td>
-                <td>/api/{tenant}/{type}/state/{key}</td>
+                <td>/api/objects/ref/{domain}/{type}/{key}</td>
                 <td></td>
               </tr>
               
@@ -960,19 +1020,9 @@ Event Consumers invoke this method.</p></td>
               
               
               <tr>
-                <td>SearchObjects</td>
-                <td>GET</td>
-                <td>/api/{tenant}/{type}/state</td>
-                <td></td>
-              </tr>
-              
-            
-              
-              
-              <tr>
-                <td>DelObject</td>
+                <td>Del</td>
                 <td>DELETE</td>
-                <td>/api/{tenant}/{type}/state</td>
+                <td>/api/objects/ref/{domain}/{type}/{key}</td>
                 <td></td>
               </tr>
               
@@ -980,19 +1030,9 @@ Event Consumers invoke this method.</p></td>
               
               
               <tr>
-                <td>StreamEvents</td>
+                <td>Search</td>
                 <td>GET</td>
-                <td>/api/{tenant}/{type}/events/stream</td>
-                <td></td>
-              </tr>
-              
-            
-              
-              
-              <tr>
-                <td>SearchEvents</td>
-                <td>GET</td>
-                <td>/api/{tenant}/{type}/events</td>
+                <td>/api/objects/search</td>
                 <td></td>
               </tr>
               

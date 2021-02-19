@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class StreamOpts extends \Google\Protobuf\Internal\Message
 {
     /**
-     * the tenant of the object (ex: acme) that triggered the event
+     * the domain of the object (ex: acme) that triggered the event
      *
-     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
-    private $tenant = '';
+    private $domain = '';
     /**
      * the type of the object (ex: user) that triggered the event
      *
@@ -34,8 +34,8 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $tenant
-     *           the tenant of the object (ex: acme) that triggered the event
+     *     @type string $domain
+     *           the domain of the object (ex: acme) that triggered the event
      *     @type string $type
      *           the type of the object (ex: user) that triggered the event
      * }
@@ -46,27 +46,27 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the tenant of the object (ex: acme) that triggered the event
+     * the domain of the object (ex: acme) that triggered the event
      *
-     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
      */
-    public function getTenant()
+    public function getDomain()
     {
-        return $this->tenant;
+        return $this->domain;
     }
 
     /**
-     * the tenant of the object (ex: acme) that triggered the event
+     * the domain of the object (ex: acme) that triggered the event
      *
-     * Generated from protobuf field <code>string tenant = 1 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
      * @return $this
      */
-    public function setTenant($var)
+    public function setDomain($var)
     {
         GPBUtil::checkString($var, True);
-        $this->tenant = $var;
+        $this->domain = $var;
 
         return $this;
     }

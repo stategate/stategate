@@ -20,21 +20,21 @@ public final class Schema {
 
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    java.lang.String getTenant();
+    java.lang.String getDomain();
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
-        getTenantBytes();
+        getDomainBytes();
 
     /**
      * <pre>
@@ -89,7 +89,7 @@ public final class Schema {
       super(builder);
     }
     private ObjectRef() {
-      tenant_ = "";
+      domain_ = "";
       type_ = "";
       key_ = "";
     }
@@ -121,7 +121,7 @@ public final class Schema {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              tenant_ = s;
+              domain_ = s;
               break;
             }
             case 18: {
@@ -168,42 +168,42 @@ public final class Schema {
               stategate.Schema.ObjectRef.class, stategate.Schema.ObjectRef.Builder.class);
     }
 
-    public static final int TENANT_FIELD_NUMBER = 1;
-    private volatile java.lang.Object tenant_;
+    public static final int DOMAIN_FIELD_NUMBER = 1;
+    private volatile java.lang.Object domain_;
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    public java.lang.String getTenant() {
-      java.lang.Object ref = tenant_;
+    public java.lang.String getDomain() {
+      java.lang.Object ref = domain_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        tenant_ = s;
+        domain_ = s;
         return s;
       }
     }
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.ByteString
-        getTenantBytes() {
-      java.lang.Object ref = tenant_;
+        getDomainBytes() {
+      java.lang.Object ref = domain_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        tenant_ = b;
+        domain_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -308,8 +308,8 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTenantBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tenant_);
+      if (!getDomainBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, domain_);
       }
       if (!getTypeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
@@ -326,8 +326,8 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTenantBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tenant_);
+      if (!getDomainBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, domain_);
       }
       if (!getTypeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
@@ -351,8 +351,8 @@ public final class Schema {
       stategate.Schema.ObjectRef other = (stategate.Schema.ObjectRef) obj;
 
       boolean result = true;
-      result = result && getTenant()
-          .equals(other.getTenant());
+      result = result && getDomain()
+          .equals(other.getDomain());
       result = result && getType()
           .equals(other.getType());
       result = result && getKey()
@@ -368,8 +368,8 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + TENANT_FIELD_NUMBER;
-      hash = (53 * hash) + getTenant().hashCode();
+      hash = (37 * hash) + DOMAIN_FIELD_NUMBER;
+      hash = (53 * hash) + getDomain().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
       hash = (37 * hash) + KEY_FIELD_NUMBER;
@@ -511,7 +511,7 @@ public final class Schema {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        tenant_ = "";
+        domain_ = "";
 
         type_ = "";
 
@@ -543,7 +543,7 @@ public final class Schema {
       @java.lang.Override
       public stategate.Schema.ObjectRef buildPartial() {
         stategate.Schema.ObjectRef result = new stategate.Schema.ObjectRef(this);
-        result.tenant_ = tenant_;
+        result.domain_ = domain_;
         result.type_ = type_;
         result.key_ = key_;
         onBuilt();
@@ -594,8 +594,8 @@ public final class Schema {
 
       public Builder mergeFrom(stategate.Schema.ObjectRef other) {
         if (other == stategate.Schema.ObjectRef.getDefaultInstance()) return this;
-        if (!other.getTenant().isEmpty()) {
-          tenant_ = other.tenant_;
+        if (!other.getDomain().isEmpty()) {
+          domain_ = other.domain_;
           onChanged();
         }
         if (!other.getType().isEmpty()) {
@@ -635,21 +635,21 @@ public final class Schema {
         return this;
       }
 
-      private java.lang.Object tenant_ = "";
+      private java.lang.Object domain_ = "";
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public java.lang.String getTenant() {
-        java.lang.Object ref = tenant_;
+      public java.lang.String getDomain() {
+        java.lang.Object ref = domain_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          tenant_ = s;
+          domain_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -657,19 +657,19 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.ByteString
-          getTenantBytes() {
-        java.lang.Object ref = tenant_;
+          getDomainBytes() {
+        java.lang.Object ref = domain_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          tenant_ = b;
+          domain_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -677,49 +677,49 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setTenant(
+      public Builder setDomain(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        tenant_ = value;
+        domain_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder clearTenant() {
+      public Builder clearDomain() {
         
-        tenant_ = getDefaultInstance().getTenant();
+        domain_ = getDefaultInstance().getDomain();
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setTenantBytes(
+      public Builder setDomainBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        tenant_ = value;
+        domain_ = value;
         onChanged();
         return this;
       }
@@ -960,21 +960,21 @@ public final class Schema {
 
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    java.lang.String getTenant();
+    java.lang.String getDomain();
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
-        getTenantBytes();
+        getDomainBytes();
 
     /**
      * <pre>
@@ -1014,7 +1014,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * Object values (structured k/v pairs)
+     * Object values (k/v pairs)
      * </pre>
      *
      * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1022,7 +1022,7 @@ public final class Schema {
     boolean hasValues();
     /**
      * <pre>
-     * Object values (structured k/v pairs)
+     * Object values (k/v pairs)
      * </pre>
      *
      * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1030,7 +1030,7 @@ public final class Schema {
     com.google.protobuf.Struct getValues();
     /**
      * <pre>
-     * Object values (structured k/v pairs)
+     * Object values (k/v pairs)
      * </pre>
      *
      * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1054,7 +1054,7 @@ public final class Schema {
       super(builder);
     }
     private Object() {
-      tenant_ = "";
+      domain_ = "";
       type_ = "";
       key_ = "";
     }
@@ -1086,7 +1086,7 @@ public final class Schema {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              tenant_ = s;
+              domain_ = s;
               break;
             }
             case 18: {
@@ -1146,42 +1146,42 @@ public final class Schema {
               stategate.Schema.Object.class, stategate.Schema.Object.Builder.class);
     }
 
-    public static final int TENANT_FIELD_NUMBER = 1;
-    private volatile java.lang.Object tenant_;
+    public static final int DOMAIN_FIELD_NUMBER = 1;
+    private volatile java.lang.Object domain_;
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    public java.lang.String getTenant() {
-      java.lang.Object ref = tenant_;
+    public java.lang.String getDomain() {
+      java.lang.Object ref = domain_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        tenant_ = s;
+        domain_ = s;
         return s;
       }
     }
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.ByteString
-        getTenantBytes() {
-      java.lang.Object ref = tenant_;
+        getDomainBytes() {
+      java.lang.Object ref = domain_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        tenant_ = b;
+        domain_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -1276,7 +1276,7 @@ public final class Schema {
     private com.google.protobuf.Struct values_;
     /**
      * <pre>
-     * Object values (structured k/v pairs)
+     * Object values (k/v pairs)
      * </pre>
      *
      * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1286,7 +1286,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Object values (structured k/v pairs)
+     * Object values (k/v pairs)
      * </pre>
      *
      * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1296,7 +1296,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * Object values (structured k/v pairs)
+     * Object values (k/v pairs)
      * </pre>
      *
      * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1319,8 +1319,8 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTenantBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tenant_);
+      if (!getDomainBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, domain_);
       }
       if (!getTypeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
@@ -1340,8 +1340,8 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTenantBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tenant_);
+      if (!getDomainBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, domain_);
       }
       if (!getTypeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
@@ -1369,8 +1369,8 @@ public final class Schema {
       stategate.Schema.Object other = (stategate.Schema.Object) obj;
 
       boolean result = true;
-      result = result && getTenant()
-          .equals(other.getTenant());
+      result = result && getDomain()
+          .equals(other.getDomain());
       result = result && getType()
           .equals(other.getType());
       result = result && getKey()
@@ -1391,8 +1391,8 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + TENANT_FIELD_NUMBER;
-      hash = (53 * hash) + getTenant().hashCode();
+      hash = (37 * hash) + DOMAIN_FIELD_NUMBER;
+      hash = (53 * hash) + getDomain().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
       hash = (37 * hash) + KEY_FIELD_NUMBER;
@@ -1538,7 +1538,7 @@ public final class Schema {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        tenant_ = "";
+        domain_ = "";
 
         type_ = "";
 
@@ -1576,7 +1576,7 @@ public final class Schema {
       @java.lang.Override
       public stategate.Schema.Object buildPartial() {
         stategate.Schema.Object result = new stategate.Schema.Object(this);
-        result.tenant_ = tenant_;
+        result.domain_ = domain_;
         result.type_ = type_;
         result.key_ = key_;
         if (valuesBuilder_ == null) {
@@ -1632,8 +1632,8 @@ public final class Schema {
 
       public Builder mergeFrom(stategate.Schema.Object other) {
         if (other == stategate.Schema.Object.getDefaultInstance()) return this;
-        if (!other.getTenant().isEmpty()) {
-          tenant_ = other.tenant_;
+        if (!other.getDomain().isEmpty()) {
+          domain_ = other.domain_;
           onChanged();
         }
         if (!other.getType().isEmpty()) {
@@ -1676,21 +1676,21 @@ public final class Schema {
         return this;
       }
 
-      private java.lang.Object tenant_ = "";
+      private java.lang.Object domain_ = "";
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public java.lang.String getTenant() {
-        java.lang.Object ref = tenant_;
+      public java.lang.String getDomain() {
+        java.lang.Object ref = domain_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          tenant_ = s;
+          domain_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -1698,19 +1698,19 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.ByteString
-          getTenantBytes() {
-        java.lang.Object ref = tenant_;
+          getDomainBytes() {
+        java.lang.Object ref = domain_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          tenant_ = b;
+          domain_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -1718,49 +1718,49 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setTenant(
+      public Builder setDomain(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        tenant_ = value;
+        domain_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder clearTenant() {
+      public Builder clearDomain() {
         
-        tenant_ = getDefaultInstance().getTenant();
+        domain_ = getDefaultInstance().getDomain();
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setTenantBytes(
+      public Builder setDomainBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        tenant_ = value;
+        domain_ = value;
         onChanged();
         return this;
       }
@@ -1948,7 +1948,7 @@ public final class Schema {
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> valuesBuilder_;
       /**
        * <pre>
-       * Object values (structured k/v pairs)
+       * Object values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1958,7 +1958,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (structured k/v pairs)
+       * Object values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1972,7 +1972,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (structured k/v pairs)
+       * Object values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -1992,7 +1992,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (structured k/v pairs)
+       * Object values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -2010,7 +2010,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (structured k/v pairs)
+       * Object values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -2032,7 +2032,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (structured k/v pairs)
+       * Object values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -2050,7 +2050,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (structured k/v pairs)
+       * Object values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -2062,7 +2062,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (structured k/v pairs)
+       * Object values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -2077,7 +2077,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * Object values (structured k/v pairs)
+       * Object values (k/v pairs)
        * </pre>
        *
        * <code>.google.protobuf.Struct values = 4 [(.validator.field) = { ... }</code>
@@ -2944,21 +2944,21 @@ public final class Schema {
 
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    java.lang.String getTenant();
+    java.lang.String getDomain();
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
-        getTenantBytes();
+        getDomainBytes();
 
     /**
      * <pre>
@@ -3016,7 +3016,8 @@ public final class Schema {
   }
   /**
    * <pre>
-   * SearchObjectOpts are options when querying historical events for a given object
+   * SearchObjectOpts are options when querying the current values of object(s).
+   * If historical values are needed, SearchEvents should be used
    * </pre>
    *
    * Protobuf type {@code stategate.SearchObjectOpts}
@@ -3031,7 +3032,7 @@ public final class Schema {
       super(builder);
     }
     private SearchObjectOpts() {
-      tenant_ = "";
+      domain_ = "";
       type_ = "";
       queryString_ = "";
       limit_ = 0L;
@@ -3065,7 +3066,7 @@ public final class Schema {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              tenant_ = s;
+              domain_ = s;
               break;
             }
             case 18: {
@@ -3122,42 +3123,42 @@ public final class Schema {
               stategate.Schema.SearchObjectOpts.class, stategate.Schema.SearchObjectOpts.Builder.class);
     }
 
-    public static final int TENANT_FIELD_NUMBER = 1;
-    private volatile java.lang.Object tenant_;
+    public static final int DOMAIN_FIELD_NUMBER = 1;
+    private volatile java.lang.Object domain_;
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    public java.lang.String getTenant() {
-      java.lang.Object ref = tenant_;
+    public java.lang.String getDomain() {
+      java.lang.Object ref = domain_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        tenant_ = s;
+        domain_ = s;
         return s;
       }
     }
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.ByteString
-        getTenantBytes() {
-      java.lang.Object ref = tenant_;
+        getDomainBytes() {
+      java.lang.Object ref = domain_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        tenant_ = b;
+        domain_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -3288,8 +3289,8 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTenantBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tenant_);
+      if (!getDomainBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, domain_);
       }
       if (!getTypeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
@@ -3312,8 +3313,8 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTenantBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tenant_);
+      if (!getDomainBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, domain_);
       }
       if (!getTypeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
@@ -3345,8 +3346,8 @@ public final class Schema {
       stategate.Schema.SearchObjectOpts other = (stategate.Schema.SearchObjectOpts) obj;
 
       boolean result = true;
-      result = result && getTenant()
-          .equals(other.getTenant());
+      result = result && getDomain()
+          .equals(other.getDomain());
       result = result && getType()
           .equals(other.getType());
       result = result && getQueryString()
@@ -3366,8 +3367,8 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + TENANT_FIELD_NUMBER;
-      hash = (53 * hash) + getTenant().hashCode();
+      hash = (37 * hash) + DOMAIN_FIELD_NUMBER;
+      hash = (53 * hash) + getDomain().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
       hash = (37 * hash) + QUERY_STRING_FIELD_NUMBER;
@@ -3475,7 +3476,8 @@ public final class Schema {
     }
     /**
      * <pre>
-     * SearchObjectOpts are options when querying historical events for a given object
+     * SearchObjectOpts are options when querying the current values of object(s).
+     * If historical values are needed, SearchEvents should be used
      * </pre>
      *
      * Protobuf type {@code stategate.SearchObjectOpts}
@@ -3515,7 +3517,7 @@ public final class Schema {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        tenant_ = "";
+        domain_ = "";
 
         type_ = "";
 
@@ -3551,7 +3553,7 @@ public final class Schema {
       @java.lang.Override
       public stategate.Schema.SearchObjectOpts buildPartial() {
         stategate.Schema.SearchObjectOpts result = new stategate.Schema.SearchObjectOpts(this);
-        result.tenant_ = tenant_;
+        result.domain_ = domain_;
         result.type_ = type_;
         result.queryString_ = queryString_;
         result.limit_ = limit_;
@@ -3604,8 +3606,8 @@ public final class Schema {
 
       public Builder mergeFrom(stategate.Schema.SearchObjectOpts other) {
         if (other == stategate.Schema.SearchObjectOpts.getDefaultInstance()) return this;
-        if (!other.getTenant().isEmpty()) {
-          tenant_ = other.tenant_;
+        if (!other.getDomain().isEmpty()) {
+          domain_ = other.domain_;
           onChanged();
         }
         if (!other.getType().isEmpty()) {
@@ -3651,21 +3653,21 @@ public final class Schema {
         return this;
       }
 
-      private java.lang.Object tenant_ = "";
+      private java.lang.Object domain_ = "";
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public java.lang.String getTenant() {
-        java.lang.Object ref = tenant_;
+      public java.lang.String getDomain() {
+        java.lang.Object ref = domain_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          tenant_ = s;
+          domain_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -3673,19 +3675,19 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.ByteString
-          getTenantBytes() {
-        java.lang.Object ref = tenant_;
+          getDomainBytes() {
+        java.lang.Object ref = domain_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          tenant_ = b;
+          domain_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -3693,49 +3695,49 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setTenant(
+      public Builder setDomain(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        tenant_ = value;
+        domain_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder clearTenant() {
+      public Builder clearDomain() {
         
-        tenant_ = getDefaultInstance().getTenant();
+        domain_ = getDefaultInstance().getDomain();
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setTenantBytes(
+      public Builder setDomainBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        tenant_ = value;
+        domain_ = value;
         onChanged();
         return this;
       }
@@ -4052,21 +4054,21 @@ public final class Schema {
 
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    java.lang.String getTenant();
+    java.lang.String getDomain();
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
-        getTenantBytes();
+        getDomainBytes();
 
     /**
      * <pre>
@@ -4106,10 +4108,28 @@ public final class Schema {
 
     /**
      * <pre>
+     * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+     * </pre>
+     *
+     * <code>string query_string = 4;</code>
+     */
+    java.lang.String getQueryString();
+    /**
+     * <pre>
+     * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+     * </pre>
+     *
+     * <code>string query_string = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getQueryStringBytes();
+
+    /**
+     * <pre>
      * only return object events that occurred after specified min timestamp
      * </pre>
      *
-     * <code>int64 min = 4;</code>
+     * <code>int64 min = 5;</code>
      */
     long getMin();
 
@@ -4118,7 +4138,7 @@ public final class Schema {
      * only return object events that occurred before specified max timestamp
      * </pre>
      *
-     * <code>int64 max = 5;</code>
+     * <code>int64 max = 6;</code>
      */
     long getMax();
 
@@ -4127,7 +4147,7 @@ public final class Schema {
      * limit returned object events
      * </pre>
      *
-     * <code>int64 limit = 6 [(.validator.field) = { ... }</code>
+     * <code>int64 limit = 7 [(.validator.field) = { ... }</code>
      */
     long getLimit();
 
@@ -4136,7 +4156,7 @@ public final class Schema {
      * offset returned object events(pagination)
      * </pre>
      *
-     * <code>int64 offset = 7;</code>
+     * <code>int64 offset = 8;</code>
      */
     long getOffset();
   }
@@ -4157,9 +4177,10 @@ public final class Schema {
       super(builder);
     }
     private SearchEventOpts() {
-      tenant_ = "";
+      domain_ = "";
       type_ = "";
       key_ = "";
+      queryString_ = "";
       min_ = 0L;
       max_ = 0L;
       limit_ = 0L;
@@ -4193,7 +4214,7 @@ public final class Schema {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              tenant_ = s;
+              domain_ = s;
               break;
             }
             case 18: {
@@ -4208,22 +4229,28 @@ public final class Schema {
               key_ = s;
               break;
             }
-            case 32: {
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              min_ = input.readInt64();
+              queryString_ = s;
               break;
             }
             case 40: {
 
-              max_ = input.readInt64();
+              min_ = input.readInt64();
               break;
             }
             case 48: {
 
-              limit_ = input.readInt64();
+              max_ = input.readInt64();
               break;
             }
             case 56: {
+
+              limit_ = input.readInt64();
+              break;
+            }
+            case 64: {
 
               offset_ = input.readInt64();
               break;
@@ -4260,42 +4287,42 @@ public final class Schema {
               stategate.Schema.SearchEventOpts.class, stategate.Schema.SearchEventOpts.Builder.class);
     }
 
-    public static final int TENANT_FIELD_NUMBER = 1;
-    private volatile java.lang.Object tenant_;
+    public static final int DOMAIN_FIELD_NUMBER = 1;
+    private volatile java.lang.Object domain_;
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    public java.lang.String getTenant() {
-      java.lang.Object ref = tenant_;
+    public java.lang.String getDomain() {
+      java.lang.Object ref = domain_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        tenant_ = s;
+        domain_ = s;
         return s;
       }
     }
     /**
      * <pre>
-     * the object's tenant(ex: acme)
+     * the object's business domain(ex: accounting)
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.ByteString
-        getTenantBytes() {
-      java.lang.Object ref = tenant_;
+        getDomainBytes() {
+      java.lang.Object ref = domain_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        tenant_ = b;
+        domain_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -4386,53 +4413,95 @@ public final class Schema {
       }
     }
 
-    public static final int MIN_FIELD_NUMBER = 4;
+    public static final int QUERY_STRING_FIELD_NUMBER = 4;
+    private volatile java.lang.Object queryString_;
+    /**
+     * <pre>
+     * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+     * </pre>
+     *
+     * <code>string query_string = 4;</code>
+     */
+    public java.lang.String getQueryString() {
+      java.lang.Object ref = queryString_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        queryString_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+     * </pre>
+     *
+     * <code>string query_string = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getQueryStringBytes() {
+      java.lang.Object ref = queryString_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        queryString_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MIN_FIELD_NUMBER = 5;
     private long min_;
     /**
      * <pre>
      * only return object events that occurred after specified min timestamp
      * </pre>
      *
-     * <code>int64 min = 4;</code>
+     * <code>int64 min = 5;</code>
      */
     public long getMin() {
       return min_;
     }
 
-    public static final int MAX_FIELD_NUMBER = 5;
+    public static final int MAX_FIELD_NUMBER = 6;
     private long max_;
     /**
      * <pre>
      * only return object events that occurred before specified max timestamp
      * </pre>
      *
-     * <code>int64 max = 5;</code>
+     * <code>int64 max = 6;</code>
      */
     public long getMax() {
       return max_;
     }
 
-    public static final int LIMIT_FIELD_NUMBER = 6;
+    public static final int LIMIT_FIELD_NUMBER = 7;
     private long limit_;
     /**
      * <pre>
      * limit returned object events
      * </pre>
      *
-     * <code>int64 limit = 6 [(.validator.field) = { ... }</code>
+     * <code>int64 limit = 7 [(.validator.field) = { ... }</code>
      */
     public long getLimit() {
       return limit_;
     }
 
-    public static final int OFFSET_FIELD_NUMBER = 7;
+    public static final int OFFSET_FIELD_NUMBER = 8;
     private long offset_;
     /**
      * <pre>
      * offset returned object events(pagination)
      * </pre>
      *
-     * <code>int64 offset = 7;</code>
+     * <code>int64 offset = 8;</code>
      */
     public long getOffset() {
       return offset_;
@@ -4452,8 +4521,8 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTenantBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tenant_);
+      if (!getDomainBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, domain_);
       }
       if (!getTypeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
@@ -4461,17 +4530,20 @@ public final class Schema {
       if (!getKeyBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, key_);
       }
+      if (!getQueryStringBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, queryString_);
+      }
       if (min_ != 0L) {
-        output.writeInt64(4, min_);
+        output.writeInt64(5, min_);
       }
       if (max_ != 0L) {
-        output.writeInt64(5, max_);
+        output.writeInt64(6, max_);
       }
       if (limit_ != 0L) {
-        output.writeInt64(6, limit_);
+        output.writeInt64(7, limit_);
       }
       if (offset_ != 0L) {
-        output.writeInt64(7, offset_);
+        output.writeInt64(8, offset_);
       }
       unknownFields.writeTo(output);
     }
@@ -4482,8 +4554,8 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTenantBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tenant_);
+      if (!getDomainBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, domain_);
       }
       if (!getTypeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
@@ -4491,21 +4563,24 @@ public final class Schema {
       if (!getKeyBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, key_);
       }
+      if (!getQueryStringBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, queryString_);
+      }
       if (min_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, min_);
+          .computeInt64Size(5, min_);
       }
       if (max_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, max_);
+          .computeInt64Size(6, max_);
       }
       if (limit_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(6, limit_);
+          .computeInt64Size(7, limit_);
       }
       if (offset_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(7, offset_);
+          .computeInt64Size(8, offset_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4523,12 +4598,14 @@ public final class Schema {
       stategate.Schema.SearchEventOpts other = (stategate.Schema.SearchEventOpts) obj;
 
       boolean result = true;
-      result = result && getTenant()
-          .equals(other.getTenant());
+      result = result && getDomain()
+          .equals(other.getDomain());
       result = result && getType()
           .equals(other.getType());
       result = result && getKey()
           .equals(other.getKey());
+      result = result && getQueryString()
+          .equals(other.getQueryString());
       result = result && (getMin()
           == other.getMin());
       result = result && (getMax()
@@ -4548,12 +4625,14 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + TENANT_FIELD_NUMBER;
-      hash = (53 * hash) + getTenant().hashCode();
+      hash = (37 * hash) + DOMAIN_FIELD_NUMBER;
+      hash = (53 * hash) + getDomain().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
       hash = (37 * hash) + KEY_FIELD_NUMBER;
       hash = (53 * hash) + getKey().hashCode();
+      hash = (37 * hash) + QUERY_STRING_FIELD_NUMBER;
+      hash = (53 * hash) + getQueryString().hashCode();
       hash = (37 * hash) + MIN_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getMin());
@@ -4703,11 +4782,13 @@ public final class Schema {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        tenant_ = "";
+        domain_ = "";
 
         type_ = "";
 
         key_ = "";
+
+        queryString_ = "";
 
         min_ = 0L;
 
@@ -4743,9 +4824,10 @@ public final class Schema {
       @java.lang.Override
       public stategate.Schema.SearchEventOpts buildPartial() {
         stategate.Schema.SearchEventOpts result = new stategate.Schema.SearchEventOpts(this);
-        result.tenant_ = tenant_;
+        result.domain_ = domain_;
         result.type_ = type_;
         result.key_ = key_;
+        result.queryString_ = queryString_;
         result.min_ = min_;
         result.max_ = max_;
         result.limit_ = limit_;
@@ -4798,8 +4880,8 @@ public final class Schema {
 
       public Builder mergeFrom(stategate.Schema.SearchEventOpts other) {
         if (other == stategate.Schema.SearchEventOpts.getDefaultInstance()) return this;
-        if (!other.getTenant().isEmpty()) {
-          tenant_ = other.tenant_;
+        if (!other.getDomain().isEmpty()) {
+          domain_ = other.domain_;
           onChanged();
         }
         if (!other.getType().isEmpty()) {
@@ -4808,6 +4890,10 @@ public final class Schema {
         }
         if (!other.getKey().isEmpty()) {
           key_ = other.key_;
+          onChanged();
+        }
+        if (!other.getQueryString().isEmpty()) {
+          queryString_ = other.queryString_;
           onChanged();
         }
         if (other.getMin() != 0L) {
@@ -4851,21 +4937,21 @@ public final class Schema {
         return this;
       }
 
-      private java.lang.Object tenant_ = "";
+      private java.lang.Object domain_ = "";
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public java.lang.String getTenant() {
-        java.lang.Object ref = tenant_;
+      public java.lang.String getDomain() {
+        java.lang.Object ref = domain_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          tenant_ = s;
+          domain_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -4873,19 +4959,19 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.ByteString
-          getTenantBytes() {
-        java.lang.Object ref = tenant_;
+          getDomainBytes() {
+        java.lang.Object ref = domain_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          tenant_ = b;
+          domain_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -4893,49 +4979,49 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setTenant(
+      public Builder setDomain(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        tenant_ = value;
+        domain_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder clearTenant() {
+      public Builder clearDomain() {
         
-        tenant_ = getDefaultInstance().getTenant();
+        domain_ = getDefaultInstance().getDomain();
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * the object's tenant(ex: acme)
+       * the object's business domain(ex: accounting)
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setTenantBytes(
+      public Builder setDomainBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        tenant_ = value;
+        domain_ = value;
         onChanged();
         return this;
       }
@@ -5118,13 +5204,102 @@ public final class Schema {
         return this;
       }
 
+      private java.lang.Object queryString_ = "";
+      /**
+       * <pre>
+       * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+       * </pre>
+       *
+       * <code>string query_string = 4;</code>
+       */
+      public java.lang.String getQueryString() {
+        java.lang.Object ref = queryString_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          queryString_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+       * </pre>
+       *
+       * <code>string query_string = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getQueryStringBytes() {
+        java.lang.Object ref = queryString_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          queryString_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+       * </pre>
+       *
+       * <code>string query_string = 4;</code>
+       */
+      public Builder setQueryString(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        queryString_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+       * </pre>
+       *
+       * <code>string query_string = 4;</code>
+       */
+      public Builder clearQueryString() {
+        
+        queryString_ = getDefaultInstance().getQueryString();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * json string to filter records that have object's with values that match k/v pairs ex: { "message": "hello world" }
+       * </pre>
+       *
+       * <code>string query_string = 4;</code>
+       */
+      public Builder setQueryStringBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        queryString_ = value;
+        onChanged();
+        return this;
+      }
+
       private long min_ ;
       /**
        * <pre>
        * only return object events that occurred after specified min timestamp
        * </pre>
        *
-       * <code>int64 min = 4;</code>
+       * <code>int64 min = 5;</code>
        */
       public long getMin() {
         return min_;
@@ -5134,7 +5309,7 @@ public final class Schema {
        * only return object events that occurred after specified min timestamp
        * </pre>
        *
-       * <code>int64 min = 4;</code>
+       * <code>int64 min = 5;</code>
        */
       public Builder setMin(long value) {
         
@@ -5147,7 +5322,7 @@ public final class Schema {
        * only return object events that occurred after specified min timestamp
        * </pre>
        *
-       * <code>int64 min = 4;</code>
+       * <code>int64 min = 5;</code>
        */
       public Builder clearMin() {
         
@@ -5162,7 +5337,7 @@ public final class Schema {
        * only return object events that occurred before specified max timestamp
        * </pre>
        *
-       * <code>int64 max = 5;</code>
+       * <code>int64 max = 6;</code>
        */
       public long getMax() {
         return max_;
@@ -5172,7 +5347,7 @@ public final class Schema {
        * only return object events that occurred before specified max timestamp
        * </pre>
        *
-       * <code>int64 max = 5;</code>
+       * <code>int64 max = 6;</code>
        */
       public Builder setMax(long value) {
         
@@ -5185,7 +5360,7 @@ public final class Schema {
        * only return object events that occurred before specified max timestamp
        * </pre>
        *
-       * <code>int64 max = 5;</code>
+       * <code>int64 max = 6;</code>
        */
       public Builder clearMax() {
         
@@ -5200,7 +5375,7 @@ public final class Schema {
        * limit returned object events
        * </pre>
        *
-       * <code>int64 limit = 6 [(.validator.field) = { ... }</code>
+       * <code>int64 limit = 7 [(.validator.field) = { ... }</code>
        */
       public long getLimit() {
         return limit_;
@@ -5210,7 +5385,7 @@ public final class Schema {
        * limit returned object events
        * </pre>
        *
-       * <code>int64 limit = 6 [(.validator.field) = { ... }</code>
+       * <code>int64 limit = 7 [(.validator.field) = { ... }</code>
        */
       public Builder setLimit(long value) {
         
@@ -5223,7 +5398,7 @@ public final class Schema {
        * limit returned object events
        * </pre>
        *
-       * <code>int64 limit = 6 [(.validator.field) = { ... }</code>
+       * <code>int64 limit = 7 [(.validator.field) = { ... }</code>
        */
       public Builder clearLimit() {
         
@@ -5238,7 +5413,7 @@ public final class Schema {
        * offset returned object events(pagination)
        * </pre>
        *
-       * <code>int64 offset = 7;</code>
+       * <code>int64 offset = 8;</code>
        */
       public long getOffset() {
         return offset_;
@@ -5248,7 +5423,7 @@ public final class Schema {
        * offset returned object events(pagination)
        * </pre>
        *
-       * <code>int64 offset = 7;</code>
+       * <code>int64 offset = 8;</code>
        */
       public Builder setOffset(long value) {
         
@@ -5261,7 +5436,7 @@ public final class Schema {
        * offset returned object events(pagination)
        * </pre>
        *
-       * <code>int64 offset = 7;</code>
+       * <code>int64 offset = 8;</code>
        */
       public Builder clearOffset() {
         
@@ -5328,21 +5503,21 @@ public final class Schema {
 
     /**
      * <pre>
-     * the tenant of the object (ex: acme) that triggered the event
+     * the domain of the object (ex: acme) that triggered the event
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    java.lang.String getTenant();
+    java.lang.String getDomain();
     /**
      * <pre>
-     * the tenant of the object (ex: acme) that triggered the event
+     * the domain of the object (ex: acme) that triggered the event
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
     com.google.protobuf.ByteString
-        getTenantBytes();
+        getDomainBytes();
 
     /**
      * <pre>
@@ -5379,7 +5554,7 @@ public final class Schema {
       super(builder);
     }
     private StreamOpts() {
-      tenant_ = "";
+      domain_ = "";
       type_ = "";
     }
 
@@ -5410,7 +5585,7 @@ public final class Schema {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              tenant_ = s;
+              domain_ = s;
               break;
             }
             case 18: {
@@ -5451,42 +5626,42 @@ public final class Schema {
               stategate.Schema.StreamOpts.class, stategate.Schema.StreamOpts.Builder.class);
     }
 
-    public static final int TENANT_FIELD_NUMBER = 1;
-    private volatile java.lang.Object tenant_;
+    public static final int DOMAIN_FIELD_NUMBER = 1;
+    private volatile java.lang.Object domain_;
     /**
      * <pre>
-     * the tenant of the object (ex: acme) that triggered the event
+     * the domain of the object (ex: acme) that triggered the event
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    public java.lang.String getTenant() {
-      java.lang.Object ref = tenant_;
+    public java.lang.String getDomain() {
+      java.lang.Object ref = domain_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        tenant_ = s;
+        domain_ = s;
         return s;
       }
     }
     /**
      * <pre>
-     * the tenant of the object (ex: acme) that triggered the event
+     * the domain of the object (ex: acme) that triggered the event
      * </pre>
      *
-     * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
     public com.google.protobuf.ByteString
-        getTenantBytes() {
-      java.lang.Object ref = tenant_;
+        getDomainBytes() {
+      java.lang.Object ref = domain_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        tenant_ = b;
+        domain_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -5549,8 +5724,8 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTenantBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tenant_);
+      if (!getDomainBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, domain_);
       }
       if (!getTypeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
@@ -5564,8 +5739,8 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTenantBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tenant_);
+      if (!getDomainBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, domain_);
       }
       if (!getTypeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
@@ -5586,8 +5761,8 @@ public final class Schema {
       stategate.Schema.StreamOpts other = (stategate.Schema.StreamOpts) obj;
 
       boolean result = true;
-      result = result && getTenant()
-          .equals(other.getTenant());
+      result = result && getDomain()
+          .equals(other.getDomain());
       result = result && getType()
           .equals(other.getType());
       result = result && unknownFields.equals(other.unknownFields);
@@ -5601,8 +5776,8 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + TENANT_FIELD_NUMBER;
-      hash = (53 * hash) + getTenant().hashCode();
+      hash = (37 * hash) + DOMAIN_FIELD_NUMBER;
+      hash = (53 * hash) + getDomain().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -5742,7 +5917,7 @@ public final class Schema {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        tenant_ = "";
+        domain_ = "";
 
         type_ = "";
 
@@ -5772,7 +5947,7 @@ public final class Schema {
       @java.lang.Override
       public stategate.Schema.StreamOpts buildPartial() {
         stategate.Schema.StreamOpts result = new stategate.Schema.StreamOpts(this);
-        result.tenant_ = tenant_;
+        result.domain_ = domain_;
         result.type_ = type_;
         onBuilt();
         return result;
@@ -5822,8 +5997,8 @@ public final class Schema {
 
       public Builder mergeFrom(stategate.Schema.StreamOpts other) {
         if (other == stategate.Schema.StreamOpts.getDefaultInstance()) return this;
-        if (!other.getTenant().isEmpty()) {
-          tenant_ = other.tenant_;
+        if (!other.getDomain().isEmpty()) {
+          domain_ = other.domain_;
           onChanged();
         }
         if (!other.getType().isEmpty()) {
@@ -5859,21 +6034,21 @@ public final class Schema {
         return this;
       }
 
-      private java.lang.Object tenant_ = "";
+      private java.lang.Object domain_ = "";
       /**
        * <pre>
-       * the tenant of the object (ex: acme) that triggered the event
+       * the domain of the object (ex: acme) that triggered the event
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public java.lang.String getTenant() {
-        java.lang.Object ref = tenant_;
+      public java.lang.String getDomain() {
+        java.lang.Object ref = domain_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          tenant_ = s;
+          domain_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -5881,19 +6056,19 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the tenant of the object (ex: acme) that triggered the event
+       * the domain of the object (ex: acme) that triggered the event
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
       public com.google.protobuf.ByteString
-          getTenantBytes() {
-        java.lang.Object ref = tenant_;
+          getDomainBytes() {
+        java.lang.Object ref = domain_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          tenant_ = b;
+          domain_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -5901,49 +6076,49 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the tenant of the object (ex: acme) that triggered the event
+       * the domain of the object (ex: acme) that triggered the event
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setTenant(
+      public Builder setDomain(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        tenant_ = value;
+        domain_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * the tenant of the object (ex: acme) that triggered the event
+       * the domain of the object (ex: acme) that triggered the event
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder clearTenant() {
+      public Builder clearDomain() {
         
-        tenant_ = getDefaultInstance().getTenant();
+        domain_ = getDefaultInstance().getDomain();
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * the tenant of the object (ex: acme) that triggered the event
+       * the domain of the object (ex: acme) that triggered the event
        * </pre>
        *
-       * <code>string tenant = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setTenantBytes(
+      public Builder setDomainBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        tenant_ = value;
+        domain_ = value;
         onChanged();
         return this;
       }
@@ -8122,43 +8297,43 @@ public final class Schema {
       "google/protobuf/any.proto\032\033google/protob" +
       "uf/empty.proto\0326github.com/mwitkow/go-pr" +
       "oto-validators/validator.proto\"]\n\tObject" +
-      "Ref\022\033\n\006tenant\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type" +
+      "Ref\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type" +
       "\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030\003 \001(\tB\013\342\337\037\007\n\005" +
-      "^\\S+$\"\213\001\n\006Object\022\033\n\006tenant\030\001 \001(\tB\013\342\337\037\007\n\005" +
+      "^\\S+$\"\213\001\n\006Object\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005" +
       "^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030" +
       "\003 \001(\tB\013\342\337\037\007\n\005^\\S+$\022/\n\006values\030\004 \001(\0132\027.goo" +
       "gle.protobuf.StructB\006\342\337\037\002 \001\"-\n\007Objects\022\"" +
       "\n\007objects\030\001 \003(\0132\021.stategate.Object\"\207\001\n\020S" +
-      "earchObjectOpts\022\033\n\006tenant\030\001 \001(\tB\013\342\337\037\007\n\005^" +
+      "earchObjectOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^" +
       "\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014query" +
       "_string\030\003 \001(\t\022\025\n\005limit\030\004 \001(\003B\006\342\337\037\002\020\000\022\016\n\006" +
-      "offset\030\005 \001(\003\"\227\001\n\017SearchEventOpts\022\033\n\006tena" +
-      "nt\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037" +
-      "\007\n\005^\\S+$\022\013\n\003key\030\003 \001(\t\022\013\n\003min\030\004 \001(\003\022\013\n\003ma" +
-      "x\030\005 \001(\003\022\025\n\005limit\030\006 \001(\003B\006\342\337\037\002\020\000\022\016\n\006offset" +
-      "\030\007 \001(\003\"D\n\nStreamOpts\022\033\n\006tenant\030\001 \001(\tB\013\342\337" +
-      "\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\"\216\001\n" +
-      "\005Event\022\023\n\002id\030\001 \001(\tB\007\342\337\037\003\220\001\000\022)\n\006object\030\002 " +
-      "\001(\0132\021.stategate.ObjectB\006\342\337\037\002 \001\022/\n\006claims" +
-      "\030\003 \001(\0132\027.google.protobuf.StructB\006\342\337\037\002 \001\022" +
-      "\024\n\004time\030\004 \001(\003B\006\342\337\037\002\020\000\"*\n\006Events\022 \n\006event" +
-      "s\030\001 \003(\0132\020.stategate.Event2\344\004\n\020StateGateS" +
-      "ervice\022`\n\tSetObject\022\021.stategate.Object\032\026" +
-      ".google.protobuf.Empty\"(\202\323\344\223\002\"\" /api/{te" +
-      "nant}/{type}/state/{key}\022^\n\tGetObject\022\024." +
-      "stategate.ObjectRef\032\021.stategate.Object\"(" +
-      "\202\323\344\223\002\"\022 /api/{tenant}/{type}/state/{key}" +
-      "\022d\n\rSearchObjects\022\033.stategate.SearchObje" +
-      "ctOpts\032\022.stategate.Objects\"\"\202\323\344\223\002\034\022\032/api" +
-      "/{tenant}/{type}/state\022]\n\tDelObject\022\024.st" +
-      "ategate.ObjectRef\032\026.google.protobuf.Empt" +
-      "y\"\"\202\323\344\223\002\034*\032/api/{tenant}/{type}/state\022e\n" +
-      "\014StreamEvents\022\025.stategate.StreamOpts\032\020.s" +
-      "tategate.Event\"*\202\323\344\223\002$\022\"/api/{tenant}/{t" +
-      "ype}/events/stream0\001\022b\n\014SearchEvents\022\032.s" +
+      "offset\030\005 \001(\003\"\255\001\n\017SearchEventOpts\022\033\n\006doma" +
+      "in\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037" +
+      "\007\n\005^\\S+$\022\013\n\003key\030\003 \001(\t\022\024\n\014query_string\030\004 " +
+      "\001(\t\022\013\n\003min\030\005 \001(\003\022\013\n\003max\030\006 \001(\003\022\025\n\005limit\030\007" +
+      " \001(\003B\006\342\337\037\002\020\000\022\016\n\006offset\030\010 \001(\003\"D\n\nStreamOp" +
+      "ts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030" +
+      "\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\"\216\001\n\005Event\022\023\n\002id\030\001 \001(\t" +
+      "B\007\342\337\037\003\220\001\000\022)\n\006object\030\002 \001(\0132\021.stategate.Ob" +
+      "jectB\006\342\337\037\002 \001\022/\n\006claims\030\003 \001(\0132\027.google.pr" +
+      "otobuf.StructB\006\342\337\037\002 \001\022\024\n\004time\030\004 \001(\003B\006\342\337\037" +
+      "\002\020\000\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020.stategat" +
+      "e.Event2\216\003\n\rObjectService\022`\n\003Set\022\021.state" +
+      "gate.Object\032\026.google.protobuf.Empty\".\202\323\344" +
+      "\223\002(\"&/api/objects/ref/{domain}/{type}/{k" +
+      "ey}\022^\n\003Get\022\024.stategate.ObjectRef\032\021.state" +
+      "gate.Object\".\202\323\344\223\002(\022&/api/objects/ref/{d" +
+      "omain}/{type}/{key}\022c\n\003Del\022\024.stategate.O" +
+      "bjectRef\032\026.google.protobuf.Empty\".\202\323\344\223\002(" +
+      "*&/api/objects/ref/{domain}/{type}/{key}" +
+      "\022V\n\006Search\022\033.stategate.SearchObjectOpts\032" +
+      "\022.stategate.Objects\"\033\202\323\344\223\002\025\022\023/api/object" +
+      "s/search2\264\001\n\014EventService\022O\n\006Stream\022\025.st" +
+      "ategate.StreamOpts\032\020.stategate.Event\"\032\202\323" +
+      "\344\223\002\024\022\022/api/events/stream0\001\022S\n\006Search\022\032.s" +
       "tategate.SearchEventOpts\032\021.stategate.Eve" +
-      "nts\"#\202\323\344\223\002\035\022\033/api/{tenant}/{type}/events" +
-      "B\013Z\tstategateb\006proto3"
+      "nts\"\032\202\323\344\223\002\024\022\022/api/events/searchB\013Z\tstate" +
+      "gateb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8183,13 +8358,13 @@ public final class Schema {
     internal_static_stategate_ObjectRef_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_ObjectRef_descriptor,
-        new java.lang.String[] { "Tenant", "Type", "Key", });
+        new java.lang.String[] { "Domain", "Type", "Key", });
     internal_static_stategate_Object_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_stategate_Object_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_Object_descriptor,
-        new java.lang.String[] { "Tenant", "Type", "Key", "Values", });
+        new java.lang.String[] { "Domain", "Type", "Key", "Values", });
     internal_static_stategate_Objects_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_stategate_Objects_fieldAccessorTable = new
@@ -8201,19 +8376,19 @@ public final class Schema {
     internal_static_stategate_SearchObjectOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_SearchObjectOpts_descriptor,
-        new java.lang.String[] { "Tenant", "Type", "QueryString", "Limit", "Offset", });
+        new java.lang.String[] { "Domain", "Type", "QueryString", "Limit", "Offset", });
     internal_static_stategate_SearchEventOpts_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_stategate_SearchEventOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_SearchEventOpts_descriptor,
-        new java.lang.String[] { "Tenant", "Type", "Key", "Min", "Max", "Limit", "Offset", });
+        new java.lang.String[] { "Domain", "Type", "Key", "QueryString", "Min", "Max", "Limit", "Offset", });
     internal_static_stategate_StreamOpts_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_stategate_StreamOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_StreamOpts_descriptor,
-        new java.lang.String[] { "Tenant", "Type", });
+        new java.lang.String[] { "Domain", "Type", });
     internal_static_stategate_Event_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_stategate_Event_fieldAccessorTable = new

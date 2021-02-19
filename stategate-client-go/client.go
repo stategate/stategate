@@ -86,8 +86,8 @@ func streamAuth(tokenSource oauth2.TokenSource, useIDToken bool) grpc.StreamClie
 	}
 }
 
-// NewClient creates a new stategate client - a pluggable API and "Application State Gateway" that enforces the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html) for securely persisting & broadcasting application state changes
-func NewClient(ctx context.Context, target string, opts ...Opt) (*Client, error) {
+// NewEventClient creates a new stategate client
+func NewEventClient(ctx context.Context, target string, opts ...Opt) (*EventClient, error) {
 	if target == "" {
 		return nil, errors.New("empty target")
 	}
@@ -137,15 +137,78 @@ func NewClient(ctx context.Context, target string, opts ...Opt) (*Client, error)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to create stategate client")
 	}
-	return &Client{
-		client: stategate.NewStateGateServiceClient(conn),
+	return &EventClient{
+		client: stategate.NewEventServiceClient(conn),
 		conn:   conn,
 	}, nil
 }
 
-// Client is a stategate gRPC client
-type Client struct {
-	client stategate.StateGateServiceClient
+// NewObjectClient creates a new stategate object client
+func NewObjectClient(ctx context.Context, target string, opts ...Opt) (*ObjectClient, error) {
+	if target == "" {
+		return nil, errors.New("empty target")
+	}
+	dialopts := []grpc.DialOption{}
+	var uinterceptors []grpc.UnaryClientInterceptor
+	var sinterceptors []grpc.StreamClientInterceptor
+	options := &Options{}
+	for _, o := range opts {
+		o(options)
+	}
+	if options.creds == nil {
+		dialopts = append(dialopts, grpc.WithInsecure())
+	} else {
+		dialopts = append(dialopts, grpc.WithTransportCredentials(options.creds))
+	}
+	uinterceptors = append(uinterceptors, grpc_validator.UnaryClientInterceptor())
+
+	if options.metrics {
+		uinterceptors = append(uinterceptors, grpc_prometheus.UnaryClientInterceptor)
+		sinterceptors = append(sinterceptors, grpc_prometheus.StreamClientInterceptor)
+	}
+
+	if options.tokenSource != nil {
+		uinterceptors = append(uinterceptors, unaryAuth(options.tokenSource, options.idtoken))
+		sinterceptors = append(sinterceptors, streamAuth(options.tokenSource, options.idtoken))
+	}
+	if options.logging {
+		lgger := logger.New(true, zap.Bool("client", true))
+		uinterceptors = append(uinterceptors, grpc_zap.UnaryClientInterceptor(lgger.Zap()))
+		sinterceptors = append(sinterceptors, grpc_zap.StreamClientInterceptor(lgger.Zap()))
+
+		if options.logPayload {
+			uinterceptors = append(uinterceptors, grpc_zap.PayloadUnaryClientInterceptor(lgger.Zap(), func(ctx context.Context, fullMethodName string) bool {
+				return true
+			}))
+			sinterceptors = append(sinterceptors, grpc_zap.PayloadStreamClientInterceptor(lgger.Zap(), func(ctx context.Context, fullMethodName string) bool {
+				return true
+			}))
+		}
+	}
+	dialopts = append(dialopts,
+		grpc.WithChainUnaryInterceptor(uinterceptors...),
+		grpc.WithChainStreamInterceptor(sinterceptors...),
+		grpc.WithBlock(),
+	)
+	conn, err := grpc.DialContext(ctx, target, dialopts...)
+	if err != nil {
+		return nil, errors.Wrap(err, "failed to create stategate client")
+	}
+	return &ObjectClient{
+		client: stategate.NewObjectServiceClient(conn),
+		conn:   conn,
+	}, nil
+}
+
+// EventClient is a stategate EventService gRPC client
+type EventClient struct {
+	client stategate.EventServiceClient
+	conn   *grpc.ClientConn
+}
+
+// ObjectClient is a stategate ObjectService gRPC client
+type ObjectClient struct {
+	client stategate.ObjectServiceClient
 	conn   *grpc.ClientConn
 }
 
@@ -170,26 +233,30 @@ func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken b
 	), nil
 }
 
-// GetObject gets an object's current state values
-func (c *Client) GetObject(ctx context.Context, in *stategate.ObjectRef) (*stategate.Object, error) {
-	return c.client.GetObject(ctx, in)
+// Get gets an object's current state values
+func (c *ObjectClient) Get(ctx context.Context, in *stategate.ObjectRef) (*stategate.Object, error) {
+	return c.client.Get(ctx, in)
 }
 
-// SearchObjects queries objects of a specific type
-func (c *Client) SearchObjects(ctx context.Context, in *stategate.SearchObjectOpts) (*stategate.Objects, error) {
-	return c.client.SearchObjects(ctx, in)
+// Search queries objects of a specific type
+func (c *ObjectClient) Search(ctx context.Context, in *stategate.SearchObjectOpts) (*stategate.Objects, error) {
+	return c.client.Search(ctx, in)
 }
 
-// SetObject sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
-func (c *Client) SetObject(ctx context.Context, in *stategate.Object) error {
-	_, err := c.client.SetObject(ctx, in)
+// Set sets the current state value of an object, adds it to the event log, then broadcast the event to all interested consumers
+func (c *ObjectClient) Set(ctx context.Context, in *stategate.Object) error {
+	_, err := c.client.Set(ctx, in)
 	return err
 }
 
-// StreamEvents creates an event stream/subscription to a given object type until fn returns false OR the context cancels.
-// Event Consumers invoke this method.
-func (c *Client) StreamEvents(ctx context.Context, in *stategate.StreamOpts, fn func(even *stategate.Event) bool) error {
-	stream, err := c.client.StreamEvents(ctx, in)
+// Close closes the gRPC client connection
+func (c *ObjectClient) Close() error {
+	return c.conn.Close()
+}
+
+// Stream creates an event stream/subscription to a given object type/domain until fn returns false OR the context cancels.
+func (c *EventClient) Stream(ctx context.Context, in *stategate.StreamOpts, fn func(even *stategate.Event) bool) error {
+	stream, err := c.client.Stream(ctx, in)
 	if err != nil {
 		return err
 	}
@@ -215,11 +282,11 @@ func (c *Client) StreamEvents(ctx context.Context, in *stategate.StreamOpts, fn 
 }
 
 // SearchEvents returns an array of immutable historical events for a given object.
-func (c *Client) SearchEvents(ctx context.Context, in *stategate.SearchEventOpts) (*stategate.Events, error) {
-	return c.client.SearchEvents(ctx, in)
+func (c *EventClient) Search(ctx context.Context, in *stategate.SearchEventOpts) (*stategate.Events, error) {
+	return c.client.Search(ctx, in)
 }
 
 // Close closes the gRPC client connection
-func (c *Client) Close() error {
+func (c *EventClient) Close() error {
 	return c.conn.Close()
 }
