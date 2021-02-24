@@ -179,6 +179,18 @@
             <ul>
               
                 <li>
+                  <a href="#stategate.Entities"><span class="badge">M</span>Entities</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.Entity"><span class="badge">M</span>Entity</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.EntityRef"><span class="badge">M</span>EntityRef</a>
+                </li>
+              
+                <li>
                   <a href="#stategate.Event"><span class="badge">M</span>Event</a>
                 </li>
               
@@ -187,23 +199,11 @@
                 </li>
               
                 <li>
+                  <a href="#stategate.SearchEntitiesOpts"><span class="badge">M</span>SearchEntitiesOpts</a>
+                </li>
+              
+                <li>
                   <a href="#stategate.SearchEventOpts"><span class="badge">M</span>SearchEventOpts</a>
-                </li>
-              
-                <li>
-                  <a href="#stategate.SearchStateOpts"><span class="badge">M</span>SearchStateOpts</a>
-                </li>
-              
-                <li>
-                  <a href="#stategate.State"><span class="badge">M</span>State</a>
-                </li>
-              
-                <li>
-                  <a href="#stategate.StateRef"><span class="badge">M</span>StateRef</a>
-                </li>
-              
-                <li>
-                  <a href="#stategate.StateValues"><span class="badge">M</span>StateValues</a>
                 </li>
               
                 <li>
@@ -214,11 +214,11 @@
               
               
                 <li>
-                  <a href="#stategate.EventService"><span class="badge">S</span>EventService</a>
+                  <a href="#stategate.EntityService"><span class="badge">S</span>EntityService</a>
                 </li>
               
                 <li>
-                  <a href="#stategate.StateService"><span class="badge">S</span>StateService</a>
+                  <a href="#stategate.EventService"><span class="badge">S</span>EventService</a>
                 </li>
               
             </ul>
@@ -236,8 +236,227 @@
       <p></p>
 
       
+        <h3 id="stategate.Entities">Entities</h3>
+        <p>Entities is an array of Entity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>entities</td>
+                  <td><a href="#stategate.Entity">Entity</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="stategate.Entity">Entity</h3>
+        <p>Entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)</p><p>EventService clients should use the EntityService to persist & interact with the current state of an entity.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the entity&#39;s business domain(ex: accounting)
+must not be empty or contain spaces </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the entity&#39;s type (ex: user)
+must not be empty or contain spaces </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the entity&#39;s key (unique within type).
+must not be empty or contain spaces </p></td>
+                </tr>
+              
+                <tr>
+                  <td>values</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>the entity&#39;s values (k/v pairs) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>values</td>
+                  <td>
+                    <ul>
+                    
+                      <li>msg_exists: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="stategate.EntityRef">EntityRef</h3>
+        <p>EntityRef is a reference to an existing entity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the entity&#39;s business domain(ex: accounting) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>entity type (ex: user) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>entity key (unique within type) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
         <h3 id="stategate.Event">Event</h3>
-        <p>Event is primitive that represents a single state change</p><p>Events are persisted to history & broadcasted to interested consumers(Stream) any time an application state value is created/modified</p><p>Events are immutable after creation and may be searched.</p><p>Event Consumers may search events to query previous state</p>
+        <p>Event is primitive that represents a single state change to an entity</p><p>Events are persisted to history & broadcasted to interested consumers(Stream) any time an entity is created/modified/deleted</p><p>Events are immutable after creation and may be searched.</p><p>EventService client's may search events to query previous state of an entity(s)</p>
 
         
           <table class="field-table">
@@ -250,28 +469,35 @@
                   <td>id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Identifies the event(uuid). </p></td>
+                  <td><p>identifies the event(uuid v4). </p></td>
                 </tr>
               
                 <tr>
-                  <td>state</td>
-                  <td><a href="#stategate.State">State</a></td>
+                  <td>entity</td>
+                  <td><a href="#stategate.Entity">Entity</a></td>
                   <td></td>
-                  <td><p>state after it has been mutated </p></td>
+                  <td><p>state of an Entity after it has been mutated </p></td>
+                </tr>
+              
+                <tr>
+                  <td>method</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del) </p></td>
                 </tr>
               
                 <tr>
                   <td>claims</td>
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td></td>
-                  <td><p>The authentication claims of the event producer. </p></td>
+                  <td><p>the authentication claims of the event producer. </p></td>
                 </tr>
               
                 <tr>
                   <td>time</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>Timestamp(ns) of when the event was received. </p></td>
+                  <td><p>timestamp(ns) of when the event was received. </p></td>
                 </tr>
               
             </tbody>
@@ -295,18 +521,29 @@
                   <td>
                     <ul>
                     
-                      <li>uuid_ver: 0</li>
+                      <li>uuid_ver: 4</li>
                     
                     </ul>
                   </td>
                 </tr>
               
                 <tr>
-                  <td>state</td>
+                  <td>entity</td>
                   <td>
                     <ul>
                     
                       <li>msg_exists: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>method</td>
+                  <td>
+                    <ul>
+                    
+                      <li>string_not_empty: true</li>
                     
                     </ul>
                   </td>
@@ -365,8 +602,8 @@
 
         
       
-        <h3 id="stategate.SearchEventOpts">SearchEventOpts</h3>
-        <p>SearchEventOpts are options when querying historical events for a given application state value</p>
+        <h3 id="stategate.SearchEntitiesOpts">SearchEntitiesOpts</h3>
+        <p>SearchEntitiesOpts are options when querying the current values of entities.</p><p>If historical values are needed, SearchEvents should be used</p>
 
         
           <table class="field-table">
@@ -379,150 +616,31 @@
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the application state value&#39;s business domain(ex: accounting) </p></td>
+                  <td><p>the entity&#39;s business domain(ex: accounting)
+must not be empty or contain spaces </p></td>
                 </tr>
               
                 <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>State type (ex: user) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>filter events belonging to a particular application state value </p></td>
+                  <td><p>State type (ex: user)
+must not be empty or contain spaces </p></td>
                 </tr>
               
                 <tr>
                   <td>query_string</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>json string to filter records that have application state value&#39;s with values that match k/v pairs ex: { &#34;message&#34;: &#34;hello world&#34; } </p></td>
-                </tr>
-              
-                <tr>
-                  <td>min</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>only return application state value events that occurred after specified min timestamp </p></td>
-                </tr>
-              
-                <tr>
-                  <td>max</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>only return application state value events that occurred before specified max timestamp </p></td>
+                  <td><p>json string to filter records that have values match k/v pairs ex: { &#34;message&#34;: &#34;hello world&#34; }
+please note that dot notation may be used to access nested fields </p></td>
                 </tr>
               
                 <tr>
                   <td>limit</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>limit returned application state value events </p></td>
-                </tr>
-              
-                <tr>
-                  <td>offset</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>offset returned application state value events(pagination) </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Validated Fields</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Field</td>
-                  <td>Validations</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>domain</td>
-                  <td>
-                    <ul>
-                    
-                      <li>regex: ^\S&#43;$</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td>
-                    <ul>
-                    
-                      <li>regex: ^\S&#43;$</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>limit</td>
-                  <td>
-                    <ul>
-                    
-                      <li>int_gt: 0</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
-          
-
-        
-      
-        <h3 id="stategate.SearchStateOpts">SearchStateOpts</h3>
-        <p>SearchStateOpts are options when querying the current values of application state value(s).</p><p>If historical values are needed, SearchEvents should be used</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>domain</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>the application state value&#39;s business domain(ex: accounting) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>State type (ex: user) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>query_string</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>json string to filter records that have values match k/v pairs ex: { &#34;message&#34;: &#34;hello world&#34; } </p></td>
-                </tr>
-              
-                <tr>
-                  <td>limit</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>limit returned state </p></td>
+                  <td><p>limit number of returned values </p></td>
                 </tr>
               
                 <tr>
@@ -588,8 +706,8 @@
 
         
       
-        <h3 id="stategate.State">State</h3>
-        <p>State represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)</p><p>Services/Users should use state related methods to persist & interact with the current state of an application/domain.</p>
+        <h3 id="stategate.SearchEventOpts">SearchEventOpts</h3>
+        <p>SearchEventOpts are options when querying historical events emitted from mutations made from State mutations</p>
 
         
           <table class="field-table">
@@ -602,28 +720,52 @@
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the application state value&#39;s business domain(ex: accounting) </p></td>
+                  <td><p>the entity&#39;s business domain(ex: accounting)
+must not be empty or contain spaces </p></td>
                 </tr>
               
                 <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>State type (ex: user) </p></td>
+                  <td><p>entity&#39;s type (ex: user)
+must not be empty or contain spaces </p></td>
                 </tr>
               
                 <tr>
-                  <td>key</td>
+                  <td>query_string</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>State key (unique within type) </p></td>
+                  <td><p>json string to filter events based with values that match k/v pairs ex: { &#34;entity.values.message&#34;: &#34;hello world&#34; }.
+please note that dot notation may be used to access nested fields </p></td>
                 </tr>
               
                 <tr>
-                  <td>values</td>
-                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td>min</td>
+                  <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>State values (k/v pairs) </p></td>
+                  <td><p>only return events that occurred after specified min timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>only return events that occurred before specified max timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>limit number of returned values </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>offset returned events(pagination) </p></td>
                 </tr>
               
             </tbody>
@@ -665,22 +807,11 @@
                 </tr>
               
                 <tr>
-                  <td>key</td>
+                  <td>limit</td>
                   <td>
                     <ul>
                     
-                      <li>regex: ^\S&#43;$</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>values</td>
-                  <td>
-                    <ul>
-                    
-                      <li>msg_exists: true</li>
+                      <li>int_gt: 0</li>
                     
                     </ul>
                   </td>
@@ -689,123 +820,12 @@
               </tbody>
             </table>
             
-          
-
-        
-      
-        <h3 id="stategate.StateRef">StateRef</h3>
-        <p>StateRef is a reference to an existing application state value</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>domain</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>the application state value&#39;s business domain(ex: accounting) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>State type (ex: user) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>State key (unique within type) </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Validated Fields</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Field</td>
-                  <td>Validations</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>domain</td>
-                  <td>
-                    <ul>
-                    
-                      <li>regex: ^\S&#43;$</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td>
-                    <ul>
-                    
-                      <li>regex: ^\S&#43;$</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-                <tr>
-                  <td>key</td>
-                  <td>
-                    <ul>
-                    
-                      <li>regex: ^\S&#43;$</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
-          
-
-        
-      
-        <h3 id="stategate.StateValues">StateValues</h3>
-        <p>States is an array of State</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>state_values</td>
-                  <td><a href="#stategate.State">State</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
           
 
         
       
         <h3 id="stategate.StreamOpts">StreamOpts</h3>
-        <p>StreamOpts are options for consumers looking to stream events</p>
+        <p>StreamOpts are options for consumers looking to stream events.</p><p>Events are automatically emitted from mutations made from State mutations within the EntityService</p>
 
         
           <table class="field-table">
@@ -818,16 +838,18 @@
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the domain of the application state value (ex: acme) that triggered the event
-* indicates any domain </p></td>
+                  <td><p>the domain of the entity (ex: acme) that triggered the event
+* indicates any domain
+must not be empty or contain spaces </p></td>
                 </tr>
               
                 <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the type of the application state value (ex: user) that triggered the event
-* indicates any type </p></td>
+                  <td><p>the type of the entity (ex: user) that triggered the event
+* indicates any type
+must not be empty or contain spaces </p></td>
                 </tr>
               
             </tbody>
@@ -881,8 +903,107 @@
       
 
       
+        <h3 id="stategate.EntityService">EntityService</h3>
+        <p>EntityService serves API methods to clients that modify/query the current state of an entity</p><p>An Entity is a single object with a type, domain, key, and k/v values</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Set</td>
+                <td><a href="#stategate.Entity">Entity</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Set sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers(EventService.Stream)</p></td>
+              </tr>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#stategate.EntityRef">EntityRef</a></td>
+                <td><a href="#stategate.Entity">Entity</a></td>
+                <td><p>Get gets an entity&#39;s current state</p></td>
+              </tr>
+            
+              <tr>
+                <td>Del</td>
+                <td><a href="#stategate.EntityRef">EntityRef</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Del hard deletes an entity from current state store, adds it&#39;s state prior to deletion to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+an Entity may be recovered via querying the Event store for historical records of the deleted Entity.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Search</td>
+                <td><a href="#stategate.SearchEntitiesOpts">SearchEntitiesOpts</a></td>
+                <td><a href="#stategate.Entities">Entities</a></td>
+                <td><p>Search queries the current state of entities</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+          
+          
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+            
+              
+              
+              <tr>
+                <td>Set</td>
+                <td>POST</td>
+                <td>/api/entity/ref/{domain}/{type}/{key}</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>Get</td>
+                <td>GET</td>
+                <td>/api/entity/ref/{domain}/{type}/{key}</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>Del</td>
+                <td>DELETE</td>
+                <td>/api/entity/ref/{domain}/{type}/{key}</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>Search</td>
+                <td>GET</td>
+                <td>/api/entity/search</td>
+                <td></td>
+              </tr>
+              
+            
+            </tbody>
+          </table>
+          
+        
         <h3 id="stategate.EventService">EventService</h3>
-        <p>EventService serves API methods related to stategate Event Consumers</p>
+        <p>EventService serves API methods related to stategate Event Consumers</p><p>Events are automatically emitted from mutations made from State mutations within the EntityService</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -893,14 +1014,14 @@
                 <td>Stream</td>
                 <td><a href="#stategate.StreamOpts">StreamOpts</a></td>
                 <td><a href="#stategate.Event">Event</a> stream</td>
-                <td><p>Stream creates an event stream/subscription to a given state type/domain. Glob matching is supported.</p></td>
+                <td><p>Stream creates an event stream/subscription to changes to entities. Glob matching is supported.</p></td>
               </tr>
             
               <tr>
                 <td>Search</td>
                 <td><a href="#stategate.SearchEventOpts">SearchEventOpts</a></td>
                 <td><a href="#stategate.Events">Events</a></td>
-                <td><p>Search queries events related to a specific application state value.</p></td>
+                <td><p>Search queries historical events.</p></td>
               </tr>
             
           </tbody>
@@ -937,104 +1058,6 @@
                 <td>Search</td>
                 <td>GET</td>
                 <td>/api/events/search</td>
-                <td></td>
-              </tr>
-              
-            
-            </tbody>
-          </table>
-          
-        
-        <h3 id="stategate.StateService">StateService</h3>
-        <p>StateService serves API methods related to stategate State producers</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>Set</td>
-                <td><a href="#stategate.State">State</a></td>
-                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
-                <td><p>Set sets the current state value of an application state value, adds it to the event log, then broadcast the event to all interested consumers</p></td>
-              </tr>
-            
-              <tr>
-                <td>Get</td>
-                <td><a href="#stategate.StateRef">StateRef</a></td>
-                <td><a href="#stategate.State">State</a></td>
-                <td><p>Get gets an application state value&#39;s current state values</p></td>
-              </tr>
-            
-              <tr>
-                <td>Del</td>
-                <td><a href="#stategate.StateRef">StateRef</a></td>
-                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
-                <td><p>Del hard deletes current state. State may be recovered via the Event store.</p></td>
-              </tr>
-            
-              <tr>
-                <td>Search</td>
-                <td><a href="#stategate.SearchStateOpts">SearchStateOpts</a></td>
-                <td><a href="#stategate.StateValues">StateValues</a></td>
-                <td><p>Search queries state belonging to a particular domain &amp; of a specific type</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-
-        
-          
-          
-          <h4>Methods with HTTP bindings</h4>
-          <table>
-            <thead>
-              <tr>
-                <td>Method Name</td>
-                <td>Method</td>
-                <td>Pattern</td>
-                <td>Body</td>
-              </tr>
-            </thead>
-            <tbody>
-            
-              
-              
-              <tr>
-                <td>Set</td>
-                <td>POST</td>
-                <td>/api/state/ref/{domain}/{type}/{key}</td>
-                <td></td>
-              </tr>
-              
-            
-              
-              
-              <tr>
-                <td>Get</td>
-                <td>GET</td>
-                <td>/api/state/ref/{domain}/{type}/{key}</td>
-                <td></td>
-              </tr>
-              
-            
-              
-              
-              <tr>
-                <td>Del</td>
-                <td>DELETE</td>
-                <td>/api/state/ref/{domain}/{type}/{key}</td>
-                <td></td>
-              </tr>
-              
-            
-              
-              
-              <tr>
-                <td>Search</td>
-                <td>GET</td>
-                <td>/api/state/search</td>
                 <td></td>
               </tr>
               

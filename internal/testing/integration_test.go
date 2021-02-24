@@ -33,7 +33,7 @@ func testRedisMongo(t *testing.T) {
 	framework.Run(t, []*framework.Provider{
 		rmgo,
 	}, []*framework.TestCase{
-		helloWorld(ctx),
+		endToEnd(ctx),
 		transaction(ctx),
 	})
 }
@@ -48,7 +48,7 @@ func testNatsMongo(t *testing.T) {
 	framework.Run(t, []*framework.Provider{
 		nmgo,
 	}, []*framework.TestCase{
-		helloWorld(ctx),
+		endToEnd(ctx),
 		transaction(ctx),
 	})
 }
@@ -61,7 +61,7 @@ func testInMemMongo(t *testing.T) {
 	framework.Run(t, []*framework.Provider{
 		mgo,
 	}, []*framework.TestCase{
-		helloWorld(ctx),
+		endToEnd(ctx),
 		transaction(ctx),
 	})
 }
@@ -86,7 +86,7 @@ func natsMongo(t *testing.T, ctx context.Context, natsPort, mongoPort string) *f
 func redisMongo(t *testing.T, ctx context.Context, redisPort, mongoPort string) *framework.Provider {
 	return framework.NewProvider(t, ctx, token, &server.Config{
 		Port:           0,
-		AuthDisabled:   false,
+		AuthDisabled:   true,
 		RequestPolicy:  allowAll,
 		ResponsePolicy: allowAll,
 		ChannelProvider: map[string]string{
@@ -121,7 +121,7 @@ func inmemMongo(t *testing.T, ctx context.Context, mongoPort string) *framework.
 func transaction(ctx context.Context) *framework.TestCase {
 	return &framework.TestCase{
 		Name: "distributed_transaction",
-		Func: func(t *testing.T, eclient *stategate_client_go.EventClient, oclient *stategate_client_go.StateClient) {
+		Func: func(t *testing.T, eclient *stategate_client_go.EventClient, oclient *stategate_client_go.EntityClient) {
 			group, ctx := errgroup.WithContext(ctx)
 			var (
 				typ = "user"
@@ -141,7 +141,7 @@ func transaction(ctx context.Context) *framework.TestCase {
 			data, _ := structpb.NewStruct(map[string]interface{}{
 				"name": "coleman",
 			})
-			if err := oclient.Set(ctx, &stategate.State{
+			if err := oclient.Set(ctx, &stategate.Entity{
 				Domain: "accounting",
 				Type:   typ,
 				Key:    key,
@@ -149,7 +149,7 @@ func transaction(ctx context.Context) *framework.TestCase {
 			}); err != nil {
 				t.Fatal(err)
 			}
-			_, err := oclient.Get(ctx, &stategate.StateRef{
+			_, err := oclient.Get(ctx, &stategate.EntityRef{
 				Domain: "accounting",
 				Type:   typ,
 				Key:    key,
@@ -164,10 +164,10 @@ func transaction(ctx context.Context) *framework.TestCase {
 	}
 }
 
-func helloWorld(ctx context.Context) *framework.TestCase {
+func endToEnd(ctx context.Context) *framework.TestCase {
 	return &framework.TestCase{
 		Name: "hello_world",
-		Func: func(t *testing.T, eclient *stategate_client_go.EventClient, oclient *stategate_client_go.StateClient) {
+		Func: func(t *testing.T, eclient *stategate_client_go.EventClient, oclient *stategate_client_go.EntityClient) {
 			const typ = "message"
 			const key = "favorite_quote"
 			group := &errgroup.Group{}
@@ -180,7 +180,7 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 					if err := even.Validate(); err != nil {
 						t.Fatal(err)
 					}
-					if err := even.GetState().Validate(); err != nil {
+					if err := even.GetEntity().Validate(); err != nil {
 						t.Fatal(err)
 					}
 					t.Logf("received hello world event: %s\n", protojson.Format(even))
@@ -195,14 +195,14 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				data, _ := structpb.NewStruct(map[string]interface{}{
 					"message": "hello world",
 				})
-				event := &stategate.State{
+				event := &stategate.Entity{
 					Domain: "acme",
 					Type:   typ,
 					Key:    key,
 					Values: data,
 				}
 				for i := 0; i < 3; i++ {
-					t.Log("setting object")
+					t.Log("setting entity")
 					if err := oclient.Set(context.Background(), event); err != nil {
 						return err
 					}
@@ -215,12 +215,13 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				t.Fatal(err)
 			}
 			events, err := eclient.Search(ctx, &stategate.SearchEventOpts{
-				Domain: "acme",
-				Type:   typ,
-				Key:    key,
-				Min:    time.Now().Truncate(1 * time.Minute).UnixNano(),
-				Max:    0,
-				Limit:  3,
+				Domain:      "acme",
+				Type:        typ,
+				QueryString: fmt.Sprintf(`{ "entity.key": "%s", "entity.values.message": "hello world" }`, key),
+				Min:         time.Now().Truncate(1 * time.Minute).UnixNano(),
+				Max:         0,
+				Limit:       3,
+				Offset:      0,
 			})
 			if err != nil {
 				t.Fatal(err)
@@ -229,7 +230,7 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 				t.Fatalf("expected 3 events got: %v", len(events.Events))
 			}
 			t.Log(protojson.Format(events))
-			objectss, err := oclient.Search(ctx, &stategate.SearchStateOpts{
+			objectss, err := oclient.Search(ctx, &stategate.SearchEntitiesOpts{
 				Domain:      "acme",
 				Type:        typ,
 				QueryString: `{ "message": "hello world" }`,
@@ -239,8 +240,8 @@ func helloWorld(ctx context.Context) *framework.TestCase {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if len(objectss.StateValues) != 1 {
-				t.Fatalf("expected 1 object got: %v", len(objectss.StateValues))
+			if len(objectss.Entities) != 1 {
+				t.Fatalf("expected 1 object got: %v", len(objectss.Entities))
 			}
 			t.Log(protojson.Format(objectss))
 		},

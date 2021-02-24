@@ -9,33 +9,36 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * SearchStateOpts are options when querying the current values of application state value(s).
+ * SearchEntitiesOpts are options when querying the current values of entities.
  * If historical values are needed, SearchEvents should be used
  *
- * Generated from protobuf message <code>stategate.SearchStateOpts</code>
+ * Generated from protobuf message <code>stategate.SearchEntitiesOpts</code>
  */
-class SearchStateOpts extends \Google\Protobuf\Internal\Message
+class SearchEntitiesOpts extends \Google\Protobuf\Internal\Message
 {
     /**
-     * the application state value's business domain(ex: accounting)
+     * the entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
     private $domain = '';
     /**
      * State type (ex: user)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
      * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
+     * please note that dot notation may be used to access nested fields
      *
      * Generated from protobuf field <code>string query_string = 3;</code>
      */
     private $query_string = '';
     /**
-     * limit returned state
+     * limit number of returned values
      *
      * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
      */
@@ -54,13 +57,16 @@ class SearchStateOpts extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $domain
-     *           the application state value's business domain(ex: accounting)
+     *           the entity's business domain(ex: accounting)
+     *           must not be empty or contain spaces
      *     @type string $type
      *           State type (ex: user)
+     *           must not be empty or contain spaces
      *     @type string $query_string
      *           json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
+     *           please note that dot notation may be used to access nested fields
      *     @type int|string $limit
-     *           limit returned state
+     *           limit number of returned values
      *     @type int|string $offset
      *           offset returned events(pagination)
      * }
@@ -71,7 +77,8 @@ class SearchStateOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the application state value's business domain(ex: accounting)
+     * the entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
@@ -82,7 +89,8 @@ class SearchStateOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the application state value's business domain(ex: accounting)
+     * the entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -98,6 +106,7 @@ class SearchStateOpts extends \Google\Protobuf\Internal\Message
 
     /**
      * State type (ex: user)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
@@ -109,6 +118,7 @@ class SearchStateOpts extends \Google\Protobuf\Internal\Message
 
     /**
      * State type (ex: user)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
@@ -124,6 +134,7 @@ class SearchStateOpts extends \Google\Protobuf\Internal\Message
 
     /**
      * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
+     * please note that dot notation may be used to access nested fields
      *
      * Generated from protobuf field <code>string query_string = 3;</code>
      * @return string
@@ -135,6 +146,7 @@ class SearchStateOpts extends \Google\Protobuf\Internal\Message
 
     /**
      * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
+     * please note that dot notation may be used to access nested fields
      *
      * Generated from protobuf field <code>string query_string = 3;</code>
      * @param string $var
@@ -149,7 +161,7 @@ class SearchStateOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * limit returned state
+     * limit number of returned values
      *
      * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
      * @return int|string
@@ -160,7 +172,7 @@ class SearchStateOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * limit returned state
+     * limit number of returned values
      *
      * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
      * @param int|string $var

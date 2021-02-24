@@ -86,7 +86,9 @@ func streamAuth(tokenSource oauth2.TokenSource, useIDToken bool) grpc.StreamClie
 	}
 }
 
-// NewEventClient creates a new stategate client
+// NewEventClient creates a new stategate EntityService client
+// EntityService serves API methods to clients that modify/query the current state of an entity
+// An Entity is a single object with a type, domain, key, and k/v values
 func NewEventClient(ctx context.Context, target string, opts ...Opt) (*EventClient, error) {
 	if target == "" {
 		return nil, errors.New("empty target")
@@ -143,8 +145,8 @@ func NewEventClient(ctx context.Context, target string, opts ...Opt) (*EventClie
 	}, nil
 }
 
-// NewStateClient creates a new stategate state client
-func NewStateClient(ctx context.Context, target string, opts ...Opt) (*StateClient, error) {
+// NewEntityClient creates a new stategate state client
+func NewEntityClient(ctx context.Context, target string, opts ...Opt) (*EntityClient, error) {
 	if target == "" {
 		return nil, errors.New("empty target")
 	}
@@ -194,8 +196,8 @@ func NewStateClient(ctx context.Context, target string, opts ...Opt) (*StateClie
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to create stategate client")
 	}
-	return &StateClient{
-		client: stategate.NewStateServiceClient(conn),
+	return &EntityClient{
+		client: stategate.NewEntityServiceClient(conn),
 		conn:   conn,
 	}, nil
 }
@@ -206,9 +208,9 @@ type EventClient struct {
 	conn   *grpc.ClientConn
 }
 
-// StateClient is a stategate StateService gRPC client
-type StateClient struct {
-	client stategate.StateServiceClient
+// EntityClient is a stategate EntityService gRPC client
+type EntityClient struct {
+	client stategate.EntityServiceClient
 	conn   *grpc.ClientConn
 }
 
@@ -233,34 +235,34 @@ func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken b
 	), nil
 }
 
-// Get gets an state's current state values
-func (c *StateClient) Get(ctx context.Context, in *stategate.StateRef) (*stategate.State, error) {
+// Get gets an entity's current state
+func (c *EntityClient) Get(ctx context.Context, in *stategate.EntityRef) (*stategate.Entity, error) {
 	return c.client.Get(ctx, in)
 }
 
-// Search queries states of a specific type
-func (c *StateClient) Search(ctx context.Context, in *stategate.SearchStateOpts) (*stategate.StateValues, error) {
+// Search queries the current state of entities
+func (c *EntityClient) Search(ctx context.Context, in *stategate.SearchEntitiesOpts) (*stategate.Entities, error) {
 	return c.client.Search(ctx, in)
 }
 
-// Set sets the current state value of an state, adds it to the event log, then broadcast the event to all interested consumers
-func (c *StateClient) Set(ctx context.Context, in *stategate.State) error {
+// Set sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers
+func (c *EntityClient) Set(ctx context.Context, in *stategate.Entity) error {
 	_, err := c.client.Set(ctx, in)
 	return err
 }
 
 // Del deletes an application state value(k/v pairs)
-func (c *StateClient) Del(ctx context.Context, in *stategate.StateRef) error {
+func (c *EntityClient) Del(ctx context.Context, in *stategate.EntityRef) error {
 	_, err := c.client.Del(ctx, in)
 	return err
 }
 
 // Close closes the gRPC client connection
-func (c *StateClient) Close() error {
+func (c *EntityClient) Close() error {
 	return c.conn.Close()
 }
 
-// Stream creates an event stream/subscription to a given state type/domain until fn returns false OR the context cancels.
+// Stream creates an event stream/subscription to changes to entities  until fn returns false OR the context cancels.. Glob matching is supported.
 func (c *EventClient) Stream(ctx context.Context, in *stategate.StreamOpts, fn func(even *stategate.Event) bool) error {
 	stream, err := c.client.Stream(ctx, in)
 	if err != nil {
@@ -287,7 +289,7 @@ func (c *EventClient) Stream(ctx context.Context, in *stategate.StreamOpts, fn f
 	}
 }
 
-// SearchEvents returns an array of immutable historical events for a given state.
+// Search queries historical events(changes to entities).
 func (c *EventClient) Search(ctx context.Context, in *stategate.SearchEventOpts) (*stategate.Events, error) {
 	return c.client.Search(ctx, in)
 }

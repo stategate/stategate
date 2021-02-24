@@ -17,11 +17,11 @@ What is Event Sourcing?
                                         
 ## Features
 - [x] [6 simple API Methods](https://github.com/autom8ter/stategate/blob/master/schema.proto#L15) for interacting with application state: 
-    - `/stategate.StateService/Set` sets an application state value(k/v pairs) adds it to the event log, then broadcast the event to all interested consumers(Stream method)
-    - `/stategate.StateService/Get` gets an application state value(k/v pairs)
-    - `/stategate.StateService/Del` deletes an application state value(k/v pairs)
-    - `/stategate.StateService/Search` queries application state of a specific type/domain
-    - `/stategate.EventService/Stream` creates an event stream/subscription to a given state type/domain. Glob matching is supported.
+    - `/stategate.EntityService/Set` sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+    - `/stategate.EntityService/Get` gets an entity's current state
+    - `/stategate.EntityService/Del` hard deletes an entity from current state store, adds it's state prior to deletion to the event log, then broadcast the event to all interested consumers(EventService.Stream) 
+    - `/stategate.EntityService/Search` queries the current state of entities
+    - `/stategate.EventService/Stream` creates an event stream/subscription to changes to entities. Glob matching is supported.
     - `/stategate.EventService/Search` queries historical events
 - [x] Capture all changes to an application's state as a sequence of events.
 - [x] Stateless & horizontally scaleable
@@ -63,34 +63,67 @@ What is Event Sourcing?
     - [ ] PostgreSQL
     - [ ] MySQL
     - [ ] Cassandra
+    
 
 
 ## Goals
 
-- [x] Create a simple API interface for storing state and subscribing to state changes(events) using pluggable channel & storage providers
-- [x] Capture all changes to an application's state as a sequence of events.
+- [x] Create a simple API interface for storing state(entities) and subscribing to state changes(events) using pluggable channel & storage providers
+- [x] Capture all changes to an application's state/entities as a sequence of events.
 - [x] Safe to swap backend providers without changing client-side code
 - [x] Type-safe client's generated in many languages
 - [x] Safe to expose to the public internet due to fine-grained authentication/authorization model.
-- [x] Different combinations of Channel & Storage Providers are interoperable.
-- [x] Capture a persistant, immutable historical record of all state changes using a pluggable storage provider
+- [x] Capture a persistant, immutable historical record of all state changes to entities using a pluggable storage provider
 - [x] Store identity(jwt.claims) & timestamp in event logs to capture who is changing what & when
 - [x] Easy deployment model - fully configureable via environmental variables
 
 ## Concepts
 
 - Storage Provider: A stategate storage provider is a pluggable, 3rd party database storage service. 
-    - Storage providers provide persistance for all current state/events and should be scaled independently of stategate instances.
+    - Storage providers provide persistance for all current entities/events and should be scaled independently of stategate instances.
 
 - Channel Provider: A stategate channel provider is a pluggable, 3rd party message-queue/channel service. 
     - Channel providers provide a way for stategate to broadcast events to itself while scaling horizontally. 
     - Channel providers should be scaled independently of stategate instances.
 
-- State: state represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
-    - Services/Users should use state related methods to persist & interact with the current state of an application/domain.
-- Event: an event represents a state change- events are persisted and then emitted to consumers anytime state is created/updated. 
-    - Events are immutable after creation and may be searched.
-    - Event Consumers may search events to query the previous state(s) of an state
+- Entity: An entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+
+        
+        // Entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+        // EventService clients should use the EntityService to persist & interact with the current state of an entity.
+        message Entity {
+          // the entity's business domain(ex: accounting)
+          // must not be empty or contain spaces
+          string domain =1[(validator.field) = {regex : "^\\S+$"}];
+          // the entity's type (ex: user)
+          // must not be empty or contain spaces
+          string type =2[(validator.field) = {regex : "^\\S+$"}];
+          // the entity's key (unique within type). 
+          // must not be empty or contain spaces
+          string key =3[(validator.field) = {regex : "^\\S+$"}];
+          // the entity's values (k/v pairs)
+          google.protobuf.Struct values = 4[(validator.field) = {msg_exists : true}];
+        }
+
+- Event: 
+    
+
+        // Event is primitive that represents a single state change to an entity
+        // Events are persisted to history & broadcasted to interested consumers(Stream) any time an entity is created/modified/deleted
+        // Events are immutable after creation and may be searched.
+        // EventService client's may search events to query previous state of an entity(s)
+        message Event {
+          // identifies the event(uuid v4).
+          string id = 1[(validator.field) = {uuid_ver : 4}];
+          // state of an Entity after it has been mutated
+          Entity entity = 2[(validator.field) = {msg_exists : true}];
+          // the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
+          string method =5[(validator.field) = {string_not_empty : true}];
+          // the authentication claims of the event producer.
+          google.protobuf.Struct claims =3[(validator.field) = {msg_exists : true}];
+          // timestamp(ns) of when the event was received.
+          int64 time =4[(validator.field) = {int_gt : 0}];
+        }
     
 
 ## Environmental Variables
@@ -126,4 +159,4 @@ STATEGATE_STORAGE_PROVIDER={ "name": "mongo", "database": "testing", "addr": "mo
 
 ```
 
-## Notes
+## FAQ

@@ -32,6 +32,9 @@ func (s *stream) Context() context.Context {
 }
 
 func (s *stream) SendMsg(m interface{}) error {
+	if s.a.disabled {
+		return s.ss.SendMsg(m)
+	}
 	md := metautils.ExtractOutgoing(s.ctx)
 	respMeta := make(map[string]string)
 	for k, arr := range md {
@@ -57,6 +60,9 @@ func (s *stream) SendMsg(m interface{}) error {
 }
 
 func (s *stream) RecvMsg(m interface{}) error {
+	if s.a.disabled {
+		return s.ss.RecvMsg(m)
+	}
 	md := metautils.ExtractIncoming(s.ctx)
 	reqMeta := make(map[string]string)
 	for k, arr := range md {

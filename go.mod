@@ -4,7 +4,7 @@ go 1.15
 
 require (
 	cloud.google.com/go v0.73.0 // indirect
-	github.com/autom8ter/machine v1.4.0
+	github.com/autom8ter/machine/v2 v2.0.4
 	github.com/aws/aws-sdk-go v1.37.6 // indirect
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
 	github.com/frankban/quicktest v1.11.3 // indirect
@@ -19,7 +19,6 @@ require (
 	github.com/hashicorp/golang-lru v0.5.3 // indirect
 	github.com/improbable-eng/grpc-web v0.13.0
 	github.com/joho/godotenv v1.3.0
-	github.com/kelseyhightower/envconfig v1.4.0 // indirect
 	github.com/klauspost/compress v1.11.7 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/lestrrat-go/jwx v1.0.8
@@ -50,4 +49,5 @@ require (
 	google.golang.org/grpc/examples v0.0.0-20201123174403-6d0f0110bf69 // indirect
 	google.golang.org/protobuf v1.25.0
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
 )

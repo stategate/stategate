@@ -11,9 +11,205 @@
     "application/json"
   ],
   "paths": {
+    "/api/entity/ref/{domain}/{type}/{key}": {
+      "get": {
+        "summary": "Get gets an entity's current state",
+        "operationId": "EntityService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/stategateEntity"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the entity's business domain(ex: accounting)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "entity type (ex: user)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "entity key (unique within type)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EntityService"
+        ]
+      },
+      "delete": {
+        "summary": "Del hard deletes an entity from current state store, adds it's state prior to deletion to the event log, then broadcast the event to all interested consumers(EventService.Stream)\nan Entity may be recovered via querying the Event store for historical records of the deleted Entity.",
+        "operationId": "EntityService_Del",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the entity's business domain(ex: accounting)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "entity type (ex: user)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "entity key (unique within type)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EntityService"
+        ]
+      },
+      "post": {
+        "summary": "Set sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers(EventService.Stream)",
+        "operationId": "EntityService_Set",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the entity's business domain(ex: accounting)\nmust not be empty or contain spaces",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "the entity's type (ex: user)\nmust not be empty or contain spaces",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "the entity's key (unique within type).\nmust not be empty or contain spaces",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EntityService"
+        ]
+      }
+    },
+    "/api/entity/search": {
+      "get": {
+        "summary": "Search queries the current state of entities",
+        "operationId": "EntityService_Search",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/stategateEntities"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the entity's business domain(ex: accounting)\nmust not be empty or contain spaces.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "State type (ex: user)\nmust not be empty or contain spaces.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "queryString",
+            "description": "json string to filter records that have values match k/v pairs ex: { \"message\": \"hello world\" }\nplease note that dot notation may be used to access nested fields.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "description": "limit number of returned values.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "description": "offset returned events(pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "EntityService"
+        ]
+      }
+    },
     "/api/events/search": {
       "get": {
-        "summary": "Search queries events related to a specific application state value.",
+        "summary": "Search queries historical events.",
         "operationId": "EventService_Search",
         "responses": {
           "200": {
@@ -32,35 +228,28 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the application state value's business domain(ex: accounting).",
+            "description": "the entity's business domain(ex: accounting)\nmust not be empty or contain spaces.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "State type (ex: user).",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "key",
-            "description": "filter events belonging to a particular application state value.",
+            "description": "entity's type (ex: user)\nmust not be empty or contain spaces.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "queryString",
-            "description": "json string to filter records that have application state value's with values that match k/v pairs ex: { \"message\": \"hello world\" }.",
+            "description": "json string to filter events based with values that match k/v pairs ex: { \"entity.values.message\": \"hello world\" }.\nplease note that dot notation may be used to access nested fields.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "min",
-            "description": "only return application state value events that occurred after specified min timestamp.",
+            "description": "only return events that occurred after specified min timestamp.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -68,7 +257,7 @@
           },
           {
             "name": "max",
-            "description": "only return application state value events that occurred before specified max timestamp.",
+            "description": "only return events that occurred before specified max timestamp.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -76,7 +265,7 @@
           },
           {
             "name": "limit",
-            "description": "limit returned application state value events.",
+            "description": "limit number of returned values.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -84,7 +273,7 @@
           },
           {
             "name": "offset",
-            "description": "offset returned application state value events(pagination).",
+            "description": "offset returned events(pagination).",
             "in": "query",
             "required": false,
             "type": "string",
@@ -98,7 +287,7 @@
     },
     "/api/events/stream": {
       "get": {
-        "summary": "Stream creates an event stream/subscription to a given state type/domain. Glob matching is supported.",
+        "summary": "Stream creates an event stream/subscription to changes to entities. Glob matching is supported.",
         "operationId": "EventService_Stream",
         "responses": {
           "200": {
@@ -126,14 +315,14 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the domain of the application state value (ex: acme) that triggered the event\n* indicates any domain.",
+            "description": "the domain of the entity (ex: acme) that triggered the event\n* indicates any domain\nmust not be empty or contain spaces.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "the type of the application state value (ex: user) that triggered the event\n* indicates any type.",
+            "description": "the type of the entity (ex: user) that triggered the event\n* indicates any type\nmust not be empty or contain spaces.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -141,202 +330,6 @@
         ],
         "tags": [
           "EventService"
-        ]
-      }
-    },
-    "/api/state/ref/{domain}/{type}/{key}": {
-      "get": {
-        "summary": "Get gets an application state value's current state values",
-        "operationId": "StateService_Get",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/stategateState"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "domain",
-            "description": "the application state value's business domain(ex: accounting)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "description": "State type (ex: user)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "key",
-            "description": "State key (unique within type)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "StateService"
-        ]
-      },
-      "delete": {
-        "summary": "Del hard deletes current state. State may be recovered via the Event store.",
-        "operationId": "StateService_Del",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "domain",
-            "description": "the application state value's business domain(ex: accounting)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "description": "State type (ex: user)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "key",
-            "description": "State key (unique within type)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "StateService"
-        ]
-      },
-      "post": {
-        "summary": "Set sets the current state value of an application state value, adds it to the event log, then broadcast the event to all interested consumers",
-        "operationId": "StateService_Set",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "domain",
-            "description": "the application state value's business domain(ex: accounting)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "description": "State type (ex: user)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "key",
-            "description": "State key (unique within type)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "StateService"
-        ]
-      }
-    },
-    "/api/state/search": {
-      "get": {
-        "summary": "Search queries state belonging to a particular domain \u0026 of a specific type",
-        "operationId": "StateService_Search",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/stategateStateValues"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "domain",
-            "description": "the application state value's business domain(ex: accounting).",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "description": "State type (ex: user).",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "queryString",
-            "description": "json string to filter records that have values match k/v pairs ex: { \"message\": \"hello world\" }.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "description": "limit returned state.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "offset",
-            "description": "offset returned events(pagination).",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "StateService"
         ]
       }
     }
@@ -383,28 +376,66 @@
         }
       }
     },
+    "stategateEntities": {
+      "type": "object",
+      "properties": {
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stategateEntity"
+          }
+        }
+      },
+      "title": "Entities is an array of Entity"
+    },
+    "stategateEntity": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "type": "string",
+          "title": "the entity's business domain(ex: accounting)\nmust not be empty or contain spaces"
+        },
+        "type": {
+          "type": "string",
+          "title": "the entity's type (ex: user)\nmust not be empty or contain spaces"
+        },
+        "key": {
+          "type": "string",
+          "title": "the entity's key (unique within type).\nmust not be empty or contain spaces"
+        },
+        "values": {
+          "type": "object",
+          "title": "the entity's values (k/v pairs)"
+        }
+      },
+      "description": "Entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)\nEventService clients should use the EntityService to persist \u0026 interact with the current state of an entity."
+    },
     "stategateEvent": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string",
-          "description": "Identifies the event(uuid)."
+          "description": "identifies the event(uuid v4)."
         },
-        "state": {
-          "$ref": "#/definitions/stategateState",
-          "title": "state after it has been mutated"
+        "entity": {
+          "$ref": "#/definitions/stategateEntity",
+          "title": "state of an Entity after it has been mutated"
+        },
+        "method": {
+          "type": "string",
+          "title": "the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)"
         },
         "claims": {
           "type": "object",
-          "description": "The authentication claims of the event producer."
+          "description": "the authentication claims of the event producer."
         },
         "time": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp(ns) of when the event was received."
+          "description": "timestamp(ns) of when the event was received."
         }
       },
-      "title": "Event is primitive that represents a single state change\nEvents are persisted to history \u0026 broadcasted to interested consumers(Stream) any time an application state value is created/modified\nEvents are immutable after creation and may be searched.\nEvent Consumers may search events to query previous state"
+      "title": "Event is primitive that represents a single state change to an entity\nEvents are persisted to history \u0026 broadcasted to interested consumers(Stream) any time an entity is created/modified/deleted\nEvents are immutable after creation and may be searched.\nEventService client's may search events to query previous state of an entity(s)"
     },
     "stategateEvents": {
       "type": "object",
@@ -417,40 +448,6 @@
         }
       },
       "title": "Events is an array of events"
-    },
-    "stategateState": {
-      "type": "object",
-      "properties": {
-        "domain": {
-          "type": "string",
-          "title": "the application state value's business domain(ex: accounting)"
-        },
-        "type": {
-          "type": "string",
-          "title": "State type (ex: user)"
-        },
-        "key": {
-          "type": "string",
-          "title": "State key (unique within type)"
-        },
-        "values": {
-          "type": "object",
-          "title": "State values (k/v pairs)"
-        }
-      },
-      "description": "State represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)\nServices/Users should use state related methods to persist \u0026 interact with the current state of an application/domain."
-    },
-    "stategateStateValues": {
-      "type": "object",
-      "properties": {
-        "stateValues": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/stategateState"
-          }
-        }
-      },
-      "title": "States is an array of State"
     }
   }
 }

@@ -5,16 +5,16 @@ package stategate
 
 import (
 	fmt "fmt"
+	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/any"
-	_ "github.com/golang/protobuf/ptypes/empty"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/struct"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
+	_ "github.com/golang/protobuf/ptypes/any"
+	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/mwitkow/go-proto-validators"
-	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
-	math "math"
 	regexp "regexp"
+	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -22,35 +22,35 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-var _regex_StateRef_Domain = regexp.MustCompile(`^\S+$`)
-var _regex_StateRef_Type = regexp.MustCompile(`^\S+$`)
-var _regex_StateRef_Key = regexp.MustCompile(`^\S+$`)
+var _regex_EntityRef_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_EntityRef_Type = regexp.MustCompile(`^\S+$`)
+var _regex_EntityRef_Key = regexp.MustCompile(`^\S+$`)
 
-func (this *StateRef) Validate() error {
-	if !_regex_StateRef_Domain.MatchString(this.Domain) {
+func (this *EntityRef) Validate() error {
+	if !_regex_EntityRef_Domain.MatchString(this.Domain) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
 	}
-	if !_regex_StateRef_Type.MatchString(this.Type) {
+	if !_regex_EntityRef_Type.MatchString(this.Type) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
 	}
-	if !_regex_StateRef_Key.MatchString(this.Key) {
+	if !_regex_EntityRef_Key.MatchString(this.Key) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Key))
 	}
 	return nil
 }
 
-var _regex_State_Domain = regexp.MustCompile(`^\S+$`)
-var _regex_State_Type = regexp.MustCompile(`^\S+$`)
-var _regex_State_Key = regexp.MustCompile(`^\S+$`)
+var _regex_Entity_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_Entity_Type = regexp.MustCompile(`^\S+$`)
+var _regex_Entity_Key = regexp.MustCompile(`^\S+$`)
 
-func (this *State) Validate() error {
-	if !_regex_State_Domain.MatchString(this.Domain) {
+func (this *Entity) Validate() error {
+	if !_regex_Entity_Domain.MatchString(this.Domain) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
 	}
-	if !_regex_State_Type.MatchString(this.Type) {
+	if !_regex_Entity_Type.MatchString(this.Type) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
 	}
-	if !_regex_State_Key.MatchString(this.Key) {
+	if !_regex_Entity_Key.MatchString(this.Key) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Key))
 	}
 	if nil == this.Values {
@@ -63,25 +63,25 @@ func (this *State) Validate() error {
 	}
 	return nil
 }
-func (this *StateValues) Validate() error {
-	for _, item := range this.StateValues {
+func (this *Entities) Validate() error {
+	for _, item := range this.Entities {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("StateValues", err)
+				return github_com_mwitkow_go_proto_validators.FieldError("Entities", err)
 			}
 		}
 	}
 	return nil
 }
 
-var _regex_SearchStateOpts_Domain = regexp.MustCompile(`^\S+$`)
-var _regex_SearchStateOpts_Type = regexp.MustCompile(`^\S+$`)
+var _regex_SearchEntitiesOpts_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_SearchEntitiesOpts_Type = regexp.MustCompile(`^\S+$`)
 
-func (this *SearchStateOpts) Validate() error {
-	if !_regex_SearchStateOpts_Domain.MatchString(this.Domain) {
+func (this *SearchEntitiesOpts) Validate() error {
+	if !_regex_SearchEntitiesOpts_Domain.MatchString(this.Domain) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
 	}
-	if !_regex_SearchStateOpts_Type.MatchString(this.Type) {
+	if !_regex_SearchEntitiesOpts_Type.MatchString(this.Type) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
 	}
 	if !(this.Limit > 0) {
@@ -119,19 +119,22 @@ func (this *StreamOpts) Validate() error {
 	return nil
 }
 
-var _regex_Event_Id = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+var _regex_Event_Id = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
 
 func (this *Event) Validate() error {
 	if !_regex_Event_Id.MatchString(this.Id) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.Id))
+		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.Id))
 	}
-	if nil == this.State {
-		return github_com_mwitkow_go_proto_validators.FieldError("State", fmt.Errorf("message must exist"))
+	if nil == this.Entity {
+		return github_com_mwitkow_go_proto_validators.FieldError("Entity", fmt.Errorf("message must exist"))
 	}
-	if this.State != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.State); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("State", err)
+	if this.Entity != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Entity); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Entity", err)
 		}
+	}
+	if this.Method == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Method", fmt.Errorf(`value '%v' must not be an empty string`, this.Method))
 	}
 	if nil == this.Claims {
 		return github_com_mwitkow_go_proto_validators.FieldError("Claims", fmt.Errorf("message must exist"))

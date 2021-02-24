@@ -29,49 +29,49 @@ namespace Stategate {
             "Z2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90bxoZZ29vZ2xlL3Byb3RvYnVm",
             "L2FueS5wcm90bxobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5LnByb3RvGjZnaXRo",
             "dWIuY29tL213aXRrb3cvZ28tcHJvdG8tdmFsaWRhdG9ycy92YWxpZGF0b3Iu",
-            "cHJvdG8iXAoIU3RhdGVSZWYSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMr",
-            "JBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMrJBIYCgNrZXkYAyABKAlCC+Lf",
-            "HwcKBV5cUyskIooBCgVTdGF0ZRIbCgZkb21haW4YASABKAlCC+LfHwcKBV5c",
-            "UyskEhkKBHR5cGUYAiABKAlCC+LfHwcKBV5cUyskEhgKA2tleRgDIAEoCUIL",
-            "4t8fBwoFXlxTKyQSLwoGdmFsdWVzGAQgASgLMhcuZ29vZ2xlLnByb3RvYnVm",
-            "LlN0cnVjdEIG4t8fAiABIjUKC1N0YXRlVmFsdWVzEiYKDHN0YXRlX3ZhbHVl",
-            "cxgBIAMoCzIQLnN0YXRlZ2F0ZS5TdGF0ZSKGAQoPU2VhcmNoU3RhdGVPcHRz",
-            "EhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxTKyQSGQoEdHlwZRgCIAEoCUIL",
-            "4t8fBwoFXlxTKyQSFAoMcXVlcnlfc3RyaW5nGAMgASgJEhUKBWxpbWl0GAQg",
-            "ASgDQgbi3x8CEAASDgoGb2Zmc2V0GAUgASgDIq0BCg9TZWFyY2hFdmVudE9w",
-            "dHMSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAIgASgJ",
-            "Qgvi3x8HCgVeXFMrJBILCgNrZXkYAyABKAkSFAoMcXVlcnlfc3RyaW5nGAQg",
-            "ASgJEgsKA21pbhgFIAEoAxILCgNtYXgYBiABKAMSFQoFbGltaXQYByABKANC",
-            "BuLfHwIQABIOCgZvZmZzZXQYCCABKAMiRAoKU3RyZWFtT3B0cxIbCgZkb21h",
-            "aW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcKBV5c",
-            "UyskIowBCgVFdmVudBITCgJpZBgBIAEoCUIH4t8fA5ABABInCgVzdGF0ZRgC",
-            "IAEoCzIQLnN0YXRlZ2F0ZS5TdGF0ZUIG4t8fAiABEi8KBmNsYWltcxgDIAEo",
-            "CzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIgARIUCgR0aW1lGAQg",
-            "ASgDQgbi3x8CEAAiKgoGRXZlbnRzEiAKBmV2ZW50cxgBIAMoCzIQLnN0YXRl",
-            "Z2F0ZS5FdmVudDKEAwoMU3RhdGVTZXJ2aWNlEl0KA1NldBIQLnN0YXRlZ2F0",
-            "ZS5TdGF0ZRoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIsgtPkkwImIiQvYXBp",
-            "L3N0YXRlL3JlZi97ZG9tYWlufS97dHlwZX0ve2tleX0SWgoDR2V0EhMuc3Rh",
-            "dGVnYXRlLlN0YXRlUmVmGhAuc3RhdGVnYXRlLlN0YXRlIiyC0+STAiYSJC9h",
-            "cGkvc3RhdGUvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJgCgNEZWwSEy5z",
-            "dGF0ZWdhdGUuU3RhdGVSZWYaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiLILT",
-            "5JMCJiokL2FwaS9zdGF0ZS9yZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9ElcK",
-            "BlNlYXJjaBIaLnN0YXRlZ2F0ZS5TZWFyY2hTdGF0ZU9wdHMaFi5zdGF0ZWdh",
-            "dGUuU3RhdGVWYWx1ZXMiGYLT5JMCExIRL2FwaS9zdGF0ZS9zZWFyY2gytAEK",
-            "DEV2ZW50U2VydmljZRJPCgZTdHJlYW0SFS5zdGF0ZWdhdGUuU3RyZWFtT3B0",
-            "cxoQLnN0YXRlZ2F0ZS5FdmVudCIagtPkkwIUEhIvYXBpL2V2ZW50cy9zdHJl",
-            "YW0wARJTCgZTZWFyY2gSGi5zdGF0ZWdhdGUuU2VhcmNoRXZlbnRPcHRzGhEu",
-            "c3RhdGVnYXRlLkV2ZW50cyIagtPkkwIUEhIvYXBpL2V2ZW50cy9zZWFyY2hC",
-            "C1oJc3RhdGVnYXRlYgZwcm90bzM="));
+            "cHJvdG8iXQoJRW50aXR5UmVmEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxT",
+            "KyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJQgvi",
+            "3x8HCgVeXFMrJCKLAQoGRW50aXR5EhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoF",
+            "XlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJ",
+            "Qgvi3x8HCgVeXFMrJBIvCgZ2YWx1ZXMYBCABKAsyFy5nb29nbGUucHJvdG9i",
+            "dWYuU3RydWN0Qgbi3x8CIAEiLwoIRW50aXRpZXMSIwoIZW50aXRpZXMYASAD",
+            "KAsyES5zdGF0ZWdhdGUuRW50aXR5IokBChJTZWFyY2hFbnRpdGllc09wdHMS",
+            "GwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAIgASgJQgvi",
+            "3x8HCgVeXFMrJBIUCgxxdWVyeV9zdHJpbmcYAyABKAkSFQoFbGltaXQYBCAB",
+            "KANCBuLfHwIQABIOCgZvZmZzZXQYBSABKAMioAEKD1NlYXJjaEV2ZW50T3B0",
+            "cxIbCgZkb21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlC",
+            "C+LfHwcKBV5cUyskEhQKDHF1ZXJ5X3N0cmluZxgEIAEoCRILCgNtaW4YBSAB",
+            "KAMSCwoDbWF4GAYgASgDEhUKBWxpbWl0GAcgASgDQgbi3x8CEAASDgoGb2Zm",
+            "c2V0GAggASgDIkQKClN0cmVhbU9wdHMSGwoGZG9tYWluGAEgASgJQgvi3x8H",
+            "CgVeXFMrJBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMrJCKmAQoFRXZlbnQS",
+            "EwoCaWQYASABKAlCB+LfHwOQAQQSKQoGZW50aXR5GAIgASgLMhEuc3RhdGVn",
+            "YXRlLkVudGl0eUIG4t8fAiABEhYKBm1ldGhvZBgFIAEoCUIG4t8fAlgBEi8K",
+            "BmNsYWltcxgDIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIg",
+            "ARIUCgR0aW1lGAQgASgDQgbi3x8CEAAiKgoGRXZlbnRzEiAKBmV2ZW50cxgB",
+            "IAMoCzIQLnN0YXRlZ2F0ZS5FdmVudDKNAwoNRW50aXR5U2VydmljZRJfCgNT",
+            "ZXQSES5zdGF0ZWdhdGUuRW50aXR5GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5",
+            "Ii2C0+STAiciJS9hcGkvZW50aXR5L3JlZi97ZG9tYWlufS97dHlwZX0ve2tl",
+            "eX0SXQoDR2V0EhQuc3RhdGVnYXRlLkVudGl0eVJlZhoRLnN0YXRlZ2F0ZS5F",
+            "bnRpdHkiLYLT5JMCJxIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBl",
+            "fS97a2V5fRJiCgNEZWwSFC5zdGF0ZWdhdGUuRW50aXR5UmVmGhYuZ29vZ2xl",
+            "LnByb3RvYnVmLkVtcHR5Ii2C0+STAicqJS9hcGkvZW50aXR5L3JlZi97ZG9t",
+            "YWlufS97dHlwZX0ve2tleX0SWAoGU2VhcmNoEh0uc3RhdGVnYXRlLlNlYXJj",
+            "aEVudGl0aWVzT3B0cxoTLnN0YXRlZ2F0ZS5FbnRpdGllcyIagtPkkwIUEhIv",
+            "YXBpL2VudGl0eS9zZWFyY2gytAEKDEV2ZW50U2VydmljZRJPCgZTdHJlYW0S",
+            "FS5zdGF0ZWdhdGUuU3RyZWFtT3B0cxoQLnN0YXRlZ2F0ZS5FdmVudCIagtPk",
+            "kwIUEhIvYXBpL2V2ZW50cy9zdHJlYW0wARJTCgZTZWFyY2gSGi5zdGF0ZWdh",
+            "dGUuU2VhcmNoRXZlbnRPcHRzGhEuc3RhdGVnYXRlLkV2ZW50cyIagtPkkwIU",
+            "EhIvYXBpL2V2ZW50cy9zZWFyY2hCC1oJc3RhdGVnYXRlYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StateRef), global::Stategate.StateRef.Parser, new[]{ "Domain", "Type", "Key" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.State), global::Stategate.State.Parser, new[]{ "Domain", "Type", "Key", "Values" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StateValues), global::Stategate.StateValues.Parser, new[]{ "StateValues_" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchStateOpts), global::Stategate.SearchStateOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Limit", "Offset" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEventOpts), global::Stategate.SearchEventOpts.Parser, new[]{ "Domain", "Type", "Key", "QueryString", "Min", "Max", "Limit", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.EntityRef), global::Stategate.EntityRef.Parser, new[]{ "Domain", "Type", "Key" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entity), global::Stategate.Entity.Parser, new[]{ "Domain", "Type", "Key", "Values" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entities), global::Stategate.Entities.Parser, new[]{ "Entities_" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEntitiesOpts), global::Stategate.SearchEntitiesOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Limit", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEventOpts), global::Stategate.SearchEventOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Min", "Max", "Limit", "Offset" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamOpts), global::Stategate.StreamOpts.Parser, new[]{ "Domain", "Type" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Event), global::Stategate.Event.Parser, new[]{ "Id", "State", "Claims", "Time" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Event), global::Stategate.Event.Parser, new[]{ "Id", "Entity", "Method", "Claims", "Time" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Events), global::Stategate.Events.Parser, new[]{ "Events_" }, null, null, null)
           }));
     }
@@ -80,13 +80,13 @@ namespace Stategate {
   }
   #region Messages
   /// <summary>
-  /// StateRef is a reference to an existing application state value
+  /// EntityRef is a reference to an existing entity
   /// </summary>
-  public sealed partial class StateRef : pb::IMessage<StateRef> {
-    private static readonly pb::MessageParser<StateRef> _parser = new pb::MessageParser<StateRef>(() => new StateRef());
+  public sealed partial class EntityRef : pb::IMessage<EntityRef> {
+    private static readonly pb::MessageParser<EntityRef> _parser = new pb::MessageParser<EntityRef>(() => new EntityRef());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<StateRef> Parser { get { return _parser; } }
+    public static pb::MessageParser<EntityRef> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -99,14 +99,14 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StateRef() {
+    public EntityRef() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StateRef(StateRef other) : this() {
+    public EntityRef(EntityRef other) : this() {
       domain_ = other.domain_;
       type_ = other.type_;
       key_ = other.key_;
@@ -114,15 +114,15 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StateRef Clone() {
-      return new StateRef(this);
+    public EntityRef Clone() {
+      return new EntityRef(this);
     }
 
     /// <summary>Field number for the "domain" field.</summary>
     public const int DomainFieldNumber = 1;
     private string domain_ = "";
     /// <summary>
-    /// the application state value's business domain(ex: accounting)
+    /// the entity's business domain(ex: accounting)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -136,7 +136,7 @@ namespace Stategate {
     public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
-    /// State type (ex: user)
+    /// entity type (ex: user)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
@@ -150,7 +150,7 @@ namespace Stategate {
     public const int KeyFieldNumber = 3;
     private string key_ = "";
     /// <summary>
-    /// State key (unique within type)
+    /// entity key (unique within type)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Key {
@@ -162,11 +162,11 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as StateRef);
+      return Equals(other as EntityRef);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(StateRef other) {
+    public bool Equals(EntityRef other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -234,7 +234,7 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(StateRef other) {
+    public void MergeFrom(EntityRef other) {
       if (other == null) {
         return;
       }
@@ -277,14 +277,14 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// State represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
-  /// Services/Users should use state related methods to persist &amp; interact with the current state of an application/domain.
+  /// Entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+  /// EventService clients should use the EntityService to persist &amp; interact with the current state of an entity.
   /// </summary>
-  public sealed partial class State : pb::IMessage<State> {
-    private static readonly pb::MessageParser<State> _parser = new pb::MessageParser<State>(() => new State());
+  public sealed partial class Entity : pb::IMessage<Entity> {
+    private static readonly pb::MessageParser<Entity> _parser = new pb::MessageParser<Entity>(() => new Entity());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<State> Parser { get { return _parser; } }
+    public static pb::MessageParser<Entity> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -297,14 +297,14 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public State() {
+    public Entity() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public State(State other) : this() {
+    public Entity(Entity other) : this() {
       domain_ = other.domain_;
       type_ = other.type_;
       key_ = other.key_;
@@ -313,15 +313,16 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public State Clone() {
-      return new State(this);
+    public Entity Clone() {
+      return new Entity(this);
     }
 
     /// <summary>Field number for the "domain" field.</summary>
     public const int DomainFieldNumber = 1;
     private string domain_ = "";
     /// <summary>
-    /// the application state value's business domain(ex: accounting)
+    /// the entity's business domain(ex: accounting)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -335,7 +336,8 @@ namespace Stategate {
     public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
-    /// State type (ex: user)
+    /// the entity's type (ex: user)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
@@ -349,7 +351,8 @@ namespace Stategate {
     public const int KeyFieldNumber = 3;
     private string key_ = "";
     /// <summary>
-    /// State key (unique within type)
+    /// the entity's key (unique within type).
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Key {
@@ -363,7 +366,7 @@ namespace Stategate {
     public const int ValuesFieldNumber = 4;
     private global::Google.Protobuf.WellKnownTypes.Struct values_;
     /// <summary>
-    /// State values (k/v pairs)
+    /// the entity's values (k/v pairs)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Google.Protobuf.WellKnownTypes.Struct Values {
@@ -375,11 +378,11 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as State);
+      return Equals(other as Entity);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(State other) {
+    public bool Equals(Entity other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -456,7 +459,7 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(State other) {
+    public void MergeFrom(Entity other) {
       if (other == null) {
         return;
       }
@@ -512,13 +515,13 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// States is an array of State
+  /// Entities is an array of Entity
   /// </summary>
-  public sealed partial class StateValues : pb::IMessage<StateValues> {
-    private static readonly pb::MessageParser<StateValues> _parser = new pb::MessageParser<StateValues>(() => new StateValues());
+  public sealed partial class Entities : pb::IMessage<Entities> {
+    private static readonly pb::MessageParser<Entities> _parser = new pb::MessageParser<Entities>(() => new Entities());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<StateValues> Parser { get { return _parser; } }
+    public static pb::MessageParser<Entities> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -531,54 +534,54 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StateValues() {
+    public Entities() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StateValues(StateValues other) : this() {
-      stateValues_ = other.stateValues_.Clone();
+    public Entities(Entities other) : this() {
+      entities_ = other.entities_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StateValues Clone() {
-      return new StateValues(this);
+    public Entities Clone() {
+      return new Entities(this);
     }
 
-    /// <summary>Field number for the "state_values" field.</summary>
-    public const int StateValues_FieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Stategate.State> _repeated_stateValues_codec
-        = pb::FieldCodec.ForMessage(10, global::Stategate.State.Parser);
-    private readonly pbc::RepeatedField<global::Stategate.State> stateValues_ = new pbc::RepeatedField<global::Stategate.State>();
+    /// <summary>Field number for the "entities" field.</summary>
+    public const int Entities_FieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Stategate.Entity> _repeated_entities_codec
+        = pb::FieldCodec.ForMessage(10, global::Stategate.Entity.Parser);
+    private readonly pbc::RepeatedField<global::Stategate.Entity> entities_ = new pbc::RepeatedField<global::Stategate.Entity>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Stategate.State> StateValues_ {
-      get { return stateValues_; }
+    public pbc::RepeatedField<global::Stategate.Entity> Entities_ {
+      get { return entities_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as StateValues);
+      return Equals(other as Entities);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(StateValues other) {
+    public bool Equals(Entities other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!stateValues_.Equals(other.stateValues_)) return false;
+      if(!entities_.Equals(other.entities_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= stateValues_.GetHashCode();
+      hash ^= entities_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -592,7 +595,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      stateValues_.WriteTo(output, _repeated_stateValues_codec);
+      entities_.WriteTo(output, _repeated_entities_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -601,7 +604,7 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      size += stateValues_.CalculateSize(_repeated_stateValues_codec);
+      size += entities_.CalculateSize(_repeated_entities_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -609,11 +612,11 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(StateValues other) {
+    public void MergeFrom(Entities other) {
       if (other == null) {
         return;
       }
-      stateValues_.Add(other.stateValues_);
+      entities_.Add(other.entities_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -626,7 +629,7 @@ namespace Stategate {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            stateValues_.AddEntriesFrom(input, _repeated_stateValues_codec);
+            entities_.AddEntriesFrom(input, _repeated_entities_codec);
             break;
           }
         }
@@ -636,14 +639,14 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// SearchStateOpts are options when querying the current values of application state value(s).
+  /// SearchEntitiesOpts are options when querying the current values of entities.
   /// If historical values are needed, SearchEvents should be used
   /// </summary>
-  public sealed partial class SearchStateOpts : pb::IMessage<SearchStateOpts> {
-    private static readonly pb::MessageParser<SearchStateOpts> _parser = new pb::MessageParser<SearchStateOpts>(() => new SearchStateOpts());
+  public sealed partial class SearchEntitiesOpts : pb::IMessage<SearchEntitiesOpts> {
+    private static readonly pb::MessageParser<SearchEntitiesOpts> _parser = new pb::MessageParser<SearchEntitiesOpts>(() => new SearchEntitiesOpts());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<SearchStateOpts> Parser { get { return _parser; } }
+    public static pb::MessageParser<SearchEntitiesOpts> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -656,14 +659,14 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SearchStateOpts() {
+    public SearchEntitiesOpts() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SearchStateOpts(SearchStateOpts other) : this() {
+    public SearchEntitiesOpts(SearchEntitiesOpts other) : this() {
       domain_ = other.domain_;
       type_ = other.type_;
       queryString_ = other.queryString_;
@@ -673,15 +676,16 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SearchStateOpts Clone() {
-      return new SearchStateOpts(this);
+    public SearchEntitiesOpts Clone() {
+      return new SearchEntitiesOpts(this);
     }
 
     /// <summary>Field number for the "domain" field.</summary>
     public const int DomainFieldNumber = 1;
     private string domain_ = "";
     /// <summary>
-    /// the application state value's business domain(ex: accounting)
+    /// the entity's business domain(ex: accounting)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -696,6 +700,7 @@ namespace Stategate {
     private string type_ = "";
     /// <summary>
     /// State type (ex: user)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
@@ -710,6 +715,7 @@ namespace Stategate {
     private string queryString_ = "";
     /// <summary>
     /// json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
+    /// please note that dot notation may be used to access nested fields
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string QueryString {
@@ -723,7 +729,7 @@ namespace Stategate {
     public const int LimitFieldNumber = 4;
     private long limit_;
     /// <summary>
-    /// limit returned state
+    /// limit number of returned values
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Limit {
@@ -749,11 +755,11 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as SearchStateOpts);
+      return Equals(other as SearchEntitiesOpts);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(SearchStateOpts other) {
+    public bool Equals(SearchEntitiesOpts other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -839,7 +845,7 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(SearchStateOpts other) {
+    public void MergeFrom(SearchEntitiesOpts other) {
       if (other == null) {
         return;
       }
@@ -896,7 +902,7 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// SearchEventOpts are options when querying historical events for a given application state value
+  /// SearchEventOpts are options when querying historical events emitted from mutations made from State mutations
   /// </summary>
   public sealed partial class SearchEventOpts : pb::IMessage<SearchEventOpts> {
     private static readonly pb::MessageParser<SearchEventOpts> _parser = new pb::MessageParser<SearchEventOpts>(() => new SearchEventOpts());
@@ -925,7 +931,6 @@ namespace Stategate {
     public SearchEventOpts(SearchEventOpts other) : this() {
       domain_ = other.domain_;
       type_ = other.type_;
-      key_ = other.key_;
       queryString_ = other.queryString_;
       min_ = other.min_;
       max_ = other.max_;
@@ -943,7 +948,8 @@ namespace Stategate {
     public const int DomainFieldNumber = 1;
     private string domain_ = "";
     /// <summary>
-    /// the application state value's business domain(ex: accounting)
+    /// the entity's business domain(ex: accounting)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -957,7 +963,8 @@ namespace Stategate {
     public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
-    /// State type (ex: user)
+    /// entity's type (ex: user)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
@@ -967,25 +974,12 @@ namespace Stategate {
       }
     }
 
-    /// <summary>Field number for the "key" field.</summary>
-    public const int KeyFieldNumber = 3;
-    private string key_ = "";
-    /// <summary>
-    /// filter events belonging to a particular application state value
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Key {
-      get { return key_; }
-      set {
-        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
     /// <summary>Field number for the "query_string" field.</summary>
     public const int QueryStringFieldNumber = 4;
     private string queryString_ = "";
     /// <summary>
-    /// json string to filter records that have application state value's with values that match k/v pairs ex: { "message": "hello world" }
+    /// json string to filter events based with values that match k/v pairs ex: { "entity.values.message": "hello world" }.
+    /// please note that dot notation may be used to access nested fields
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string QueryString {
@@ -999,7 +993,7 @@ namespace Stategate {
     public const int MinFieldNumber = 5;
     private long min_;
     /// <summary>
-    /// only return application state value events that occurred after specified min timestamp
+    /// only return events that occurred after specified min timestamp
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Min {
@@ -1013,7 +1007,7 @@ namespace Stategate {
     public const int MaxFieldNumber = 6;
     private long max_;
     /// <summary>
-    /// only return application state value events that occurred before specified max timestamp
+    /// only return events that occurred before specified max timestamp
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Max {
@@ -1027,7 +1021,7 @@ namespace Stategate {
     public const int LimitFieldNumber = 7;
     private long limit_;
     /// <summary>
-    /// limit returned application state value events
+    /// limit number of returned values
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Limit {
@@ -1041,7 +1035,7 @@ namespace Stategate {
     public const int OffsetFieldNumber = 8;
     private long offset_;
     /// <summary>
-    /// offset returned application state value events(pagination)
+    /// offset returned events(pagination)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Offset {
@@ -1066,7 +1060,6 @@ namespace Stategate {
       }
       if (Domain != other.Domain) return false;
       if (Type != other.Type) return false;
-      if (Key != other.Key) return false;
       if (QueryString != other.QueryString) return false;
       if (Min != other.Min) return false;
       if (Max != other.Max) return false;
@@ -1080,7 +1073,6 @@ namespace Stategate {
       int hash = 1;
       if (Domain.Length != 0) hash ^= Domain.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
-      if (Key.Length != 0) hash ^= Key.GetHashCode();
       if (QueryString.Length != 0) hash ^= QueryString.GetHashCode();
       if (Min != 0L) hash ^= Min.GetHashCode();
       if (Max != 0L) hash ^= Max.GetHashCode();
@@ -1106,10 +1098,6 @@ namespace Stategate {
       if (Type.Length != 0) {
         output.WriteRawTag(18);
         output.WriteString(Type);
-      }
-      if (Key.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(Key);
       }
       if (QueryString.Length != 0) {
         output.WriteRawTag(34);
@@ -1145,9 +1133,6 @@ namespace Stategate {
       if (Type.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
       }
-      if (Key.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
-      }
       if (QueryString.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(QueryString);
       }
@@ -1179,9 +1164,6 @@ namespace Stategate {
       }
       if (other.Type.Length != 0) {
         Type = other.Type;
-      }
-      if (other.Key.Length != 0) {
-        Key = other.Key;
       }
       if (other.QueryString.Length != 0) {
         QueryString = other.QueryString;
@@ -1217,10 +1199,6 @@ namespace Stategate {
             Type = input.ReadString();
             break;
           }
-          case 26: {
-            Key = input.ReadString();
-            break;
-          }
           case 34: {
             QueryString = input.ReadString();
             break;
@@ -1248,7 +1226,8 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// StreamOpts are options for consumers looking to stream events
+  /// StreamOpts are options for consumers looking to stream events.
+  /// Events are automatically emitted from mutations made from State mutations within the EntityService
   /// </summary>
   public sealed partial class StreamOpts : pb::IMessage<StreamOpts> {
     private static readonly pb::MessageParser<StreamOpts> _parser = new pb::MessageParser<StreamOpts>(() => new StreamOpts());
@@ -1289,8 +1268,9 @@ namespace Stategate {
     public const int DomainFieldNumber = 1;
     private string domain_ = "";
     /// <summary>
-    /// the domain of the application state value (ex: acme) that triggered the event
+    /// the domain of the entity (ex: acme) that triggered the event
     /// * indicates any domain
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -1304,8 +1284,9 @@ namespace Stategate {
     public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
-    /// the type of the application state value (ex: user) that triggered the event
+    /// the type of the entity (ex: user) that triggered the event
     /// * indicates any type
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
@@ -1416,10 +1397,10 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// Event is primitive that represents a single state change
-  /// Events are persisted to history &amp; broadcasted to interested consumers(Stream) any time an application state value is created/modified
+  /// Event is primitive that represents a single state change to an entity
+  /// Events are persisted to history &amp; broadcasted to interested consumers(Stream) any time an entity is created/modified/deleted
   /// Events are immutable after creation and may be searched.
-  /// Event Consumers may search events to query previous state
+  /// EventService client's may search events to query previous state of an entity(s)
   /// </summary>
   public sealed partial class Event : pb::IMessage<Event> {
     private static readonly pb::MessageParser<Event> _parser = new pb::MessageParser<Event>(() => new Event());
@@ -1447,7 +1428,8 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Event(Event other) : this() {
       id_ = other.id_;
-      state_ = other.state_ != null ? other.state_.Clone() : null;
+      entity_ = other.entity_ != null ? other.entity_.Clone() : null;
+      method_ = other.method_;
       claims_ = other.claims_ != null ? other.claims_.Clone() : null;
       time_ = other.time_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -1462,7 +1444,7 @@ namespace Stategate {
     public const int IdFieldNumber = 1;
     private string id_ = "";
     /// <summary>
-    /// Identifies the event(uuid).
+    /// identifies the event(uuid v4).
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Id {
@@ -1472,17 +1454,31 @@ namespace Stategate {
       }
     }
 
-    /// <summary>Field number for the "state" field.</summary>
-    public const int StateFieldNumber = 2;
-    private global::Stategate.State state_;
+    /// <summary>Field number for the "entity" field.</summary>
+    public const int EntityFieldNumber = 2;
+    private global::Stategate.Entity entity_;
     /// <summary>
-    /// state after it has been mutated
+    /// state of an Entity after it has been mutated
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Stategate.State State {
-      get { return state_; }
+    public global::Stategate.Entity Entity {
+      get { return entity_; }
       set {
-        state_ = value;
+        entity_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "method" field.</summary>
+    public const int MethodFieldNumber = 5;
+    private string method_ = "";
+    /// <summary>
+    /// the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Method {
+      get { return method_; }
+      set {
+        method_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -1490,7 +1486,7 @@ namespace Stategate {
     public const int ClaimsFieldNumber = 3;
     private global::Google.Protobuf.WellKnownTypes.Struct claims_;
     /// <summary>
-    /// The authentication claims of the event producer.
+    /// the authentication claims of the event producer.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Google.Protobuf.WellKnownTypes.Struct Claims {
@@ -1504,7 +1500,7 @@ namespace Stategate {
     public const int TimeFieldNumber = 4;
     private long time_;
     /// <summary>
-    /// Timestamp(ns) of when the event was received.
+    /// timestamp(ns) of when the event was received.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Time {
@@ -1528,7 +1524,8 @@ namespace Stategate {
         return true;
       }
       if (Id != other.Id) return false;
-      if (!object.Equals(State, other.State)) return false;
+      if (!object.Equals(Entity, other.Entity)) return false;
+      if (Method != other.Method) return false;
       if (!object.Equals(Claims, other.Claims)) return false;
       if (Time != other.Time) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -1538,7 +1535,8 @@ namespace Stategate {
     public override int GetHashCode() {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
-      if (state_ != null) hash ^= State.GetHashCode();
+      if (entity_ != null) hash ^= Entity.GetHashCode();
+      if (Method.Length != 0) hash ^= Method.GetHashCode();
       if (claims_ != null) hash ^= Claims.GetHashCode();
       if (Time != 0L) hash ^= Time.GetHashCode();
       if (_unknownFields != null) {
@@ -1558,9 +1556,9 @@ namespace Stategate {
         output.WriteRawTag(10);
         output.WriteString(Id);
       }
-      if (state_ != null) {
+      if (entity_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(State);
+        output.WriteMessage(Entity);
       }
       if (claims_ != null) {
         output.WriteRawTag(26);
@@ -1569,6 +1567,10 @@ namespace Stategate {
       if (Time != 0L) {
         output.WriteRawTag(32);
         output.WriteInt64(Time);
+      }
+      if (Method.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Method);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1581,8 +1583,11 @@ namespace Stategate {
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
-      if (state_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(State);
+      if (entity_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Entity);
+      }
+      if (Method.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Method);
       }
       if (claims_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Claims);
@@ -1604,11 +1609,14 @@ namespace Stategate {
       if (other.Id.Length != 0) {
         Id = other.Id;
       }
-      if (other.state_ != null) {
-        if (state_ == null) {
-          state_ = new global::Stategate.State();
+      if (other.entity_ != null) {
+        if (entity_ == null) {
+          entity_ = new global::Stategate.Entity();
         }
-        State.MergeFrom(other.State);
+        Entity.MergeFrom(other.Entity);
+      }
+      if (other.Method.Length != 0) {
+        Method = other.Method;
       }
       if (other.claims_ != null) {
         if (claims_ == null) {
@@ -1635,10 +1643,10 @@ namespace Stategate {
             break;
           }
           case 18: {
-            if (state_ == null) {
-              state_ = new global::Stategate.State();
+            if (entity_ == null) {
+              entity_ = new global::Stategate.Entity();
             }
-            input.ReadMessage(state_);
+            input.ReadMessage(entity_);
             break;
           }
           case 26: {
@@ -1650,6 +1658,10 @@ namespace Stategate {
           }
           case 32: {
             Time = input.ReadInt64();
+            break;
+          }
+          case 42: {
+            Method = input.ReadString();
             break;
           }
         }

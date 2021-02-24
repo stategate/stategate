@@ -37,7 +37,7 @@ func Run(t *testing.T, providers []*Provider, testCases []*TestCase) {
 
 type TestCase struct {
 	Name string
-	Func func(t *testing.T, eclient *stategate_client_go.EventClient, oclient *stategate_client_go.StateClient)
+	Func func(t *testing.T, eclient *stategate_client_go.EventClient, oclient *stategate_client_go.EntityClient)
 }
 
 type Provider struct {
@@ -47,7 +47,7 @@ type Provider struct {
 	group   *errgroup.Group
 	lgger   *logger.Logger
 	eclient *stategate_client_go.EventClient
-	oclient *stategate_client_go.StateClient
+	oclient *stategate_client_go.EntityClient
 }
 
 type Container struct {
@@ -103,7 +103,7 @@ func NewProvider(t *testing.T, ctx context.Context, jwt string, config *server.C
 	if err != nil {
 		t.Fatal(err.Error())
 	}
-	oclient, err := stategate_client_go.NewStateClient(
+	oclient, err := stategate_client_go.NewEntityClient(
 		ctx,
 		fmt.Sprintf("localhost:%v", f.config.Port),
 		stategate_client_go.WithTokenSource(oauth2.StaticTokenSource(&oauth2.Token{

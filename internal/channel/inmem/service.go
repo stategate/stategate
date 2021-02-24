@@ -2,7 +2,7 @@ package inmem
 
 import (
 	"context"
-	"github.com/autom8ter/machine/pubsub"
+	"github.com/autom8ter/machine/v2"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
 	"github.com/autom8ter/stategate/internal/constants"
 	"github.com/autom8ter/stategate/internal/errorz"
@@ -11,29 +11,21 @@ import (
 
 type Service struct {
 	logger *logger.Logger
-	ps     pubsub.PubSub
+	ps     machine.Machine
 }
 
 func NewService(logger *logger.Logger) *Service {
 	return &Service{
 		logger: logger,
-		ps:     pubsub.NewPubSub(),
+		ps:     machine.New(),
 	}
 }
 
 func (s *Service) Publish(ctx context.Context, event *stategate.Event) *errorz.Error {
-	if err := s.ps.Publish(constants.BackendChannel, event); err != nil {
-		return &errorz.Error{
-			Type: errorz.ErrUnknown,
-			Info: "failed to publish event",
-			Err:  err,
-			Metadata: map[string]string{
-				"state_key":  event.GetState().GetKey(),
-				"state_type": event.GetState().GetType(),
-				"event_id":   event.GetId(),
-			},
-		}
-	}
+	s.ps.Publish(ctx, machine.Msg{
+		Channel: constants.BackendChannel,
+		Body:    event,
+	})
 	return nil
 }
 
@@ -42,9 +34,9 @@ func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error)
 	go func() {
 		ctx, cancel := context.WithCancel(ctx)
 		defer cancel()
-		s.ps.Subscribe(ctx, constants.BackendChannel, func(msg interface{}) bool {
-			events <- msg.(*stategate.Event)
-			return true
+		s.ps.Subscribe(ctx, constants.BackendChannel, func(ctx context.Context, msg machine.Message) (bool, error) {
+			events <- msg.GetBody().(*stategate.Event)
+			return true, nil
 		})
 	}()
 	return events, nil

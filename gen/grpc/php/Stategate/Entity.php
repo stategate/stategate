@@ -9,30 +9,40 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * StateRef is a reference to an existing application state value
+ * Entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+ * EventService clients should use the EntityService to persist & interact with the current state of an entity.
  *
- * Generated from protobuf message <code>stategate.StateRef</code>
+ * Generated from protobuf message <code>stategate.Entity</code>
  */
-class StateRef extends \Google\Protobuf\Internal\Message
+class Entity extends \Google\Protobuf\Internal\Message
 {
     /**
-     * the application state value's business domain(ex: accounting)
+     * the entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
     private $domain = '';
     /**
-     * State type (ex: user)
+     * the entity's type (ex: user)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
-     * State key (unique within type)
+     * the entity's key (unique within type).
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      */
     private $key = '';
+    /**
+     * the entity's values (k/v pairs)
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct values = 4 [(.validator.field) = {</code>
+     */
+    private $values = null;
 
     /**
      * Constructor.
@@ -41,11 +51,16 @@ class StateRef extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $domain
-     *           the application state value's business domain(ex: accounting)
+     *           the entity's business domain(ex: accounting)
+     *           must not be empty or contain spaces
      *     @type string $type
-     *           State type (ex: user)
+     *           the entity's type (ex: user)
+     *           must not be empty or contain spaces
      *     @type string $key
-     *           State key (unique within type)
+     *           the entity's key (unique within type).
+     *           must not be empty or contain spaces
+     *     @type \Google\Protobuf\Struct $values
+     *           the entity's values (k/v pairs)
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +69,8 @@ class StateRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the application state value's business domain(ex: accounting)
+     * the entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
@@ -65,7 +81,8 @@ class StateRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the application state value's business domain(ex: accounting)
+     * the entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -80,7 +97,8 @@ class StateRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * State type (ex: user)
+     * the entity's type (ex: user)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
@@ -91,7 +109,8 @@ class StateRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * State type (ex: user)
+     * the entity's type (ex: user)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
@@ -106,7 +125,8 @@ class StateRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * State key (unique within type)
+     * the entity's key (unique within type).
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @return string
@@ -117,7 +137,8 @@ class StateRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * State key (unique within type)
+     * the entity's key (unique within type).
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @param string $var
@@ -127,6 +148,32 @@ class StateRef extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->key = $var;
+
+        return $this;
+    }
+
+    /**
+     * the entity's values (k/v pairs)
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct values = 4 [(.validator.field) = {</code>
+     * @return \Google\Protobuf\Struct
+     */
+    public function getValues()
+    {
+        return $this->values;
+    }
+
+    /**
+     * the entity's values (k/v pairs)
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct values = 4 [(.validator.field) = {</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setValues($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->values = $var;
 
         return $this;
     }

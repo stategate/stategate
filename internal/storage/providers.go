@@ -15,11 +15,11 @@ import (
 )
 
 type Provider interface {
-	SetState(ctx context.Context, object *stategate.State) *errorz.Error
+	SetEntity(ctx context.Context, object *stategate.Entity) *errorz.Error
 	SaveEvent(ctx context.Context, event *stategate.Event) *errorz.Error
-	GetState(ctx context.Context, ref *stategate.StateRef) (*stategate.State, *errorz.Error)
-	DelState(ctx context.Context, ref *stategate.StateRef) *errorz.Error
-	SearchState(ctx context.Context, ref *stategate.SearchStateOpts) (*stategate.StateValues, *errorz.Error)
+	GetEntity(ctx context.Context, ref *stategate.EntityRef) (*stategate.Entity, *errorz.Error)
+	DelEntity(ctx context.Context, ref *stategate.EntityRef) *errorz.Error
+	SearchEntities(ctx context.Context, ref *stategate.SearchEntitiesOpts) (*stategate.Entities, *errorz.Error)
 	SearchEvents(ctx context.Context, ref *stategate.SearchEventOpts) (*stategate.Events, *errorz.Error)
 	Close() error
 }

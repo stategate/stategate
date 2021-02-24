@@ -33,6 +33,7 @@ const (
 )
 
 type Auth struct {
+	disabled       bool
 	jwksUri        string
 	jwksSet        *jwk.Set
 	mu             sync.RWMutex
@@ -41,11 +42,18 @@ type Auth struct {
 	responsePolicy rego.PreparedEvalQuery
 }
 
-func NewAuth(reqPolicy, respPolicy, jwks string, logger2 *logger.Logger) (*Auth, error) {
+func NewAuth(disabled bool, reqPolicy, respPolicy, jwks string, logger2 *logger.Logger) (*Auth, error) {
 	a := &Auth{
-		jwksSet: nil,
-		mu:      sync.RWMutex{},
-		logger:  logger2,
+		disabled:       disabled,
+		jwksUri:        jwks,
+		jwksSet:        nil,
+		mu:             sync.RWMutex{},
+		logger:         logger2,
+		requestPolicy:  rego.PreparedEvalQuery{},
+		responsePolicy: rego.PreparedEvalQuery{},
+	}
+	if a.disabled {
+		return a, nil
 	}
 	const (
 		regoQuery = "data.stategate.authz.allow"
@@ -82,6 +90,9 @@ func NewAuth(reqPolicy, respPolicy, jwks string, logger2 *logger.Logger) (*Auth,
 }
 
 func (a *Auth) RefreshJWKS() error {
+	if a.disabled {
+		return nil
+	}
 	if a.jwksUri != "" {
 		jwks, err := jwk.Fetch(a.jwksUri)
 		if err != nil {
@@ -96,6 +107,9 @@ func (a *Auth) RefreshJWKS() error {
 }
 
 func (a *Auth) ParseAndVerify(token string) ([]byte, error) {
+	if a.disabled {
+		return []byte{}, nil
+	}
 	message, err := jws.ParseString(token)
 	if err != nil {
 		return nil, err
@@ -140,6 +154,19 @@ func (a *Auth) ParseAndVerify(token string) ([]byte, error) {
 
 func (a *Auth) UnaryInterceptor() grpc.UnaryServerInterceptor {
 	return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
+		c := &Context{
+			authPayload:  "",
+			Claims:       nil,
+			Method:       info.FullMethod,
+			Metadata:     map[string]string{},
+			Body:         toMap(req),
+			ClientStream: false,
+			ServerStream: false,
+		}
+		if a.disabled {
+			ctx = SetContext(ctx, c)
+			return handler(ctx, req)
+		}
 		token, err := grpc_auth.AuthFromMD(ctx, "Bearer")
 		if err != nil {
 			return nil, err
@@ -149,19 +176,14 @@ func (a *Auth) UnaryInterceptor() grpc.UnaryServerInterceptor {
 			a.logger.Error(err.Error())
 			return nil, status.Error(codes.Unauthenticated, "unverified")
 		}
+		c.authPayload = string(payload)
 		claims := map[string]interface{}{}
 		if err := json.Unmarshal(payload, &claims); err != nil {
 			a.logger.Error(err.Error())
 			return nil, status.Error(codes.Internal, "failed to parse claims")
 		}
+		c.Claims = claims
 		md := metautils.ExtractIncoming(ctx)
-		c := &Context{
-			authPayload: base64.StdEncoding.EncodeToString(payload),
-			Claims:      claims,
-			Method:      info.FullMethod,
-			Metadata:    map[string]string{},
-			Body:        toMap(req),
-		}
 		for k, arr := range md {
 			c.Metadata[k] = arr[0]
 		}
@@ -198,6 +220,23 @@ func (a *Auth) UnaryInterceptor() grpc.UnaryServerInterceptor {
 
 func (a *Auth) StreamInterceptor() grpc.StreamServerInterceptor {
 	return func(srv interface{}, ss grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
+		c := &Context{
+			authPayload:  "",
+			Claims:       nil,
+			Method:       info.FullMethod,
+			Metadata:     map[string]string{},
+			Body:         map[string]interface{}{},
+			ClientStream: info.IsClientStream,
+			ServerStream: info.IsServerStream,
+		}
+		if a.disabled {
+			ctx := SetContext(ss.Context(), c)
+			return handler(srv, &stream{
+				ss:  ss,
+				a:   a,
+				ctx: ctx,
+			})
+		}
 		token, err := grpc_auth.AuthFromMD(ss.Context(), "Bearer")
 		if err != nil {
 			return err
@@ -207,21 +246,15 @@ func (a *Auth) StreamInterceptor() grpc.StreamServerInterceptor {
 			a.logger.Error(err.Error())
 			return status.Error(codes.Unauthenticated, "unverified")
 		}
+		c.authPayload = string(payload)
 		claims := map[string]interface{}{}
 		if err := json.Unmarshal(payload, &claims); err != nil {
 			a.logger.Error(err.Error())
 			return status.Error(codes.Internal, "failed to parse claims")
 		}
+		c.Claims = claims
 		md := metautils.ExtractIncoming(ss.Context())
-		c := &Context{
-			authPayload:  base64.StdEncoding.EncodeToString(payload),
-			Claims:       claims,
-			Method:       info.FullMethod,
-			Metadata:     map[string]string{},
-			Body:         map[string]interface{}{},
-			ClientStream: info.IsClientStream,
-			ServerStream: info.IsServerStream,
-		}
+
 		for k, arr := range md {
 			if len(arr) > 0 {
 				c.Metadata[k] = arr[0]

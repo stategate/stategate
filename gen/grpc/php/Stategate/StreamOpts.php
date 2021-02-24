@@ -9,22 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * StreamOpts are options for consumers looking to stream events
+ * StreamOpts are options for consumers looking to stream events.
+ * Events are automatically emitted from mutations made from State mutations within the EntityService
  *
  * Generated from protobuf message <code>stategate.StreamOpts</code>
  */
 class StreamOpts extends \Google\Protobuf\Internal\Message
 {
     /**
-     * the domain of the application state value (ex: acme) that triggered the event
+     * the domain of the entity (ex: acme) that triggered the event
      * * indicates any domain
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
     private $domain = '';
     /**
-     * the type of the application state value (ex: user) that triggered the event
+     * the type of the entity (ex: user) that triggered the event
      * * indicates any type
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
@@ -37,11 +40,13 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $domain
-     *           the domain of the application state value (ex: acme) that triggered the event
+     *           the domain of the entity (ex: acme) that triggered the event
      *           * indicates any domain
+     *           must not be empty or contain spaces
      *     @type string $type
-     *           the type of the application state value (ex: user) that triggered the event
+     *           the type of the entity (ex: user) that triggered the event
      *           * indicates any type
+     *           must not be empty or contain spaces
      * }
      */
     public function __construct($data = NULL) {
@@ -50,8 +55,9 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the domain of the application state value (ex: acme) that triggered the event
+     * the domain of the entity (ex: acme) that triggered the event
      * * indicates any domain
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
@@ -62,8 +68,9 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the domain of the application state value (ex: acme) that triggered the event
+     * the domain of the entity (ex: acme) that triggered the event
      * * indicates any domain
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -78,8 +85,9 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the type of the application state value (ex: user) that triggered the event
+     * the type of the entity (ex: user) that triggered the event
      * * indicates any type
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
@@ -90,8 +98,9 @@ class StreamOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the type of the application state value (ex: user) that triggered the event
+     * the type of the entity (ex: user) that triggered the event
      * * indicates any type
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var

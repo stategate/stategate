@@ -38,7 +38,7 @@ proto.stategate = require('./schema_pb.js');
  * @struct
  * @final
  */
-proto.stategate.StateServiceClient =
+proto.stategate.EntityServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -64,7 +64,7 @@ proto.stategate.StateServiceClient =
  * @struct
  * @final
  */
-proto.stategate.StateServicePromiseClient =
+proto.stategate.EntityServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -85,16 +85,16 @@ proto.stategate.StateServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.stategate.State,
+ *   !proto.stategate.Entity,
  *   !proto.google.protobuf.Empty>}
  */
-const methodDescriptor_StateService_Set = new grpc.web.MethodDescriptor(
-  '/stategate.StateService/Set',
+const methodDescriptor_EntityService_Set = new grpc.web.MethodDescriptor(
+  '/stategate.EntityService/Set',
   grpc.web.MethodType.UNARY,
-  proto.stategate.State,
+  proto.stategate.Entity,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.stategate.State} request
+   * @param {!proto.stategate.Entity} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -107,13 +107,13 @@ const methodDescriptor_StateService_Set = new grpc.web.MethodDescriptor(
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.stategate.State,
+ *   !proto.stategate.Entity,
  *   !proto.google.protobuf.Empty>}
  */
-const methodInfo_StateService_Set = new grpc.web.AbstractClientBase.MethodInfo(
+const methodInfo_EntityService_Set = new grpc.web.AbstractClientBase.MethodInfo(
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.stategate.State} request
+   * @param {!proto.stategate.Entity} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -124,7 +124,7 @@ const methodInfo_StateService_Set = new grpc.web.AbstractClientBase.MethodInfo(
 
 
 /**
- * @param {!proto.stategate.State} request The
+ * @param {!proto.stategate.Entity} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -133,128 +133,128 @@ const methodInfo_StateService_Set = new grpc.web.AbstractClientBase.MethodInfo(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.stategate.StateServiceClient.prototype.set =
+proto.stategate.EntityServiceClient.prototype.set =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/stategate.StateService/Set',
+      '/stategate.EntityService/Set',
       request,
       metadata || {},
-      methodDescriptor_StateService_Set,
+      methodDescriptor_EntityService_Set,
       callback);
 };
 
 
 /**
- * @param {!proto.stategate.State} request The
+ * @param {!proto.stategate.Entity} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.stategate.StateServicePromiseClient.prototype.set =
+proto.stategate.EntityServicePromiseClient.prototype.set =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/stategate.StateService/Set',
+      '/stategate.EntityService/Set',
       request,
       metadata || {},
-      methodDescriptor_StateService_Set);
+      methodDescriptor_EntityService_Set);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.stategate.StateRef,
- *   !proto.stategate.State>}
+ *   !proto.stategate.EntityRef,
+ *   !proto.stategate.Entity>}
  */
-const methodDescriptor_StateService_Get = new grpc.web.MethodDescriptor(
-  '/stategate.StateService/Get',
+const methodDescriptor_EntityService_Get = new grpc.web.MethodDescriptor(
+  '/stategate.EntityService/Get',
   grpc.web.MethodType.UNARY,
-  proto.stategate.StateRef,
-  proto.stategate.State,
+  proto.stategate.EntityRef,
+  proto.stategate.Entity,
   /**
-   * @param {!proto.stategate.StateRef} request
+   * @param {!proto.stategate.EntityRef} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.stategate.State.deserializeBinary
+  proto.stategate.Entity.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.stategate.StateRef,
- *   !proto.stategate.State>}
+ *   !proto.stategate.EntityRef,
+ *   !proto.stategate.Entity>}
  */
-const methodInfo_StateService_Get = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.stategate.State,
+const methodInfo_EntityService_Get = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.stategate.Entity,
   /**
-   * @param {!proto.stategate.StateRef} request
+   * @param {!proto.stategate.EntityRef} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.stategate.State.deserializeBinary
+  proto.stategate.Entity.deserializeBinary
 );
 
 
 /**
- * @param {!proto.stategate.StateRef} request The
+ * @param {!proto.stategate.EntityRef} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.stategate.State)}
+ * @param {function(?grpc.web.Error, ?proto.stategate.Entity)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.stategate.State>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.stategate.Entity>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.stategate.StateServiceClient.prototype.get =
+proto.stategate.EntityServiceClient.prototype.get =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/stategate.StateService/Get',
+      '/stategate.EntityService/Get',
       request,
       metadata || {},
-      methodDescriptor_StateService_Get,
+      methodDescriptor_EntityService_Get,
       callback);
 };
 
 
 /**
- * @param {!proto.stategate.StateRef} request The
+ * @param {!proto.stategate.EntityRef} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.stategate.State>}
+ * @return {!Promise<!proto.stategate.Entity>}
  *     Promise that resolves to the response
  */
-proto.stategate.StateServicePromiseClient.prototype.get =
+proto.stategate.EntityServicePromiseClient.prototype.get =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/stategate.StateService/Get',
+      '/stategate.EntityService/Get',
       request,
       metadata || {},
-      methodDescriptor_StateService_Get);
+      methodDescriptor_EntityService_Get);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.stategate.StateRef,
+ *   !proto.stategate.EntityRef,
  *   !proto.google.protobuf.Empty>}
  */
-const methodDescriptor_StateService_Del = new grpc.web.MethodDescriptor(
-  '/stategate.StateService/Del',
+const methodDescriptor_EntityService_Del = new grpc.web.MethodDescriptor(
+  '/stategate.EntityService/Del',
   grpc.web.MethodType.UNARY,
-  proto.stategate.StateRef,
+  proto.stategate.EntityRef,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.stategate.StateRef} request
+   * @param {!proto.stategate.EntityRef} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -267,13 +267,13 @@ const methodDescriptor_StateService_Del = new grpc.web.MethodDescriptor(
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.stategate.StateRef,
+ *   !proto.stategate.EntityRef,
  *   !proto.google.protobuf.Empty>}
  */
-const methodInfo_StateService_Del = new grpc.web.AbstractClientBase.MethodInfo(
+const methodInfo_EntityService_Del = new grpc.web.AbstractClientBase.MethodInfo(
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.stategate.StateRef} request
+   * @param {!proto.stategate.EntityRef} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -284,7 +284,7 @@ const methodInfo_StateService_Del = new grpc.web.AbstractClientBase.MethodInfo(
 
 
 /**
- * @param {!proto.stategate.StateRef} request The
+ * @param {!proto.stategate.EntityRef} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -293,112 +293,112 @@ const methodInfo_StateService_Del = new grpc.web.AbstractClientBase.MethodInfo(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.stategate.StateServiceClient.prototype.del =
+proto.stategate.EntityServiceClient.prototype.del =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/stategate.StateService/Del',
+      '/stategate.EntityService/Del',
       request,
       metadata || {},
-      methodDescriptor_StateService_Del,
+      methodDescriptor_EntityService_Del,
       callback);
 };
 
 
 /**
- * @param {!proto.stategate.StateRef} request The
+ * @param {!proto.stategate.EntityRef} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.stategate.StateServicePromiseClient.prototype.del =
+proto.stategate.EntityServicePromiseClient.prototype.del =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/stategate.StateService/Del',
+      '/stategate.EntityService/Del',
       request,
       metadata || {},
-      methodDescriptor_StateService_Del);
+      methodDescriptor_EntityService_Del);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.stategate.SearchStateOpts,
- *   !proto.stategate.StateValues>}
+ *   !proto.stategate.SearchEntitiesOpts,
+ *   !proto.stategate.Entities>}
  */
-const methodDescriptor_StateService_Search = new grpc.web.MethodDescriptor(
-  '/stategate.StateService/Search',
+const methodDescriptor_EntityService_Search = new grpc.web.MethodDescriptor(
+  '/stategate.EntityService/Search',
   grpc.web.MethodType.UNARY,
-  proto.stategate.SearchStateOpts,
-  proto.stategate.StateValues,
+  proto.stategate.SearchEntitiesOpts,
+  proto.stategate.Entities,
   /**
-   * @param {!proto.stategate.SearchStateOpts} request
+   * @param {!proto.stategate.SearchEntitiesOpts} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.stategate.StateValues.deserializeBinary
+  proto.stategate.Entities.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.stategate.SearchStateOpts,
- *   !proto.stategate.StateValues>}
+ *   !proto.stategate.SearchEntitiesOpts,
+ *   !proto.stategate.Entities>}
  */
-const methodInfo_StateService_Search = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.stategate.StateValues,
+const methodInfo_EntityService_Search = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.stategate.Entities,
   /**
-   * @param {!proto.stategate.SearchStateOpts} request
+   * @param {!proto.stategate.SearchEntitiesOpts} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.stategate.StateValues.deserializeBinary
+  proto.stategate.Entities.deserializeBinary
 );
 
 
 /**
- * @param {!proto.stategate.SearchStateOpts} request The
+ * @param {!proto.stategate.SearchEntitiesOpts} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.stategate.StateValues)}
+ * @param {function(?grpc.web.Error, ?proto.stategate.Entities)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.stategate.StateValues>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.stategate.Entities>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.stategate.StateServiceClient.prototype.search =
+proto.stategate.EntityServiceClient.prototype.search =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/stategate.StateService/Search',
+      '/stategate.EntityService/Search',
       request,
       metadata || {},
-      methodDescriptor_StateService_Search,
+      methodDescriptor_EntityService_Search,
       callback);
 };
 
 
 /**
- * @param {!proto.stategate.SearchStateOpts} request The
+ * @param {!proto.stategate.SearchEntitiesOpts} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.stategate.StateValues>}
+ * @return {!Promise<!proto.stategate.Entities>}
  *     Promise that resolves to the response
  */
-proto.stategate.StateServicePromiseClient.prototype.search =
+proto.stategate.EntityServicePromiseClient.prototype.search =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/stategate.StateService/Search',
+      '/stategate.EntityService/Search',
       request,
       metadata || {},
-      methodDescriptor_StateService_Search);
+      methodDescriptor_EntityService_Search);
 };
 
 

@@ -9,35 +9,41 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Event is primitive that represents a single state change
- * Events are persisted to history & broadcasted to interested consumers(Stream) any time an application state value is created/modified
+ * Event is primitive that represents a single state change to an entity
+ * Events are persisted to history & broadcasted to interested consumers(Stream) any time an entity is created/modified/deleted
  * Events are immutable after creation and may be searched.
- * Event Consumers may search events to query previous state
+ * EventService client's may search events to query previous state of an entity(s)
  *
  * Generated from protobuf message <code>stategate.Event</code>
  */
 class Event extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifies the event(uuid).
+     * identifies the event(uuid v4).
      *
      * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
      */
     private $id = '';
     /**
-     * state after it has been mutated
+     * state of an Entity after it has been mutated
      *
-     * Generated from protobuf field <code>.stategate.State state = 2 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>.stategate.Entity entity = 2 [(.validator.field) = {</code>
      */
-    private $state = null;
+    private $entity = null;
     /**
-     * The authentication claims of the event producer.
+     * the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
+     *
+     * Generated from protobuf field <code>string method = 5 [(.validator.field) = {</code>
+     */
+    private $method = '';
+    /**
+     * the authentication claims of the event producer.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct claims = 3 [(.validator.field) = {</code>
      */
     private $claims = null;
     /**
-     * Timestamp(ns) of when the event was received.
+     * timestamp(ns) of when the event was received.
      *
      * Generated from protobuf field <code>int64 time = 4 [(.validator.field) = {</code>
      */
@@ -50,13 +56,15 @@ class Event extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           Identifies the event(uuid).
-     *     @type \Stategate\State $state
-     *           state after it has been mutated
+     *           identifies the event(uuid v4).
+     *     @type \Stategate\Entity $entity
+     *           state of an Entity after it has been mutated
+     *     @type string $method
+     *           the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
      *     @type \Google\Protobuf\Struct $claims
-     *           The authentication claims of the event producer.
+     *           the authentication claims of the event producer.
      *     @type int|string $time
-     *           Timestamp(ns) of when the event was received.
+     *           timestamp(ns) of when the event was received.
      * }
      */
     public function __construct($data = NULL) {
@@ -65,7 +73,7 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies the event(uuid).
+     * identifies the event(uuid v4).
      *
      * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
      * @return string
@@ -76,7 +84,7 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies the event(uuid).
+     * identifies the event(uuid v4).
      *
      * Generated from protobuf field <code>string id = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -91,33 +99,59 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * state after it has been mutated
+     * state of an Entity after it has been mutated
      *
-     * Generated from protobuf field <code>.stategate.State state = 2 [(.validator.field) = {</code>
-     * @return \Stategate\State
+     * Generated from protobuf field <code>.stategate.Entity entity = 2 [(.validator.field) = {</code>
+     * @return \Stategate\Entity
      */
-    public function getState()
+    public function getEntity()
     {
-        return $this->state;
+        return $this->entity;
     }
 
     /**
-     * state after it has been mutated
+     * state of an Entity after it has been mutated
      *
-     * Generated from protobuf field <code>.stategate.State state = 2 [(.validator.field) = {</code>
-     * @param \Stategate\State $var
+     * Generated from protobuf field <code>.stategate.Entity entity = 2 [(.validator.field) = {</code>
+     * @param \Stategate\Entity $var
      * @return $this
      */
-    public function setState($var)
+    public function setEntity($var)
     {
-        GPBUtil::checkMessage($var, \Stategate\State::class);
-        $this->state = $var;
+        GPBUtil::checkMessage($var, \Stategate\Entity::class);
+        $this->entity = $var;
 
         return $this;
     }
 
     /**
-     * The authentication claims of the event producer.
+     * the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
+     *
+     * Generated from protobuf field <code>string method = 5 [(.validator.field) = {</code>
+     * @return string
+     */
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    /**
+     * the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
+     *
+     * Generated from protobuf field <code>string method = 5 [(.validator.field) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMethod($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->method = $var;
+
+        return $this;
+    }
+
+    /**
+     * the authentication claims of the event producer.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct claims = 3 [(.validator.field) = {</code>
      * @return \Google\Protobuf\Struct
@@ -128,7 +162,7 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The authentication claims of the event producer.
+     * the authentication claims of the event producer.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct claims = 3 [(.validator.field) = {</code>
      * @param \Google\Protobuf\Struct $var
@@ -143,7 +177,7 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Timestamp(ns) of when the event was received.
+     * timestamp(ns) of when the event was received.
      *
      * Generated from protobuf field <code>int64 time = 4 [(.validator.field) = {</code>
      * @return int|string
@@ -154,7 +188,7 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Timestamp(ns) of when the event was received.
+     * timestamp(ns) of when the event was received.
      *
      * Generated from protobuf field <code>int64 time = 4 [(.validator.field) = {</code>
      * @param int|string $var

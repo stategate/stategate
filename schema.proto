@@ -13,86 +13,95 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 // StateGate is a pluggable API and "Application State Gateway" that enforces the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html) for securely persisting & broadcasting application state changes
 
-// StateService serves API methods related to stategate State producers
-service StateService {
-  // Set sets the current state value of an application state value, adds it to the event log, then broadcast the event to all interested consumers
-  rpc Set(State) returns(google.protobuf.Empty) {
+// EntityService serves API methods to clients that modify/query the current state of an entity
+// An Entity is a single object with a type, domain, key, and k/v values
+service EntityService {
+  // Set sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+  rpc Set(Entity) returns(google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/state/ref/{domain}/{type}/{key}"
+      post: "/api/entity/ref/{domain}/{type}/{key}"
     };
   }
-  // Get gets an application state value's current state values
-  rpc Get(StateRef) returns(State) {
+  // Get gets an entity's current state
+  rpc Get(EntityRef) returns(Entity) {
     option (google.api.http) = {
-      get: "/api/state/ref/{domain}/{type}/{key}"
+      get: "/api/entity/ref/{domain}/{type}/{key}"
     };
   }
-  // Del hard deletes current state. State may be recovered via the Event store.
-  rpc Del(StateRef) returns(google.protobuf.Empty) {
+  // Del hard deletes an entity from current state store, adds it's state prior to deletion to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+  // an Entity may be recovered via querying the Event store for historical records of the deleted Entity.
+  rpc Del(EntityRef) returns(google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/api/state/ref/{domain}/{type}/{key}"
+      delete: "/api/entity/ref/{domain}/{type}/{key}"
     };
   }
-  // Search queries state belonging to a particular domain & of a specific type
-  rpc Search(SearchStateOpts) returns(StateValues) {
+  // Search queries the current state of entities
+  rpc Search(SearchEntitiesOpts) returns(Entities) {
     option (google.api.http) = {
-      get: "/api/state/search"
+      get: "/api/entity/search"
     };
   }
 }
 
-// StateRef is a reference to an existing application state value
-message StateRef {
-  // the application state value's business domain(ex: accounting)
+// EntityRef is a reference to an existing entity
+message EntityRef {
+  // the entity's business domain(ex: accounting)
   string domain =1[(validator.field) = {regex : "^\\S+$"}];
-  // State type (ex: user)
+  // entity type (ex: user)
   string type =2[(validator.field) = {regex : "^\\S+$"}];
-  // State key (unique within type)
+  // entity key (unique within type)
   string key =3[(validator.field) = {regex : "^\\S+$"}];
 }
 
-// State represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
-// Services/Users should use state related methods to persist & interact with the current state of an application/domain.
-message State {
-  // the application state value's business domain(ex: accounting)
+// Entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+// EventService clients should use the EntityService to persist & interact with the current state of an entity.
+message Entity {
+  // the entity's business domain(ex: accounting)
+  // must not be empty or contain spaces
   string domain =1[(validator.field) = {regex : "^\\S+$"}];
-  // State type (ex: user)
+  // the entity's type (ex: user)
+  // must not be empty or contain spaces
   string type =2[(validator.field) = {regex : "^\\S+$"}];
-  // State key (unique within type)
+  // the entity's key (unique within type).
+  // must not be empty or contain spaces
   string key =3[(validator.field) = {regex : "^\\S+$"}];
-  // State values (k/v pairs)
+  // the entity's values (k/v pairs)
   google.protobuf.Struct values = 4[(validator.field) = {msg_exists : true}];
 }
 
-// States is an array of State
-message StateValues {
-  repeated State state_values =1;
+// Entities is an array of Entity
+message Entities {
+  repeated Entity entities =1;
 }
 
-// SearchStateOpts are options when querying the current values of application state value(s).
+// SearchEntitiesOpts are options when querying the current values of entities.
 // If historical values are needed, SearchEvents should be used
-message SearchStateOpts {
-  // the application state value's business domain(ex: accounting)
+message SearchEntitiesOpts {
+  // the entity's business domain(ex: accounting)
+  // must not be empty or contain spaces
   string domain =1[(validator.field) = {regex : "^\\S+$"}];
   // State type (ex: user)
+  // must not be empty or contain spaces
   string type =2[(validator.field) = {regex : "^\\S+$"}];
   // json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
+  // please note that dot notation may be used to access nested fields
   string query_string = 3;
-  // limit returned state
+  // limit number of returned values
   int64 limit =4[(validator.field) = {int_gt : 0}];
   // offset returned events(pagination)
   int64 offset =5;
 }
 
 // EventService serves API methods related to stategate Event Consumers
+// Events are automatically emitted from mutations made from State mutations within the EntityService
 service EventService {
-  // Stream creates an event stream/subscription to a given state type/domain. Glob matching is supported.
+  // Stream creates an event stream/subscription to changes to entities. Glob matching is supported.
   rpc Stream(StreamOpts) returns(stream Event) {
     option (google.api.http) = {
       get: "/api/events/stream"
     };
   }
-  // Search queries events related to a specific application state value.
+  // Search queries historical events.
   rpc Search(SearchEventOpts) returns(Events) {
     option (google.api.http) = {
       get: "/api/events/search"
@@ -100,48 +109,54 @@ service EventService {
   }
 }
 
-// SearchEventOpts are options when querying historical events for a given application state value
+// SearchEventOpts are options when querying historical events emitted from mutations made from State mutations
 message SearchEventOpts {
-  // the application state value's business domain(ex: accounting)
+  // the entity's business domain(ex: accounting)
+  // must not be empty or contain spaces
   string domain =1[(validator.field) = {regex : "^\\S+$"}];
-  // State type (ex: user)
+  // entity's type (ex: user)
+  // must not be empty or contain spaces
   string type =2[(validator.field) = {regex : "^\\S+$"}];
-  // filter events belonging to a particular application state value
-  string key = 3;
-  // json string to filter records that have application state value's with values that match k/v pairs ex: { "message": "hello world" }
+  // json string to filter events based with values that match k/v pairs ex: { "entity.values.message": "hello world" }.
+  // please note that dot notation may be used to access nested fields
   string query_string = 4;
-  // only return application state value events that occurred after specified min timestamp
+  // only return events that occurred after specified min timestamp
   int64 min = 5;
-  // only return application state value events that occurred before specified max timestamp
+  // only return events that occurred before specified max timestamp
   int64 max = 6;
-  // limit returned application state value events
+  // limit number of returned values
   int64 limit =7[(validator.field) = {int_gt : 0}];
-  // offset returned application state value events(pagination)
+  // offset returned events(pagination)
   int64 offset =8;
 }
 
-// StreamOpts are options for consumers looking to stream events
+// StreamOpts are options for consumers looking to stream events.
+// Events are automatically emitted from mutations made from State mutations within the EntityService
 message StreamOpts {
-  // the domain of the application state value (ex: acme) that triggered the event
+  // the domain of the entity (ex: acme) that triggered the event
   // * indicates any domain
+  // must not be empty or contain spaces
   string domain =1[(validator.field) = {regex : "^\\S+$"}];
-  // the type of the application state value (ex: user) that triggered the event
+  // the type of the entity (ex: user) that triggered the event
   // * indicates any type
+  // must not be empty or contain spaces
   string type =2[(validator.field) = {regex : "^\\S+$"}];
 }
 
-// Event is primitive that represents a single state change
-// Events are persisted to history & broadcasted to interested consumers(Stream) any time an application state value is created/modified
+// Event is primitive that represents a single state change to an entity
+// Events are persisted to history & broadcasted to interested consumers(Stream) any time an entity is created/modified/deleted
 // Events are immutable after creation and may be searched.
-// Event Consumers may search events to query previous state
+// EventService client's may search events to query previous state of an entity(s)
 message Event {
-  // Identifies the event(uuid).
-  string id = 1[(validator.field) = {uuid_ver : 0}];
-  // state after it has been mutated
-  State state = 2[(validator.field) = {msg_exists : true}];
-  // The authentication claims of the event producer.
+  // identifies the event(uuid v4).
+  string id = 1[(validator.field) = {uuid_ver : 4}];
+  // state of an Entity after it has been mutated
+  Entity entity = 2[(validator.field) = {msg_exists : true}];
+  // the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
+  string method =5[(validator.field) = {string_not_empty : true}];
+  // the authentication claims of the event producer.
   google.protobuf.Struct claims =3[(validator.field) = {msg_exists : true}];
-  // Timestamp(ns) of when the event was received.
+  // timestamp(ns) of when the event was received.
   int64 time =4[(validator.field) = {int_gt : 0}];
 }
 
