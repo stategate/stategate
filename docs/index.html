@@ -207,6 +207,10 @@
                 </li>
               
                 <li>
+                  <a href="#stategate.Sort"><span class="badge">M</span>Sort</a>
+                </li>
+              
+                <li>
                   <a href="#stategate.StreamOpts"><span class="badge">M</span>StreamOpts</a>
                 </li>
               
@@ -650,6 +654,13 @@ please note that dot notation may be used to access nested fields </p></td>
                   <td><p>offset returned events(pagination) </p></td>
                 </tr>
               
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#stategate.Sort">Sort</a></td>
+                  <td></td>
+                  <td><p>sort sorts the returned entities by a specified field </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -768,6 +779,13 @@ please note that dot notation may be used to access nested fields </p></td>
                   <td><p>offset returned events(pagination) </p></td>
                 </tr>
               
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#stategate.Sort">Sort</a></td>
+                  <td></td>
+                  <td><p>sort sorts the returned entities by a specified field </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -820,6 +838,38 @@ please note that dot notation may be used to access nested fields </p></td>
               </tbody>
             </table>
             
+          
+
+        
+      
+        <h3 id="stategate.Sort">Sort</h3>
+        <p>Sort is a primitive used to sort an array</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>field</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>field is a field to sort the array by
+please note that dot notation may be used to access nested fields </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reverse</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>reverse reverses the direction of the sort </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
           
 
         
@@ -919,6 +969,15 @@ must not be empty or contain spaces </p></td>
               </tr>
             
               <tr>
+                <td>Edit</td>
+                <td><a href="#stategate.Entity">Entity</a></td>
+                <td><a href="#stategate.Entity">Entity</a></td>
+                <td><p>Edit overwrites the k/v pairs present in the entity request without replacing the entire entity.
+It then adds the state change to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+Edit returns the current state of the Entity after the mutation.</p></td>
+              </tr>
+            
+              <tr>
                 <td>Get</td>
                 <td><a href="#stategate.EntityRef">EntityRef</a></td>
                 <td><a href="#stategate.Entity">Entity</a></td>
@@ -963,6 +1022,16 @@ an Entity may be recovered via querying the Event store for historical records o
               <tr>
                 <td>Set</td>
                 <td>POST</td>
+                <td>/api/entity/ref/{domain}/{type}/{key}</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>Edit</td>
+                <td>PATCH</td>
                 <td>/api/entity/ref/{domain}/{type}/{key}</td>
                 <td></td>
               </tr>

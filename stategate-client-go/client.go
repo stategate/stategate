@@ -240,6 +240,12 @@ func (c *EntityClient) Get(ctx context.Context, in *stategate.EntityRef) (*state
 	return c.client.Get(ctx, in)
 }
 
+// Edit overwrites the k/v pairs present in the entity request without replacing the entire entity.
+// It then adds the state change to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+func (c *EntityClient) Edit(ctx context.Context, in *stategate.Entity) (*stategate.Entity, error) {
+	return c.client.Edit(ctx, in)
+}
+
 // Search queries the current state of entities
 func (c *EntityClient) Search(ctx context.Context, in *stategate.SearchEntitiesOpts) (*stategate.Entities, error) {
 	return c.client.Search(ctx, in)

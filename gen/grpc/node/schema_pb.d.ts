@@ -109,6 +109,11 @@ export class SearchEntitiesOpts extends jspb.Message {
   getOffset(): number;
   setOffset(value: number): void;
 
+  hasSort(): boolean;
+  clearSort(): void;
+  getSort(): Sort | undefined;
+  setSort(value?: Sort): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SearchEntitiesOpts.AsObject;
   static toObject(includeInstance: boolean, msg: SearchEntitiesOpts): SearchEntitiesOpts.AsObject;
@@ -126,6 +131,7 @@ export namespace SearchEntitiesOpts {
     queryString: string,
     limit: number,
     offset: number,
+    sort?: Sort.AsObject,
   }
 }
 
@@ -151,6 +157,11 @@ export class SearchEventOpts extends jspb.Message {
   getOffset(): number;
   setOffset(value: number): void;
 
+  hasSort(): boolean;
+  clearSort(): void;
+  getSort(): Sort | undefined;
+  setSort(value?: Sort): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SearchEventOpts.AsObject;
   static toObject(includeInstance: boolean, msg: SearchEventOpts): SearchEventOpts.AsObject;
@@ -170,6 +181,7 @@ export namespace SearchEventOpts {
     max: number,
     limit: number,
     offset: number,
+    sort?: Sort.AsObject,
   }
 }
 
@@ -194,6 +206,30 @@ export namespace StreamOpts {
   export type AsObject = {
     domain: string,
     type: string,
+  }
+}
+
+export class Sort extends jspb.Message {
+  getField(): string;
+  setField(value: string): void;
+
+  getReverse(): boolean;
+  setReverse(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Sort.AsObject;
+  static toObject(includeInstance: boolean, msg: Sort): Sort.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Sort, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Sort;
+  static deserializeBinaryFromReader(message: Sort, reader: jspb.BinaryReader): Sort;
+}
+
+export namespace Sort {
+  export type AsObject = {
+    field: string,
+    reverse: boolean,
   }
 }
 

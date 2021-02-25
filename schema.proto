@@ -22,6 +22,14 @@ service EntityService {
       post: "/api/entity/ref/{domain}/{type}/{key}"
     };
   }
+  // Edit overwrites the k/v pairs present in the entity request without replacing the entire entity.
+  // It then adds the state change to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+  // Edit returns the current state of the Entity after the mutation.
+  rpc Edit(Entity) returns(Entity){
+    option (google.api.http) = {
+      patch: "/api/entity/ref/{domain}/{type}/{key}"
+    };
+  }
   // Get gets an entity's current state
   rpc Get(EntityRef) returns(Entity) {
     option (google.api.http) = {
@@ -90,6 +98,8 @@ message SearchEntitiesOpts {
   int64 limit =4[(validator.field) = {int_gt : 0}];
   // offset returned events(pagination)
   int64 offset =5;
+  // sort sorts the returned entities by a specified field
+  Sort sort =9;
 }
 
 // EventService serves API methods related to stategate Event Consumers
@@ -128,6 +138,8 @@ message SearchEventOpts {
   int64 limit =7[(validator.field) = {int_gt : 0}];
   // offset returned events(pagination)
   int64 offset =8;
+  // sort sorts the returned entities by a specified field
+  Sort sort =9;
 }
 
 // StreamOpts are options for consumers looking to stream events.
@@ -141,6 +153,15 @@ message StreamOpts {
   // * indicates any type
   // must not be empty or contain spaces
   string type =2[(validator.field) = {regex : "^\\S+$"}];
+}
+
+// Sort is a primitive used to sort an array
+message Sort {
+  // field is a field to sort the array by
+  // please note that dot notation may be used to access nested fields
+  string field =1;
+  // reverse reverses the direction of the sort
+  bool reverse =2;
 }
 
 // Event is primitive that represents a single state change to an entity

@@ -49,6 +49,12 @@ class SearchEntitiesOpts extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 offset = 5;</code>
      */
     private $offset = 0;
+    /**
+     * sort sorts the returned entities by a specified field
+     *
+     * Generated from protobuf field <code>.stategate.Sort sort = 9;</code>
+     */
+    private $sort = null;
 
     /**
      * Constructor.
@@ -69,6 +75,8 @@ class SearchEntitiesOpts extends \Google\Protobuf\Internal\Message
      *           limit number of returned values
      *     @type int|string $offset
      *           offset returned events(pagination)
+     *     @type \Stategate\Sort $sort
+     *           sort sorts the returned entities by a specified field
      * }
      */
     public function __construct($data = NULL) {
@@ -208,6 +216,32 @@ class SearchEntitiesOpts extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->offset = $var;
+
+        return $this;
+    }
+
+    /**
+     * sort sorts the returned entities by a specified field
+     *
+     * Generated from protobuf field <code>.stategate.Sort sort = 9;</code>
+     * @return \Stategate\Sort
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    /**
+     * sort sorts the returned entities by a specified field
+     *
+     * Generated from protobuf field <code>.stategate.Sort sort = 9;</code>
+     * @param \Stategate\Sort $var
+     * @return $this
+     */
+    public function setSort($var)
+    {
+        GPBUtil::checkMessage($var, \Stategate\Sort::class);
+        $this->sort = $var;
 
         return $this;
     }

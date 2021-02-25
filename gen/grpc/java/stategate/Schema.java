@@ -3048,6 +3048,31 @@ public final class Schema {
      * <code>int64 offset = 5;</code>
      */
     long getOffset();
+
+    /**
+     * <pre>
+     * sort sorts the returned entities by a specified field
+     * </pre>
+     *
+     * <code>.stategate.Sort sort = 9;</code>
+     */
+    boolean hasSort();
+    /**
+     * <pre>
+     * sort sorts the returned entities by a specified field
+     * </pre>
+     *
+     * <code>.stategate.Sort sort = 9;</code>
+     */
+    stategate.Schema.Sort getSort();
+    /**
+     * <pre>
+     * sort sorts the returned entities by a specified field
+     * </pre>
+     *
+     * <code>.stategate.Sort sort = 9;</code>
+     */
+    stategate.Schema.SortOrBuilder getSortOrBuilder();
   }
   /**
    * <pre>
@@ -3124,6 +3149,19 @@ public final class Schema {
             case 40: {
 
               offset_ = input.readInt64();
+              break;
+            }
+            case 74: {
+              stategate.Schema.Sort.Builder subBuilder = null;
+              if (sort_ != null) {
+                subBuilder = sort_.toBuilder();
+              }
+              sort_ = input.readMessage(stategate.Schema.Sort.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(sort_);
+                sort_ = subBuilder.buildPartial();
+              }
+
               break;
             }
             default: {
@@ -3316,6 +3354,39 @@ public final class Schema {
       return offset_;
     }
 
+    public static final int SORT_FIELD_NUMBER = 9;
+    private stategate.Schema.Sort sort_;
+    /**
+     * <pre>
+     * sort sorts the returned entities by a specified field
+     * </pre>
+     *
+     * <code>.stategate.Sort sort = 9;</code>
+     */
+    public boolean hasSort() {
+      return sort_ != null;
+    }
+    /**
+     * <pre>
+     * sort sorts the returned entities by a specified field
+     * </pre>
+     *
+     * <code>.stategate.Sort sort = 9;</code>
+     */
+    public stategate.Schema.Sort getSort() {
+      return sort_ == null ? stategate.Schema.Sort.getDefaultInstance() : sort_;
+    }
+    /**
+     * <pre>
+     * sort sorts the returned entities by a specified field
+     * </pre>
+     *
+     * <code>.stategate.Sort sort = 9;</code>
+     */
+    public stategate.Schema.SortOrBuilder getSortOrBuilder() {
+      return getSort();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -3345,6 +3416,9 @@ public final class Schema {
       if (offset_ != 0L) {
         output.writeInt64(5, offset_);
       }
+      if (sort_ != null) {
+        output.writeMessage(9, getSort());
+      }
       unknownFields.writeTo(output);
     }
 
@@ -3370,6 +3444,10 @@ public final class Schema {
       if (offset_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(5, offset_);
+      }
+      if (sort_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, getSort());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3397,6 +3475,11 @@ public final class Schema {
           == other.getLimit());
       result = result && (getOffset()
           == other.getOffset());
+      result = result && (hasSort() == other.hasSort());
+      if (hasSort()) {
+        result = result && getSort()
+            .equals(other.getSort());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -3420,6 +3503,10 @@ public final class Schema {
       hash = (37 * hash) + OFFSET_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getOffset());
+      if (hasSort()) {
+        hash = (37 * hash) + SORT_FIELD_NUMBER;
+        hash = (53 * hash) + getSort().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3568,6 +3655,12 @@ public final class Schema {
 
         offset_ = 0L;
 
+        if (sortBuilder_ == null) {
+          sort_ = null;
+        } else {
+          sort_ = null;
+          sortBuilder_ = null;
+        }
         return this;
       }
 
@@ -3599,6 +3692,11 @@ public final class Schema {
         result.queryString_ = queryString_;
         result.limit_ = limit_;
         result.offset_ = offset_;
+        if (sortBuilder_ == null) {
+          result.sort_ = sort_;
+        } else {
+          result.sort_ = sortBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -3664,6 +3762,9 @@ public final class Schema {
         }
         if (other.getOffset() != 0L) {
           setOffset(other.getOffset());
+        }
+        if (other.hasSort()) {
+          mergeSort(other.getSort());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -4051,6 +4152,159 @@ public final class Schema {
         onChanged();
         return this;
       }
+
+      private stategate.Schema.Sort sort_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          stategate.Schema.Sort, stategate.Schema.Sort.Builder, stategate.Schema.SortOrBuilder> sortBuilder_;
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public boolean hasSort() {
+        return sortBuilder_ != null || sort_ != null;
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public stategate.Schema.Sort getSort() {
+        if (sortBuilder_ == null) {
+          return sort_ == null ? stategate.Schema.Sort.getDefaultInstance() : sort_;
+        } else {
+          return sortBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public Builder setSort(stategate.Schema.Sort value) {
+        if (sortBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          sort_ = value;
+          onChanged();
+        } else {
+          sortBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public Builder setSort(
+          stategate.Schema.Sort.Builder builderForValue) {
+        if (sortBuilder_ == null) {
+          sort_ = builderForValue.build();
+          onChanged();
+        } else {
+          sortBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public Builder mergeSort(stategate.Schema.Sort value) {
+        if (sortBuilder_ == null) {
+          if (sort_ != null) {
+            sort_ =
+              stategate.Schema.Sort.newBuilder(sort_).mergeFrom(value).buildPartial();
+          } else {
+            sort_ = value;
+          }
+          onChanged();
+        } else {
+          sortBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public Builder clearSort() {
+        if (sortBuilder_ == null) {
+          sort_ = null;
+          onChanged();
+        } else {
+          sort_ = null;
+          sortBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public stategate.Schema.Sort.Builder getSortBuilder() {
+        
+        onChanged();
+        return getSortFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public stategate.Schema.SortOrBuilder getSortOrBuilder() {
+        if (sortBuilder_ != null) {
+          return sortBuilder_.getMessageOrBuilder();
+        } else {
+          return sort_ == null ?
+              stategate.Schema.Sort.getDefaultInstance() : sort_;
+        }
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          stategate.Schema.Sort, stategate.Schema.Sort.Builder, stategate.Schema.SortOrBuilder> 
+          getSortFieldBuilder() {
+        if (sortBuilder_ == null) {
+          sortBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              stategate.Schema.Sort, stategate.Schema.Sort.Builder, stategate.Schema.SortOrBuilder>(
+                  getSort(),
+                  getParentForChildren(),
+                  isClean());
+          sort_ = null;
+        }
+        return sortBuilder_;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -4203,6 +4457,31 @@ public final class Schema {
      * <code>int64 offset = 8;</code>
      */
     long getOffset();
+
+    /**
+     * <pre>
+     * sort sorts the returned entities by a specified field
+     * </pre>
+     *
+     * <code>.stategate.Sort sort = 9;</code>
+     */
+    boolean hasSort();
+    /**
+     * <pre>
+     * sort sorts the returned entities by a specified field
+     * </pre>
+     *
+     * <code>.stategate.Sort sort = 9;</code>
+     */
+    stategate.Schema.Sort getSort();
+    /**
+     * <pre>
+     * sort sorts the returned entities by a specified field
+     * </pre>
+     *
+     * <code>.stategate.Sort sort = 9;</code>
+     */
+    stategate.Schema.SortOrBuilder getSortOrBuilder();
   }
   /**
    * <pre>
@@ -4290,6 +4569,19 @@ public final class Schema {
             case 64: {
 
               offset_ = input.readInt64();
+              break;
+            }
+            case 74: {
+              stategate.Schema.Sort.Builder subBuilder = null;
+              if (sort_ != null) {
+                subBuilder = sort_.toBuilder();
+              }
+              sort_ = input.readMessage(stategate.Schema.Sort.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(sort_);
+                sort_ = subBuilder.buildPartial();
+              }
+
               break;
             }
             default: {
@@ -4508,6 +4800,39 @@ public final class Schema {
       return offset_;
     }
 
+    public static final int SORT_FIELD_NUMBER = 9;
+    private stategate.Schema.Sort sort_;
+    /**
+     * <pre>
+     * sort sorts the returned entities by a specified field
+     * </pre>
+     *
+     * <code>.stategate.Sort sort = 9;</code>
+     */
+    public boolean hasSort() {
+      return sort_ != null;
+    }
+    /**
+     * <pre>
+     * sort sorts the returned entities by a specified field
+     * </pre>
+     *
+     * <code>.stategate.Sort sort = 9;</code>
+     */
+    public stategate.Schema.Sort getSort() {
+      return sort_ == null ? stategate.Schema.Sort.getDefaultInstance() : sort_;
+    }
+    /**
+     * <pre>
+     * sort sorts the returned entities by a specified field
+     * </pre>
+     *
+     * <code>.stategate.Sort sort = 9;</code>
+     */
+    public stategate.Schema.SortOrBuilder getSortOrBuilder() {
+      return getSort();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -4543,6 +4868,9 @@ public final class Schema {
       if (offset_ != 0L) {
         output.writeInt64(8, offset_);
       }
+      if (sort_ != null) {
+        output.writeMessage(9, getSort());
+      }
       unknownFields.writeTo(output);
     }
 
@@ -4577,6 +4905,10 @@ public final class Schema {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(8, offset_);
       }
+      if (sort_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, getSort());
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -4607,6 +4939,11 @@ public final class Schema {
           == other.getLimit());
       result = result && (getOffset()
           == other.getOffset());
+      result = result && (hasSort() == other.hasSort());
+      if (hasSort()) {
+        result = result && getSort()
+            .equals(other.getSort());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -4636,6 +4973,10 @@ public final class Schema {
       hash = (37 * hash) + OFFSET_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getOffset());
+      if (hasSort()) {
+        hash = (37 * hash) + SORT_FIELD_NUMBER;
+        hash = (53 * hash) + getSort().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4787,6 +5128,12 @@ public final class Schema {
 
         offset_ = 0L;
 
+        if (sortBuilder_ == null) {
+          sort_ = null;
+        } else {
+          sort_ = null;
+          sortBuilder_ = null;
+        }
         return this;
       }
 
@@ -4820,6 +5167,11 @@ public final class Schema {
         result.max_ = max_;
         result.limit_ = limit_;
         result.offset_ = offset_;
+        if (sortBuilder_ == null) {
+          result.sort_ = sort_;
+        } else {
+          result.sort_ = sortBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -4891,6 +5243,9 @@ public final class Schema {
         }
         if (other.getOffset() != 0L) {
           setOffset(other.getOffset());
+        }
+        if (other.hasSort()) {
+          mergeSort(other.getSort());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -5353,6 +5708,159 @@ public final class Schema {
         offset_ = 0L;
         onChanged();
         return this;
+      }
+
+      private stategate.Schema.Sort sort_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          stategate.Schema.Sort, stategate.Schema.Sort.Builder, stategate.Schema.SortOrBuilder> sortBuilder_;
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public boolean hasSort() {
+        return sortBuilder_ != null || sort_ != null;
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public stategate.Schema.Sort getSort() {
+        if (sortBuilder_ == null) {
+          return sort_ == null ? stategate.Schema.Sort.getDefaultInstance() : sort_;
+        } else {
+          return sortBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public Builder setSort(stategate.Schema.Sort value) {
+        if (sortBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          sort_ = value;
+          onChanged();
+        } else {
+          sortBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public Builder setSort(
+          stategate.Schema.Sort.Builder builderForValue) {
+        if (sortBuilder_ == null) {
+          sort_ = builderForValue.build();
+          onChanged();
+        } else {
+          sortBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public Builder mergeSort(stategate.Schema.Sort value) {
+        if (sortBuilder_ == null) {
+          if (sort_ != null) {
+            sort_ =
+              stategate.Schema.Sort.newBuilder(sort_).mergeFrom(value).buildPartial();
+          } else {
+            sort_ = value;
+          }
+          onChanged();
+        } else {
+          sortBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public Builder clearSort() {
+        if (sortBuilder_ == null) {
+          sort_ = null;
+          onChanged();
+        } else {
+          sort_ = null;
+          sortBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public stategate.Schema.Sort.Builder getSortBuilder() {
+        
+        onChanged();
+        return getSortFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      public stategate.Schema.SortOrBuilder getSortOrBuilder() {
+        if (sortBuilder_ != null) {
+          return sortBuilder_.getMessageOrBuilder();
+        } else {
+          return sort_ == null ?
+              stategate.Schema.Sort.getDefaultInstance() : sort_;
+        }
+      }
+      /**
+       * <pre>
+       * sort sorts the returned entities by a specified field
+       * </pre>
+       *
+       * <code>.stategate.Sort sort = 9;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          stategate.Schema.Sort, stategate.Schema.Sort.Builder, stategate.Schema.SortOrBuilder> 
+          getSortFieldBuilder() {
+        if (sortBuilder_ == null) {
+          sortBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              stategate.Schema.Sort, stategate.Schema.Sort.Builder, stategate.Schema.SortOrBuilder>(
+                  getSort(),
+                  getParentForChildren(),
+                  isClean());
+          sort_ = null;
+        }
+        return sortBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -6207,6 +6715,693 @@ public final class Schema {
 
     @java.lang.Override
     public stategate.Schema.StreamOpts getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SortOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:stategate.Sort)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * field is a field to sort the array by
+     * please note that dot notation may be used to access nested fields
+     * </pre>
+     *
+     * <code>string field = 1;</code>
+     */
+    java.lang.String getField();
+    /**
+     * <pre>
+     * field is a field to sort the array by
+     * please note that dot notation may be used to access nested fields
+     * </pre>
+     *
+     * <code>string field = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getFieldBytes();
+
+    /**
+     * <pre>
+     * reverse reverses the direction of the sort
+     * </pre>
+     *
+     * <code>bool reverse = 2;</code>
+     */
+    boolean getReverse();
+  }
+  /**
+   * <pre>
+   * Sort is a primitive used to sort an array
+   * </pre>
+   *
+   * Protobuf type {@code stategate.Sort}
+   */
+  public  static final class Sort extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:stategate.Sort)
+      SortOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Sort.newBuilder() to construct.
+    private Sort(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Sort() {
+      field_ = "";
+      reverse_ = false;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Sort(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              field_ = s;
+              break;
+            }
+            case 16: {
+
+              reverse_ = input.readBool();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return stategate.Schema.internal_static_stategate_Sort_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return stategate.Schema.internal_static_stategate_Sort_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              stategate.Schema.Sort.class, stategate.Schema.Sort.Builder.class);
+    }
+
+    public static final int FIELD_FIELD_NUMBER = 1;
+    private volatile java.lang.Object field_;
+    /**
+     * <pre>
+     * field is a field to sort the array by
+     * please note that dot notation may be used to access nested fields
+     * </pre>
+     *
+     * <code>string field = 1;</code>
+     */
+    public java.lang.String getField() {
+      java.lang.Object ref = field_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        field_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * field is a field to sort the array by
+     * please note that dot notation may be used to access nested fields
+     * </pre>
+     *
+     * <code>string field = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFieldBytes() {
+      java.lang.Object ref = field_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        field_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int REVERSE_FIELD_NUMBER = 2;
+    private boolean reverse_;
+    /**
+     * <pre>
+     * reverse reverses the direction of the sort
+     * </pre>
+     *
+     * <code>bool reverse = 2;</code>
+     */
+    public boolean getReverse() {
+      return reverse_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getFieldBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, field_);
+      }
+      if (reverse_ != false) {
+        output.writeBool(2, reverse_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getFieldBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, field_);
+      }
+      if (reverse_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, reverse_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof stategate.Schema.Sort)) {
+        return super.equals(obj);
+      }
+      stategate.Schema.Sort other = (stategate.Schema.Sort) obj;
+
+      boolean result = true;
+      result = result && getField()
+          .equals(other.getField());
+      result = result && (getReverse()
+          == other.getReverse());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + FIELD_FIELD_NUMBER;
+      hash = (53 * hash) + getField().hashCode();
+      hash = (37 * hash) + REVERSE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getReverse());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static stategate.Schema.Sort parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.Sort parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.Sort parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.Sort parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.Sort parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.Sort parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.Sort parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.Sort parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static stategate.Schema.Sort parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.Sort parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static stategate.Schema.Sort parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.Sort parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(stategate.Schema.Sort prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Sort is a primitive used to sort an array
+     * </pre>
+     *
+     * Protobuf type {@code stategate.Sort}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:stategate.Sort)
+        stategate.Schema.SortOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return stategate.Schema.internal_static_stategate_Sort_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return stategate.Schema.internal_static_stategate_Sort_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                stategate.Schema.Sort.class, stategate.Schema.Sort.Builder.class);
+      }
+
+      // Construct using stategate.Schema.Sort.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        field_ = "";
+
+        reverse_ = false;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return stategate.Schema.internal_static_stategate_Sort_descriptor;
+      }
+
+      @java.lang.Override
+      public stategate.Schema.Sort getDefaultInstanceForType() {
+        return stategate.Schema.Sort.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public stategate.Schema.Sort build() {
+        stategate.Schema.Sort result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public stategate.Schema.Sort buildPartial() {
+        stategate.Schema.Sort result = new stategate.Schema.Sort(this);
+        result.field_ = field_;
+        result.reverse_ = reverse_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof stategate.Schema.Sort) {
+          return mergeFrom((stategate.Schema.Sort)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(stategate.Schema.Sort other) {
+        if (other == stategate.Schema.Sort.getDefaultInstance()) return this;
+        if (!other.getField().isEmpty()) {
+          field_ = other.field_;
+          onChanged();
+        }
+        if (other.getReverse() != false) {
+          setReverse(other.getReverse());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        stategate.Schema.Sort parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (stategate.Schema.Sort) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object field_ = "";
+      /**
+       * <pre>
+       * field is a field to sort the array by
+       * please note that dot notation may be used to access nested fields
+       * </pre>
+       *
+       * <code>string field = 1;</code>
+       */
+      public java.lang.String getField() {
+        java.lang.Object ref = field_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          field_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * field is a field to sort the array by
+       * please note that dot notation may be used to access nested fields
+       * </pre>
+       *
+       * <code>string field = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFieldBytes() {
+        java.lang.Object ref = field_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          field_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * field is a field to sort the array by
+       * please note that dot notation may be used to access nested fields
+       * </pre>
+       *
+       * <code>string field = 1;</code>
+       */
+      public Builder setField(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        field_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * field is a field to sort the array by
+       * please note that dot notation may be used to access nested fields
+       * </pre>
+       *
+       * <code>string field = 1;</code>
+       */
+      public Builder clearField() {
+        
+        field_ = getDefaultInstance().getField();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * field is a field to sort the array by
+       * please note that dot notation may be used to access nested fields
+       * </pre>
+       *
+       * <code>string field = 1;</code>
+       */
+      public Builder setFieldBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        field_ = value;
+        onChanged();
+        return this;
+      }
+
+      private boolean reverse_ ;
+      /**
+       * <pre>
+       * reverse reverses the direction of the sort
+       * </pre>
+       *
+       * <code>bool reverse = 2;</code>
+       */
+      public boolean getReverse() {
+        return reverse_;
+      }
+      /**
+       * <pre>
+       * reverse reverses the direction of the sort
+       * </pre>
+       *
+       * <code>bool reverse = 2;</code>
+       */
+      public Builder setReverse(boolean value) {
+        
+        reverse_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * reverse reverses the direction of the sort
+       * </pre>
+       *
+       * <code>bool reverse = 2;</code>
+       */
+      public Builder clearReverse() {
+        
+        reverse_ = false;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:stategate.Sort)
+    }
+
+    // @@protoc_insertion_point(class_scope:stategate.Sort)
+    private static final stategate.Schema.Sort DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new stategate.Schema.Sort();
+    }
+
+    public static stategate.Schema.Sort getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Sort>
+        PARSER = new com.google.protobuf.AbstractParser<Sort>() {
+      @java.lang.Override
+      public Sort parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Sort(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Sort> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Sort> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public stategate.Schema.Sort getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -8398,6 +9593,11 @@ public final class Schema {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_stategate_StreamOpts_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_stategate_Sort_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_stategate_Sort_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_stategate_Event_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -8428,37 +9628,42 @@ public final class Schema {
       "^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030" +
       "\003 \001(\tB\013\342\337\037\007\n\005^\\S+$\022/\n\006values\030\004 \001(\0132\027.goo" +
       "gle.protobuf.StructB\006\342\337\037\002 \001\"/\n\010Entities\022" +
-      "#\n\010entities\030\001 \003(\0132\021.stategate.Entity\"\211\001\n" +
+      "#\n\010entities\030\001 \003(\0132\021.stategate.Entity\"\250\001\n" +
       "\022SearchEntitiesOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037" +
       "\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014q" +
       "uery_string\030\003 \001(\t\022\025\n\005limit\030\004 \001(\003B\006\342\337\037\002\020\000" +
-      "\022\016\n\006offset\030\005 \001(\003\"\240\001\n\017SearchEventOpts\022\033\n\006" +
-      "domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB" +
-      "\013\342\337\037\007\n\005^\\S+$\022\024\n\014query_string\030\004 \001(\t\022\013\n\003mi" +
-      "n\030\005 \001(\003\022\013\n\003max\030\006 \001(\003\022\025\n\005limit\030\007 \001(\003B\006\342\337\037" +
-      "\002\020\000\022\016\n\006offset\030\010 \001(\003\"D\n\nStreamOpts\022\033\n\006dom" +
-      "ain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337" +
-      "\037\007\n\005^\\S+$\"\246\001\n\005Event\022\023\n\002id\030\001 \001(\tB\007\342\337\037\003\220\001\004" +
-      "\022)\n\006entity\030\002 \001(\0132\021.stategate.EntityB\006\342\337\037" +
-      "\002 \001\022\026\n\006method\030\005 \001(\tB\006\342\337\037\002X\001\022/\n\006claims\030\003 " +
-      "\001(\0132\027.google.protobuf.StructB\006\342\337\037\002 \001\022\024\n\004" +
-      "time\030\004 \001(\003B\006\342\337\037\002\020\000\"*\n\006Events\022 \n\006events\030\001" +
-      " \003(\0132\020.stategate.Event2\215\003\n\rEntityService" +
-      "\022_\n\003Set\022\021.stategate.Entity\032\026.google.prot" +
-      "obuf.Empty\"-\202\323\344\223\002\'\"%/api/entity/ref/{dom" +
-      "ain}/{type}/{key}\022]\n\003Get\022\024.stategate.Ent" +
-      "ityRef\032\021.stategate.Entity\"-\202\323\344\223\002\'\022%/api/" +
-      "entity/ref/{domain}/{type}/{key}\022b\n\003Del\022" +
-      "\024.stategate.EntityRef\032\026.google.protobuf." +
-      "Empty\"-\202\323\344\223\002\'*%/api/entity/ref/{domain}/" +
-      "{type}/{key}\022X\n\006Search\022\035.stategate.Searc" +
-      "hEntitiesOpts\032\023.stategate.Entities\"\032\202\323\344\223" +
-      "\002\024\022\022/api/entity/search2\264\001\n\014EventService\022" +
-      "O\n\006Stream\022\025.stategate.StreamOpts\032\020.state" +
-      "gate.Event\"\032\202\323\344\223\002\024\022\022/api/events/stream0\001" +
-      "\022S\n\006Search\022\032.stategate.SearchEventOpts\032\021" +
-      ".stategate.Events\"\032\202\323\344\223\002\024\022\022/api/events/s" +
-      "earchB\013Z\tstategateb\006proto3"
+      "\022\016\n\006offset\030\005 \001(\003\022\035\n\004sort\030\t \001(\0132\017.statega" +
+      "te.Sort\"\277\001\n\017SearchEventOpts\022\033\n\006domain\030\001 " +
+      "\001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\" +
+      "S+$\022\024\n\014query_string\030\004 \001(\t\022\013\n\003min\030\005 \001(\003\022\013" +
+      "\n\003max\030\006 \001(\003\022\025\n\005limit\030\007 \001(\003B\006\342\337\037\002\020\000\022\016\n\006of" +
+      "fset\030\010 \001(\003\022\035\n\004sort\030\t \001(\0132\017.stategate.Sor" +
+      "t\"D\n\nStreamOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^" +
+      "\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\"&\n\004Sort\022" +
+      "\r\n\005field\030\001 \001(\t\022\017\n\007reverse\030\002 \001(\010\"\246\001\n\005Even" +
+      "t\022\023\n\002id\030\001 \001(\tB\007\342\337\037\003\220\001\004\022)\n\006entity\030\002 \001(\0132\021" +
+      ".stategate.EntityB\006\342\337\037\002 \001\022\026\n\006method\030\005 \001(" +
+      "\tB\006\342\337\037\002X\001\022/\n\006claims\030\003 \001(\0132\027.google.proto" +
+      "buf.StructB\006\342\337\037\002 \001\022\024\n\004time\030\004 \001(\003B\006\342\337\037\002\020\000" +
+      "\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020.stategate.E" +
+      "vent2\352\003\n\rEntityService\022_\n\003Set\022\021.stategat" +
+      "e.Entity\032\026.google.protobuf.Empty\"-\202\323\344\223\002\'" +
+      "\"%/api/entity/ref/{domain}/{type}/{key}\022" +
+      "[\n\004Edit\022\021.stategate.Entity\032\021.stategate.E" +
+      "ntity\"-\202\323\344\223\002\'2%/api/entity/ref/{domain}/" +
+      "{type}/{key}\022]\n\003Get\022\024.stategate.EntityRe" +
+      "f\032\021.stategate.Entity\"-\202\323\344\223\002\'\022%/api/entit" +
+      "y/ref/{domain}/{type}/{key}\022b\n\003Del\022\024.sta" +
+      "tegate.EntityRef\032\026.google.protobuf.Empty" +
+      "\"-\202\323\344\223\002\'*%/api/entity/ref/{domain}/{type" +
+      "}/{key}\022X\n\006Search\022\035.stategate.SearchEnti" +
+      "tiesOpts\032\023.stategate.Entities\"\032\202\323\344\223\002\024\022\022/" +
+      "api/entity/search2\264\001\n\014EventService\022O\n\006St" +
+      "ream\022\025.stategate.StreamOpts\032\020.stategate." +
+      "Event\"\032\202\323\344\223\002\024\022\022/api/events/stream0\001\022S\n\006S" +
+      "earch\022\032.stategate.SearchEventOpts\032\021.stat" +
+      "egate.Events\"\032\202\323\344\223\002\024\022\022/api/events/search" +
+      "B\013Z\tstategateb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8501,27 +9706,33 @@ public final class Schema {
     internal_static_stategate_SearchEntitiesOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_SearchEntitiesOpts_descriptor,
-        new java.lang.String[] { "Domain", "Type", "QueryString", "Limit", "Offset", });
+        new java.lang.String[] { "Domain", "Type", "QueryString", "Limit", "Offset", "Sort", });
     internal_static_stategate_SearchEventOpts_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_stategate_SearchEventOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_SearchEventOpts_descriptor,
-        new java.lang.String[] { "Domain", "Type", "QueryString", "Min", "Max", "Limit", "Offset", });
+        new java.lang.String[] { "Domain", "Type", "QueryString", "Min", "Max", "Limit", "Offset", "Sort", });
     internal_static_stategate_StreamOpts_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_stategate_StreamOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_StreamOpts_descriptor,
         new java.lang.String[] { "Domain", "Type", });
-    internal_static_stategate_Event_descriptor =
+    internal_static_stategate_Sort_descriptor =
       getDescriptor().getMessageTypes().get(6);
+    internal_static_stategate_Sort_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_stategate_Sort_descriptor,
+        new java.lang.String[] { "Field", "Reverse", });
+    internal_static_stategate_Event_descriptor =
+      getDescriptor().getMessageTypes().get(7);
     internal_static_stategate_Event_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_Event_descriptor,
         new java.lang.String[] { "Id", "Entity", "Method", "Claims", "Time", });
     internal_static_stategate_Events_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_stategate_Events_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_Events_descriptor,

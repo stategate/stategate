@@ -90,6 +90,35 @@ func (s Service) getEntity(ctx context.Context, ref *stategate.EntityRef) (*stat
 	return obj, nil
 }
 
+func (s Service) editEntity(ctx context.Context, entity *stategate.Entity) (*stategate.Entity, error) {
+	c, _ := auth.GetContext(ctx)
+	claims, _ := structpb.NewStruct(c.Claims)
+	result, err := s.storage.EditEntity(ctx, entity)
+	if err != nil {
+		err.Log(s.lgger)
+		return nil, err.Public()
+	}
+	if err := result.Validate(); err != nil {
+		return nil, err
+	}
+	e := &stategate.Event{
+		Id:     uuid.New().String(),
+		Entity: result,
+		Method: c.Method,
+		Claims: claims,
+		Time:   time.Now().UnixNano(),
+	}
+	if err := s.storage.SaveEvent(ctx, e); err != nil {
+		err.Log(s.lgger)
+		return nil, err.Public()
+	}
+	if err := s.channel.Publish(ctx, e); err != nil {
+		err.Log(s.lgger)
+		return nil, err.Public()
+	}
+	return result, nil
+}
+
 func (s Service) delEntity(ctx context.Context, ref *stategate.EntityRef) (*empty.Empty, error) {
 	c, _ := auth.GetContext(ctx)
 	claims, _ := structpb.NewStruct(c.Claims)
@@ -185,6 +214,10 @@ type objectService struct {
 
 func (o objectService) Set(ctx context.Context, object *stategate.Entity) (*empty.Empty, error) {
 	return o.svc.setEntity(ctx, object)
+}
+
+func (o objectService) Edit(ctx context.Context, object *stategate.Entity) (*stategate.Entity, error) {
+	return o.svc.editEntity(ctx, object)
 }
 
 func (o objectService) Get(ctx context.Context, ref *stategate.EntityRef) (*stategate.Entity, error) {

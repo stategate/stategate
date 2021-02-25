@@ -143,6 +143,50 @@
         "tags": [
           "EntityService"
         ]
+      },
+      "patch": {
+        "summary": "Edit overwrites the k/v pairs present in the entity request without replacing the entire entity.\nIt then adds the state change to the event log, then broadcast the event to all interested consumers(EventService.Stream)\nEdit returns the current state of the Entity after the mutation.",
+        "operationId": "EntityService_Edit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/stategateEntity"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the entity's business domain(ex: accounting)\nmust not be empty or contain spaces",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "the entity's type (ex: user)\nmust not be empty or contain spaces",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "the entity's key (unique within type).\nmust not be empty or contain spaces",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EntityService"
+        ]
       }
     },
     "/api/entity/search": {
@@ -200,6 +244,20 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "sort.field",
+            "description": "field is a field to sort the array by\nplease note that dot notation may be used to access nested fields.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort.reverse",
+            "description": "reverse reverses the direction of the sort.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -278,6 +336,20 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "sort.field",
+            "description": "field is a field to sort the array by\nplease note that dot notation may be used to access nested fields.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort.reverse",
+            "description": "reverse reverses the direction of the sort.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -448,6 +520,20 @@
         }
       },
       "title": "Events is an array of events"
+    },
+    "stategateSort": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string",
+          "title": "field is a field to sort the array by\nplease note that dot notation may be used to access nested fields"
+        },
+        "reverse": {
+          "type": "boolean",
+          "title": "reverse reverses the direction of the sort"
+        }
+      },
+      "title": "Sort is a primitive used to sort an array"
     }
   }
 }

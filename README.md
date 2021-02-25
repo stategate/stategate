@@ -16,8 +16,9 @@ What is Event Sourcing?
 - [API Documentation](https://autom8ter.github.io/stategate/)
                                         
 ## Features
-- [x] [6 simple API Methods](https://github.com/autom8ter/stategate/blob/master/schema.proto#L15) for interacting with application state: 
+- [x] 6 Simple API Methods for interacting with application entites & events: 
     - `/stategate.EntityService/Set` sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+    - `/stategate.EntityService/Edit` overwrites the k/v pairs present in the entity request without replacing the entire entity. It then adds the state change to the event log, then broadcast the event to all interested consumers(EventService.Stream)
     - `/stategate.EntityService/Get` gets an entity's current state
     - `/stategate.EntityService/Del` hard deletes an entity from current state store, adds it's state prior to deletion to the event log, then broadcast the event to all interested consumers(EventService.Stream) 
     - `/stategate.EntityService/Search` queries the current state of entities

@@ -7,6 +7,7 @@ import (
 	"github.com/autom8ter/stategate/internal/server"
 	"github.com/autom8ter/stategate/internal/testing/framework"
 	stategate_client_go "github.com/autom8ter/stategate/stategate-client-go"
+	"github.com/spf13/cast"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/structpb"
@@ -214,20 +215,50 @@ func endToEnd(ctx context.Context) *framework.TestCase {
 			if err := group.Wait(); err != nil {
 				t.Fatal(err)
 			}
+			{
+				data, _ := structpb.NewStruct(map[string]interface{}{
+					"messagev2": "hello world v2",
+				})
+				e, err := oclient.Edit(context.Background(), &stategate.Entity{
+					Domain: "acme",
+					Type:   typ,
+					Key:    key,
+					Values: data,
+				})
+				if err != nil {
+					t.Fatal(err)
+				}
+				if cast.ToString(e.Values.GetFields()["messagev2"].AsInterface()) != "hello world v2" {
+					t.Fatal("failed to edit entity")
+				}
+			}
+			time.Sleep(100 * time.Millisecond)
 			events, err := eclient.Search(ctx, &stategate.SearchEventOpts{
 				Domain:      "acme",
 				Type:        typ,
 				QueryString: fmt.Sprintf(`{ "entity.key": "%s", "entity.values.message": "hello world" }`, key),
 				Min:         time.Now().Truncate(1 * time.Minute).UnixNano(),
 				Max:         0,
-				Limit:       3,
+				Limit:       4,
 				Offset:      0,
+				Sort: &stategate.Sort{
+					Field:   "time",
+					Reverse: true,
+				},
 			})
 			if err != nil {
 				t.Fatal(err)
 			}
-			if len(events.Events) != 3 {
-				t.Fatalf("expected 3 events got: %v", len(events.Events))
+			if len(events.Events) != 4 {
+				t.Fatalf("expected 4 events got: %v", len(events.Events))
+			}
+			for _, e := range events.GetEvents() {
+				if cast.ToString(e.GetEntity().GetValues().GetFields()["message"].AsInterface()) != "hello world" {
+					t.Fatalf("values mismatch: %v", protojson.Format(e))
+				}
+			}
+			if e := events.GetEvents()[0].GetEntity(); cast.ToString(e.GetValues().GetFields()["messagev2"].AsInterface()) != "hello world v2" {
+				t.Fatalf("values mismatch: %v", protojson.Format(e))
 			}
 			t.Log(protojson.Format(events))
 			objectss, err := oclient.Search(ctx, &stategate.SearchEntitiesOpts{

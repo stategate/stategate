@@ -16,6 +16,13 @@ export class EntityServiceClient {
                response: google_protobuf_empty_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
+  edit(
+    request: schema_pb.Entity,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: schema_pb.Entity) => void
+  ): grpcWeb.ClientReadableStream<schema_pb.Entity>;
+
   get(
     request: schema_pb.EntityRef,
     metadata: grpcWeb.Metadata | undefined,
@@ -67,6 +74,11 @@ export class EntityServicePromiseClient {
     request: schema_pb.Entity,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
+
+  edit(
+    request: schema_pb.Entity,
+    metadata?: grpcWeb.Metadata
+  ): Promise<schema_pb.Entity>;
 
   get(
     request: schema_pb.EntityRef,

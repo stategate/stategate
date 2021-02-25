@@ -7,12 +7,12 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/golang/protobuf/ptypes/empty"
+	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/struct"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/golang/protobuf/ptypes/any"
-	_ "github.com/golang/protobuf/ptypes/empty"
-	_ "github.com/mwitkow/go-proto-validators"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -87,6 +87,11 @@ func (this *SearchEntitiesOpts) Validate() error {
 	if !(this.Limit > 0) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Limit", fmt.Errorf(`value '%v' must be greater than '0'`, this.Limit))
 	}
+	if this.Sort != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Sort); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Sort", err)
+		}
+	}
 	return nil
 }
 
@@ -103,6 +108,11 @@ func (this *SearchEventOpts) Validate() error {
 	if !(this.Limit > 0) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Limit", fmt.Errorf(`value '%v' must be greater than '0'`, this.Limit))
 	}
+	if this.Sort != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Sort); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Sort", err)
+		}
+	}
 	return nil
 }
 
@@ -116,6 +126,9 @@ func (this *StreamOpts) Validate() error {
 	if !_regex_StreamOpts_Type.MatchString(this.Type) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
 	}
+	return nil
+}
+func (this *Sort) Validate() error {
 	return nil
 }
 

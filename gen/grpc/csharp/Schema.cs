@@ -35,42 +35,48 @@ namespace Stategate {
             "XlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJ",
             "Qgvi3x8HCgVeXFMrJBIvCgZ2YWx1ZXMYBCABKAsyFy5nb29nbGUucHJvdG9i",
             "dWYuU3RydWN0Qgbi3x8CIAEiLwoIRW50aXRpZXMSIwoIZW50aXRpZXMYASAD",
-            "KAsyES5zdGF0ZWdhdGUuRW50aXR5IokBChJTZWFyY2hFbnRpdGllc09wdHMS",
+            "KAsyES5zdGF0ZWdhdGUuRW50aXR5IqgBChJTZWFyY2hFbnRpdGllc09wdHMS",
             "GwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAIgASgJQgvi",
             "3x8HCgVeXFMrJBIUCgxxdWVyeV9zdHJpbmcYAyABKAkSFQoFbGltaXQYBCAB",
-            "KANCBuLfHwIQABIOCgZvZmZzZXQYBSABKAMioAEKD1NlYXJjaEV2ZW50T3B0",
-            "cxIbCgZkb21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlC",
-            "C+LfHwcKBV5cUyskEhQKDHF1ZXJ5X3N0cmluZxgEIAEoCRILCgNtaW4YBSAB",
-            "KAMSCwoDbWF4GAYgASgDEhUKBWxpbWl0GAcgASgDQgbi3x8CEAASDgoGb2Zm",
-            "c2V0GAggASgDIkQKClN0cmVhbU9wdHMSGwoGZG9tYWluGAEgASgJQgvi3x8H",
-            "CgVeXFMrJBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMrJCKmAQoFRXZlbnQS",
-            "EwoCaWQYASABKAlCB+LfHwOQAQQSKQoGZW50aXR5GAIgASgLMhEuc3RhdGVn",
-            "YXRlLkVudGl0eUIG4t8fAiABEhYKBm1ldGhvZBgFIAEoCUIG4t8fAlgBEi8K",
-            "BmNsYWltcxgDIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIg",
-            "ARIUCgR0aW1lGAQgASgDQgbi3x8CEAAiKgoGRXZlbnRzEiAKBmV2ZW50cxgB",
-            "IAMoCzIQLnN0YXRlZ2F0ZS5FdmVudDKNAwoNRW50aXR5U2VydmljZRJfCgNT",
-            "ZXQSES5zdGF0ZWdhdGUuRW50aXR5GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5",
-            "Ii2C0+STAiciJS9hcGkvZW50aXR5L3JlZi97ZG9tYWlufS97dHlwZX0ve2tl",
-            "eX0SXQoDR2V0EhQuc3RhdGVnYXRlLkVudGl0eVJlZhoRLnN0YXRlZ2F0ZS5F",
-            "bnRpdHkiLYLT5JMCJxIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBl",
-            "fS97a2V5fRJiCgNEZWwSFC5zdGF0ZWdhdGUuRW50aXR5UmVmGhYuZ29vZ2xl",
-            "LnByb3RvYnVmLkVtcHR5Ii2C0+STAicqJS9hcGkvZW50aXR5L3JlZi97ZG9t",
-            "YWlufS97dHlwZX0ve2tleX0SWAoGU2VhcmNoEh0uc3RhdGVnYXRlLlNlYXJj",
-            "aEVudGl0aWVzT3B0cxoTLnN0YXRlZ2F0ZS5FbnRpdGllcyIagtPkkwIUEhIv",
-            "YXBpL2VudGl0eS9zZWFyY2gytAEKDEV2ZW50U2VydmljZRJPCgZTdHJlYW0S",
-            "FS5zdGF0ZWdhdGUuU3RyZWFtT3B0cxoQLnN0YXRlZ2F0ZS5FdmVudCIagtPk",
-            "kwIUEhIvYXBpL2V2ZW50cy9zdHJlYW0wARJTCgZTZWFyY2gSGi5zdGF0ZWdh",
-            "dGUuU2VhcmNoRXZlbnRPcHRzGhEuc3RhdGVnYXRlLkV2ZW50cyIagtPkkwIU",
-            "EhIvYXBpL2V2ZW50cy9zZWFyY2hCC1oJc3RhdGVnYXRlYgZwcm90bzM="));
+            "KANCBuLfHwIQABIOCgZvZmZzZXQYBSABKAMSHQoEc29ydBgJIAEoCzIPLnN0",
+            "YXRlZ2F0ZS5Tb3J0Ir8BCg9TZWFyY2hFdmVudE9wdHMSGwoGZG9tYWluGAEg",
+            "ASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMrJBIU",
+            "CgxxdWVyeV9zdHJpbmcYBCABKAkSCwoDbWluGAUgASgDEgsKA21heBgGIAEo",
+            "AxIVCgVsaW1pdBgHIAEoA0IG4t8fAhAAEg4KBm9mZnNldBgIIAEoAxIdCgRz",
+            "b3J0GAkgASgLMg8uc3RhdGVnYXRlLlNvcnQiRAoKU3RyZWFtT3B0cxIbCgZk",
+            "b21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcK",
+            "BV5cUyskIiYKBFNvcnQSDQoFZmllbGQYASABKAkSDwoHcmV2ZXJzZRgCIAEo",
+            "CCKmAQoFRXZlbnQSEwoCaWQYASABKAlCB+LfHwOQAQQSKQoGZW50aXR5GAIg",
+            "ASgLMhEuc3RhdGVnYXRlLkVudGl0eUIG4t8fAiABEhYKBm1ldGhvZBgFIAEo",
+            "CUIG4t8fAlgBEi8KBmNsYWltcxgDIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5T",
+            "dHJ1Y3RCBuLfHwIgARIUCgR0aW1lGAQgASgDQgbi3x8CEAAiKgoGRXZlbnRz",
+            "EiAKBmV2ZW50cxgBIAMoCzIQLnN0YXRlZ2F0ZS5FdmVudDLqAwoNRW50aXR5",
+            "U2VydmljZRJfCgNTZXQSES5zdGF0ZWdhdGUuRW50aXR5GhYuZ29vZ2xlLnBy",
+            "b3RvYnVmLkVtcHR5Ii2C0+STAiciJS9hcGkvZW50aXR5L3JlZi97ZG9tYWlu",
+            "fS97dHlwZX0ve2tleX0SWwoERWRpdBIRLnN0YXRlZ2F0ZS5FbnRpdHkaES5z",
+            "dGF0ZWdhdGUuRW50aXR5Ii2C0+STAicyJS9hcGkvZW50aXR5L3JlZi97ZG9t",
+            "YWlufS97dHlwZX0ve2tleX0SXQoDR2V0EhQuc3RhdGVnYXRlLkVudGl0eVJl",
+            "ZhoRLnN0YXRlZ2F0ZS5FbnRpdHkiLYLT5JMCJxIlL2FwaS9lbnRpdHkvcmVm",
+            "L3tkb21haW59L3t0eXBlfS97a2V5fRJiCgNEZWwSFC5zdGF0ZWdhdGUuRW50",
+            "aXR5UmVmGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5Ii2C0+STAicqJS9hcGkv",
+            "ZW50aXR5L3JlZi97ZG9tYWlufS97dHlwZX0ve2tleX0SWAoGU2VhcmNoEh0u",
+            "c3RhdGVnYXRlLlNlYXJjaEVudGl0aWVzT3B0cxoTLnN0YXRlZ2F0ZS5FbnRp",
+            "dGllcyIagtPkkwIUEhIvYXBpL2VudGl0eS9zZWFyY2gytAEKDEV2ZW50U2Vy",
+            "dmljZRJPCgZTdHJlYW0SFS5zdGF0ZWdhdGUuU3RyZWFtT3B0cxoQLnN0YXRl",
+            "Z2F0ZS5FdmVudCIagtPkkwIUEhIvYXBpL2V2ZW50cy9zdHJlYW0wARJTCgZT",
+            "ZWFyY2gSGi5zdGF0ZWdhdGUuU2VhcmNoRXZlbnRPcHRzGhEuc3RhdGVnYXRl",
+            "LkV2ZW50cyIagtPkkwIUEhIvYXBpL2V2ZW50cy9zZWFyY2hCC1oJc3RhdGVn",
+            "YXRlYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.EntityRef), global::Stategate.EntityRef.Parser, new[]{ "Domain", "Type", "Key" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entity), global::Stategate.Entity.Parser, new[]{ "Domain", "Type", "Key", "Values" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entities), global::Stategate.Entities.Parser, new[]{ "Entities_" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEntitiesOpts), global::Stategate.SearchEntitiesOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Limit", "Offset" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEventOpts), global::Stategate.SearchEventOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Min", "Max", "Limit", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEntitiesOpts), global::Stategate.SearchEntitiesOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Limit", "Offset", "Sort" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEventOpts), global::Stategate.SearchEventOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Min", "Max", "Limit", "Offset", "Sort" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamOpts), global::Stategate.StreamOpts.Parser, new[]{ "Domain", "Type" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Sort), global::Stategate.Sort.Parser, new[]{ "Field", "Reverse" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Event), global::Stategate.Event.Parser, new[]{ "Id", "Entity", "Method", "Claims", "Time" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Events), global::Stategate.Events.Parser, new[]{ "Events_" }, null, null, null)
           }));
@@ -672,6 +678,7 @@ namespace Stategate {
       queryString_ = other.queryString_;
       limit_ = other.limit_;
       offset_ = other.offset_;
+      sort_ = other.sort_ != null ? other.sort_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -753,6 +760,20 @@ namespace Stategate {
       }
     }
 
+    /// <summary>Field number for the "sort" field.</summary>
+    public const int SortFieldNumber = 9;
+    private global::Stategate.Sort sort_;
+    /// <summary>
+    /// sort sorts the returned entities by a specified field
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Stategate.Sort Sort {
+      get { return sort_; }
+      set {
+        sort_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as SearchEntitiesOpts);
@@ -771,6 +792,7 @@ namespace Stategate {
       if (QueryString != other.QueryString) return false;
       if (Limit != other.Limit) return false;
       if (Offset != other.Offset) return false;
+      if (!object.Equals(Sort, other.Sort)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -782,6 +804,7 @@ namespace Stategate {
       if (QueryString.Length != 0) hash ^= QueryString.GetHashCode();
       if (Limit != 0L) hash ^= Limit.GetHashCode();
       if (Offset != 0L) hash ^= Offset.GetHashCode();
+      if (sort_ != null) hash ^= Sort.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -815,6 +838,10 @@ namespace Stategate {
         output.WriteRawTag(40);
         output.WriteInt64(Offset);
       }
+      if (sort_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(Sort);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -837,6 +864,9 @@ namespace Stategate {
       }
       if (Offset != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(Offset);
+      }
+      if (sort_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Sort);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -863,6 +893,12 @@ namespace Stategate {
       }
       if (other.Offset != 0L) {
         Offset = other.Offset;
+      }
+      if (other.sort_ != null) {
+        if (sort_ == null) {
+          sort_ = new global::Stategate.Sort();
+        }
+        Sort.MergeFrom(other.Sort);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -893,6 +929,13 @@ namespace Stategate {
           }
           case 40: {
             Offset = input.ReadInt64();
+            break;
+          }
+          case 74: {
+            if (sort_ == null) {
+              sort_ = new global::Stategate.Sort();
+            }
+            input.ReadMessage(sort_);
             break;
           }
         }
@@ -936,6 +979,7 @@ namespace Stategate {
       max_ = other.max_;
       limit_ = other.limit_;
       offset_ = other.offset_;
+      sort_ = other.sort_ != null ? other.sort_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1045,6 +1089,20 @@ namespace Stategate {
       }
     }
 
+    /// <summary>Field number for the "sort" field.</summary>
+    public const int SortFieldNumber = 9;
+    private global::Stategate.Sort sort_;
+    /// <summary>
+    /// sort sorts the returned entities by a specified field
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Stategate.Sort Sort {
+      get { return sort_; }
+      set {
+        sort_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as SearchEventOpts);
@@ -1065,6 +1123,7 @@ namespace Stategate {
       if (Max != other.Max) return false;
       if (Limit != other.Limit) return false;
       if (Offset != other.Offset) return false;
+      if (!object.Equals(Sort, other.Sort)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1078,6 +1137,7 @@ namespace Stategate {
       if (Max != 0L) hash ^= Max.GetHashCode();
       if (Limit != 0L) hash ^= Limit.GetHashCode();
       if (Offset != 0L) hash ^= Offset.GetHashCode();
+      if (sort_ != null) hash ^= Sort.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1119,6 +1179,10 @@ namespace Stategate {
         output.WriteRawTag(64);
         output.WriteInt64(Offset);
       }
+      if (sort_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(Sort);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1147,6 +1211,9 @@ namespace Stategate {
       }
       if (Offset != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(Offset);
+      }
+      if (sort_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Sort);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1179,6 +1246,12 @@ namespace Stategate {
       }
       if (other.Offset != 0L) {
         Offset = other.Offset;
+      }
+      if (other.sort_ != null) {
+        if (sort_ == null) {
+          sort_ = new global::Stategate.Sort();
+        }
+        Sort.MergeFrom(other.Sort);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1217,6 +1290,13 @@ namespace Stategate {
           }
           case 64: {
             Offset = input.ReadInt64();
+            break;
+          }
+          case 74: {
+            if (sort_ == null) {
+              sort_ = new global::Stategate.Sort();
+            }
+            input.ReadMessage(sort_);
             break;
           }
         }
@@ -1397,6 +1477,173 @@ namespace Stategate {
   }
 
   /// <summary>
+  /// Sort is a primitive used to sort an array
+  /// </summary>
+  public sealed partial class Sort : pb::IMessage<Sort> {
+    private static readonly pb::MessageParser<Sort> _parser = new pb::MessageParser<Sort>(() => new Sort());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Sort> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Sort() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Sort(Sort other) : this() {
+      field_ = other.field_;
+      reverse_ = other.reverse_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Sort Clone() {
+      return new Sort(this);
+    }
+
+    /// <summary>Field number for the "field" field.</summary>
+    public const int FieldFieldNumber = 1;
+    private string field_ = "";
+    /// <summary>
+    /// field is a field to sort the array by
+    /// please note that dot notation may be used to access nested fields
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Field {
+      get { return field_; }
+      set {
+        field_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "reverse" field.</summary>
+    public const int ReverseFieldNumber = 2;
+    private bool reverse_;
+    /// <summary>
+    /// reverse reverses the direction of the sort
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Reverse {
+      get { return reverse_; }
+      set {
+        reverse_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Sort);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Sort other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Field != other.Field) return false;
+      if (Reverse != other.Reverse) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Field.Length != 0) hash ^= Field.GetHashCode();
+      if (Reverse != false) hash ^= Reverse.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Field.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Field);
+      }
+      if (Reverse != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Reverse);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Field.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Field);
+      }
+      if (Reverse != false) {
+        size += 1 + 1;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Sort other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Field.Length != 0) {
+        Field = other.Field;
+      }
+      if (other.Reverse != false) {
+        Reverse = other.Reverse;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Field = input.ReadString();
+            break;
+          }
+          case 16: {
+            Reverse = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
   /// Event is primitive that represents a single state change to an entity
   /// Events are persisted to history &amp; broadcasted to interested consumers(Stream) any time an entity is created/modified/deleted
   /// Events are immutable after creation and may be searched.
@@ -1410,7 +1657,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1681,7 +1928,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

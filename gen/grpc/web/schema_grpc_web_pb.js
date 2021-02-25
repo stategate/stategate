@@ -165,6 +165,86 @@ proto.stategate.EntityServicePromiseClient.prototype.set =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.stategate.Entity,
+ *   !proto.stategate.Entity>}
+ */
+const methodDescriptor_EntityService_Edit = new grpc.web.MethodDescriptor(
+  '/stategate.EntityService/Edit',
+  grpc.web.MethodType.UNARY,
+  proto.stategate.Entity,
+  proto.stategate.Entity,
+  /**
+   * @param {!proto.stategate.Entity} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.stategate.Entity.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.stategate.Entity,
+ *   !proto.stategate.Entity>}
+ */
+const methodInfo_EntityService_Edit = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.stategate.Entity,
+  /**
+   * @param {!proto.stategate.Entity} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.stategate.Entity.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.stategate.Entity} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.stategate.Entity)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.stategate.Entity>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.stategate.EntityServiceClient.prototype.edit =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/stategate.EntityService/Edit',
+      request,
+      metadata || {},
+      methodDescriptor_EntityService_Edit,
+      callback);
+};
+
+
+/**
+ * @param {!proto.stategate.Entity} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.stategate.Entity>}
+ *     Promise that resolves to the response
+ */
+proto.stategate.EntityServicePromiseClient.prototype.edit =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/stategate.EntityService/Edit',
+      request,
+      metadata || {},
+      methodDescriptor_EntityService_Edit);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.stategate.EntityRef,
  *   !proto.stategate.Entity>}
  */

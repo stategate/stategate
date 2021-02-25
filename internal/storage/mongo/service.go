@@ -33,7 +33,7 @@ func (p Provider) SetEntity(ctx context.Context, state *stategate.Entity) *error
 	if err != nil {
 		return &errorz.Error{
 			Type: errorz.ErrUnknown,
-			Info: "failed to set state",
+			Info: "failed to set entity",
 			Err:  err,
 			Metadata: map[string]string{
 				"entity_key":    state.GetKey(),
@@ -43,6 +43,47 @@ func (p Provider) SetEntity(ctx context.Context, state *stategate.Entity) *error
 		}
 	}
 	return nil
+}
+
+func (p Provider) EditEntity(ctx context.Context, state *stategate.Entity) (*stategate.Entity, *errorz.Error) {
+	var (
+		filter = bson.D{{Key: "_id", Value: state.GetKey()}}
+		update = bson.D{}
+	)
+	for k, v := range state.GetValues().AsMap() {
+		update = append(update, bson.E{
+			Key:   "$set",
+			Value: bson.D{{Key: k, Value: v}},
+		})
+	}
+	opts := options.FindOneAndUpdate()
+	opts.SetReturnDocument(options.After)
+
+	result := bson.M{}
+	err := p.db.Collection(collectionName(false, state.GetDomain(), state.GetType())).FindOneAndUpdate(ctx, filter, update, opts).Decode(&result)
+	if err != nil {
+		return nil, &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to edit entity",
+			Err:  err,
+			Metadata: map[string]string{
+				"entity_key":    state.GetKey(),
+				"entity_type":   state.GetType(),
+				"entity_domain": state.GetDomain(),
+			},
+		}
+	}
+
+	entity := &stategate.Entity{
+		Domain: state.GetDomain(),
+		Type:   state.GetType(),
+		Key:    cast.ToString(result["_id"]),
+		Values: nil,
+	}
+	delete(result, "_id")
+	strct, _ := structpb.NewStruct(result)
+	entity.Values = strct
+	return entity, nil
 }
 
 func (p Provider) SaveEvent(ctx context.Context, e *stategate.Event) *errorz.Error {
@@ -59,7 +100,7 @@ func (p Provider) SaveEvent(ctx context.Context, e *stategate.Event) *errorz.Err
 	if err != nil {
 		return &errorz.Error{
 			Type: errorz.ErrUnknown,
-			Info: "failed to set state",
+			Info: "failed to set entity",
 			Err:  err,
 			Metadata: map[string]string{
 				"entity_key":    e.GetEntity().GetKey(),
@@ -81,7 +122,7 @@ func (p *Provider) GetEntity(ctx context.Context, ref *stategate.EntityRef) (*st
 		if err == mongo.ErrNoDocuments {
 			return nil, &errorz.Error{
 				Type: errorz.ErrNotFound,
-				Info: "failed to find state",
+				Info: "failed to find entity",
 				Err:  err,
 				Metadata: map[string]string{
 					"entity_key":    ref.GetKey(),
@@ -92,7 +133,7 @@ func (p *Provider) GetEntity(ctx context.Context, ref *stategate.EntityRef) (*st
 		}
 		return nil, &errorz.Error{
 			Type: errorz.ErrUnknown,
-			Info: "failed to find state",
+			Info: "failed to find entity",
 			Err:  err,
 			Metadata: map[string]string{
 				"entity_key":    ref.GetKey(),
@@ -120,7 +161,7 @@ func (p *Provider) DelEntity(ctx context.Context, ref *stategate.EntityRef) *err
 		if err == mongo.ErrNoDocuments {
 			return &errorz.Error{
 				Type: errorz.ErrNotFound,
-				Info: "failed to find state",
+				Info: "failed to find entity",
 				Err:  err,
 				Metadata: map[string]string{
 					"entity_key":    ref.GetKey(),
@@ -131,7 +172,7 @@ func (p *Provider) DelEntity(ctx context.Context, ref *stategate.EntityRef) *err
 		}
 		return &errorz.Error{
 			Type: errorz.ErrUnknown,
-			Info: "failed to delete state",
+			Info: "failed to delete entity",
 			Err:  err,
 			Metadata: map[string]string{
 				"entity_key":    ref.GetKey(),
@@ -151,6 +192,14 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 	if opts.GetOffset() > 0 {
 		o.SetSkip(opts.GetOffset())
 	}
+	if opts.GetSort() != nil {
+		if opts.GetSort().GetReverse() {
+			o.SetSort(bson.D{{Key: opts.GetSort().GetField(), Value: -1}})
+		} else {
+			o.SetSort(bson.D{{Key: opts.GetSort().GetField(), Value: 1}})
+		}
+	}
+
 	filter := bson.D{}
 	if opts.Min > 0 {
 		filter = append(filter, bson.E{
@@ -255,6 +304,13 @@ func (p *Provider) SearchEntities(ctx context.Context, opts *stategate.SearchEnt
 	}
 	if opts.GetOffset() > 0 {
 		o.SetSkip(opts.GetOffset())
+	}
+	if opts.GetSort() != nil {
+		if opts.GetSort().GetReverse() {
+			o.SetSort(bson.D{{Key: opts.GetSort().GetField(), Value: -1}})
+		} else {
+			o.SetSort(bson.D{{Key: opts.GetSort().GetField(), Value: 1}})
+		}
 	}
 	filter := bson.M{}
 	if opts.GetQueryString() != "" {
