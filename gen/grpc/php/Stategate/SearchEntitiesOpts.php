@@ -40,13 +40,13 @@ class SearchEntitiesOpts extends \Google\Protobuf\Internal\Message
     /**
      * limit number of returned values
      *
-     * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>int32 limit = 4 [(.validator.field) = {</code>
      */
     private $limit = 0;
     /**
      * offset returned events(pagination)
      *
-     * Generated from protobuf field <code>int64 offset = 5;</code>
+     * Generated from protobuf field <code>int32 offset = 5;</code>
      */
     private $offset = 0;
     /**
@@ -71,9 +71,9 @@ class SearchEntitiesOpts extends \Google\Protobuf\Internal\Message
      *     @type string $query_string
      *           json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      *           please note that dot notation may be used to access nested fields
-     *     @type int|string $limit
+     *     @type int $limit
      *           limit number of returned values
-     *     @type int|string $offset
+     *     @type int $offset
      *           offset returned events(pagination)
      *     @type \Stategate\Sort $sort
      *           sort sorts the returned entities by a specified field
@@ -171,8 +171,8 @@ class SearchEntitiesOpts extends \Google\Protobuf\Internal\Message
     /**
      * limit number of returned values
      *
-     * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
-     * @return int|string
+     * Generated from protobuf field <code>int32 limit = 4 [(.validator.field) = {</code>
+     * @return int
      */
     public function getLimit()
     {
@@ -182,13 +182,13 @@ class SearchEntitiesOpts extends \Google\Protobuf\Internal\Message
     /**
      * limit number of returned values
      *
-     * Generated from protobuf field <code>int64 limit = 4 [(.validator.field) = {</code>
-     * @param int|string $var
+     * Generated from protobuf field <code>int32 limit = 4 [(.validator.field) = {</code>
+     * @param int $var
      * @return $this
      */
     public function setLimit($var)
     {
-        GPBUtil::checkInt64($var);
+        GPBUtil::checkInt32($var);
         $this->limit = $var;
 
         return $this;
@@ -197,8 +197,8 @@ class SearchEntitiesOpts extends \Google\Protobuf\Internal\Message
     /**
      * offset returned events(pagination)
      *
-     * Generated from protobuf field <code>int64 offset = 5;</code>
-     * @return int|string
+     * Generated from protobuf field <code>int32 offset = 5;</code>
+     * @return int
      */
     public function getOffset()
     {
@@ -208,13 +208,13 @@ class SearchEntitiesOpts extends \Google\Protobuf\Internal\Message
     /**
      * offset returned events(pagination)
      *
-     * Generated from protobuf field <code>int64 offset = 5;</code>
-     * @param int|string $var
+     * Generated from protobuf field <code>int32 offset = 5;</code>
+     * @param int $var
      * @return $this
      */
     public function setOffset($var)
     {
-        GPBUtil::checkInt64($var);
+        GPBUtil::checkInt32($var);
         $this->offset = $var;
 
         return $this;

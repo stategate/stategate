@@ -16,15 +16,16 @@ What is Event Sourcing?
 - [API Documentation](https://autom8ter.github.io/stategate/)
                                         
 ## Features
-- [x] 6 Simple API Methods for interacting with application entites & events: 
+- [x] 8 Simple API Methods for interacting with application entites & events: 
     - `/stategate.EntityService/Set` sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers(EventService.Stream)
     - `/stategate.EntityService/Edit` overwrites the k/v pairs present in the entity request without replacing the entire entity. It then adds the state change to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+    - `/stategate.EntityService/Revert` revert reverts an Entity to a previous version of itself by querying the event store- reverting an entity dispatches an event since it is a state change
     - `/stategate.EntityService/Get` gets an entity's current state
     - `/stategate.EntityService/Del` hard deletes an entity from current state store, adds it's state prior to deletion to the event log, then broadcast the event to all interested consumers(EventService.Stream) 
     - `/stategate.EntityService/Search` queries the current state of entities
     - `/stategate.EventService/Stream` creates an event stream/subscription to changes to entities. Glob matching is supported.
     - `/stategate.EventService/Search` queries historical events
-- [x] Capture all changes to an application's state as a sequence of events.
+- [x] Capture all changes to an application's state(entities) as a sequence of events.
 - [x] Stateless & horizontally scaleable
 - [x] Native [gRPC](https://grpc.io/) support
     - [protobuf schema](schema.proto)
@@ -75,6 +76,7 @@ What is Event Sourcing?
 - [x] Type-safe client's generated in many languages
 - [x] Safe to expose to the public internet due to fine-grained authentication/authorization model.
 - [x] Capture a persistant, immutable historical record of all state changes to entities using a pluggable storage provider
+- [x] Revert/Rollback an entity to any previous version of itself at any point in time
 - [x] Store identity(jwt.claims) & timestamp in event logs to capture who is changing what & when
 - [x] Easy deployment model - fully configureable via environmental variables
 
@@ -118,7 +120,7 @@ What is Event Sourcing?
           string id = 1[(validator.field) = {uuid_ver : 4}];
           // state of an Entity after it has been mutated
           Entity entity = 2[(validator.field) = {msg_exists : true}];
-          // the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
+          // the invoked method that triggered the event
           string method =5[(validator.field) = {string_not_empty : true}];
           // the authentication claims of the event producer.
           google.protobuf.Struct claims =3[(validator.field) = {msg_exists : true}];

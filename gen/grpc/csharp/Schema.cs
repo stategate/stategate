@@ -31,49 +31,54 @@ namespace Stategate {
             "dWIuY29tL213aXRrb3cvZ28tcHJvdG8tdmFsaWRhdG9ycy92YWxpZGF0b3Iu",
             "cHJvdG8iXQoJRW50aXR5UmVmEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxT",
             "KyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJQgvi",
-            "3x8HCgVeXFMrJCKLAQoGRW50aXR5EhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoF",
-            "XlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJ",
-            "Qgvi3x8HCgVeXFMrJBIvCgZ2YWx1ZXMYBCABKAsyFy5nb29nbGUucHJvdG9i",
-            "dWYuU3RydWN0Qgbi3x8CIAEiLwoIRW50aXRpZXMSIwoIZW50aXRpZXMYASAD",
-            "KAsyES5zdGF0ZWdhdGUuRW50aXR5IqgBChJTZWFyY2hFbnRpdGllc09wdHMS",
-            "GwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAIgASgJQgvi",
-            "3x8HCgVeXFMrJBIUCgxxdWVyeV9zdHJpbmcYAyABKAkSFQoFbGltaXQYBCAB",
-            "KANCBuLfHwIQABIOCgZvZmZzZXQYBSABKAMSHQoEc29ydBgJIAEoCzIPLnN0",
-            "YXRlZ2F0ZS5Tb3J0Ir8BCg9TZWFyY2hFdmVudE9wdHMSGwoGZG9tYWluGAEg",
-            "ASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMrJBIU",
-            "CgxxdWVyeV9zdHJpbmcYBCABKAkSCwoDbWluGAUgASgDEgsKA21heBgGIAEo",
-            "AxIVCgVsaW1pdBgHIAEoA0IG4t8fAhAAEg4KBm9mZnNldBgIIAEoAxIdCgRz",
-            "b3J0GAkgASgLMg8uc3RhdGVnYXRlLlNvcnQiRAoKU3RyZWFtT3B0cxIbCgZk",
-            "b21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcK",
-            "BV5cUyskIiYKBFNvcnQSDQoFZmllbGQYASABKAkSDwoHcmV2ZXJzZRgCIAEo",
-            "CCKmAQoFRXZlbnQSEwoCaWQYASABKAlCB+LfHwOQAQQSKQoGZW50aXR5GAIg",
-            "ASgLMhEuc3RhdGVnYXRlLkVudGl0eUIG4t8fAiABEhYKBm1ldGhvZBgFIAEo",
-            "CUIG4t8fAlgBEi8KBmNsYWltcxgDIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5T",
-            "dHJ1Y3RCBuLfHwIgARIUCgR0aW1lGAQgASgDQgbi3x8CEAAiKgoGRXZlbnRz",
-            "EiAKBmV2ZW50cxgBIAMoCzIQLnN0YXRlZ2F0ZS5FdmVudDLqAwoNRW50aXR5",
-            "U2VydmljZRJfCgNTZXQSES5zdGF0ZWdhdGUuRW50aXR5GhYuZ29vZ2xlLnBy",
-            "b3RvYnVmLkVtcHR5Ii2C0+STAiciJS9hcGkvZW50aXR5L3JlZi97ZG9tYWlu",
-            "fS97dHlwZX0ve2tleX0SWwoERWRpdBIRLnN0YXRlZ2F0ZS5FbnRpdHkaES5z",
-            "dGF0ZWdhdGUuRW50aXR5Ii2C0+STAicyJS9hcGkvZW50aXR5L3JlZi97ZG9t",
-            "YWlufS97dHlwZX0ve2tleX0SXQoDR2V0EhQuc3RhdGVnYXRlLkVudGl0eVJl",
-            "ZhoRLnN0YXRlZ2F0ZS5FbnRpdHkiLYLT5JMCJxIlL2FwaS9lbnRpdHkvcmVm",
-            "L3tkb21haW59L3t0eXBlfS97a2V5fRJiCgNEZWwSFC5zdGF0ZWdhdGUuRW50",
-            "aXR5UmVmGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5Ii2C0+STAicqJS9hcGkv",
-            "ZW50aXR5L3JlZi97ZG9tYWlufS97dHlwZX0ve2tleX0SWAoGU2VhcmNoEh0u",
-            "c3RhdGVnYXRlLlNlYXJjaEVudGl0aWVzT3B0cxoTLnN0YXRlZ2F0ZS5FbnRp",
-            "dGllcyIagtPkkwIUEhIvYXBpL2VudGl0eS9zZWFyY2gytAEKDEV2ZW50U2Vy",
-            "dmljZRJPCgZTdHJlYW0SFS5zdGF0ZWdhdGUuU3RyZWFtT3B0cxoQLnN0YXRl",
-            "Z2F0ZS5FdmVudCIagtPkkwIUEhIvYXBpL2V2ZW50cy9zdHJlYW0wARJTCgZT",
-            "ZWFyY2gSGi5zdGF0ZWdhdGUuU2VhcmNoRXZlbnRPcHRzGhEuc3RhdGVnYXRl",
-            "LkV2ZW50cyIagtPkkwIUEhIvYXBpL2V2ZW50cy9zZWFyY2hCC1oJc3RhdGVn",
-            "YXRlYgZwcm90bzM="));
+            "3x8HCgVeXFMrJCJHCgpSZXZlcnRPcHRzEikKA3JlZhgBIAEoCzIULnN0YXRl",
+            "Z2F0ZS5FbnRpdHlSZWZCBuLfHwIgARIOCgZvZmZzZXQYAiABKAUiiwEKBkVu",
+            "dGl0eRIbCgZkb21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiAB",
+            "KAlCC+LfHwcKBV5cUyskEhgKA2tleRgDIAEoCUIL4t8fBwoFXlxTKyQSLwoG",
+            "dmFsdWVzGAQgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiAB",
+            "Ii8KCEVudGl0aWVzEiMKCGVudGl0aWVzGAEgAygLMhEuc3RhdGVnYXRlLkVu",
+            "dGl0eSKmAQoQU2VhcmNoRW50aXR5T3B0cxIbCgZkb21haW4YASABKAlCC+Lf",
+            "HwcKBV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcKBV5cUyskEhQKDHF1ZXJ5",
+            "X3N0cmluZxgDIAEoCRIVCgVsaW1pdBgEIAEoBUIG4t8fAhAAEg4KBm9mZnNl",
+            "dBgFIAEoBRIdCgRzb3J0GAkgASgLMg8uc3RhdGVnYXRlLlNvcnQivwEKD1Nl",
+            "YXJjaEV2ZW50T3B0cxIbCgZkb21haW4YASABKAlCC+LfHwcKBV5cUyskEhkK",
+            "BHR5cGUYAiABKAlCC+LfHwcKBV5cUyskEhQKDHF1ZXJ5X3N0cmluZxgEIAEo",
+            "CRILCgNtaW4YBSABKAMSCwoDbWF4GAYgASgDEhUKBWxpbWl0GAcgASgFQgbi",
+            "3x8CEAASDgoGb2Zmc2V0GAggASgFEh0KBHNvcnQYCSABKAsyDy5zdGF0ZWdh",
+            "dGUuU29ydCJECgpTdHJlYW1PcHRzEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoF",
+            "XlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQiJgoEU29ydBINCgVm",
+            "aWVsZBgBIAEoCRIPCgdyZXZlcnNlGAIgASgIIqYBCgVFdmVudBITCgJpZBgB",
+            "IAEoCUIH4t8fA5ABBBIpCgZlbnRpdHkYAiABKAsyES5zdGF0ZWdhdGUuRW50",
+            "aXR5Qgbi3x8CIAESFgoGbWV0aG9kGAUgASgJQgbi3x8CWAESLwoGY2xhaW1z",
+            "GAMgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABEhQKBHRp",
+            "bWUYBCABKANCBuLfHwIQACIqCgZFdmVudHMSIAoGZXZlbnRzGAEgAygLMhAu",
+            "c3RhdGVnYXRlLkV2ZW50Mt4ECg1FbnRpdHlTZXJ2aWNlEl8KA1NldBIRLnN0",
+            "YXRlZ2F0ZS5FbnRpdHkaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiLYLT5JMC",
+            "JyIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJbCgRF",
+            "ZGl0EhEuc3RhdGVnYXRlLkVudGl0eRoRLnN0YXRlZ2F0ZS5FbnRpdHkiLYLT",
+            "5JMCJzIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJ0",
+            "CgZSZXZlcnQSFS5zdGF0ZWdhdGUuUmV2ZXJ0T3B0cxoRLnN0YXRlZ2F0ZS5F",
+            "bnRpdHkiQILT5JMCOho4L2FwaS9lbnRpdHkvcmVmL3tyZWYuZG9tYWlufS97",
+            "cmVmLnR5cGV9L3tyZWYua2V5fS9yZXZlcnQSXQoDR2V0EhQuc3RhdGVnYXRl",
+            "LkVudGl0eVJlZhoRLnN0YXRlZ2F0ZS5FbnRpdHkiLYLT5JMCJxIlL2FwaS9l",
+            "bnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJiCgNEZWwSFC5zdGF0",
+            "ZWdhdGUuRW50aXR5UmVmGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5Ii2C0+ST",
+            "AicqJS9hcGkvZW50aXR5L3JlZi97ZG9tYWlufS97dHlwZX0ve2tleX0SVgoG",
+            "U2VhcmNoEhsuc3RhdGVnYXRlLlNlYXJjaEVudGl0eU9wdHMaEy5zdGF0ZWdh",
+            "dGUuRW50aXRpZXMiGoLT5JMCFBISL2FwaS9lbnRpdHkvc2VhcmNoMrQBCgxF",
+            "dmVudFNlcnZpY2USTwoGU3RyZWFtEhUuc3RhdGVnYXRlLlN0cmVhbU9wdHMa",
+            "EC5zdGF0ZWdhdGUuRXZlbnQiGoLT5JMCFBISL2FwaS9ldmVudHMvc3RyZWFt",
+            "MAESUwoGU2VhcmNoEhouc3RhdGVnYXRlLlNlYXJjaEV2ZW50T3B0cxoRLnN0",
+            "YXRlZ2F0ZS5FdmVudHMiGoLT5JMCFBISL2FwaS9ldmVudHMvc2VhcmNoQgta",
+            "CXN0YXRlZ2F0ZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.EntityRef), global::Stategate.EntityRef.Parser, new[]{ "Domain", "Type", "Key" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.RevertOpts), global::Stategate.RevertOpts.Parser, new[]{ "Ref", "Offset" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entity), global::Stategate.Entity.Parser, new[]{ "Domain", "Type", "Key", "Values" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entities), global::Stategate.Entities.Parser, new[]{ "Entities_" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEntitiesOpts), global::Stategate.SearchEntitiesOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Limit", "Offset", "Sort" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEntityOpts), global::Stategate.SearchEntityOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Limit", "Offset", "Sort" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEventOpts), global::Stategate.SearchEventOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Min", "Max", "Limit", "Offset", "Sort" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamOpts), global::Stategate.StreamOpts.Parser, new[]{ "Domain", "Type" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Sort), global::Stategate.Sort.Parser, new[]{ "Field", "Reverse" }, null, null, null),
@@ -283,6 +288,178 @@ namespace Stategate {
   }
 
   /// <summary>
+  /// RevertOpts holds options for reverting an entity to a previous version of itself
+  /// </summary>
+  public sealed partial class RevertOpts : pb::IMessage<RevertOpts> {
+    private static readonly pb::MessageParser<RevertOpts> _parser = new pb::MessageParser<RevertOpts>(() => new RevertOpts());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<RevertOpts> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RevertOpts() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RevertOpts(RevertOpts other) : this() {
+      ref_ = other.ref_ != null ? other.ref_.Clone() : null;
+      offset_ = other.offset_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RevertOpts Clone() {
+      return new RevertOpts(this);
+    }
+
+    /// <summary>Field number for the "ref" field.</summary>
+    public const int RefFieldNumber = 1;
+    private global::Stategate.EntityRef ref_;
+    /// <summary>
+    /// ref is a reference to an existing entity
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Stategate.EntityRef Ref {
+      get { return ref_; }
+      set {
+        ref_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "offset" field.</summary>
+    public const int OffsetFieldNumber = 2;
+    private int offset_;
+    /// <summary>
+    /// offset offsets the version that the entity will be reverted to
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Offset {
+      get { return offset_; }
+      set {
+        offset_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as RevertOpts);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(RevertOpts other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Ref, other.Ref)) return false;
+      if (Offset != other.Offset) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ref_ != null) hash ^= Ref.GetHashCode();
+      if (Offset != 0) hash ^= Offset.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ref_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Ref);
+      }
+      if (Offset != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Offset);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (ref_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Ref);
+      }
+      if (Offset != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Offset);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(RevertOpts other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ref_ != null) {
+        if (ref_ == null) {
+          ref_ = new global::Stategate.EntityRef();
+        }
+        Ref.MergeFrom(other.Ref);
+      }
+      if (other.Offset != 0) {
+        Offset = other.Offset;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (ref_ == null) {
+              ref_ = new global::Stategate.EntityRef();
+            }
+            input.ReadMessage(ref_);
+            break;
+          }
+          case 16: {
+            Offset = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
   /// Entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
   /// EventService clients should use the EntityService to persist &amp; interact with the current state of an entity.
   /// </summary>
@@ -294,7 +471,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -531,7 +708,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -645,18 +822,18 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// SearchEntitiesOpts are options when querying the current values of entities.
+  /// SearchEntityOpts are options when querying the current values of entities.
   /// If historical values are needed, SearchEvents should be used
   /// </summary>
-  public sealed partial class SearchEntitiesOpts : pb::IMessage<SearchEntitiesOpts> {
-    private static readonly pb::MessageParser<SearchEntitiesOpts> _parser = new pb::MessageParser<SearchEntitiesOpts>(() => new SearchEntitiesOpts());
+  public sealed partial class SearchEntityOpts : pb::IMessage<SearchEntityOpts> {
+    private static readonly pb::MessageParser<SearchEntityOpts> _parser = new pb::MessageParser<SearchEntityOpts>(() => new SearchEntityOpts());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<SearchEntitiesOpts> Parser { get { return _parser; } }
+    public static pb::MessageParser<SearchEntityOpts> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -665,14 +842,14 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SearchEntitiesOpts() {
+    public SearchEntityOpts() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SearchEntitiesOpts(SearchEntitiesOpts other) : this() {
+    public SearchEntityOpts(SearchEntityOpts other) : this() {
       domain_ = other.domain_;
       type_ = other.type_;
       queryString_ = other.queryString_;
@@ -683,8 +860,8 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SearchEntitiesOpts Clone() {
-      return new SearchEntitiesOpts(this);
+    public SearchEntityOpts Clone() {
+      return new SearchEntityOpts(this);
     }
 
     /// <summary>Field number for the "domain" field.</summary>
@@ -734,12 +911,12 @@ namespace Stategate {
 
     /// <summary>Field number for the "limit" field.</summary>
     public const int LimitFieldNumber = 4;
-    private long limit_;
+    private int limit_;
     /// <summary>
     /// limit number of returned values
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long Limit {
+    public int Limit {
       get { return limit_; }
       set {
         limit_ = value;
@@ -748,12 +925,12 @@ namespace Stategate {
 
     /// <summary>Field number for the "offset" field.</summary>
     public const int OffsetFieldNumber = 5;
-    private long offset_;
+    private int offset_;
     /// <summary>
     /// offset returned events(pagination)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long Offset {
+    public int Offset {
       get { return offset_; }
       set {
         offset_ = value;
@@ -776,11 +953,11 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as SearchEntitiesOpts);
+      return Equals(other as SearchEntityOpts);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(SearchEntitiesOpts other) {
+    public bool Equals(SearchEntityOpts other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -802,8 +979,8 @@ namespace Stategate {
       if (Domain.Length != 0) hash ^= Domain.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (QueryString.Length != 0) hash ^= QueryString.GetHashCode();
-      if (Limit != 0L) hash ^= Limit.GetHashCode();
-      if (Offset != 0L) hash ^= Offset.GetHashCode();
+      if (Limit != 0) hash ^= Limit.GetHashCode();
+      if (Offset != 0) hash ^= Offset.GetHashCode();
       if (sort_ != null) hash ^= Sort.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -830,13 +1007,13 @@ namespace Stategate {
         output.WriteRawTag(26);
         output.WriteString(QueryString);
       }
-      if (Limit != 0L) {
+      if (Limit != 0) {
         output.WriteRawTag(32);
-        output.WriteInt64(Limit);
+        output.WriteInt32(Limit);
       }
-      if (Offset != 0L) {
+      if (Offset != 0) {
         output.WriteRawTag(40);
-        output.WriteInt64(Offset);
+        output.WriteInt32(Offset);
       }
       if (sort_ != null) {
         output.WriteRawTag(74);
@@ -859,11 +1036,11 @@ namespace Stategate {
       if (QueryString.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(QueryString);
       }
-      if (Limit != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Limit);
+      if (Limit != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Limit);
       }
-      if (Offset != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Offset);
+      if (Offset != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Offset);
       }
       if (sort_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Sort);
@@ -875,7 +1052,7 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(SearchEntitiesOpts other) {
+    public void MergeFrom(SearchEntityOpts other) {
       if (other == null) {
         return;
       }
@@ -888,10 +1065,10 @@ namespace Stategate {
       if (other.QueryString.Length != 0) {
         QueryString = other.QueryString;
       }
-      if (other.Limit != 0L) {
+      if (other.Limit != 0) {
         Limit = other.Limit;
       }
-      if (other.Offset != 0L) {
+      if (other.Offset != 0) {
         Offset = other.Offset;
       }
       if (other.sort_ != null) {
@@ -924,11 +1101,11 @@ namespace Stategate {
             break;
           }
           case 32: {
-            Limit = input.ReadInt64();
+            Limit = input.ReadInt32();
             break;
           }
           case 40: {
-            Offset = input.ReadInt64();
+            Offset = input.ReadInt32();
             break;
           }
           case 74: {
@@ -955,7 +1132,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1063,12 +1240,12 @@ namespace Stategate {
 
     /// <summary>Field number for the "limit" field.</summary>
     public const int LimitFieldNumber = 7;
-    private long limit_;
+    private int limit_;
     /// <summary>
     /// limit number of returned values
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long Limit {
+    public int Limit {
       get { return limit_; }
       set {
         limit_ = value;
@@ -1077,12 +1254,12 @@ namespace Stategate {
 
     /// <summary>Field number for the "offset" field.</summary>
     public const int OffsetFieldNumber = 8;
-    private long offset_;
+    private int offset_;
     /// <summary>
     /// offset returned events(pagination)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long Offset {
+    public int Offset {
       get { return offset_; }
       set {
         offset_ = value;
@@ -1135,8 +1312,8 @@ namespace Stategate {
       if (QueryString.Length != 0) hash ^= QueryString.GetHashCode();
       if (Min != 0L) hash ^= Min.GetHashCode();
       if (Max != 0L) hash ^= Max.GetHashCode();
-      if (Limit != 0L) hash ^= Limit.GetHashCode();
-      if (Offset != 0L) hash ^= Offset.GetHashCode();
+      if (Limit != 0) hash ^= Limit.GetHashCode();
+      if (Offset != 0) hash ^= Offset.GetHashCode();
       if (sort_ != null) hash ^= Sort.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1171,13 +1348,13 @@ namespace Stategate {
         output.WriteRawTag(48);
         output.WriteInt64(Max);
       }
-      if (Limit != 0L) {
+      if (Limit != 0) {
         output.WriteRawTag(56);
-        output.WriteInt64(Limit);
+        output.WriteInt32(Limit);
       }
-      if (Offset != 0L) {
+      if (Offset != 0) {
         output.WriteRawTag(64);
-        output.WriteInt64(Offset);
+        output.WriteInt32(Offset);
       }
       if (sort_ != null) {
         output.WriteRawTag(74);
@@ -1206,11 +1383,11 @@ namespace Stategate {
       if (Max != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(Max);
       }
-      if (Limit != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Limit);
+      if (Limit != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Limit);
       }
-      if (Offset != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Offset);
+      if (Offset != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Offset);
       }
       if (sort_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Sort);
@@ -1241,10 +1418,10 @@ namespace Stategate {
       if (other.Max != 0L) {
         Max = other.Max;
       }
-      if (other.Limit != 0L) {
+      if (other.Limit != 0) {
         Limit = other.Limit;
       }
-      if (other.Offset != 0L) {
+      if (other.Offset != 0) {
         Offset = other.Offset;
       }
       if (other.sort_ != null) {
@@ -1285,11 +1462,11 @@ namespace Stategate {
             break;
           }
           case 56: {
-            Limit = input.ReadInt64();
+            Limit = input.ReadInt32();
             break;
           }
           case 64: {
-            Offset = input.ReadInt64();
+            Offset = input.ReadInt32();
             break;
           }
           case 74: {
@@ -1317,7 +1494,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1487,7 +1664,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1657,7 +1834,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1719,7 +1896,7 @@ namespace Stategate {
     public const int MethodFieldNumber = 5;
     private string method_ = "";
     /// <summary>
-    /// the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
+    /// the invoked method that triggered the event
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Method {
@@ -1928,7 +2105,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

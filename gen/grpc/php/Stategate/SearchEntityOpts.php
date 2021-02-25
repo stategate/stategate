@@ -9,11 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * SearchEventOpts are options when querying historical events emitted from mutations made from State mutations
+ * SearchEntityOpts are options when querying the current values of entities.
+ * If historical values are needed, SearchEvents should be used
  *
- * Generated from protobuf message <code>stategate.SearchEventOpts</code>
+ * Generated from protobuf message <code>stategate.SearchEntityOpts</code>
  */
-class SearchEventOpts extends \Google\Protobuf\Internal\Message
+class SearchEntityOpts extends \Google\Protobuf\Internal\Message
 {
     /**
      * the entity's business domain(ex: accounting)
@@ -23,41 +24,29 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
      */
     private $domain = '';
     /**
-     * entity's type (ex: user)
+     * State type (ex: user)
      * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
-     * json string to filter events based with values that match k/v pairs ex: { "entity.values.message": "hello world" }.
+     * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      * please note that dot notation may be used to access nested fields
      *
-     * Generated from protobuf field <code>string query_string = 4;</code>
+     * Generated from protobuf field <code>string query_string = 3;</code>
      */
     private $query_string = '';
     /**
-     * only return events that occurred after specified min timestamp
-     *
-     * Generated from protobuf field <code>int64 min = 5;</code>
-     */
-    private $min = 0;
-    /**
-     * only return events that occurred before specified max timestamp
-     *
-     * Generated from protobuf field <code>int64 max = 6;</code>
-     */
-    private $max = 0;
-    /**
      * limit number of returned values
      *
-     * Generated from protobuf field <code>int32 limit = 7 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>int32 limit = 4 [(.validator.field) = {</code>
      */
     private $limit = 0;
     /**
      * offset returned events(pagination)
      *
-     * Generated from protobuf field <code>int32 offset = 8;</code>
+     * Generated from protobuf field <code>int32 offset = 5;</code>
      */
     private $offset = 0;
     /**
@@ -77,15 +66,11 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
      *           the entity's business domain(ex: accounting)
      *           must not be empty or contain spaces
      *     @type string $type
-     *           entity's type (ex: user)
+     *           State type (ex: user)
      *           must not be empty or contain spaces
      *     @type string $query_string
-     *           json string to filter events based with values that match k/v pairs ex: { "entity.values.message": "hello world" }.
+     *           json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      *           please note that dot notation may be used to access nested fields
-     *     @type int|string $min
-     *           only return events that occurred after specified min timestamp
-     *     @type int|string $max
-     *           only return events that occurred before specified max timestamp
      *     @type int $limit
      *           limit number of returned values
      *     @type int $offset
@@ -128,7 +113,7 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * entity's type (ex: user)
+     * State type (ex: user)
      * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
@@ -140,7 +125,7 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * entity's type (ex: user)
+     * State type (ex: user)
      * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
@@ -156,10 +141,10 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * json string to filter events based with values that match k/v pairs ex: { "entity.values.message": "hello world" }.
+     * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      * please note that dot notation may be used to access nested fields
      *
-     * Generated from protobuf field <code>string query_string = 4;</code>
+     * Generated from protobuf field <code>string query_string = 3;</code>
      * @return string
      */
     public function getQueryString()
@@ -168,10 +153,10 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * json string to filter events based with values that match k/v pairs ex: { "entity.values.message": "hello world" }.
+     * json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
      * please note that dot notation may be used to access nested fields
      *
-     * Generated from protobuf field <code>string query_string = 4;</code>
+     * Generated from protobuf field <code>string query_string = 3;</code>
      * @param string $var
      * @return $this
      */
@@ -184,61 +169,9 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * only return events that occurred after specified min timestamp
-     *
-     * Generated from protobuf field <code>int64 min = 5;</code>
-     * @return int|string
-     */
-    public function getMin()
-    {
-        return $this->min;
-    }
-
-    /**
-     * only return events that occurred after specified min timestamp
-     *
-     * Generated from protobuf field <code>int64 min = 5;</code>
-     * @param int|string $var
-     * @return $this
-     */
-    public function setMin($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->min = $var;
-
-        return $this;
-    }
-
-    /**
-     * only return events that occurred before specified max timestamp
-     *
-     * Generated from protobuf field <code>int64 max = 6;</code>
-     * @return int|string
-     */
-    public function getMax()
-    {
-        return $this->max;
-    }
-
-    /**
-     * only return events that occurred before specified max timestamp
-     *
-     * Generated from protobuf field <code>int64 max = 6;</code>
-     * @param int|string $var
-     * @return $this
-     */
-    public function setMax($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->max = $var;
-
-        return $this;
-    }
-
-    /**
      * limit number of returned values
      *
-     * Generated from protobuf field <code>int32 limit = 7 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>int32 limit = 4 [(.validator.field) = {</code>
      * @return int
      */
     public function getLimit()
@@ -249,7 +182,7 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     /**
      * limit number of returned values
      *
-     * Generated from protobuf field <code>int32 limit = 7 [(.validator.field) = {</code>
+     * Generated from protobuf field <code>int32 limit = 4 [(.validator.field) = {</code>
      * @param int $var
      * @return $this
      */
@@ -264,7 +197,7 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     /**
      * offset returned events(pagination)
      *
-     * Generated from protobuf field <code>int32 offset = 8;</code>
+     * Generated from protobuf field <code>int32 offset = 5;</code>
      * @return int
      */
     public function getOffset()
@@ -275,7 +208,7 @@ class SearchEventOpts extends \Google\Protobuf\Internal\Message
     /**
      * offset returned events(pagination)
      *
-     * Generated from protobuf field <code>int32 offset = 8;</code>
+     * Generated from protobuf field <code>int32 offset = 5;</code>
      * @param int $var
      * @return $this
      */

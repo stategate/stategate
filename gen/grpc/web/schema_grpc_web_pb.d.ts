@@ -23,6 +23,13 @@ export class EntityServiceClient {
                response: schema_pb.Entity) => void
   ): grpcWeb.ClientReadableStream<schema_pb.Entity>;
 
+  revert(
+    request: schema_pb.RevertOpts,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: schema_pb.Entity) => void
+  ): grpcWeb.ClientReadableStream<schema_pb.Entity>;
+
   get(
     request: schema_pb.EntityRef,
     metadata: grpcWeb.Metadata | undefined,
@@ -38,7 +45,7 @@ export class EntityServiceClient {
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
   search(
-    request: schema_pb.SearchEntitiesOpts,
+    request: schema_pb.SearchEntityOpts,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
                response: schema_pb.Entities) => void
@@ -80,6 +87,11 @@ export class EntityServicePromiseClient {
     metadata?: grpcWeb.Metadata
   ): Promise<schema_pb.Entity>;
 
+  revert(
+    request: schema_pb.RevertOpts,
+    metadata?: grpcWeb.Metadata
+  ): Promise<schema_pb.Entity>;
+
   get(
     request: schema_pb.EntityRef,
     metadata?: grpcWeb.Metadata
@@ -91,7 +103,7 @@ export class EntityServicePromiseClient {
   ): Promise<google_protobuf_empty_pb.Empty>;
 
   search(
-    request: schema_pb.SearchEntitiesOpts,
+    request: schema_pb.SearchEntityOpts,
     metadata?: grpcWeb.Metadata
   ): Promise<schema_pb.Entities>;
 

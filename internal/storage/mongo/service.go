@@ -187,10 +187,10 @@ func (p *Provider) DelEntity(ctx context.Context, ref *stategate.EntityRef) *err
 func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEventOpts) (*stategate.Events, *errorz.Error) {
 	o := options.Find()
 	if opts.GetLimit() > 0 {
-		o.SetLimit(opts.GetLimit())
+		o.SetLimit(int64(opts.GetLimit()))
 	}
 	if opts.GetOffset() > 0 {
-		o.SetSkip(opts.GetOffset())
+		o.SetSkip(int64(opts.GetOffset()))
 	}
 	if opts.GetSort() != nil {
 		if opts.GetSort().GetReverse() {
@@ -297,13 +297,13 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 	return &stategate.Events{Events: events}, nil
 }
 
-func (p *Provider) SearchEntities(ctx context.Context, opts *stategate.SearchEntitiesOpts) (*stategate.Entities, *errorz.Error) {
+func (p *Provider) SearchEntities(ctx context.Context, opts *stategate.SearchEntityOpts) (*stategate.Entities, *errorz.Error) {
 	o := options.Find()
 	if opts.GetLimit() > 0 {
-		o.SetLimit(opts.GetLimit())
+		o.SetLimit(int64(opts.GetLimit()))
 	}
 	if opts.GetOffset() > 0 {
-		o.SetSkip(opts.GetOffset())
+		o.SetSkip(int64(opts.GetOffset()))
 	}
 	if opts.GetSort() != nil {
 		if opts.GetSort().GetReverse() {

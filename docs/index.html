@@ -199,7 +199,11 @@
                 </li>
               
                 <li>
-                  <a href="#stategate.SearchEntitiesOpts"><span class="badge">M</span>SearchEntitiesOpts</a>
+                  <a href="#stategate.RevertOpts"><span class="badge">M</span>RevertOpts</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.SearchEntityOpts"><span class="badge">M</span>SearchEntityOpts</a>
                 </li>
               
                 <li>
@@ -487,7 +491,7 @@ must not be empty or contain spaces </p></td>
                   <td>method</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del) </p></td>
+                  <td><p>the invoked method that triggered the event </p></td>
                 </tr>
               
                 <tr>
@@ -606,8 +610,66 @@ must not be empty or contain spaces </p></td>
 
         
       
-        <h3 id="stategate.SearchEntitiesOpts">SearchEntitiesOpts</h3>
-        <p>SearchEntitiesOpts are options when querying the current values of entities.</p><p>If historical values are needed, SearchEvents should be used</p>
+        <h3 id="stategate.RevertOpts">RevertOpts</h3>
+        <p>RevertOpts holds options for reverting an entity to a previous version of itself</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#stategate.EntityRef">EntityRef</a></td>
+                  <td></td>
+                  <td><p>ref is a reference to an existing entity </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>offset offsets the version that the entity will be reverted to </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>ref</td>
+                  <td>
+                    <ul>
+                    
+                      <li>msg_exists: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="stategate.SearchEntityOpts">SearchEntityOpts</h3>
+        <p>SearchEntityOpts are options when querying the current values of entities.</p><p>If historical values are needed, SearchEvents should be used</p>
 
         
           <table class="field-table">
@@ -642,14 +704,14 @@ please note that dot notation may be used to access nested fields </p></td>
               
                 <tr>
                   <td>limit</td>
-                  <td><a href="#int64">int64</a></td>
+                  <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>limit number of returned values </p></td>
                 </tr>
               
                 <tr>
                   <td>offset</td>
-                  <td><a href="#int64">int64</a></td>
+                  <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>offset returned events(pagination) </p></td>
                 </tr>
@@ -767,14 +829,14 @@ please note that dot notation may be used to access nested fields </p></td>
               
                 <tr>
                   <td>limit</td>
-                  <td><a href="#int64">int64</a></td>
+                  <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>limit number of returned values </p></td>
                 </tr>
               
                 <tr>
                   <td>offset</td>
-                  <td><a href="#int64">int64</a></td>
+                  <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>offset returned events(pagination) </p></td>
                 </tr>
@@ -978,6 +1040,14 @@ Edit returns the current state of the Entity after the mutation.</p></td>
               </tr>
             
               <tr>
+                <td>Revert</td>
+                <td><a href="#stategate.RevertOpts">RevertOpts</a></td>
+                <td><a href="#stategate.Entity">Entity</a></td>
+                <td><p>Revert reverts an Entity to a previous version of itself by querying the event store.
+Reverting an entity dispatches another event since it is a state change</p></td>
+              </tr>
+            
+              <tr>
                 <td>Get</td>
                 <td><a href="#stategate.EntityRef">EntityRef</a></td>
                 <td><a href="#stategate.Entity">Entity</a></td>
@@ -994,7 +1064,7 @@ an Entity may be recovered via querying the Event store for historical records o
             
               <tr>
                 <td>Search</td>
-                <td><a href="#stategate.SearchEntitiesOpts">SearchEntitiesOpts</a></td>
+                <td><a href="#stategate.SearchEntityOpts">SearchEntityOpts</a></td>
                 <td><a href="#stategate.Entities">Entities</a></td>
                 <td><p>Search queries the current state of entities</p></td>
               </tr>
@@ -1033,6 +1103,16 @@ an Entity may be recovered via querying the Event store for historical records o
                 <td>Edit</td>
                 <td>PATCH</td>
                 <td>/api/entity/ref/{domain}/{type}/{key}</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>Revert</td>
+                <td>PUT</td>
+                <td>/api/entity/ref/{ref.domain}/{ref.type}/{ref.key}/revert</td>
                 <td></td>
               </tr>
               
@@ -1083,14 +1163,14 @@ an Entity may be recovered via querying the Event store for historical records o
                 <td>Stream</td>
                 <td><a href="#stategate.StreamOpts">StreamOpts</a></td>
                 <td><a href="#stategate.Event">Event</a> stream</td>
-                <td><p>Stream creates an event stream/subscription to changes to entities. Glob matching is supported.</p></td>
+                <td><p>Stream creates an event stream/subscription to state changes to entities in real time. Glob matching is supported.</p></td>
               </tr>
             
               <tr>
                 <td>Search</td>
                 <td><a href="#stategate.SearchEventOpts">SearchEventOpts</a></td>
                 <td><a href="#stategate.Events">Events</a></td>
-                <td><p>Search queries historical events.</p></td>
+                <td><p>Search queries historical events - every historical state change to an entity may be queried.</p></td>
               </tr>
             
           </tbody>

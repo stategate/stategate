@@ -12,6 +12,8 @@ import (
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/structpb"
 	"time"
 )
@@ -54,18 +56,18 @@ func NewService(storage storage.Provider, channel channel.Provider, lgger *logge
 	return svc, nil
 }
 
-func (s Service) setEntity(ctx context.Context, object *stategate.Entity) (*empty.Empty, error) {
+func (s Service) setEntity(ctx context.Context, entity *stategate.Entity) (*empty.Empty, error) {
 	c, _ := auth.GetContext(ctx)
 	claims, _ := structpb.NewStruct(c.Claims)
 
 	e := &stategate.Event{
 		Id:     uuid.New().String(),
-		Entity: object,
+		Entity: entity,
 		Method: c.Method,
 		Claims: claims,
 		Time:   time.Now().UnixNano(),
 	}
-	if err := s.storage.SetEntity(ctx, object); err != nil {
+	if err := s.storage.SetEntity(ctx, entity); err != nil {
 		err.Log(s.lgger)
 		return nil, err.Public()
 	}
@@ -88,6 +90,31 @@ func (s Service) getEntity(ctx context.Context, ref *stategate.EntityRef) (*stat
 		return nil, err.Public()
 	}
 	return obj, nil
+}
+
+func (s Service) revertEntity(ctx context.Context, opts *stategate.RevertOpts) (*stategate.Entity, error) {
+	obj, err := s.storage.SearchEvents(ctx, &stategate.SearchEventOpts{
+		Domain: opts.GetRef().GetDomain(),
+		Type:   opts.GetRef().GetType(),
+		Limit:  1,
+		Offset: opts.GetOffset(),
+		Sort: &stategate.Sort{
+			Field:   "time",
+			Reverse: true,
+		},
+	})
+	if err != nil {
+		err.Log(s.lgger)
+		return nil, err.Public()
+	}
+	if len(obj.GetEvents()) == 0 {
+		return nil, status.Error(codes.NotFound, "failed to revert: event not found")
+	}
+	entity := obj.GetEvents()[0].GetEntity()
+	if _, err := s.setEntity(ctx, entity); err != nil {
+		return nil, err
+	}
+	return entity, nil
 }
 
 func (s Service) editEntity(ctx context.Context, entity *stategate.Entity) (*stategate.Entity, error) {
@@ -167,13 +194,13 @@ func (s Service) searchEvents(ctx context.Context, opts *stategate.SearchEventOp
 	return events, nil
 }
 
-func (s Service) searchEntities(ctx context.Context, opts *stategate.SearchEntitiesOpts) (*stategate.Entities, error) {
-	objects, err := s.storage.SearchEntities(ctx, opts)
+func (s Service) searchEntities(ctx context.Context, opts *stategate.SearchEntityOpts) (*stategate.Entities, error) {
+	entitys, err := s.storage.SearchEntities(ctx, opts)
 	if err != nil {
 		err.Log(s.lgger)
 		return nil, err.Public()
 	}
-	return objects, nil
+	return entitys, nil
 }
 
 func (s Service) Close() error {
@@ -193,7 +220,7 @@ func (s *Service) EventServiceServer() stategate.EventServiceServer {
 }
 
 func (s *Service) EntityServiceServer() stategate.EntityServiceServer {
-	return &objectService{svc: s}
+	return &entityService{svc: s}
 }
 
 type eventService struct {
@@ -208,27 +235,31 @@ func (e eventService) Search(ctx context.Context, opts *stategate.SearchEventOpt
 	return e.svc.searchEvents(ctx, opts)
 }
 
-type objectService struct {
+type entityService struct {
 	svc *Service
 }
 
-func (o objectService) Set(ctx context.Context, object *stategate.Entity) (*empty.Empty, error) {
-	return o.svc.setEntity(ctx, object)
+func (o entityService) Set(ctx context.Context, entity *stategate.Entity) (*empty.Empty, error) {
+	return o.svc.setEntity(ctx, entity)
 }
 
-func (o objectService) Edit(ctx context.Context, object *stategate.Entity) (*stategate.Entity, error) {
-	return o.svc.editEntity(ctx, object)
+func (o entityService) Edit(ctx context.Context, entity *stategate.Entity) (*stategate.Entity, error) {
+	return o.svc.editEntity(ctx, entity)
 }
 
-func (o objectService) Get(ctx context.Context, ref *stategate.EntityRef) (*stategate.Entity, error) {
+func (o entityService) Revert(ctx context.Context, opts *stategate.RevertOpts) (*stategate.Entity, error) {
+	return o.svc.revertEntity(ctx, opts)
+}
+
+func (o entityService) Get(ctx context.Context, ref *stategate.EntityRef) (*stategate.Entity, error) {
 	return o.svc.getEntity(ctx, ref)
 }
 
-func (o objectService) Del(ctx context.Context, ref *stategate.EntityRef) (*empty.Empty, error) {
+func (o entityService) Del(ctx context.Context, ref *stategate.EntityRef) (*empty.Empty, error) {
 	return o.svc.delEntity(ctx, ref)
 }
 
-func (o objectService) Search(ctx context.Context, opts *stategate.SearchEntitiesOpts) (*stategate.Entities, error) {
+func (o entityService) Search(ctx context.Context, opts *stategate.SearchEntityOpts) (*stategate.Entities, error) {
 	return o.svc.searchEntities(ctx, opts)
 }
 

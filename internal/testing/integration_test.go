@@ -261,7 +261,22 @@ func endToEnd(ctx context.Context) *framework.TestCase {
 				t.Fatalf("values mismatch: %v", protojson.Format(e))
 			}
 			t.Log(protojson.Format(events))
-			objectss, err := oclient.Search(ctx, &stategate.SearchEntitiesOpts{
+
+			reverted, err := oclient.Revert(ctx, &stategate.RevertOpts{
+				Ref: &stategate.EntityRef{
+					Domain: events.GetEvents()[0].GetEntity().GetDomain(),
+					Type:   events.GetEvents()[0].GetEntity().GetType(),
+					Key:    events.GetEvents()[0].GetEntity().GetKey(),
+				},
+				Offset: 1,
+			})
+			if err != nil {
+				t.Fatal(err)
+			}
+			if reverted.String() != events.GetEvents()[1].GetEntity().String() {
+				t.Fatal("failed to revert")
+			}
+			objectss, err := oclient.Search(ctx, &stategate.SearchEntityOpts{
 				Domain:      "acme",
 				Type:        typ,
 				QueryString: `{ "message": "hello world" }`,

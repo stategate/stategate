@@ -5,16 +5,16 @@ package stategate
 
 import (
 	fmt "fmt"
-	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/golang/protobuf/ptypes/any"
 	_ "github.com/golang/protobuf/ptypes/empty"
-	_ "github.com/mwitkow/go-proto-validators"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/struct"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
-	_ "github.com/golang/protobuf/ptypes/any"
-	regexp "regexp"
+	_ "github.com/mwitkow/go-proto-validators"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
+	math "math"
+	regexp "regexp"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -35,6 +35,17 @@ func (this *EntityRef) Validate() error {
 	}
 	if !_regex_EntityRef_Key.MatchString(this.Key) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Key))
+	}
+	return nil
+}
+func (this *RevertOpts) Validate() error {
+	if nil == this.Ref {
+		return github_com_mwitkow_go_proto_validators.FieldError("Ref", fmt.Errorf("message must exist"))
+	}
+	if this.Ref != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Ref); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Ref", err)
+		}
 	}
 	return nil
 }
@@ -74,14 +85,14 @@ func (this *Entities) Validate() error {
 	return nil
 }
 
-var _regex_SearchEntitiesOpts_Domain = regexp.MustCompile(`^\S+$`)
-var _regex_SearchEntitiesOpts_Type = regexp.MustCompile(`^\S+$`)
+var _regex_SearchEntityOpts_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_SearchEntityOpts_Type = regexp.MustCompile(`^\S+$`)
 
-func (this *SearchEntitiesOpts) Validate() error {
-	if !_regex_SearchEntitiesOpts_Domain.MatchString(this.Domain) {
+func (this *SearchEntityOpts) Validate() error {
+	if !_regex_SearchEntityOpts_Domain.MatchString(this.Domain) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
 	}
-	if !_regex_SearchEntitiesOpts_Type.MatchString(this.Type) {
+	if !_regex_SearchEntityOpts_Type.MatchString(this.Type) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
 	}
 	if !(this.Limit > 0) {

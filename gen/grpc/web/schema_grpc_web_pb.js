@@ -245,6 +245,86 @@ proto.stategate.EntityServicePromiseClient.prototype.edit =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.stategate.RevertOpts,
+ *   !proto.stategate.Entity>}
+ */
+const methodDescriptor_EntityService_Revert = new grpc.web.MethodDescriptor(
+  '/stategate.EntityService/Revert',
+  grpc.web.MethodType.UNARY,
+  proto.stategate.RevertOpts,
+  proto.stategate.Entity,
+  /**
+   * @param {!proto.stategate.RevertOpts} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.stategate.Entity.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.stategate.RevertOpts,
+ *   !proto.stategate.Entity>}
+ */
+const methodInfo_EntityService_Revert = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.stategate.Entity,
+  /**
+   * @param {!proto.stategate.RevertOpts} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.stategate.Entity.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.stategate.RevertOpts} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.stategate.Entity)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.stategate.Entity>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.stategate.EntityServiceClient.prototype.revert =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/stategate.EntityService/Revert',
+      request,
+      metadata || {},
+      methodDescriptor_EntityService_Revert,
+      callback);
+};
+
+
+/**
+ * @param {!proto.stategate.RevertOpts} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.stategate.Entity>}
+ *     Promise that resolves to the response
+ */
+proto.stategate.EntityServicePromiseClient.prototype.revert =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/stategate.EntityService/Revert',
+      request,
+      metadata || {},
+      methodDescriptor_EntityService_Revert);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.stategate.EntityRef,
  *   !proto.stategate.Entity>}
  */
@@ -405,16 +485,16 @@ proto.stategate.EntityServicePromiseClient.prototype.del =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.stategate.SearchEntitiesOpts,
+ *   !proto.stategate.SearchEntityOpts,
  *   !proto.stategate.Entities>}
  */
 const methodDescriptor_EntityService_Search = new grpc.web.MethodDescriptor(
   '/stategate.EntityService/Search',
   grpc.web.MethodType.UNARY,
-  proto.stategate.SearchEntitiesOpts,
+  proto.stategate.SearchEntityOpts,
   proto.stategate.Entities,
   /**
-   * @param {!proto.stategate.SearchEntitiesOpts} request
+   * @param {!proto.stategate.SearchEntityOpts} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -427,13 +507,13 @@ const methodDescriptor_EntityService_Search = new grpc.web.MethodDescriptor(
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.stategate.SearchEntitiesOpts,
+ *   !proto.stategate.SearchEntityOpts,
  *   !proto.stategate.Entities>}
  */
 const methodInfo_EntityService_Search = new grpc.web.AbstractClientBase.MethodInfo(
   proto.stategate.Entities,
   /**
-   * @param {!proto.stategate.SearchEntitiesOpts} request
+   * @param {!proto.stategate.SearchEntityOpts} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -444,7 +524,7 @@ const methodInfo_EntityService_Search = new grpc.web.AbstractClientBase.MethodIn
 
 
 /**
- * @param {!proto.stategate.SearchEntitiesOpts} request The
+ * @param {!proto.stategate.SearchEntityOpts} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -465,7 +545,7 @@ proto.stategate.EntityServiceClient.prototype.search =
 
 
 /**
- * @param {!proto.stategate.SearchEntitiesOpts} request The
+ * @param {!proto.stategate.SearchEntityOpts} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata

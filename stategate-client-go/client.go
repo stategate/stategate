@@ -247,7 +247,7 @@ func (c *EntityClient) Edit(ctx context.Context, in *stategate.Entity) (*statega
 }
 
 // Search queries the current state of entities
-func (c *EntityClient) Search(ctx context.Context, in *stategate.SearchEntitiesOpts) (*stategate.Entities, error) {
+func (c *EntityClient) Search(ctx context.Context, in *stategate.SearchEntityOpts) (*stategate.Entities, error) {
 	return c.client.Search(ctx, in)
 }
 
@@ -255,6 +255,11 @@ func (c *EntityClient) Search(ctx context.Context, in *stategate.SearchEntitiesO
 func (c *EntityClient) Set(ctx context.Context, in *stategate.Entity) error {
 	_, err := c.client.Set(ctx, in)
 	return err
+}
+
+// Revert reverts an Entity to a previous version of itself
+func (c *EntityClient) Revert(ctx context.Context, in *stategate.RevertOpts) (*stategate.Entity, error) {
+	return c.client.Revert(ctx, in)
 }
 
 // Del deletes an application state value(k/v pairs)

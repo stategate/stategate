@@ -30,6 +30,13 @@ service EntityService {
       patch: "/api/entity/ref/{domain}/{type}/{key}"
     };
   }
+  // Revert reverts an Entity to a previous version of itself by querying the event store.
+  // Reverting an entity dispatches another event since it is a state change
+  rpc Revert(RevertOpts) returns(Entity) {
+    option (google.api.http) = {
+      put: "/api/entity/ref/{ref.domain}/{ref.type}/{ref.key}/revert"
+    };
+  }
   // Get gets an entity's current state
   rpc Get(EntityRef) returns(Entity) {
     option (google.api.http) = {
@@ -44,7 +51,7 @@ service EntityService {
     };
   }
   // Search queries the current state of entities
-  rpc Search(SearchEntitiesOpts) returns(Entities) {
+  rpc Search(SearchEntityOpts) returns(Entities) {
     option (google.api.http) = {
       get: "/api/entity/search"
     };
@@ -59,6 +66,14 @@ message EntityRef {
   string type =2[(validator.field) = {regex : "^\\S+$"}];
   // entity key (unique within type)
   string key =3[(validator.field) = {regex : "^\\S+$"}];
+}
+
+// RevertOpts holds options for reverting an entity to a previous version of itself
+message RevertOpts {
+  // ref is a reference to an existing entity
+  EntityRef ref =1[(validator.field) = {msg_exists : true}];
+  // offset offsets the version that the entity will be reverted to
+  int32 offset =2;
 }
 
 // Entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
@@ -82,9 +97,9 @@ message Entities {
   repeated Entity entities =1;
 }
 
-// SearchEntitiesOpts are options when querying the current values of entities.
+// SearchEntityOpts are options when querying the current values of entities.
 // If historical values are needed, SearchEvents should be used
-message SearchEntitiesOpts {
+message SearchEntityOpts {
   // the entity's business domain(ex: accounting)
   // must not be empty or contain spaces
   string domain =1[(validator.field) = {regex : "^\\S+$"}];
@@ -95,9 +110,9 @@ message SearchEntitiesOpts {
   // please note that dot notation may be used to access nested fields
   string query_string = 3;
   // limit number of returned values
-  int64 limit =4[(validator.field) = {int_gt : 0}];
+  int32 limit =4[(validator.field) = {int_gt : 0}];
   // offset returned events(pagination)
-  int64 offset =5;
+  int32 offset =5;
   // sort sorts the returned entities by a specified field
   Sort sort =9;
 }
@@ -105,13 +120,13 @@ message SearchEntitiesOpts {
 // EventService serves API methods related to stategate Event Consumers
 // Events are automatically emitted from mutations made from State mutations within the EntityService
 service EventService {
-  // Stream creates an event stream/subscription to changes to entities. Glob matching is supported.
+  // Stream creates an event stream/subscription to state changes to entities in real time. Glob matching is supported.
   rpc Stream(StreamOpts) returns(stream Event) {
     option (google.api.http) = {
       get: "/api/events/stream"
     };
   }
-  // Search queries historical events.
+  // Search queries historical events - every historical state change to an entity may be queried.
   rpc Search(SearchEventOpts) returns(Events) {
     option (google.api.http) = {
       get: "/api/events/search"
@@ -135,9 +150,9 @@ message SearchEventOpts {
   // only return events that occurred before specified max timestamp
   int64 max = 6;
   // limit number of returned values
-  int64 limit =7[(validator.field) = {int_gt : 0}];
+  int32 limit =7[(validator.field) = {int_gt : 0}];
   // offset returned events(pagination)
-  int64 offset =8;
+  int32 offset =8;
   // sort sorts the returned entities by a specified field
   Sort sort =9;
 }
@@ -173,7 +188,7 @@ message Event {
   string id = 1[(validator.field) = {uuid_ver : 4}];
   // state of an Entity after it has been mutated
   Entity entity = 2[(validator.field) = {msg_exists : true}];
-  // the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
+  // the invoked method that triggered the event
   string method =5[(validator.field) = {string_not_empty : true}];
   // the authentication claims of the event producer.
   google.protobuf.Struct claims =3[(validator.field) = {msg_exists : true}];

@@ -189,6 +189,52 @@
         ]
       }
     },
+    "/api/entity/ref/{ref.domain}/{ref.type}/{ref.key}/revert": {
+      "put": {
+        "summary": "Revert reverts an Entity to a previous version of itself by querying the event store.\nReverting an entity dispatches another event since it is a state change",
+        "operationId": "EntityService_Revert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/stategateEntity"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ref.domain",
+            "description": "the entity's business domain(ex: accounting)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ref.type",
+            "description": "entity type (ex: user)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ref.key",
+            "description": "entity key (unique within type)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EntityService"
+        ]
+      }
+    },
     "/api/entity/search": {
       "get": {
         "summary": "Search queries the current state of entities",
@@ -234,16 +280,16 @@
             "description": "limit number of returned values.",
             "in": "query",
             "required": false,
-            "type": "string",
-            "format": "int64"
+            "type": "integer",
+            "format": "int32"
           },
           {
             "name": "offset",
             "description": "offset returned events(pagination).",
             "in": "query",
             "required": false,
-            "type": "string",
-            "format": "int64"
+            "type": "integer",
+            "format": "int32"
           },
           {
             "name": "sort.field",
@@ -267,7 +313,7 @@
     },
     "/api/events/search": {
       "get": {
-        "summary": "Search queries historical events.",
+        "summary": "Search queries historical events - every historical state change to an entity may be queried.",
         "operationId": "EventService_Search",
         "responses": {
           "200": {
@@ -326,16 +372,16 @@
             "description": "limit number of returned values.",
             "in": "query",
             "required": false,
-            "type": "string",
-            "format": "int64"
+            "type": "integer",
+            "format": "int32"
           },
           {
             "name": "offset",
             "description": "offset returned events(pagination).",
             "in": "query",
             "required": false,
-            "type": "string",
-            "format": "int64"
+            "type": "integer",
+            "format": "int32"
           },
           {
             "name": "sort.field",
@@ -359,7 +405,7 @@
     },
     "/api/events/stream": {
       "get": {
-        "summary": "Stream creates an event stream/subscription to changes to entities. Glob matching is supported.",
+        "summary": "Stream creates an event stream/subscription to state changes to entities in real time. Glob matching is supported.",
         "operationId": "EventService_Stream",
         "responses": {
           "200": {
@@ -482,6 +528,24 @@
       },
       "description": "Entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)\nEventService clients should use the EntityService to persist \u0026 interact with the current state of an entity."
     },
+    "stategateEntityRef": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "type": "string",
+          "title": "the entity's business domain(ex: accounting)"
+        },
+        "type": {
+          "type": "string",
+          "title": "entity type (ex: user)"
+        },
+        "key": {
+          "type": "string",
+          "title": "entity key (unique within type)"
+        }
+      },
+      "title": "EntityRef is a reference to an existing entity"
+    },
     "stategateEvent": {
       "type": "object",
       "properties": {
@@ -495,7 +559,7 @@
         },
         "method": {
           "type": "string",
-          "title": "the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)"
+          "title": "the invoked method that triggered the event"
         },
         "claims": {
           "type": "object",

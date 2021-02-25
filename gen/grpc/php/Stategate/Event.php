@@ -31,7 +31,7 @@ class Event extends \Google\Protobuf\Internal\Message
      */
     private $entity = null;
     /**
-     * the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
+     * the invoked method that triggered the event
      *
      * Generated from protobuf field <code>string method = 5 [(.validator.field) = {</code>
      */
@@ -60,7 +60,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *     @type \Stategate\Entity $entity
      *           state of an Entity after it has been mutated
      *     @type string $method
-     *           the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
+     *           the invoked method that triggered the event
      *     @type \Google\Protobuf\Struct $claims
      *           the authentication claims of the event producer.
      *     @type int|string $time
@@ -125,7 +125,7 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
+     * the invoked method that triggered the event
      *
      * Generated from protobuf field <code>string method = 5 [(.validator.field) = {</code>
      * @return string
@@ -136,7 +136,7 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the invoked method that triggered the event(/stategate.EntityService/Set OR /stategate.EntityService/Del)
+     * the invoked method that triggered the event
      *
      * Generated from protobuf field <code>string method = 5 [(.validator.field) = {</code>
      * @param string $var

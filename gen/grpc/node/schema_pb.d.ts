@@ -37,6 +37,32 @@ export namespace EntityRef {
   }
 }
 
+export class RevertOpts extends jspb.Message {
+  hasRef(): boolean;
+  clearRef(): void;
+  getRef(): EntityRef | undefined;
+  setRef(value?: EntityRef): void;
+
+  getOffset(): number;
+  setOffset(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RevertOpts.AsObject;
+  static toObject(includeInstance: boolean, msg: RevertOpts): RevertOpts.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RevertOpts, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RevertOpts;
+  static deserializeBinaryFromReader(message: RevertOpts, reader: jspb.BinaryReader): RevertOpts;
+}
+
+export namespace RevertOpts {
+  export type AsObject = {
+    ref?: EntityRef.AsObject,
+    offset: number,
+  }
+}
+
 export class Entity extends jspb.Message {
   getDomain(): string;
   setDomain(value: string): void;
@@ -93,7 +119,7 @@ export namespace Entities {
   }
 }
 
-export class SearchEntitiesOpts extends jspb.Message {
+export class SearchEntityOpts extends jspb.Message {
   getDomain(): string;
   setDomain(value: string): void;
 
@@ -115,16 +141,16 @@ export class SearchEntitiesOpts extends jspb.Message {
   setSort(value?: Sort): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SearchEntitiesOpts.AsObject;
-  static toObject(includeInstance: boolean, msg: SearchEntitiesOpts): SearchEntitiesOpts.AsObject;
+  toObject(includeInstance?: boolean): SearchEntityOpts.AsObject;
+  static toObject(includeInstance: boolean, msg: SearchEntityOpts): SearchEntityOpts.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: SearchEntitiesOpts, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SearchEntitiesOpts;
-  static deserializeBinaryFromReader(message: SearchEntitiesOpts, reader: jspb.BinaryReader): SearchEntitiesOpts;
+  static serializeBinaryToWriter(message: SearchEntityOpts, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SearchEntityOpts;
+  static deserializeBinaryFromReader(message: SearchEntityOpts, reader: jspb.BinaryReader): SearchEntityOpts;
 }
 
-export namespace SearchEntitiesOpts {
+export namespace SearchEntityOpts {
   export type AsObject = {
     domain: string,
     type: string,

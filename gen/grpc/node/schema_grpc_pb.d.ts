@@ -10,9 +10,10 @@ import * as grpc from "grpc";
 interface IEntityServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   set: grpc.MethodDefinition<schema_pb.Entity, google_protobuf_empty_pb.Empty>;
   edit: grpc.MethodDefinition<schema_pb.Entity, schema_pb.Entity>;
+  revert: grpc.MethodDefinition<schema_pb.RevertOpts, schema_pb.Entity>;
   get: grpc.MethodDefinition<schema_pb.EntityRef, schema_pb.Entity>;
   del: grpc.MethodDefinition<schema_pb.EntityRef, google_protobuf_empty_pb.Empty>;
-  search: grpc.MethodDefinition<schema_pb.SearchEntitiesOpts, schema_pb.Entities>;
+  search: grpc.MethodDefinition<schema_pb.SearchEntityOpts, schema_pb.Entities>;
 }
 
 export const EntityServiceService: IEntityServiceService;
@@ -25,15 +26,18 @@ export class EntityServiceClient extends grpc.Client {
   edit(argument: schema_pb.Entity, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
   edit(argument: schema_pb.Entity, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
   edit(argument: schema_pb.Entity, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
+  revert(argument: schema_pb.RevertOpts, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
+  revert(argument: schema_pb.RevertOpts, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
+  revert(argument: schema_pb.RevertOpts, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
   get(argument: schema_pb.EntityRef, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
   get(argument: schema_pb.EntityRef, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
   get(argument: schema_pb.EntityRef, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
   del(argument: schema_pb.EntityRef, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
   del(argument: schema_pb.EntityRef, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
   del(argument: schema_pb.EntityRef, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
-  search(argument: schema_pb.SearchEntitiesOpts, callback: grpc.requestCallback<schema_pb.Entities>): grpc.ClientUnaryCall;
-  search(argument: schema_pb.SearchEntitiesOpts, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entities>): grpc.ClientUnaryCall;
-  search(argument: schema_pb.SearchEntitiesOpts, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entities>): grpc.ClientUnaryCall;
+  search(argument: schema_pb.SearchEntityOpts, callback: grpc.requestCallback<schema_pb.Entities>): grpc.ClientUnaryCall;
+  search(argument: schema_pb.SearchEntityOpts, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entities>): grpc.ClientUnaryCall;
+  search(argument: schema_pb.SearchEntityOpts, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entities>): grpc.ClientUnaryCall;
 }
 
 interface IEventServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
