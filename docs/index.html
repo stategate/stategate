@@ -195,11 +195,11 @@
                 </li>
               
                 <li>
-                  <a href="#stategate.Events"><span class="badge">M</span>Events</a>
+                  <a href="#stategate.EventRef"><span class="badge">M</span>EventRef</a>
                 </li>
               
                 <li>
-                  <a href="#stategate.RevertOpts"><span class="badge">M</span>RevertOpts</a>
+                  <a href="#stategate.Events"><span class="badge">M</span>Events</a>
                 </li>
               
                 <li>
@@ -586,6 +586,111 @@ must not be empty or contain spaces </p></td>
 
         
       
+        <h3 id="stategate.EventRef">EventRef</h3>
+        <p>EventRef holds options for reverting an entity to a previous version of itself</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the entity&#39;s business domain(ex: accounting) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>entity type (ex: user) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>entity key (unique within type) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>id is the event id. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td>
+                    <ul>
+                    
+                      <li>uuid_ver: 4</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
         <h3 id="stategate.Events">Events</h3>
         <p>Events is an array of events</p>
 
@@ -606,64 +711,6 @@ must not be empty or contain spaces </p></td>
             </tbody>
           </table>
 
-          
-
-        
-      
-        <h3 id="stategate.RevertOpts">RevertOpts</h3>
-        <p>RevertOpts holds options for reverting an entity to a previous version of itself</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>ref</td>
-                  <td><a href="#stategate.EntityRef">EntityRef</a></td>
-                  <td></td>
-                  <td><p>ref is a reference to an existing entity </p></td>
-                </tr>
-              
-                <tr>
-                  <td>offset</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>offset offsets the version that the entity will be reverted to </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Validated Fields</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Field</td>
-                  <td>Validations</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>ref</td>
-                  <td>
-                    <ul>
-                    
-                      <li>msg_exists: true</li>
-                    
-                    </ul>
-                  </td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -1041,7 +1088,7 @@ Edit returns the current state of the Entity after the mutation.</p></td>
             
               <tr>
                 <td>Revert</td>
-                <td><a href="#stategate.RevertOpts">RevertOpts</a></td>
+                <td><a href="#stategate.EventRef">EventRef</a></td>
                 <td><a href="#stategate.Entity">Entity</a></td>
                 <td><p>Revert reverts an Entity to a previous version of itself by querying the event store.
 Reverting an entity dispatches another event since it is a state change</p></td>
@@ -1112,7 +1159,7 @@ an Entity may be recovered via querying the Event store for historical records o
               <tr>
                 <td>Revert</td>
                 <td>PUT</td>
-                <td>/api/entity/ref/{ref.domain}/{ref.type}/{ref.key}/revert</td>
+                <td>/api/entity/ref/{domain}/{type}/{key}/revert</td>
                 <td></td>
               </tr>
               
@@ -1173,6 +1220,13 @@ an Entity may be recovered via querying the Event store for historical records o
                 <td><p>Search queries historical events - every historical state change to an entity may be queried.</p></td>
               </tr>
             
+              <tr>
+                <td>Get</td>
+                <td><a href="#stategate.EventRef">EventRef</a></td>
+                <td><a href="#stategate.Event">Event</a></td>
+                <td><p>Get gets a single event</p></td>
+              </tr>
+            
           </tbody>
         </table>
 
@@ -1207,6 +1261,16 @@ an Entity may be recovered via querying the Event store for historical records o
                 <td>Search</td>
                 <td>GET</td>
                 <td>/api/events/search</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>Get</td>
+                <td>GET</td>
+                <td>/api/events/ref/{domain}/{type}/{key}/{id}</td>
                 <td></td>
               </tr>
               

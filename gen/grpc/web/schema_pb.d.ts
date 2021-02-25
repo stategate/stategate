@@ -34,27 +34,33 @@ export namespace EntityRef {
   }
 }
 
-export class RevertOpts extends jspb.Message {
-  getRef(): EntityRef | undefined;
-  setRef(value?: EntityRef): RevertOpts;
-  hasRef(): boolean;
-  clearRef(): RevertOpts;
+export class EventRef extends jspb.Message {
+  getDomain(): string;
+  setDomain(value: string): EventRef;
 
-  getOffset(): number;
-  setOffset(value: number): RevertOpts;
+  getType(): string;
+  setType(value: string): EventRef;
+
+  getKey(): string;
+  setKey(value: string): EventRef;
+
+  getId(): string;
+  setId(value: string): EventRef;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RevertOpts.AsObject;
-  static toObject(includeInstance: boolean, msg: RevertOpts): RevertOpts.AsObject;
-  static serializeBinaryToWriter(message: RevertOpts, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RevertOpts;
-  static deserializeBinaryFromReader(message: RevertOpts, reader: jspb.BinaryReader): RevertOpts;
+  toObject(includeInstance?: boolean): EventRef.AsObject;
+  static toObject(includeInstance: boolean, msg: EventRef): EventRef.AsObject;
+  static serializeBinaryToWriter(message: EventRef, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EventRef;
+  static deserializeBinaryFromReader(message: EventRef, reader: jspb.BinaryReader): EventRef;
 }
 
-export namespace RevertOpts {
+export namespace EventRef {
   export type AsObject = {
-    ref?: EntityRef.AsObject,
-    offset: number,
+    domain: string,
+    type: string,
+    key: string,
+    id: string,
   }
 }
 

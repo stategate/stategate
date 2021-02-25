@@ -24,7 +24,7 @@ export class EntityServiceClient {
   ): grpcWeb.ClientReadableStream<schema_pb.Entity>;
 
   revert(
-    request: schema_pb.RevertOpts,
+    request: schema_pb.EventRef,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
                response: schema_pb.Entity) => void
@@ -70,6 +70,13 @@ export class EventServiceClient {
                response: schema_pb.Events) => void
   ): grpcWeb.ClientReadableStream<schema_pb.Events>;
 
+  get(
+    request: schema_pb.EventRef,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: schema_pb.Event) => void
+  ): grpcWeb.ClientReadableStream<schema_pb.Event>;
+
 }
 
 export class EntityServicePromiseClient {
@@ -88,7 +95,7 @@ export class EntityServicePromiseClient {
   ): Promise<schema_pb.Entity>;
 
   revert(
-    request: schema_pb.RevertOpts,
+    request: schema_pb.EventRef,
     metadata?: grpcWeb.Metadata
   ): Promise<schema_pb.Entity>;
 
@@ -123,6 +130,11 @@ export class EventServicePromiseClient {
     request: schema_pb.SearchEventOpts,
     metadata?: grpcWeb.Metadata
   ): Promise<schema_pb.Events>;
+
+  get(
+    request: schema_pb.EventRef,
+    metadata?: grpcWeb.Metadata
+  ): Promise<schema_pb.Event>;
 
 }
 

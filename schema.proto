@@ -32,9 +32,9 @@ service EntityService {
   }
   // Revert reverts an Entity to a previous version of itself by querying the event store.
   // Reverting an entity dispatches another event since it is a state change
-  rpc Revert(RevertOpts) returns(Entity) {
+  rpc Revert(EventRef) returns(Entity) {
     option (google.api.http) = {
-      put: "/api/entity/ref/{ref.domain}/{ref.type}/{ref.key}/revert"
+      put: "/api/entity/ref/{domain}/{type}/{key}/revert"
     };
   }
   // Get gets an entity's current state
@@ -68,12 +68,16 @@ message EntityRef {
   string key =3[(validator.field) = {regex : "^\\S+$"}];
 }
 
-// RevertOpts holds options for reverting an entity to a previous version of itself
-message RevertOpts {
-  // ref is a reference to an existing entity
-  EntityRef ref =1[(validator.field) = {msg_exists : true}];
-  // offset offsets the version that the entity will be reverted to
-  int32 offset =2;
+// EventRef holds options for reverting an entity to a previous version of itself
+message EventRef {
+  // the entity's business domain(ex: accounting)
+  string domain =1[(validator.field) = {regex : "^\\S+$"}];
+  // entity type (ex: user)
+  string type =2[(validator.field) = {regex : "^\\S+$"}];
+  // entity key (unique within type)
+  string key =3[(validator.field) = {regex : "^\\S+$"}];
+  // id is the event id.
+  string id =4[(validator.field) = {uuid_ver : 4}];
 }
 
 // Entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
@@ -130,6 +134,12 @@ service EventService {
   rpc Search(SearchEventOpts) returns(Events) {
     option (google.api.http) = {
       get: "/api/events/search"
+    };
+  }
+  // Get gets a single event
+  rpc Get(EventRef) returns(Event) {
+    option (google.api.http) = {
+      get: "/api/events/ref/{domain}/{type}/{key}/{id}"
     };
   }
 }

@@ -189,7 +189,7 @@
         ]
       }
     },
-    "/api/entity/ref/{ref.domain}/{ref.type}/{ref.key}/revert": {
+    "/api/entity/ref/{domain}/{type}/{key}/revert": {
       "put": {
         "summary": "Revert reverts an Entity to a previous version of itself by querying the event store.\nReverting an entity dispatches another event since it is a state change",
         "operationId": "EntityService_Revert",
@@ -209,21 +209,21 @@
         },
         "parameters": [
           {
-            "name": "ref.domain",
+            "name": "domain",
             "description": "the entity's business domain(ex: accounting)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "name": "ref.type",
+            "name": "type",
             "description": "entity type (ex: user)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "name": "ref.key",
+            "name": "key",
             "description": "entity key (unique within type)",
             "in": "path",
             "required": true,
@@ -308,6 +308,59 @@
         ],
         "tags": [
           "EntityService"
+        ]
+      }
+    },
+    "/api/events/ref/{domain}/{type}/{key}/{id}": {
+      "get": {
+        "summary": "Get gets a single event",
+        "operationId": "EventService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/stategateEvent"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the entity's business domain(ex: accounting)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "entity type (ex: user)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "entity key (unique within type)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "id is the event id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EventService"
         ]
       }
     },
@@ -527,24 +580,6 @@
         }
       },
       "description": "Entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)\nEventService clients should use the EntityService to persist \u0026 interact with the current state of an entity."
-    },
-    "stategateEntityRef": {
-      "type": "object",
-      "properties": {
-        "domain": {
-          "type": "string",
-          "title": "the entity's business domain(ex: accounting)"
-        },
-        "type": {
-          "type": "string",
-          "title": "entity type (ex: user)"
-        },
-        "key": {
-          "type": "string",
-          "title": "entity key (unique within type)"
-        }
-      },
-      "title": "EntityRef is a reference to an existing entity"
     },
     "stategateEvent": {
       "type": "object",

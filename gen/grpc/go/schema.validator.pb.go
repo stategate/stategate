@@ -5,16 +5,16 @@ package stategate
 
 import (
 	fmt "fmt"
+	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/any"
 	_ "github.com/golang/protobuf/ptypes/empty"
+	_ "github.com/mwitkow/go-proto-validators"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/struct"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
-	_ "github.com/mwitkow/go-proto-validators"
-	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
-	math "math"
+	_ "github.com/golang/protobuf/ptypes/any"
 	regexp "regexp"
+	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -38,14 +38,24 @@ func (this *EntityRef) Validate() error {
 	}
 	return nil
 }
-func (this *RevertOpts) Validate() error {
-	if nil == this.Ref {
-		return github_com_mwitkow_go_proto_validators.FieldError("Ref", fmt.Errorf("message must exist"))
+
+var _regex_EventRef_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_EventRef_Type = regexp.MustCompile(`^\S+$`)
+var _regex_EventRef_Key = regexp.MustCompile(`^\S+$`)
+var _regex_EventRef_Id = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
+func (this *EventRef) Validate() error {
+	if !_regex_EventRef_Domain.MatchString(this.Domain) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
 	}
-	if this.Ref != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Ref); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Ref", err)
-		}
+	if !_regex_EventRef_Type.MatchString(this.Type) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
+	}
+	if !_regex_EventRef_Key.MatchString(this.Key) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Key))
+	}
+	if !_regex_EventRef_Id.MatchString(this.Id) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.Id))
 	}
 	return nil
 }

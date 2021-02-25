@@ -954,62 +954,103 @@ public final class Schema {
 
   }
 
-  public interface RevertOptsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:stategate.RevertOpts)
+  public interface EventRefOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:stategate.EventRef)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     * ref is a reference to an existing entity
+     * the entity's business domain(ex: accounting)
      * </pre>
      *
-     * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    boolean hasRef();
+    java.lang.String getDomain();
     /**
      * <pre>
-     * ref is a reference to an existing entity
+     * the entity's business domain(ex: accounting)
      * </pre>
      *
-     * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    stategate.Schema.EntityRef getRef();
-    /**
-     * <pre>
-     * ref is a reference to an existing entity
-     * </pre>
-     *
-     * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
-     */
-    stategate.Schema.EntityRefOrBuilder getRefOrBuilder();
+    com.google.protobuf.ByteString
+        getDomainBytes();
 
     /**
      * <pre>
-     * offset offsets the version that the entity will be reverted to
+     * entity type (ex: user)
      * </pre>
      *
-     * <code>int32 offset = 2;</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
-    int getOffset();
+    java.lang.String getType();
+    /**
+     * <pre>
+     * entity type (ex: user)
+     * </pre>
+     *
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getTypeBytes();
+
+    /**
+     * <pre>
+     * entity key (unique within type)
+     * </pre>
+     *
+     * <code>string key = 3 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getKey();
+    /**
+     * <pre>
+     * entity key (unique within type)
+     * </pre>
+     *
+     * <code>string key = 3 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getKeyBytes();
+
+    /**
+     * <pre>
+     * id is the event id.
+     * </pre>
+     *
+     * <code>string id = 4 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getId();
+    /**
+     * <pre>
+     * id is the event id.
+     * </pre>
+     *
+     * <code>string id = 4 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
   }
   /**
    * <pre>
-   * RevertOpts holds options for reverting an entity to a previous version of itself
+   * EventRef holds options for reverting an entity to a previous version of itself
    * </pre>
    *
-   * Protobuf type {@code stategate.RevertOpts}
+   * Protobuf type {@code stategate.EventRef}
    */
-  public  static final class RevertOpts extends
+  public  static final class EventRef extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:stategate.RevertOpts)
-      RevertOptsOrBuilder {
+      // @@protoc_insertion_point(message_implements:stategate.EventRef)
+      EventRefOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RevertOpts.newBuilder() to construct.
-    private RevertOpts(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use EventRef.newBuilder() to construct.
+    private EventRef(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RevertOpts() {
-      offset_ = 0;
+    private EventRef() {
+      domain_ = "";
+      type_ = "";
+      key_ = "";
+      id_ = "";
     }
 
     @java.lang.Override
@@ -1017,7 +1058,7 @@ public final class Schema {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RevertOpts(
+    private EventRef(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1037,21 +1078,27 @@ public final class Schema {
               done = true;
               break;
             case 10: {
-              stategate.Schema.EntityRef.Builder subBuilder = null;
-              if (ref_ != null) {
-                subBuilder = ref_.toBuilder();
-              }
-              ref_ = input.readMessage(stategate.Schema.EntityRef.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(ref_);
-                ref_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              domain_ = s;
               break;
             }
-            case 16: {
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              offset_ = input.readInt32();
+              type_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              key_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
               break;
             }
             default: {
@@ -1075,61 +1122,183 @@ public final class Schema {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return stategate.Schema.internal_static_stategate_RevertOpts_descriptor;
+      return stategate.Schema.internal_static_stategate_EventRef_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return stategate.Schema.internal_static_stategate_RevertOpts_fieldAccessorTable
+      return stategate.Schema.internal_static_stategate_EventRef_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              stategate.Schema.RevertOpts.class, stategate.Schema.RevertOpts.Builder.class);
+              stategate.Schema.EventRef.class, stategate.Schema.EventRef.Builder.class);
     }
 
-    public static final int REF_FIELD_NUMBER = 1;
-    private stategate.Schema.EntityRef ref_;
+    public static final int DOMAIN_FIELD_NUMBER = 1;
+    private volatile java.lang.Object domain_;
     /**
      * <pre>
-     * ref is a reference to an existing entity
+     * the entity's business domain(ex: accounting)
      * </pre>
      *
-     * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    public boolean hasRef() {
-      return ref_ != null;
+    public java.lang.String getDomain() {
+      java.lang.Object ref = domain_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        domain_ = s;
+        return s;
+      }
     }
     /**
      * <pre>
-     * ref is a reference to an existing entity
+     * the entity's business domain(ex: accounting)
      * </pre>
      *
-     * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
      */
-    public stategate.Schema.EntityRef getRef() {
-      return ref_ == null ? stategate.Schema.EntityRef.getDefaultInstance() : ref_;
-    }
-    /**
-     * <pre>
-     * ref is a reference to an existing entity
-     * </pre>
-     *
-     * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
-     */
-    public stategate.Schema.EntityRefOrBuilder getRefOrBuilder() {
-      return getRef();
+    public com.google.protobuf.ByteString
+        getDomainBytes() {
+      java.lang.Object ref = domain_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        domain_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
-    public static final int OFFSET_FIELD_NUMBER = 2;
-    private int offset_;
+    public static final int TYPE_FIELD_NUMBER = 2;
+    private volatile java.lang.Object type_;
     /**
      * <pre>
-     * offset offsets the version that the entity will be reverted to
+     * entity type (ex: user)
      * </pre>
      *
-     * <code>int32 offset = 2;</code>
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
      */
-    public int getOffset() {
-      return offset_;
+    public java.lang.String getType() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        type_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * entity type (ex: user)
+     * </pre>
+     *
+     * <code>string type = 2 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getTypeBytes() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        type_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int KEY_FIELD_NUMBER = 3;
+    private volatile java.lang.Object key_;
+    /**
+     * <pre>
+     * entity key (unique within type)
+     * </pre>
+     *
+     * <code>string key = 3 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getKey() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        key_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * entity key (unique within type)
+     * </pre>
+     *
+     * <code>string key = 3 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getKeyBytes() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        key_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ID_FIELD_NUMBER = 4;
+    private volatile java.lang.Object id_;
+    /**
+     * <pre>
+     * id is the event id.
+     * </pre>
+     *
+     * <code>string id = 4 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * id is the event id.
+     * </pre>
+     *
+     * <code>string id = 4 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1146,11 +1315,17 @@ public final class Schema {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (ref_ != null) {
-        output.writeMessage(1, getRef());
+      if (!getDomainBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, domain_);
       }
-      if (offset_ != 0) {
-        output.writeInt32(2, offset_);
+      if (!getTypeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
+      }
+      if (!getKeyBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, key_);
+      }
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, id_);
       }
       unknownFields.writeTo(output);
     }
@@ -1161,13 +1336,17 @@ public final class Schema {
       if (size != -1) return size;
 
       size = 0;
-      if (ref_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getRef());
+      if (!getDomainBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, domain_);
       }
-      if (offset_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, offset_);
+      if (!getTypeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
+      }
+      if (!getKeyBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, key_);
+      }
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, id_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1179,19 +1358,20 @@ public final class Schema {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof stategate.Schema.RevertOpts)) {
+      if (!(obj instanceof stategate.Schema.EventRef)) {
         return super.equals(obj);
       }
-      stategate.Schema.RevertOpts other = (stategate.Schema.RevertOpts) obj;
+      stategate.Schema.EventRef other = (stategate.Schema.EventRef) obj;
 
       boolean result = true;
-      result = result && (hasRef() == other.hasRef());
-      if (hasRef()) {
-        result = result && getRef()
-            .equals(other.getRef());
-      }
-      result = result && (getOffset()
-          == other.getOffset());
+      result = result && getDomain()
+          .equals(other.getDomain());
+      result = result && getType()
+          .equals(other.getType());
+      result = result && getKey()
+          .equals(other.getKey());
+      result = result && getId()
+          .equals(other.getId());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -1203,80 +1383,82 @@ public final class Schema {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasRef()) {
-        hash = (37 * hash) + REF_FIELD_NUMBER;
-        hash = (53 * hash) + getRef().hashCode();
-      }
-      hash = (37 * hash) + OFFSET_FIELD_NUMBER;
-      hash = (53 * hash) + getOffset();
+      hash = (37 * hash) + DOMAIN_FIELD_NUMBER;
+      hash = (53 * hash) + getDomain().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType().hashCode();
+      hash = (37 * hash) + KEY_FIELD_NUMBER;
+      hash = (53 * hash) + getKey().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static stategate.Schema.RevertOpts parseFrom(
+    public static stategate.Schema.EventRef parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.RevertOpts parseFrom(
+    public static stategate.Schema.EventRef parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.RevertOpts parseFrom(
+    public static stategate.Schema.EventRef parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.RevertOpts parseFrom(
+    public static stategate.Schema.EventRef parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.RevertOpts parseFrom(byte[] data)
+    public static stategate.Schema.EventRef parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.RevertOpts parseFrom(
+    public static stategate.Schema.EventRef parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.RevertOpts parseFrom(java.io.InputStream input)
+    public static stategate.Schema.EventRef parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.RevertOpts parseFrom(
+    public static stategate.Schema.EventRef parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.RevertOpts parseDelimitedFrom(java.io.InputStream input)
+    public static stategate.Schema.EventRef parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static stategate.Schema.RevertOpts parseDelimitedFrom(
+    public static stategate.Schema.EventRef parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.RevertOpts parseFrom(
+    public static stategate.Schema.EventRef parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.RevertOpts parseFrom(
+    public static stategate.Schema.EventRef parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1289,7 +1471,7 @@ public final class Schema {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(stategate.Schema.RevertOpts prototype) {
+    public static Builder newBuilder(stategate.Schema.EventRef prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1306,29 +1488,29 @@ public final class Schema {
     }
     /**
      * <pre>
-     * RevertOpts holds options for reverting an entity to a previous version of itself
+     * EventRef holds options for reverting an entity to a previous version of itself
      * </pre>
      *
-     * Protobuf type {@code stategate.RevertOpts}
+     * Protobuf type {@code stategate.EventRef}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:stategate.RevertOpts)
-        stategate.Schema.RevertOptsOrBuilder {
+        // @@protoc_insertion_point(builder_implements:stategate.EventRef)
+        stategate.Schema.EventRefOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return stategate.Schema.internal_static_stategate_RevertOpts_descriptor;
+        return stategate.Schema.internal_static_stategate_EventRef_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return stategate.Schema.internal_static_stategate_RevertOpts_fieldAccessorTable
+        return stategate.Schema.internal_static_stategate_EventRef_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                stategate.Schema.RevertOpts.class, stategate.Schema.RevertOpts.Builder.class);
+                stategate.Schema.EventRef.class, stategate.Schema.EventRef.Builder.class);
       }
 
-      // Construct using stategate.Schema.RevertOpts.newBuilder()
+      // Construct using stategate.Schema.EventRef.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1346,13 +1528,13 @@ public final class Schema {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (refBuilder_ == null) {
-          ref_ = null;
-        } else {
-          ref_ = null;
-          refBuilder_ = null;
-        }
-        offset_ = 0;
+        domain_ = "";
+
+        type_ = "";
+
+        key_ = "";
+
+        id_ = "";
 
         return this;
       }
@@ -1360,17 +1542,17 @@ public final class Schema {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return stategate.Schema.internal_static_stategate_RevertOpts_descriptor;
+        return stategate.Schema.internal_static_stategate_EventRef_descriptor;
       }
 
       @java.lang.Override
-      public stategate.Schema.RevertOpts getDefaultInstanceForType() {
-        return stategate.Schema.RevertOpts.getDefaultInstance();
+      public stategate.Schema.EventRef getDefaultInstanceForType() {
+        return stategate.Schema.EventRef.getDefaultInstance();
       }
 
       @java.lang.Override
-      public stategate.Schema.RevertOpts build() {
-        stategate.Schema.RevertOpts result = buildPartial();
+      public stategate.Schema.EventRef build() {
+        stategate.Schema.EventRef result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1378,14 +1560,12 @@ public final class Schema {
       }
 
       @java.lang.Override
-      public stategate.Schema.RevertOpts buildPartial() {
-        stategate.Schema.RevertOpts result = new stategate.Schema.RevertOpts(this);
-        if (refBuilder_ == null) {
-          result.ref_ = ref_;
-        } else {
-          result.ref_ = refBuilder_.build();
-        }
-        result.offset_ = offset_;
+      public stategate.Schema.EventRef buildPartial() {
+        stategate.Schema.EventRef result = new stategate.Schema.EventRef(this);
+        result.domain_ = domain_;
+        result.type_ = type_;
+        result.key_ = key_;
+        result.id_ = id_;
         onBuilt();
         return result;
       }
@@ -1424,21 +1604,31 @@ public final class Schema {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof stategate.Schema.RevertOpts) {
-          return mergeFrom((stategate.Schema.RevertOpts)other);
+        if (other instanceof stategate.Schema.EventRef) {
+          return mergeFrom((stategate.Schema.EventRef)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(stategate.Schema.RevertOpts other) {
-        if (other == stategate.Schema.RevertOpts.getDefaultInstance()) return this;
-        if (other.hasRef()) {
-          mergeRef(other.getRef());
+      public Builder mergeFrom(stategate.Schema.EventRef other) {
+        if (other == stategate.Schema.EventRef.getDefaultInstance()) return this;
+        if (!other.getDomain().isEmpty()) {
+          domain_ = other.domain_;
+          onChanged();
         }
-        if (other.getOffset() != 0) {
-          setOffset(other.getOffset());
+        if (!other.getType().isEmpty()) {
+          type_ = other.type_;
+          onChanged();
+        }
+        if (!other.getKey().isEmpty()) {
+          key_ = other.key_;
+          onChanged();
+        }
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1455,11 +1645,11 @@ public final class Schema {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        stategate.Schema.RevertOpts parsedMessage = null;
+        stategate.Schema.EventRef parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (stategate.Schema.RevertOpts) e.getUnfinishedMessage();
+          parsedMessage = (stategate.Schema.EventRef) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1469,193 +1659,358 @@ public final class Schema {
         return this;
       }
 
-      private stategate.Schema.EntityRef ref_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          stategate.Schema.EntityRef, stategate.Schema.EntityRef.Builder, stategate.Schema.EntityRefOrBuilder> refBuilder_;
+      private java.lang.Object domain_ = "";
       /**
        * <pre>
-       * ref is a reference to an existing entity
+       * the entity's business domain(ex: accounting)
        * </pre>
        *
-       * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public boolean hasRef() {
-        return refBuilder_ != null || ref_ != null;
-      }
-      /**
-       * <pre>
-       * ref is a reference to an existing entity
-       * </pre>
-       *
-       * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
-       */
-      public stategate.Schema.EntityRef getRef() {
-        if (refBuilder_ == null) {
-          return ref_ == null ? stategate.Schema.EntityRef.getDefaultInstance() : ref_;
+      public java.lang.String getDomain() {
+        java.lang.Object ref = domain_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          domain_ = s;
+          return s;
         } else {
-          return refBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
        * <pre>
-       * ref is a reference to an existing entity
+       * the entity's business domain(ex: accounting)
        * </pre>
        *
-       * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder setRef(stategate.Schema.EntityRef value) {
-        if (refBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ref_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getDomainBytes() {
+        java.lang.Object ref = domain_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          domain_ = b;
+          return b;
         } else {
-          refBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * ref is a reference to an existing entity
-       * </pre>
-       *
-       * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
-       */
-      public Builder setRef(
-          stategate.Schema.EntityRef.Builder builderForValue) {
-        if (refBuilder_ == null) {
-          ref_ = builderForValue.build();
-          onChanged();
-        } else {
-          refBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * ref is a reference to an existing entity
-       * </pre>
-       *
-       * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
-       */
-      public Builder mergeRef(stategate.Schema.EntityRef value) {
-        if (refBuilder_ == null) {
-          if (ref_ != null) {
-            ref_ =
-              stategate.Schema.EntityRef.newBuilder(ref_).mergeFrom(value).buildPartial();
-          } else {
-            ref_ = value;
-          }
-          onChanged();
-        } else {
-          refBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * ref is a reference to an existing entity
-       * </pre>
-       *
-       * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
-       */
-      public Builder clearRef() {
-        if (refBuilder_ == null) {
-          ref_ = null;
-          onChanged();
-        } else {
-          ref_ = null;
-          refBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * ref is a reference to an existing entity
-       * </pre>
-       *
-       * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
-       */
-      public stategate.Schema.EntityRef.Builder getRefBuilder() {
-        
-        onChanged();
-        return getRefFieldBuilder().getBuilder();
-      }
-      /**
-       * <pre>
-       * ref is a reference to an existing entity
-       * </pre>
-       *
-       * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
-       */
-      public stategate.Schema.EntityRefOrBuilder getRefOrBuilder() {
-        if (refBuilder_ != null) {
-          return refBuilder_.getMessageOrBuilder();
-        } else {
-          return ref_ == null ?
-              stategate.Schema.EntityRef.getDefaultInstance() : ref_;
+          return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
        * <pre>
-       * ref is a reference to an existing entity
+       * the entity's business domain(ex: accounting)
        * </pre>
        *
-       * <code>.stategate.EntityRef ref = 1 [(.validator.field) = { ... }</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          stategate.Schema.EntityRef, stategate.Schema.EntityRef.Builder, stategate.Schema.EntityRefOrBuilder> 
-          getRefFieldBuilder() {
-        if (refBuilder_ == null) {
-          refBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              stategate.Schema.EntityRef, stategate.Schema.EntityRef.Builder, stategate.Schema.EntityRefOrBuilder>(
-                  getRef(),
-                  getParentForChildren(),
-                  isClean());
-          ref_ = null;
-        }
-        return refBuilder_;
-      }
-
-      private int offset_ ;
-      /**
-       * <pre>
-       * offset offsets the version that the entity will be reverted to
-       * </pre>
-       *
-       * <code>int32 offset = 2;</code>
-       */
-      public int getOffset() {
-        return offset_;
-      }
-      /**
-       * <pre>
-       * offset offsets the version that the entity will be reverted to
-       * </pre>
-       *
-       * <code>int32 offset = 2;</code>
-       */
-      public Builder setOffset(int value) {
-        
-        offset_ = value;
+      public Builder setDomain(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        domain_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * offset offsets the version that the entity will be reverted to
+       * the entity's business domain(ex: accounting)
        * </pre>
        *
-       * <code>int32 offset = 2;</code>
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
        */
-      public Builder clearOffset() {
+      public Builder clearDomain() {
         
-        offset_ = 0;
+        domain_ = getDefaultInstance().getDomain();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the entity's business domain(ex: accounting)
+       * </pre>
+       *
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setDomainBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        domain_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object type_ = "";
+      /**
+       * <pre>
+       * entity type (ex: user)
+       * </pre>
+       *
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getType() {
+        java.lang.Object ref = type_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          type_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * entity type (ex: user)
+       * </pre>
+       *
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getTypeBytes() {
+        java.lang.Object ref = type_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          type_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * entity type (ex: user)
+       * </pre>
+       *
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder setType(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * entity type (ex: user)
+       * </pre>
+       *
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearType() {
+        
+        type_ = getDefaultInstance().getType();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * entity type (ex: user)
+       * </pre>
+       *
+       * <code>string type = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTypeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object key_ = "";
+      /**
+       * <pre>
+       * entity key (unique within type)
+       * </pre>
+       *
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getKey() {
+        java.lang.Object ref = key_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          key_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * entity key (unique within type)
+       * </pre>
+       *
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getKeyBytes() {
+        java.lang.Object ref = key_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          key_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * entity key (unique within type)
+       * </pre>
+       *
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder setKey(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        key_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * entity key (unique within type)
+       * </pre>
+       *
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearKey() {
+        
+        key_ = getDefaultInstance().getKey();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * entity key (unique within type)
+       * </pre>
+       *
+       * <code>string key = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder setKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        key_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object id_ = "";
+      /**
+       * <pre>
+       * id is the event id.
+       * </pre>
+       *
+       * <code>string id = 4 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * id is the event id.
+       * </pre>
+       *
+       * <code>string id = 4 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * id is the event id.
+       * </pre>
+       *
+       * <code>string id = 4 [(.validator.field) = { ... }</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * id is the event id.
+       * </pre>
+       *
+       * <code>string id = 4 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearId() {
+        
+        id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * id is the event id.
+       * </pre>
+       *
+       * <code>string id = 4 [(.validator.field) = { ... }</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value;
         onChanged();
         return this;
       }
@@ -1672,41 +2027,41 @@ public final class Schema {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:stategate.RevertOpts)
+      // @@protoc_insertion_point(builder_scope:stategate.EventRef)
     }
 
-    // @@protoc_insertion_point(class_scope:stategate.RevertOpts)
-    private static final stategate.Schema.RevertOpts DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:stategate.EventRef)
+    private static final stategate.Schema.EventRef DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new stategate.Schema.RevertOpts();
+      DEFAULT_INSTANCE = new stategate.Schema.EventRef();
     }
 
-    public static stategate.Schema.RevertOpts getDefaultInstance() {
+    public static stategate.Schema.EventRef getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RevertOpts>
-        PARSER = new com.google.protobuf.AbstractParser<RevertOpts>() {
+    private static final com.google.protobuf.Parser<EventRef>
+        PARSER = new com.google.protobuf.AbstractParser<EventRef>() {
       @java.lang.Override
-      public RevertOpts parsePartialFrom(
+      public EventRef parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RevertOpts(input, extensionRegistry);
+        return new EventRef(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RevertOpts> parser() {
+    public static com.google.protobuf.Parser<EventRef> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RevertOpts> getParserForType() {
+    public com.google.protobuf.Parser<EventRef> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public stategate.Schema.RevertOpts getDefaultInstanceForType() {
+    public stategate.Schema.EventRef getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -10322,10 +10677,10 @@ public final class Schema {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_stategate_EntityRef_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_stategate_RevertOpts_descriptor;
+    internal_static_stategate_EventRef_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_stategate_RevertOpts_fieldAccessorTable;
+      internal_static_stategate_EventRef_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_stategate_Entity_descriptor;
   private static final 
@@ -10383,51 +10738,54 @@ public final class Schema {
       "oto-validators/validator.proto\"]\n\tEntity" +
       "Ref\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type" +
       "\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030\003 \001(\tB\013\342\337\037\007\n\005" +
-      "^\\S+$\"G\n\nRevertOpts\022)\n\003ref\030\001 \001(\0132\024.state" +
-      "gate.EntityRefB\006\342\337\037\002 \001\022\016\n\006offset\030\002 \001(\005\"\213" +
-      "\001\n\006Entity\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031" +
-      "\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030\003 \001(\tB\013" +
-      "\342\337\037\007\n\005^\\S+$\022/\n\006values\030\004 \001(\0132\027.google.pro" +
-      "tobuf.StructB\006\342\337\037\002 \001\"/\n\010Entities\022#\n\010enti" +
-      "ties\030\001 \003(\0132\021.stategate.Entity\"\246\001\n\020Search" +
-      "EntityOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022" +
-      "\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014query_stri" +
-      "ng\030\003 \001(\t\022\025\n\005limit\030\004 \001(\005B\006\342\337\037\002\020\000\022\016\n\006offse" +
-      "t\030\005 \001(\005\022\035\n\004sort\030\t \001(\0132\017.stategate.Sort\"\277" +
-      "\001\n\017SearchEventOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007" +
-      "\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014qu" +
-      "ery_string\030\004 \001(\t\022\013\n\003min\030\005 \001(\003\022\013\n\003max\030\006 \001" +
-      "(\003\022\025\n\005limit\030\007 \001(\005B\006\342\337\037\002\020\000\022\016\n\006offset\030\010 \001(" +
-      "\005\022\035\n\004sort\030\t \001(\0132\017.stategate.Sort\"D\n\nStre" +
-      "amOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004t" +
-      "ype\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\"&\n\004Sort\022\r\n\005field\030" +
-      "\001 \001(\t\022\017\n\007reverse\030\002 \001(\010\"\246\001\n\005Event\022\023\n\002id\030\001" +
-      " \001(\tB\007\342\337\037\003\220\001\004\022)\n\006entity\030\002 \001(\0132\021.stategat" +
-      "e.EntityB\006\342\337\037\002 \001\022\026\n\006method\030\005 \001(\tB\006\342\337\037\002X\001" +
-      "\022/\n\006claims\030\003 \001(\0132\027.google.protobuf.Struc" +
-      "tB\006\342\337\037\002 \001\022\024\n\004time\030\004 \001(\003B\006\342\337\037\002\020\000\"*\n\006Event" +
-      "s\022 \n\006events\030\001 \003(\0132\020.stategate.Event2\336\004\n\r" +
-      "EntityService\022_\n\003Set\022\021.stategate.Entity\032" +
-      "\026.google.protobuf.Empty\"-\202\323\344\223\002\'\"%/api/en" +
-      "tity/ref/{domain}/{type}/{key}\022[\n\004Edit\022\021" +
-      ".stategate.Entity\032\021.stategate.Entity\"-\202\323" +
-      "\344\223\002\'2%/api/entity/ref/{domain}/{type}/{k" +
-      "ey}\022t\n\006Revert\022\025.stategate.RevertOpts\032\021.s" +
-      "tategate.Entity\"@\202\323\344\223\002:\0328/api/entity/ref" +
-      "/{ref.domain}/{ref.type}/{ref.key}/rever" +
-      "t\022]\n\003Get\022\024.stategate.EntityRef\032\021.statega" +
-      "te.Entity\"-\202\323\344\223\002\'\022%/api/entity/ref/{doma" +
-      "in}/{type}/{key}\022b\n\003Del\022\024.stategate.Enti" +
-      "tyRef\032\026.google.protobuf.Empty\"-\202\323\344\223\002\'*%/" +
-      "api/entity/ref/{domain}/{type}/{key}\022V\n\006" +
-      "Search\022\033.stategate.SearchEntityOpts\032\023.st" +
-      "ategate.Entities\"\032\202\323\344\223\002\024\022\022/api/entity/se" +
-      "arch2\264\001\n\014EventService\022O\n\006Stream\022\025.stateg" +
-      "ate.StreamOpts\032\020.stategate.Event\"\032\202\323\344\223\002\024" +
-      "\022\022/api/events/stream0\001\022S\n\006Search\022\032.state" +
-      "gate.SearchEventOpts\032\021.stategate.Events\"" +
-      "\032\202\323\344\223\002\024\022\022/api/events/searchB\013Z\tstategate" +
-      "b\006proto3"
+      "^\\S+$\"q\n\010EventRef\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n" +
+      "\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key" +
+      "\030\003 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\023\n\002id\030\004 \001(\tB\007\342\337\037\003\220\001\004" +
+      "\"\213\001\n\006Entity\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$" +
+      "\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030\003 \001(\t" +
+      "B\013\342\337\037\007\n\005^\\S+$\022/\n\006values\030\004 \001(\0132\027.google.p" +
+      "rotobuf.StructB\006\342\337\037\002 \001\"/\n\010Entities\022#\n\010en" +
+      "tities\030\001 \003(\0132\021.stategate.Entity\"\246\001\n\020Sear" +
+      "chEntityOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+" +
+      "$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014query_st" +
+      "ring\030\003 \001(\t\022\025\n\005limit\030\004 \001(\005B\006\342\337\037\002\020\000\022\016\n\006off" +
+      "set\030\005 \001(\005\022\035\n\004sort\030\t \001(\0132\017.stategate.Sort" +
+      "\"\277\001\n\017SearchEventOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337" +
+      "\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014" +
+      "query_string\030\004 \001(\t\022\013\n\003min\030\005 \001(\003\022\013\n\003max\030\006" +
+      " \001(\003\022\025\n\005limit\030\007 \001(\005B\006\342\337\037\002\020\000\022\016\n\006offset\030\010 " +
+      "\001(\005\022\035\n\004sort\030\t \001(\0132\017.stategate.Sort\"D\n\nSt" +
+      "reamOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n" +
+      "\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\"&\n\004Sort\022\r\n\005fiel" +
+      "d\030\001 \001(\t\022\017\n\007reverse\030\002 \001(\010\"\246\001\n\005Event\022\023\n\002id" +
+      "\030\001 \001(\tB\007\342\337\037\003\220\001\004\022)\n\006entity\030\002 \001(\0132\021.stateg" +
+      "ate.EntityB\006\342\337\037\002 \001\022\026\n\006method\030\005 \001(\tB\006\342\337\037\002" +
+      "X\001\022/\n\006claims\030\003 \001(\0132\027.google.protobuf.Str" +
+      "uctB\006\342\337\037\002 \001\022\024\n\004time\030\004 \001(\003B\006\342\337\037\002\020\000\"*\n\006Eve" +
+      "nts\022 \n\006events\030\001 \003(\0132\020.stategate.Event2\320\004" +
+      "\n\rEntityService\022_\n\003Set\022\021.stategate.Entit" +
+      "y\032\026.google.protobuf.Empty\"-\202\323\344\223\002\'\"%/api/" +
+      "entity/ref/{domain}/{type}/{key}\022[\n\004Edit" +
+      "\022\021.stategate.Entity\032\021.stategate.Entity\"-" +
+      "\202\323\344\223\002\'2%/api/entity/ref/{domain}/{type}/" +
+      "{key}\022f\n\006Revert\022\023.stategate.EventRef\032\021.s" +
+      "tategate.Entity\"4\202\323\344\223\002.\032,/api/entity/ref" +
+      "/{domain}/{type}/{key}/revert\022]\n\003Get\022\024.s" +
+      "tategate.EntityRef\032\021.stategate.Entity\"-\202" +
+      "\323\344\223\002\'\022%/api/entity/ref/{domain}/{type}/{" +
+      "key}\022b\n\003Del\022\024.stategate.EntityRef\032\026.goog" +
+      "le.protobuf.Empty\"-\202\323\344\223\002\'*%/api/entity/r" +
+      "ef/{domain}/{type}/{key}\022V\n\006Search\022\033.sta" +
+      "tegate.SearchEntityOpts\032\023.stategate.Enti" +
+      "ties\"\032\202\323\344\223\002\024\022\022/api/entity/search2\226\002\n\014Eve" +
+      "ntService\022O\n\006Stream\022\025.stategate.StreamOp" +
+      "ts\032\020.stategate.Event\"\032\202\323\344\223\002\024\022\022/api/event" +
+      "s/stream0\001\022S\n\006Search\022\032.stategate.SearchE" +
+      "ventOpts\032\021.stategate.Events\"\032\202\323\344\223\002\024\022\022/ap" +
+      "i/events/search\022`\n\003Get\022\023.stategate.Event" +
+      "Ref\032\020.stategate.Event\"2\202\323\344\223\002,\022*/api/even" +
+      "ts/ref/{domain}/{type}/{key}/{id}B\013Z\tsta" +
+      "tegateb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -10453,12 +10811,12 @@ public final class Schema {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_EntityRef_descriptor,
         new java.lang.String[] { "Domain", "Type", "Key", });
-    internal_static_stategate_RevertOpts_descriptor =
+    internal_static_stategate_EventRef_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_stategate_RevertOpts_fieldAccessorTable = new
+    internal_static_stategate_EventRef_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_stategate_RevertOpts_descriptor,
-        new java.lang.String[] { "Ref", "Offset", });
+        internal_static_stategate_EventRef_descriptor,
+        new java.lang.String[] { "Domain", "Type", "Key", "Id", });
     internal_static_stategate_Entity_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_stategate_Entity_fieldAccessorTable = new

@@ -37,29 +37,35 @@ export namespace EntityRef {
   }
 }
 
-export class RevertOpts extends jspb.Message {
-  hasRef(): boolean;
-  clearRef(): void;
-  getRef(): EntityRef | undefined;
-  setRef(value?: EntityRef): void;
+export class EventRef extends jspb.Message {
+  getDomain(): string;
+  setDomain(value: string): void;
 
-  getOffset(): number;
-  setOffset(value: number): void;
+  getType(): string;
+  setType(value: string): void;
+
+  getKey(): string;
+  setKey(value: string): void;
+
+  getId(): string;
+  setId(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RevertOpts.AsObject;
-  static toObject(includeInstance: boolean, msg: RevertOpts): RevertOpts.AsObject;
+  toObject(includeInstance?: boolean): EventRef.AsObject;
+  static toObject(includeInstance: boolean, msg: EventRef): EventRef.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: RevertOpts, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RevertOpts;
-  static deserializeBinaryFromReader(message: RevertOpts, reader: jspb.BinaryReader): RevertOpts;
+  static serializeBinaryToWriter(message: EventRef, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EventRef;
+  static deserializeBinaryFromReader(message: EventRef, reader: jspb.BinaryReader): EventRef;
 }
 
-export namespace RevertOpts {
+export namespace EventRef {
   export type AsObject = {
-    ref?: EntityRef.AsObject,
-    offset: number,
+    domain: string,
+    type: string,
+    key: string,
+    id: string,
   }
 }
 

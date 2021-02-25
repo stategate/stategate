@@ -25,7 +25,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='stategate',
   syntax='proto3',
   serialized_options=_b('Z\tstategate'),
-  serialized_pb=_b('\n\x0cschema.proto\x12\tstategate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\"]\n\tEntityRef\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"G\n\nRevertOpts\x12)\n\x03ref\x18\x01 \x01(\x0b\x32\x14.stategate.EntityRefB\x06\xe2\xdf\x1f\x02 \x01\x12\x0e\n\x06offset\x18\x02 \x01(\x05\"\x8b\x01\n\x06\x45ntity\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12/\n\x06values\x18\x04 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\"/\n\x08\x45ntities\x12#\n\x08\x65ntities\x18\x01 \x03(\x0b\x32\x11.stategate.Entity\"\xa6\x01\n\x10SearchEntityOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x14\n\x0cquery_string\x18\x03 \x01(\t\x12\x15\n\x05limit\x18\x04 \x01(\x05\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x05 \x01(\x05\x12\x1d\n\x04sort\x18\t \x01(\x0b\x32\x0f.stategate.Sort\"\xbf\x01\n\x0fSearchEventOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x14\n\x0cquery_string\x18\x04 \x01(\t\x12\x0b\n\x03min\x18\x05 \x01(\x03\x12\x0b\n\x03max\x18\x06 \x01(\x03\x12\x15\n\x05limit\x18\x07 \x01(\x05\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x08 \x01(\x05\x12\x1d\n\x04sort\x18\t \x01(\x0b\x32\x0f.stategate.Sort\"D\n\nStreamOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"&\n\x04Sort\x12\r\n\x05\x66ield\x18\x01 \x01(\t\x12\x0f\n\x07reverse\x18\x02 \x01(\x08\"\xa6\x01\n\x05\x45vent\x12\x13\n\x02id\x18\x01 \x01(\tB\x07\xe2\xdf\x1f\x03\x90\x01\x04\x12)\n\x06\x65ntity\x18\x02 \x01(\x0b\x32\x11.stategate.EntityB\x06\xe2\xdf\x1f\x02 \x01\x12\x16\n\x06method\x18\x05 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12/\n\x06\x63laims\x18\x03 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12\x14\n\x04time\x18\x04 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\"*\n\x06\x45vents\x12 \n\x06\x65vents\x18\x01 \x03(\x0b\x32\x10.stategate.Event2\xde\x04\n\rEntityService\x12_\n\x03Set\x12\x11.stategate.Entity\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'\"%/api/entity/ref/{domain}/{type}/{key}\x12[\n\x04\x45\x64it\x12\x11.stategate.Entity\x1a\x11.stategate.Entity\"-\x82\xd3\xe4\x93\x02\'2%/api/entity/ref/{domain}/{type}/{key}\x12t\n\x06Revert\x12\x15.stategate.RevertOpts\x1a\x11.stategate.Entity\"@\x82\xd3\xe4\x93\x02:\x1a\x38/api/entity/ref/{ref.domain}/{ref.type}/{ref.key}/revert\x12]\n\x03Get\x12\x14.stategate.EntityRef\x1a\x11.stategate.Entity\"-\x82\xd3\xe4\x93\x02\'\x12%/api/entity/ref/{domain}/{type}/{key}\x12\x62\n\x03\x44\x65l\x12\x14.stategate.EntityRef\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'*%/api/entity/ref/{domain}/{type}/{key}\x12V\n\x06Search\x12\x1b.stategate.SearchEntityOpts\x1a\x13.stategate.Entities\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/entity/search2\xb4\x01\n\x0c\x45ventService\x12O\n\x06Stream\x12\x15.stategate.StreamOpts\x1a\x10.stategate.Event\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/events/stream0\x01\x12S\n\x06Search\x12\x1a.stategate.SearchEventOpts\x1a\x11.stategate.Events\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/events/searchB\x0bZ\tstategateb\x06proto3')
+  serialized_pb=_b('\n\x0cschema.proto\x12\tstategate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\"]\n\tEntityRef\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"q\n\x08\x45ventRef\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x13\n\x02id\x18\x04 \x01(\tB\x07\xe2\xdf\x1f\x03\x90\x01\x04\"\x8b\x01\n\x06\x45ntity\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12/\n\x06values\x18\x04 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\"/\n\x08\x45ntities\x12#\n\x08\x65ntities\x18\x01 \x03(\x0b\x32\x11.stategate.Entity\"\xa6\x01\n\x10SearchEntityOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x14\n\x0cquery_string\x18\x03 \x01(\t\x12\x15\n\x05limit\x18\x04 \x01(\x05\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x05 \x01(\x05\x12\x1d\n\x04sort\x18\t \x01(\x0b\x32\x0f.stategate.Sort\"\xbf\x01\n\x0fSearchEventOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x14\n\x0cquery_string\x18\x04 \x01(\t\x12\x0b\n\x03min\x18\x05 \x01(\x03\x12\x0b\n\x03max\x18\x06 \x01(\x03\x12\x15\n\x05limit\x18\x07 \x01(\x05\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x08 \x01(\x05\x12\x1d\n\x04sort\x18\t \x01(\x0b\x32\x0f.stategate.Sort\"D\n\nStreamOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"&\n\x04Sort\x12\r\n\x05\x66ield\x18\x01 \x01(\t\x12\x0f\n\x07reverse\x18\x02 \x01(\x08\"\xa6\x01\n\x05\x45vent\x12\x13\n\x02id\x18\x01 \x01(\tB\x07\xe2\xdf\x1f\x03\x90\x01\x04\x12)\n\x06\x65ntity\x18\x02 \x01(\x0b\x32\x11.stategate.EntityB\x06\xe2\xdf\x1f\x02 \x01\x12\x16\n\x06method\x18\x05 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12/\n\x06\x63laims\x18\x03 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12\x14\n\x04time\x18\x04 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\"*\n\x06\x45vents\x12 \n\x06\x65vents\x18\x01 \x03(\x0b\x32\x10.stategate.Event2\xd0\x04\n\rEntityService\x12_\n\x03Set\x12\x11.stategate.Entity\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'\"%/api/entity/ref/{domain}/{type}/{key}\x12[\n\x04\x45\x64it\x12\x11.stategate.Entity\x1a\x11.stategate.Entity\"-\x82\xd3\xe4\x93\x02\'2%/api/entity/ref/{domain}/{type}/{key}\x12\x66\n\x06Revert\x12\x13.stategate.EventRef\x1a\x11.stategate.Entity\"4\x82\xd3\xe4\x93\x02.\x1a,/api/entity/ref/{domain}/{type}/{key}/revert\x12]\n\x03Get\x12\x14.stategate.EntityRef\x1a\x11.stategate.Entity\"-\x82\xd3\xe4\x93\x02\'\x12%/api/entity/ref/{domain}/{type}/{key}\x12\x62\n\x03\x44\x65l\x12\x14.stategate.EntityRef\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'*%/api/entity/ref/{domain}/{type}/{key}\x12V\n\x06Search\x12\x1b.stategate.SearchEntityOpts\x1a\x13.stategate.Entities\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/entity/search2\x96\x02\n\x0c\x45ventService\x12O\n\x06Stream\x12\x15.stategate.StreamOpts\x1a\x10.stategate.Event\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/events/stream0\x01\x12S\n\x06Search\x12\x1a.stategate.SearchEventOpts\x1a\x11.stategate.Events\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/events/search\x12`\n\x03Get\x12\x13.stategate.EventRef\x1a\x10.stategate.Event\"2\x82\xd3\xe4\x93\x02,\x12*/api/events/ref/{domain}/{type}/{key}/{id}B\x0bZ\tstategateb\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_any__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,github_dot_com_dot_mwitkow_dot_go__proto__validators_dot_validator__pb2.DESCRIPTOR,])
 
@@ -77,27 +77,41 @@ _ENTITYREF = _descriptor.Descriptor(
 )
 
 
-_REVERTOPTS = _descriptor.Descriptor(
-  name='RevertOpts',
-  full_name='stategate.RevertOpts',
+_EVENTREF = _descriptor.Descriptor(
+  name='EventRef',
+  full_name='stategate.EventRef',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='ref', full_name='stategate.RevertOpts.ref', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='domain', full_name='stategate.EventRef.domain', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=_b('\342\337\037\002 \001'), file=DESCRIPTOR),
+      serialized_options=_b('\342\337\037\007\n\005^\\S+$'), file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='offset', full_name='stategate.RevertOpts.offset', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
+      name='type', full_name='stategate.EventRef.type', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=_b('\342\337\037\007\n\005^\\S+$'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='key', full_name='stategate.EventRef.key', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\007\n\005^\\S+$'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='id', full_name='stategate.EventRef.id', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\003\220\001\004'), file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -111,7 +125,7 @@ _REVERTOPTS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=327,
-  serialized_end=398,
+  serialized_end=440,
 )
 
 
@@ -162,8 +176,8 @@ _ENTITY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=401,
-  serialized_end=540,
+  serialized_start=443,
+  serialized_end=582,
 )
 
 
@@ -193,8 +207,8 @@ _ENTITIES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=542,
-  serialized_end=589,
+  serialized_start=584,
+  serialized_end=631,
 )
 
 
@@ -259,8 +273,8 @@ _SEARCHENTITYOPTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=592,
-  serialized_end=758,
+  serialized_start=634,
+  serialized_end=800,
 )
 
 
@@ -339,8 +353,8 @@ _SEARCHEVENTOPTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=761,
-  serialized_end=952,
+  serialized_start=803,
+  serialized_end=994,
 )
 
 
@@ -377,8 +391,8 @@ _STREAMOPTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=954,
-  serialized_end=1022,
+  serialized_start=996,
+  serialized_end=1064,
 )
 
 
@@ -415,8 +429,8 @@ _SORT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1024,
-  serialized_end=1062,
+  serialized_start=1066,
+  serialized_end=1104,
 )
 
 
@@ -474,8 +488,8 @@ _EVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1065,
-  serialized_end=1231,
+  serialized_start=1107,
+  serialized_end=1273,
 )
 
 
@@ -505,11 +519,10 @@ _EVENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1233,
-  serialized_end=1275,
+  serialized_start=1275,
+  serialized_end=1317,
 )
 
-_REVERTOPTS.fields_by_name['ref'].message_type = _ENTITYREF
 _ENTITY.fields_by_name['values'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
 _ENTITIES.fields_by_name['entities'].message_type = _ENTITY
 _SEARCHENTITYOPTS.fields_by_name['sort'].message_type = _SORT
@@ -518,7 +531,7 @@ _EVENT.fields_by_name['entity'].message_type = _ENTITY
 _EVENT.fields_by_name['claims'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
 _EVENTS.fields_by_name['events'].message_type = _EVENT
 DESCRIPTOR.message_types_by_name['EntityRef'] = _ENTITYREF
-DESCRIPTOR.message_types_by_name['RevertOpts'] = _REVERTOPTS
+DESCRIPTOR.message_types_by_name['EventRef'] = _EVENTREF
 DESCRIPTOR.message_types_by_name['Entity'] = _ENTITY
 DESCRIPTOR.message_types_by_name['Entities'] = _ENTITIES
 DESCRIPTOR.message_types_by_name['SearchEntityOpts'] = _SEARCHENTITYOPTS
@@ -536,12 +549,12 @@ EntityRef = _reflection.GeneratedProtocolMessageType('EntityRef', (_message.Mess
   ))
 _sym_db.RegisterMessage(EntityRef)
 
-RevertOpts = _reflection.GeneratedProtocolMessageType('RevertOpts', (_message.Message,), dict(
-  DESCRIPTOR = _REVERTOPTS,
+EventRef = _reflection.GeneratedProtocolMessageType('EventRef', (_message.Message,), dict(
+  DESCRIPTOR = _EVENTREF,
   __module__ = 'schema_pb2'
-  # @@protoc_insertion_point(class_scope:stategate.RevertOpts)
+  # @@protoc_insertion_point(class_scope:stategate.EventRef)
   ))
-_sym_db.RegisterMessage(RevertOpts)
+_sym_db.RegisterMessage(EventRef)
 
 Entity = _reflection.GeneratedProtocolMessageType('Entity', (_message.Message,), dict(
   DESCRIPTOR = _ENTITY,
@@ -604,7 +617,10 @@ DESCRIPTOR._options = None
 _ENTITYREF.fields_by_name['domain']._options = None
 _ENTITYREF.fields_by_name['type']._options = None
 _ENTITYREF.fields_by_name['key']._options = None
-_REVERTOPTS.fields_by_name['ref']._options = None
+_EVENTREF.fields_by_name['domain']._options = None
+_EVENTREF.fields_by_name['type']._options = None
+_EVENTREF.fields_by_name['key']._options = None
+_EVENTREF.fields_by_name['id']._options = None
 _ENTITY.fields_by_name['domain']._options = None
 _ENTITY.fields_by_name['type']._options = None
 _ENTITY.fields_by_name['key']._options = None
@@ -629,8 +645,8 @@ _ENTITYSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=1278,
-  serialized_end=1884,
+  serialized_start=1320,
+  serialized_end=1912,
   methods=[
   _descriptor.MethodDescriptor(
     name='Set',
@@ -655,9 +671,9 @@ _ENTITYSERVICE = _descriptor.ServiceDescriptor(
     full_name='stategate.EntityService.Revert',
     index=2,
     containing_service=None,
-    input_type=_REVERTOPTS,
+    input_type=_EVENTREF,
     output_type=_ENTITY,
-    serialized_options=_b('\202\323\344\223\002:\0328/api/entity/ref/{ref.domain}/{ref.type}/{ref.key}/revert'),
+    serialized_options=_b('\202\323\344\223\002.\032,/api/entity/ref/{domain}/{type}/{key}/revert'),
   ),
   _descriptor.MethodDescriptor(
     name='Get',
@@ -698,8 +714,8 @@ _EVENTSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=1,
   serialized_options=None,
-  serialized_start=1887,
-  serialized_end=2067,
+  serialized_start=1915,
+  serialized_end=2193,
   methods=[
   _descriptor.MethodDescriptor(
     name='Stream',
@@ -718,6 +734,15 @@ _EVENTSERVICE = _descriptor.ServiceDescriptor(
     input_type=_SEARCHEVENTOPTS,
     output_type=_EVENTS,
     serialized_options=_b('\202\323\344\223\002\024\022\022/api/events/search'),
+  ),
+  _descriptor.MethodDescriptor(
+    name='Get',
+    full_name='stategate.EventService.Get',
+    index=2,
+    containing_service=None,
+    input_type=_EVENTREF,
+    output_type=_EVENT,
+    serialized_options=_b('\202\323\344\223\002,\022*/api/events/ref/{domain}/{type}/{key}/{id}'),
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_EVENTSERVICE)

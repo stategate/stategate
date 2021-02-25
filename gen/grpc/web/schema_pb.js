@@ -21,8 +21,8 @@ goog.exportSymbol('proto.stategate.Entities', null, global);
 goog.exportSymbol('proto.stategate.Entity', null, global);
 goog.exportSymbol('proto.stategate.EntityRef', null, global);
 goog.exportSymbol('proto.stategate.Event', null, global);
+goog.exportSymbol('proto.stategate.EventRef', null, global);
 goog.exportSymbol('proto.stategate.Events', null, global);
-goog.exportSymbol('proto.stategate.RevertOpts', null, global);
 goog.exportSymbol('proto.stategate.SearchEntityOpts', null, global);
 goog.exportSymbol('proto.stategate.SearchEventOpts', null, global);
 goog.exportSymbol('proto.stategate.Sort', null, global);
@@ -234,12 +234,12 @@ proto.stategate.EntityRef.prototype.setKey = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.stategate.RevertOpts = function(opt_data) {
+proto.stategate.EventRef = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.stategate.RevertOpts, jspb.Message);
+goog.inherits(proto.stategate.EventRef, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.stategate.RevertOpts.displayName = 'proto.stategate.RevertOpts';
+  proto.stategate.EventRef.displayName = 'proto.stategate.EventRef';
 }
 
 
@@ -254,8 +254,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.stategate.RevertOpts.prototype.toObject = function(opt_includeInstance) {
-  return proto.stategate.RevertOpts.toObject(opt_includeInstance, this);
+proto.stategate.EventRef.prototype.toObject = function(opt_includeInstance) {
+  return proto.stategate.EventRef.toObject(opt_includeInstance, this);
 };
 
 
@@ -264,14 +264,16 @@ proto.stategate.RevertOpts.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.stategate.RevertOpts} msg The msg instance to transform.
+ * @param {!proto.stategate.EventRef} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.stategate.RevertOpts.toObject = function(includeInstance, msg) {
+proto.stategate.EventRef.toObject = function(includeInstance, msg) {
   var f, obj = {
-    ref: (f = msg.getRef()) && proto.stategate.EntityRef.toObject(includeInstance, f),
-    offset: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    domain: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    key: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -285,23 +287,23 @@ proto.stategate.RevertOpts.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.stategate.RevertOpts}
+ * @return {!proto.stategate.EventRef}
  */
-proto.stategate.RevertOpts.deserializeBinary = function(bytes) {
+proto.stategate.EventRef.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.stategate.RevertOpts;
-  return proto.stategate.RevertOpts.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.stategate.EventRef;
+  return proto.stategate.EventRef.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.stategate.RevertOpts} msg The message object to deserialize into.
+ * @param {!proto.stategate.EventRef} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.stategate.RevertOpts}
+ * @return {!proto.stategate.EventRef}
  */
-proto.stategate.RevertOpts.deserializeBinaryFromReader = function(msg, reader) {
+proto.stategate.EventRef.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -309,13 +311,20 @@ proto.stategate.RevertOpts.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.stategate.EntityRef;
-      reader.readMessage(value,proto.stategate.EntityRef.deserializeBinaryFromReader);
-      msg.setRef(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDomain(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setOffset(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setType(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setKey(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -330,9 +339,9 @@ proto.stategate.RevertOpts.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.stategate.RevertOpts.prototype.serializeBinary = function() {
+proto.stategate.EventRef.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.stategate.RevertOpts.serializeBinaryToWriter(this, writer);
+  proto.stategate.EventRef.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -340,24 +349,37 @@ proto.stategate.RevertOpts.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.stategate.RevertOpts} message
+ * @param {!proto.stategate.EventRef} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.stategate.RevertOpts.serializeBinaryToWriter = function(message, writer) {
+proto.stategate.EventRef.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRef();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getDomain();
+  if (f.length > 0) {
+    writer.writeString(
       1,
-      f,
-      proto.stategate.EntityRef.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getOffset();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getType();
+  if (f.length > 0) {
+    writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getKey();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -365,47 +387,62 @@ proto.stategate.RevertOpts.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional EntityRef ref = 1;
- * @return {?proto.stategate.EntityRef}
+ * optional string domain = 1;
+ * @return {string}
  */
-proto.stategate.RevertOpts.prototype.getRef = function() {
-  return /** @type{?proto.stategate.EntityRef} */ (
-    jspb.Message.getWrapperField(this, proto.stategate.EntityRef, 1));
+proto.stategate.EventRef.prototype.getDomain = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
-/** @param {?proto.stategate.EntityRef|undefined} value */
-proto.stategate.RevertOpts.prototype.setRef = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-proto.stategate.RevertOpts.prototype.clearRef = function() {
-  this.setRef(undefined);
+/** @param {string} value */
+proto.stategate.EventRef.prototype.setDomain = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {!boolean}
+ * optional string type = 2;
+ * @return {string}
  */
-proto.stategate.RevertOpts.prototype.hasRef = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.stategate.EventRef.prototype.getType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.stategate.EventRef.prototype.setType = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional int32 offset = 2;
- * @return {number}
+ * optional string key = 3;
+ * @return {string}
  */
-proto.stategate.RevertOpts.prototype.getOffset = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.stategate.EventRef.prototype.getKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
-/** @param {number} value */
-proto.stategate.RevertOpts.prototype.setOffset = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
+/** @param {string} value */
+proto.stategate.EventRef.prototype.setKey = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string id = 4;
+ * @return {string}
+ */
+proto.stategate.EventRef.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.stategate.EventRef.prototype.setId = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 

@@ -22,6 +22,7 @@ type Provider interface {
 	DelEntity(ctx context.Context, ref *stategate.EntityRef) *errorz.Error
 	SearchEntities(ctx context.Context, ref *stategate.SearchEntityOpts) (*stategate.Entities, *errorz.Error)
 	SearchEvents(ctx context.Context, ref *stategate.SearchEventOpts) (*stategate.Events, *errorz.Error)
+	GetEvent(ctx context.Context, ref *stategate.EventRef) (*stategate.Event, *errorz.Error)
 	Close() error
 }
 

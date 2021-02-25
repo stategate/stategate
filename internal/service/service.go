@@ -12,8 +12,6 @@ import (
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/structpb"
 	"time"
 )
@@ -92,25 +90,18 @@ func (s Service) getEntity(ctx context.Context, ref *stategate.EntityRef) (*stat
 	return obj, nil
 }
 
-func (s Service) revertEntity(ctx context.Context, opts *stategate.RevertOpts) (*stategate.Entity, error) {
-	obj, err := s.storage.SearchEvents(ctx, &stategate.SearchEventOpts{
-		Domain: opts.GetRef().GetDomain(),
-		Type:   opts.GetRef().GetType(),
-		Limit:  1,
-		Offset: opts.GetOffset(),
-		Sort: &stategate.Sort{
-			Field:   "time",
-			Reverse: true,
-		},
+func (s Service) revertEntity(ctx context.Context, opts *stategate.EventRef) (*stategate.Entity, error) {
+	event, err := s.storage.GetEvent(ctx, &stategate.EventRef{
+		Domain: opts.GetDomain(),
+		Type:   opts.GetType(),
+		Key:    opts.GetKey(),
+		Id:     opts.GetId(),
 	})
 	if err != nil {
 		err.Log(s.lgger)
 		return nil, err.Public()
 	}
-	if len(obj.GetEvents()) == 0 {
-		return nil, status.Error(codes.NotFound, "failed to revert: event not found")
-	}
-	entity := obj.GetEvents()[0].GetEntity()
+	entity := event.GetEntity()
 	if _, err := s.setEntity(ctx, entity); err != nil {
 		return nil, err
 	}
@@ -194,6 +185,15 @@ func (s Service) searchEvents(ctx context.Context, opts *stategate.SearchEventOp
 	return events, nil
 }
 
+func (s Service) getEvent(ctx context.Context, opts *stategate.EventRef) (*stategate.Event, error) {
+	event, err := s.storage.GetEvent(ctx, opts)
+	if err != nil {
+		err.Log(s.lgger)
+		return nil, err.Public()
+	}
+	return event, nil
+}
+
 func (s Service) searchEntities(ctx context.Context, opts *stategate.SearchEntityOpts) (*stategate.Entities, error) {
 	entitys, err := s.storage.SearchEntities(ctx, opts)
 	if err != nil {
@@ -235,6 +235,10 @@ func (e eventService) Search(ctx context.Context, opts *stategate.SearchEventOpt
 	return e.svc.searchEvents(ctx, opts)
 }
 
+func (e eventService) Get(ctx context.Context, ref *stategate.EventRef) (*stategate.Event, error) {
+	return e.svc.getEvent(ctx, ref)
+}
+
 type entityService struct {
 	svc *Service
 }
@@ -247,7 +251,7 @@ func (o entityService) Edit(ctx context.Context, entity *stategate.Entity) (*sta
 	return o.svc.editEntity(ctx, entity)
 }
 
-func (o entityService) Revert(ctx context.Context, opts *stategate.RevertOpts) (*stategate.Entity, error) {
+func (o entityService) Revert(ctx context.Context, opts *stategate.EventRef) (*stategate.Entity, error) {
 	return o.svc.revertEntity(ctx, opts)
 }
 

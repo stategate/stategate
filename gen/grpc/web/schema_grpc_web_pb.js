@@ -245,16 +245,16 @@ proto.stategate.EntityServicePromiseClient.prototype.edit =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.stategate.RevertOpts,
+ *   !proto.stategate.EventRef,
  *   !proto.stategate.Entity>}
  */
 const methodDescriptor_EntityService_Revert = new grpc.web.MethodDescriptor(
   '/stategate.EntityService/Revert',
   grpc.web.MethodType.UNARY,
-  proto.stategate.RevertOpts,
+  proto.stategate.EventRef,
   proto.stategate.Entity,
   /**
-   * @param {!proto.stategate.RevertOpts} request
+   * @param {!proto.stategate.EventRef} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -267,13 +267,13 @@ const methodDescriptor_EntityService_Revert = new grpc.web.MethodDescriptor(
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.stategate.RevertOpts,
+ *   !proto.stategate.EventRef,
  *   !proto.stategate.Entity>}
  */
 const methodInfo_EntityService_Revert = new grpc.web.AbstractClientBase.MethodInfo(
   proto.stategate.Entity,
   /**
-   * @param {!proto.stategate.RevertOpts} request
+   * @param {!proto.stategate.EventRef} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -284,7 +284,7 @@ const methodInfo_EntityService_Revert = new grpc.web.AbstractClientBase.MethodIn
 
 
 /**
- * @param {!proto.stategate.RevertOpts} request The
+ * @param {!proto.stategate.EventRef} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -305,7 +305,7 @@ proto.stategate.EntityServiceClient.prototype.revert =
 
 
 /**
- * @param {!proto.stategate.RevertOpts} request The
+ * @param {!proto.stategate.EventRef} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -766,6 +766,86 @@ proto.stategate.EventServicePromiseClient.prototype.search =
       request,
       metadata || {},
       methodDescriptor_EventService_Search);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.stategate.EventRef,
+ *   !proto.stategate.Event>}
+ */
+const methodDescriptor_EventService_Get = new grpc.web.MethodDescriptor(
+  '/stategate.EventService/Get',
+  grpc.web.MethodType.UNARY,
+  proto.stategate.EventRef,
+  proto.stategate.Event,
+  /**
+   * @param {!proto.stategate.EventRef} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.stategate.Event.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.stategate.EventRef,
+ *   !proto.stategate.Event>}
+ */
+const methodInfo_EventService_Get = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.stategate.Event,
+  /**
+   * @param {!proto.stategate.EventRef} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.stategate.Event.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.stategate.EventRef} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.stategate.Event)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.stategate.Event>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.stategate.EventServiceClient.prototype.get =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/stategate.EventService/Get',
+      request,
+      metadata || {},
+      methodDescriptor_EventService_Get,
+      callback);
+};
+
+
+/**
+ * @param {!proto.stategate.EventRef} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.stategate.Event>}
+ *     Promise that resolves to the response
+ */
+proto.stategate.EventServicePromiseClient.prototype.get =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/stategate.EventService/Get',
+      request,
+      metadata || {},
+      methodDescriptor_EventService_Get);
 };
 
 

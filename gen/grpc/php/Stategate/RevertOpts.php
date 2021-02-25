@@ -22,11 +22,12 @@ class RevertOpts extends \Google\Protobuf\Internal\Message
      */
     private $ref = null;
     /**
-     * offset offsets the version that the entity will be reverted to
+     * event_id is the event that the entity will be reverted to.
+     * event_id should be sourced from an event retrieved via the EventService.Search/Stream method
      *
-     * Generated from protobuf field <code>int32 offset = 2;</code>
+     * Generated from protobuf field <code>string event_id = 2;</code>
      */
-    private $offset = 0;
+    private $event_id = '';
 
     /**
      * Constructor.
@@ -36,8 +37,9 @@ class RevertOpts extends \Google\Protobuf\Internal\Message
      *
      *     @type \Stategate\EntityRef $ref
      *           ref is a reference to an existing entity
-     *     @type int $offset
-     *           offset offsets the version that the entity will be reverted to
+     *     @type string $event_id
+     *           event_id is the event that the entity will be reverted to.
+     *           event_id should be sourced from an event retrieved via the EventService.Search/Stream method
      * }
      */
     public function __construct($data = NULL) {
@@ -72,27 +74,29 @@ class RevertOpts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * offset offsets the version that the entity will be reverted to
+     * event_id is the event that the entity will be reverted to.
+     * event_id should be sourced from an event retrieved via the EventService.Search/Stream method
      *
-     * Generated from protobuf field <code>int32 offset = 2;</code>
-     * @return int
+     * Generated from protobuf field <code>string event_id = 2;</code>
+     * @return string
      */
-    public function getOffset()
+    public function getEventId()
     {
-        return $this->offset;
+        return $this->event_id;
     }
 
     /**
-     * offset offsets the version that the entity will be reverted to
+     * event_id is the event that the entity will be reverted to.
+     * event_id should be sourced from an event retrieved via the EventService.Search/Stream method
      *
-     * Generated from protobuf field <code>int32 offset = 2;</code>
-     * @param int $var
+     * Generated from protobuf field <code>string event_id = 2;</code>
+     * @param string $var
      * @return $this
      */
-    public function setOffset($var)
+    public function setEventId($var)
     {
-        GPBUtil::checkInt32($var);
-        $this->offset = $var;
+        GPBUtil::checkString($var, True);
+        $this->event_id = $var;
 
         return $this;
     }

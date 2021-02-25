@@ -31,51 +31,54 @@ namespace Stategate {
             "dWIuY29tL213aXRrb3cvZ28tcHJvdG8tdmFsaWRhdG9ycy92YWxpZGF0b3Iu",
             "cHJvdG8iXQoJRW50aXR5UmVmEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxT",
             "KyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJQgvi",
-            "3x8HCgVeXFMrJCJHCgpSZXZlcnRPcHRzEikKA3JlZhgBIAEoCzIULnN0YXRl",
-            "Z2F0ZS5FbnRpdHlSZWZCBuLfHwIgARIOCgZvZmZzZXQYAiABKAUiiwEKBkVu",
-            "dGl0eRIbCgZkb21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiAB",
-            "KAlCC+LfHwcKBV5cUyskEhgKA2tleRgDIAEoCUIL4t8fBwoFXlxTKyQSLwoG",
-            "dmFsdWVzGAQgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiAB",
-            "Ii8KCEVudGl0aWVzEiMKCGVudGl0aWVzGAEgAygLMhEuc3RhdGVnYXRlLkVu",
-            "dGl0eSKmAQoQU2VhcmNoRW50aXR5T3B0cxIbCgZkb21haW4YASABKAlCC+Lf",
-            "HwcKBV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcKBV5cUyskEhQKDHF1ZXJ5",
-            "X3N0cmluZxgDIAEoCRIVCgVsaW1pdBgEIAEoBUIG4t8fAhAAEg4KBm9mZnNl",
-            "dBgFIAEoBRIdCgRzb3J0GAkgASgLMg8uc3RhdGVnYXRlLlNvcnQivwEKD1Nl",
-            "YXJjaEV2ZW50T3B0cxIbCgZkb21haW4YASABKAlCC+LfHwcKBV5cUyskEhkK",
-            "BHR5cGUYAiABKAlCC+LfHwcKBV5cUyskEhQKDHF1ZXJ5X3N0cmluZxgEIAEo",
-            "CRILCgNtaW4YBSABKAMSCwoDbWF4GAYgASgDEhUKBWxpbWl0GAcgASgFQgbi",
-            "3x8CEAASDgoGb2Zmc2V0GAggASgFEh0KBHNvcnQYCSABKAsyDy5zdGF0ZWdh",
-            "dGUuU29ydCJECgpTdHJlYW1PcHRzEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoF",
-            "XlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQiJgoEU29ydBINCgVm",
-            "aWVsZBgBIAEoCRIPCgdyZXZlcnNlGAIgASgIIqYBCgVFdmVudBITCgJpZBgB",
-            "IAEoCUIH4t8fA5ABBBIpCgZlbnRpdHkYAiABKAsyES5zdGF0ZWdhdGUuRW50",
-            "aXR5Qgbi3x8CIAESFgoGbWV0aG9kGAUgASgJQgbi3x8CWAESLwoGY2xhaW1z",
-            "GAMgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABEhQKBHRp",
-            "bWUYBCABKANCBuLfHwIQACIqCgZFdmVudHMSIAoGZXZlbnRzGAEgAygLMhAu",
-            "c3RhdGVnYXRlLkV2ZW50Mt4ECg1FbnRpdHlTZXJ2aWNlEl8KA1NldBIRLnN0",
-            "YXRlZ2F0ZS5FbnRpdHkaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiLYLT5JMC",
-            "JyIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJbCgRF",
-            "ZGl0EhEuc3RhdGVnYXRlLkVudGl0eRoRLnN0YXRlZ2F0ZS5FbnRpdHkiLYLT",
-            "5JMCJzIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJ0",
-            "CgZSZXZlcnQSFS5zdGF0ZWdhdGUuUmV2ZXJ0T3B0cxoRLnN0YXRlZ2F0ZS5F",
-            "bnRpdHkiQILT5JMCOho4L2FwaS9lbnRpdHkvcmVmL3tyZWYuZG9tYWlufS97",
-            "cmVmLnR5cGV9L3tyZWYua2V5fS9yZXZlcnQSXQoDR2V0EhQuc3RhdGVnYXRl",
-            "LkVudGl0eVJlZhoRLnN0YXRlZ2F0ZS5FbnRpdHkiLYLT5JMCJxIlL2FwaS9l",
-            "bnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJiCgNEZWwSFC5zdGF0",
-            "ZWdhdGUuRW50aXR5UmVmGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5Ii2C0+ST",
-            "AicqJS9hcGkvZW50aXR5L3JlZi97ZG9tYWlufS97dHlwZX0ve2tleX0SVgoG",
-            "U2VhcmNoEhsuc3RhdGVnYXRlLlNlYXJjaEVudGl0eU9wdHMaEy5zdGF0ZWdh",
-            "dGUuRW50aXRpZXMiGoLT5JMCFBISL2FwaS9lbnRpdHkvc2VhcmNoMrQBCgxF",
-            "dmVudFNlcnZpY2USTwoGU3RyZWFtEhUuc3RhdGVnYXRlLlN0cmVhbU9wdHMa",
-            "EC5zdGF0ZWdhdGUuRXZlbnQiGoLT5JMCFBISL2FwaS9ldmVudHMvc3RyZWFt",
-            "MAESUwoGU2VhcmNoEhouc3RhdGVnYXRlLlNlYXJjaEV2ZW50T3B0cxoRLnN0",
-            "YXRlZ2F0ZS5FdmVudHMiGoLT5JMCFBISL2FwaS9ldmVudHMvc2VhcmNoQgta",
-            "CXN0YXRlZ2F0ZWIGcHJvdG8z"));
+            "3x8HCgVeXFMrJCJxCghFdmVudFJlZhIbCgZkb21haW4YASABKAlCC+LfHwcK",
+            "BV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcKBV5cUyskEhgKA2tleRgDIAEo",
+            "CUIL4t8fBwoFXlxTKyQSEwoCaWQYBCABKAlCB+LfHwOQAQQiiwEKBkVudGl0",
+            "eRIbCgZkb21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlC",
+            "C+LfHwcKBV5cUyskEhgKA2tleRgDIAEoCUIL4t8fBwoFXlxTKyQSLwoGdmFs",
+            "dWVzGAQgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABIi8K",
+            "CEVudGl0aWVzEiMKCGVudGl0aWVzGAEgAygLMhEuc3RhdGVnYXRlLkVudGl0",
+            "eSKmAQoQU2VhcmNoRW50aXR5T3B0cxIbCgZkb21haW4YASABKAlCC+LfHwcK",
+            "BV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcKBV5cUyskEhQKDHF1ZXJ5X3N0",
+            "cmluZxgDIAEoCRIVCgVsaW1pdBgEIAEoBUIG4t8fAhAAEg4KBm9mZnNldBgF",
+            "IAEoBRIdCgRzb3J0GAkgASgLMg8uc3RhdGVnYXRlLlNvcnQivwEKD1NlYXJj",
+            "aEV2ZW50T3B0cxIbCgZkb21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5",
+            "cGUYAiABKAlCC+LfHwcKBV5cUyskEhQKDHF1ZXJ5X3N0cmluZxgEIAEoCRIL",
+            "CgNtaW4YBSABKAMSCwoDbWF4GAYgASgDEhUKBWxpbWl0GAcgASgFQgbi3x8C",
+            "EAASDgoGb2Zmc2V0GAggASgFEh0KBHNvcnQYCSABKAsyDy5zdGF0ZWdhdGUu",
+            "U29ydCJECgpTdHJlYW1PcHRzEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxT",
+            "KyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQiJgoEU29ydBINCgVmaWVs",
+            "ZBgBIAEoCRIPCgdyZXZlcnNlGAIgASgIIqYBCgVFdmVudBITCgJpZBgBIAEo",
+            "CUIH4t8fA5ABBBIpCgZlbnRpdHkYAiABKAsyES5zdGF0ZWdhdGUuRW50aXR5",
+            "Qgbi3x8CIAESFgoGbWV0aG9kGAUgASgJQgbi3x8CWAESLwoGY2xhaW1zGAMg",
+            "ASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABEhQKBHRpbWUY",
+            "BCABKANCBuLfHwIQACIqCgZFdmVudHMSIAoGZXZlbnRzGAEgAygLMhAuc3Rh",
+            "dGVnYXRlLkV2ZW50MtAECg1FbnRpdHlTZXJ2aWNlEl8KA1NldBIRLnN0YXRl",
+            "Z2F0ZS5FbnRpdHkaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiLYLT5JMCJyIl",
+            "L2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJbCgRFZGl0",
+            "EhEuc3RhdGVnYXRlLkVudGl0eRoRLnN0YXRlZ2F0ZS5FbnRpdHkiLYLT5JMC",
+            "JzIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJmCgZS",
+            "ZXZlcnQSEy5zdGF0ZWdhdGUuRXZlbnRSZWYaES5zdGF0ZWdhdGUuRW50aXR5",
+            "IjSC0+STAi4aLC9hcGkvZW50aXR5L3JlZi97ZG9tYWlufS97dHlwZX0ve2tl",
+            "eX0vcmV2ZXJ0El0KA0dldBIULnN0YXRlZ2F0ZS5FbnRpdHlSZWYaES5zdGF0",
+            "ZWdhdGUuRW50aXR5Ii2C0+STAicSJS9hcGkvZW50aXR5L3JlZi97ZG9tYWlu",
+            "fS97dHlwZX0ve2tleX0SYgoDRGVsEhQuc3RhdGVnYXRlLkVudGl0eVJlZhoW",
+            "Lmdvb2dsZS5wcm90b2J1Zi5FbXB0eSItgtPkkwInKiUvYXBpL2VudGl0eS9y",
+            "ZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9ElYKBlNlYXJjaBIbLnN0YXRlZ2F0",
+            "ZS5TZWFyY2hFbnRpdHlPcHRzGhMuc3RhdGVnYXRlLkVudGl0aWVzIhqC0+ST",
+            "AhQSEi9hcGkvZW50aXR5L3NlYXJjaDKWAgoMRXZlbnRTZXJ2aWNlEk8KBlN0",
+            "cmVhbRIVLnN0YXRlZ2F0ZS5TdHJlYW1PcHRzGhAuc3RhdGVnYXRlLkV2ZW50",
+            "IhqC0+STAhQSEi9hcGkvZXZlbnRzL3N0cmVhbTABElMKBlNlYXJjaBIaLnN0",
+            "YXRlZ2F0ZS5TZWFyY2hFdmVudE9wdHMaES5zdGF0ZWdhdGUuRXZlbnRzIhqC",
+            "0+STAhQSEi9hcGkvZXZlbnRzL3NlYXJjaBJgCgNHZXQSEy5zdGF0ZWdhdGUu",
+            "RXZlbnRSZWYaEC5zdGF0ZWdhdGUuRXZlbnQiMoLT5JMCLBIqL2FwaS9ldmVu",
+            "dHMvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fS97aWR9QgtaCXN0YXRlZ2F0",
+            "ZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.EntityRef), global::Stategate.EntityRef.Parser, new[]{ "Domain", "Type", "Key" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.RevertOpts), global::Stategate.RevertOpts.Parser, new[]{ "Ref", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.EventRef), global::Stategate.EventRef.Parser, new[]{ "Domain", "Type", "Key", "Id" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entity), global::Stategate.Entity.Parser, new[]{ "Domain", "Type", "Key", "Values" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entities), global::Stategate.Entities.Parser, new[]{ "Entities_" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEntityOpts), global::Stategate.SearchEntityOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Limit", "Offset", "Sort" }, null, null, null),
@@ -288,13 +291,13 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// RevertOpts holds options for reverting an entity to a previous version of itself
+  /// EventRef holds options for reverting an entity to a previous version of itself
   /// </summary>
-  public sealed partial class RevertOpts : pb::IMessage<RevertOpts> {
-    private static readonly pb::MessageParser<RevertOpts> _parser = new pb::MessageParser<RevertOpts>(() => new RevertOpts());
+  public sealed partial class EventRef : pb::IMessage<EventRef> {
+    private static readonly pb::MessageParser<EventRef> _parser = new pb::MessageParser<EventRef>(() => new EventRef());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<RevertOpts> Parser { get { return _parser; } }
+    public static pb::MessageParser<EventRef> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -307,75 +310,109 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RevertOpts() {
+    public EventRef() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RevertOpts(RevertOpts other) : this() {
-      ref_ = other.ref_ != null ? other.ref_.Clone() : null;
-      offset_ = other.offset_;
+    public EventRef(EventRef other) : this() {
+      domain_ = other.domain_;
+      type_ = other.type_;
+      key_ = other.key_;
+      id_ = other.id_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public RevertOpts Clone() {
-      return new RevertOpts(this);
+    public EventRef Clone() {
+      return new EventRef(this);
     }
 
-    /// <summary>Field number for the "ref" field.</summary>
-    public const int RefFieldNumber = 1;
-    private global::Stategate.EntityRef ref_;
+    /// <summary>Field number for the "domain" field.</summary>
+    public const int DomainFieldNumber = 1;
+    private string domain_ = "";
     /// <summary>
-    /// ref is a reference to an existing entity
+    /// the entity's business domain(ex: accounting)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Stategate.EntityRef Ref {
-      get { return ref_; }
+    public string Domain {
+      get { return domain_; }
       set {
-        ref_ = value;
+        domain_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
-    /// <summary>Field number for the "offset" field.</summary>
-    public const int OffsetFieldNumber = 2;
-    private int offset_;
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 2;
+    private string type_ = "";
     /// <summary>
-    /// offset offsets the version that the entity will be reverted to
+    /// entity type (ex: user)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Offset {
-      get { return offset_; }
+    public string Type {
+      get { return type_; }
       set {
-        offset_ = value;
+        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "key" field.</summary>
+    public const int KeyFieldNumber = 3;
+    private string key_ = "";
+    /// <summary>
+    /// entity key (unique within type)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Key {
+      get { return key_; }
+      set {
+        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 4;
+    private string id_ = "";
+    /// <summary>
+    /// id is the event id.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Id {
+      get { return id_; }
+      set {
+        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as RevertOpts);
+      return Equals(other as EventRef);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(RevertOpts other) {
+    public bool Equals(EventRef other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!object.Equals(Ref, other.Ref)) return false;
-      if (Offset != other.Offset) return false;
+      if (Domain != other.Domain) return false;
+      if (Type != other.Type) return false;
+      if (Key != other.Key) return false;
+      if (Id != other.Id) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ref_ != null) hash ^= Ref.GetHashCode();
-      if (Offset != 0) hash ^= Offset.GetHashCode();
+      if (Domain.Length != 0) hash ^= Domain.GetHashCode();
+      if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -389,13 +426,21 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (ref_ != null) {
+      if (Domain.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteMessage(Ref);
+        output.WriteString(Domain);
       }
-      if (Offset != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Offset);
+      if (Type.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Type);
+      }
+      if (Key.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Key);
+      }
+      if (Id.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Id);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -405,11 +450,17 @@ namespace Stategate {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ref_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Ref);
+      if (Domain.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Domain);
       }
-      if (Offset != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Offset);
+      if (Type.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      }
+      if (Key.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
+      }
+      if (Id.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -418,18 +469,21 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(RevertOpts other) {
+    public void MergeFrom(EventRef other) {
       if (other == null) {
         return;
       }
-      if (other.ref_ != null) {
-        if (ref_ == null) {
-          ref_ = new global::Stategate.EntityRef();
-        }
-        Ref.MergeFrom(other.Ref);
+      if (other.Domain.Length != 0) {
+        Domain = other.Domain;
       }
-      if (other.Offset != 0) {
-        Offset = other.Offset;
+      if (other.Type.Length != 0) {
+        Type = other.Type;
+      }
+      if (other.Key.Length != 0) {
+        Key = other.Key;
+      }
+      if (other.Id.Length != 0) {
+        Id = other.Id;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -443,14 +497,19 @@ namespace Stategate {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            if (ref_ == null) {
-              ref_ = new global::Stategate.EntityRef();
-            }
-            input.ReadMessage(ref_);
+            Domain = input.ReadString();
             break;
           }
-          case 16: {
-            Offset = input.ReadInt32();
+          case 18: {
+            Type = input.ReadString();
+            break;
+          }
+          case 26: {
+            Key = input.ReadString();
+            break;
+          }
+          case 34: {
+            Id = input.ReadString();
             break;
           }
         }

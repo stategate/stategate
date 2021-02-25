@@ -271,30 +271,44 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 	}
 	var events []*stategate.Event
 	for _, r := range results {
-		var e = &stategate.Event{
-			Id:     "",
-			Entity: &stategate.Entity{},
-			Claims: nil,
-			Time:   cast.ToInt64(r["time"]),
-			Method: cast.ToString(r["method"]),
-		}
-		e.Id = cast.ToString(r["id"])
-		state, ok := r["entity"].(bson.M)
-		if ok {
-			d, _ := structpb.NewStruct(state["values"].(bson.M))
-			e.Entity.Values = d
-			e.Entity.Key = cast.ToString(state["key"])
-			e.Entity.Type = opts.GetType()
-			e.Entity.Domain = opts.GetDomain()
-		}
-		claims, ok := r["claims"].(bson.M)
-		if ok {
-			d, _ := structpb.NewStruct(claims)
-			e.Claims = d
-		}
+		e := toEvent(opts.GetDomain(), opts.GetType(), r)
 		events = append(events, e)
 	}
 	return &stategate.Events{Events: events}, nil
+}
+
+func (p *Provider) GetEvent(ctx context.Context, ref *stategate.EventRef) (*stategate.Event, *errorz.Error) {
+	filter := bson.D{
+		{Key: "_id", Value: ref.GetId()},
+	}
+	var result bson.M
+
+	if err := p.db.Collection(collectionName(true, ref.GetDomain(), ref.GetType())).FindOne(ctx, filter).Decode(&result); err != nil {
+		if err == mongo.ErrNoDocuments {
+			return nil, &errorz.Error{
+				Type: errorz.ErrNotFound,
+				Info: "failed to find event",
+				Err:  err,
+				Metadata: map[string]string{
+					"entity_key":    ref.GetKey(),
+					"entity_type":   ref.GetType(),
+					"entity_domain": ref.GetDomain(),
+				},
+			}
+		}
+		return nil, &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to find entity",
+			Err:  err,
+			Metadata: map[string]string{
+				"entity_key":    ref.GetKey(),
+				"entity_type":   ref.GetType(),
+				"entity_domain": ref.GetDomain(),
+			},
+		}
+	}
+	e := toEvent(ref.GetDomain(), ref.GetType(), result)
+	return e, nil
 }
 
 func (p *Provider) SearchEntities(ctx context.Context, opts *stategate.SearchEntityOpts) (*stategate.Entities, *errorz.Error) {
@@ -392,4 +406,28 @@ func collectionName(isEvent bool, domain, typ string) string {
 		return fmt.Sprintf("%s.%s_events", domain, typ)
 	}
 	return fmt.Sprintf("%s.%s", domain, typ)
+}
+
+func toEvent(domain, typ string, r bson.M) *stategate.Event {
+	var e = &stategate.Event{
+		Id:     cast.ToString(r["_id"]),
+		Entity: &stategate.Entity{},
+		Claims: nil,
+		Time:   cast.ToInt64(r["time"]),
+		Method: cast.ToString(r["method"]),
+	}
+	state, ok := r["entity"].(bson.M)
+	if ok {
+		d, _ := structpb.NewStruct(state["values"].(bson.M))
+		e.Entity.Values = d
+		e.Entity.Key = cast.ToString(state["key"])
+		e.Entity.Type = typ
+		e.Entity.Domain = domain
+	}
+	claims, ok := r["claims"].(bson.M)
+	if ok {
+		d, _ := structpb.NewStruct(claims)
+		e.Claims = d
+	}
+	return e
 }

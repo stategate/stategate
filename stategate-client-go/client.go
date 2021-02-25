@@ -258,7 +258,7 @@ func (c *EntityClient) Set(ctx context.Context, in *stategate.Entity) error {
 }
 
 // Revert reverts an Entity to a previous version of itself
-func (c *EntityClient) Revert(ctx context.Context, in *stategate.RevertOpts) (*stategate.Entity, error) {
+func (c *EntityClient) Revert(ctx context.Context, in *stategate.EventRef) (*stategate.Entity, error) {
 	return c.client.Revert(ctx, in)
 }
 
@@ -303,6 +303,11 @@ func (c *EventClient) Stream(ctx context.Context, in *stategate.StreamOpts, fn f
 // Search queries historical events(changes to entities).
 func (c *EventClient) Search(ctx context.Context, in *stategate.SearchEventOpts) (*stategate.Events, error) {
 	return c.client.Search(ctx, in)
+}
+
+// Get gets an existing Event
+func (c *EventClient) Get(ctx context.Context, in *stategate.EventRef) (*stategate.Event, error) {
+	return c.client.Get(ctx, in)
 }
 
 // Close closes the gRPC client connection

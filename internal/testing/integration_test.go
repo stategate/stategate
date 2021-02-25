@@ -253,6 +253,9 @@ func endToEnd(ctx context.Context) *framework.TestCase {
 				t.Fatalf("expected 4 events got: %v", len(events.Events))
 			}
 			for _, e := range events.GetEvents() {
+				if err := e.Validate(); err != nil {
+					t.Fatal(err)
+				}
 				if cast.ToString(e.GetEntity().GetValues().GetFields()["message"].AsInterface()) != "hello world" {
 					t.Fatalf("values mismatch: %v", protojson.Format(e))
 				}
@@ -262,13 +265,11 @@ func endToEnd(ctx context.Context) *framework.TestCase {
 			}
 			t.Log(protojson.Format(events))
 
-			reverted, err := oclient.Revert(ctx, &stategate.RevertOpts{
-				Ref: &stategate.EntityRef{
-					Domain: events.GetEvents()[0].GetEntity().GetDomain(),
-					Type:   events.GetEvents()[0].GetEntity().GetType(),
-					Key:    events.GetEvents()[0].GetEntity().GetKey(),
-				},
-				Offset: 1,
+			reverted, err := oclient.Revert(ctx, &stategate.EventRef{
+				Domain: events.GetEvents()[0].GetEntity().GetDomain(),
+				Type:   events.GetEvents()[0].GetEntity().GetType(),
+				Key:    events.GetEvents()[0].GetEntity().GetKey(),
+				Id:     events.GetEvents()[1].GetId(),
 			})
 			if err != nil {
 				t.Fatal(err)

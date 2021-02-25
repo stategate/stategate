@@ -10,7 +10,7 @@ import * as grpc from "grpc";
 interface IEntityServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   set: grpc.MethodDefinition<schema_pb.Entity, google_protobuf_empty_pb.Empty>;
   edit: grpc.MethodDefinition<schema_pb.Entity, schema_pb.Entity>;
-  revert: grpc.MethodDefinition<schema_pb.RevertOpts, schema_pb.Entity>;
+  revert: grpc.MethodDefinition<schema_pb.EventRef, schema_pb.Entity>;
   get: grpc.MethodDefinition<schema_pb.EntityRef, schema_pb.Entity>;
   del: grpc.MethodDefinition<schema_pb.EntityRef, google_protobuf_empty_pb.Empty>;
   search: grpc.MethodDefinition<schema_pb.SearchEntityOpts, schema_pb.Entities>;
@@ -26,9 +26,9 @@ export class EntityServiceClient extends grpc.Client {
   edit(argument: schema_pb.Entity, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
   edit(argument: schema_pb.Entity, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
   edit(argument: schema_pb.Entity, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
-  revert(argument: schema_pb.RevertOpts, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
-  revert(argument: schema_pb.RevertOpts, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
-  revert(argument: schema_pb.RevertOpts, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
+  revert(argument: schema_pb.EventRef, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
+  revert(argument: schema_pb.EventRef, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
+  revert(argument: schema_pb.EventRef, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
   get(argument: schema_pb.EntityRef, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
   get(argument: schema_pb.EntityRef, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
   get(argument: schema_pb.EntityRef, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Entity>): grpc.ClientUnaryCall;
@@ -43,6 +43,7 @@ export class EntityServiceClient extends grpc.Client {
 interface IEventServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   stream: grpc.MethodDefinition<schema_pb.StreamOpts, schema_pb.Event>;
   search: grpc.MethodDefinition<schema_pb.SearchEventOpts, schema_pb.Events>;
+  get: grpc.MethodDefinition<schema_pb.EventRef, schema_pb.Event>;
 }
 
 export const EventServiceService: IEventServiceService;
@@ -54,4 +55,7 @@ export class EventServiceClient extends grpc.Client {
   search(argument: schema_pb.SearchEventOpts, callback: grpc.requestCallback<schema_pb.Events>): grpc.ClientUnaryCall;
   search(argument: schema_pb.SearchEventOpts, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Events>): grpc.ClientUnaryCall;
   search(argument: schema_pb.SearchEventOpts, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Events>): grpc.ClientUnaryCall;
+  get(argument: schema_pb.EventRef, callback: grpc.requestCallback<schema_pb.Event>): grpc.ClientUnaryCall;
+  get(argument: schema_pb.EventRef, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Event>): grpc.ClientUnaryCall;
+  get(argument: schema_pb.EventRef, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Event>): grpc.ClientUnaryCall;
 }
