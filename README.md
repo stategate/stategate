@@ -17,91 +17,93 @@ What is Event Sourcing?
 
 ## API Services/Methods
 
-    // EntityService serves API methods to clients that modify/query the current state of an entity
-    // An Entity is a single object with a type, domain, key, and k/v values
-    service EntityService {
-      // Set sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers(EventService.Stream)
-      rpc Set(Entity) returns(google.protobuf.Empty) {
-        option (google.api.http) = {
-          post: "/api/entity/ref/{domain}/{type}/{key}"
-        };
-      }
-      // Edit overwrites the k/v pairs present in the entity request without replacing the entire entity.
-      // It then adds the state change to the event log, then broadcast the event to all interested consumers(EventService.Stream)
-      // Edit returns the current state of the Entity after the mutation.
-      rpc Edit(Entity) returns(Entity){
-        option (google.api.http) = {
-          patch: "/api/entity/ref/{domain}/{type}/{key}"
-        };
-      }
-      // Revert reverts an Entity to a previous version of itself by querying the event store.
-      // Reverting an entity dispatches another event since it is a state change
-      rpc Revert(EventRef) returns(Entity) {
-        option (google.api.http) = {
-          put: "/api/entity/ref/{domain}/{type}/{key}/revert"
-        };
-      }
-      // Get gets an entity's current state
-      rpc Get(EntityRef) returns(Entity) {
-        option (google.api.http) = {
-          get: "/api/entity/ref/{domain}/{type}/{key}"
-        };
-      }
-      // Del hard deletes an entity from current state store, adds it's state prior to deletion to the event log, then broadcast the event to all interested consumers(EventService.Stream)
-      // an Entity may be recovered via querying the Event store for historical records of the deleted Entity.
-      rpc Del(EntityRef) returns(google.protobuf.Empty) {
-        option (google.api.http) = {
-          delete: "/api/entity/ref/{domain}/{type}/{key}"
-        };
-      }
-      // Search queries the current state of entities
-      rpc Search(SearchEntityOpts) returns(Entities) {
-        option (google.api.http) = {
-          get: "/api/entity/search"
-        };
-      }
-    }
-    
-    // EventService serves API methods related to stategate Event Consumers
-    // Events are automatically emitted from mutations made from State mutations within the EntityService
-    service EventService {
-      // Stream creates an event stream/subscription to state changes to entities in real time. Glob matching is supported.
-      rpc Stream(StreamEventOpts) returns(stream Event) {
-        option (google.api.http) = {
-          get: "/api/events/stream"
-        };
-      }
-      // Search queries historical events - every historical state change to an entity may be queried.
-      rpc Search(SearchEventOpts) returns(Events) {
-        option (google.api.http) = {
-          get: "/api/events/search"
-        };
-      }
-      // Get gets a single event
-      rpc Get(EventRef) returns(Event) {
-        option (google.api.http) = {
-          get: "/api/events/ref/{domain}/{type}/{key}/{id}"
-        };
-      }
-    }
-    
-    // PeerService provides a means for clients to communicate directly with one another WITHOUT making any state changes.
-    // Please note that all messages transported via the PeerService are not persisted in any way.
-    service PeerService {
-      // Broadcast broadcasts a message to N subscribers(clients calling Stream)
-      rpc Broadcast(Message) returns(google.protobuf.Empty){
-        option (google.api.http) = {
-          post: "/api/peers/broadcast"
-          body: "*"
-        };
-      }
-      // Stream consumes/streams messages from message producers(clients calling broadcast)
-      rpc Stream(StreamMessageOpts) returns(stream PeerMessage){
-        option (google.api.http) = {
-          get: "/api/peers/stream"
-        };
-      }
-    }
+```proto
+// EntityService serves API methods to clients that modify/query the current state of an entity
+// An Entity is a single object with a type, domain, key, and k/v values
+service EntityService {
+  // Set sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+  rpc Set(Entity) returns(google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/entity/ref/{domain}/{type}/{key}"
+    };
+  }
+  // Edit overwrites the k/v pairs present in the entity request without replacing the entire entity.
+  // It then adds the state change to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+  // Edit returns the current state of the Entity after the mutation.
+  rpc Edit(Entity) returns(Entity){
+    option (google.api.http) = {
+      patch: "/api/entity/ref/{domain}/{type}/{key}"
+    };
+  }
+  // Revert reverts an Entity to a previous version of itself by querying the event store.
+  // Reverting an entity dispatches another event since it is a state change
+  rpc Revert(EventRef) returns(Entity) {
+    option (google.api.http) = {
+      put: "/api/entity/ref/{domain}/{type}/{key}/revert"
+    };
+  }
+  // Get gets an entity's current state
+  rpc Get(EntityRef) returns(Entity) {
+    option (google.api.http) = {
+      get: "/api/entity/ref/{domain}/{type}/{key}"
+    };
+  }
+  // Del hard deletes an entity from current state store, adds it's state prior to deletion to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+  // an Entity may be recovered via querying the Event store for historical records of the deleted Entity.
+  rpc Del(EntityRef) returns(google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/entity/ref/{domain}/{type}/{key}"
+    };
+  }
+  // Search queries the current state of entities
+  rpc Search(SearchEntityOpts) returns(Entities) {
+    option (google.api.http) = {
+      get: "/api/entity/search"
+    };
+  }
+}
+
+// EventService serves API methods related to stategate Event Consumers
+// Events are automatically emitted from mutations made from State mutations within the EntityService
+service EventService {
+  // Stream creates an event stream/subscription to state changes to entities in real time. Glob matching is supported.
+  rpc Stream(StreamEventOpts) returns(stream Event) {
+    option (google.api.http) = {
+      get: "/api/events/stream"
+    };
+  }
+  // Search queries historical events - every historical state change to an entity may be queried.
+  rpc Search(SearchEventOpts) returns(Events) {
+    option (google.api.http) = {
+      get: "/api/events/search"
+    };
+  }
+  // Get gets a single event
+  rpc Get(EventRef) returns(Event) {
+    option (google.api.http) = {
+      get: "/api/events/ref/{domain}/{type}/{key}/{id}"
+    };
+  }
+}
+
+// PeerService provides a means for clients to communicate directly with one another WITHOUT making any state changes.
+// Please note that all messages transported via the PeerService are not persisted in any way.
+service PeerService {
+  // Broadcast broadcasts a message to N subscribers(clients calling Stream)
+  rpc Broadcast(Message) returns(google.protobuf.Empty){
+    option (google.api.http) = {
+      post: "/api/peers/broadcast"
+      body: "*"
+    };
+  }
+  // Stream consumes/streams messages from message producers(clients calling broadcast)
+  rpc Stream(StreamMessageOpts) returns(stream PeerMessage){
+    option (google.api.http) = {
+      get: "/api/peers/stream"
+    };
+  }
+}
+```
                                         
 ## Features
 
