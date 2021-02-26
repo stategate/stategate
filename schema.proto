@@ -58,6 +58,47 @@ service EntityService {
   }
 }
 
+// EventService serves API methods related to stategate Event Consumers
+// Events are automatically emitted from mutations made from State mutations within the EntityService
+service EventService {
+  // Stream creates an event stream/subscription to state changes to entities in real time. Glob matching is supported.
+  rpc Stream(StreamEventOpts) returns(stream Event) {
+    option (google.api.http) = {
+      get: "/api/events/stream"
+    };
+  }
+  // Search queries historical events - every historical state change to an entity may be queried.
+  rpc Search(SearchEventOpts) returns(Events) {
+    option (google.api.http) = {
+      get: "/api/events/search"
+    };
+  }
+  // Get gets a single event
+  rpc Get(EventRef) returns(Event) {
+    option (google.api.http) = {
+      get: "/api/events/ref/{domain}/{type}/{key}/{id}"
+    };
+  }
+}
+
+// PeerService provides a means for clients to communicate directly with one another WITHOUT making any state changes.
+// Please note that all messages transported via the PeerService are not persisted in any way.
+service PeerService {
+  // Broadcast broadcasts a message to N subscribers(clients calling Stream)
+  rpc Broadcast(Message) returns(google.protobuf.Empty){
+    option (google.api.http) = {
+      post: "/api/peers/broadcast"
+      body: "*"
+    };
+  }
+  // Stream consumes/streams messages from message producers(clients calling broadcast)
+  rpc Stream(StreamMessageOpts) returns(stream PeerMessage){
+    option (google.api.http) = {
+      get: "/api/peers/stream"
+    };
+  }
+}
+
 // EntityRef is a reference to an existing entity
 message EntityRef {
   // the entity's business domain(ex: accounting)
@@ -96,6 +137,61 @@ message Entity {
   google.protobuf.Struct values = 4[(validator.field) = {msg_exists : true}];
 }
 
+// StreamMessageOpts holds options for streaming messages produced by Peers
+message StreamMessageOpts {
+  // the message's business domain(ex: accounting) to subscribe to
+  // must not be empty or contain spaces
+  // * indicates any domain
+  string domain =1[(validator.field) = {regex : "^\\S+$"}];
+  // the message's channel(ex: general) to subscribe to
+  // must not be empty or contain spaces
+  // * indicates any channel
+  string channel =2[(validator.field) = {regex : "^\\S+$"}];
+  // message's type (ex: comment) to subscribe to
+  // must not be empty or contain spaces
+  // * indicates any type
+  string type =3[(validator.field) = {regex : "^\\S+$"}];
+}
+
+// Message is an arbitrary message to be delivered to a Peer
+// Messages are NOT persisted and should only be used to communicate with other Peers
+message Message {
+  // the message's business domain(ex: accounting)
+  // must not be empty or contain spaces
+  string domain =1[(validator.field) = {regex : "^\\S+$"}];
+  // the message's channel(ex: general)
+  // must not be empty or contain spaces
+  string channel =2[(validator.field) = {regex : "^\\S+$"}];
+  // message's type (ex: comment)
+  // must not be empty or contain spaces
+  string type =3[(validator.field) = {regex : "^\\S+$"}];
+  // the body of the message(k/v values).
+  google.protobuf.Struct body =4[(validator.field) = {msg_exists : true}];
+}
+
+// PeerMessage is a message produced by a client to the PeerService
+// PeerMessages are NOT persisted and should only be used to communicate with other Peers
+message PeerMessage {
+  // the unique id of the message
+  string id =1[(validator.field) = {uuid_ver : 4}];
+  // the message's business domain(ex: accounting)
+  // must not be empty or contain spaces
+  string domain =2[(validator.field) = {regex : "^\\S+$"}];
+  // the message's channel(ex: general)
+  // must not be empty or contain spaces
+  string channel =3[(validator.field) = {regex : "^\\S+$"}];
+  // message's type (ex: comment)
+  // must not be empty or contain spaces
+  string type =4[(validator.field) = {regex : "^\\S+$"}];
+  // the body of the message(k/v values).
+  google.protobuf.Struct body =5[(validator.field) = {msg_exists : true}];
+  // the authentication claims of the message producer.
+  google.protobuf.Struct claims =6[(validator.field) = {msg_exists : true}];
+  // timestamp(ns) of when the message was broadcasted.
+  int64 time =7[(validator.field) = {int_gt : 0}];
+
+}
+
 // Entities is an array of Entity
 message Entities {
   repeated Entity entities =1;
@@ -121,28 +217,6 @@ message SearchEntityOpts {
   Sort sort =9;
 }
 
-// EventService serves API methods related to stategate Event Consumers
-// Events are automatically emitted from mutations made from State mutations within the EntityService
-service EventService {
-  // Stream creates an event stream/subscription to state changes to entities in real time. Glob matching is supported.
-  rpc Stream(StreamOpts) returns(stream Event) {
-    option (google.api.http) = {
-      get: "/api/events/stream"
-    };
-  }
-  // Search queries historical events - every historical state change to an entity may be queried.
-  rpc Search(SearchEventOpts) returns(Events) {
-    option (google.api.http) = {
-      get: "/api/events/search"
-    };
-  }
-  // Get gets a single event
-  rpc Get(EventRef) returns(Event) {
-    option (google.api.http) = {
-      get: "/api/events/ref/{domain}/{type}/{key}/{id}"
-    };
-  }
-}
 
 // SearchEventOpts are options when querying historical events emitted from mutations made from State mutations
 message SearchEventOpts {
@@ -167,9 +241,9 @@ message SearchEventOpts {
   Sort sort =9;
 }
 
-// StreamOpts are options for consumers looking to stream events.
+// StreamEventOpts are options for consumers looking to stream events.
 // Events are automatically emitted from mutations made from State mutations within the EntityService
-message StreamOpts {
+message StreamEventOpts {
   // the domain of the entity (ex: acme) that triggered the event
   // * indicates any domain
   // must not be empty or contain spaces

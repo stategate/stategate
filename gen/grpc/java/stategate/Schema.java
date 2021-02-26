@@ -3290,6 +3290,3957 @@ public final class Schema {
 
   }
 
+  public interface StreamMessageOptsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:stategate.StreamMessageOpts)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * the message's business domain(ex: accounting) to subscribe to
+     * must not be empty or contain spaces
+     * * indicates any domain
+     * </pre>
+     *
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getDomain();
+    /**
+     * <pre>
+     * the message's business domain(ex: accounting) to subscribe to
+     * must not be empty or contain spaces
+     * * indicates any domain
+     * </pre>
+     *
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getDomainBytes();
+
+    /**
+     * <pre>
+     * the message's channel(ex: general) to subscribe to
+     * must not be empty or contain spaces
+     * * indicates any channel
+     * </pre>
+     *
+     * <code>string channel = 2 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getChannel();
+    /**
+     * <pre>
+     * the message's channel(ex: general) to subscribe to
+     * must not be empty or contain spaces
+     * * indicates any channel
+     * </pre>
+     *
+     * <code>string channel = 2 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getChannelBytes();
+
+    /**
+     * <pre>
+     * message's type (ex: comment) to subscribe to
+     * must not be empty or contain spaces
+     * * indicates any type
+     * </pre>
+     *
+     * <code>string type = 3 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getType();
+    /**
+     * <pre>
+     * message's type (ex: comment) to subscribe to
+     * must not be empty or contain spaces
+     * * indicates any type
+     * </pre>
+     *
+     * <code>string type = 3 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getTypeBytes();
+  }
+  /**
+   * <pre>
+   * StreamMessageOpts holds options for streaming messages produced by Peers
+   * </pre>
+   *
+   * Protobuf type {@code stategate.StreamMessageOpts}
+   */
+  public  static final class StreamMessageOpts extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:stategate.StreamMessageOpts)
+      StreamMessageOptsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use StreamMessageOpts.newBuilder() to construct.
+    private StreamMessageOpts(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private StreamMessageOpts() {
+      domain_ = "";
+      channel_ = "";
+      type_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private StreamMessageOpts(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              domain_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              channel_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              type_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return stategate.Schema.internal_static_stategate_StreamMessageOpts_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return stategate.Schema.internal_static_stategate_StreamMessageOpts_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              stategate.Schema.StreamMessageOpts.class, stategate.Schema.StreamMessageOpts.Builder.class);
+    }
+
+    public static final int DOMAIN_FIELD_NUMBER = 1;
+    private volatile java.lang.Object domain_;
+    /**
+     * <pre>
+     * the message's business domain(ex: accounting) to subscribe to
+     * must not be empty or contain spaces
+     * * indicates any domain
+     * </pre>
+     *
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getDomain() {
+      java.lang.Object ref = domain_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        domain_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * the message's business domain(ex: accounting) to subscribe to
+     * must not be empty or contain spaces
+     * * indicates any domain
+     * </pre>
+     *
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getDomainBytes() {
+      java.lang.Object ref = domain_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        domain_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CHANNEL_FIELD_NUMBER = 2;
+    private volatile java.lang.Object channel_;
+    /**
+     * <pre>
+     * the message's channel(ex: general) to subscribe to
+     * must not be empty or contain spaces
+     * * indicates any channel
+     * </pre>
+     *
+     * <code>string channel = 2 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getChannel() {
+      java.lang.Object ref = channel_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        channel_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * the message's channel(ex: general) to subscribe to
+     * must not be empty or contain spaces
+     * * indicates any channel
+     * </pre>
+     *
+     * <code>string channel = 2 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getChannelBytes() {
+      java.lang.Object ref = channel_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        channel_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 3;
+    private volatile java.lang.Object type_;
+    /**
+     * <pre>
+     * message's type (ex: comment) to subscribe to
+     * must not be empty or contain spaces
+     * * indicates any type
+     * </pre>
+     *
+     * <code>string type = 3 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getType() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        type_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * message's type (ex: comment) to subscribe to
+     * must not be empty or contain spaces
+     * * indicates any type
+     * </pre>
+     *
+     * <code>string type = 3 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getTypeBytes() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        type_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getDomainBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, domain_);
+      }
+      if (!getChannelBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, channel_);
+      }
+      if (!getTypeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, type_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getDomainBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, domain_);
+      }
+      if (!getChannelBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, channel_);
+      }
+      if (!getTypeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, type_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof stategate.Schema.StreamMessageOpts)) {
+        return super.equals(obj);
+      }
+      stategate.Schema.StreamMessageOpts other = (stategate.Schema.StreamMessageOpts) obj;
+
+      boolean result = true;
+      result = result && getDomain()
+          .equals(other.getDomain());
+      result = result && getChannel()
+          .equals(other.getChannel());
+      result = result && getType()
+          .equals(other.getType());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + DOMAIN_FIELD_NUMBER;
+      hash = (53 * hash) + getDomain().hashCode();
+      hash = (37 * hash) + CHANNEL_FIELD_NUMBER;
+      hash = (53 * hash) + getChannel().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static stategate.Schema.StreamMessageOpts parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.StreamMessageOpts parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.StreamMessageOpts parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.StreamMessageOpts parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.StreamMessageOpts parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.StreamMessageOpts parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.StreamMessageOpts parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.StreamMessageOpts parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static stategate.Schema.StreamMessageOpts parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.StreamMessageOpts parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static stategate.Schema.StreamMessageOpts parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.StreamMessageOpts parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(stategate.Schema.StreamMessageOpts prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * StreamMessageOpts holds options for streaming messages produced by Peers
+     * </pre>
+     *
+     * Protobuf type {@code stategate.StreamMessageOpts}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:stategate.StreamMessageOpts)
+        stategate.Schema.StreamMessageOptsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return stategate.Schema.internal_static_stategate_StreamMessageOpts_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return stategate.Schema.internal_static_stategate_StreamMessageOpts_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                stategate.Schema.StreamMessageOpts.class, stategate.Schema.StreamMessageOpts.Builder.class);
+      }
+
+      // Construct using stategate.Schema.StreamMessageOpts.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        domain_ = "";
+
+        channel_ = "";
+
+        type_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return stategate.Schema.internal_static_stategate_StreamMessageOpts_descriptor;
+      }
+
+      @java.lang.Override
+      public stategate.Schema.StreamMessageOpts getDefaultInstanceForType() {
+        return stategate.Schema.StreamMessageOpts.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public stategate.Schema.StreamMessageOpts build() {
+        stategate.Schema.StreamMessageOpts result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public stategate.Schema.StreamMessageOpts buildPartial() {
+        stategate.Schema.StreamMessageOpts result = new stategate.Schema.StreamMessageOpts(this);
+        result.domain_ = domain_;
+        result.channel_ = channel_;
+        result.type_ = type_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof stategate.Schema.StreamMessageOpts) {
+          return mergeFrom((stategate.Schema.StreamMessageOpts)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(stategate.Schema.StreamMessageOpts other) {
+        if (other == stategate.Schema.StreamMessageOpts.getDefaultInstance()) return this;
+        if (!other.getDomain().isEmpty()) {
+          domain_ = other.domain_;
+          onChanged();
+        }
+        if (!other.getChannel().isEmpty()) {
+          channel_ = other.channel_;
+          onChanged();
+        }
+        if (!other.getType().isEmpty()) {
+          type_ = other.type_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        stategate.Schema.StreamMessageOpts parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (stategate.Schema.StreamMessageOpts) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object domain_ = "";
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any domain
+       * </pre>
+       *
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getDomain() {
+        java.lang.Object ref = domain_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          domain_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any domain
+       * </pre>
+       *
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getDomainBytes() {
+        java.lang.Object ref = domain_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          domain_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any domain
+       * </pre>
+       *
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setDomain(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        domain_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any domain
+       * </pre>
+       *
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearDomain() {
+        
+        domain_ = getDefaultInstance().getDomain();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any domain
+       * </pre>
+       *
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setDomainBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        domain_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object channel_ = "";
+      /**
+       * <pre>
+       * the message's channel(ex: general) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any channel
+       * </pre>
+       *
+       * <code>string channel = 2 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getChannel() {
+        java.lang.Object ref = channel_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          channel_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the message's channel(ex: general) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any channel
+       * </pre>
+       *
+       * <code>string channel = 2 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getChannelBytes() {
+        java.lang.Object ref = channel_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          channel_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the message's channel(ex: general) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any channel
+       * </pre>
+       *
+       * <code>string channel = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder setChannel(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        channel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the message's channel(ex: general) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any channel
+       * </pre>
+       *
+       * <code>string channel = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearChannel() {
+        
+        channel_ = getDefaultInstance().getChannel();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the message's channel(ex: general) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any channel
+       * </pre>
+       *
+       * <code>string channel = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder setChannelBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        channel_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object type_ = "";
+      /**
+       * <pre>
+       * message's type (ex: comment) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any type
+       * </pre>
+       *
+       * <code>string type = 3 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getType() {
+        java.lang.Object ref = type_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          type_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * message's type (ex: comment) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any type
+       * </pre>
+       *
+       * <code>string type = 3 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getTypeBytes() {
+        java.lang.Object ref = type_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          type_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * message's type (ex: comment) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any type
+       * </pre>
+       *
+       * <code>string type = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder setType(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * message's type (ex: comment) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any type
+       * </pre>
+       *
+       * <code>string type = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearType() {
+        
+        type_ = getDefaultInstance().getType();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * message's type (ex: comment) to subscribe to
+       * must not be empty or contain spaces
+       * * indicates any type
+       * </pre>
+       *
+       * <code>string type = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTypeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:stategate.StreamMessageOpts)
+    }
+
+    // @@protoc_insertion_point(class_scope:stategate.StreamMessageOpts)
+    private static final stategate.Schema.StreamMessageOpts DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new stategate.Schema.StreamMessageOpts();
+    }
+
+    public static stategate.Schema.StreamMessageOpts getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<StreamMessageOpts>
+        PARSER = new com.google.protobuf.AbstractParser<StreamMessageOpts>() {
+      @java.lang.Override
+      public StreamMessageOpts parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new StreamMessageOpts(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<StreamMessageOpts> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<StreamMessageOpts> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public stategate.Schema.StreamMessageOpts getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface MessageOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:stategate.Message)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * the message's business domain(ex: accounting)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getDomain();
+    /**
+     * <pre>
+     * the message's business domain(ex: accounting)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getDomainBytes();
+
+    /**
+     * <pre>
+     * the message's channel(ex: general)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string channel = 2 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getChannel();
+    /**
+     * <pre>
+     * the message's channel(ex: general)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string channel = 2 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getChannelBytes();
+
+    /**
+     * <pre>
+     * message's type (ex: comment)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string type = 3 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getType();
+    /**
+     * <pre>
+     * message's type (ex: comment)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string type = 3 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getTypeBytes();
+
+    /**
+     * <pre>
+     * the body of the message(k/v values).
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+     */
+    boolean hasBody();
+    /**
+     * <pre>
+     * the body of the message(k/v values).
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.Struct getBody();
+    /**
+     * <pre>
+     * the body of the message(k/v values).
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.StructOrBuilder getBodyOrBuilder();
+  }
+  /**
+   * <pre>
+   * Message is an arbitrary message to be delivered to a Peer
+   * Messages are NOT persisted and should only be used to communicate with other Peers
+   * </pre>
+   *
+   * Protobuf type {@code stategate.Message}
+   */
+  public  static final class Message extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:stategate.Message)
+      MessageOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Message.newBuilder() to construct.
+    private Message(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Message() {
+      domain_ = "";
+      channel_ = "";
+      type_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Message(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              domain_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              channel_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              type_ = s;
+              break;
+            }
+            case 34: {
+              com.google.protobuf.Struct.Builder subBuilder = null;
+              if (body_ != null) {
+                subBuilder = body_.toBuilder();
+              }
+              body_ = input.readMessage(com.google.protobuf.Struct.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(body_);
+                body_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return stategate.Schema.internal_static_stategate_Message_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return stategate.Schema.internal_static_stategate_Message_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              stategate.Schema.Message.class, stategate.Schema.Message.Builder.class);
+    }
+
+    public static final int DOMAIN_FIELD_NUMBER = 1;
+    private volatile java.lang.Object domain_;
+    /**
+     * <pre>
+     * the message's business domain(ex: accounting)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getDomain() {
+      java.lang.Object ref = domain_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        domain_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * the message's business domain(ex: accounting)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string domain = 1 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getDomainBytes() {
+      java.lang.Object ref = domain_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        domain_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CHANNEL_FIELD_NUMBER = 2;
+    private volatile java.lang.Object channel_;
+    /**
+     * <pre>
+     * the message's channel(ex: general)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string channel = 2 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getChannel() {
+      java.lang.Object ref = channel_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        channel_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * the message's channel(ex: general)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string channel = 2 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getChannelBytes() {
+      java.lang.Object ref = channel_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        channel_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 3;
+    private volatile java.lang.Object type_;
+    /**
+     * <pre>
+     * message's type (ex: comment)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string type = 3 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getType() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        type_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * message's type (ex: comment)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string type = 3 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getTypeBytes() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        type_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int BODY_FIELD_NUMBER = 4;
+    private com.google.protobuf.Struct body_;
+    /**
+     * <pre>
+     * the body of the message(k/v values).
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+     */
+    public boolean hasBody() {
+      return body_ != null;
+    }
+    /**
+     * <pre>
+     * the body of the message(k/v values).
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.Struct getBody() {
+      return body_ == null ? com.google.protobuf.Struct.getDefaultInstance() : body_;
+    }
+    /**
+     * <pre>
+     * the body of the message(k/v values).
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.StructOrBuilder getBodyOrBuilder() {
+      return getBody();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getDomainBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, domain_);
+      }
+      if (!getChannelBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, channel_);
+      }
+      if (!getTypeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, type_);
+      }
+      if (body_ != null) {
+        output.writeMessage(4, getBody());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getDomainBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, domain_);
+      }
+      if (!getChannelBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, channel_);
+      }
+      if (!getTypeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, type_);
+      }
+      if (body_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, getBody());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof stategate.Schema.Message)) {
+        return super.equals(obj);
+      }
+      stategate.Schema.Message other = (stategate.Schema.Message) obj;
+
+      boolean result = true;
+      result = result && getDomain()
+          .equals(other.getDomain());
+      result = result && getChannel()
+          .equals(other.getChannel());
+      result = result && getType()
+          .equals(other.getType());
+      result = result && (hasBody() == other.hasBody());
+      if (hasBody()) {
+        result = result && getBody()
+            .equals(other.getBody());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + DOMAIN_FIELD_NUMBER;
+      hash = (53 * hash) + getDomain().hashCode();
+      hash = (37 * hash) + CHANNEL_FIELD_NUMBER;
+      hash = (53 * hash) + getChannel().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType().hashCode();
+      if (hasBody()) {
+        hash = (37 * hash) + BODY_FIELD_NUMBER;
+        hash = (53 * hash) + getBody().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static stategate.Schema.Message parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.Message parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.Message parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.Message parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.Message parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.Message parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.Message parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.Message parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static stategate.Schema.Message parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.Message parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static stategate.Schema.Message parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.Message parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(stategate.Schema.Message prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Message is an arbitrary message to be delivered to a Peer
+     * Messages are NOT persisted and should only be used to communicate with other Peers
+     * </pre>
+     *
+     * Protobuf type {@code stategate.Message}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:stategate.Message)
+        stategate.Schema.MessageOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return stategate.Schema.internal_static_stategate_Message_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return stategate.Schema.internal_static_stategate_Message_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                stategate.Schema.Message.class, stategate.Schema.Message.Builder.class);
+      }
+
+      // Construct using stategate.Schema.Message.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        domain_ = "";
+
+        channel_ = "";
+
+        type_ = "";
+
+        if (bodyBuilder_ == null) {
+          body_ = null;
+        } else {
+          body_ = null;
+          bodyBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return stategate.Schema.internal_static_stategate_Message_descriptor;
+      }
+
+      @java.lang.Override
+      public stategate.Schema.Message getDefaultInstanceForType() {
+        return stategate.Schema.Message.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public stategate.Schema.Message build() {
+        stategate.Schema.Message result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public stategate.Schema.Message buildPartial() {
+        stategate.Schema.Message result = new stategate.Schema.Message(this);
+        result.domain_ = domain_;
+        result.channel_ = channel_;
+        result.type_ = type_;
+        if (bodyBuilder_ == null) {
+          result.body_ = body_;
+        } else {
+          result.body_ = bodyBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof stategate.Schema.Message) {
+          return mergeFrom((stategate.Schema.Message)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(stategate.Schema.Message other) {
+        if (other == stategate.Schema.Message.getDefaultInstance()) return this;
+        if (!other.getDomain().isEmpty()) {
+          domain_ = other.domain_;
+          onChanged();
+        }
+        if (!other.getChannel().isEmpty()) {
+          channel_ = other.channel_;
+          onChanged();
+        }
+        if (!other.getType().isEmpty()) {
+          type_ = other.type_;
+          onChanged();
+        }
+        if (other.hasBody()) {
+          mergeBody(other.getBody());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        stategate.Schema.Message parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (stategate.Schema.Message) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object domain_ = "";
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getDomain() {
+        java.lang.Object ref = domain_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          domain_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getDomainBytes() {
+        java.lang.Object ref = domain_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          domain_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setDomain(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        domain_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearDomain() {
+        
+        domain_ = getDefaultInstance().getDomain();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string domain = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setDomainBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        domain_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object channel_ = "";
+      /**
+       * <pre>
+       * the message's channel(ex: general)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string channel = 2 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getChannel() {
+        java.lang.Object ref = channel_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          channel_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the message's channel(ex: general)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string channel = 2 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getChannelBytes() {
+        java.lang.Object ref = channel_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          channel_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the message's channel(ex: general)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string channel = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder setChannel(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        channel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the message's channel(ex: general)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string channel = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearChannel() {
+        
+        channel_ = getDefaultInstance().getChannel();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the message's channel(ex: general)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string channel = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder setChannelBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        channel_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object type_ = "";
+      /**
+       * <pre>
+       * message's type (ex: comment)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string type = 3 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getType() {
+        java.lang.Object ref = type_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          type_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * message's type (ex: comment)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string type = 3 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getTypeBytes() {
+        java.lang.Object ref = type_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          type_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * message's type (ex: comment)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string type = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder setType(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * message's type (ex: comment)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string type = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearType() {
+        
+        type_ = getDefaultInstance().getType();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * message's type (ex: comment)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string type = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTypeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.Struct body_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> bodyBuilder_;
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+       */
+      public boolean hasBody() {
+        return bodyBuilder_ != null || body_ != null;
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.Struct getBody() {
+        if (bodyBuilder_ == null) {
+          return body_ == null ? com.google.protobuf.Struct.getDefaultInstance() : body_;
+        } else {
+          return bodyBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+       */
+      public Builder setBody(com.google.protobuf.Struct value) {
+        if (bodyBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          body_ = value;
+          onChanged();
+        } else {
+          bodyBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+       */
+      public Builder setBody(
+          com.google.protobuf.Struct.Builder builderForValue) {
+        if (bodyBuilder_ == null) {
+          body_ = builderForValue.build();
+          onChanged();
+        } else {
+          bodyBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+       */
+      public Builder mergeBody(com.google.protobuf.Struct value) {
+        if (bodyBuilder_ == null) {
+          if (body_ != null) {
+            body_ =
+              com.google.protobuf.Struct.newBuilder(body_).mergeFrom(value).buildPartial();
+          } else {
+            body_ = value;
+          }
+          onChanged();
+        } else {
+          bodyBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearBody() {
+        if (bodyBuilder_ == null) {
+          body_ = null;
+          onChanged();
+        } else {
+          body_ = null;
+          bodyBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.Struct.Builder getBodyBuilder() {
+        
+        onChanged();
+        return getBodyFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.StructOrBuilder getBodyOrBuilder() {
+        if (bodyBuilder_ != null) {
+          return bodyBuilder_.getMessageOrBuilder();
+        } else {
+          return body_ == null ?
+              com.google.protobuf.Struct.getDefaultInstance() : body_;
+        }
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 4 [(.validator.field) = { ... }</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
+          getBodyFieldBuilder() {
+        if (bodyBuilder_ == null) {
+          bodyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder>(
+                  getBody(),
+                  getParentForChildren(),
+                  isClean());
+          body_ = null;
+        }
+        return bodyBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:stategate.Message)
+    }
+
+    // @@protoc_insertion_point(class_scope:stategate.Message)
+    private static final stategate.Schema.Message DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new stategate.Schema.Message();
+    }
+
+    public static stategate.Schema.Message getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Message>
+        PARSER = new com.google.protobuf.AbstractParser<Message>() {
+      @java.lang.Override
+      public Message parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Message(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Message> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Message> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public stategate.Schema.Message getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface PeerMessageOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:stategate.PeerMessage)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * the unique id of the message
+     * </pre>
+     *
+     * <code>string id = 1 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getId();
+    /**
+     * <pre>
+     * the unique id of the message
+     * </pre>
+     *
+     * <code>string id = 1 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <pre>
+     * the message's business domain(ex: accounting)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string domain = 2 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getDomain();
+    /**
+     * <pre>
+     * the message's business domain(ex: accounting)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string domain = 2 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getDomainBytes();
+
+    /**
+     * <pre>
+     * the message's channel(ex: general)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string channel = 3 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getChannel();
+    /**
+     * <pre>
+     * the message's channel(ex: general)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string channel = 3 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getChannelBytes();
+
+    /**
+     * <pre>
+     * message's type (ex: comment)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string type = 4 [(.validator.field) = { ... }</code>
+     */
+    java.lang.String getType();
+    /**
+     * <pre>
+     * message's type (ex: comment)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string type = 4 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.ByteString
+        getTypeBytes();
+
+    /**
+     * <pre>
+     * the body of the message(k/v values).
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+     */
+    boolean hasBody();
+    /**
+     * <pre>
+     * the body of the message(k/v values).
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.Struct getBody();
+    /**
+     * <pre>
+     * the body of the message(k/v values).
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.StructOrBuilder getBodyOrBuilder();
+
+    /**
+     * <pre>
+     * the authentication claims of the message producer.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+     */
+    boolean hasClaims();
+    /**
+     * <pre>
+     * the authentication claims of the message producer.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.Struct getClaims();
+    /**
+     * <pre>
+     * the authentication claims of the message producer.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+     */
+    com.google.protobuf.StructOrBuilder getClaimsOrBuilder();
+
+    /**
+     * <pre>
+     * timestamp(ns) of when the message was broadcasted.
+     * </pre>
+     *
+     * <code>int64 time = 7 [(.validator.field) = { ... }</code>
+     */
+    long getTime();
+  }
+  /**
+   * <pre>
+   * PeerMessage is a message produced by a client to the PeerService
+   * PeerMessages are NOT persisted and should only be used to communicate with other Peers
+   * </pre>
+   *
+   * Protobuf type {@code stategate.PeerMessage}
+   */
+  public  static final class PeerMessage extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:stategate.PeerMessage)
+      PeerMessageOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PeerMessage.newBuilder() to construct.
+    private PeerMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PeerMessage() {
+      id_ = "";
+      domain_ = "";
+      channel_ = "";
+      type_ = "";
+      time_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PeerMessage(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              domain_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              channel_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              type_ = s;
+              break;
+            }
+            case 42: {
+              com.google.protobuf.Struct.Builder subBuilder = null;
+              if (body_ != null) {
+                subBuilder = body_.toBuilder();
+              }
+              body_ = input.readMessage(com.google.protobuf.Struct.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(body_);
+                body_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 50: {
+              com.google.protobuf.Struct.Builder subBuilder = null;
+              if (claims_ != null) {
+                subBuilder = claims_.toBuilder();
+              }
+              claims_ = input.readMessage(com.google.protobuf.Struct.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(claims_);
+                claims_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 56: {
+
+              time_ = input.readInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return stategate.Schema.internal_static_stategate_PeerMessage_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return stategate.Schema.internal_static_stategate_PeerMessage_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              stategate.Schema.PeerMessage.class, stategate.Schema.PeerMessage.Builder.class);
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object id_;
+    /**
+     * <pre>
+     * the unique id of the message
+     * </pre>
+     *
+     * <code>string id = 1 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * the unique id of the message
+     * </pre>
+     *
+     * <code>string id = 1 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DOMAIN_FIELD_NUMBER = 2;
+    private volatile java.lang.Object domain_;
+    /**
+     * <pre>
+     * the message's business domain(ex: accounting)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string domain = 2 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getDomain() {
+      java.lang.Object ref = domain_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        domain_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * the message's business domain(ex: accounting)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string domain = 2 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getDomainBytes() {
+      java.lang.Object ref = domain_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        domain_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CHANNEL_FIELD_NUMBER = 3;
+    private volatile java.lang.Object channel_;
+    /**
+     * <pre>
+     * the message's channel(ex: general)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string channel = 3 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getChannel() {
+      java.lang.Object ref = channel_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        channel_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * the message's channel(ex: general)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string channel = 3 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getChannelBytes() {
+      java.lang.Object ref = channel_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        channel_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 4;
+    private volatile java.lang.Object type_;
+    /**
+     * <pre>
+     * message's type (ex: comment)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string type = 4 [(.validator.field) = { ... }</code>
+     */
+    public java.lang.String getType() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        type_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * message's type (ex: comment)
+     * must not be empty or contain spaces
+     * </pre>
+     *
+     * <code>string type = 4 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.ByteString
+        getTypeBytes() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        type_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int BODY_FIELD_NUMBER = 5;
+    private com.google.protobuf.Struct body_;
+    /**
+     * <pre>
+     * the body of the message(k/v values).
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+     */
+    public boolean hasBody() {
+      return body_ != null;
+    }
+    /**
+     * <pre>
+     * the body of the message(k/v values).
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.Struct getBody() {
+      return body_ == null ? com.google.protobuf.Struct.getDefaultInstance() : body_;
+    }
+    /**
+     * <pre>
+     * the body of the message(k/v values).
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.StructOrBuilder getBodyOrBuilder() {
+      return getBody();
+    }
+
+    public static final int CLAIMS_FIELD_NUMBER = 6;
+    private com.google.protobuf.Struct claims_;
+    /**
+     * <pre>
+     * the authentication claims of the message producer.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+     */
+    public boolean hasClaims() {
+      return claims_ != null;
+    }
+    /**
+     * <pre>
+     * the authentication claims of the message producer.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.Struct getClaims() {
+      return claims_ == null ? com.google.protobuf.Struct.getDefaultInstance() : claims_;
+    }
+    /**
+     * <pre>
+     * the authentication claims of the message producer.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+     */
+    public com.google.protobuf.StructOrBuilder getClaimsOrBuilder() {
+      return getClaims();
+    }
+
+    public static final int TIME_FIELD_NUMBER = 7;
+    private long time_;
+    /**
+     * <pre>
+     * timestamp(ns) of when the message was broadcasted.
+     * </pre>
+     *
+     * <code>int64 time = 7 [(.validator.field) = { ... }</code>
+     */
+    public long getTime() {
+      return time_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
+      }
+      if (!getDomainBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, domain_);
+      }
+      if (!getChannelBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, channel_);
+      }
+      if (!getTypeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, type_);
+      }
+      if (body_ != null) {
+        output.writeMessage(5, getBody());
+      }
+      if (claims_ != null) {
+        output.writeMessage(6, getClaims());
+      }
+      if (time_ != 0L) {
+        output.writeInt64(7, time_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
+      }
+      if (!getDomainBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, domain_);
+      }
+      if (!getChannelBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, channel_);
+      }
+      if (!getTypeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, type_);
+      }
+      if (body_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getBody());
+      }
+      if (claims_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getClaims());
+      }
+      if (time_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(7, time_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof stategate.Schema.PeerMessage)) {
+        return super.equals(obj);
+      }
+      stategate.Schema.PeerMessage other = (stategate.Schema.PeerMessage) obj;
+
+      boolean result = true;
+      result = result && getId()
+          .equals(other.getId());
+      result = result && getDomain()
+          .equals(other.getDomain());
+      result = result && getChannel()
+          .equals(other.getChannel());
+      result = result && getType()
+          .equals(other.getType());
+      result = result && (hasBody() == other.hasBody());
+      if (hasBody()) {
+        result = result && getBody()
+            .equals(other.getBody());
+      }
+      result = result && (hasClaims() == other.hasClaims());
+      if (hasClaims()) {
+        result = result && getClaims()
+            .equals(other.getClaims());
+      }
+      result = result && (getTime()
+          == other.getTime());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId().hashCode();
+      hash = (37 * hash) + DOMAIN_FIELD_NUMBER;
+      hash = (53 * hash) + getDomain().hashCode();
+      hash = (37 * hash) + CHANNEL_FIELD_NUMBER;
+      hash = (53 * hash) + getChannel().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType().hashCode();
+      if (hasBody()) {
+        hash = (37 * hash) + BODY_FIELD_NUMBER;
+        hash = (53 * hash) + getBody().hashCode();
+      }
+      if (hasClaims()) {
+        hash = (37 * hash) + CLAIMS_FIELD_NUMBER;
+        hash = (53 * hash) + getClaims().hashCode();
+      }
+      hash = (37 * hash) + TIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTime());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static stategate.Schema.PeerMessage parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.PeerMessage parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.PeerMessage parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.PeerMessage parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.PeerMessage parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static stategate.Schema.PeerMessage parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static stategate.Schema.PeerMessage parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.PeerMessage parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static stategate.Schema.PeerMessage parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.PeerMessage parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static stategate.Schema.PeerMessage parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static stategate.Schema.PeerMessage parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(stategate.Schema.PeerMessage prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * PeerMessage is a message produced by a client to the PeerService
+     * PeerMessages are NOT persisted and should only be used to communicate with other Peers
+     * </pre>
+     *
+     * Protobuf type {@code stategate.PeerMessage}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:stategate.PeerMessage)
+        stategate.Schema.PeerMessageOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return stategate.Schema.internal_static_stategate_PeerMessage_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return stategate.Schema.internal_static_stategate_PeerMessage_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                stategate.Schema.PeerMessage.class, stategate.Schema.PeerMessage.Builder.class);
+      }
+
+      // Construct using stategate.Schema.PeerMessage.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        id_ = "";
+
+        domain_ = "";
+
+        channel_ = "";
+
+        type_ = "";
+
+        if (bodyBuilder_ == null) {
+          body_ = null;
+        } else {
+          body_ = null;
+          bodyBuilder_ = null;
+        }
+        if (claimsBuilder_ == null) {
+          claims_ = null;
+        } else {
+          claims_ = null;
+          claimsBuilder_ = null;
+        }
+        time_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return stategate.Schema.internal_static_stategate_PeerMessage_descriptor;
+      }
+
+      @java.lang.Override
+      public stategate.Schema.PeerMessage getDefaultInstanceForType() {
+        return stategate.Schema.PeerMessage.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public stategate.Schema.PeerMessage build() {
+        stategate.Schema.PeerMessage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public stategate.Schema.PeerMessage buildPartial() {
+        stategate.Schema.PeerMessage result = new stategate.Schema.PeerMessage(this);
+        result.id_ = id_;
+        result.domain_ = domain_;
+        result.channel_ = channel_;
+        result.type_ = type_;
+        if (bodyBuilder_ == null) {
+          result.body_ = body_;
+        } else {
+          result.body_ = bodyBuilder_.build();
+        }
+        if (claimsBuilder_ == null) {
+          result.claims_ = claims_;
+        } else {
+          result.claims_ = claimsBuilder_.build();
+        }
+        result.time_ = time_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof stategate.Schema.PeerMessage) {
+          return mergeFrom((stategate.Schema.PeerMessage)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(stategate.Schema.PeerMessage other) {
+        if (other == stategate.Schema.PeerMessage.getDefaultInstance()) return this;
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
+          onChanged();
+        }
+        if (!other.getDomain().isEmpty()) {
+          domain_ = other.domain_;
+          onChanged();
+        }
+        if (!other.getChannel().isEmpty()) {
+          channel_ = other.channel_;
+          onChanged();
+        }
+        if (!other.getType().isEmpty()) {
+          type_ = other.type_;
+          onChanged();
+        }
+        if (other.hasBody()) {
+          mergeBody(other.getBody());
+        }
+        if (other.hasClaims()) {
+          mergeClaims(other.getClaims());
+        }
+        if (other.getTime() != 0L) {
+          setTime(other.getTime());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        stategate.Schema.PeerMessage parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (stategate.Schema.PeerMessage) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object id_ = "";
+      /**
+       * <pre>
+       * the unique id of the message
+       * </pre>
+       *
+       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the unique id of the message
+       * </pre>
+       *
+       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the unique id of the message
+       * </pre>
+       *
+       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the unique id of the message
+       * </pre>
+       *
+       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearId() {
+        
+        id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the unique id of the message
+       * </pre>
+       *
+       * <code>string id = 1 [(.validator.field) = { ... }</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object domain_ = "";
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string domain = 2 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getDomain() {
+        java.lang.Object ref = domain_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          domain_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string domain = 2 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getDomainBytes() {
+        java.lang.Object ref = domain_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          domain_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string domain = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder setDomain(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        domain_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string domain = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearDomain() {
+        
+        domain_ = getDefaultInstance().getDomain();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the message's business domain(ex: accounting)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string domain = 2 [(.validator.field) = { ... }</code>
+       */
+      public Builder setDomainBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        domain_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object channel_ = "";
+      /**
+       * <pre>
+       * the message's channel(ex: general)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string channel = 3 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getChannel() {
+        java.lang.Object ref = channel_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          channel_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the message's channel(ex: general)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string channel = 3 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getChannelBytes() {
+        java.lang.Object ref = channel_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          channel_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * the message's channel(ex: general)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string channel = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder setChannel(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        channel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the message's channel(ex: general)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string channel = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearChannel() {
+        
+        channel_ = getDefaultInstance().getChannel();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the message's channel(ex: general)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string channel = 3 [(.validator.field) = { ... }</code>
+       */
+      public Builder setChannelBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        channel_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object type_ = "";
+      /**
+       * <pre>
+       * message's type (ex: comment)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string type = 4 [(.validator.field) = { ... }</code>
+       */
+      public java.lang.String getType() {
+        java.lang.Object ref = type_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          type_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * message's type (ex: comment)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string type = 4 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.ByteString
+          getTypeBytes() {
+        java.lang.Object ref = type_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          type_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * message's type (ex: comment)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string type = 4 [(.validator.field) = { ... }</code>
+       */
+      public Builder setType(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * message's type (ex: comment)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string type = 4 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearType() {
+        
+        type_ = getDefaultInstance().getType();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * message's type (ex: comment)
+       * must not be empty or contain spaces
+       * </pre>
+       *
+       * <code>string type = 4 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTypeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.Struct body_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> bodyBuilder_;
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+       */
+      public boolean hasBody() {
+        return bodyBuilder_ != null || body_ != null;
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.Struct getBody() {
+        if (bodyBuilder_ == null) {
+          return body_ == null ? com.google.protobuf.Struct.getDefaultInstance() : body_;
+        } else {
+          return bodyBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+       */
+      public Builder setBody(com.google.protobuf.Struct value) {
+        if (bodyBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          body_ = value;
+          onChanged();
+        } else {
+          bodyBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+       */
+      public Builder setBody(
+          com.google.protobuf.Struct.Builder builderForValue) {
+        if (bodyBuilder_ == null) {
+          body_ = builderForValue.build();
+          onChanged();
+        } else {
+          bodyBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+       */
+      public Builder mergeBody(com.google.protobuf.Struct value) {
+        if (bodyBuilder_ == null) {
+          if (body_ != null) {
+            body_ =
+              com.google.protobuf.Struct.newBuilder(body_).mergeFrom(value).buildPartial();
+          } else {
+            body_ = value;
+          }
+          onChanged();
+        } else {
+          bodyBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearBody() {
+        if (bodyBuilder_ == null) {
+          body_ = null;
+          onChanged();
+        } else {
+          body_ = null;
+          bodyBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.Struct.Builder getBodyBuilder() {
+        
+        onChanged();
+        return getBodyFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.StructOrBuilder getBodyOrBuilder() {
+        if (bodyBuilder_ != null) {
+          return bodyBuilder_.getMessageOrBuilder();
+        } else {
+          return body_ == null ?
+              com.google.protobuf.Struct.getDefaultInstance() : body_;
+        }
+      }
+      /**
+       * <pre>
+       * the body of the message(k/v values).
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct body = 5 [(.validator.field) = { ... }</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
+          getBodyFieldBuilder() {
+        if (bodyBuilder_ == null) {
+          bodyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder>(
+                  getBody(),
+                  getParentForChildren(),
+                  isClean());
+          body_ = null;
+        }
+        return bodyBuilder_;
+      }
+
+      private com.google.protobuf.Struct claims_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> claimsBuilder_;
+      /**
+       * <pre>
+       * the authentication claims of the message producer.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+       */
+      public boolean hasClaims() {
+        return claimsBuilder_ != null || claims_ != null;
+      }
+      /**
+       * <pre>
+       * the authentication claims of the message producer.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.Struct getClaims() {
+        if (claimsBuilder_ == null) {
+          return claims_ == null ? com.google.protobuf.Struct.getDefaultInstance() : claims_;
+        } else {
+          return claimsBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * the authentication claims of the message producer.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+       */
+      public Builder setClaims(com.google.protobuf.Struct value) {
+        if (claimsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          claims_ = value;
+          onChanged();
+        } else {
+          claimsBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * the authentication claims of the message producer.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+       */
+      public Builder setClaims(
+          com.google.protobuf.Struct.Builder builderForValue) {
+        if (claimsBuilder_ == null) {
+          claims_ = builderForValue.build();
+          onChanged();
+        } else {
+          claimsBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * the authentication claims of the message producer.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+       */
+      public Builder mergeClaims(com.google.protobuf.Struct value) {
+        if (claimsBuilder_ == null) {
+          if (claims_ != null) {
+            claims_ =
+              com.google.protobuf.Struct.newBuilder(claims_).mergeFrom(value).buildPartial();
+          } else {
+            claims_ = value;
+          }
+          onChanged();
+        } else {
+          claimsBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * the authentication claims of the message producer.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearClaims() {
+        if (claimsBuilder_ == null) {
+          claims_ = null;
+          onChanged();
+        } else {
+          claims_ = null;
+          claimsBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * the authentication claims of the message producer.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.Struct.Builder getClaimsBuilder() {
+        
+        onChanged();
+        return getClaimsFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * the authentication claims of the message producer.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+       */
+      public com.google.protobuf.StructOrBuilder getClaimsOrBuilder() {
+        if (claimsBuilder_ != null) {
+          return claimsBuilder_.getMessageOrBuilder();
+        } else {
+          return claims_ == null ?
+              com.google.protobuf.Struct.getDefaultInstance() : claims_;
+        }
+      }
+      /**
+       * <pre>
+       * the authentication claims of the message producer.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct claims = 6 [(.validator.field) = { ... }</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
+          getClaimsFieldBuilder() {
+        if (claimsBuilder_ == null) {
+          claimsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder>(
+                  getClaims(),
+                  getParentForChildren(),
+                  isClean());
+          claims_ = null;
+        }
+        return claimsBuilder_;
+      }
+
+      private long time_ ;
+      /**
+       * <pre>
+       * timestamp(ns) of when the message was broadcasted.
+       * </pre>
+       *
+       * <code>int64 time = 7 [(.validator.field) = { ... }</code>
+       */
+      public long getTime() {
+        return time_;
+      }
+      /**
+       * <pre>
+       * timestamp(ns) of when the message was broadcasted.
+       * </pre>
+       *
+       * <code>int64 time = 7 [(.validator.field) = { ... }</code>
+       */
+      public Builder setTime(long value) {
+        
+        time_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * timestamp(ns) of when the message was broadcasted.
+       * </pre>
+       *
+       * <code>int64 time = 7 [(.validator.field) = { ... }</code>
+       */
+      public Builder clearTime() {
+        
+        time_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:stategate.PeerMessage)
+    }
+
+    // @@protoc_insertion_point(class_scope:stategate.PeerMessage)
+    private static final stategate.Schema.PeerMessage DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new stategate.Schema.PeerMessage();
+    }
+
+    public static stategate.Schema.PeerMessage getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<PeerMessage>
+        PARSER = new com.google.protobuf.AbstractParser<PeerMessage>() {
+      @java.lang.Override
+      public PeerMessage parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new PeerMessage(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<PeerMessage> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PeerMessage> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public stategate.Schema.PeerMessage getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface EntitiesOrBuilder extends
       // @@protoc_insertion_point(interface_extends:stategate.Entities)
       com.google.protobuf.MessageOrBuilder {
@@ -7024,8 +10975,8 @@ public final class Schema {
 
   }
 
-  public interface StreamOptsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:stategate.StreamOpts)
+  public interface StreamEventOptsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:stategate.StreamEventOpts)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -7074,22 +11025,22 @@ public final class Schema {
   }
   /**
    * <pre>
-   * StreamOpts are options for consumers looking to stream events.
+   * StreamEventOpts are options for consumers looking to stream events.
    * Events are automatically emitted from mutations made from State mutations within the EntityService
    * </pre>
    *
-   * Protobuf type {@code stategate.StreamOpts}
+   * Protobuf type {@code stategate.StreamEventOpts}
    */
-  public  static final class StreamOpts extends
+  public  static final class StreamEventOpts extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:stategate.StreamOpts)
-      StreamOptsOrBuilder {
+      // @@protoc_insertion_point(message_implements:stategate.StreamEventOpts)
+      StreamEventOptsOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use StreamOpts.newBuilder() to construct.
-    private StreamOpts(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use StreamEventOpts.newBuilder() to construct.
+    private StreamEventOpts(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private StreamOpts() {
+    private StreamEventOpts() {
       domain_ = "";
       type_ = "";
     }
@@ -7099,7 +11050,7 @@ public final class Schema {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private StreamOpts(
+    private StreamEventOpts(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -7151,15 +11102,15 @@ public final class Schema {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return stategate.Schema.internal_static_stategate_StreamOpts_descriptor;
+      return stategate.Schema.internal_static_stategate_StreamEventOpts_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return stategate.Schema.internal_static_stategate_StreamOpts_fieldAccessorTable
+      return stategate.Schema.internal_static_stategate_StreamEventOpts_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              stategate.Schema.StreamOpts.class, stategate.Schema.StreamOpts.Builder.class);
+              stategate.Schema.StreamEventOpts.class, stategate.Schema.StreamEventOpts.Builder.class);
     }
 
     public static final int DOMAIN_FIELD_NUMBER = 1;
@@ -7299,10 +11250,10 @@ public final class Schema {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof stategate.Schema.StreamOpts)) {
+      if (!(obj instanceof stategate.Schema.StreamEventOpts)) {
         return super.equals(obj);
       }
-      stategate.Schema.StreamOpts other = (stategate.Schema.StreamOpts) obj;
+      stategate.Schema.StreamEventOpts other = (stategate.Schema.StreamEventOpts) obj;
 
       boolean result = true;
       result = result && getDomain()
@@ -7329,69 +11280,69 @@ public final class Schema {
       return hash;
     }
 
-    public static stategate.Schema.StreamOpts parseFrom(
+    public static stategate.Schema.StreamEventOpts parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.StreamOpts parseFrom(
+    public static stategate.Schema.StreamEventOpts parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.StreamOpts parseFrom(
+    public static stategate.Schema.StreamEventOpts parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.StreamOpts parseFrom(
+    public static stategate.Schema.StreamEventOpts parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.StreamOpts parseFrom(byte[] data)
+    public static stategate.Schema.StreamEventOpts parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static stategate.Schema.StreamOpts parseFrom(
+    public static stategate.Schema.StreamEventOpts parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static stategate.Schema.StreamOpts parseFrom(java.io.InputStream input)
+    public static stategate.Schema.StreamEventOpts parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.StreamOpts parseFrom(
+    public static stategate.Schema.StreamEventOpts parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.StreamOpts parseDelimitedFrom(java.io.InputStream input)
+    public static stategate.Schema.StreamEventOpts parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static stategate.Schema.StreamOpts parseDelimitedFrom(
+    public static stategate.Schema.StreamEventOpts parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static stategate.Schema.StreamOpts parseFrom(
+    public static stategate.Schema.StreamEventOpts parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static stategate.Schema.StreamOpts parseFrom(
+    public static stategate.Schema.StreamEventOpts parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -7404,7 +11355,7 @@ public final class Schema {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(stategate.Schema.StreamOpts prototype) {
+    public static Builder newBuilder(stategate.Schema.StreamEventOpts prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -7421,30 +11372,30 @@ public final class Schema {
     }
     /**
      * <pre>
-     * StreamOpts are options for consumers looking to stream events.
+     * StreamEventOpts are options for consumers looking to stream events.
      * Events are automatically emitted from mutations made from State mutations within the EntityService
      * </pre>
      *
-     * Protobuf type {@code stategate.StreamOpts}
+     * Protobuf type {@code stategate.StreamEventOpts}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:stategate.StreamOpts)
-        stategate.Schema.StreamOptsOrBuilder {
+        // @@protoc_insertion_point(builder_implements:stategate.StreamEventOpts)
+        stategate.Schema.StreamEventOptsOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return stategate.Schema.internal_static_stategate_StreamOpts_descriptor;
+        return stategate.Schema.internal_static_stategate_StreamEventOpts_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return stategate.Schema.internal_static_stategate_StreamOpts_fieldAccessorTable
+        return stategate.Schema.internal_static_stategate_StreamEventOpts_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                stategate.Schema.StreamOpts.class, stategate.Schema.StreamOpts.Builder.class);
+                stategate.Schema.StreamEventOpts.class, stategate.Schema.StreamEventOpts.Builder.class);
       }
 
-      // Construct using stategate.Schema.StreamOpts.newBuilder()
+      // Construct using stategate.Schema.StreamEventOpts.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -7472,17 +11423,17 @@ public final class Schema {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return stategate.Schema.internal_static_stategate_StreamOpts_descriptor;
+        return stategate.Schema.internal_static_stategate_StreamEventOpts_descriptor;
       }
 
       @java.lang.Override
-      public stategate.Schema.StreamOpts getDefaultInstanceForType() {
-        return stategate.Schema.StreamOpts.getDefaultInstance();
+      public stategate.Schema.StreamEventOpts getDefaultInstanceForType() {
+        return stategate.Schema.StreamEventOpts.getDefaultInstance();
       }
 
       @java.lang.Override
-      public stategate.Schema.StreamOpts build() {
-        stategate.Schema.StreamOpts result = buildPartial();
+      public stategate.Schema.StreamEventOpts build() {
+        stategate.Schema.StreamEventOpts result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -7490,8 +11441,8 @@ public final class Schema {
       }
 
       @java.lang.Override
-      public stategate.Schema.StreamOpts buildPartial() {
-        stategate.Schema.StreamOpts result = new stategate.Schema.StreamOpts(this);
+      public stategate.Schema.StreamEventOpts buildPartial() {
+        stategate.Schema.StreamEventOpts result = new stategate.Schema.StreamEventOpts(this);
         result.domain_ = domain_;
         result.type_ = type_;
         onBuilt();
@@ -7532,16 +11483,16 @@ public final class Schema {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof stategate.Schema.StreamOpts) {
-          return mergeFrom((stategate.Schema.StreamOpts)other);
+        if (other instanceof stategate.Schema.StreamEventOpts) {
+          return mergeFrom((stategate.Schema.StreamEventOpts)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(stategate.Schema.StreamOpts other) {
-        if (other == stategate.Schema.StreamOpts.getDefaultInstance()) return this;
+      public Builder mergeFrom(stategate.Schema.StreamEventOpts other) {
+        if (other == stategate.Schema.StreamEventOpts.getDefaultInstance()) return this;
         if (!other.getDomain().isEmpty()) {
           domain_ = other.domain_;
           onChanged();
@@ -7565,11 +11516,11 @@ public final class Schema {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        stategate.Schema.StreamOpts parsedMessage = null;
+        stategate.Schema.StreamEventOpts parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (stategate.Schema.StreamOpts) e.getUnfinishedMessage();
+          parsedMessage = (stategate.Schema.StreamEventOpts) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -7789,41 +11740,41 @@ public final class Schema {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:stategate.StreamOpts)
+      // @@protoc_insertion_point(builder_scope:stategate.StreamEventOpts)
     }
 
-    // @@protoc_insertion_point(class_scope:stategate.StreamOpts)
-    private static final stategate.Schema.StreamOpts DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:stategate.StreamEventOpts)
+    private static final stategate.Schema.StreamEventOpts DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new stategate.Schema.StreamOpts();
+      DEFAULT_INSTANCE = new stategate.Schema.StreamEventOpts();
     }
 
-    public static stategate.Schema.StreamOpts getDefaultInstance() {
+    public static stategate.Schema.StreamEventOpts getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<StreamOpts>
-        PARSER = new com.google.protobuf.AbstractParser<StreamOpts>() {
+    private static final com.google.protobuf.Parser<StreamEventOpts>
+        PARSER = new com.google.protobuf.AbstractParser<StreamEventOpts>() {
       @java.lang.Override
-      public StreamOpts parsePartialFrom(
+      public StreamEventOpts parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new StreamOpts(input, extensionRegistry);
+        return new StreamEventOpts(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<StreamOpts> parser() {
+    public static com.google.protobuf.Parser<StreamEventOpts> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<StreamOpts> getParserForType() {
+    public com.google.protobuf.Parser<StreamEventOpts> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public stategate.Schema.StreamOpts getDefaultInstanceForType() {
+    public stategate.Schema.StreamEventOpts getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -10687,6 +14638,21 @@ public final class Schema {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_stategate_Entity_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_stategate_StreamMessageOpts_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_stategate_StreamMessageOpts_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_stategate_Message_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_stategate_Message_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_stategate_PeerMessage_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_stategate_PeerMessage_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_stategate_Entities_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -10702,10 +14668,10 @@ public final class Schema {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_stategate_SearchEventOpts_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_stategate_StreamOpts_descriptor;
+    internal_static_stategate_StreamEventOpts_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_stategate_StreamOpts_fieldAccessorTable;
+      internal_static_stategate_StreamEventOpts_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_stategate_Sort_descriptor;
   private static final 
@@ -10744,48 +14710,65 @@ public final class Schema {
       "\"\213\001\n\006Entity\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$" +
       "\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030\003 \001(\t" +
       "B\013\342\337\037\007\n\005^\\S+$\022/\n\006values\030\004 \001(\0132\027.google.p" +
-      "rotobuf.StructB\006\342\337\037\002 \001\"/\n\010Entities\022#\n\010en" +
-      "tities\030\001 \003(\0132\021.stategate.Entity\"\246\001\n\020Sear" +
-      "chEntityOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+" +
-      "$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014query_st" +
-      "ring\030\003 \001(\t\022\025\n\005limit\030\004 \001(\005B\006\342\337\037\002\020\000\022\016\n\006off" +
-      "set\030\005 \001(\005\022\035\n\004sort\030\t \001(\0132\017.stategate.Sort" +
-      "\"\277\001\n\017SearchEventOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337" +
-      "\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014" +
-      "query_string\030\004 \001(\t\022\013\n\003min\030\005 \001(\003\022\013\n\003max\030\006" +
-      " \001(\003\022\025\n\005limit\030\007 \001(\005B\006\342\337\037\002\020\000\022\016\n\006offset\030\010 " +
-      "\001(\005\022\035\n\004sort\030\t \001(\0132\017.stategate.Sort\"D\n\nSt" +
-      "reamOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n" +
-      "\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\"&\n\004Sort\022\r\n\005fiel" +
-      "d\030\001 \001(\t\022\017\n\007reverse\030\002 \001(\010\"\246\001\n\005Event\022\023\n\002id" +
-      "\030\001 \001(\tB\007\342\337\037\003\220\001\004\022)\n\006entity\030\002 \001(\0132\021.stateg" +
-      "ate.EntityB\006\342\337\037\002 \001\022\026\n\006method\030\005 \001(\tB\006\342\337\037\002" +
-      "X\001\022/\n\006claims\030\003 \001(\0132\027.google.protobuf.Str" +
-      "uctB\006\342\337\037\002 \001\022\024\n\004time\030\004 \001(\003B\006\342\337\037\002\020\000\"*\n\006Eve" +
-      "nts\022 \n\006events\030\001 \003(\0132\020.stategate.Event2\320\004" +
-      "\n\rEntityService\022_\n\003Set\022\021.stategate.Entit" +
-      "y\032\026.google.protobuf.Empty\"-\202\323\344\223\002\'\"%/api/" +
-      "entity/ref/{domain}/{type}/{key}\022[\n\004Edit" +
-      "\022\021.stategate.Entity\032\021.stategate.Entity\"-" +
-      "\202\323\344\223\002\'2%/api/entity/ref/{domain}/{type}/" +
-      "{key}\022f\n\006Revert\022\023.stategate.EventRef\032\021.s" +
-      "tategate.Entity\"4\202\323\344\223\002.\032,/api/entity/ref" +
-      "/{domain}/{type}/{key}/revert\022]\n\003Get\022\024.s" +
-      "tategate.EntityRef\032\021.stategate.Entity\"-\202" +
-      "\323\344\223\002\'\022%/api/entity/ref/{domain}/{type}/{" +
-      "key}\022b\n\003Del\022\024.stategate.EntityRef\032\026.goog" +
-      "le.protobuf.Empty\"-\202\323\344\223\002\'*%/api/entity/r" +
-      "ef/{domain}/{type}/{key}\022V\n\006Search\022\033.sta" +
-      "tegate.SearchEntityOpts\032\023.stategate.Enti" +
-      "ties\"\032\202\323\344\223\002\024\022\022/api/entity/search2\226\002\n\014Eve" +
-      "ntService\022O\n\006Stream\022\025.stategate.StreamOp" +
-      "ts\032\020.stategate.Event\"\032\202\323\344\223\002\024\022\022/api/event" +
-      "s/stream0\001\022S\n\006Search\022\032.stategate.SearchE" +
-      "ventOpts\032\021.stategate.Events\"\032\202\323\344\223\002\024\022\022/ap" +
-      "i/events/search\022`\n\003Get\022\023.stategate.Event" +
-      "Ref\032\020.stategate.Event\"2\202\323\344\223\002,\022*/api/even" +
-      "ts/ref/{domain}/{type}/{key}/{id}B\013Z\tsta" +
-      "tegateb\006proto3"
+      "rotobuf.StructB\006\342\337\037\002 \001\"i\n\021StreamMessageO" +
+      "pts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\034\n\007chan" +
+      "nel\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\003 \001(\tB\013\342\337" +
+      "\037\007\n\005^\\S+$\"\216\001\n\007Message\022\033\n\006domain\030\001 \001(\tB\013\342" +
+      "\337\037\007\n\005^\\S+$\022\034\n\007channel\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$" +
+      "\022\031\n\004type\030\003 \001(\tB\013\342\337\037\007\n\005^\\S+$\022-\n\004body\030\004 \001(" +
+      "\0132\027.google.protobuf.StructB\006\342\337\037\002 \001\"\356\001\n\013P" +
+      "eerMessage\022\023\n\002id\030\001 \001(\tB\007\342\337\037\003\220\001\004\022\033\n\006domai" +
+      "n\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\034\n\007channel\030\003 \001(\tB\013\342" +
+      "\337\037\007\n\005^\\S+$\022\031\n\004type\030\004 \001(\tB\013\342\337\037\007\n\005^\\S+$\022-\n" +
+      "\004body\030\005 \001(\0132\027.google.protobuf.StructB\006\342\337" +
+      "\037\002 \001\022/\n\006claims\030\006 \001(\0132\027.google.protobuf.S" +
+      "tructB\006\342\337\037\002 \001\022\024\n\004time\030\007 \001(\003B\006\342\337\037\002\020\000\"/\n\010E" +
+      "ntities\022#\n\010entities\030\001 \003(\0132\021.stategate.En" +
+      "tity\"\246\001\n\020SearchEntityOpts\022\033\n\006domain\030\001 \001(" +
+      "\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+" +
+      "$\022\024\n\014query_string\030\003 \001(\t\022\025\n\005limit\030\004 \001(\005B\006" +
+      "\342\337\037\002\020\000\022\016\n\006offset\030\005 \001(\005\022\035\n\004sort\030\t \001(\0132\017.s" +
+      "tategate.Sort\"\277\001\n\017SearchEventOpts\022\033\n\006dom" +
+      "ain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337" +
+      "\037\007\n\005^\\S+$\022\024\n\014query_string\030\004 \001(\t\022\013\n\003min\030\005" +
+      " \001(\003\022\013\n\003max\030\006 \001(\003\022\025\n\005limit\030\007 \001(\005B\006\342\337\037\002\020\000" +
+      "\022\016\n\006offset\030\010 \001(\005\022\035\n\004sort\030\t \001(\0132\017.statega" +
+      "te.Sort\"I\n\017StreamEventOpts\022\033\n\006domain\030\001 \001" +
+      "(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S" +
+      "+$\"&\n\004Sort\022\r\n\005field\030\001 \001(\t\022\017\n\007reverse\030\002 \001" +
+      "(\010\"\246\001\n\005Event\022\023\n\002id\030\001 \001(\tB\007\342\337\037\003\220\001\004\022)\n\006ent" +
+      "ity\030\002 \001(\0132\021.stategate.EntityB\006\342\337\037\002 \001\022\026\n\006" +
+      "method\030\005 \001(\tB\006\342\337\037\002X\001\022/\n\006claims\030\003 \001(\0132\027.g" +
+      "oogle.protobuf.StructB\006\342\337\037\002 \001\022\024\n\004time\030\004 " +
+      "\001(\003B\006\342\337\037\002\020\000\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020." +
+      "stategate.Event2\320\004\n\rEntityService\022_\n\003Set" +
+      "\022\021.stategate.Entity\032\026.google.protobuf.Em" +
+      "pty\"-\202\323\344\223\002\'\"%/api/entity/ref/{domain}/{t" +
+      "ype}/{key}\022[\n\004Edit\022\021.stategate.Entity\032\021." +
+      "stategate.Entity\"-\202\323\344\223\002\'2%/api/entity/re" +
+      "f/{domain}/{type}/{key}\022f\n\006Revert\022\023.stat" +
+      "egate.EventRef\032\021.stategate.Entity\"4\202\323\344\223\002" +
+      ".\032,/api/entity/ref/{domain}/{type}/{key}" +
+      "/revert\022]\n\003Get\022\024.stategate.EntityRef\032\021.s" +
+      "tategate.Entity\"-\202\323\344\223\002\'\022%/api/entity/ref" +
+      "/{domain}/{type}/{key}\022b\n\003Del\022\024.stategat" +
+      "e.EntityRef\032\026.google.protobuf.Empty\"-\202\323\344" +
+      "\223\002\'*%/api/entity/ref/{domain}/{type}/{ke" +
+      "y}\022V\n\006Search\022\033.stategate.SearchEntityOpt" +
+      "s\032\023.stategate.Entities\"\032\202\323\344\223\002\024\022\022/api/ent" +
+      "ity/search2\233\002\n\014EventService\022T\n\006Stream\022\032." +
+      "stategate.StreamEventOpts\032\020.stategate.Ev" +
+      "ent\"\032\202\323\344\223\002\024\022\022/api/events/stream0\001\022S\n\006Sea" +
+      "rch\022\032.stategate.SearchEventOpts\032\021.stateg" +
+      "ate.Events\"\032\202\323\344\223\002\024\022\022/api/events/search\022`" +
+      "\n\003Get\022\023.stategate.EventRef\032\020.stategate.E" +
+      "vent\"2\202\323\344\223\002,\022*/api/events/ref/{domain}/{" +
+      "type}/{key}/{id}2\304\001\n\013PeerService\022X\n\tBroa" +
+      "dcast\022\022.stategate.Message\032\026.google.proto" +
+      "buf.Empty\"\037\202\323\344\223\002\031\"\024/api/peers/broadcast:" +
+      "\001*\022[\n\006Stream\022\034.stategate.StreamMessageOp" +
+      "ts\032\026.stategate.PeerMessage\"\031\202\323\344\223\002\023\022\021/api" +
+      "/peers/stream0\001B\013Z\tstategateb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -10823,44 +14806,62 @@ public final class Schema {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_Entity_descriptor,
         new java.lang.String[] { "Domain", "Type", "Key", "Values", });
-    internal_static_stategate_Entities_descriptor =
+    internal_static_stategate_StreamMessageOpts_descriptor =
       getDescriptor().getMessageTypes().get(3);
+    internal_static_stategate_StreamMessageOpts_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_stategate_StreamMessageOpts_descriptor,
+        new java.lang.String[] { "Domain", "Channel", "Type", });
+    internal_static_stategate_Message_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_stategate_Message_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_stategate_Message_descriptor,
+        new java.lang.String[] { "Domain", "Channel", "Type", "Body", });
+    internal_static_stategate_PeerMessage_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_stategate_PeerMessage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_stategate_PeerMessage_descriptor,
+        new java.lang.String[] { "Id", "Domain", "Channel", "Type", "Body", "Claims", "Time", });
+    internal_static_stategate_Entities_descriptor =
+      getDescriptor().getMessageTypes().get(6);
     internal_static_stategate_Entities_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_Entities_descriptor,
         new java.lang.String[] { "Entities", });
     internal_static_stategate_SearchEntityOpts_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_stategate_SearchEntityOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_SearchEntityOpts_descriptor,
         new java.lang.String[] { "Domain", "Type", "QueryString", "Limit", "Offset", "Sort", });
     internal_static_stategate_SearchEventOpts_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_stategate_SearchEventOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_SearchEventOpts_descriptor,
         new java.lang.String[] { "Domain", "Type", "QueryString", "Min", "Max", "Limit", "Offset", "Sort", });
-    internal_static_stategate_StreamOpts_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_stategate_StreamOpts_fieldAccessorTable = new
+    internal_static_stategate_StreamEventOpts_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_stategate_StreamEventOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_stategate_StreamOpts_descriptor,
+        internal_static_stategate_StreamEventOpts_descriptor,
         new java.lang.String[] { "Domain", "Type", });
     internal_static_stategate_Sort_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_stategate_Sort_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_Sort_descriptor,
         new java.lang.String[] { "Field", "Reverse", });
     internal_static_stategate_Event_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_stategate_Event_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_Event_descriptor,
         new java.lang.String[] { "Id", "Entity", "Method", "Claims", "Time", });
     internal_static_stategate_Events_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_stategate_Events_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_Events_descriptor,

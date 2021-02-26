@@ -617,16 +617,16 @@ proto.stategate.EventServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.stategate.StreamOpts,
+ *   !proto.stategate.StreamEventOpts,
  *   !proto.stategate.Event>}
  */
 const methodDescriptor_EventService_Stream = new grpc.web.MethodDescriptor(
   '/stategate.EventService/Stream',
   grpc.web.MethodType.SERVER_STREAMING,
-  proto.stategate.StreamOpts,
+  proto.stategate.StreamEventOpts,
   proto.stategate.Event,
   /**
-   * @param {!proto.stategate.StreamOpts} request
+   * @param {!proto.stategate.StreamEventOpts} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -639,13 +639,13 @@ const methodDescriptor_EventService_Stream = new grpc.web.MethodDescriptor(
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.stategate.StreamOpts,
+ *   !proto.stategate.StreamEventOpts,
  *   !proto.stategate.Event>}
  */
 const methodInfo_EventService_Stream = new grpc.web.AbstractClientBase.MethodInfo(
   proto.stategate.Event,
   /**
-   * @param {!proto.stategate.StreamOpts} request
+   * @param {!proto.stategate.StreamEventOpts} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -656,7 +656,7 @@ const methodInfo_EventService_Stream = new grpc.web.AbstractClientBase.MethodInf
 
 
 /**
- * @param {!proto.stategate.StreamOpts} request The request proto
+ * @param {!proto.stategate.StreamEventOpts} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.stategate.Event>}
@@ -673,7 +673,7 @@ proto.stategate.EventServiceClient.prototype.stream =
 
 
 /**
- * @param {!proto.stategate.StreamOpts} request The request proto
+ * @param {!proto.stategate.StreamEventOpts} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.stategate.Event>}
@@ -846,6 +846,213 @@ proto.stategate.EventServicePromiseClient.prototype.get =
       request,
       metadata || {},
       methodDescriptor_EventService_Get);
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.stategate.PeerServiceClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.stategate.PeerServicePromiseClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.stategate.Message,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodDescriptor_PeerService_Broadcast = new grpc.web.MethodDescriptor(
+  '/stategate.PeerService/Broadcast',
+  grpc.web.MethodType.UNARY,
+  proto.stategate.Message,
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.stategate.Message} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.stategate.Message,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodInfo_PeerService_Broadcast = new grpc.web.AbstractClientBase.MethodInfo(
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.stategate.Message} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.stategate.Message} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.stategate.PeerServiceClient.prototype.broadcast =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/stategate.PeerService/Broadcast',
+      request,
+      metadata || {},
+      methodDescriptor_PeerService_Broadcast,
+      callback);
+};
+
+
+/**
+ * @param {!proto.stategate.Message} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.stategate.PeerServicePromiseClient.prototype.broadcast =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/stategate.PeerService/Broadcast',
+      request,
+      metadata || {},
+      methodDescriptor_PeerService_Broadcast);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.stategate.StreamMessageOpts,
+ *   !proto.stategate.PeerMessage>}
+ */
+const methodDescriptor_PeerService_Stream = new grpc.web.MethodDescriptor(
+  '/stategate.PeerService/Stream',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.stategate.StreamMessageOpts,
+  proto.stategate.PeerMessage,
+  /**
+   * @param {!proto.stategate.StreamMessageOpts} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.stategate.PeerMessage.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.stategate.StreamMessageOpts,
+ *   !proto.stategate.PeerMessage>}
+ */
+const methodInfo_PeerService_Stream = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.stategate.PeerMessage,
+  /**
+   * @param {!proto.stategate.StreamMessageOpts} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.stategate.PeerMessage.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.stategate.StreamMessageOpts} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.stategate.PeerMessage>}
+ *     The XHR Node Readable Stream
+ */
+proto.stategate.PeerServiceClient.prototype.stream =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/stategate.PeerService/Stream',
+      request,
+      metadata || {},
+      methodDescriptor_PeerService_Stream);
+};
+
+
+/**
+ * @param {!proto.stategate.StreamMessageOpts} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.stategate.PeerMessage>}
+ *     The XHR Node Readable Stream
+ */
+proto.stategate.PeerServicePromiseClient.prototype.stream =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/stategate.PeerService/Stream',
+      request,
+      metadata || {},
+      methodDescriptor_PeerService_Stream);
 };
 
 

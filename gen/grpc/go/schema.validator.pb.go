@@ -5,16 +5,16 @@ package stategate
 
 import (
 	fmt "fmt"
-	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/golang/protobuf/ptypes/any"
 	_ "github.com/golang/protobuf/ptypes/empty"
-	_ "github.com/mwitkow/go-proto-validators"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/struct"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
-	_ "github.com/golang/protobuf/ptypes/any"
-	regexp "regexp"
+	_ "github.com/mwitkow/go-proto-validators"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
+	math "math"
+	regexp "regexp"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -84,6 +84,88 @@ func (this *Entity) Validate() error {
 	}
 	return nil
 }
+
+var _regex_StreamMessageOpts_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_StreamMessageOpts_Channel = regexp.MustCompile(`^\S+$`)
+var _regex_StreamMessageOpts_Type = regexp.MustCompile(`^\S+$`)
+
+func (this *StreamMessageOpts) Validate() error {
+	if !_regex_StreamMessageOpts_Domain.MatchString(this.Domain) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
+	}
+	if !_regex_StreamMessageOpts_Channel.MatchString(this.Channel) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Channel", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Channel))
+	}
+	if !_regex_StreamMessageOpts_Type.MatchString(this.Type) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
+	}
+	return nil
+}
+
+var _regex_Message_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_Message_Channel = regexp.MustCompile(`^\S+$`)
+var _regex_Message_Type = regexp.MustCompile(`^\S+$`)
+
+func (this *Message) Validate() error {
+	if !_regex_Message_Domain.MatchString(this.Domain) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
+	}
+	if !_regex_Message_Channel.MatchString(this.Channel) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Channel", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Channel))
+	}
+	if !_regex_Message_Type.MatchString(this.Type) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
+	}
+	if nil == this.Body {
+		return github_com_mwitkow_go_proto_validators.FieldError("Body", fmt.Errorf("message must exist"))
+	}
+	if this.Body != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Body); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Body", err)
+		}
+	}
+	return nil
+}
+
+var _regex_PeerMessage_Id = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+var _regex_PeerMessage_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_PeerMessage_Channel = regexp.MustCompile(`^\S+$`)
+var _regex_PeerMessage_Type = regexp.MustCompile(`^\S+$`)
+
+func (this *PeerMessage) Validate() error {
+	if !_regex_PeerMessage_Id.MatchString(this.Id) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.Id))
+	}
+	if !_regex_PeerMessage_Domain.MatchString(this.Domain) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
+	}
+	if !_regex_PeerMessage_Channel.MatchString(this.Channel) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Channel", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Channel))
+	}
+	if !_regex_PeerMessage_Type.MatchString(this.Type) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
+	}
+	if nil == this.Body {
+		return github_com_mwitkow_go_proto_validators.FieldError("Body", fmt.Errorf("message must exist"))
+	}
+	if this.Body != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Body); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Body", err)
+		}
+	}
+	if nil == this.Claims {
+		return github_com_mwitkow_go_proto_validators.FieldError("Claims", fmt.Errorf("message must exist"))
+	}
+	if this.Claims != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Claims); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Claims", err)
+		}
+	}
+	if !(this.Time > 0) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Time", fmt.Errorf(`value '%v' must be greater than '0'`, this.Time))
+	}
+	return nil
+}
 func (this *Entities) Validate() error {
 	for _, item := range this.Entities {
 		if item != nil {
@@ -137,14 +219,14 @@ func (this *SearchEventOpts) Validate() error {
 	return nil
 }
 
-var _regex_StreamOpts_Domain = regexp.MustCompile(`^\S+$`)
-var _regex_StreamOpts_Type = regexp.MustCompile(`^\S+$`)
+var _regex_StreamEventOpts_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_StreamEventOpts_Type = regexp.MustCompile(`^\S+$`)
 
-func (this *StreamOpts) Validate() error {
-	if !_regex_StreamOpts_Domain.MatchString(this.Domain) {
+func (this *StreamEventOpts) Validate() error {
+	if !_regex_StreamEventOpts_Domain.MatchString(this.Domain) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
 	}
-	if !_regex_StreamOpts_Type.MatchString(this.Type) {
+	if !_regex_StreamEventOpts_Type.MatchString(this.Type) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Type", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Type))
 	}
 	return nil

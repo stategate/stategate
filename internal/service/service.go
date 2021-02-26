@@ -2,205 +2,77 @@ package service
 
 import (
 	"context"
-	"fmt"
 	"github.com/autom8ter/machine/v2"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
-	"github.com/autom8ter/stategate/internal/auth"
 	"github.com/autom8ter/stategate/internal/channel"
 	"github.com/autom8ter/stategate/internal/logger"
 	"github.com/autom8ter/stategate/internal/storage"
 	"github.com/golang/protobuf/ptypes/empty"
-	"github.com/google/uuid"
-	"github.com/pkg/errors"
-	"google.golang.org/protobuf/types/known/structpb"
-	"time"
+	"go.uber.org/zap"
 )
 
 type Service struct {
-	storage storage.Provider
-	channel channel.Provider
-	lgger   *logger.Logger
-	ps      machine.Machine
-	cancel  func()
+	storage  storage.Provider
+	channel  channel.Provider
+	lgger    *logger.Logger
+	messages machine.Machine
+	events   machine.Machine
+	cancel   func()
 }
 
-func NewService(storage storage.Provider, channel channel.Provider, lgger *logger.Logger, machne machine.Machine) (*Service, error) {
-	ctx, cancel := context.WithCancel(context.Background())
+func NewService(ctx context.Context, storage storage.Provider, channel channel.Provider, lgger *logger.Logger) (*Service, error) {
+	ctx, cancel := context.WithCancel(ctx)
 	svc := &Service{
 		storage: storage,
 		lgger:   lgger,
 		channel: channel,
-		ps:      machne,
-		cancel:  cancel,
+		messages: machine.New(machine.WithErrHandler(func(err error) {
+			lgger.Error("message streaming error", zap.Error(err))
+		})),
+		events: machine.New(machine.WithErrHandler(func(err error) {
+			lgger.Error("event streaming error", zap.Error(err))
+		})),
+		cancel: cancel,
 	}
-	ch, err := channel.GetChannel(ctx)
+	ech, err := channel.GetEventChannel(ctx)
 	if err != nil {
-		return nil, err
+		return nil, err.Err
+	}
+	mch, err := channel.GetMessageChannel(ctx)
+	if err != nil {
+		return nil, err.Err
 	}
 	go func() {
+		ctx, cancel := context.WithCancel(ctx)
 		defer cancel()
 		for {
 			select {
 			case <-ctx.Done():
 				return
-			case event := <-ch:
-				svc.ps.Publish(ctx, machine.Msg{
-					Channel: channelName(event.GetEntity().GetDomain(), event.GetEntity().GetType()),
+			case event := <-ech:
+				svc.events.Publish(ctx, machine.Msg{
+					Channel: eventChannelName(event.GetEntity().GetDomain(), event.GetEntity().GetType()),
 					Body:    event,
 				})
 			}
 		}
 	}()
-	return svc, nil
-}
-
-func (s Service) setEntity(ctx context.Context, entity *stategate.Entity) (*empty.Empty, error) {
-	c, _ := auth.GetContext(ctx)
-	claims, _ := structpb.NewStruct(c.Claims)
-
-	e := &stategate.Event{
-		Id:     uuid.New().String(),
-		Entity: entity,
-		Method: c.Method,
-		Claims: claims,
-		Time:   time.Now().UnixNano(),
-	}
-	if err := s.storage.SetEntity(ctx, entity); err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-	if err := s.storage.SaveEvent(ctx, e); err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-
-	if err := s.channel.Publish(ctx, e); err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-	return &empty.Empty{}, nil
-}
-
-func (s Service) getEntity(ctx context.Context, ref *stategate.EntityRef) (*stategate.Entity, error) {
-	obj, err := s.storage.GetEntity(ctx, ref)
-	if err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-	return obj, nil
-}
-
-func (s Service) revertEntity(ctx context.Context, opts *stategate.EventRef) (*stategate.Entity, error) {
-	event, err := s.storage.GetEvent(ctx, &stategate.EventRef{
-		Domain: opts.GetDomain(),
-		Type:   opts.GetType(),
-		Key:    opts.GetKey(),
-		Id:     opts.GetId(),
-	})
-	if err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-	entity := event.GetEntity()
-	if _, err := s.setEntity(ctx, entity); err != nil {
-		return nil, err
-	}
-	return entity, nil
-}
-
-func (s Service) editEntity(ctx context.Context, entity *stategate.Entity) (*stategate.Entity, error) {
-	c, _ := auth.GetContext(ctx)
-	claims, _ := structpb.NewStruct(c.Claims)
-	result, err := s.storage.EditEntity(ctx, entity)
-	if err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-	if err := result.Validate(); err != nil {
-		return nil, err
-	}
-	e := &stategate.Event{
-		Id:     uuid.New().String(),
-		Entity: result,
-		Method: c.Method,
-		Claims: claims,
-		Time:   time.Now().UnixNano(),
-	}
-	if err := s.storage.SaveEvent(ctx, e); err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-	if err := s.channel.Publish(ctx, e); err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-	return result, nil
-}
-
-func (s Service) delEntity(ctx context.Context, ref *stategate.EntityRef) (*empty.Empty, error) {
-	c, _ := auth.GetContext(ctx)
-	claims, _ := structpb.NewStruct(c.Claims)
-	if err := s.storage.DelEntity(ctx, ref); err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-	entity, err := s.getEntity(ctx, ref)
-	if err != nil {
-		return nil, err
-	}
-	e := &stategate.Event{
-		Id:     uuid.New().String(),
-		Entity: entity,
-		Method: c.Method,
-		Claims: claims,
-		Time:   time.Now().UnixNano(),
-	}
-	if err := s.storage.SaveEvent(ctx, e); err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-	if err := s.channel.Publish(ctx, e); err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-	return &empty.Empty{}, nil
-}
-
-func (s Service) streamEvents(opts *stategate.StreamOpts, server stategate.EventService_StreamServer) error {
-	s.ps.Subscribe(server.Context(), channelName(opts.GetDomain(), opts.GetType()), func(ctx context.Context, msg machine.Message) (bool, error) {
-		if err := server.Send(msg.GetBody().(*stategate.Event)); err != nil {
-			return false, errors.Wrap(err, "failed to stream event")
+	go func() {
+		ctx, cancel := context.WithCancel(ctx)
+		defer cancel()
+		for {
+			select {
+			case <-ctx.Done():
+				return
+			case message := <-mch:
+				svc.messages.Publish(ctx, machine.Msg{
+					Channel: msgChannelName(message.GetDomain(), message.GetChannel(), message.GetType()),
+					Body:    message,
+				})
+			}
 		}
-		return true, nil
-	})
-	return nil
-}
-
-func (s Service) searchEvents(ctx context.Context, opts *stategate.SearchEventOpts) (*stategate.Events, error) {
-	events, err := s.storage.SearchEvents(ctx, opts)
-	if err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-	return events, nil
-}
-
-func (s Service) getEvent(ctx context.Context, opts *stategate.EventRef) (*stategate.Event, error) {
-	event, err := s.storage.GetEvent(ctx, opts)
-	if err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-	return event, nil
-}
-
-func (s Service) searchEntities(ctx context.Context, opts *stategate.SearchEntityOpts) (*stategate.Entities, error) {
-	entitys, err := s.storage.SearchEntities(ctx, opts)
-	if err != nil {
-		err.Log(s.lgger)
-		return nil, err.Public()
-	}
-	return entitys, nil
+	}()
+	return svc, nil
 }
 
 func (s Service) Close() error {
@@ -211,7 +83,8 @@ func (s Service) Close() error {
 	if err := s.storage.Close(); err != nil {
 		return err
 	}
-	s.ps.Close()
+	s.events.Close()
+	s.messages.Close()
 	return nil
 }
 
@@ -223,11 +96,15 @@ func (s *Service) EntityServiceServer() stategate.EntityServiceServer {
 	return &entityService{svc: s}
 }
 
+func (s *Service) PeerServiceServer() stategate.PeerServiceServer {
+	return &peerService{svc: s}
+}
+
 type eventService struct {
 	svc *Service
 }
 
-func (e eventService) Stream(opts *stategate.StreamOpts, server stategate.EventService_StreamServer) error {
+func (e eventService) Stream(opts *stategate.StreamEventOpts, server stategate.EventService_StreamServer) error {
 	return e.svc.streamEvents(opts, server)
 }
 
@@ -267,6 +144,14 @@ func (o entityService) Search(ctx context.Context, opts *stategate.SearchEntityO
 	return o.svc.searchEntities(ctx, opts)
 }
 
-func channelName(tenant, typ string) string {
-	return fmt.Sprintf("%s.%s", tenant, typ)
+type peerService struct {
+	svc *Service
+}
+
+func (p peerService) Broadcast(ctx context.Context, message *stategate.Message) (*empty.Empty, error) {
+	return p.svc.broadcastMessage(ctx, message)
+}
+
+func (p peerService) Stream(opts *stategate.StreamMessageOpts, server stategate.PeerService_StreamServer) error {
+	return p.svc.streamMessages(opts, server)
 }

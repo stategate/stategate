@@ -4,7 +4,6 @@ import (
 	"context"
 	"crypto/tls"
 	"fmt"
-	"github.com/autom8ter/machine/v2"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
 	"github.com/autom8ter/stategate/internal/auth"
 	"github.com/autom8ter/stategate/internal/channel"
@@ -147,16 +146,14 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 		return errors.Wrap(err, "failed to setup channel provider")
 	}
 	defer channelProvider.Close()
-	m := machine.New(machine.WithErrHandler(func(err error) {
-		lgger.Error("streaming error", zap.Error(err))
-	}))
-	svc, err := service.NewService(strgProvider, channelProvider, lgger, m)
+	svc, err := service.NewService(ctx, strgProvider, channelProvider, lgger)
 	if err != nil {
 		return errors.Wrap(err, "failed to setup service")
 	}
 	gserver := grpc.NewServer(gopts...)
 	stategate.RegisterEventServiceServer(gserver, svc.EventServiceServer())
 	stategate.RegisterEntityServiceServer(gserver, svc.EntityServiceServer())
+	stategate.RegisterPeerServiceServer(gserver, svc.PeerServiceServer())
 	reflection.Register(gserver)
 	grpc_prometheus.Register(gserver)
 
@@ -181,11 +178,15 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	mux := http.NewServeMux()
 
 	restMux := runtime.NewServeMux()
+
 	if err := stategate.RegisterEventServiceHandler(ctx, restMux, conn); err != nil {
 		return errors.Wrap(err, "failed to register REST event endpoints")
 	}
 	if err := stategate.RegisterEntityServiceHandler(ctx, restMux, conn); err != nil {
 		return errors.Wrap(err, "failed to register REST entity endpoints")
+	}
+	if err := stategate.RegisterPeerServiceHandler(ctx, restMux, conn); err != nil {
+		return errors.Wrap(err, "failed to register REST peer endpoints")
 	}
 	mux.Handle("/", restMux)
 

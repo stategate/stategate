@@ -16,6 +16,7 @@ const (
 	ErrUnauthenticated Type = 1
 	ErrUnauthorized    Type = 2
 	ErrNotFound        Type = 5
+	ErrTimeout         Type = 6
 )
 
 type Error struct {
@@ -41,6 +42,8 @@ func (e Error) Public() error {
 		return status.Error(codes.PermissionDenied, string(bits))
 	case ErrUnknown:
 		return status.Error(codes.Internal, string(bits))
+	case ErrTimeout:
+		return status.Error(codes.DeadlineExceeded, string(bits))
 	default:
 		if e.Err == context.Canceled {
 			return status.Error(codes.DeadlineExceeded, string(bits))

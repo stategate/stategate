@@ -41,7 +41,7 @@ export class EntityServiceClient extends grpc.Client {
 }
 
 interface IEventServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
-  stream: grpc.MethodDefinition<schema_pb.StreamOpts, schema_pb.Event>;
+  stream: grpc.MethodDefinition<schema_pb.StreamEventOpts, schema_pb.Event>;
   search: grpc.MethodDefinition<schema_pb.SearchEventOpts, schema_pb.Events>;
   get: grpc.MethodDefinition<schema_pb.EventRef, schema_pb.Event>;
 }
@@ -50,12 +50,28 @@ export const EventServiceService: IEventServiceService;
 
 export class EventServiceClient extends grpc.Client {
   constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
-  stream(argument: schema_pb.StreamOpts, metadataOrOptions?: grpc.Metadata | grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.Event>;
-  stream(argument: schema_pb.StreamOpts, metadata?: grpc.Metadata | null, options?: grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.Event>;
+  stream(argument: schema_pb.StreamEventOpts, metadataOrOptions?: grpc.Metadata | grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.Event>;
+  stream(argument: schema_pb.StreamEventOpts, metadata?: grpc.Metadata | null, options?: grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.Event>;
   search(argument: schema_pb.SearchEventOpts, callback: grpc.requestCallback<schema_pb.Events>): grpc.ClientUnaryCall;
   search(argument: schema_pb.SearchEventOpts, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Events>): grpc.ClientUnaryCall;
   search(argument: schema_pb.SearchEventOpts, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Events>): grpc.ClientUnaryCall;
   get(argument: schema_pb.EventRef, callback: grpc.requestCallback<schema_pb.Event>): grpc.ClientUnaryCall;
   get(argument: schema_pb.EventRef, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Event>): grpc.ClientUnaryCall;
   get(argument: schema_pb.EventRef, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Event>): grpc.ClientUnaryCall;
+}
+
+interface IPeerServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
+  broadcast: grpc.MethodDefinition<schema_pb.Message, google_protobuf_empty_pb.Empty>;
+  stream: grpc.MethodDefinition<schema_pb.StreamMessageOpts, schema_pb.PeerMessage>;
+}
+
+export const PeerServiceService: IPeerServiceService;
+
+export class PeerServiceClient extends grpc.Client {
+  constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
+  broadcast(argument: schema_pb.Message, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  broadcast(argument: schema_pb.Message, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  broadcast(argument: schema_pb.Message, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  stream(argument: schema_pb.StreamMessageOpts, metadataOrOptions?: grpc.Metadata | grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.PeerMessage>;
+  stream(argument: schema_pb.StreamMessageOpts, metadata?: grpc.Metadata | null, options?: grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.PeerMessage>;
 }

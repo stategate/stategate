@@ -96,6 +96,110 @@ export namespace Entity {
   }
 }
 
+export class StreamMessageOpts extends jspb.Message {
+  getDomain(): string;
+  setDomain(value: string): StreamMessageOpts;
+
+  getChannel(): string;
+  setChannel(value: string): StreamMessageOpts;
+
+  getType(): string;
+  setType(value: string): StreamMessageOpts;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StreamMessageOpts.AsObject;
+  static toObject(includeInstance: boolean, msg: StreamMessageOpts): StreamMessageOpts.AsObject;
+  static serializeBinaryToWriter(message: StreamMessageOpts, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StreamMessageOpts;
+  static deserializeBinaryFromReader(message: StreamMessageOpts, reader: jspb.BinaryReader): StreamMessageOpts;
+}
+
+export namespace StreamMessageOpts {
+  export type AsObject = {
+    domain: string,
+    channel: string,
+    type: string,
+  }
+}
+
+export class Message extends jspb.Message {
+  getDomain(): string;
+  setDomain(value: string): Message;
+
+  getChannel(): string;
+  setChannel(value: string): Message;
+
+  getType(): string;
+  setType(value: string): Message;
+
+  getBody(): google_protobuf_struct_pb.Struct | undefined;
+  setBody(value?: google_protobuf_struct_pb.Struct): Message;
+  hasBody(): boolean;
+  clearBody(): Message;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Message.AsObject;
+  static toObject(includeInstance: boolean, msg: Message): Message.AsObject;
+  static serializeBinaryToWriter(message: Message, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Message;
+  static deserializeBinaryFromReader(message: Message, reader: jspb.BinaryReader): Message;
+}
+
+export namespace Message {
+  export type AsObject = {
+    domain: string,
+    channel: string,
+    type: string,
+    body?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class PeerMessage extends jspb.Message {
+  getId(): string;
+  setId(value: string): PeerMessage;
+
+  getDomain(): string;
+  setDomain(value: string): PeerMessage;
+
+  getChannel(): string;
+  setChannel(value: string): PeerMessage;
+
+  getType(): string;
+  setType(value: string): PeerMessage;
+
+  getBody(): google_protobuf_struct_pb.Struct | undefined;
+  setBody(value?: google_protobuf_struct_pb.Struct): PeerMessage;
+  hasBody(): boolean;
+  clearBody(): PeerMessage;
+
+  getClaims(): google_protobuf_struct_pb.Struct | undefined;
+  setClaims(value?: google_protobuf_struct_pb.Struct): PeerMessage;
+  hasClaims(): boolean;
+  clearClaims(): PeerMessage;
+
+  getTime(): number;
+  setTime(value: number): PeerMessage;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PeerMessage.AsObject;
+  static toObject(includeInstance: boolean, msg: PeerMessage): PeerMessage.AsObject;
+  static serializeBinaryToWriter(message: PeerMessage, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PeerMessage;
+  static deserializeBinaryFromReader(message: PeerMessage, reader: jspb.BinaryReader): PeerMessage;
+}
+
+export namespace PeerMessage {
+  export type AsObject = {
+    id: string,
+    domain: string,
+    channel: string,
+    type: string,
+    body?: google_protobuf_struct_pb.Struct.AsObject,
+    claims?: google_protobuf_struct_pb.Struct.AsObject,
+    time: number,
+  }
+}
+
 export class Entities extends jspb.Message {
   getEntitiesList(): Array<Entity>;
   setEntitiesList(value: Array<Entity>): Entities;
@@ -204,22 +308,22 @@ export namespace SearchEventOpts {
   }
 }
 
-export class StreamOpts extends jspb.Message {
+export class StreamEventOpts extends jspb.Message {
   getDomain(): string;
-  setDomain(value: string): StreamOpts;
+  setDomain(value: string): StreamEventOpts;
 
   getType(): string;
-  setType(value: string): StreamOpts;
+  setType(value: string): StreamEventOpts;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): StreamOpts.AsObject;
-  static toObject(includeInstance: boolean, msg: StreamOpts): StreamOpts.AsObject;
-  static serializeBinaryToWriter(message: StreamOpts, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): StreamOpts;
-  static deserializeBinaryFromReader(message: StreamOpts, reader: jspb.BinaryReader): StreamOpts;
+  toObject(includeInstance?: boolean): StreamEventOpts.AsObject;
+  static toObject(includeInstance: boolean, msg: StreamEventOpts): StreamEventOpts.AsObject;
+  static serializeBinaryToWriter(message: StreamEventOpts, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StreamEventOpts;
+  static deserializeBinaryFromReader(message: StreamEventOpts, reader: jspb.BinaryReader): StreamEventOpts;
 }
 
-export namespace StreamOpts {
+export namespace StreamEventOpts {
   export type AsObject = {
     domain: string,
     type: string,

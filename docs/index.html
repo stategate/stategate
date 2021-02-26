@@ -203,6 +203,14 @@
                 </li>
               
                 <li>
+                  <a href="#stategate.Message"><span class="badge">M</span>Message</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.PeerMessage"><span class="badge">M</span>PeerMessage</a>
+                </li>
+              
+                <li>
                   <a href="#stategate.SearchEntityOpts"><span class="badge">M</span>SearchEntityOpts</a>
                 </li>
               
@@ -215,7 +223,11 @@
                 </li>
               
                 <li>
-                  <a href="#stategate.StreamOpts"><span class="badge">M</span>StreamOpts</a>
+                  <a href="#stategate.StreamEventOpts"><span class="badge">M</span>StreamEventOpts</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.StreamMessageOpts"><span class="badge">M</span>StreamMessageOpts</a>
                 </li>
               
               
@@ -227,6 +239,10 @@
               
                 <li>
                   <a href="#stategate.EventService"><span class="badge">S</span>EventService</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.PeerService"><span class="badge">S</span>PeerService</a>
                 </li>
               
             </ul>
@@ -715,6 +731,276 @@ must not be empty or contain spaces </p></td>
 
         
       
+        <h3 id="stategate.Message">Message</h3>
+        <p>Message is an arbitrary message to be delivered to a Peer</p><p>Messages are NOT persisted and should only be used to communicate with other Peers</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the message&#39;s business domain(ex: accounting)
+must not be empty or contain spaces </p></td>
+                </tr>
+              
+                <tr>
+                  <td>channel</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the message&#39;s channel(ex: general)
+must not be empty or contain spaces </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>message&#39;s type (ex: comment)
+must not be empty or contain spaces </p></td>
+                </tr>
+              
+                <tr>
+                  <td>body</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>the body of the message(k/v values). </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>channel</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>body</td>
+                  <td>
+                    <ul>
+                    
+                      <li>msg_exists: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="stategate.PeerMessage">PeerMessage</h3>
+        <p>PeerMessage is a message produced by a client to the PeerService</p><p>PeerMessages are NOT persisted and should only be used to communicate with other Peers</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the unique id of the message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the message&#39;s business domain(ex: accounting)
+must not be empty or contain spaces </p></td>
+                </tr>
+              
+                <tr>
+                  <td>channel</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the message&#39;s channel(ex: general)
+must not be empty or contain spaces </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>message&#39;s type (ex: comment)
+must not be empty or contain spaces </p></td>
+                </tr>
+              
+                <tr>
+                  <td>body</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>the body of the message(k/v values). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>claims</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>the authentication claims of the message producer. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>timestamp(ns) of when the message was broadcasted. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td>
+                    <ul>
+                    
+                      <li>uuid_ver: 4</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>domain</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>channel</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>body</td>
+                  <td>
+                    <ul>
+                    
+                      <li>msg_exists: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>claims</td>
+                  <td>
+                    <ul>
+                    
+                      <li>msg_exists: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td>
+                    <ul>
+                    
+                      <li>int_gt: 0</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
         <h3 id="stategate.SearchEntityOpts">SearchEntityOpts</h3>
         <p>SearchEntityOpts are options when querying the current values of entities.</p><p>If historical values are needed, SearchEvents should be used</p>
 
@@ -983,8 +1269,8 @@ please note that dot notation may be used to access nested fields </p></td>
 
         
       
-        <h3 id="stategate.StreamOpts">StreamOpts</h3>
-        <p>StreamOpts are options for consumers looking to stream events.</p><p>Events are automatically emitted from mutations made from State mutations within the EntityService</p>
+        <h3 id="stategate.StreamEventOpts">StreamEventOpts</h3>
+        <p>StreamEventOpts are options for consumers looking to stream events.</p><p>Events are automatically emitted from mutations made from State mutations within the EntityService</p>
 
         
           <table class="field-table">
@@ -1029,6 +1315,99 @@ must not be empty or contain spaces </p></td>
               
                 <tr>
                   <td>domain</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="stategate.StreamMessageOpts">StreamMessageOpts</h3>
+        <p>StreamMessageOpts holds options for streaming messages produced by Peers</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the message&#39;s business domain(ex: accounting) to subscribe to
+must not be empty or contain spaces
+* indicates any domain </p></td>
+                </tr>
+              
+                <tr>
+                  <td>channel</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the message&#39;s channel(ex: general) to subscribe to
+must not be empty or contain spaces
+* indicates any channel </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>message&#39;s type (ex: comment) to subscribe to
+must not be empty or contain spaces
+* indicates any type </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>channel</td>
                   <td>
                     <ul>
                     
@@ -1208,7 +1587,7 @@ an Entity may be recovered via querying the Event store for historical records o
             
               <tr>
                 <td>Stream</td>
-                <td><a href="#stategate.StreamOpts">StreamOpts</a></td>
+                <td><a href="#stategate.StreamEventOpts">StreamEventOpts</a></td>
                 <td><a href="#stategate.Event">Event</a> stream</td>
                 <td><p>Stream creates an event stream/subscription to state changes to entities in real time. Glob matching is supported.</p></td>
               </tr>
@@ -1271,6 +1650,70 @@ an Entity may be recovered via querying the Event store for historical records o
                 <td>Get</td>
                 <td>GET</td>
                 <td>/api/events/ref/{domain}/{type}/{key}/{id}</td>
+                <td></td>
+              </tr>
+              
+            
+            </tbody>
+          </table>
+          
+        
+        <h3 id="stategate.PeerService">PeerService</h3>
+        <p>PeerService provides a means for clients to communicate directly with one another WITHOUT making any state changes.</p><p>Please note that all messages transported via the PeerService are not persisted in any way.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Broadcast</td>
+                <td><a href="#stategate.Message">Message</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Broadcast broadcasts a message to N subscribers(clients calling Stream)</p></td>
+              </tr>
+            
+              <tr>
+                <td>Stream</td>
+                <td><a href="#stategate.StreamMessageOpts">StreamMessageOpts</a></td>
+                <td><a href="#stategate.PeerMessage">PeerMessage</a> stream</td>
+                <td><p>Stream consumes/streams messages from message producers(clients calling broadcast)</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+          
+          
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+            
+              
+              
+              <tr>
+                <td>Broadcast</td>
+                <td>POST</td>
+                <td>/api/peers/broadcast</td>
+                <td>*</td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>Stream</td>
+                <td>GET</td>
+                <td>/api/peers/stream</td>
                 <td></td>
               </tr>
               

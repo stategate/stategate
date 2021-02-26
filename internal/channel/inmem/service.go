@@ -11,30 +11,30 @@ import (
 
 type Service struct {
 	logger *logger.Logger
-	ps     machine.Machine
+	machine     machine.Machine
 }
 
 func NewService(logger *logger.Logger) *Service {
 	return &Service{
 		logger: logger,
-		ps:     machine.New(),
+		machine:     machine.New(),
 	}
 }
 
-func (s *Service) Publish(ctx context.Context, event *stategate.Event) *errorz.Error {
-	s.ps.Publish(ctx, machine.Msg{
-		Channel: constants.BackendChannel,
+func (s *Service) PublishEvent(ctx context.Context, event *stategate.Event) *errorz.Error {
+	s.machine.Publish(ctx, machine.Msg{
+		Channel: constants.EventChannel,
 		Body:    event,
 	})
 	return nil
 }
 
-func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error) {
+func (s *Service) GetEventChannel(ctx context.Context) (chan *stategate.Event, *errorz.Error) {
 	events := make(chan *stategate.Event)
 	go func() {
 		ctx, cancel := context.WithCancel(ctx)
 		defer cancel()
-		s.ps.Subscribe(ctx, constants.BackendChannel, func(ctx context.Context, msg machine.Message) (bool, error) {
+		s.machine.Subscribe(ctx, constants.EventChannel, func(ctx context.Context, msg machine.Message) (bool, error) {
 			events <- msg.GetBody().(*stategate.Event)
 			return true, nil
 		})
@@ -42,7 +42,28 @@ func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error)
 	return events, nil
 }
 
+func (s *Service) GetMessageChannel(ctx context.Context) (chan *stategate.PeerMessage, *errorz.Error) {
+	messages := make(chan *stategate.PeerMessage)
+	go func() {
+		ctx, cancel := context.WithCancel(ctx)
+		defer cancel()
+		s.machine.Subscribe(ctx, constants.MessageChannel, func(ctx context.Context, msg machine.Message) (bool, error) {
+			messages <- msg.GetBody().(*stategate.PeerMessage)
+			return true, nil
+		})
+	}()
+	return messages, nil
+}
+
+func (s *Service) PublishMessage(ctx context.Context, message *stategate.PeerMessage) *errorz.Error {
+	s.machine.Publish(ctx, machine.Msg{
+		Channel: constants.MessageChannel,
+		Body:    message,
+	})
+	return nil
+}
+
 func (s *Service) Close() error {
-	s.ps.Close()
+	s.machine.Close()
 	return nil
 }

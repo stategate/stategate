@@ -12,12 +12,14 @@ import (
 )
 
 type Service struct {
-	logger *logger.Logger
-	reader *kafka.Reader
-	writer *kafka.Writer
+	logger  *logger.Logger
+	readerM *kafka.Reader
+	writerM *kafka.Writer
+	readerE *kafka.Reader
+	writerE *kafka.Writer
 }
 
-func (s *Service) Publish(ctx context.Context, event *stategate.Event) *errorz.Error {
+func (s *Service) PublishEvent(ctx context.Context, event *stategate.Event) *errorz.Error {
 	bits, err := proto.Marshal(event)
 	if err != nil {
 		return &errorz.Error{
@@ -31,7 +33,7 @@ func (s *Service) Publish(ctx context.Context, event *stategate.Event) *errorz.E
 			},
 		}
 	}
-	if err := s.writer.WriteMessages(ctx, kafka.Message{
+	if err := s.writerE.WriteMessages(ctx, kafka.Message{
 		Key:   []byte(event.Id),
 		Value: bits,
 	}); err != nil {
@@ -49,7 +51,7 @@ func (s *Service) Publish(ctx context.Context, event *stategate.Event) *errorz.E
 	return nil
 }
 
-func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error) {
+func (s *Service) GetEventChannel(ctx context.Context) (chan *stategate.Event, *errorz.Error) {
 	events := make(chan *stategate.Event)
 	go func() {
 		for {
@@ -57,7 +59,7 @@ func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error)
 			case <-ctx.Done():
 				return
 			default:
-				msg, err := s.reader.ReadMessage(context.Background())
+				msg, err := s.readerE.ReadMessage(ctx)
 				if err != nil {
 					s.logger.Error("failed to read event", zap.Error(err))
 					continue
@@ -74,18 +76,97 @@ func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error)
 	return events, nil
 }
 
-func NewService(logger *logger.Logger, reader *kafka.Reader, writer *kafka.Writer) (*Service, error) {
+func (s *Service) PublishMessage(ctx context.Context, message *stategate.PeerMessage) *errorz.Error {
+	if ctx.Err() != nil {
+		return &errorz.Error{
+			Type:     errorz.ErrTimeout,
+			Info:     "failed to publish message",
+			Err:      ctx.Err(),
+			Metadata: map[string]string{},
+		}
+	}
+	bits, err := proto.Marshal(message)
+	if err != nil {
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to encode message",
+			Err:  err,
+			Metadata: map[string]string{
+				"message_domain":  message.GetDomain(),
+				"message_type":    message.GetType(),
+				"message_channel": message.GetChannel(),
+				"message_id":      message.GetId(),
+			},
+		}
+	}
+	if err := s.writerM.WriteMessages(ctx, kafka.Message{
+		Key:   []byte(message.Id),
+		Value: bits,
+	}); err != nil {
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to publish message",
+			Err:  err,
+			Metadata: map[string]string{
+				"message_domain":  message.GetDomain(),
+				"message_type":    message.GetType(),
+				"message_channel": message.GetChannel(),
+				"message_id":      message.GetId(),
+			},
+		}
+	}
+	return nil
+}
+
+func (s *Service) GetMessageChannel(ctx context.Context) (chan *stategate.PeerMessage, *errorz.Error) {
+	if ctx.Err() != nil {
+		return nil, &errorz.Error{
+			Type:     errorz.ErrTimeout,
+			Info:     "failed to setup message channel",
+			Err:      ctx.Err(),
+			Metadata: map[string]string{},
+		}
+	}
+	messages := make(chan *stategate.PeerMessage)
+	go func() {
+		for {
+			select {
+			case <-ctx.Done():
+				return
+			default:
+				msg, err := s.readerM.ReadMessage(ctx)
+				if err != nil {
+					s.logger.Error("failed to read message", zap.Error(err))
+					continue
+				}
+				var m stategate.PeerMessage
+				if err := proto.Unmarshal(msg.Value, &m); err != nil {
+					s.logger.Error("failed to unmarshal message", zap.Error(err))
+					continue
+				}
+				messages <- &m
+			}
+		}
+	}()
+	return messages, nil
+}
+
+func NewService(logger *logger.Logger, readerE, readerM *kafka.Reader, writerE, writerM *kafka.Writer) (*Service, error) {
 	return &Service{
-		logger: logger,
-		reader: reader,
-		writer: writer,
+		logger:  logger,
+		readerE: readerE,
+		readerM: readerM,
+		writerE: writerE,
+		writerM: writerM,
 	}, nil
 }
 
 func (s *Service) Close() error {
 	group := &errgroup.Group{}
-	group.Go(s.writer.Close)
-	group.Go(s.reader.Close)
+	group.Go(s.writerM.Close)
+	group.Go(s.writerE.Close)
+	group.Go(s.readerM.Close)
+	group.Go(s.readerE.Close)
 	if err := group.Wait(); err != nil {
 		return err
 	}

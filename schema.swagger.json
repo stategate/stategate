@@ -503,6 +503,94 @@
           "EventService"
         ]
       }
+    },
+    "/api/peers/broadcast": {
+      "post": {
+        "summary": "Broadcast broadcasts a message to N subscribers(clients calling Stream)",
+        "operationId": "PeerService_Broadcast",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/stategateMessage"
+            }
+          }
+        ],
+        "tags": [
+          "PeerService"
+        ]
+      }
+    },
+    "/api/peers/stream": {
+      "get": {
+        "summary": "Stream consumes/streams messages from message producers(clients calling broadcast)",
+        "operationId": "PeerService_Stream",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/stategatePeerMessage"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of stategatePeerMessage"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the message's business domain(ex: accounting) to subscribe to\nmust not be empty or contain spaces\n* indicates any domain.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "channel",
+            "description": "the message's channel(ex: general) to subscribe to\nmust not be empty or contain spaces\n* indicates any channel.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "message's type (ex: comment) to subscribe to\nmust not be empty or contain spaces\n* indicates any type.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PeerService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -619,6 +707,63 @@
         }
       },
       "title": "Events is an array of events"
+    },
+    "stategateMessage": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "type": "string",
+          "title": "the message's business domain(ex: accounting)\nmust not be empty or contain spaces"
+        },
+        "channel": {
+          "type": "string",
+          "title": "the message's channel(ex: general)\nmust not be empty or contain spaces"
+        },
+        "type": {
+          "type": "string",
+          "title": "message's type (ex: comment)\nmust not be empty or contain spaces"
+        },
+        "body": {
+          "type": "object",
+          "description": "the body of the message(k/v values)."
+        }
+      },
+      "title": "Message is an arbitrary message to be delivered to a Peer\nMessages are NOT persisted and should only be used to communicate with other Peers"
+    },
+    "stategatePeerMessage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "the unique id of the message"
+        },
+        "domain": {
+          "type": "string",
+          "title": "the message's business domain(ex: accounting)\nmust not be empty or contain spaces"
+        },
+        "channel": {
+          "type": "string",
+          "title": "the message's channel(ex: general)\nmust not be empty or contain spaces"
+        },
+        "type": {
+          "type": "string",
+          "title": "message's type (ex: comment)\nmust not be empty or contain spaces"
+        },
+        "body": {
+          "type": "object",
+          "description": "the body of the message(k/v values)."
+        },
+        "claims": {
+          "type": "object",
+          "description": "the authentication claims of the message producer."
+        },
+        "time": {
+          "type": "string",
+          "format": "int64",
+          "description": "timestamp(ns) of when the message was broadcasted."
+        }
+      },
+      "title": "PeerMessage is a message produced by a client to the PeerService\nPeerMessages are NOT persisted and should only be used to communicate with other Peers"
     },
     "stategateSort": {
       "type": "object",

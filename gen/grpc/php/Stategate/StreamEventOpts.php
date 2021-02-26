@@ -9,12 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * StreamOpts are options for consumers looking to stream events.
+ * StreamEventOpts are options for consumers looking to stream events.
  * Events are automatically emitted from mutations made from State mutations within the EntityService
  *
- * Generated from protobuf message <code>stategate.StreamOpts</code>
+ * Generated from protobuf message <code>stategate.StreamEventOpts</code>
  */
-class StreamOpts extends \Google\Protobuf\Internal\Message
+class StreamEventOpts extends \Google\Protobuf\Internal\Message
 {
     /**
      * the domain of the entity (ex: acme) that triggered the event

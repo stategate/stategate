@@ -19,9 +19,9 @@ const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwi
 const allowAll = "cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB0cnVl"
 
 func TestIntegration(t *testing.T) {
+	testInMemMongo(t)
 	testNatsMongo(t)
 	testRedisMongo(t)
-	testInMemMongo(t)
 }
 
 func testRedisMongo(t *testing.T) {
@@ -34,6 +34,7 @@ func testRedisMongo(t *testing.T) {
 	framework.Run(t, []*framework.Provider{
 		rmgo,
 	}, []*framework.TestCase{
+		peerService(ctx),
 		endToEnd(ctx),
 		transaction(ctx),
 	})
@@ -49,6 +50,7 @@ func testNatsMongo(t *testing.T) {
 	framework.Run(t, []*framework.Provider{
 		nmgo,
 	}, []*framework.TestCase{
+		peerService(ctx),
 		endToEnd(ctx),
 		transaction(ctx),
 	})
@@ -62,6 +64,7 @@ func testInMemMongo(t *testing.T) {
 	framework.Run(t, []*framework.Provider{
 		mgo,
 	}, []*framework.TestCase{
+		peerService(ctx),
 		endToEnd(ctx),
 		transaction(ctx),
 	})
@@ -122,7 +125,7 @@ func inmemMongo(t *testing.T, ctx context.Context, mongoPort string) *framework.
 func transaction(ctx context.Context) *framework.TestCase {
 	return &framework.TestCase{
 		Name: "distributed_transaction",
-		Func: func(t *testing.T, eclient *stategate_client_go.EventClient, oclient *stategate_client_go.EntityClient) {
+		Func: func(t *testing.T, client *stategate_client_go.ClientSet) {
 			group, ctx := errgroup.WithContext(ctx)
 			var (
 				typ = "user"
@@ -130,7 +133,7 @@ func transaction(ctx context.Context) *framework.TestCase {
 			)
 
 			group.Go(func() error {
-				return eclient.Stream(ctx, &stategate.StreamOpts{
+				return client.Event().Stream(ctx, &stategate.StreamEventOpts{
 					Domain: "accounting",
 					Type:   typ,
 				}, func(even *stategate.Event) bool {
@@ -142,7 +145,7 @@ func transaction(ctx context.Context) *framework.TestCase {
 			data, _ := structpb.NewStruct(map[string]interface{}{
 				"name": "coleman",
 			})
-			if err := oclient.Set(ctx, &stategate.Entity{
+			if err := client.Entity().Set(ctx, &stategate.Entity{
 				Domain: "accounting",
 				Type:   typ,
 				Key:    key,
@@ -150,7 +153,7 @@ func transaction(ctx context.Context) *framework.TestCase {
 			}); err != nil {
 				t.Fatal(err)
 			}
-			_, err := oclient.Get(ctx, &stategate.EntityRef{
+			_, err := client.Entity().Get(ctx, &stategate.EntityRef{
 				Domain: "accounting",
 				Type:   typ,
 				Key:    key,
@@ -165,16 +168,93 @@ func transaction(ctx context.Context) *framework.TestCase {
 	}
 }
 
+func peerService(ctx context.Context) *framework.TestCase {
+	return &framework.TestCase{
+		Name: "peer service test",
+		Func: func(t *testing.T, client *stategate_client_go.ClientSet) {
+			const (
+				typ = "comment"
+				channel = "general"
+				domain = "accounting"
+				content = "hello world!"
+			)
+			group := &errgroup.Group{}
+
+			group.Go(func() error {
+				count := 0
+				if err := client.Peer().Stream(ctx, &stategate.StreamMessageOpts{
+					Domain:  domain,
+					Channel: channel,
+					Type:    typ,
+				}, func(msg *stategate.PeerMessage) bool {
+					if err := msg.Validate(); err != nil {
+						t.Fatal(err)
+					}
+					t.Logf("received message: %s\n", protojson.Format(msg))
+					count++
+					return count < 3
+				}); err != nil {
+					return err
+				}
+				return nil
+			})
+			<-time.After(1 *time.Second)
+			{
+				data, _ := structpb.NewStruct(map[string]interface{}{
+					"message": content,
+				})
+				if err := client.Peer().Broadcast(ctx, &stategate.Message{
+					Domain:  domain,
+					Channel: channel,
+					Type:    typ,
+					Body:    data,
+				}); err != nil {
+					t.Fatal(err)
+				}
+			}
+			{
+				data, _ := structpb.NewStruct(map[string]interface{}{
+					"message": content,
+				})
+				if err := client.Peer().Broadcast(ctx, &stategate.Message{
+					Domain:  domain,
+					Channel: channel,
+					Type:    typ,
+					Body:    data,
+				}); err != nil {
+					t.Fatal(err)
+				}
+			}
+			{
+				data, _ := structpb.NewStruct(map[string]interface{}{
+					"message": content,
+				})
+				if err := client.Peer().Broadcast(ctx, &stategate.Message{
+					Domain:  domain,
+					Channel: channel,
+					Type:    typ,
+					Body:    data,
+				}); err != nil {
+					t.Fatal(err)
+				}
+			}
+			if err := group.Wait(); err != nil {
+				t.Fatal(err)
+			}
+		},
+	}
+}
+
 func endToEnd(ctx context.Context) *framework.TestCase {
 	return &framework.TestCase{
-		Name: "hello_world",
-		Func: func(t *testing.T, eclient *stategate_client_go.EventClient, oclient *stategate_client_go.EntityClient) {
+		Name: "e2e",
+		Func: func(t *testing.T, client *stategate_client_go.ClientSet) {
 			const typ = "message"
 			const key = "favorite_quote"
 			group := &errgroup.Group{}
 			group.Go(func() error {
 				count := 0
-				if err := eclient.Stream(ctx, &stategate.StreamOpts{
+				if err := client.Event().Stream(ctx, &stategate.StreamEventOpts{
 					Domain: "acme",
 					Type:   typ,
 				}, func(even *stategate.Event) bool {
@@ -204,7 +284,7 @@ func endToEnd(ctx context.Context) *framework.TestCase {
 				}
 				for i := 0; i < 3; i++ {
 					t.Log("setting entity")
-					if err := oclient.Set(context.Background(), event); err != nil {
+					if err := client.Entity().Set(context.Background(), event); err != nil {
 						return err
 					}
 				}
@@ -219,7 +299,7 @@ func endToEnd(ctx context.Context) *framework.TestCase {
 				data, _ := structpb.NewStruct(map[string]interface{}{
 					"messagev2": "hello world v2",
 				})
-				e, err := oclient.Edit(context.Background(), &stategate.Entity{
+				e, err := client.Entity().Edit(context.Background(), &stategate.Entity{
 					Domain: "acme",
 					Type:   typ,
 					Key:    key,
@@ -233,7 +313,7 @@ func endToEnd(ctx context.Context) *framework.TestCase {
 				}
 			}
 			time.Sleep(100 * time.Millisecond)
-			events, err := eclient.Search(ctx, &stategate.SearchEventOpts{
+			events, err := client.Event().Search(ctx, &stategate.SearchEventOpts{
 				Domain:      "acme",
 				Type:        typ,
 				QueryString: fmt.Sprintf(`{ "entity.key": "%s", "entity.values.message": "hello world" }`, key),
@@ -265,7 +345,7 @@ func endToEnd(ctx context.Context) *framework.TestCase {
 			}
 			t.Log(protojson.Format(events))
 
-			reverted, err := oclient.Revert(ctx, &stategate.EventRef{
+			reverted, err := client.Entity().Revert(ctx, &stategate.EventRef{
 				Domain: events.GetEvents()[0].GetEntity().GetDomain(),
 				Type:   events.GetEvents()[0].GetEntity().GetType(),
 				Key:    events.GetEvents()[0].GetEntity().GetKey(),
@@ -277,7 +357,7 @@ func endToEnd(ctx context.Context) *framework.TestCase {
 			if reverted.String() != events.GetEvents()[1].GetEntity().String() {
 				t.Fatal("failed to revert")
 			}
-			objectss, err := oclient.Search(ctx, &stategate.SearchEntityOpts{
+			objectss, err := client.Entity().Search(ctx, &stategate.SearchEntityOpts{
 				Domain:      "acme",
 				Type:        typ,
 				QueryString: `{ "message": "hello world" }`,

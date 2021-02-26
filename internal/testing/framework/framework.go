@@ -37,17 +37,16 @@ func Run(t *testing.T, providers []*Provider, testCases []*TestCase) {
 
 type TestCase struct {
 	Name string
-	Func func(t *testing.T, eclient *stategate_client_go.EventClient, oclient *stategate_client_go.EntityClient)
+	Func func(t *testing.T, clientset *stategate_client_go.ClientSet)
 }
 
 type Provider struct {
-	ctx     context.Context
-	cancel  func()
-	config  *server.Config
-	group   *errgroup.Group
-	lgger   *logger.Logger
-	eclient *stategate_client_go.EventClient
-	oclient *stategate_client_go.EntityClient
+	ctx       context.Context
+	cancel    func()
+	config    *server.Config
+	group     *errgroup.Group
+	lgger     *logger.Logger
+	clientset *stategate_client_go.ClientSet
 }
 
 type Container struct {
@@ -83,18 +82,16 @@ func NewProvider(t *testing.T, ctx context.Context, jwt string, config *server.C
 		zap.Any("storage_provider", cast.ToString(config.StorageProvider["name"])),
 	)
 	f := &Provider{
-		ctx:     ctx,
-		cancel:  cancel,
-		config:  config,
-		group:   group,
-		lgger:   lgger,
-		eclient: nil,
-		oclient: nil,
+		ctx:    ctx,
+		cancel: cancel,
+		config: config,
+		group:  group,
+		lgger:  lgger,
 	}
 	f.group.Go(func() error {
 		return server.ListenAndServe(f.ctx, f.lgger, f.config)
 	})
-	eclient, err := stategate_client_go.NewEventClient(
+	clientset, err := stategate_client_go.NewClientSet(
 		ctx,
 		fmt.Sprintf("localhost:%v", f.config.Port),
 		stategate_client_go.WithTokenSource(oauth2.StaticTokenSource(&oauth2.Token{
@@ -103,26 +100,13 @@ func NewProvider(t *testing.T, ctx context.Context, jwt string, config *server.C
 	if err != nil {
 		t.Fatal(err.Error())
 	}
-	oclient, err := stategate_client_go.NewEntityClient(
-		ctx,
-		fmt.Sprintf("localhost:%v", f.config.Port),
-		stategate_client_go.WithTokenSource(oauth2.StaticTokenSource(&oauth2.Token{
-			AccessToken: jwt,
-		})))
-	if err != nil {
-		t.Fatal(err.Error())
-	}
-	f.eclient = eclient
-	f.oclient = oclient
+	f.clientset = clientset
 	return f
 }
 
 func (f *Provider) Teardown(t *testing.T) {
 	f.cancel()
-	if err := f.eclient.Close(); err != nil {
-		t.Fatal(err)
-	}
-	if err := f.oclient.Close(); err != nil {
+	if err := f.clientset.Close(); err != nil {
 		t.Fatal(err)
 	}
 	if err := f.group.Wait(); err != nil {
@@ -132,6 +116,6 @@ func (f *Provider) Teardown(t *testing.T) {
 
 func (f *Provider) runTestCase(t *testing.T, testCase *TestCase) {
 	t.Run(testCase.Name, func(t *testing.T) {
-		testCase.Func(t, f.eclient, f.oclient)
+		testCase.Func(t, f.clientset)
 	})
 }

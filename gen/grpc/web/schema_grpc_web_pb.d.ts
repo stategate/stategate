@@ -59,7 +59,7 @@ export class EventServiceClient {
                options?: null | { [index: string]: any; });
 
   stream(
-    request: schema_pb.StreamOpts,
+    request: schema_pb.StreamEventOpts,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<schema_pb.Event>;
 
@@ -76,6 +76,25 @@ export class EventServiceClient {
     callback: (err: grpcWeb.Error,
                response: schema_pb.Event) => void
   ): grpcWeb.ClientReadableStream<schema_pb.Event>;
+
+}
+
+export class PeerServiceClient {
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; });
+
+  broadcast(
+    request: schema_pb.Message,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: google_protobuf_empty_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  stream(
+    request: schema_pb.StreamMessageOpts,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<schema_pb.PeerMessage>;
 
 }
 
@@ -122,7 +141,7 @@ export class EventServicePromiseClient {
                options?: null | { [index: string]: any; });
 
   stream(
-    request: schema_pb.StreamOpts,
+    request: schema_pb.StreamEventOpts,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<schema_pb.Event>;
 
@@ -135,6 +154,23 @@ export class EventServicePromiseClient {
     request: schema_pb.EventRef,
     metadata?: grpcWeb.Metadata
   ): Promise<schema_pb.Event>;
+
+}
+
+export class PeerServicePromiseClient {
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; });
+
+  broadcast(
+    request: schema_pb.Message,
+    metadata?: grpcWeb.Metadata
+  ): Promise<google_protobuf_empty_pb.Empty>;
+
+  stream(
+    request: schema_pb.StreamMessageOpts,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<schema_pb.PeerMessage>;
 
 }
 

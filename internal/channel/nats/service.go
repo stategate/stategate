@@ -24,7 +24,15 @@ func NewService(logger *logger.Logger, conn *nats.Conn) (*Service, error) {
 	}, nil
 }
 
-func (s *Service) Publish(ctx context.Context, event *stategate.Event) *errorz.Error {
+func (s *Service) PublishEvent(ctx context.Context, event *stategate.Event) *errorz.Error {
+	if ctx.Err() != nil {
+		return &errorz.Error{
+			Type:     errorz.ErrTimeout,
+			Info:     "failed to publish event",
+			Err:      ctx.Err(),
+			Metadata: map[string]string{},
+		}
+	}
 	bits, err := proto.Marshal(event)
 	if err != nil {
 		return &errorz.Error{
@@ -32,30 +40,43 @@ func (s *Service) Publish(ctx context.Context, event *stategate.Event) *errorz.E
 			Info: "failed to encode event",
 			Err:  err,
 			Metadata: map[string]string{
-				"entity_key":  event.GetEntity().GetKey(),
-				"entity_type": event.GetEntity().GetType(),
-				"event_id":    event.GetId(),
+				"entity_key":   event.GetEntity().GetKey(),
+				"entity_type":  event.GetEntity().GetType(),
+				"event_id":     event.GetId(),
+				"event_method": event.GetMethod(),
 			},
 		}
 	}
-	if err := s.conn.Publish(constants.BackendChannel, bits); err != nil {
+	if err := s.conn.Publish(constants.EventChannel, bits); err != nil {
 		return &errorz.Error{
 			Type: errorz.ErrUnknown,
 			Info: "failed to publish event",
 			Err:  err,
 			Metadata: map[string]string{
-				"entity_key":  event.GetEntity().GetKey(),
-				"entity_type": event.GetEntity().GetType(),
-				"event_id":    event.GetId(),
+				"entity_key":   event.GetEntity().GetKey(),
+				"entity_type":  event.GetEntity().GetType(),
+				"event_id":     event.GetId(),
+				"event_method": event.GetMethod(),
 			},
 		}
 	}
 	return nil
 }
 
-func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error) {
+func (s *Service) GetEventChannel(ctx context.Context) (chan *stategate.Event, *errorz.Error) {
+	if ctx.Err() != nil {
+		return nil, &errorz.Error{
+			Type:     errorz.ErrTimeout,
+			Info:     "failed to setup event channel",
+			Err:      ctx.Err(),
+			Metadata: map[string]string{},
+		}
+	}
 	events := make(chan *stategate.Event)
-	sub, err := s.conn.Subscribe(constants.BackendChannel, func(msg *nats.Msg) {
+	sub, err := s.conn.Subscribe(constants.EventChannel, func(msg *nats.Msg) {
+		if ctx.Err() != nil {
+			return
+		}
 		var event stategate.Event
 		if err := proto.Unmarshal(msg.Data, &event); err != nil {
 			s.logger.Error("failed to unmarshal event", zap.Error(err))
@@ -64,10 +85,92 @@ func (s *Service) GetChannel(ctx context.Context) (chan *stategate.Event, error)
 		events <- &event
 	})
 	if err != nil {
-		return nil, err
+		return nil, &errorz.Error{
+			Type:     errorz.ErrUnknown,
+			Info:     "failed to setup event channel",
+			Err:      err,
+			Metadata: map[string]string{},
+		}
 	}
 	s.sub = sub
 	return events, nil
+}
+
+func (s *Service) PublishMessage(ctx context.Context, message *stategate.PeerMessage) *errorz.Error {
+	if ctx.Err() != nil {
+		return &errorz.Error{
+			Type: errorz.ErrTimeout,
+			Info: "failed to publish message",
+			Err:  ctx.Err(),
+			Metadata: map[string]string{
+				"message_domain":  message.GetDomain(),
+				"message_type":    message.GetType(),
+				"message_channel": message.GetChannel(),
+				"message_id":      message.GetId(),
+			},
+		}
+	}
+	bits, err := proto.Marshal(message)
+	if err != nil {
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to encode message",
+			Err:  err,
+			Metadata: map[string]string{
+				"message_domain":  message.GetDomain(),
+				"message_type":    message.GetType(),
+				"message_channel": message.GetChannel(),
+				"message_id":      message.GetId(),
+			},
+		}
+	}
+	if err := s.conn.Publish(constants.MessageChannel, bits); err != nil {
+		return &errorz.Error{
+			Type: errorz.ErrUnknown,
+			Info: "failed to publish message",
+			Err:  err,
+			Metadata: map[string]string{
+				"message_domain":  message.GetDomain(),
+				"message_type":    message.GetType(),
+				"message_channel": message.GetChannel(),
+				"message_id":      message.GetId(),
+			},
+		}
+	}
+	return nil
+}
+
+func (s *Service) GetMessageChannel(ctx context.Context) (chan *stategate.PeerMessage, *errorz.Error) {
+	if ctx.Err() != nil {
+		return nil, &errorz.Error{
+			Type:     errorz.ErrTimeout,
+			Info:     "failed to setup message channel",
+			Err:      ctx.Err(),
+			Metadata: map[string]string{},
+		}
+	}
+	messages := make(chan *stategate.PeerMessage)
+	sub, err := s.conn.Subscribe(constants.MessageChannel, func(msg *nats.Msg) {
+		if ctx.Err() != nil {
+			return
+		}
+		var m stategate.PeerMessage
+		if err := proto.Unmarshal(msg.Data, &m); err != nil {
+			s.logger.Error("failed to unmarshal message", zap.Error(err))
+			return
+		}
+		messages <- &m
+	})
+	if err != nil {
+		return nil, &errorz.Error{
+			Type:     errorz.ErrUnknown,
+			Info:     "failed to setup message channel",
+			Err:      err,
+			Metadata: map[string]string{},
+		}
+	}
+	s.sub = sub
+	return messages, nil
 }
 
 func (s *Service) Close() error {

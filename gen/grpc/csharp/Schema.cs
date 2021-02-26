@@ -36,54 +36,72 @@ namespace Stategate {
             "CUIL4t8fBwoFXlxTKyQSEwoCaWQYBCABKAlCB+LfHwOQAQQiiwEKBkVudGl0",
             "eRIbCgZkb21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlC",
             "C+LfHwcKBV5cUyskEhgKA2tleRgDIAEoCUIL4t8fBwoFXlxTKyQSLwoGdmFs",
-            "dWVzGAQgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABIi8K",
-            "CEVudGl0aWVzEiMKCGVudGl0aWVzGAEgAygLMhEuc3RhdGVnYXRlLkVudGl0",
-            "eSKmAQoQU2VhcmNoRW50aXR5T3B0cxIbCgZkb21haW4YASABKAlCC+LfHwcK",
-            "BV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcKBV5cUyskEhQKDHF1ZXJ5X3N0",
-            "cmluZxgDIAEoCRIVCgVsaW1pdBgEIAEoBUIG4t8fAhAAEg4KBm9mZnNldBgF",
-            "IAEoBRIdCgRzb3J0GAkgASgLMg8uc3RhdGVnYXRlLlNvcnQivwEKD1NlYXJj",
-            "aEV2ZW50T3B0cxIbCgZkb21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5",
-            "cGUYAiABKAlCC+LfHwcKBV5cUyskEhQKDHF1ZXJ5X3N0cmluZxgEIAEoCRIL",
-            "CgNtaW4YBSABKAMSCwoDbWF4GAYgASgDEhUKBWxpbWl0GAcgASgFQgbi3x8C",
-            "EAASDgoGb2Zmc2V0GAggASgFEh0KBHNvcnQYCSABKAsyDy5zdGF0ZWdhdGUu",
-            "U29ydCJECgpTdHJlYW1PcHRzEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxT",
-            "KyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQiJgoEU29ydBINCgVmaWVs",
-            "ZBgBIAEoCRIPCgdyZXZlcnNlGAIgASgIIqYBCgVFdmVudBITCgJpZBgBIAEo",
-            "CUIH4t8fA5ABBBIpCgZlbnRpdHkYAiABKAsyES5zdGF0ZWdhdGUuRW50aXR5",
-            "Qgbi3x8CIAESFgoGbWV0aG9kGAUgASgJQgbi3x8CWAESLwoGY2xhaW1zGAMg",
-            "ASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABEhQKBHRpbWUY",
-            "BCABKANCBuLfHwIQACIqCgZFdmVudHMSIAoGZXZlbnRzGAEgAygLMhAuc3Rh",
-            "dGVnYXRlLkV2ZW50MtAECg1FbnRpdHlTZXJ2aWNlEl8KA1NldBIRLnN0YXRl",
-            "Z2F0ZS5FbnRpdHkaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiLYLT5JMCJyIl",
-            "L2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJbCgRFZGl0",
-            "EhEuc3RhdGVnYXRlLkVudGl0eRoRLnN0YXRlZ2F0ZS5FbnRpdHkiLYLT5JMC",
-            "JzIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJmCgZS",
-            "ZXZlcnQSEy5zdGF0ZWdhdGUuRXZlbnRSZWYaES5zdGF0ZWdhdGUuRW50aXR5",
-            "IjSC0+STAi4aLC9hcGkvZW50aXR5L3JlZi97ZG9tYWlufS97dHlwZX0ve2tl",
-            "eX0vcmV2ZXJ0El0KA0dldBIULnN0YXRlZ2F0ZS5FbnRpdHlSZWYaES5zdGF0",
-            "ZWdhdGUuRW50aXR5Ii2C0+STAicSJS9hcGkvZW50aXR5L3JlZi97ZG9tYWlu",
-            "fS97dHlwZX0ve2tleX0SYgoDRGVsEhQuc3RhdGVnYXRlLkVudGl0eVJlZhoW",
-            "Lmdvb2dsZS5wcm90b2J1Zi5FbXB0eSItgtPkkwInKiUvYXBpL2VudGl0eS9y",
-            "ZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9ElYKBlNlYXJjaBIbLnN0YXRlZ2F0",
-            "ZS5TZWFyY2hFbnRpdHlPcHRzGhMuc3RhdGVnYXRlLkVudGl0aWVzIhqC0+ST",
-            "AhQSEi9hcGkvZW50aXR5L3NlYXJjaDKWAgoMRXZlbnRTZXJ2aWNlEk8KBlN0",
-            "cmVhbRIVLnN0YXRlZ2F0ZS5TdHJlYW1PcHRzGhAuc3RhdGVnYXRlLkV2ZW50",
-            "IhqC0+STAhQSEi9hcGkvZXZlbnRzL3N0cmVhbTABElMKBlNlYXJjaBIaLnN0",
-            "YXRlZ2F0ZS5TZWFyY2hFdmVudE9wdHMaES5zdGF0ZWdhdGUuRXZlbnRzIhqC",
-            "0+STAhQSEi9hcGkvZXZlbnRzL3NlYXJjaBJgCgNHZXQSEy5zdGF0ZWdhdGUu",
-            "RXZlbnRSZWYaEC5zdGF0ZWdhdGUuRXZlbnQiMoLT5JMCLBIqL2FwaS9ldmVu",
-            "dHMvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fS97aWR9QgtaCXN0YXRlZ2F0",
-            "ZWIGcHJvdG8z"));
+            "dWVzGAQgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABImkK",
+            "EVN0cmVhbU1lc3NhZ2VPcHRzEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxT",
+            "KyQSHAoHY2hhbm5lbBgCIAEoCUIL4t8fBwoFXlxTKyQSGQoEdHlwZRgDIAEo",
+            "CUIL4t8fBwoFXlxTKyQijgEKB01lc3NhZ2USGwoGZG9tYWluGAEgASgJQgvi",
+            "3x8HCgVeXFMrJBIcCgdjaGFubmVsGAIgASgJQgvi3x8HCgVeXFMrJBIZCgR0",
+            "eXBlGAMgASgJQgvi3x8HCgVeXFMrJBItCgRib2R5GAQgASgLMhcuZ29vZ2xl",
+            "LnByb3RvYnVmLlN0cnVjdEIG4t8fAiABIu4BCgtQZWVyTWVzc2FnZRITCgJp",
+            "ZBgBIAEoCUIH4t8fA5ABBBIbCgZkb21haW4YAiABKAlCC+LfHwcKBV5cUysk",
+            "EhwKB2NoYW5uZWwYAyABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYBCABKAlC",
+            "C+LfHwcKBV5cUyskEi0KBGJvZHkYBSABKAsyFy5nb29nbGUucHJvdG9idWYu",
+            "U3RydWN0Qgbi3x8CIAESLwoGY2xhaW1zGAYgASgLMhcuZ29vZ2xlLnByb3Rv",
+            "YnVmLlN0cnVjdEIG4t8fAiABEhQKBHRpbWUYByABKANCBuLfHwIQACIvCghF",
+            "bnRpdGllcxIjCghlbnRpdGllcxgBIAMoCzIRLnN0YXRlZ2F0ZS5FbnRpdHki",
+            "pgEKEFNlYXJjaEVudGl0eU9wdHMSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVe",
+            "XFMrJBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMrJBIUCgxxdWVyeV9zdHJp",
+            "bmcYAyABKAkSFQoFbGltaXQYBCABKAVCBuLfHwIQABIOCgZvZmZzZXQYBSAB",
+            "KAUSHQoEc29ydBgJIAEoCzIPLnN0YXRlZ2F0ZS5Tb3J0Ir8BCg9TZWFyY2hF",
+            "dmVudE9wdHMSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBl",
+            "GAIgASgJQgvi3x8HCgVeXFMrJBIUCgxxdWVyeV9zdHJpbmcYBCABKAkSCwoD",
+            "bWluGAUgASgDEgsKA21heBgGIAEoAxIVCgVsaW1pdBgHIAEoBUIG4t8fAhAA",
+            "Eg4KBm9mZnNldBgIIAEoBRIdCgRzb3J0GAkgASgLMg8uc3RhdGVnYXRlLlNv",
+            "cnQiSQoPU3RyZWFtRXZlbnRPcHRzEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoF",
+            "XlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQiJgoEU29ydBINCgVm",
+            "aWVsZBgBIAEoCRIPCgdyZXZlcnNlGAIgASgIIqYBCgVFdmVudBITCgJpZBgB",
+            "IAEoCUIH4t8fA5ABBBIpCgZlbnRpdHkYAiABKAsyES5zdGF0ZWdhdGUuRW50",
+            "aXR5Qgbi3x8CIAESFgoGbWV0aG9kGAUgASgJQgbi3x8CWAESLwoGY2xhaW1z",
+            "GAMgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABEhQKBHRp",
+            "bWUYBCABKANCBuLfHwIQACIqCgZFdmVudHMSIAoGZXZlbnRzGAEgAygLMhAu",
+            "c3RhdGVnYXRlLkV2ZW50MtAECg1FbnRpdHlTZXJ2aWNlEl8KA1NldBIRLnN0",
+            "YXRlZ2F0ZS5FbnRpdHkaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiLYLT5JMC",
+            "JyIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJbCgRF",
+            "ZGl0EhEuc3RhdGVnYXRlLkVudGl0eRoRLnN0YXRlZ2F0ZS5FbnRpdHkiLYLT",
+            "5JMCJzIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJm",
+            "CgZSZXZlcnQSEy5zdGF0ZWdhdGUuRXZlbnRSZWYaES5zdGF0ZWdhdGUuRW50",
+            "aXR5IjSC0+STAi4aLC9hcGkvZW50aXR5L3JlZi97ZG9tYWlufS97dHlwZX0v",
+            "e2tleX0vcmV2ZXJ0El0KA0dldBIULnN0YXRlZ2F0ZS5FbnRpdHlSZWYaES5z",
+            "dGF0ZWdhdGUuRW50aXR5Ii2C0+STAicSJS9hcGkvZW50aXR5L3JlZi97ZG9t",
+            "YWlufS97dHlwZX0ve2tleX0SYgoDRGVsEhQuc3RhdGVnYXRlLkVudGl0eVJl",
+            "ZhoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSItgtPkkwInKiUvYXBpL2VudGl0",
+            "eS9yZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9ElYKBlNlYXJjaBIbLnN0YXRl",
+            "Z2F0ZS5TZWFyY2hFbnRpdHlPcHRzGhMuc3RhdGVnYXRlLkVudGl0aWVzIhqC",
+            "0+STAhQSEi9hcGkvZW50aXR5L3NlYXJjaDKbAgoMRXZlbnRTZXJ2aWNlElQK",
+            "BlN0cmVhbRIaLnN0YXRlZ2F0ZS5TdHJlYW1FdmVudE9wdHMaEC5zdGF0ZWdh",
+            "dGUuRXZlbnQiGoLT5JMCFBISL2FwaS9ldmVudHMvc3RyZWFtMAESUwoGU2Vh",
+            "cmNoEhouc3RhdGVnYXRlLlNlYXJjaEV2ZW50T3B0cxoRLnN0YXRlZ2F0ZS5F",
+            "dmVudHMiGoLT5JMCFBISL2FwaS9ldmVudHMvc2VhcmNoEmAKA0dldBITLnN0",
+            "YXRlZ2F0ZS5FdmVudFJlZhoQLnN0YXRlZ2F0ZS5FdmVudCIygtPkkwIsEiov",
+            "YXBpL2V2ZW50cy9yZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9L3tpZH0yxAEK",
+            "C1BlZXJTZXJ2aWNlElgKCUJyb2FkY2FzdBISLnN0YXRlZ2F0ZS5NZXNzYWdl",
+            "GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5Ih+C0+STAhkiFC9hcGkvcGVlcnMv",
+            "YnJvYWRjYXN0OgEqElsKBlN0cmVhbRIcLnN0YXRlZ2F0ZS5TdHJlYW1NZXNz",
+            "YWdlT3B0cxoWLnN0YXRlZ2F0ZS5QZWVyTWVzc2FnZSIZgtPkkwITEhEvYXBp",
+            "L3BlZXJzL3N0cmVhbTABQgtaCXN0YXRlZ2F0ZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.EntityRef), global::Stategate.EntityRef.Parser, new[]{ "Domain", "Type", "Key" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.EventRef), global::Stategate.EventRef.Parser, new[]{ "Domain", "Type", "Key", "Id" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entity), global::Stategate.Entity.Parser, new[]{ "Domain", "Type", "Key", "Values" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamMessageOpts), global::Stategate.StreamMessageOpts.Parser, new[]{ "Domain", "Channel", "Type" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Message), global::Stategate.Message.Parser, new[]{ "Domain", "Channel", "Type", "Body" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.PeerMessage), global::Stategate.PeerMessage.Parser, new[]{ "Id", "Domain", "Channel", "Type", "Body", "Claims", "Time" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entities), global::Stategate.Entities.Parser, new[]{ "Entities_" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEntityOpts), global::Stategate.SearchEntityOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Limit", "Offset", "Sort" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEventOpts), global::Stategate.SearchEventOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Min", "Max", "Limit", "Offset", "Sort" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamOpts), global::Stategate.StreamOpts.Parser, new[]{ "Domain", "Type" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamEventOpts), global::Stategate.StreamEventOpts.Parser, new[]{ "Domain", "Type" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Sort), global::Stategate.Sort.Parser, new[]{ "Field", "Reverse" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Event), global::Stategate.Event.Parser, new[]{ "Id", "Entity", "Method", "Claims", "Time" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Events), global::Stategate.Events.Parser, new[]{ "Events_" }, null, null, null)
@@ -757,6 +775,784 @@ namespace Stategate {
   }
 
   /// <summary>
+  /// StreamMessageOpts holds options for streaming messages produced by Peers
+  /// </summary>
+  public sealed partial class StreamMessageOpts : pb::IMessage<StreamMessageOpts> {
+    private static readonly pb::MessageParser<StreamMessageOpts> _parser = new pb::MessageParser<StreamMessageOpts>(() => new StreamMessageOpts());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<StreamMessageOpts> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public StreamMessageOpts() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public StreamMessageOpts(StreamMessageOpts other) : this() {
+      domain_ = other.domain_;
+      channel_ = other.channel_;
+      type_ = other.type_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public StreamMessageOpts Clone() {
+      return new StreamMessageOpts(this);
+    }
+
+    /// <summary>Field number for the "domain" field.</summary>
+    public const int DomainFieldNumber = 1;
+    private string domain_ = "";
+    /// <summary>
+    /// the message's business domain(ex: accounting) to subscribe to
+    /// must not be empty or contain spaces
+    /// * indicates any domain
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Domain {
+      get { return domain_; }
+      set {
+        domain_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "channel" field.</summary>
+    public const int ChannelFieldNumber = 2;
+    private string channel_ = "";
+    /// <summary>
+    /// the message's channel(ex: general) to subscribe to
+    /// must not be empty or contain spaces
+    /// * indicates any channel
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Channel {
+      get { return channel_; }
+      set {
+        channel_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 3;
+    private string type_ = "";
+    /// <summary>
+    /// message's type (ex: comment) to subscribe to
+    /// must not be empty or contain spaces
+    /// * indicates any type
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Type {
+      get { return type_; }
+      set {
+        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as StreamMessageOpts);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(StreamMessageOpts other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Domain != other.Domain) return false;
+      if (Channel != other.Channel) return false;
+      if (Type != other.Type) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Domain.Length != 0) hash ^= Domain.GetHashCode();
+      if (Channel.Length != 0) hash ^= Channel.GetHashCode();
+      if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Domain.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Domain);
+      }
+      if (Channel.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Channel);
+      }
+      if (Type.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Type);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Domain.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Domain);
+      }
+      if (Channel.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Channel);
+      }
+      if (Type.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(StreamMessageOpts other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Domain.Length != 0) {
+        Domain = other.Domain;
+      }
+      if (other.Channel.Length != 0) {
+        Channel = other.Channel;
+      }
+      if (other.Type.Length != 0) {
+        Type = other.Type;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Domain = input.ReadString();
+            break;
+          }
+          case 18: {
+            Channel = input.ReadString();
+            break;
+          }
+          case 26: {
+            Type = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  /// Message is an arbitrary message to be delivered to a Peer
+  /// Messages are NOT persisted and should only be used to communicate with other Peers
+  /// </summary>
+  public sealed partial class Message : pb::IMessage<Message> {
+    private static readonly pb::MessageParser<Message> _parser = new pb::MessageParser<Message>(() => new Message());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Message> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Message() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Message(Message other) : this() {
+      domain_ = other.domain_;
+      channel_ = other.channel_;
+      type_ = other.type_;
+      body_ = other.body_ != null ? other.body_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Message Clone() {
+      return new Message(this);
+    }
+
+    /// <summary>Field number for the "domain" field.</summary>
+    public const int DomainFieldNumber = 1;
+    private string domain_ = "";
+    /// <summary>
+    /// the message's business domain(ex: accounting)
+    /// must not be empty or contain spaces
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Domain {
+      get { return domain_; }
+      set {
+        domain_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "channel" field.</summary>
+    public const int ChannelFieldNumber = 2;
+    private string channel_ = "";
+    /// <summary>
+    /// the message's channel(ex: general)
+    /// must not be empty or contain spaces
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Channel {
+      get { return channel_; }
+      set {
+        channel_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 3;
+    private string type_ = "";
+    /// <summary>
+    /// message's type (ex: comment)
+    /// must not be empty or contain spaces
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Type {
+      get { return type_; }
+      set {
+        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "body" field.</summary>
+    public const int BodyFieldNumber = 4;
+    private global::Google.Protobuf.WellKnownTypes.Struct body_;
+    /// <summary>
+    /// the body of the message(k/v values).
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Struct Body {
+      get { return body_; }
+      set {
+        body_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Message);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Message other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Domain != other.Domain) return false;
+      if (Channel != other.Channel) return false;
+      if (Type != other.Type) return false;
+      if (!object.Equals(Body, other.Body)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Domain.Length != 0) hash ^= Domain.GetHashCode();
+      if (Channel.Length != 0) hash ^= Channel.GetHashCode();
+      if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (body_ != null) hash ^= Body.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Domain.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Domain);
+      }
+      if (Channel.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Channel);
+      }
+      if (Type.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Type);
+      }
+      if (body_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Body);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Domain.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Domain);
+      }
+      if (Channel.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Channel);
+      }
+      if (Type.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      }
+      if (body_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Body);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Message other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Domain.Length != 0) {
+        Domain = other.Domain;
+      }
+      if (other.Channel.Length != 0) {
+        Channel = other.Channel;
+      }
+      if (other.Type.Length != 0) {
+        Type = other.Type;
+      }
+      if (other.body_ != null) {
+        if (body_ == null) {
+          body_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+        }
+        Body.MergeFrom(other.Body);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Domain = input.ReadString();
+            break;
+          }
+          case 18: {
+            Channel = input.ReadString();
+            break;
+          }
+          case 26: {
+            Type = input.ReadString();
+            break;
+          }
+          case 34: {
+            if (body_ == null) {
+              body_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+            }
+            input.ReadMessage(body_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  /// PeerMessage is a message produced by a client to the PeerService
+  /// PeerMessages are NOT persisted and should only be used to communicate with other Peers
+  /// </summary>
+  public sealed partial class PeerMessage : pb::IMessage<PeerMessage> {
+    private static readonly pb::MessageParser<PeerMessage> _parser = new pb::MessageParser<PeerMessage>(() => new PeerMessage());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<PeerMessage> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PeerMessage() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PeerMessage(PeerMessage other) : this() {
+      id_ = other.id_;
+      domain_ = other.domain_;
+      channel_ = other.channel_;
+      type_ = other.type_;
+      body_ = other.body_ != null ? other.body_.Clone() : null;
+      claims_ = other.claims_ != null ? other.claims_.Clone() : null;
+      time_ = other.time_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PeerMessage Clone() {
+      return new PeerMessage(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private string id_ = "";
+    /// <summary>
+    /// the unique id of the message
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Id {
+      get { return id_; }
+      set {
+        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "domain" field.</summary>
+    public const int DomainFieldNumber = 2;
+    private string domain_ = "";
+    /// <summary>
+    /// the message's business domain(ex: accounting)
+    /// must not be empty or contain spaces
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Domain {
+      get { return domain_; }
+      set {
+        domain_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "channel" field.</summary>
+    public const int ChannelFieldNumber = 3;
+    private string channel_ = "";
+    /// <summary>
+    /// the message's channel(ex: general)
+    /// must not be empty or contain spaces
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Channel {
+      get { return channel_; }
+      set {
+        channel_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 4;
+    private string type_ = "";
+    /// <summary>
+    /// message's type (ex: comment)
+    /// must not be empty or contain spaces
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Type {
+      get { return type_; }
+      set {
+        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "body" field.</summary>
+    public const int BodyFieldNumber = 5;
+    private global::Google.Protobuf.WellKnownTypes.Struct body_;
+    /// <summary>
+    /// the body of the message(k/v values).
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Struct Body {
+      get { return body_; }
+      set {
+        body_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "claims" field.</summary>
+    public const int ClaimsFieldNumber = 6;
+    private global::Google.Protobuf.WellKnownTypes.Struct claims_;
+    /// <summary>
+    /// the authentication claims of the message producer.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Struct Claims {
+      get { return claims_; }
+      set {
+        claims_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "time" field.</summary>
+    public const int TimeFieldNumber = 7;
+    private long time_;
+    /// <summary>
+    /// timestamp(ns) of when the message was broadcasted.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long Time {
+      get { return time_; }
+      set {
+        time_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as PeerMessage);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(PeerMessage other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (Domain != other.Domain) return false;
+      if (Channel != other.Channel) return false;
+      if (Type != other.Type) return false;
+      if (!object.Equals(Body, other.Body)) return false;
+      if (!object.Equals(Claims, other.Claims)) return false;
+      if (Time != other.Time) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (Domain.Length != 0) hash ^= Domain.GetHashCode();
+      if (Channel.Length != 0) hash ^= Channel.GetHashCode();
+      if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (body_ != null) hash ^= Body.GetHashCode();
+      if (claims_ != null) hash ^= Claims.GetHashCode();
+      if (Time != 0L) hash ^= Time.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Id);
+      }
+      if (Domain.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Domain);
+      }
+      if (Channel.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Channel);
+      }
+      if (Type.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Type);
+      }
+      if (body_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(Body);
+      }
+      if (claims_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(Claims);
+      }
+      if (Time != 0L) {
+        output.WriteRawTag(56);
+        output.WriteInt64(Time);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      }
+      if (Domain.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Domain);
+      }
+      if (Channel.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Channel);
+      }
+      if (Type.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      }
+      if (body_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Body);
+      }
+      if (claims_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Claims);
+      }
+      if (Time != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Time);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(PeerMessage other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id.Length != 0) {
+        Id = other.Id;
+      }
+      if (other.Domain.Length != 0) {
+        Domain = other.Domain;
+      }
+      if (other.Channel.Length != 0) {
+        Channel = other.Channel;
+      }
+      if (other.Type.Length != 0) {
+        Type = other.Type;
+      }
+      if (other.body_ != null) {
+        if (body_ == null) {
+          body_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+        }
+        Body.MergeFrom(other.Body);
+      }
+      if (other.claims_ != null) {
+        if (claims_ == null) {
+          claims_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+        }
+        Claims.MergeFrom(other.Claims);
+      }
+      if (other.Time != 0L) {
+        Time = other.Time;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Id = input.ReadString();
+            break;
+          }
+          case 18: {
+            Domain = input.ReadString();
+            break;
+          }
+          case 26: {
+            Channel = input.ReadString();
+            break;
+          }
+          case 34: {
+            Type = input.ReadString();
+            break;
+          }
+          case 42: {
+            if (body_ == null) {
+              body_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+            }
+            input.ReadMessage(body_);
+            break;
+          }
+          case 50: {
+            if (claims_ == null) {
+              claims_ = new global::Google.Protobuf.WellKnownTypes.Struct();
+            }
+            input.ReadMessage(claims_);
+            break;
+          }
+          case 56: {
+            Time = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
   /// Entities is an array of Entity
   /// </summary>
   public sealed partial class Entities : pb::IMessage<Entities> {
@@ -767,7 +1563,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -892,7 +1688,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1191,7 +1987,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1542,18 +2338,18 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// StreamOpts are options for consumers looking to stream events.
+  /// StreamEventOpts are options for consumers looking to stream events.
   /// Events are automatically emitted from mutations made from State mutations within the EntityService
   /// </summary>
-  public sealed partial class StreamOpts : pb::IMessage<StreamOpts> {
-    private static readonly pb::MessageParser<StreamOpts> _parser = new pb::MessageParser<StreamOpts>(() => new StreamOpts());
+  public sealed partial class StreamEventOpts : pb::IMessage<StreamEventOpts> {
+    private static readonly pb::MessageParser<StreamEventOpts> _parser = new pb::MessageParser<StreamEventOpts>(() => new StreamEventOpts());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<StreamOpts> Parser { get { return _parser; } }
+    public static pb::MessageParser<StreamEventOpts> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1562,22 +2358,22 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StreamOpts() {
+    public StreamEventOpts() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StreamOpts(StreamOpts other) : this() {
+    public StreamEventOpts(StreamEventOpts other) : this() {
       domain_ = other.domain_;
       type_ = other.type_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StreamOpts Clone() {
-      return new StreamOpts(this);
+    public StreamEventOpts Clone() {
+      return new StreamEventOpts(this);
     }
 
     /// <summary>Field number for the "domain" field.</summary>
@@ -1614,11 +2410,11 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as StreamOpts);
+      return Equals(other as StreamEventOpts);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(StreamOpts other) {
+    public bool Equals(StreamEventOpts other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1677,7 +2473,7 @@ namespace Stategate {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(StreamOpts other) {
+    public void MergeFrom(StreamEventOpts other) {
       if (other == null) {
         return;
       }
@@ -1723,7 +2519,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1893,7 +2689,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2164,7 +2960,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[9]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

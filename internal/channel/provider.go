@@ -26,8 +26,10 @@ import (
 )
 
 type Provider interface {
-	Publish(ctx context.Context, event *stategate.Event) *errorz.Error
-	GetChannel(ctx context.Context) (chan *stategate.Event, error)
+	PublishEvent(ctx context.Context, event *stategate.Event) *errorz.Error
+	GetEventChannel(ctx context.Context) (chan *stategate.Event, *errorz.Error)
+	PublishMessage(ctx context.Context, message *stategate.PeerMessage) *errorz.Error
+	GetMessageChannel(ctx context.Context) (chan *stategate.PeerMessage, *errorz.Error)
 	Close() error
 }
 
@@ -79,17 +81,27 @@ func GetChannelProvider(lgger *logger.Logger, providerConfig map[string]string) 
 		if tlsConfig != nil {
 			dialer.TLS = tlsConfig
 		}
-		r := kafkaa.NewReader(kafkaa.ReaderConfig{
+		re := kafkaa.NewReader(kafkaa.ReaderConfig{
 			Brokers: []string{kafkaAddr},
-			Topic:   constants.BackendChannel,
+			Topic:   constants.EventChannel,
 			Dialer:  dialer,
 		})
-		w := kafkaa.NewWriter(kafkaa.WriterConfig{
+		rm := kafkaa.NewReader(kafkaa.ReaderConfig{
 			Brokers: []string{kafkaAddr},
-			Topic:   constants.BackendChannel,
+			Topic:   constants.MessageChannel,
 			Dialer:  dialer,
 		})
-		svc, err := kafka.NewService(lgger, r, w)
+		we := kafkaa.NewWriter(kafkaa.WriterConfig{
+			Brokers: []string{kafkaAddr},
+			Topic:   constants.EventChannel,
+			Dialer:  dialer,
+		})
+		wm := kafkaa.NewWriter(kafkaa.WriterConfig{
+			Brokers: []string{kafkaAddr},
+			Topic:   constants.MessageChannel,
+			Dialer:  dialer,
+		})
+		svc, err := kafka.NewService(lgger, re, rm, we, wm)
 		if err != nil {
 			return nil, err
 		}
