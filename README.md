@@ -341,6 +341,21 @@ STATEGATE_CACHE_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "x
 [Go Client SDK](./stategate-client-go)
 [Testing Framework](./internal/testing/framework)
 
+## Authorization
+
+### Request Authorization Policies
+TODO
+
+## Response Authorization Policies
+TODO
+
+## Authentication
+### Remote JWKS URI
+
+https://auth0.com/docs/tokens/json-web-tokens/json-web-key-sets
+
+TODO
+
 ## FAQ
 
 
