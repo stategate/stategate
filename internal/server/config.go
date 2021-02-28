@@ -93,14 +93,6 @@ func (c *Config) SetDefaults() {
 	if c.Port == 0 {
 		c.Port = 8080
 	}
-	if c.RequestPolicy == "" && !c.AuthDisabled {
-		// target = data.stategate.requests.authz.allow
-		c.RequestPolicy = "cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSBmYWxzZQ=="
-	}
-	if c.ResponsePolicy == "" && !c.AuthDisabled {
-		// target = data.stategate.responses.authz.allow
-		c.ResponsePolicy = "cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSBmYWxzZQ=="
-	}
 }
 
 func (c *Config) Validate() error {

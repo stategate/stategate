@@ -66,6 +66,8 @@ spec:
             # storage provider configuration(JSON) options: [mongo]
             - name: STATEGATE_STORAGE_PROVIDER
               value: '{ "name": "mongo", "database": "testing", "addr": "mongodb://mongo:27017/testing" }'
+            - name: STATEGATE_CACHE_PROVIDER
+              value: '{ "name": "redis", "addr": "redis:6379" }'
             - name: POD_NAME
               valueFrom:
                 fieldRef:
@@ -78,7 +80,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-          image: "colemanword/stategate:v0.9.0"
+          image: "colemanword/stategate:v0.10.0"
           imagePullPolicy: Always
           ports:
           - containerPort: 8081

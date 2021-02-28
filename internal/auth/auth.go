@@ -38,19 +38,17 @@ type Auth struct {
 	jwksSet        *jwk.Set
 	mu             sync.RWMutex
 	logger         *logger.Logger
-	requestPolicy  rego.PreparedEvalQuery
-	responsePolicy rego.PreparedEvalQuery
+	requestPolicy  *rego.PreparedEvalQuery
+	responsePolicy *rego.PreparedEvalQuery
 }
 
 func NewAuth(disabled bool, reqPolicy, respPolicy, jwks string, logger2 *logger.Logger) (*Auth, error) {
 	a := &Auth{
-		disabled:       disabled,
-		jwksUri:        jwks,
-		jwksSet:        nil,
-		mu:             sync.RWMutex{},
-		logger:         logger2,
-		requestPolicy:  rego.PreparedEvalQuery{},
-		responsePolicy: rego.PreparedEvalQuery{},
+		disabled: disabled,
+		jwksUri:  jwks,
+		jwksSet:  nil,
+		mu:       sync.RWMutex{},
+		logger:   logger2,
 	}
 	if a.disabled {
 		return a, nil
@@ -58,56 +56,57 @@ func NewAuth(disabled bool, reqPolicy, respPolicy, jwks string, logger2 *logger.
 	const (
 		regoQuery = "data.stategate.authz.allow"
 	)
-	reqPolicyBytes, err := base64.StdEncoding.DecodeString(reqPolicy)
-	if err != nil {
-		return nil, err
+	if reqPolicy != "" {
+		reqPolicyBytes, err := base64.StdEncoding.DecodeString(reqPolicy)
+		if err != nil {
+			return nil, err
+		}
+		requestPolicy := rego.New(
+			rego.Query(regoQuery),
+			rego.Module("requests.rego", string(reqPolicyBytes)),
+		)
+		reqeval, err := requestPolicy.PrepareForEval(context.Background())
+		if err != nil {
+			return nil, err
+		}
+		a.requestPolicy = &reqeval
 	}
-	respPolicyBytes, err := base64.StdEncoding.DecodeString(respPolicy)
-	if err != nil {
-		return nil, err
+	if respPolicy != "" {
+		respPolicyBytes, err := base64.StdEncoding.DecodeString(respPolicy)
+		if err != nil {
+			return nil, err
+		}
+		responsePolicy := rego.New(
+			rego.Query(regoQuery),
+			rego.Module("responses.rego", string(respPolicyBytes)),
+		)
+		respeval, err := responsePolicy.PrepareForEval(context.Background())
+		if err != nil {
+			return nil, err
+		}
+		a.responsePolicy = &respeval
 	}
-	requestPolicy := rego.New(
-		rego.Query(regoQuery),
-		rego.Module("requests.rego", string(reqPolicyBytes)),
-	)
-	responsePolicy := rego.New(
-		rego.Query(regoQuery),
-		rego.Module("responses.rego", string(respPolicyBytes)),
-	)
 
-	respeval, err := responsePolicy.PrepareForEval(context.Background())
-	if err != nil {
-		return nil, err
-	}
-	reqeval, err := requestPolicy.PrepareForEval(context.Background())
-	if err != nil {
-		return nil, err
-	}
-	a.requestPolicy = reqeval
-	a.responsePolicy = respeval
 	a.jwksUri = jwks
 	return a, a.RefreshJWKS()
 }
 
 func (a *Auth) RefreshJWKS() error {
-	if a.disabled {
+	if a.disabled || a.jwksUri == "" {
 		return nil
 	}
-	if a.jwksUri != "" {
-		jwks, err := jwk.Fetch(a.jwksUri)
-		if err != nil {
-			return err
-		}
-		a.mu.Lock()
-		a.jwksSet = jwks
-		a.mu.Unlock()
+	jwks, err := jwk.Fetch(a.jwksUri)
+	if err != nil {
+		return err
 	}
-
+	a.mu.Lock()
+	a.jwksSet = jwks
+	a.mu.Unlock()
 	return nil
 }
 
 func (a *Auth) ParseAndVerify(token string) ([]byte, error) {
-	if a.disabled {
+	if a.disabled || a.jwksSet == nil {
 		return []byte{}, nil
 	}
 	message, err := jws.ParseString(token)
@@ -270,6 +269,9 @@ func (a *Auth) StreamInterceptor() grpc.StreamServerInterceptor {
 }
 
 func (a *Auth) evaluateRequest(ctx context.Context, context *Context) (bool, error) {
+	if a.requestPolicy == nil {
+		return true, nil
+	}
 	results, err := a.requestPolicy.Eval(ctx, rego.EvalInput(context.input()))
 	if err != nil {
 		return false, errors.Wrap(err, "request policy: failed to evaluate input")
@@ -291,6 +293,9 @@ func (a *Auth) evaluateRequest(ctx context.Context, context *Context) (bool, err
 }
 
 func (a *Auth) evaluateResponse(ctx context.Context, context *Context) (bool, error) {
+	if a.responsePolicy == nil {
+		return true, nil
+	}
 	results, err := a.responsePolicy.Eval(ctx, rego.EvalInput(context.input()))
 	if err != nil {
 		return false, errors.Wrap(err, "response policy: failed to evaluate input")
@@ -312,6 +317,9 @@ func (a *Auth) evaluateResponse(ctx context.Context, context *Context) (bool, er
 }
 
 func toMap(obj interface{}) map[string]interface{} {
+	if obj == nil {
+		return map[string]interface{}{}
+	}
 	data := map[string]interface{}{}
 	if val, ok := obj.(proto.Message); ok {
 		bits, _ := helpers.MarshalJSON(val)
