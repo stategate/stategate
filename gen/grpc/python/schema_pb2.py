@@ -25,11 +25,87 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='stategate',
   syntax='proto3',
   serialized_options=_b('Z\tstategate'),
-  serialized_pb=_b('\n\x0cschema.proto\x12\tstategate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\"]\n\tEntityRef\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"q\n\x08\x45ventRef\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x13\n\x02id\x18\x04 \x01(\tB\x07\xe2\xdf\x1f\x03\x90\x01\x04\"\x8b\x01\n\x06\x45ntity\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12/\n\x06values\x18\x04 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\"i\n\x11StreamMessageOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x1c\n\x07\x63hannel\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"\x8e\x01\n\x07Message\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x1c\n\x07\x63hannel\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12-\n\x04\x62ody\x18\x04 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\"\xee\x01\n\x0bPeerMessage\x12\x13\n\x02id\x18\x01 \x01(\tB\x07\xe2\xdf\x1f\x03\x90\x01\x04\x12\x1b\n\x06\x64omain\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x1c\n\x07\x63hannel\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x04 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12-\n\x04\x62ody\x18\x05 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12/\n\x06\x63laims\x18\x06 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12\x14\n\x04time\x18\x07 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\"/\n\x08\x45ntities\x12#\n\x08\x65ntities\x18\x01 \x03(\x0b\x32\x11.stategate.Entity\"\xa6\x01\n\x10SearchEntityOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x14\n\x0cquery_string\x18\x03 \x01(\t\x12\x15\n\x05limit\x18\x04 \x01(\x05\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x05 \x01(\x05\x12\x1d\n\x04sort\x18\t \x01(\x0b\x32\x0f.stategate.Sort\"\xbf\x01\n\x0fSearchEventOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x14\n\x0cquery_string\x18\x04 \x01(\t\x12\x0b\n\x03min\x18\x05 \x01(\x03\x12\x0b\n\x03max\x18\x06 \x01(\x03\x12\x15\n\x05limit\x18\x07 \x01(\x05\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x08 \x01(\x05\x12\x1d\n\x04sort\x18\t \x01(\x0b\x32\x0f.stategate.Sort\"I\n\x0fStreamEventOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"&\n\x04Sort\x12\r\n\x05\x66ield\x18\x01 \x01(\t\x12\x0f\n\x07reverse\x18\x02 \x01(\x08\"\xa6\x01\n\x05\x45vent\x12\x13\n\x02id\x18\x01 \x01(\tB\x07\xe2\xdf\x1f\x03\x90\x01\x04\x12)\n\x06\x65ntity\x18\x02 \x01(\x0b\x32\x11.stategate.EntityB\x06\xe2\xdf\x1f\x02 \x01\x12\x16\n\x06method\x18\x05 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12/\n\x06\x63laims\x18\x03 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12\x14\n\x04time\x18\x04 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\"*\n\x06\x45vents\x12 \n\x06\x65vents\x18\x01 \x03(\x0b\x32\x10.stategate.Event2\xd0\x04\n\rEntityService\x12_\n\x03Set\x12\x11.stategate.Entity\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'\"%/api/entity/ref/{domain}/{type}/{key}\x12[\n\x04\x45\x64it\x12\x11.stategate.Entity\x1a\x11.stategate.Entity\"-\x82\xd3\xe4\x93\x02\'2%/api/entity/ref/{domain}/{type}/{key}\x12\x66\n\x06Revert\x12\x13.stategate.EventRef\x1a\x11.stategate.Entity\"4\x82\xd3\xe4\x93\x02.\x1a,/api/entity/ref/{domain}/{type}/{key}/revert\x12]\n\x03Get\x12\x14.stategate.EntityRef\x1a\x11.stategate.Entity\"-\x82\xd3\xe4\x93\x02\'\x12%/api/entity/ref/{domain}/{type}/{key}\x12\x62\n\x03\x44\x65l\x12\x14.stategate.EntityRef\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'*%/api/entity/ref/{domain}/{type}/{key}\x12V\n\x06Search\x12\x1b.stategate.SearchEntityOpts\x1a\x13.stategate.Entities\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/entity/search2\x9b\x02\n\x0c\x45ventService\x12T\n\x06Stream\x12\x1a.stategate.StreamEventOpts\x1a\x10.stategate.Event\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/events/stream0\x01\x12S\n\x06Search\x12\x1a.stategate.SearchEventOpts\x1a\x11.stategate.Events\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/events/search\x12`\n\x03Get\x12\x13.stategate.EventRef\x1a\x10.stategate.Event\"2\x82\xd3\xe4\x93\x02,\x12*/api/events/ref/{domain}/{type}/{key}/{id}2\xc4\x01\n\x0bPeerService\x12X\n\tBroadcast\x12\x12.stategate.Message\x1a\x16.google.protobuf.Empty\"\x1f\x82\xd3\xe4\x93\x02\x19\"\x14/api/peers/broadcast:\x01*\x12[\n\x06Stream\x12\x1c.stategate.StreamMessageOpts\x1a\x16.stategate.PeerMessage\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/peers/stream0\x01\x42\x0bZ\tstategateb\x06proto3')
+  serialized_pb=_b('\n\x0cschema.proto\x12\tstategate\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19google/protobuf/any.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x36github.com/mwitkow/go-proto-validators/validator.proto\"A\n\x08MutexRef\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"A\n\x08\x43\x61\x63heRef\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"]\n\tEntityRef\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"q\n\x08\x45ventRef\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x13\n\x02id\x18\x04 \x01(\tB\x07\xe2\xdf\x1f\x03\x90\x01\x04\"\x8b\x01\n\x06\x45ntity\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12/\n\x06values\x18\x04 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\"i\n\x11StreamMessageOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x1c\n\x07\x63hannel\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"\x8e\x01\n\x07Message\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x1c\n\x07\x63hannel\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12-\n\x04\x62ody\x18\x04 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\"g\n\x05Mutex\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\'\n\x03\x65xp\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x96\x01\n\x05\x43\x61\x63he\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x18\n\x03key\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12-\n\x05value\x18\x03 \x01(\x0b\x32\x16.google.protobuf.ValueB\x06\xe2\xdf\x1f\x02 \x01\x12\'\n\x03\x65xp\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xee\x01\n\x0bPeerMessage\x12\x13\n\x02id\x18\x01 \x01(\tB\x07\xe2\xdf\x1f\x03\x90\x01\x04\x12\x1b\n\x06\x64omain\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x1c\n\x07\x63hannel\x18\x03 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x04 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12-\n\x04\x62ody\x18\x05 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12/\n\x06\x63laims\x18\x06 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12\x14\n\x04time\x18\x07 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\"/\n\x08\x45ntities\x12#\n\x08\x65ntities\x18\x01 \x03(\x0b\x32\x11.stategate.Entity\"\xa6\x01\n\x10SearchEntityOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x14\n\x0cquery_string\x18\x03 \x01(\t\x12\x15\n\x05limit\x18\x04 \x01(\x05\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x05 \x01(\x05\x12\x1d\n\x04sort\x18\t \x01(\x0b\x32\x0f.stategate.Sort\"\xbf\x01\n\x0fSearchEventOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x14\n\x0cquery_string\x18\x04 \x01(\t\x12\x0b\n\x03min\x18\x05 \x01(\x03\x12\x0b\n\x03max\x18\x06 \x01(\x03\x12\x15\n\x05limit\x18\x07 \x01(\x05\x42\x06\xe2\xdf\x1f\x02\x10\x00\x12\x0e\n\x06offset\x18\x08 \x01(\x05\x12\x1d\n\x04sort\x18\t \x01(\x0b\x32\x0f.stategate.Sort\"I\n\x0fStreamEventOpts\x12\x1b\n\x06\x64omain\x18\x01 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\x12\x19\n\x04type\x18\x02 \x01(\tB\x0b\xe2\xdf\x1f\x07\n\x05^\\S+$\"&\n\x04Sort\x12\r\n\x05\x66ield\x18\x01 \x01(\t\x12\x0f\n\x07reverse\x18\x02 \x01(\x08\"\xa6\x01\n\x05\x45vent\x12\x13\n\x02id\x18\x01 \x01(\tB\x07\xe2\xdf\x1f\x03\x90\x01\x04\x12)\n\x06\x65ntity\x18\x02 \x01(\x0b\x32\x11.stategate.EntityB\x06\xe2\xdf\x1f\x02 \x01\x12\x16\n\x06method\x18\x05 \x01(\tB\x06\xe2\xdf\x1f\x02X\x01\x12/\n\x06\x63laims\x18\x03 \x01(\x0b\x32\x17.google.protobuf.StructB\x06\xe2\xdf\x1f\x02 \x01\x12\x14\n\x04time\x18\x04 \x01(\x03\x42\x06\xe2\xdf\x1f\x02\x10\x00\"*\n\x06\x45vents\x12 \n\x06\x65vents\x18\x01 \x03(\x0b\x32\x10.stategate.Event2\xd0\x04\n\rEntityService\x12_\n\x03Set\x12\x11.stategate.Entity\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'\x1a%/api/entity/ref/{domain}/{type}/{key}\x12[\n\x04\x45\x64it\x12\x11.stategate.Entity\x1a\x11.stategate.Entity\"-\x82\xd3\xe4\x93\x02\'2%/api/entity/ref/{domain}/{type}/{key}\x12\x66\n\x06Revert\x12\x13.stategate.EventRef\x1a\x11.stategate.Entity\"4\x82\xd3\xe4\x93\x02.\x1a,/api/entity/ref/{domain}/{type}/{key}/revert\x12]\n\x03Get\x12\x14.stategate.EntityRef\x1a\x11.stategate.Entity\"-\x82\xd3\xe4\x93\x02\'\x12%/api/entity/ref/{domain}/{type}/{key}\x12\x62\n\x03\x44\x65l\x12\x14.stategate.EntityRef\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'*%/api/entity/ref/{domain}/{type}/{key}\x12V\n\x06Search\x12\x1b.stategate.SearchEntityOpts\x1a\x13.stategate.Entities\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/entity/search2\x98\x02\n\x0c\x45ventService\x12S\n\x06Stream\x12\x1a.stategate.StreamEventOpts\x1a\x10.stategate.Event\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/event/stream0\x01\x12R\n\x06Search\x12\x1a.stategate.SearchEventOpts\x1a\x11.stategate.Events\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/event/search\x12_\n\x03Get\x12\x13.stategate.EventRef\x1a\x10.stategate.Event\"1\x82\xd3\xe4\x93\x02+\x12)/api/event/ref/{domain}/{type}/{key}/{id}2\xc2\x01\n\x0bPeerService\x12W\n\tBroadcast\x12\x12.stategate.Message\x1a\x16.google.protobuf.Empty\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/api/peer/broadcast:\x01*\x12Z\n\x06Stream\x12\x1c.stategate.StreamMessageOpts\x1a\x16.stategate.PeerMessage\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/api/peer/stream0\x01\x32\x96\x02\n\x0c\x43\x61\x63heService\x12V\n\x03Set\x12\x10.stategate.Cache\x1a\x16.google.protobuf.Empty\"%\x82\xd3\xe4\x93\x02\x1f\x1a\x1d/api/cache/ref/{domain}/{key}\x12S\n\x03Get\x12\x13.stategate.CacheRef\x1a\x10.stategate.Cache\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/cache/ref/{domain}/{key}\x12Y\n\x03\x44\x65l\x12\x13.stategate.CacheRef\x1a\x16.google.protobuf.Empty\"%\x82\xd3\xe4\x93\x02\x1f*\x1d/api/cache/ref/{domain}/{key}2\xd1\x01\n\x0cMutexService\x12\\\n\x04Lock\x12\x10.stategate.Mutex\x1a\x16.google.protobuf.Empty\"*\x82\xd3\xe4\x93\x02$\"\"/api/cache/ref/{domain}/{key}/lock\x12\x63\n\x06Unlock\x12\x13.stategate.MutexRef\x1a\x16.google.protobuf.Empty\",\x82\xd3\xe4\x93\x02&\"$/api/cache/ref/{domain}/{key}/unlockB\x0bZ\tstategateb\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_any__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,github_dot_com_dot_mwitkow_dot_go__proto__validators_dot_validator__pb2.DESCRIPTOR,])
 
 
+
+
+_MUTEXREF = _descriptor.Descriptor(
+  name='MutexRef',
+  full_name='stategate.MutexRef',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='domain', full_name='stategate.MutexRef.domain', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\007\n\005^\\S+$'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='key', full_name='stategate.MutexRef.key', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\007\n\005^\\S+$'), file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=232,
+  serialized_end=297,
+)
+
+
+_CACHEREF = _descriptor.Descriptor(
+  name='CacheRef',
+  full_name='stategate.CacheRef',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='domain', full_name='stategate.CacheRef.domain', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\007\n\005^\\S+$'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='key', full_name='stategate.CacheRef.key', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\007\n\005^\\S+$'), file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=299,
+  serialized_end=364,
+)
 
 
 _ENTITYREF = _descriptor.Descriptor(
@@ -72,8 +148,8 @@ _ENTITYREF = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=232,
-  serialized_end=325,
+  serialized_start=366,
+  serialized_end=459,
 )
 
 
@@ -124,8 +200,8 @@ _EVENTREF = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=327,
-  serialized_end=440,
+  serialized_start=461,
+  serialized_end=574,
 )
 
 
@@ -176,8 +252,8 @@ _ENTITY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=443,
-  serialized_end=582,
+  serialized_start=577,
+  serialized_end=716,
 )
 
 
@@ -221,8 +297,8 @@ _STREAMMESSAGEOPTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=584,
-  serialized_end=689,
+  serialized_start=718,
+  serialized_end=823,
 )
 
 
@@ -273,8 +349,105 @@ _MESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=692,
-  serialized_end=834,
+  serialized_start=826,
+  serialized_end=968,
+)
+
+
+_MUTEX = _descriptor.Descriptor(
+  name='Mutex',
+  full_name='stategate.Mutex',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='domain', full_name='stategate.Mutex.domain', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\007\n\005^\\S+$'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='key', full_name='stategate.Mutex.key', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\007\n\005^\\S+$'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='exp', full_name='stategate.Mutex.exp', index=2,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=970,
+  serialized_end=1073,
+)
+
+
+_CACHE = _descriptor.Descriptor(
+  name='Cache',
+  full_name='stategate.Cache',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='domain', full_name='stategate.Cache.domain', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\007\n\005^\\S+$'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='key', full_name='stategate.Cache.key', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\007\n\005^\\S+$'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='stategate.Cache.value', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=_b('\342\337\037\002 \001'), file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='exp', full_name='stategate.Cache.exp', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1076,
+  serialized_end=1226,
 )
 
 
@@ -346,8 +519,8 @@ _PEERMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=837,
-  serialized_end=1075,
+  serialized_start=1229,
+  serialized_end=1467,
 )
 
 
@@ -377,8 +550,8 @@ _ENTITIES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1077,
-  serialized_end=1124,
+  serialized_start=1469,
+  serialized_end=1516,
 )
 
 
@@ -443,8 +616,8 @@ _SEARCHENTITYOPTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1127,
-  serialized_end=1293,
+  serialized_start=1519,
+  serialized_end=1685,
 )
 
 
@@ -523,8 +696,8 @@ _SEARCHEVENTOPTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1296,
-  serialized_end=1487,
+  serialized_start=1688,
+  serialized_end=1879,
 )
 
 
@@ -561,8 +734,8 @@ _STREAMEVENTOPTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1489,
-  serialized_end=1562,
+  serialized_start=1881,
+  serialized_end=1954,
 )
 
 
@@ -599,8 +772,8 @@ _SORT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1564,
-  serialized_end=1602,
+  serialized_start=1956,
+  serialized_end=1994,
 )
 
 
@@ -658,8 +831,8 @@ _EVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1605,
-  serialized_end=1771,
+  serialized_start=1997,
+  serialized_end=2163,
 )
 
 
@@ -689,12 +862,15 @@ _EVENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1773,
-  serialized_end=1815,
+  serialized_start=2165,
+  serialized_end=2207,
 )
 
 _ENTITY.fields_by_name['values'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
 _MESSAGE.fields_by_name['body'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
+_MUTEX.fields_by_name['exp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_CACHE.fields_by_name['value'].message_type = google_dot_protobuf_dot_struct__pb2._VALUE
+_CACHE.fields_by_name['exp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _PEERMESSAGE.fields_by_name['body'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
 _PEERMESSAGE.fields_by_name['claims'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
 _ENTITIES.fields_by_name['entities'].message_type = _ENTITY
@@ -703,11 +879,15 @@ _SEARCHEVENTOPTS.fields_by_name['sort'].message_type = _SORT
 _EVENT.fields_by_name['entity'].message_type = _ENTITY
 _EVENT.fields_by_name['claims'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
 _EVENTS.fields_by_name['events'].message_type = _EVENT
+DESCRIPTOR.message_types_by_name['MutexRef'] = _MUTEXREF
+DESCRIPTOR.message_types_by_name['CacheRef'] = _CACHEREF
 DESCRIPTOR.message_types_by_name['EntityRef'] = _ENTITYREF
 DESCRIPTOR.message_types_by_name['EventRef'] = _EVENTREF
 DESCRIPTOR.message_types_by_name['Entity'] = _ENTITY
 DESCRIPTOR.message_types_by_name['StreamMessageOpts'] = _STREAMMESSAGEOPTS
 DESCRIPTOR.message_types_by_name['Message'] = _MESSAGE
+DESCRIPTOR.message_types_by_name['Mutex'] = _MUTEX
+DESCRIPTOR.message_types_by_name['Cache'] = _CACHE
 DESCRIPTOR.message_types_by_name['PeerMessage'] = _PEERMESSAGE
 DESCRIPTOR.message_types_by_name['Entities'] = _ENTITIES
 DESCRIPTOR.message_types_by_name['SearchEntityOpts'] = _SEARCHENTITYOPTS
@@ -717,6 +897,20 @@ DESCRIPTOR.message_types_by_name['Sort'] = _SORT
 DESCRIPTOR.message_types_by_name['Event'] = _EVENT
 DESCRIPTOR.message_types_by_name['Events'] = _EVENTS
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+MutexRef = _reflection.GeneratedProtocolMessageType('MutexRef', (_message.Message,), dict(
+  DESCRIPTOR = _MUTEXREF,
+  __module__ = 'schema_pb2'
+  # @@protoc_insertion_point(class_scope:stategate.MutexRef)
+  ))
+_sym_db.RegisterMessage(MutexRef)
+
+CacheRef = _reflection.GeneratedProtocolMessageType('CacheRef', (_message.Message,), dict(
+  DESCRIPTOR = _CACHEREF,
+  __module__ = 'schema_pb2'
+  # @@protoc_insertion_point(class_scope:stategate.CacheRef)
+  ))
+_sym_db.RegisterMessage(CacheRef)
 
 EntityRef = _reflection.GeneratedProtocolMessageType('EntityRef', (_message.Message,), dict(
   DESCRIPTOR = _ENTITYREF,
@@ -752,6 +946,20 @@ Message = _reflection.GeneratedProtocolMessageType('Message', (_message.Message,
   # @@protoc_insertion_point(class_scope:stategate.Message)
   ))
 _sym_db.RegisterMessage(Message)
+
+Mutex = _reflection.GeneratedProtocolMessageType('Mutex', (_message.Message,), dict(
+  DESCRIPTOR = _MUTEX,
+  __module__ = 'schema_pb2'
+  # @@protoc_insertion_point(class_scope:stategate.Mutex)
+  ))
+_sym_db.RegisterMessage(Mutex)
+
+Cache = _reflection.GeneratedProtocolMessageType('Cache', (_message.Message,), dict(
+  DESCRIPTOR = _CACHE,
+  __module__ = 'schema_pb2'
+  # @@protoc_insertion_point(class_scope:stategate.Cache)
+  ))
+_sym_db.RegisterMessage(Cache)
 
 PeerMessage = _reflection.GeneratedProtocolMessageType('PeerMessage', (_message.Message,), dict(
   DESCRIPTOR = _PEERMESSAGE,
@@ -811,6 +1019,10 @@ _sym_db.RegisterMessage(Events)
 
 
 DESCRIPTOR._options = None
+_MUTEXREF.fields_by_name['domain']._options = None
+_MUTEXREF.fields_by_name['key']._options = None
+_CACHEREF.fields_by_name['domain']._options = None
+_CACHEREF.fields_by_name['key']._options = None
 _ENTITYREF.fields_by_name['domain']._options = None
 _ENTITYREF.fields_by_name['type']._options = None
 _ENTITYREF.fields_by_name['key']._options = None
@@ -829,6 +1041,11 @@ _MESSAGE.fields_by_name['domain']._options = None
 _MESSAGE.fields_by_name['channel']._options = None
 _MESSAGE.fields_by_name['type']._options = None
 _MESSAGE.fields_by_name['body']._options = None
+_MUTEX.fields_by_name['domain']._options = None
+_MUTEX.fields_by_name['key']._options = None
+_CACHE.fields_by_name['domain']._options = None
+_CACHE.fields_by_name['key']._options = None
+_CACHE.fields_by_name['value']._options = None
 _PEERMESSAGE.fields_by_name['id']._options = None
 _PEERMESSAGE.fields_by_name['domain']._options = None
 _PEERMESSAGE.fields_by_name['channel']._options = None
@@ -856,8 +1073,8 @@ _ENTITYSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=1818,
-  serialized_end=2410,
+  serialized_start=2210,
+  serialized_end=2802,
   methods=[
   _descriptor.MethodDescriptor(
     name='Set',
@@ -866,7 +1083,7 @@ _ENTITYSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_ENTITY,
     output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
-    serialized_options=_b('\202\323\344\223\002\'\"%/api/entity/ref/{domain}/{type}/{key}'),
+    serialized_options=_b('\202\323\344\223\002\'\032%/api/entity/ref/{domain}/{type}/{key}'),
   ),
   _descriptor.MethodDescriptor(
     name='Edit',
@@ -925,8 +1142,8 @@ _EVENTSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=1,
   serialized_options=None,
-  serialized_start=2413,
-  serialized_end=2696,
+  serialized_start=2805,
+  serialized_end=3085,
   methods=[
   _descriptor.MethodDescriptor(
     name='Stream',
@@ -935,7 +1152,7 @@ _EVENTSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_STREAMEVENTOPTS,
     output_type=_EVENT,
-    serialized_options=_b('\202\323\344\223\002\024\022\022/api/events/stream'),
+    serialized_options=_b('\202\323\344\223\002\023\022\021/api/event/stream'),
   ),
   _descriptor.MethodDescriptor(
     name='Search',
@@ -944,7 +1161,7 @@ _EVENTSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_SEARCHEVENTOPTS,
     output_type=_EVENTS,
-    serialized_options=_b('\202\323\344\223\002\024\022\022/api/events/search'),
+    serialized_options=_b('\202\323\344\223\002\023\022\021/api/event/search'),
   ),
   _descriptor.MethodDescriptor(
     name='Get',
@@ -953,7 +1170,7 @@ _EVENTSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_EVENTREF,
     output_type=_EVENT,
-    serialized_options=_b('\202\323\344\223\002,\022*/api/events/ref/{domain}/{type}/{key}/{id}'),
+    serialized_options=_b('\202\323\344\223\002+\022)/api/event/ref/{domain}/{type}/{key}/{id}'),
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_EVENTSERVICE)
@@ -967,8 +1184,8 @@ _PEERSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=2,
   serialized_options=None,
-  serialized_start=2699,
-  serialized_end=2895,
+  serialized_start=3088,
+  serialized_end=3282,
   methods=[
   _descriptor.MethodDescriptor(
     name='Broadcast',
@@ -977,7 +1194,7 @@ _PEERSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_MESSAGE,
     output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
-    serialized_options=_b('\202\323\344\223\002\031\"\024/api/peers/broadcast:\001*'),
+    serialized_options=_b('\202\323\344\223\002\030\"\023/api/peer/broadcast:\001*'),
   ),
   _descriptor.MethodDescriptor(
     name='Stream',
@@ -986,11 +1203,86 @@ _PEERSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_STREAMMESSAGEOPTS,
     output_type=_PEERMESSAGE,
-    serialized_options=_b('\202\323\344\223\002\023\022\021/api/peers/stream'),
+    serialized_options=_b('\202\323\344\223\002\022\022\020/api/peer/stream'),
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_PEERSERVICE)
 
 DESCRIPTOR.services_by_name['PeerService'] = _PEERSERVICE
+
+
+_CACHESERVICE = _descriptor.ServiceDescriptor(
+  name='CacheService',
+  full_name='stategate.CacheService',
+  file=DESCRIPTOR,
+  index=3,
+  serialized_options=None,
+  serialized_start=3285,
+  serialized_end=3563,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='Set',
+    full_name='stategate.CacheService.Set',
+    index=0,
+    containing_service=None,
+    input_type=_CACHE,
+    output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    serialized_options=_b('\202\323\344\223\002\037\032\035/api/cache/ref/{domain}/{key}'),
+  ),
+  _descriptor.MethodDescriptor(
+    name='Get',
+    full_name='stategate.CacheService.Get',
+    index=1,
+    containing_service=None,
+    input_type=_CACHEREF,
+    output_type=_CACHE,
+    serialized_options=_b('\202\323\344\223\002\037\022\035/api/cache/ref/{domain}/{key}'),
+  ),
+  _descriptor.MethodDescriptor(
+    name='Del',
+    full_name='stategate.CacheService.Del',
+    index=2,
+    containing_service=None,
+    input_type=_CACHEREF,
+    output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    serialized_options=_b('\202\323\344\223\002\037*\035/api/cache/ref/{domain}/{key}'),
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_CACHESERVICE)
+
+DESCRIPTOR.services_by_name['CacheService'] = _CACHESERVICE
+
+
+_MUTEXSERVICE = _descriptor.ServiceDescriptor(
+  name='MutexService',
+  full_name='stategate.MutexService',
+  file=DESCRIPTOR,
+  index=4,
+  serialized_options=None,
+  serialized_start=3566,
+  serialized_end=3775,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='Lock',
+    full_name='stategate.MutexService.Lock',
+    index=0,
+    containing_service=None,
+    input_type=_MUTEX,
+    output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    serialized_options=_b('\202\323\344\223\002$\"\"/api/cache/ref/{domain}/{key}/lock'),
+  ),
+  _descriptor.MethodDescriptor(
+    name='Unlock',
+    full_name='stategate.MutexService.Unlock',
+    index=1,
+    containing_service=None,
+    input_type=_MUTEXREF,
+    output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    serialized_options=_b('\202\323\344\223\002&\"$/api/cache/ref/{domain}/{key}/unlock'),
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_MUTEXSERVICE)
+
+DESCRIPTOR.services_by_name['MutexService'] = _MUTEXSERVICE
 
 # @@protoc_insertion_point(module_scope)

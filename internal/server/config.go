@@ -18,6 +18,7 @@ type Config struct {
 	ResponsePolicy  string
 	ChannelProvider map[string]string
 	StorageProvider map[string]string
+	CacheProvider   map[string]string
 }
 
 func (c *Config) LoadEnv() error {
@@ -32,6 +33,7 @@ func (c *Config) LoadEnv() error {
 		responsePolicy  = os.Getenv("STATEGATE_RESPONSE_POLICY")
 		channelProvider = os.Getenv("STATEGATE_CHANNEL_PROVIDER")
 		storageProvider = os.Getenv("STATEGATE_STORAGE_PROVIDER")
+		cacheProvider   = os.Getenv("STATEGATE_CACHE_PROVIDER")
 	)
 	if port != "" {
 		p, err := strconv.Atoi(port)
@@ -77,6 +79,13 @@ func (c *Config) LoadEnv() error {
 		}
 		c.StorageProvider = provider
 	}
+	if cacheProvider != "" {
+		provider := map[string]string{}
+		if err := json.Unmarshal([]byte(cacheProvider), &provider); err != nil {
+			return errors.Wrap(err, "failed to unmarshal cache provider JSON")
+		}
+		c.CacheProvider = provider
+	}
 	return nil
 }
 
@@ -104,8 +113,8 @@ func (c *Config) Validate() error {
 	if c.StorageProvider == nil {
 		return errors.New("config: empty storage provider")
 	}
-	if c.StorageProvider == nil {
-		return errors.New("config: empty storage provider")
+	if c.CacheProvider == nil {
+		return errors.New("config: empty cache provider")
 	}
 	return nil
 }

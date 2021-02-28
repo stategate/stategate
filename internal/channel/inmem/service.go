@@ -10,14 +10,14 @@ import (
 )
 
 type Service struct {
-	logger *logger.Logger
-	machine     machine.Machine
+	logger  *logger.Logger
+	machine machine.Machine
 }
 
 func NewService(logger *logger.Logger) *Service {
 	return &Service{
-		logger: logger,
-		machine:     machine.New(),
+		logger:  logger,
+		machine: machine.New(),
 	}
 }
 

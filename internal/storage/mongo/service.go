@@ -15,10 +15,10 @@ import (
 )
 
 type Provider struct {
-	db *mongo.Database
+	db *mongo.Client
 }
 
-func NewProvider(db *mongo.Database) *Provider {
+func NewProvider(db *mongo.Client) *Provider {
 	return &Provider{db: db}
 }
 
@@ -29,7 +29,7 @@ func (p Provider) SetEntity(ctx context.Context, state *stategate.Entity) *error
 	data := bson.M(state.GetValues().AsMap())
 	data["_id"] = state.GetKey()
 	opts := options.Replace().SetUpsert(true)
-	_, err := p.db.Collection(collectionName(false, state.GetDomain(), state.GetType())).ReplaceOne(ctx, filter, data, opts)
+	_, err := p.db.Database(state.GetDomain()).Collection(collectionName(false, state.GetType())).ReplaceOne(ctx, filter, data, opts)
 	if err != nil {
 		return &errorz.Error{
 			Type: errorz.ErrUnknown,
@@ -60,7 +60,7 @@ func (p Provider) EditEntity(ctx context.Context, state *stategate.Entity) (*sta
 	opts.SetReturnDocument(options.After)
 
 	result := bson.M{}
-	err := p.db.Collection(collectionName(false, state.GetDomain(), state.GetType())).FindOneAndUpdate(ctx, filter, update, opts).Decode(&result)
+	err := p.db.Database(state.GetDomain()).Collection(collectionName(false, state.GetType())).FindOneAndUpdate(ctx, filter, update, opts).Decode(&result)
 	if err != nil {
 		return nil, &errorz.Error{
 			Type: errorz.ErrUnknown,
@@ -87,7 +87,7 @@ func (p Provider) EditEntity(ctx context.Context, state *stategate.Entity) (*sta
 }
 
 func (p Provider) SaveEvent(ctx context.Context, e *stategate.Event) *errorz.Error {
-	_, err := p.db.Collection(collectionName(true, e.GetEntity().GetDomain(), e.GetEntity().GetType())).InsertOne(ctx, bson.M(map[string]interface{}{
+	_, err := p.db.Database(e.GetEntity().GetDomain()).Collection(collectionName(true, e.GetEntity().GetType())).InsertOne(ctx, bson.M(map[string]interface{}{
 		"_id":  e.Id,
 		"time": e.GetTime(),
 		"entity": bson.M{
@@ -118,7 +118,7 @@ func (p *Provider) GetEntity(ctx context.Context, ref *stategate.EntityRef) (*st
 	}
 	var result bson.M
 
-	if err := p.db.Collection(collectionName(false, ref.GetDomain(), ref.GetType())).FindOne(ctx, filter).Decode(&result); err != nil {
+	if err := p.db.Database(ref.GetDomain()).Collection(collectionName(false, ref.GetType())).FindOne(ctx, filter).Decode(&result); err != nil {
 		if err == mongo.ErrNoDocuments {
 			return nil, &errorz.Error{
 				Type: errorz.ErrNotFound,
@@ -157,7 +157,7 @@ func (p *Provider) DelEntity(ctx context.Context, ref *stategate.EntityRef) *err
 	filter := bson.D{
 		{Key: "_id", Value: ref.GetKey()},
 	}
-	if err := p.db.Collection(collectionName(false, ref.GetDomain(), ref.GetType())).FindOneAndDelete(ctx, filter).Err(); err != nil {
+	if err := p.db.Database(ref.GetDomain()).Collection(collectionName(false, ref.GetType())).FindOneAndDelete(ctx, filter).Err(); err != nil {
 		if err == mongo.ErrNoDocuments {
 			return &errorz.Error{
 				Type: errorz.ErrNotFound,
@@ -233,7 +233,7 @@ func (p *Provider) SearchEvents(ctx context.Context, opts *stategate.SearchEvent
 			})
 		}
 	}
-	cur, err := p.db.Collection(collectionName(true, opts.GetDomain(), opts.GetType())).Find(ctx, filter, o)
+	cur, err := p.db.Database(opts.GetDomain()).Collection(collectionName(true, opts.GetType())).Find(ctx, filter, o)
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
 			return nil, &errorz.Error{
@@ -283,7 +283,7 @@ func (p *Provider) GetEvent(ctx context.Context, ref *stategate.EventRef) (*stat
 	}
 	var result bson.M
 
-	if err := p.db.Collection(collectionName(true, ref.GetDomain(), ref.GetType())).FindOne(ctx, filter).Decode(&result); err != nil {
+	if err := p.db.Database(ref.GetDomain()).Collection(collectionName(true, ref.GetType())).FindOne(ctx, filter).Decode(&result); err != nil {
 		if err == mongo.ErrNoDocuments {
 			return nil, &errorz.Error{
 				Type: errorz.ErrNotFound,
@@ -341,7 +341,7 @@ func (p *Provider) SearchEntities(ctx context.Context, opts *stategate.SearchEnt
 		}
 	}
 
-	cur, err := p.db.Collection(collectionName(false, opts.GetDomain(), opts.GetType())).Find(ctx, filter, o)
+	cur, err := p.db.Database(opts.GetDomain()).Collection(collectionName(false, opts.GetType())).Find(ctx, filter, o)
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
 			return nil, &errorz.Error{
@@ -398,14 +398,14 @@ func (p *Provider) SearchEntities(ctx context.Context, opts *stategate.SearchEnt
 func (p *Provider) Close() error {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
-	return p.db.Client().Disconnect(ctx)
+	return p.db.Disconnect(ctx)
 }
 
-func collectionName(isEvent bool, domain, typ string) string {
+func collectionName(isEvent bool, typ string) string {
 	if isEvent {
-		return fmt.Sprintf("%s.%s_events", domain, typ)
+		return fmt.Sprintf("%s_events", typ)
 	}
-	return fmt.Sprintf("%s.%s", domain, typ)
+	return typ
 }
 
 func toEvent(domain, typ string, r bson.M) *stategate.Event {

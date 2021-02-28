@@ -179,6 +179,14 @@
             <ul>
               
                 <li>
+                  <a href="#stategate.Cache"><span class="badge">M</span>Cache</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.CacheRef"><span class="badge">M</span>CacheRef</a>
+                </li>
+              
+                <li>
                   <a href="#stategate.Entities"><span class="badge">M</span>Entities</a>
                 </li>
               
@@ -204,6 +212,14 @@
               
                 <li>
                   <a href="#stategate.Message"><span class="badge">M</span>Message</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.Mutex"><span class="badge">M</span>Mutex</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.MutexRef"><span class="badge">M</span>MutexRef</a>
                 </li>
               
                 <li>
@@ -234,11 +250,19 @@
               
               
                 <li>
+                  <a href="#stategate.CacheService"><span class="badge">S</span>CacheService</a>
+                </li>
+              
+                <li>
                   <a href="#stategate.EntityService"><span class="badge">S</span>EntityService</a>
                 </li>
               
                 <li>
                   <a href="#stategate.EventService"><span class="badge">S</span>EventService</a>
+                </li>
+              
+                <li>
+                  <a href="#stategate.MutexService"><span class="badge">S</span>MutexService</a>
                 </li>
               
                 <li>
@@ -259,6 +283,170 @@
       </div>
       <p></p>
 
+      
+        <h3 id="stategate.Cache">Cache</h3>
+        <p>Cache is a persisted value that will expire after a period of time. It is held in memory for maximum performance.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the item&#39;s business domain(ex: accounting) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>entity key (unique within type) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
+                  <td></td>
+                  <td><p>the cached value&#39;s value to store </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>exp is the time at which the cached value will expire
+if exp is 0, the value will never expire </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td>
+                    <ul>
+                    
+                      <li>msg_exists: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="stategate.CacheRef">CacheRef</h3>
+        <p>EntityRef is a reference to a cached value</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the cached value&#39;s business domain(ex: accounting) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>cached value&#39;s key (unique within domain) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
       
         <h3 id="stategate.Entities">Entities</h3>
         <p>Entities is an array of Entity</p>
@@ -406,21 +594,24 @@ must not be empty or contain spaces </p></td>
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the entity&#39;s business domain(ex: accounting) </p></td>
+                  <td><p>the entity&#39;s business domain(ex: accounting)
+must not be empty or contain spaces </p></td>
                 </tr>
               
                 <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>entity type (ex: user) </p></td>
+                  <td><p>entity type (ex: user)
+must not be empty or contain spaces </p></td>
                 </tr>
               
                 <tr>
                   <td>key</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>entity key (unique within type) </p></td>
+                  <td><p>entity key (unique within type)
+must not be empty or contain spaces </p></td>
                 </tr>
               
             </tbody>
@@ -616,21 +807,21 @@ must not be empty or contain spaces </p></td>
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the entity&#39;s business domain(ex: accounting) </p></td>
+                  <td><p>the event&#39;s entity&#39;s business domain(ex: accounting) </p></td>
                 </tr>
               
                 <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>entity type (ex: user) </p></td>
+                  <td><p>event entity type (ex: user) </p></td>
                 </tr>
               
                 <tr>
                   <td>key</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>entity key (unique within type) </p></td>
+                  <td><p>event&#39;s entity&#39;s key (unique within type) </p></td>
                 </tr>
               
                 <tr>
@@ -827,6 +1018,152 @@ must not be empty or contain spaces </p></td>
                     <ul>
                     
                       <li>msg_exists: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="stategate.Mutex">Mutex</h3>
+        <p>Mutex is a distributed mutex for preventing data-races amongst peer services</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the mutex&#39;s business domain(ex: accounting) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>mutex key (unique within domain) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>exp is the time at which the mutex value will expire
+if exp is 0, the mutex will never expire </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="stategate.MutexRef">MutexRef</h3>
+        <p>MutexRef is a reference to a distributed mutex</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the mutex&#39;s business domain(ex: accounting) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>mutex key (unique within domain) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>domain</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td>
+                    <ul>
+                    
+                      <li>regex: ^\S&#43;$</li>
                     
                     </ul>
                   </td>
@@ -1441,6 +1778,87 @@ must not be empty or contain spaces
       
 
       
+        <h3 id="stategate.CacheService">CacheService</h3>
+        <p>CacheService is for persisting short lived values in memory for performance-critical operations</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Set</td>
+                <td><a href="#stategate.Cache">Cache</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Set sets a value in the cache</p></td>
+              </tr>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#stategate.CacheRef">CacheRef</a></td>
+                <td><a href="#stategate.Cache">Cache</a></td>
+                <td><p>Get gets a value from the cache</p></td>
+              </tr>
+            
+              <tr>
+                <td>Del</td>
+                <td><a href="#stategate.CacheRef">CacheRef</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Del deletes a value from the cache</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+          
+          
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+            
+              
+              
+              <tr>
+                <td>Set</td>
+                <td>PUT</td>
+                <td>/api/cache/ref/{domain}/{key}</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>Get</td>
+                <td>GET</td>
+                <td>/api/cache/ref/{domain}/{key}</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>Del</td>
+                <td>DELETE</td>
+                <td>/api/cache/ref/{domain}/{key}</td>
+                <td></td>
+              </tr>
+              
+            
+            </tbody>
+          </table>
+          
+        
         <h3 id="stategate.EntityService">EntityService</h3>
         <p>EntityService serves API methods to clients that modify/query the current state of an entity</p><p>An Entity is a single object with a type, domain, key, and k/v values</p>
         <table class="enum-table">
@@ -1517,7 +1935,7 @@ an Entity may be recovered via querying the Event store for historical records o
               
               <tr>
                 <td>Set</td>
-                <td>POST</td>
+                <td>PUT</td>
                 <td>/api/entity/ref/{domain}/{type}/{key}</td>
                 <td></td>
               </tr>
@@ -1629,7 +2047,7 @@ an Entity may be recovered via querying the Event store for historical records o
               <tr>
                 <td>Stream</td>
                 <td>GET</td>
-                <td>/api/events/stream</td>
+                <td>/api/event/stream</td>
                 <td></td>
               </tr>
               
@@ -1639,7 +2057,7 @@ an Entity may be recovered via querying the Event store for historical records o
               <tr>
                 <td>Search</td>
                 <td>GET</td>
-                <td>/api/events/search</td>
+                <td>/api/event/search</td>
                 <td></td>
               </tr>
               
@@ -1649,7 +2067,74 @@ an Entity may be recovered via querying the Event store for historical records o
               <tr>
                 <td>Get</td>
                 <td>GET</td>
-                <td>/api/events/ref/{domain}/{type}/{key}/{id}</td>
+                <td>/api/event/ref/{domain}/{type}/{key}/{id}</td>
+                <td></td>
+              </tr>
+              
+            
+            </tbody>
+          </table>
+          
+        
+        <h3 id="stategate.MutexService">MutexService</h3>
+        <p>MutexService offers distributed locking capabilities for client's that need to coordinate with peer services.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Lock</td>
+                <td><a href="#stategate.Mutex">Mutex</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Lock locks a value for a period of time if it is not locked already.
+If it is already locked, an error will be returned
+It is best practice for client&#39;s to call Unlock when the distributed lock operation is completed instead of relying on the TTL</p></td>
+              </tr>
+            
+              <tr>
+                <td>Unlock</td>
+                <td><a href="#stategate.MutexRef">MutexRef</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p>Unlock unlocks the key(if it&#39;s currently locked) so that it may be locked again.
+It is best practice for client&#39;s to call Unlock when the distributed lock operation is completed instead of relying on the TTL</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+          
+          
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+            
+              
+              
+              <tr>
+                <td>Lock</td>
+                <td>POST</td>
+                <td>/api/cache/ref/{domain}/{key}/lock</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>Unlock</td>
+                <td>POST</td>
+                <td>/api/cache/ref/{domain}/{key}/unlock</td>
                 <td></td>
               </tr>
               
@@ -1703,7 +2188,7 @@ an Entity may be recovered via querying the Event store for historical records o
               <tr>
                 <td>Broadcast</td>
                 <td>POST</td>
-                <td>/api/peers/broadcast</td>
+                <td>/api/peer/broadcast</td>
                 <td>*</td>
               </tr>
               
@@ -1713,7 +2198,7 @@ an Entity may be recovered via querying the Event store for historical records o
               <tr>
                 <td>Stream</td>
                 <td>GET</td>
-                <td>/api/peers/stream</td>
+                <td>/api/peer/stream</td>
                 <td></td>
               </tr>
               

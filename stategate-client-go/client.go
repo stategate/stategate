@@ -3,7 +3,12 @@ package stategate_client_go
 import (
 	"context"
 	"fmt"
+	"github.com/autom8ter/stategate/internal/logger"
+	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
+	grpc_validator "github.com/grpc-ecosystem/go-grpc-middleware/validator"
+	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/pkg/errors"
+	"go.uber.org/zap"
 	"golang.org/x/oauth2"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
@@ -98,4 +103,57 @@ func toContext(ctx context.Context, tokenSource oauth2.TokenSource, useIdToken b
 		ctx,
 		"Authorization", fmt.Sprintf("Bearer %v", token.AccessToken),
 	), nil
+}
+
+func getConnection(ctx context.Context, target string, opts ...Opt) (*grpc.ClientConn, error) {
+	if target == "" {
+		return nil, errors.New("empty target")
+	}
+	dialopts := []grpc.DialOption{}
+	var uinterceptors []grpc.UnaryClientInterceptor
+	var sinterceptors []grpc.StreamClientInterceptor
+	options := &Options{}
+	for _, o := range opts {
+		o(options)
+	}
+	if options.creds == nil {
+		dialopts = append(dialopts, grpc.WithInsecure())
+	} else {
+		dialopts = append(dialopts, grpc.WithTransportCredentials(options.creds))
+	}
+	uinterceptors = append(uinterceptors, grpc_validator.UnaryClientInterceptor())
+
+	if options.metrics {
+		uinterceptors = append(uinterceptors, grpc_prometheus.UnaryClientInterceptor)
+		sinterceptors = append(sinterceptors, grpc_prometheus.StreamClientInterceptor)
+	}
+
+	if options.tokenSource != nil {
+		uinterceptors = append(uinterceptors, unaryAuth(options.tokenSource, options.idtoken))
+		sinterceptors = append(sinterceptors, streamAuth(options.tokenSource, options.idtoken))
+	}
+	if options.logging {
+		lgger := logger.New(true, zap.Bool("client", true))
+		uinterceptors = append(uinterceptors, grpc_zap.UnaryClientInterceptor(lgger.Zap()))
+		sinterceptors = append(sinterceptors, grpc_zap.StreamClientInterceptor(lgger.Zap()))
+
+		if options.logPayload {
+			uinterceptors = append(uinterceptors, grpc_zap.PayloadUnaryClientInterceptor(lgger.Zap(), func(ctx context.Context, fullMethodName string) bool {
+				return true
+			}))
+			sinterceptors = append(sinterceptors, grpc_zap.PayloadStreamClientInterceptor(lgger.Zap(), func(ctx context.Context, fullMethodName string) bool {
+				return true
+			}))
+		}
+	}
+	dialopts = append(dialopts,
+		grpc.WithChainUnaryInterceptor(uinterceptors...),
+		grpc.WithChainStreamInterceptor(sinterceptors...),
+		grpc.WithBlock(),
+	)
+	conn, err := grpc.DialContext(ctx, target, dialopts...)
+	if err != nil {
+		return nil, errors.Wrap(err, "failed to create stategate connection")
+	}
+	return conn, nil
 }

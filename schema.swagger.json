@@ -11,6 +11,197 @@
     "application/json"
   ],
   "paths": {
+    "/api/cache/ref/{domain}/{key}": {
+      "get": {
+        "summary": "Get gets a value from the cache",
+        "operationId": "CacheService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/stategateCache"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the cached value's business domain(ex: accounting)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "cached value's key (unique within domain)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CacheService"
+        ]
+      },
+      "delete": {
+        "summary": "Del deletes a value from the cache",
+        "operationId": "CacheService_Del",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the cached value's business domain(ex: accounting)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "cached value's key (unique within domain)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CacheService"
+        ]
+      },
+      "put": {
+        "summary": "Set sets a value in the cache",
+        "operationId": "CacheService_Set",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the item's business domain(ex: accounting)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "entity key (unique within type)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CacheService"
+        ]
+      }
+    },
+    "/api/cache/ref/{domain}/{key}/lock": {
+      "post": {
+        "summary": "Lock locks a value for a period of time if it is not locked already.\nIf it is already locked, an error will be returned\nIt is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL",
+        "operationId": "MutexService_Lock",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the mutex's business domain(ex: accounting)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "mutex key (unique within domain)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MutexService"
+        ]
+      }
+    },
+    "/api/cache/ref/{domain}/{key}/unlock": {
+      "post": {
+        "summary": "Unlock unlocks the key(if it's currently locked) so that it may be locked again.\nIt is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL",
+        "operationId": "MutexService_Unlock",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the mutex's business domain(ex: accounting)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "mutex key (unique within domain)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MutexService"
+        ]
+      }
+    },
     "/api/entity/ref/{domain}/{type}/{key}": {
       "get": {
         "summary": "Get gets an entity's current state",
@@ -32,21 +223,21 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the entity's business domain(ex: accounting)",
+            "description": "the entity's business domain(ex: accounting)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "entity type (ex: user)",
+            "description": "entity type (ex: user)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "key",
-            "description": "entity key (unique within type)",
+            "description": "entity key (unique within type)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
@@ -76,21 +267,21 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the entity's business domain(ex: accounting)",
+            "description": "the entity's business domain(ex: accounting)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "entity type (ex: user)",
+            "description": "entity type (ex: user)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "key",
-            "description": "entity key (unique within type)",
+            "description": "entity key (unique within type)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
@@ -100,7 +291,7 @@
           "EntityService"
         ]
       },
-      "post": {
+      "put": {
         "summary": "Set sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers(EventService.Stream)",
         "operationId": "EntityService_Set",
         "responses": {
@@ -210,21 +401,21 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the entity's business domain(ex: accounting)",
+            "description": "the event's entity's business domain(ex: accounting)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "entity type (ex: user)",
+            "description": "event entity type (ex: user)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "key",
-            "description": "entity key (unique within type)",
+            "description": "event's entity's key (unique within type)",
             "in": "path",
             "required": true,
             "type": "string"
@@ -311,7 +502,7 @@
         ]
       }
     },
-    "/api/events/ref/{domain}/{type}/{key}/{id}": {
+    "/api/event/ref/{domain}/{type}/{key}/{id}": {
       "get": {
         "summary": "Get gets a single event",
         "operationId": "EventService_Get",
@@ -332,21 +523,21 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the entity's business domain(ex: accounting)",
+            "description": "the event's entity's business domain(ex: accounting)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "entity type (ex: user)",
+            "description": "event entity type (ex: user)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "key",
-            "description": "entity key (unique within type)",
+            "description": "event's entity's key (unique within type)",
             "in": "path",
             "required": true,
             "type": "string"
@@ -364,7 +555,7 @@
         ]
       }
     },
-    "/api/events/search": {
+    "/api/event/search": {
       "get": {
         "summary": "Search queries historical events - every historical state change to an entity may be queried.",
         "operationId": "EventService_Search",
@@ -456,7 +647,7 @@
         ]
       }
     },
-    "/api/events/stream": {
+    "/api/event/stream": {
       "get": {
         "summary": "Stream creates an event stream/subscription to state changes to entities in real time. Glob matching is supported.",
         "operationId": "EventService_Stream",
@@ -504,7 +695,7 @@
         ]
       }
     },
-    "/api/peers/broadcast": {
+    "/api/peer/broadcast": {
       "post": {
         "summary": "Broadcast broadcasts a message to N subscribers(clients calling Stream)",
         "operationId": "PeerService_Broadcast",
@@ -537,7 +728,7 @@
         ]
       }
     },
-    "/api/peers/stream": {
+    "/api/peer/stream": {
       "get": {
         "summary": "Stream consumes/streams messages from message producers(clients calling broadcast)",
         "operationId": "PeerService_Stream",
@@ -634,6 +825,29 @@
           }
         }
       }
+    },
+    "stategateCache": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "type": "string",
+          "title": "the item's business domain(ex: accounting)"
+        },
+        "key": {
+          "type": "string",
+          "title": "entity key (unique within type)"
+        },
+        "value": {
+          "type": "object",
+          "title": "the cached value's value to store"
+        },
+        "exp": {
+          "type": "string",
+          "format": "date-time",
+          "title": "exp is the time at which the cached value will expire\nif exp is 0, the value will never expire"
+        }
+      },
+      "description": "Cache is a persisted value that will expire after a period of time. It is held in memory for maximum performance."
     },
     "stategateEntities": {
       "type": "object",

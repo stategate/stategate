@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/autom8ter/machine/v2"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	"github.com/autom8ter/stategate/internal/cache"
 	"github.com/autom8ter/stategate/internal/channel"
 	"github.com/autom8ter/stategate/internal/logger"
 	"github.com/autom8ter/stategate/internal/storage"
@@ -12,6 +13,7 @@ import (
 )
 
 type Service struct {
+	cache    cache.Provider
 	storage  storage.Provider
 	channel  channel.Provider
 	lgger    *logger.Logger
@@ -20,12 +22,13 @@ type Service struct {
 	cancel   func()
 }
 
-func NewService(ctx context.Context, storage storage.Provider, channel channel.Provider, lgger *logger.Logger) (*Service, error) {
+func NewService(ctx context.Context, storage storage.Provider, channel channel.Provider, cache cache.Provider, lgger *logger.Logger) (*Service, error) {
 	ctx, cancel := context.WithCancel(ctx)
 	svc := &Service{
+		cache:   cache,
 		storage: storage,
-		lgger:   lgger,
 		channel: channel,
+		lgger:   lgger,
 		messages: machine.New(machine.WithErrHandler(func(err error) {
 			lgger.Error("message streaming error", zap.Error(err))
 		})),
@@ -100,6 +103,14 @@ func (s *Service) PeerServiceServer() stategate.PeerServiceServer {
 	return &peerService{svc: s}
 }
 
+func (s *Service) CacheServiceServer() stategate.CacheServiceServer {
+	return &cacheService{svc: s}
+}
+
+func (s *Service) MutexServiceServer() stategate.MutexServiceServer {
+	return &mutexService{svc: s}
+}
+
 type eventService struct {
 	svc *Service
 }
@@ -154,4 +165,32 @@ func (p peerService) Broadcast(ctx context.Context, message *stategate.Message) 
 
 func (p peerService) Stream(opts *stategate.StreamMessageOpts, server stategate.PeerService_StreamServer) error {
 	return p.svc.streamMessages(opts, server)
+}
+
+type cacheService struct {
+	svc *Service
+}
+
+func (c cacheService) Set(ctx context.Context, value *stategate.Cache) (*empty.Empty, error) {
+	return c.svc.setCache(ctx, value)
+}
+
+func (c cacheService) Get(ctx context.Context, ref *stategate.CacheRef) (*stategate.Cache, error) {
+	return c.svc.getCache(ctx, ref)
+}
+
+func (c cacheService) Del(ctx context.Context, ref *stategate.CacheRef) (*empty.Empty, error) {
+	return c.svc.delCache(ctx, ref)
+}
+
+type mutexService struct {
+	svc *Service
+}
+
+func (m mutexService) Lock(ctx context.Context, mutex *stategate.Mutex) (*empty.Empty, error) {
+	return m.svc.lockMutex(ctx, mutex)
+}
+
+func (m mutexService) Unlock(ctx context.Context, ref *stategate.MutexRef) (*empty.Empty, error) {
+	return m.svc.unlockMutex(ctx, ref)
 }

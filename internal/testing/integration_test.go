@@ -9,8 +9,11 @@ import (
 	stategate_client_go "github.com/autom8ter/stategate/stategate-client-go"
 	"github.com/spf13/cast"
 	"golang.org/x/sync/errgroup"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/structpb"
+	"google.golang.org/protobuf/types/known/timestamppb"
 	"testing"
 	"time"
 )
@@ -19,58 +22,65 @@ const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwi
 const allowAll = "cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB0cnVl"
 
 func TestIntegration(t *testing.T) {
-	testInMemMongo(t)
-	testNatsMongo(t)
+	testInMemMongoRedis(t)
+	testNatsMongoRedis(t)
 	testRedisMongo(t)
 }
 
 func testRedisMongo(t *testing.T) {
-	natsContainer := framework.NewContainer(t, "redis", "latest", nil)
-	defer natsContainer.Close(t)
+	redisContainer := framework.NewContainer(t, "redis", "latest", nil)
+	defer redisContainer.Close(t)
 	mongoContainer := framework.NewContainer(t, "mongo", "latest", nil)
 	defer mongoContainer.Close(t)
 	ctx := context.Background()
-	rmgo := redisMongo(t, ctx, natsContainer.GetPort("6379/tcp"), mongoContainer.GetPort("27017/tcp"))
+	rmgo := redisMongo(t, ctx, redisContainer.GetPort("6379/tcp"), mongoContainer.GetPort("27017/tcp"))
 	framework.Run(t, []*framework.Provider{
 		rmgo,
 	}, []*framework.TestCase{
 		peerService(ctx),
 		endToEnd(ctx),
 		transaction(ctx),
+		testCacheProvider(ctx),
 	})
 }
 
-func testNatsMongo(t *testing.T) {
+func testNatsMongoRedis(t *testing.T) {
 	natsContainer := framework.NewContainer(t, "nats", "latest", nil)
 	defer natsContainer.Close(t)
 	mongoContainer := framework.NewContainer(t, "mongo", "latest", nil)
 	defer mongoContainer.Close(t)
+	redisContainer := framework.NewContainer(t, "redis", "latest", nil)
+	defer redisContainer.Close(t)
 	ctx := context.Background()
-	nmgo := natsMongo(t, ctx, natsContainer.GetPort("4222/tcp"), mongoContainer.GetPort("27017/tcp"))
+	nmgo := natsMongoRedis(t, ctx, natsContainer.GetPort("4222/tcp"), mongoContainer.GetPort("27017/tcp"), redisContainer.GetPort("6379/tcp"))
 	framework.Run(t, []*framework.Provider{
 		nmgo,
 	}, []*framework.TestCase{
 		peerService(ctx),
 		endToEnd(ctx),
 		transaction(ctx),
+		testCacheProvider(ctx),
 	})
 }
 
-func testInMemMongo(t *testing.T) {
+func testInMemMongoRedis(t *testing.T) {
 	mongoContainer := framework.NewContainer(t, "mongo", "latest", nil)
 	defer mongoContainer.Close(t)
+	redisContainer := framework.NewContainer(t, "redis", "latest", nil)
+	defer redisContainer.Close(t)
 	ctx := context.Background()
-	mgo := inmemMongo(t, ctx, mongoContainer.GetPort("27017/tcp"))
+	mgo := inmemMongoRedis(t, ctx, mongoContainer.GetPort("27017/tcp"), redisContainer.GetPort("6379/tcp"))
 	framework.Run(t, []*framework.Provider{
 		mgo,
 	}, []*framework.TestCase{
 		peerService(ctx),
 		endToEnd(ctx),
 		transaction(ctx),
+		testCacheProvider(ctx),
 	})
 }
 
-func natsMongo(t *testing.T, ctx context.Context, natsPort, mongoPort string) *framework.Provider {
+func natsMongoRedis(t *testing.T, ctx context.Context, natsPort, mongoPort, redisPort string) *framework.Provider {
 	return framework.NewProvider(t, ctx, token, &server.Config{
 		AuthDisabled:   false,
 		RequestPolicy:  allowAll,
@@ -83,6 +93,10 @@ func natsMongo(t *testing.T, ctx context.Context, natsPort, mongoPort string) *f
 			"name":     "mongo",
 			"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
 			"database": "testing",
+		},
+		CacheProvider: map[string]string{
+			"name": "redis",
+			"addr": fmt.Sprintf("0.0.0.0:%s", redisPort),
 		},
 	})
 }
@@ -102,10 +116,14 @@ func redisMongo(t *testing.T, ctx context.Context, redisPort, mongoPort string) 
 			"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
 			"database": "testing",
 		},
+		CacheProvider: map[string]string{
+			"name": "redis",
+			"addr": fmt.Sprintf("0.0.0.0:%s", redisPort),
+		},
 	})
 }
 
-func inmemMongo(t *testing.T, ctx context.Context, mongoPort string) *framework.Provider {
+func inmemMongoRedis(t *testing.T, ctx context.Context, mongoPort, redisPort string) *framework.Provider {
 	return framework.NewProvider(t, ctx, token, &server.Config{
 		Port:           0,
 		AuthDisabled:   false,
@@ -118,6 +136,10 @@ func inmemMongo(t *testing.T, ctx context.Context, mongoPort string) *framework.
 			"name":     "mongo",
 			"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
 			"database": "testing",
+		},
+		CacheProvider: map[string]string{
+			"name": "redis",
+			"addr": fmt.Sprintf("0.0.0.0:%s", redisPort),
 		},
 	})
 }
@@ -173,9 +195,9 @@ func peerService(ctx context.Context) *framework.TestCase {
 		Name: "peer service test",
 		Func: func(t *testing.T, client *stategate_client_go.ClientSet) {
 			const (
-				typ = "comment"
+				typ     = "comment"
 				channel = "general"
-				domain = "accounting"
+				domain  = "accounting"
 				content = "hello world!"
 			)
 			group := &errgroup.Group{}
@@ -198,7 +220,7 @@ func peerService(ctx context.Context) *framework.TestCase {
 				}
 				return nil
 			})
-			<-time.After(1 *time.Second)
+			<-time.After(1 * time.Second)
 			{
 				data, _ := structpb.NewStruct(map[string]interface{}{
 					"message": content,
@@ -371,6 +393,52 @@ func endToEnd(ctx context.Context) *framework.TestCase {
 				t.Fatalf("expected 1 object got: %v", len(objectss.Entities))
 			}
 			t.Log(protojson.Format(objectss))
+		},
+	}
+}
+
+func testCacheProvider(ctx context.Context) *framework.TestCase {
+	return &framework.TestCase{
+		Name: "cacheProvider",
+		Func: func(t *testing.T, clientset *stategate_client_go.ClientSet) {
+			const (
+				domain = "accounting"
+				key    = "testing_key"
+				value  = "hello world"
+			)
+			val, err := structpb.NewValue(value)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if err := clientset.Cache().Set(ctx, &stategate.Cache{
+				Domain: domain,
+				Key:    key,
+				Value:  val,
+				Exp:    timestamppb.New(time.Now().Add(2 * time.Second)),
+			}); err != nil {
+				t.Fatal(err)
+			}
+			cached, err := clientset.Cache().Get(ctx, &stategate.CacheRef{
+				Domain: domain,
+				Key:    key,
+			})
+			if err != nil {
+				t.Fatal(err)
+			}
+			if cached.Value.GetStringValue() != value {
+				t.Fatal("failed to cache value")
+			}
+			time.Sleep(3 * time.Second)
+			_, err = clientset.Cache().Get(ctx, &stategate.CacheRef{
+				Domain: domain,
+				Key:    key,
+			})
+			if err == nil {
+				t.Fatal("expected an error")
+			}
+			if stat, ok := status.FromError(err); ok && stat.Code() != codes.NotFound {
+				t.Fatalf("expected value to be expired: %v %v", stat.Code(), stat.Message())
+			}
 		},
 	}
 }

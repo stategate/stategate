@@ -80,13 +80,15 @@ func NewProvider(t *testing.T, ctx context.Context, jwt string, config *server.C
 		config.Debug,
 		zap.Any("channel_provider", cast.ToString(config.ChannelProvider["name"])),
 		zap.Any("storage_provider", cast.ToString(config.StorageProvider["name"])),
+		zap.Any("cache_provider", cast.ToString(config.CacheProvider["name"])),
 	)
 	f := &Provider{
-		ctx:    ctx,
-		cancel: cancel,
-		config: config,
-		group:  group,
-		lgger:  lgger,
+		ctx:       ctx,
+		cancel:    cancel,
+		config:    config,
+		group:     group,
+		lgger:     lgger,
+		clientset: nil,
 	}
 	f.group.Go(func() error {
 		return server.ListenAndServe(f.ctx, f.lgger, f.config)

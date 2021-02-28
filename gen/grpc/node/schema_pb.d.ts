@@ -9,6 +9,54 @@ import * as google_protobuf_any_pb from "google-protobuf/google/protobuf/any_pb"
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 import * as github_com_mwitkow_go_proto_validators_validator_pb from "./github.com/mwitkow/go-proto-validators/validator_pb";
 
+export class MutexRef extends jspb.Message {
+  getDomain(): string;
+  setDomain(value: string): void;
+
+  getKey(): string;
+  setKey(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MutexRef.AsObject;
+  static toObject(includeInstance: boolean, msg: MutexRef): MutexRef.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: MutexRef, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MutexRef;
+  static deserializeBinaryFromReader(message: MutexRef, reader: jspb.BinaryReader): MutexRef;
+}
+
+export namespace MutexRef {
+  export type AsObject = {
+    domain: string,
+    key: string,
+  }
+}
+
+export class CacheRef extends jspb.Message {
+  getDomain(): string;
+  setDomain(value: string): void;
+
+  getKey(): string;
+  setKey(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CacheRef.AsObject;
+  static toObject(includeInstance: boolean, msg: CacheRef): CacheRef.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CacheRef, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CacheRef;
+  static deserializeBinaryFromReader(message: CacheRef, reader: jspb.BinaryReader): CacheRef;
+}
+
+export namespace CacheRef {
+  export type AsObject = {
+    domain: string,
+    key: string,
+  }
+}
+
 export class EntityRef extends jspb.Message {
   getDomain(): string;
   setDomain(value: string): void;
@@ -162,6 +210,72 @@ export namespace Message {
     channel: string,
     type: string,
     body?: google_protobuf_struct_pb.Struct.AsObject,
+  }
+}
+
+export class Mutex extends jspb.Message {
+  getDomain(): string;
+  setDomain(value: string): void;
+
+  getKey(): string;
+  setKey(value: string): void;
+
+  hasExp(): boolean;
+  clearExp(): void;
+  getExp(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setExp(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Mutex.AsObject;
+  static toObject(includeInstance: boolean, msg: Mutex): Mutex.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Mutex, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Mutex;
+  static deserializeBinaryFromReader(message: Mutex, reader: jspb.BinaryReader): Mutex;
+}
+
+export namespace Mutex {
+  export type AsObject = {
+    domain: string,
+    key: string,
+    exp?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class Cache extends jspb.Message {
+  getDomain(): string;
+  setDomain(value: string): void;
+
+  getKey(): string;
+  setKey(value: string): void;
+
+  hasValue(): boolean;
+  clearValue(): void;
+  getValue(): google_protobuf_struct_pb.Value | undefined;
+  setValue(value?: google_protobuf_struct_pb.Value): void;
+
+  hasExp(): boolean;
+  clearExp(): void;
+  getExp(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setExp(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Cache.AsObject;
+  static toObject(includeInstance: boolean, msg: Cache): Cache.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Cache, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Cache;
+  static deserializeBinaryFromReader(message: Cache, reader: jspb.BinaryReader): Cache;
+}
+
+export namespace Cache {
+  export type AsObject = {
+    domain: string,
+    key: string,
+    value?: google_protobuf_struct_pb.Value.AsObject,
+    exp?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 

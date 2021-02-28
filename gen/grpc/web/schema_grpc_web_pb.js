@@ -1056,5 +1056,509 @@ proto.stategate.PeerServicePromiseClient.prototype.stream =
 };
 
 
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.stategate.CacheServiceClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.stategate.CacheServicePromiseClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.stategate.Cache,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodDescriptor_CacheService_Set = new grpc.web.MethodDescriptor(
+  '/stategate.CacheService/Set',
+  grpc.web.MethodType.UNARY,
+  proto.stategate.Cache,
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.stategate.Cache} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.stategate.Cache,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodInfo_CacheService_Set = new grpc.web.AbstractClientBase.MethodInfo(
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.stategate.Cache} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.stategate.Cache} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.stategate.CacheServiceClient.prototype.set =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/stategate.CacheService/Set',
+      request,
+      metadata || {},
+      methodDescriptor_CacheService_Set,
+      callback);
+};
+
+
+/**
+ * @param {!proto.stategate.Cache} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.stategate.CacheServicePromiseClient.prototype.set =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/stategate.CacheService/Set',
+      request,
+      metadata || {},
+      methodDescriptor_CacheService_Set);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.stategate.CacheRef,
+ *   !proto.stategate.Cache>}
+ */
+const methodDescriptor_CacheService_Get = new grpc.web.MethodDescriptor(
+  '/stategate.CacheService/Get',
+  grpc.web.MethodType.UNARY,
+  proto.stategate.CacheRef,
+  proto.stategate.Cache,
+  /**
+   * @param {!proto.stategate.CacheRef} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.stategate.Cache.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.stategate.CacheRef,
+ *   !proto.stategate.Cache>}
+ */
+const methodInfo_CacheService_Get = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.stategate.Cache,
+  /**
+   * @param {!proto.stategate.CacheRef} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.stategate.Cache.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.stategate.CacheRef} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.stategate.Cache)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.stategate.Cache>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.stategate.CacheServiceClient.prototype.get =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/stategate.CacheService/Get',
+      request,
+      metadata || {},
+      methodDescriptor_CacheService_Get,
+      callback);
+};
+
+
+/**
+ * @param {!proto.stategate.CacheRef} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.stategate.Cache>}
+ *     Promise that resolves to the response
+ */
+proto.stategate.CacheServicePromiseClient.prototype.get =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/stategate.CacheService/Get',
+      request,
+      metadata || {},
+      methodDescriptor_CacheService_Get);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.stategate.CacheRef,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodDescriptor_CacheService_Del = new grpc.web.MethodDescriptor(
+  '/stategate.CacheService/Del',
+  grpc.web.MethodType.UNARY,
+  proto.stategate.CacheRef,
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.stategate.CacheRef} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.stategate.CacheRef,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodInfo_CacheService_Del = new grpc.web.AbstractClientBase.MethodInfo(
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.stategate.CacheRef} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.stategate.CacheRef} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.stategate.CacheServiceClient.prototype.del =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/stategate.CacheService/Del',
+      request,
+      metadata || {},
+      methodDescriptor_CacheService_Del,
+      callback);
+};
+
+
+/**
+ * @param {!proto.stategate.CacheRef} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.stategate.CacheServicePromiseClient.prototype.del =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/stategate.CacheService/Del',
+      request,
+      metadata || {},
+      methodDescriptor_CacheService_Del);
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.stategate.MutexServiceClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.stategate.MutexServicePromiseClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.stategate.Mutex,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodDescriptor_MutexService_Lock = new grpc.web.MethodDescriptor(
+  '/stategate.MutexService/Lock',
+  grpc.web.MethodType.UNARY,
+  proto.stategate.Mutex,
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.stategate.Mutex} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.stategate.Mutex,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodInfo_MutexService_Lock = new grpc.web.AbstractClientBase.MethodInfo(
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.stategate.Mutex} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.stategate.Mutex} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.stategate.MutexServiceClient.prototype.lock =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/stategate.MutexService/Lock',
+      request,
+      metadata || {},
+      methodDescriptor_MutexService_Lock,
+      callback);
+};
+
+
+/**
+ * @param {!proto.stategate.Mutex} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.stategate.MutexServicePromiseClient.prototype.lock =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/stategate.MutexService/Lock',
+      request,
+      metadata || {},
+      methodDescriptor_MutexService_Lock);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.stategate.MutexRef,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodDescriptor_MutexService_Unlock = new grpc.web.MethodDescriptor(
+  '/stategate.MutexService/Unlock',
+  grpc.web.MethodType.UNARY,
+  proto.stategate.MutexRef,
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.stategate.MutexRef} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.stategate.MutexRef,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodInfo_MutexService_Unlock = new grpc.web.AbstractClientBase.MethodInfo(
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.stategate.MutexRef} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.stategate.MutexRef} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.stategate.MutexServiceClient.prototype.unlock =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/stategate.MutexService/Unlock',
+      request,
+      metadata || {},
+      methodDescriptor_MutexService_Unlock,
+      callback);
+};
+
+
+/**
+ * @param {!proto.stategate.MutexRef} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.stategate.MutexServicePromiseClient.prototype.unlock =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/stategate.MutexService/Unlock',
+      request,
+      metadata || {},
+      methodDescriptor_MutexService_Unlock);
+};
+
+
 module.exports = proto.stategate;
 

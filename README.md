@@ -103,6 +103,48 @@ service PeerService {
     };
   }
 }
+
+// CacheService is for persisting short lived values in memory for performance-critical operations
+service CacheService {
+  // Set sets a value in the cache
+  rpc Set(Cache) returns(google.protobuf.Empty){
+    option (google.api.http) = {
+      put: "/api/cache/ref/{domain}/{key}"
+    };
+  }
+  // Get gets a value from the cache
+  rpc Get(CacheRef) returns(Cache) {
+    option (google.api.http) = {
+      get: "/api/cache/ref/{domain}/{key}"
+    };
+  }
+  // Del deletes a value from the cache
+  rpc Del(CacheRef) returns(google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/cache/ref/{domain}/{key}"
+    };
+  }
+}
+
+// MutexService offers distributed locking capabilities for client's that need to coordinate with peer services.
+service MutexService {
+  // Lock locks a value for a period of time if it is not locked already.
+  // If it is already locked, an error will be returned
+  // It is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL
+  rpc Lock(Mutex) returns(google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/cache/ref/{domain}/{key}/lock"
+    };
+  }
+  // Unlock unlocks the key(if it's currently locked) so that it may be locked again.
+  // It is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL
+  rpc Unlock(MutexRef) returns(google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/cache/ref/{domain}/{key}/unlock"
+    };
+  }
+}
+
 ```
                                         
 ## Features
@@ -148,6 +190,10 @@ service PeerService {
     - [ ] PostgreSQL
     - [ ] MySQL
     - [ ] Cassandra
+- [x] Pluggable "Cache" Providers
+    - [x] Redis
+        - [x] fully-tested
+    - [ ] Memcached
     
 
 
@@ -162,17 +208,33 @@ service PeerService {
 - [x] Revert/Rollback an entity to any previous version of itself at any point in time
 - [x] Store identity(jwt.claims) & timestamp in event logs to capture who is changing what & when
 - [x] Easy deployment model - fully configureable via environmental variables
+- [x] Create complex client applications with stategate as their only dependency
+- [ ] Create serverless deployment model for stategate client applications
 
-## Concepts
+## Implementation Details
 
-- Storage Provider: A stategate storage provider is a pluggable, 3rd party database storage service. 
-    - Storage providers provide persistance for all current entities/events and should be scaled independently of stategate instances.
+### Storage Providers
 
-- Channel Provider: A stategate channel provider is a pluggable, 3rd party message-queue/channel service. 
-    - Channel providers provide a way for stategate to broadcast events to itself while scaling horizontally. 
-    - Channel providers should be scaled independently of stategate instances.
+- A stategate storage provider is a pluggable, 3rd party database storage service. 
+- Storage providers provide persistance for all current entities/events and should be scaled independently of stategate instances.
 
-- Entity: An entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+### Channel Providers
+
+- A stategate channel provider is a pluggable, 3rd party message-queue/channel service. 
+- Channel providers provide a way for stategate to broadcast events to itself while scaling horizontally. 
+- Channel providers should be scaled independently of stategate instances.
+
+### Cache Providers
+
+- A stategate channel provider is a pluggable, 3rd party caching service. 
+- Cache providers enable the CacheService which is a generic caching interface
+- Cache providers enable the MutexService which is a generic distributed locking interface
+
+## Primitives
+
+### Entity
+
+An entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
 
         
         // Entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
@@ -191,8 +253,10 @@ service PeerService {
           google.protobuf.Struct values = 4[(validator.field) = {msg_exists : true}];
         }
 
-- Event: 
-    
+### Events
+ 
+Event is primitive that represents a single state change to an entity
+
 
         // Event is primitive that represents a single state change to an entity
         // Events are persisted to history & broadcasted to interested consumers(Stream) any time an entity is created/modified/deleted
@@ -210,7 +274,26 @@ service PeerService {
           // timestamp(ns) of when the event was received.
           int64 time =4[(validator.field) = {int_gt : 0}];
         }
-    
+
+### Messages  
+
+Message is a non-persisted message passed between Peers as a means of communication
+
+    // Message is an arbitrary message to be delivered to a Peer
+    // Messages are NOT persisted and should only be used to communicate with other Peers
+    message Message {
+      // the message's business domain(ex: accounting)
+      // must not be empty or contain spaces
+      string domain =1[(validator.field) = {regex : "^\\S+$"}];
+      // the message's channel(ex: general)
+      // must not be empty or contain spaces
+      string channel =2[(validator.field) = {regex : "^\\S+$"}];
+      // message's type (ex: comment)
+      // must not be empty or contain spaces
+      string type =3[(validator.field) = {regex : "^\\S+$"}];
+      // the body of the message(k/v values).
+      google.protobuf.Struct body =4[(validator.field) = {msg_exists : true}];
+    }
 
 ## Environmental Variables
 
@@ -234,7 +317,7 @@ STATEGATE_REQUEST_POLICY=cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB
 # base64 encoded OPA rego policy executed on responses sent to clients (optional)
 STATEGATE_RESPONSE_POLICY=cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB0cnVl
 # channel provider configuration(JSON) options: [inmem, redis, nats, stan, kafka] REQUIRED
-STATEGATE_CHANNEL_PROVIDER={ "name": "redis", "addr": "localhost:6379" }
+STATEGATE_CHANNEL_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "xxx", "password": "xxxxxxxxxx" }
 # STATEGATE_CHANNEL_PROVIDER={ "name": "nats", "addr": "localhost:4222" }
 # STATEGATE_CHANNEL_PROVIDER={ "name": "stan", "addr": "localhost:4222" }
 # STATEGATE_CHANNEL_PROVIDER={ "name": "inmem" }
@@ -242,7 +325,11 @@ STATEGATE_CHANNEL_PROVIDER={ "name": "redis", "addr": "localhost:6379" }
 # storage provider configuration(JSON) options: [mongo] REQUIRED
 STATEGATE_STORAGE_PROVIDER={ "name": "mongo", "database": "testing", "addr": "mongodb://localhost:27017/testing" }
 
+# cache provider configuration(JSON) options: [redis] REQUIRED
+STATEGATE_CACHE_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "xxx", "password": "xxxxxxxxxx" }
 
 ```
 
 ## FAQ
+
+

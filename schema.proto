@@ -19,7 +19,7 @@ service EntityService {
   // Set sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers(EventService.Stream)
   rpc Set(Entity) returns(google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/entity/ref/{domain}/{type}/{key}"
+      put: "/api/entity/ref/{domain}/{type}/{key}"
     };
   }
   // Edit overwrites the k/v pairs present in the entity request without replacing the entire entity.
@@ -64,19 +64,19 @@ service EventService {
   // Stream creates an event stream/subscription to state changes to entities in real time. Glob matching is supported.
   rpc Stream(StreamEventOpts) returns(stream Event) {
     option (google.api.http) = {
-      get: "/api/events/stream"
+      get: "/api/event/stream"
     };
   }
   // Search queries historical events - every historical state change to an entity may be queried.
   rpc Search(SearchEventOpts) returns(Events) {
     option (google.api.http) = {
-      get: "/api/events/search"
+      get: "/api/event/search"
     };
   }
   // Get gets a single event
   rpc Get(EventRef) returns(Event) {
     option (google.api.http) = {
-      get: "/api/events/ref/{domain}/{type}/{key}/{id}"
+      get: "/api/event/ref/{domain}/{type}/{key}/{id}"
     };
   }
 }
@@ -87,35 +87,96 @@ service PeerService {
   // Broadcast broadcasts a message to N subscribers(clients calling Stream)
   rpc Broadcast(Message) returns(google.protobuf.Empty){
     option (google.api.http) = {
-      post: "/api/peers/broadcast"
+      post: "/api/peer/broadcast"
       body: "*"
     };
   }
   // Stream consumes/streams messages from message producers(clients calling broadcast)
   rpc Stream(StreamMessageOpts) returns(stream PeerMessage){
     option (google.api.http) = {
-      get: "/api/peers/stream"
+      get: "/api/peer/stream"
     };
   }
+}
+
+// CacheService is for persisting short lived values in memory for performance-critical operations
+service CacheService {
+  // Set sets a value in the cache
+  rpc Set(Cache) returns(google.protobuf.Empty){
+    option (google.api.http) = {
+      put: "/api/cache/ref/{domain}/{key}"
+    };
+  }
+  // Get gets a value from the cache
+  rpc Get(CacheRef) returns(Cache) {
+    option (google.api.http) = {
+      get: "/api/cache/ref/{domain}/{key}"
+    };
+  }
+  // Del deletes a value from the cache
+  rpc Del(CacheRef) returns(google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/cache/ref/{domain}/{key}"
+    };
+  }
+}
+
+// MutexService offers distributed locking capabilities for client's that need to coordinate with peer services.
+service MutexService {
+  // Lock locks a value for a period of time if it is not locked already.
+  // If it is already locked, an error will be returned
+  // It is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL
+  rpc Lock(Mutex) returns(google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/cache/ref/{domain}/{key}/lock"
+    };
+  }
+  // Unlock unlocks the key(if it's currently locked) so that it may be locked again.
+  // It is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL
+  rpc Unlock(MutexRef) returns(google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/cache/ref/{domain}/{key}/unlock"
+    };
+  }
+}
+
+
+// MutexRef is a reference to a distributed mutex
+message MutexRef {
+  // the mutex's business domain(ex: accounting)
+  string domain =1[(validator.field) = {regex : "^\\S+$"}];
+  // mutex key (unique within domain)
+  string key =2[(validator.field) = {regex : "^\\S+$"}];
+}
+
+// EntityRef is a reference to a cached value
+message CacheRef {
+  // the cached value's business domain(ex: accounting)
+  string domain =1[(validator.field) = {regex : "^\\S+$"}];
+  // cached value's key (unique within domain)
+  string key =2[(validator.field) = {regex : "^\\S+$"}];
 }
 
 // EntityRef is a reference to an existing entity
 message EntityRef {
   // the entity's business domain(ex: accounting)
+  // must not be empty or contain spaces
   string domain =1[(validator.field) = {regex : "^\\S+$"}];
   // entity type (ex: user)
+  // must not be empty or contain spaces
   string type =2[(validator.field) = {regex : "^\\S+$"}];
   // entity key (unique within type)
+  // must not be empty or contain spaces
   string key =3[(validator.field) = {regex : "^\\S+$"}];
 }
 
 // EventRef holds options for reverting an entity to a previous version of itself
 message EventRef {
-  // the entity's business domain(ex: accounting)
+  // the event's entity's business domain(ex: accounting)
   string domain =1[(validator.field) = {regex : "^\\S+$"}];
-  // entity type (ex: user)
+  // event entity type (ex: user)
   string type =2[(validator.field) = {regex : "^\\S+$"}];
-  // entity key (unique within type)
+  // event's entity's key (unique within type)
   string key =3[(validator.field) = {regex : "^\\S+$"}];
   // id is the event id.
   string id =4[(validator.field) = {uuid_ver : 4}];
@@ -167,6 +228,31 @@ message Message {
   string type =3[(validator.field) = {regex : "^\\S+$"}];
   // the body of the message(k/v values).
   google.protobuf.Struct body =4[(validator.field) = {msg_exists : true}];
+}
+
+
+// Mutex is a distributed mutex for preventing data-races amongst peer services
+message Mutex {
+  // the mutex's business domain(ex: accounting)
+  string domain =1[(validator.field) = {regex : "^\\S+$"}];
+  // mutex key (unique within domain)
+  string key =2[(validator.field) = {regex : "^\\S+$"}];
+  // exp is the time at which the mutex value will expire
+  // if exp is 0, the mutex will never expire
+  google.protobuf.Timestamp exp =4;
+}
+
+// Cache is a persisted value that will expire after a period of time. It is held in memory for maximum performance.
+message Cache {
+  // the item's business domain(ex: accounting)
+  string domain =1[(validator.field) = {regex : "^\\S+$"}];
+  // entity key (unique within type)
+  string key =2[(validator.field) = {regex : "^\\S+$"}];
+  // the cached value's value to store
+  google.protobuf.Value value = 3[(validator.field) = {msg_exists : true}];
+  // exp is the time at which the cached value will expire
+  // if exp is 0, the value will never expire
+  google.protobuf.Timestamp exp =4;
 }
 
 // PeerMessage is a message produced by a client to the PeerService

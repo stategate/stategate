@@ -2,34 +2,48 @@ package stategate_client_go
 
 import (
 	"context"
-	"golang.org/x/sync/errgroup"
+	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	"google.golang.org/grpc"
 )
 
 // ClientSet holds an EntityClient, EventClient, and PeerClient
 type ClientSet struct {
+	conn   *grpc.ClientConn
 	entity *EntityClient
 	event  *EventClient
 	peer   *PeerClient
+	cache  *CacheClient
+	mutex  *MutexClient
 }
 
 // NewClientSet returns an initialized ClientSet
 func NewClientSet(ctx context.Context, target string, opts ...Opt) (*ClientSet, error) {
-	entity, err := NewEntityClient(ctx, target, opts...)
-	if err != nil {
-		return nil, err
-	}
-	event, err := NewEventClient(ctx, target, opts...)
-	if err != nil {
-		return nil, err
-	}
-	peer, err := NewPeerClient(ctx, target, opts...)
+	conn, err := getConnection(ctx, target, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &ClientSet{
-		entity: entity,
-		event:  event,
-		peer:   peer,
+		entity: &EntityClient{
+			client: stategate.NewEntityServiceClient(conn),
+			conn:   conn,
+		},
+		event: &EventClient{
+			client: stategate.NewEventServiceClient(conn),
+			conn:   conn,
+		},
+		peer: &PeerClient{
+			client: stategate.NewPeerServiceClient(conn),
+			conn:   conn,
+		},
+		cache: &CacheClient{
+			client: stategate.NewCacheServiceClient(conn),
+			conn:   conn,
+		},
+		mutex: &MutexClient{
+			client: stategate.NewMutexServiceClient(conn),
+			conn:   conn,
+		},
+		conn: conn,
 	}, nil
 }
 
@@ -48,11 +62,17 @@ func (c *ClientSet) Peer() *PeerClient {
 	return c.peer
 }
 
-// Peer returns the clientset's PeerService client
+// Cache returns the clientset's CacheService client
+func (c *ClientSet) Cache() *CacheClient {
+	return c.cache
+}
+
+// Mutex returns the clientset's MutexService client
+func (c *ClientSet) Mutex() *MutexClient {
+	return c.mutex
+}
+
+// Close closes the underlying connection
 func (c *ClientSet) Close() error {
-	group := &errgroup.Group{}
-	group.Go(c.Event().Close)
-	group.Go(c.Peer().Close)
-	group.Go(c.Entity().Close)
-	return group.Wait()
+	return c.conn.Close()
 }

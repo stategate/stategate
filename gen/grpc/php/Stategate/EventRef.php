@@ -16,19 +16,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class EventRef extends \Google\Protobuf\Internal\Message
 {
     /**
-     * the entity's business domain(ex: accounting)
+     * the event's entity's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
     private $domain = '';
     /**
-     * entity type (ex: user)
+     * event entity type (ex: user)
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
-     * entity key (unique within type)
+     * event's entity's key (unique within type)
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      */
@@ -47,11 +47,11 @@ class EventRef extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $domain
-     *           the entity's business domain(ex: accounting)
+     *           the event's entity's business domain(ex: accounting)
      *     @type string $type
-     *           entity type (ex: user)
+     *           event entity type (ex: user)
      *     @type string $key
-     *           entity key (unique within type)
+     *           event's entity's key (unique within type)
      *     @type string $id
      *           id is the event id.
      * }
@@ -62,7 +62,7 @@ class EventRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the entity's business domain(ex: accounting)
+     * the event's entity's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
@@ -73,7 +73,7 @@ class EventRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the entity's business domain(ex: accounting)
+     * the event's entity's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -88,7 +88,7 @@ class EventRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * entity type (ex: user)
+     * event entity type (ex: user)
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
@@ -99,7 +99,7 @@ class EventRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * entity type (ex: user)
+     * event entity type (ex: user)
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
@@ -114,7 +114,7 @@ class EventRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * entity key (unique within type)
+     * event's entity's key (unique within type)
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @return string
@@ -125,7 +125,7 @@ class EventRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * entity key (unique within type)
+     * event's entity's key (unique within type)
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @param string $var

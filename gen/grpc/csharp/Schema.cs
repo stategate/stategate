@@ -29,74 +29,98 @@ namespace Stategate {
             "Z2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90bxoZZ29vZ2xlL3Byb3RvYnVm",
             "L2FueS5wcm90bxobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5LnByb3RvGjZnaXRo",
             "dWIuY29tL213aXRrb3cvZ28tcHJvdG8tdmFsaWRhdG9ycy92YWxpZGF0b3Iu",
-            "cHJvdG8iXQoJRW50aXR5UmVmEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxT",
-            "KyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJQgvi",
-            "3x8HCgVeXFMrJCJxCghFdmVudFJlZhIbCgZkb21haW4YASABKAlCC+LfHwcK",
-            "BV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcKBV5cUyskEhgKA2tleRgDIAEo",
-            "CUIL4t8fBwoFXlxTKyQSEwoCaWQYBCABKAlCB+LfHwOQAQQiiwEKBkVudGl0",
-            "eRIbCgZkb21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlC",
-            "C+LfHwcKBV5cUyskEhgKA2tleRgDIAEoCUIL4t8fBwoFXlxTKyQSLwoGdmFs",
-            "dWVzGAQgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABImkK",
-            "EVN0cmVhbU1lc3NhZ2VPcHRzEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxT",
-            "KyQSHAoHY2hhbm5lbBgCIAEoCUIL4t8fBwoFXlxTKyQSGQoEdHlwZRgDIAEo",
-            "CUIL4t8fBwoFXlxTKyQijgEKB01lc3NhZ2USGwoGZG9tYWluGAEgASgJQgvi",
-            "3x8HCgVeXFMrJBIcCgdjaGFubmVsGAIgASgJQgvi3x8HCgVeXFMrJBIZCgR0",
-            "eXBlGAMgASgJQgvi3x8HCgVeXFMrJBItCgRib2R5GAQgASgLMhcuZ29vZ2xl",
-            "LnByb3RvYnVmLlN0cnVjdEIG4t8fAiABIu4BCgtQZWVyTWVzc2FnZRITCgJp",
-            "ZBgBIAEoCUIH4t8fA5ABBBIbCgZkb21haW4YAiABKAlCC+LfHwcKBV5cUysk",
-            "EhwKB2NoYW5uZWwYAyABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYBCABKAlC",
-            "C+LfHwcKBV5cUyskEi0KBGJvZHkYBSABKAsyFy5nb29nbGUucHJvdG9idWYu",
-            "U3RydWN0Qgbi3x8CIAESLwoGY2xhaW1zGAYgASgLMhcuZ29vZ2xlLnByb3Rv",
-            "YnVmLlN0cnVjdEIG4t8fAiABEhQKBHRpbWUYByABKANCBuLfHwIQACIvCghF",
-            "bnRpdGllcxIjCghlbnRpdGllcxgBIAMoCzIRLnN0YXRlZ2F0ZS5FbnRpdHki",
-            "pgEKEFNlYXJjaEVudGl0eU9wdHMSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVe",
-            "XFMrJBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMrJBIUCgxxdWVyeV9zdHJp",
-            "bmcYAyABKAkSFQoFbGltaXQYBCABKAVCBuLfHwIQABIOCgZvZmZzZXQYBSAB",
-            "KAUSHQoEc29ydBgJIAEoCzIPLnN0YXRlZ2F0ZS5Tb3J0Ir8BCg9TZWFyY2hF",
+            "cHJvdG8iQQoITXV0ZXhSZWYSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMr",
+            "JBIYCgNrZXkYAiABKAlCC+LfHwcKBV5cUyskIkEKCENhY2hlUmVmEhsKBmRv",
+            "bWFpbhgBIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAIgASgJQgvi3x8HCgVe",
+            "XFMrJCJdCglFbnRpdHlSZWYSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMr",
+            "JBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMrJBIYCgNrZXkYAyABKAlCC+Lf",
+            "HwcKBV5cUyskInEKCEV2ZW50UmVmEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoF",
+            "XlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJ",
+            "Qgvi3x8HCgVeXFMrJBITCgJpZBgEIAEoCUIH4t8fA5ABBCKLAQoGRW50aXR5",
+            "EhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxTKyQSGQoEdHlwZRgCIAEoCUIL",
+            "4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJQgvi3x8HCgVeXFMrJBIvCgZ2YWx1",
+            "ZXMYBCABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAEiaQoR",
+            "U3RyZWFtTWVzc2FnZU9wdHMSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMr",
+            "JBIcCgdjaGFubmVsGAIgASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAMgASgJ",
+            "Qgvi3x8HCgVeXFMrJCKOAQoHTWVzc2FnZRIbCgZkb21haW4YASABKAlCC+Lf",
+            "HwcKBV5cUyskEhwKB2NoYW5uZWwYAiABKAlCC+LfHwcKBV5cUyskEhkKBHR5",
+            "cGUYAyABKAlCC+LfHwcKBV5cUyskEi0KBGJvZHkYBCABKAsyFy5nb29nbGUu",
+            "cHJvdG9idWYuU3RydWN0Qgbi3x8CIAEiZwoFTXV0ZXgSGwoGZG9tYWluGAEg",
+            "ASgJQgvi3x8HCgVeXFMrJBIYCgNrZXkYAiABKAlCC+LfHwcKBV5cUyskEicK",
+            "A2V4cBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAilgEKBUNh",
+            "Y2hlEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAIgASgJ",
+            "Qgvi3x8HCgVeXFMrJBItCgV2YWx1ZRgDIAEoCzIWLmdvb2dsZS5wcm90b2J1",
+            "Zi5WYWx1ZUIG4t8fAiABEicKA2V4cBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1",
+            "Zi5UaW1lc3RhbXAi7gEKC1BlZXJNZXNzYWdlEhMKAmlkGAEgASgJQgfi3x8D",
+            "kAEEEhsKBmRvbWFpbhgCIAEoCUIL4t8fBwoFXlxTKyQSHAoHY2hhbm5lbBgD",
+            "IAEoCUIL4t8fBwoFXlxTKyQSGQoEdHlwZRgEIAEoCUIL4t8fBwoFXlxTKyQS",
+            "LQoEYm9keRgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIg",
+            "ARIvCgZjbGFpbXMYBiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi",
+            "3x8CIAESFAoEdGltZRgHIAEoA0IG4t8fAhAAIi8KCEVudGl0aWVzEiMKCGVu",
+            "dGl0aWVzGAEgAygLMhEuc3RhdGVnYXRlLkVudGl0eSKmAQoQU2VhcmNoRW50",
+            "aXR5T3B0cxIbCgZkb21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUY",
+            "AiABKAlCC+LfHwcKBV5cUyskEhQKDHF1ZXJ5X3N0cmluZxgDIAEoCRIVCgVs",
+            "aW1pdBgEIAEoBUIG4t8fAhAAEg4KBm9mZnNldBgFIAEoBRIdCgRzb3J0GAkg",
+            "ASgLMg8uc3RhdGVnYXRlLlNvcnQivwEKD1NlYXJjaEV2ZW50T3B0cxIbCgZk",
+            "b21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcK",
+            "BV5cUyskEhQKDHF1ZXJ5X3N0cmluZxgEIAEoCRILCgNtaW4YBSABKAMSCwoD",
+            "bWF4GAYgASgDEhUKBWxpbWl0GAcgASgFQgbi3x8CEAASDgoGb2Zmc2V0GAgg",
+            "ASgFEh0KBHNvcnQYCSABKAsyDy5zdGF0ZWdhdGUuU29ydCJJCg9TdHJlYW1F",
             "dmVudE9wdHMSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBl",
-            "GAIgASgJQgvi3x8HCgVeXFMrJBIUCgxxdWVyeV9zdHJpbmcYBCABKAkSCwoD",
-            "bWluGAUgASgDEgsKA21heBgGIAEoAxIVCgVsaW1pdBgHIAEoBUIG4t8fAhAA",
-            "Eg4KBm9mZnNldBgIIAEoBRIdCgRzb3J0GAkgASgLMg8uc3RhdGVnYXRlLlNv",
-            "cnQiSQoPU3RyZWFtRXZlbnRPcHRzEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoF",
-            "XlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQiJgoEU29ydBINCgVm",
-            "aWVsZBgBIAEoCRIPCgdyZXZlcnNlGAIgASgIIqYBCgVFdmVudBITCgJpZBgB",
-            "IAEoCUIH4t8fA5ABBBIpCgZlbnRpdHkYAiABKAsyES5zdGF0ZWdhdGUuRW50",
-            "aXR5Qgbi3x8CIAESFgoGbWV0aG9kGAUgASgJQgbi3x8CWAESLwoGY2xhaW1z",
-            "GAMgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABEhQKBHRp",
-            "bWUYBCABKANCBuLfHwIQACIqCgZFdmVudHMSIAoGZXZlbnRzGAEgAygLMhAu",
-            "c3RhdGVnYXRlLkV2ZW50MtAECg1FbnRpdHlTZXJ2aWNlEl8KA1NldBIRLnN0",
-            "YXRlZ2F0ZS5FbnRpdHkaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiLYLT5JMC",
-            "JyIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJbCgRF",
-            "ZGl0EhEuc3RhdGVnYXRlLkVudGl0eRoRLnN0YXRlZ2F0ZS5FbnRpdHkiLYLT",
-            "5JMCJzIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJm",
-            "CgZSZXZlcnQSEy5zdGF0ZWdhdGUuRXZlbnRSZWYaES5zdGF0ZWdhdGUuRW50",
-            "aXR5IjSC0+STAi4aLC9hcGkvZW50aXR5L3JlZi97ZG9tYWlufS97dHlwZX0v",
-            "e2tleX0vcmV2ZXJ0El0KA0dldBIULnN0YXRlZ2F0ZS5FbnRpdHlSZWYaES5z",
-            "dGF0ZWdhdGUuRW50aXR5Ii2C0+STAicSJS9hcGkvZW50aXR5L3JlZi97ZG9t",
-            "YWlufS97dHlwZX0ve2tleX0SYgoDRGVsEhQuc3RhdGVnYXRlLkVudGl0eVJl",
-            "ZhoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSItgtPkkwInKiUvYXBpL2VudGl0",
-            "eS9yZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9ElYKBlNlYXJjaBIbLnN0YXRl",
-            "Z2F0ZS5TZWFyY2hFbnRpdHlPcHRzGhMuc3RhdGVnYXRlLkVudGl0aWVzIhqC",
-            "0+STAhQSEi9hcGkvZW50aXR5L3NlYXJjaDKbAgoMRXZlbnRTZXJ2aWNlElQK",
-            "BlN0cmVhbRIaLnN0YXRlZ2F0ZS5TdHJlYW1FdmVudE9wdHMaEC5zdGF0ZWdh",
-            "dGUuRXZlbnQiGoLT5JMCFBISL2FwaS9ldmVudHMvc3RyZWFtMAESUwoGU2Vh",
-            "cmNoEhouc3RhdGVnYXRlLlNlYXJjaEV2ZW50T3B0cxoRLnN0YXRlZ2F0ZS5F",
-            "dmVudHMiGoLT5JMCFBISL2FwaS9ldmVudHMvc2VhcmNoEmAKA0dldBITLnN0",
-            "YXRlZ2F0ZS5FdmVudFJlZhoQLnN0YXRlZ2F0ZS5FdmVudCIygtPkkwIsEiov",
-            "YXBpL2V2ZW50cy9yZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9L3tpZH0yxAEK",
-            "C1BlZXJTZXJ2aWNlElgKCUJyb2FkY2FzdBISLnN0YXRlZ2F0ZS5NZXNzYWdl",
-            "GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5Ih+C0+STAhkiFC9hcGkvcGVlcnMv",
-            "YnJvYWRjYXN0OgEqElsKBlN0cmVhbRIcLnN0YXRlZ2F0ZS5TdHJlYW1NZXNz",
-            "YWdlT3B0cxoWLnN0YXRlZ2F0ZS5QZWVyTWVzc2FnZSIZgtPkkwITEhEvYXBp",
-            "L3BlZXJzL3N0cmVhbTABQgtaCXN0YXRlZ2F0ZWIGcHJvdG8z"));
+            "GAIgASgJQgvi3x8HCgVeXFMrJCImCgRTb3J0Eg0KBWZpZWxkGAEgASgJEg8K",
+            "B3JldmVyc2UYAiABKAgipgEKBUV2ZW50EhMKAmlkGAEgASgJQgfi3x8DkAEE",
+            "EikKBmVudGl0eRgCIAEoCzIRLnN0YXRlZ2F0ZS5FbnRpdHlCBuLfHwIgARIW",
+            "CgZtZXRob2QYBSABKAlCBuLfHwJYARIvCgZjbGFpbXMYAyABKAsyFy5nb29n",
+            "bGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAESFAoEdGltZRgEIAEoA0IG4t8f",
+            "AhAAIioKBkV2ZW50cxIgCgZldmVudHMYASADKAsyEC5zdGF0ZWdhdGUuRXZl",
+            "bnQy0AQKDUVudGl0eVNlcnZpY2USXwoDU2V0EhEuc3RhdGVnYXRlLkVudGl0",
+            "eRoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSItgtPkkwInGiUvYXBpL2VudGl0",
+            "eS9yZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9ElsKBEVkaXQSES5zdGF0ZWdh",
+            "dGUuRW50aXR5GhEuc3RhdGVnYXRlLkVudGl0eSItgtPkkwInMiUvYXBpL2Vu",
+            "dGl0eS9yZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9EmYKBlJldmVydBITLnN0",
+            "YXRlZ2F0ZS5FdmVudFJlZhoRLnN0YXRlZ2F0ZS5FbnRpdHkiNILT5JMCLhos",
+            "L2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fS9yZXZlcnQS",
+            "XQoDR2V0EhQuc3RhdGVnYXRlLkVudGl0eVJlZhoRLnN0YXRlZ2F0ZS5FbnRp",
+            "dHkiLYLT5JMCJxIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97",
+            "a2V5fRJiCgNEZWwSFC5zdGF0ZWdhdGUuRW50aXR5UmVmGhYuZ29vZ2xlLnBy",
+            "b3RvYnVmLkVtcHR5Ii2C0+STAicqJS9hcGkvZW50aXR5L3JlZi97ZG9tYWlu",
+            "fS97dHlwZX0ve2tleX0SVgoGU2VhcmNoEhsuc3RhdGVnYXRlLlNlYXJjaEVu",
+            "dGl0eU9wdHMaEy5zdGF0ZWdhdGUuRW50aXRpZXMiGoLT5JMCFBISL2FwaS9l",
+            "bnRpdHkvc2VhcmNoMpgCCgxFdmVudFNlcnZpY2USUwoGU3RyZWFtEhouc3Rh",
+            "dGVnYXRlLlN0cmVhbUV2ZW50T3B0cxoQLnN0YXRlZ2F0ZS5FdmVudCIZgtPk",
+            "kwITEhEvYXBpL2V2ZW50L3N0cmVhbTABElIKBlNlYXJjaBIaLnN0YXRlZ2F0",
+            "ZS5TZWFyY2hFdmVudE9wdHMaES5zdGF0ZWdhdGUuRXZlbnRzIhmC0+STAhMS",
+            "ES9hcGkvZXZlbnQvc2VhcmNoEl8KA0dldBITLnN0YXRlZ2F0ZS5FdmVudFJl",
+            "ZhoQLnN0YXRlZ2F0ZS5FdmVudCIxgtPkkwIrEikvYXBpL2V2ZW50L3JlZi97",
+            "ZG9tYWlufS97dHlwZX0ve2tleX0ve2lkfTLCAQoLUGVlclNlcnZpY2USVwoJ",
+            "QnJvYWRjYXN0EhIuc3RhdGVnYXRlLk1lc3NhZ2UaFi5nb29nbGUucHJvdG9i",
+            "dWYuRW1wdHkiHoLT5JMCGCITL2FwaS9wZWVyL2Jyb2FkY2FzdDoBKhJaCgZT",
+            "dHJlYW0SHC5zdGF0ZWdhdGUuU3RyZWFtTWVzc2FnZU9wdHMaFi5zdGF0ZWdh",
+            "dGUuUGVlck1lc3NhZ2UiGILT5JMCEhIQL2FwaS9wZWVyL3N0cmVhbTABMpYC",
+            "CgxDYWNoZVNlcnZpY2USVgoDU2V0EhAuc3RhdGVnYXRlLkNhY2hlGhYuZ29v",
+            "Z2xlLnByb3RvYnVmLkVtcHR5IiWC0+STAh8aHS9hcGkvY2FjaGUvcmVmL3tk",
+            "b21haW59L3trZXl9ElMKA0dldBITLnN0YXRlZ2F0ZS5DYWNoZVJlZhoQLnN0",
+            "YXRlZ2F0ZS5DYWNoZSIlgtPkkwIfEh0vYXBpL2NhY2hlL3JlZi97ZG9tYWlu",
+            "fS97a2V5fRJZCgNEZWwSEy5zdGF0ZWdhdGUuQ2FjaGVSZWYaFi5nb29nbGUu",
+            "cHJvdG9idWYuRW1wdHkiJYLT5JMCHyodL2FwaS9jYWNoZS9yZWYve2RvbWFp",
+            "bn0ve2tleX0y0QEKDE11dGV4U2VydmljZRJcCgRMb2NrEhAuc3RhdGVnYXRl",
+            "Lk11dGV4GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IiqC0+STAiQiIi9hcGkv",
+            "Y2FjaGUvcmVmL3tkb21haW59L3trZXl9L2xvY2sSYwoGVW5sb2NrEhMuc3Rh",
+            "dGVnYXRlLk11dGV4UmVmGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IiyC0+ST",
+            "AiYiJC9hcGkvY2FjaGUvcmVmL3tkb21haW59L3trZXl9L3VubG9ja0ILWglz",
+            "dGF0ZWdhdGViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.MutexRef), global::Stategate.MutexRef.Parser, new[]{ "Domain", "Key" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.CacheRef), global::Stategate.CacheRef.Parser, new[]{ "Domain", "Key" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.EntityRef), global::Stategate.EntityRef.Parser, new[]{ "Domain", "Type", "Key" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.EventRef), global::Stategate.EventRef.Parser, new[]{ "Domain", "Type", "Key", "Id" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entity), global::Stategate.Entity.Parser, new[]{ "Domain", "Type", "Key", "Values" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamMessageOpts), global::Stategate.StreamMessageOpts.Parser, new[]{ "Domain", "Channel", "Type" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Message), global::Stategate.Message.Parser, new[]{ "Domain", "Channel", "Type", "Body" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Mutex), global::Stategate.Mutex.Parser, new[]{ "Domain", "Key", "Exp" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Cache), global::Stategate.Cache.Parser, new[]{ "Domain", "Key", "Value", "Exp" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.PeerMessage), global::Stategate.PeerMessage.Parser, new[]{ "Id", "Domain", "Channel", "Type", "Body", "Claims", "Time" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entities), global::Stategate.Entities.Parser, new[]{ "Entities_" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEntityOpts), global::Stategate.SearchEntityOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Limit", "Offset", "Sort" }, null, null, null),
@@ -112,6 +136,338 @@ namespace Stategate {
   }
   #region Messages
   /// <summary>
+  /// MutexRef is a reference to a distributed mutex
+  /// </summary>
+  public sealed partial class MutexRef : pb::IMessage<MutexRef> {
+    private static readonly pb::MessageParser<MutexRef> _parser = new pb::MessageParser<MutexRef>(() => new MutexRef());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<MutexRef> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[0]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MutexRef() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MutexRef(MutexRef other) : this() {
+      domain_ = other.domain_;
+      key_ = other.key_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MutexRef Clone() {
+      return new MutexRef(this);
+    }
+
+    /// <summary>Field number for the "domain" field.</summary>
+    public const int DomainFieldNumber = 1;
+    private string domain_ = "";
+    /// <summary>
+    /// the mutex's business domain(ex: accounting)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Domain {
+      get { return domain_; }
+      set {
+        domain_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "key" field.</summary>
+    public const int KeyFieldNumber = 2;
+    private string key_ = "";
+    /// <summary>
+    /// mutex key (unique within domain)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Key {
+      get { return key_; }
+      set {
+        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as MutexRef);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(MutexRef other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Domain != other.Domain) return false;
+      if (Key != other.Key) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Domain.Length != 0) hash ^= Domain.GetHashCode();
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Domain.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Domain);
+      }
+      if (Key.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Key);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Domain.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Domain);
+      }
+      if (Key.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(MutexRef other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Domain.Length != 0) {
+        Domain = other.Domain;
+      }
+      if (other.Key.Length != 0) {
+        Key = other.Key;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Domain = input.ReadString();
+            break;
+          }
+          case 18: {
+            Key = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  /// EntityRef is a reference to a cached value
+  /// </summary>
+  public sealed partial class CacheRef : pb::IMessage<CacheRef> {
+    private static readonly pb::MessageParser<CacheRef> _parser = new pb::MessageParser<CacheRef>(() => new CacheRef());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<CacheRef> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CacheRef() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CacheRef(CacheRef other) : this() {
+      domain_ = other.domain_;
+      key_ = other.key_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CacheRef Clone() {
+      return new CacheRef(this);
+    }
+
+    /// <summary>Field number for the "domain" field.</summary>
+    public const int DomainFieldNumber = 1;
+    private string domain_ = "";
+    /// <summary>
+    /// the cached value's business domain(ex: accounting)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Domain {
+      get { return domain_; }
+      set {
+        domain_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "key" field.</summary>
+    public const int KeyFieldNumber = 2;
+    private string key_ = "";
+    /// <summary>
+    /// cached value's key (unique within domain)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Key {
+      get { return key_; }
+      set {
+        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as CacheRef);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(CacheRef other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Domain != other.Domain) return false;
+      if (Key != other.Key) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Domain.Length != 0) hash ^= Domain.GetHashCode();
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Domain.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Domain);
+      }
+      if (Key.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Key);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Domain.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Domain);
+      }
+      if (Key.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(CacheRef other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Domain.Length != 0) {
+        Domain = other.Domain;
+      }
+      if (other.Key.Length != 0) {
+        Key = other.Key;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Domain = input.ReadString();
+            break;
+          }
+          case 18: {
+            Key = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
   /// EntityRef is a reference to an existing entity
   /// </summary>
   public sealed partial class EntityRef : pb::IMessage<EntityRef> {
@@ -122,7 +478,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -155,6 +511,7 @@ namespace Stategate {
     private string domain_ = "";
     /// <summary>
     /// the entity's business domain(ex: accounting)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -169,6 +526,7 @@ namespace Stategate {
     private string type_ = "";
     /// <summary>
     /// entity type (ex: user)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
@@ -183,6 +541,7 @@ namespace Stategate {
     private string key_ = "";
     /// <summary>
     /// entity key (unique within type)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Key {
@@ -319,7 +678,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -352,7 +711,7 @@ namespace Stategate {
     public const int DomainFieldNumber = 1;
     private string domain_ = "";
     /// <summary>
-    /// the entity's business domain(ex: accounting)
+    /// the event's entity's business domain(ex: accounting)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -366,7 +725,7 @@ namespace Stategate {
     public const int TypeFieldNumber = 2;
     private string type_ = "";
     /// <summary>
-    /// entity type (ex: user)
+    /// event entity type (ex: user)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
@@ -380,7 +739,7 @@ namespace Stategate {
     public const int KeyFieldNumber = 3;
     private string key_ = "";
     /// <summary>
-    /// entity key (unique within type)
+    /// event's entity's key (unique within type)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Key {
@@ -548,7 +907,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -785,7 +1144,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -989,7 +1348,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1216,6 +1575,451 @@ namespace Stategate {
   }
 
   /// <summary>
+  /// Mutex is a distributed mutex for preventing data-races amongst peer services
+  /// </summary>
+  public sealed partial class Mutex : pb::IMessage<Mutex> {
+    private static readonly pb::MessageParser<Mutex> _parser = new pb::MessageParser<Mutex>(() => new Mutex());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Mutex> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Mutex() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Mutex(Mutex other) : this() {
+      domain_ = other.domain_;
+      key_ = other.key_;
+      exp_ = other.exp_ != null ? other.exp_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Mutex Clone() {
+      return new Mutex(this);
+    }
+
+    /// <summary>Field number for the "domain" field.</summary>
+    public const int DomainFieldNumber = 1;
+    private string domain_ = "";
+    /// <summary>
+    /// the mutex's business domain(ex: accounting)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Domain {
+      get { return domain_; }
+      set {
+        domain_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "key" field.</summary>
+    public const int KeyFieldNumber = 2;
+    private string key_ = "";
+    /// <summary>
+    /// mutex key (unique within domain)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Key {
+      get { return key_; }
+      set {
+        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "exp" field.</summary>
+    public const int ExpFieldNumber = 4;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp exp_;
+    /// <summary>
+    /// exp is the time at which the mutex value will expire
+    /// if exp is 0, the mutex will never expire
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp Exp {
+      get { return exp_; }
+      set {
+        exp_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Mutex);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Mutex other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Domain != other.Domain) return false;
+      if (Key != other.Key) return false;
+      if (!object.Equals(Exp, other.Exp)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Domain.Length != 0) hash ^= Domain.GetHashCode();
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (exp_ != null) hash ^= Exp.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Domain.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Domain);
+      }
+      if (Key.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Key);
+      }
+      if (exp_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Exp);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Domain.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Domain);
+      }
+      if (Key.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
+      }
+      if (exp_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Exp);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Mutex other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Domain.Length != 0) {
+        Domain = other.Domain;
+      }
+      if (other.Key.Length != 0) {
+        Key = other.Key;
+      }
+      if (other.exp_ != null) {
+        if (exp_ == null) {
+          exp_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        Exp.MergeFrom(other.Exp);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Domain = input.ReadString();
+            break;
+          }
+          case 18: {
+            Key = input.ReadString();
+            break;
+          }
+          case 34: {
+            if (exp_ == null) {
+              exp_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(exp_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  /// Cache is a persisted value that will expire after a period of time. It is held in memory for maximum performance.
+  /// </summary>
+  public sealed partial class Cache : pb::IMessage<Cache> {
+    private static readonly pb::MessageParser<Cache> _parser = new pb::MessageParser<Cache>(() => new Cache());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Cache> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Cache() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Cache(Cache other) : this() {
+      domain_ = other.domain_;
+      key_ = other.key_;
+      value_ = other.value_ != null ? other.value_.Clone() : null;
+      exp_ = other.exp_ != null ? other.exp_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Cache Clone() {
+      return new Cache(this);
+    }
+
+    /// <summary>Field number for the "domain" field.</summary>
+    public const int DomainFieldNumber = 1;
+    private string domain_ = "";
+    /// <summary>
+    /// the item's business domain(ex: accounting)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Domain {
+      get { return domain_; }
+      set {
+        domain_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "key" field.</summary>
+    public const int KeyFieldNumber = 2;
+    private string key_ = "";
+    /// <summary>
+    /// entity key (unique within type)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Key {
+      get { return key_; }
+      set {
+        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "value" field.</summary>
+    public const int ValueFieldNumber = 3;
+    private global::Google.Protobuf.WellKnownTypes.Value value_;
+    /// <summary>
+    /// the cached value's value to store
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Value Value {
+      get { return value_; }
+      set {
+        value_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "exp" field.</summary>
+    public const int ExpFieldNumber = 4;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp exp_;
+    /// <summary>
+    /// exp is the time at which the cached value will expire
+    /// if exp is 0, the value will never expire
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp Exp {
+      get { return exp_; }
+      set {
+        exp_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Cache);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Cache other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Domain != other.Domain) return false;
+      if (Key != other.Key) return false;
+      if (!object.Equals(Value, other.Value)) return false;
+      if (!object.Equals(Exp, other.Exp)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Domain.Length != 0) hash ^= Domain.GetHashCode();
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (value_ != null) hash ^= Value.GetHashCode();
+      if (exp_ != null) hash ^= Exp.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Domain.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Domain);
+      }
+      if (Key.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Key);
+      }
+      if (value_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Value);
+      }
+      if (exp_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Exp);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Domain.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Domain);
+      }
+      if (Key.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
+      }
+      if (value_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Value);
+      }
+      if (exp_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Exp);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Cache other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Domain.Length != 0) {
+        Domain = other.Domain;
+      }
+      if (other.Key.Length != 0) {
+        Key = other.Key;
+      }
+      if (other.value_ != null) {
+        if (value_ == null) {
+          value_ = new global::Google.Protobuf.WellKnownTypes.Value();
+        }
+        Value.MergeFrom(other.Value);
+      }
+      if (other.exp_ != null) {
+        if (exp_ == null) {
+          exp_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        Exp.MergeFrom(other.Exp);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Domain = input.ReadString();
+            break;
+          }
+          case 18: {
+            Key = input.ReadString();
+            break;
+          }
+          case 26: {
+            if (value_ == null) {
+              value_ = new global::Google.Protobuf.WellKnownTypes.Value();
+            }
+            input.ReadMessage(value_);
+            break;
+          }
+          case 34: {
+            if (exp_ == null) {
+              exp_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(exp_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
   /// PeerMessage is a message produced by a client to the PeerService
   /// PeerMessages are NOT persisted and should only be used to communicate with other Peers
   /// </summary>
@@ -1227,7 +2031,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1563,7 +2367,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1688,7 +2492,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1987,7 +2791,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2349,7 +3153,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[9]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2519,7 +3323,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[10]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2689,7 +3493,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[11]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2960,7 +3764,7 @@ namespace Stategate {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[12]; }
+      get { return global::Stategate.SchemaReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

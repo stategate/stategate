@@ -75,3 +75,41 @@ export class PeerServiceClient extends grpc.Client {
   stream(argument: schema_pb.StreamMessageOpts, metadataOrOptions?: grpc.Metadata | grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.PeerMessage>;
   stream(argument: schema_pb.StreamMessageOpts, metadata?: grpc.Metadata | null, options?: grpc.CallOptions | null): grpc.ClientReadableStream<schema_pb.PeerMessage>;
 }
+
+interface ICacheServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
+  set: grpc.MethodDefinition<schema_pb.Cache, google_protobuf_empty_pb.Empty>;
+  get: grpc.MethodDefinition<schema_pb.CacheRef, schema_pb.Cache>;
+  del: grpc.MethodDefinition<schema_pb.CacheRef, google_protobuf_empty_pb.Empty>;
+}
+
+export const CacheServiceService: ICacheServiceService;
+
+export class CacheServiceClient extends grpc.Client {
+  constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
+  set(argument: schema_pb.Cache, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  set(argument: schema_pb.Cache, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  set(argument: schema_pb.Cache, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  get(argument: schema_pb.CacheRef, callback: grpc.requestCallback<schema_pb.Cache>): grpc.ClientUnaryCall;
+  get(argument: schema_pb.CacheRef, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Cache>): grpc.ClientUnaryCall;
+  get(argument: schema_pb.CacheRef, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<schema_pb.Cache>): grpc.ClientUnaryCall;
+  del(argument: schema_pb.CacheRef, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  del(argument: schema_pb.CacheRef, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  del(argument: schema_pb.CacheRef, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+}
+
+interface IMutexServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
+  lock: grpc.MethodDefinition<schema_pb.Mutex, google_protobuf_empty_pb.Empty>;
+  unlock: grpc.MethodDefinition<schema_pb.MutexRef, google_protobuf_empty_pb.Empty>;
+}
+
+export const MutexServiceService: IMutexServiceService;
+
+export class MutexServiceClient extends grpc.Client {
+  constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
+  lock(argument: schema_pb.Mutex, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  lock(argument: schema_pb.Mutex, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  lock(argument: schema_pb.Mutex, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  unlock(argument: schema_pb.MutexRef, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  unlock(argument: schema_pb.MutexRef, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  unlock(argument: schema_pb.MutexRef, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+}

@@ -17,6 +17,7 @@ const (
 	ErrUnauthorized    Type = 2
 	ErrNotFound        Type = 5
 	ErrTimeout         Type = 6
+	ErrLocked          Type = 7
 )
 
 type Error struct {
@@ -44,6 +45,8 @@ func (e Error) Public() error {
 		return status.Error(codes.Internal, string(bits))
 	case ErrTimeout:
 		return status.Error(codes.DeadlineExceeded, string(bits))
+	case ErrLocked:
+		return status.Error(codes.AlreadyExists, string(bits))
 	default:
 		if e.Err == context.Canceled {
 			return status.Error(codes.DeadlineExceeded, string(bits))

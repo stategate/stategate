@@ -98,6 +98,55 @@ export class PeerServiceClient {
 
 }
 
+export class CacheServiceClient {
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; });
+
+  set(
+    request: schema_pb.Cache,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: google_protobuf_empty_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  get(
+    request: schema_pb.CacheRef,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: schema_pb.Cache) => void
+  ): grpcWeb.ClientReadableStream<schema_pb.Cache>;
+
+  del(
+    request: schema_pb.CacheRef,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: google_protobuf_empty_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+}
+
+export class MutexServiceClient {
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; });
+
+  lock(
+    request: schema_pb.Mutex,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: google_protobuf_empty_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  unlock(
+    request: schema_pb.MutexRef,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: google_protobuf_empty_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+}
+
 export class EntityServicePromiseClient {
   constructor (hostname: string,
                credentials?: null | { [index: string]: string; },
@@ -171,6 +220,45 @@ export class PeerServicePromiseClient {
     request: schema_pb.StreamMessageOpts,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<schema_pb.PeerMessage>;
+
+}
+
+export class CacheServicePromiseClient {
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; });
+
+  set(
+    request: schema_pb.Cache,
+    metadata?: grpcWeb.Metadata
+  ): Promise<google_protobuf_empty_pb.Empty>;
+
+  get(
+    request: schema_pb.CacheRef,
+    metadata?: grpcWeb.Metadata
+  ): Promise<schema_pb.Cache>;
+
+  del(
+    request: schema_pb.CacheRef,
+    metadata?: grpcWeb.Metadata
+  ): Promise<google_protobuf_empty_pb.Empty>;
+
+}
+
+export class MutexServicePromiseClient {
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; });
+
+  lock(
+    request: schema_pb.Mutex,
+    metadata?: grpcWeb.Metadata
+  ): Promise<google_protobuf_empty_pb.Empty>;
+
+  unlock(
+    request: schema_pb.MutexRef,
+    metadata?: grpcWeb.Metadata
+  ): Promise<google_protobuf_empty_pb.Empty>;
 
 }
 

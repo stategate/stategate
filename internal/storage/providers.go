@@ -78,7 +78,7 @@ func GetStorageProvider(lgger *logger.Logger, providerConfig map[string]string) 
 		if err != nil {
 			return nil, err
 		}
-		return mongo.NewProvider(client.Database(db)), nil
+		return mongo.NewProvider(client), nil
 	default:
 		return nil, errors.Errorf("unsupported backend provider: %s. must be one of: %v", name, AllProviderNames)
 	}

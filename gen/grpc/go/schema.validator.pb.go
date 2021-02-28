@@ -22,6 +22,32 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+var _regex_MutexRef_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_MutexRef_Key = regexp.MustCompile(`^\S+$`)
+
+func (this *MutexRef) Validate() error {
+	if !_regex_MutexRef_Domain.MatchString(this.Domain) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
+	}
+	if !_regex_MutexRef_Key.MatchString(this.Key) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Key))
+	}
+	return nil
+}
+
+var _regex_CacheRef_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_CacheRef_Key = regexp.MustCompile(`^\S+$`)
+
+func (this *CacheRef) Validate() error {
+	if !_regex_CacheRef_Domain.MatchString(this.Domain) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
+	}
+	if !_regex_CacheRef_Key.MatchString(this.Key) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Key))
+	}
+	return nil
+}
+
 var _regex_EntityRef_Domain = regexp.MustCompile(`^\S+$`)
 var _regex_EntityRef_Type = regexp.MustCompile(`^\S+$`)
 var _regex_EntityRef_Key = regexp.MustCompile(`^\S+$`)
@@ -122,6 +148,50 @@ func (this *Message) Validate() error {
 	if this.Body != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Body); err != nil {
 			return github_com_mwitkow_go_proto_validators.FieldError("Body", err)
+		}
+	}
+	return nil
+}
+
+var _regex_Mutex_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_Mutex_Key = regexp.MustCompile(`^\S+$`)
+
+func (this *Mutex) Validate() error {
+	if !_regex_Mutex_Domain.MatchString(this.Domain) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
+	}
+	if !_regex_Mutex_Key.MatchString(this.Key) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Key))
+	}
+	if this.Exp != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Exp); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Exp", err)
+		}
+	}
+	return nil
+}
+
+var _regex_Cache_Domain = regexp.MustCompile(`^\S+$`)
+var _regex_Cache_Key = regexp.MustCompile(`^\S+$`)
+
+func (this *Cache) Validate() error {
+	if !_regex_Cache_Domain.MatchString(this.Domain) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Domain", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Domain))
+	}
+	if !_regex_Cache_Key.MatchString(this.Key) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Key", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\S+$"`, this.Key))
+	}
+	if nil == this.Value {
+		return github_com_mwitkow_go_proto_validators.FieldError("Value", fmt.Errorf("message must exist"))
+	}
+	if this.Value != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Value); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Value", err)
+		}
+	}
+	if this.Exp != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Exp); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Exp", err)
 		}
 	}
 	return nil

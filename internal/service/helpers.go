@@ -9,6 +9,8 @@ import (
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/structpb"
 	"time"
 )
@@ -22,6 +24,9 @@ func msgChannelName(domain, channel, typ string) string {
 }
 
 func (s Service) setEntity(ctx context.Context, entity *stategate.Entity) (*empty.Empty, error) {
+	if s.storage == nil {
+		return nil, status.Error(codes.Unimplemented, "empty storage provider")
+	}
 	c, _ := auth.GetContext(ctx)
 	claims, _ := structpb.NewStruct(c.Claims)
 
@@ -49,6 +54,9 @@ func (s Service) setEntity(ctx context.Context, entity *stategate.Entity) (*empt
 }
 
 func (s Service) getEntity(ctx context.Context, ref *stategate.EntityRef) (*stategate.Entity, error) {
+	if s.storage == nil {
+		return nil, status.Error(codes.Unimplemented, "empty storage provider")
+	}
 	obj, err := s.storage.GetEntity(ctx, ref)
 	if err != nil {
 		err.Log(s.lgger)
@@ -58,6 +66,9 @@ func (s Service) getEntity(ctx context.Context, ref *stategate.EntityRef) (*stat
 }
 
 func (s Service) revertEntity(ctx context.Context, opts *stategate.EventRef) (*stategate.Entity, error) {
+	if s.storage == nil {
+		return nil, status.Error(codes.Unimplemented, "empty storage provider")
+	}
 	event, err := s.storage.GetEvent(ctx, &stategate.EventRef{
 		Domain: opts.GetDomain(),
 		Type:   opts.GetType(),
@@ -76,6 +87,9 @@ func (s Service) revertEntity(ctx context.Context, opts *stategate.EventRef) (*s
 }
 
 func (s Service) editEntity(ctx context.Context, entity *stategate.Entity) (*stategate.Entity, error) {
+	if s.storage == nil {
+		return nil, status.Error(codes.Unimplemented, "empty storage provider")
+	}
 	c, _ := auth.GetContext(ctx)
 	claims, _ := structpb.NewStruct(c.Claims)
 	result, err := s.storage.EditEntity(ctx, entity)
@@ -105,6 +119,9 @@ func (s Service) editEntity(ctx context.Context, entity *stategate.Entity) (*sta
 }
 
 func (s Service) delEntity(ctx context.Context, ref *stategate.EntityRef) (*empty.Empty, error) {
+	if s.storage == nil {
+		return nil, status.Error(codes.Unimplemented, "empty storage provider")
+	}
 	c, _ := auth.GetContext(ctx)
 	claims, _ := structpb.NewStruct(c.Claims)
 	if err := s.storage.DelEntity(ctx, ref); err != nil {
@@ -134,6 +151,12 @@ func (s Service) delEntity(ctx context.Context, ref *stategate.EntityRef) (*empt
 }
 
 func (s Service) streamEvents(opts *stategate.StreamEventOpts, server stategate.EventService_StreamServer) error {
+	if s.storage == nil {
+		return status.Error(codes.Unimplemented, "empty storage provider")
+	}
+	if s.channel == nil {
+		return status.Error(codes.Unimplemented, "empty channel provider")
+	}
 	s.events.Subscribe(server.Context(), eventChannelName(opts.GetDomain(), opts.GetType()), func(ctx context.Context, msg machine.Message) (bool, error) {
 		if err := server.Send(msg.GetBody().(*stategate.Event)); err != nil {
 			return false, errors.Wrap(err, "failed to stream event")
@@ -144,6 +167,9 @@ func (s Service) streamEvents(opts *stategate.StreamEventOpts, server stategate.
 }
 
 func (s Service) searchEvents(ctx context.Context, opts *stategate.SearchEventOpts) (*stategate.Events, error) {
+	if s.storage == nil {
+		return nil, status.Error(codes.Unimplemented, "empty storage provider")
+	}
 	events, err := s.storage.SearchEvents(ctx, opts)
 	if err != nil {
 		err.Log(s.lgger)
@@ -153,6 +179,9 @@ func (s Service) searchEvents(ctx context.Context, opts *stategate.SearchEventOp
 }
 
 func (s Service) getEvent(ctx context.Context, opts *stategate.EventRef) (*stategate.Event, error) {
+	if s.storage == nil {
+		return nil, status.Error(codes.Unimplemented, "empty storage provider")
+	}
 	event, err := s.storage.GetEvent(ctx, opts)
 	if err != nil {
 		err.Log(s.lgger)
@@ -162,6 +191,9 @@ func (s Service) getEvent(ctx context.Context, opts *stategate.EventRef) (*state
 }
 
 func (s Service) searchEntities(ctx context.Context, opts *stategate.SearchEntityOpts) (*stategate.Entities, error) {
+	if s.storage == nil {
+		return nil, status.Error(codes.Unimplemented, "empty storage provider")
+	}
 	entitys, err := s.storage.SearchEntities(ctx, opts)
 	if err != nil {
 		err.Log(s.lgger)
@@ -171,6 +203,9 @@ func (s Service) searchEntities(ctx context.Context, opts *stategate.SearchEntit
 }
 
 func (s Service) broadcastMessage(ctx context.Context, message *stategate.Message) (*empty.Empty, error) {
+	if s.channel == nil {
+		return nil, status.Error(codes.Unimplemented, "empty channel provider")
+	}
 	c, _ := auth.GetContext(ctx)
 	claims, _ := structpb.NewStruct(c.Claims)
 	bm := &stategate.PeerMessage{
@@ -190,6 +225,9 @@ func (s Service) broadcastMessage(ctx context.Context, message *stategate.Messag
 }
 
 func (s Service) streamMessages(opts *stategate.StreamMessageOpts, server stategate.PeerService_StreamServer) error {
+	if s.channel == nil {
+		return status.Error(codes.Unimplemented, "empty channel provider")
+	}
 	s.messages.Subscribe(server.Context(), msgChannelName(opts.GetDomain(), opts.GetChannel(), opts.GetType()), func(ctx context.Context, msg machine.Message) (bool, error) {
 		if err := server.Send(msg.GetBody().(*stategate.PeerMessage)); err != nil {
 			return false, errors.Wrap(err, "failed to stream message")
@@ -197,4 +235,57 @@ func (s Service) streamMessages(opts *stategate.StreamMessageOpts, server stateg
 		return true, nil
 	})
 	return nil
+}
+
+func (s Service) setCache(ctx context.Context, value *stategate.Cache) (*empty.Empty, error) {
+	if err := s.cache.Set(ctx, value); err != nil {
+		err.Log(s.lgger)
+		return nil, err.Public()
+	}
+	return &empty.Empty{}, nil
+}
+
+func (s Service) getCache(ctx context.Context, ref *stategate.CacheRef) (*stategate.Cache, error) {
+	if s.cache == nil {
+		return nil, status.Error(codes.Unimplemented, "empty cache provider")
+	}
+	resp, err := s.cache.Get(ctx, ref)
+	if err != nil {
+		err.Log(s.lgger)
+		return nil, err.Public()
+	}
+	return resp, nil
+}
+
+func (s Service) delCache(ctx context.Context, ref *stategate.CacheRef) (*empty.Empty, error) {
+	if s.cache == nil {
+		return nil, status.Error(codes.Unimplemented, "empty cache provider")
+	}
+	if err := s.cache.Del(ctx, ref); err != nil {
+		err.Log(s.lgger)
+		return nil, err.Public()
+	}
+	return &empty.Empty{}, nil
+}
+
+func (s Service) lockMutex(ctx context.Context, mutex *stategate.Mutex) (*empty.Empty, error) {
+	if s.cache == nil {
+		return nil, status.Error(codes.Unimplemented, "empty cache provider")
+	}
+	if err := s.cache.Lock(ctx, mutex); err != nil {
+		err.Log(s.lgger)
+		return nil, err.Public()
+	}
+	return &empty.Empty{}, nil
+}
+
+func (s Service) unlockMutex(ctx context.Context, ref *stategate.MutexRef) (*empty.Empty, error) {
+	if s.cache == nil {
+		return nil, status.Error(codes.Unimplemented, "empty cache provider")
+	}
+	if err := s.cache.Unlock(ctx, ref); err != nil {
+		err.Log(s.lgger)
+		return nil, err.Public()
+	}
+	return &empty.Empty{}, nil
 }

@@ -17,18 +17,21 @@ class EntityRef extends \Google\Protobuf\Internal\Message
 {
     /**
      * the entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
     private $domain = '';
     /**
      * entity type (ex: user)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
      * entity key (unique within type)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      */
@@ -42,10 +45,13 @@ class EntityRef extends \Google\Protobuf\Internal\Message
      *
      *     @type string $domain
      *           the entity's business domain(ex: accounting)
+     *           must not be empty or contain spaces
      *     @type string $type
      *           entity type (ex: user)
+     *           must not be empty or contain spaces
      *     @type string $key
      *           entity key (unique within type)
+     *           must not be empty or contain spaces
      * }
      */
     public function __construct($data = NULL) {
@@ -55,6 +61,7 @@ class EntityRef extends \Google\Protobuf\Internal\Message
 
     /**
      * the entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
@@ -66,6 +73,7 @@ class EntityRef extends \Google\Protobuf\Internal\Message
 
     /**
      * the entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -81,6 +89,7 @@ class EntityRef extends \Google\Protobuf\Internal\Message
 
     /**
      * entity type (ex: user)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
@@ -92,6 +101,7 @@ class EntityRef extends \Google\Protobuf\Internal\Message
 
     /**
      * entity type (ex: user)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
@@ -107,6 +117,7 @@ class EntityRef extends \Google\Protobuf\Internal\Message
 
     /**
      * entity key (unique within type)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @return string
@@ -118,6 +129,7 @@ class EntityRef extends \Google\Protobuf\Internal\Message
 
     /**
      * entity key (unique within type)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @param string $var

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
 	"github.com/autom8ter/stategate/internal/auth"
+	"github.com/autom8ter/stategate/internal/cache"
 	"github.com/autom8ter/stategate/internal/channel"
 	"github.com/autom8ter/stategate/internal/logger"
 	"github.com/autom8ter/stategate/internal/service"
@@ -136,17 +137,35 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	if tlsConfig != nil {
 		gopts = append(gopts, grpc.Creds(credentials.NewTLS(tlsConfig)))
 	}
-	strgProvider, err := storage.GetStorageProvider(lgger, c.StorageProvider)
-	if err != nil {
-		return errors.Wrap(err, "failed to setup storage provider")
+
+	var (
+		strgProvider    storage.Provider
+		channelProvider channel.Provider
+		cacheProvider   cache.Provider
+	)
+	if c.StorageProvider != nil && len(c.StorageProvider) > 0 {
+		strgProvider, err = storage.GetStorageProvider(lgger, c.StorageProvider)
+		if err != nil {
+			return errors.Wrap(err, "failed to setup storage provider")
+		}
+		defer strgProvider.Close()
 	}
-	defer strgProvider.Close()
-	channelProvider, err := channel.GetChannelProvider(lgger, c.ChannelProvider)
-	if err != nil {
-		return errors.Wrap(err, "failed to setup channel provider")
+	if c.ChannelProvider != nil && len(c.ChannelProvider) > 0 {
+		channelProvider, err = channel.GetChannelProvider(lgger, c.ChannelProvider)
+		if err != nil {
+			return errors.Wrap(err, "failed to setup channel provider")
+		}
+		defer channelProvider.Close()
 	}
-	defer channelProvider.Close()
-	svc, err := service.NewService(ctx, strgProvider, channelProvider, lgger)
+	if c.CacheProvider != nil && len(c.CacheProvider) > 0 {
+		cacheProvider, err = cache.GetCacheProvider(lgger, c.CacheProvider)
+		if err != nil {
+			return errors.Wrap(err, "failed to setup cache provider")
+		}
+		defer cacheProvider.Close()
+	}
+
+	svc, err := service.NewService(ctx, strgProvider, channelProvider, cacheProvider, lgger)
 	if err != nil {
 		return errors.Wrap(err, "failed to setup service")
 	}
@@ -154,6 +173,8 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	stategate.RegisterEventServiceServer(gserver, svc.EventServiceServer())
 	stategate.RegisterEntityServiceServer(gserver, svc.EntityServiceServer())
 	stategate.RegisterPeerServiceServer(gserver, svc.PeerServiceServer())
+	stategate.RegisterCacheServiceServer(gserver, svc.CacheServiceServer())
+	stategate.RegisterMutexServiceServer(gserver, svc.MutexServiceServer())
 	reflection.Register(gserver)
 	grpc_prometheus.Register(gserver)
 
@@ -187,6 +208,12 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	}
 	if err := stategate.RegisterPeerServiceHandler(ctx, restMux, conn); err != nil {
 		return errors.Wrap(err, "failed to register REST peer endpoints")
+	}
+	if err := stategate.RegisterCacheServiceHandler(ctx, restMux, conn); err != nil {
+		return errors.Wrap(err, "failed to register REST cache endpoints")
+	}
+	if err := stategate.RegisterMutexServiceHandler(ctx, restMux, conn); err != nil {
+		return errors.Wrap(err, "failed to register REST mutex endpoints")
 	}
 	mux.Handle("/", restMux)
 
