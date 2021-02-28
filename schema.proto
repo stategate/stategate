@@ -128,14 +128,14 @@ service MutexService {
   // It is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL
   rpc Lock(Mutex) returns(google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/cache/ref/{domain}/{key}/lock"
+      put: "/api/mutex/ref/{domain}/{key}"
     };
   }
   // Unlock unlocks the key(if it's currently locked) so that it may be locked again.
   // It is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL
   rpc Unlock(MutexRef) returns(google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/cache/ref/{domain}/{key}/unlock"
+      put: "/api/mutex/ref/{domain}/{key}"
     };
   }
 }
@@ -152,8 +152,10 @@ message MutexRef {
 // EntityRef is a reference to a cached value
 message CacheRef {
   // the cached value's business domain(ex: accounting)
+  // must not be empty or contain spaces
   string domain =1[(validator.field) = {regex : "^\\S+$"}];
   // cached value's key (unique within domain)
+  // must not be empty or contain spaces
   string key =2[(validator.field) = {regex : "^\\S+$"}];
 }
 
@@ -173,10 +175,13 @@ message EntityRef {
 // EventRef holds options for reverting an entity to a previous version of itself
 message EventRef {
   // the event's entity's business domain(ex: accounting)
+  // must not be empty or contain spaces
   string domain =1[(validator.field) = {regex : "^\\S+$"}];
   // event entity type (ex: user)
+  // must not be empty or contain spaces
   string type =2[(validator.field) = {regex : "^\\S+$"}];
   // event's entity's key (unique within type)
+  // must not be empty or contain spaces
   string key =3[(validator.field) = {regex : "^\\S+$"}];
   // id is the event id.
   string id =4[(validator.field) = {uuid_ver : 4}];

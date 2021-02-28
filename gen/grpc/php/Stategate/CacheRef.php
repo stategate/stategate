@@ -17,12 +17,14 @@ class CacheRef extends \Google\Protobuf\Internal\Message
 {
     /**
      * the cached value's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
     private $domain = '';
     /**
      * cached value's key (unique within domain)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
      */
@@ -36,8 +38,10 @@ class CacheRef extends \Google\Protobuf\Internal\Message
      *
      *     @type string $domain
      *           the cached value's business domain(ex: accounting)
+     *           must not be empty or contain spaces
      *     @type string $key
      *           cached value's key (unique within domain)
+     *           must not be empty or contain spaces
      * }
      */
     public function __construct($data = NULL) {
@@ -47,6 +51,7 @@ class CacheRef extends \Google\Protobuf\Internal\Message
 
     /**
      * the cached value's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
@@ -58,6 +63,7 @@ class CacheRef extends \Google\Protobuf\Internal\Message
 
     /**
      * the cached value's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -73,6 +79,7 @@ class CacheRef extends \Google\Protobuf\Internal\Message
 
     /**
      * cached value's key (unique within domain)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
      * @return string
@@ -84,6 +91,7 @@ class CacheRef extends \Google\Protobuf\Internal\Message
 
     /**
      * cached value's key (unique within domain)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
      * @param string $var

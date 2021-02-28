@@ -32,14 +32,14 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the cached value's business domain(ex: accounting)",
+            "description": "the cached value's business domain(ex: accounting)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "key",
-            "description": "cached value's key (unique within domain)",
+            "description": "cached value's key (unique within domain)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
@@ -69,14 +69,14 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the cached value's business domain(ex: accounting)",
+            "description": "the cached value's business domain(ex: accounting)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "key",
-            "description": "cached value's key (unique within domain)",
+            "description": "cached value's key (unique within domain)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
@@ -121,84 +121,6 @@
         ],
         "tags": [
           "CacheService"
-        ]
-      }
-    },
-    "/api/cache/ref/{domain}/{key}/lock": {
-      "post": {
-        "summary": "Lock locks a value for a period of time if it is not locked already.\nIf it is already locked, an error will be returned\nIt is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL",
-        "operationId": "MutexService_Lock",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "domain",
-            "description": "the mutex's business domain(ex: accounting)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "key",
-            "description": "mutex key (unique within domain)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "MutexService"
-        ]
-      }
-    },
-    "/api/cache/ref/{domain}/{key}/unlock": {
-      "post": {
-        "summary": "Unlock unlocks the key(if it's currently locked) so that it may be locked again.\nIt is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL",
-        "operationId": "MutexService_Unlock",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "domain",
-            "description": "the mutex's business domain(ex: accounting)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "key",
-            "description": "mutex key (unique within domain)",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "MutexService"
         ]
       }
     },
@@ -401,21 +323,21 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the event's entity's business domain(ex: accounting)",
+            "description": "the event's entity's business domain(ex: accounting)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "event entity type (ex: user)",
+            "description": "event entity type (ex: user)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "key",
-            "description": "event's entity's key (unique within type)",
+            "description": "event's entity's key (unique within type)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
@@ -523,21 +445,21 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the event's entity's business domain(ex: accounting)",
+            "description": "the event's entity's business domain(ex: accounting)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "type",
-            "description": "event entity type (ex: user)",
+            "description": "event entity type (ex: user)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "key",
-            "description": "event's entity's key (unique within type)",
+            "description": "event's entity's key (unique within type)\nmust not be empty or contain spaces",
             "in": "path",
             "required": true,
             "type": "string"
@@ -692,6 +614,45 @@
         ],
         "tags": [
           "EventService"
+        ]
+      }
+    },
+    "/api/mutex/ref/{domain}/{key}": {
+      "put": {
+        "summary": "Unlock unlocks the key(if it's currently locked) so that it may be locked again.\nIt is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL",
+        "operationId": "MutexService_Unlock",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "the mutex's business domain(ex: accounting)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "description": "mutex key (unique within domain)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MutexService"
         ]
       }
     },

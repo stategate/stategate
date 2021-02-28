@@ -393,14 +393,16 @@ if exp is 0, the value will never expire </p></td>
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the cached value&#39;s business domain(ex: accounting) </p></td>
+                  <td><p>the cached value&#39;s business domain(ex: accounting)
+must not be empty or contain spaces </p></td>
                 </tr>
               
                 <tr>
                   <td>key</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>cached value&#39;s key (unique within domain) </p></td>
+                  <td><p>cached value&#39;s key (unique within domain)
+must not be empty or contain spaces </p></td>
                 </tr>
               
             </tbody>
@@ -807,21 +809,24 @@ must not be empty or contain spaces </p></td>
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>the event&#39;s entity&#39;s business domain(ex: accounting) </p></td>
+                  <td><p>the event&#39;s entity&#39;s business domain(ex: accounting)
+must not be empty or contain spaces </p></td>
                 </tr>
               
                 <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>event entity type (ex: user) </p></td>
+                  <td><p>event entity type (ex: user)
+must not be empty or contain spaces </p></td>
                 </tr>
               
                 <tr>
                   <td>key</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>event&#39;s entity&#39;s key (unique within type) </p></td>
+                  <td><p>event&#39;s entity&#39;s key (unique within type)
+must not be empty or contain spaces </p></td>
                 </tr>
               
                 <tr>
@@ -2123,8 +2128,8 @@ It is best practice for client&#39;s to call Unlock when the distributed lock op
               
               <tr>
                 <td>Lock</td>
-                <td>POST</td>
-                <td>/api/cache/ref/{domain}/{key}/lock</td>
+                <td>PUT</td>
+                <td>/api/mutex/ref/{domain}/{key}</td>
                 <td></td>
               </tr>
               
@@ -2133,8 +2138,8 @@ It is best practice for client&#39;s to call Unlock when the distributed lock op
               
               <tr>
                 <td>Unlock</td>
-                <td>POST</td>
-                <td>/api/cache/ref/{domain}/{key}/unlock</td>
+                <td>PUT</td>
+                <td>/api/mutex/ref/{domain}/{key}</td>
                 <td></td>
               </tr>
               

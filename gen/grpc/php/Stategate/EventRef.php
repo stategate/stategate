@@ -17,18 +17,21 @@ class EventRef extends \Google\Protobuf\Internal\Message
 {
     /**
      * the event's entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
     private $domain = '';
     /**
      * event entity type (ex: user)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
     /**
      * event's entity's key (unique within type)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      */
@@ -48,10 +51,13 @@ class EventRef extends \Google\Protobuf\Internal\Message
      *
      *     @type string $domain
      *           the event's entity's business domain(ex: accounting)
+     *           must not be empty or contain spaces
      *     @type string $type
      *           event entity type (ex: user)
+     *           must not be empty or contain spaces
      *     @type string $key
      *           event's entity's key (unique within type)
+     *           must not be empty or contain spaces
      *     @type string $id
      *           id is the event id.
      * }
@@ -63,6 +69,7 @@ class EventRef extends \Google\Protobuf\Internal\Message
 
     /**
      * the event's entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
@@ -74,6 +81,7 @@ class EventRef extends \Google\Protobuf\Internal\Message
 
     /**
      * the event's entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -89,6 +97,7 @@ class EventRef extends \Google\Protobuf\Internal\Message
 
     /**
      * event entity type (ex: user)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @return string
@@ -100,6 +109,7 @@ class EventRef extends \Google\Protobuf\Internal\Message
 
     /**
      * event entity type (ex: user)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      * @param string $var
@@ -115,6 +125,7 @@ class EventRef extends \Google\Protobuf\Internal\Message
 
     /**
      * event's entity's key (unique within type)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @return string
@@ -126,6 +137,7 @@ class EventRef extends \Google\Protobuf\Internal\Message
 
     /**
      * event's entity's key (unique within type)
+     * must not be empty or contain spaces
      *
      * Generated from protobuf field <code>string key = 3 [(.validator.field) = {</code>
      * @param string $var
