@@ -304,14 +304,15 @@ STATEGATE_CACHE_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "x
 
 ## Implementation Details
 
-[Storage Provider Implementations](./internal/storage)
-[Cache Provider Implementations](./internal/cache)
-[Auth](./internal/auth)
-[ListenAndServe](./internal/server)
-[Errors](./internal/errorz)
-[Go Client SDK](./stategate-client-go)
-[Generated Code](./gen)
-[Testing Framework](./internal/testing/framework)
+- [Storage Provider Implementations](./internal/storage)
+- [Cache Provider Implementations](./internal/cache)
+- [Auth](./internal/auth)
+- [ListenAndServe](./internal/server)
+- [Errors](./internal/errorz)
+- [Go Client SDK](./stategate-client-go)
+- [Generated Code](./gen)
+- [Testing Framework](./internal/testing/framework)
+- [Makefile](./Makefile)
 
 ### Storage Providers
 
