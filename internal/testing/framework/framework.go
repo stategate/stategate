@@ -78,7 +78,6 @@ func NewProvider(t *testing.T, ctx context.Context, jwt string, config *server.C
 	group, ctx := errgroup.WithContext(ctx)
 	var lgger = logger.New(
 		config.Debug,
-		zap.Any("channel_provider", cast.ToString(config.ChannelProvider["name"])),
 		zap.Any("storage_provider", cast.ToString(config.StorageProvider["name"])),
 		zap.Any("cache_provider", cast.ToString(config.CacheProvider["name"])),
 	)

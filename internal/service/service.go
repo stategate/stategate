@@ -5,7 +5,6 @@ import (
 	"github.com/autom8ter/machine/v2"
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
 	"github.com/autom8ter/stategate/internal/cache"
-	"github.com/autom8ter/stategate/internal/channel"
 	"github.com/autom8ter/stategate/internal/logger"
 	"github.com/autom8ter/stategate/internal/storage"
 	"github.com/golang/protobuf/ptypes/empty"
@@ -15,19 +14,17 @@ import (
 type Service struct {
 	cache    cache.Provider
 	storage  storage.Provider
-	channel  channel.Provider
 	lgger    *logger.Logger
 	messages machine.Machine
 	events   machine.Machine
 	cancel   func()
 }
 
-func NewService(ctx context.Context, storage storage.Provider, channel channel.Provider, cache cache.Provider, lgger *logger.Logger) (*Service, error) {
+func NewService(ctx context.Context, storage storage.Provider, cache cache.Provider, lgger *logger.Logger) (*Service, error) {
 	ctx, cancel := context.WithCancel(ctx)
 	svc := &Service{
 		cache:   cache,
 		storage: storage,
-		channel: channel,
 		lgger:   lgger,
 		messages: machine.New(machine.WithErrHandler(func(err error) {
 			lgger.Error("message streaming error", zap.Error(err))
@@ -37,11 +34,11 @@ func NewService(ctx context.Context, storage storage.Provider, channel channel.P
 		})),
 		cancel: cancel,
 	}
-	ech, err := channel.GetEventChannel(ctx)
+	ech, err := cache.GetEventChannel(ctx)
 	if err != nil {
 		return nil, err.Err
 	}
-	mch, err := channel.GetMessageChannel(ctx)
+	mch, err := cache.GetMessageChannel(ctx)
 	if err != nil {
 		return nil, err.Err
 	}
@@ -80,7 +77,7 @@ func NewService(ctx context.Context, storage storage.Provider, channel channel.P
 
 func (s Service) Close() error {
 	s.cancel()
-	if err := s.channel.Close(); err != nil {
+	if err := s.cache.Close(); err != nil {
 		return err
 	}
 	if err := s.storage.Close(); err != nil {

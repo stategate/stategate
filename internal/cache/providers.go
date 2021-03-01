@@ -13,12 +13,32 @@ import (
 	"time"
 )
 
-type Provider interface {
+// ChannelProvider acts as dependency injection for broadcasting messages to stategate instances as they fan out
+type ChannelProvider interface {
+	PublishEvent(ctx context.Context, event *stategate.Event) *errorz.Error
+	GetEventChannel(ctx context.Context) (chan *stategate.Event, *errorz.Error)
+	PublishMessage(ctx context.Context, message *stategate.PeerMessage) *errorz.Error
+	GetMessageChannel(ctx context.Context) (chan *stategate.PeerMessage, *errorz.Error)
+}
+
+// CacheProvider acts as dependency injection for caching ephemeral data
+type CacheProvider interface {
 	Get(ctx context.Context, ref *stategate.CacheRef) (*stategate.Cache, *errorz.Error)
 	Set(ctx context.Context, value *stategate.Cache) *errorz.Error
 	Del(ctx context.Context, value *stategate.CacheRef) *errorz.Error
+}
+
+// MutexProvider acts as dependency injection for distributed mutex operations
+type MutexProvider interface {
 	Lock(ctx context.Context, ref *stategate.Mutex) *errorz.Error
 	Unlock(ctx context.Context, value *stategate.MutexRef) *errorz.Error
+}
+
+// Provider is a channel, cache, & mutex provider
+type Provider interface {
+	CacheProvider
+	ChannelProvider
+	MutexProvider
 	Close() error
 }
 
@@ -36,7 +56,7 @@ func GetCacheProvider(lgger *logger.Logger, providerConfig map[string]string) (P
 	}
 	name := providerConfig["name"]
 	if name == "" {
-		return nil, errors.New("storage provider: empty name")
+		return nil, errors.New("cache provider: empty name")
 	}
 	var tlsConfig *tls.Config
 	if providerConfig["client_cert_file"] != "" && providerConfig["client_key_file"] != "" {
@@ -71,6 +91,6 @@ func GetCacheProvider(lgger *logger.Logger, providerConfig map[string]string) (P
 		}
 		return redis.NewService(lgger, client), nil
 	default:
-		return nil, errors.Errorf("unsupported backend provider: %s. must be one of: %v", name, AllProviderNames)
+		return nil, errors.Errorf("unsupported cache provider: %s. must be one of: %v", name, AllProviderNames)
 	}
 }

@@ -14,15 +14,26 @@ import (
 	"time"
 )
 
-type Provider interface {
+// EntityProvider acts as a dependency injection for querying/persisting entities
+type EntityProvider interface {
 	SetEntity(ctx context.Context, entity *stategate.Entity) *errorz.Error
 	EditEntity(ctx context.Context, entity *stategate.Entity) (*stategate.Entity, *errorz.Error)
-	SaveEvent(ctx context.Context, event *stategate.Event) *errorz.Error
-	GetEntity(ctx context.Context, ref *stategate.EntityRef) (*stategate.Entity, *errorz.Error)
-	DelEntity(ctx context.Context, ref *stategate.EntityRef) *errorz.Error
 	SearchEntities(ctx context.Context, ref *stategate.SearchEntityOpts) (*stategate.Entities, *errorz.Error)
+	DelEntity(ctx context.Context, ref *stategate.EntityRef) *errorz.Error
+	GetEntity(ctx context.Context, ref *stategate.EntityRef) (*stategate.Entity, *errorz.Error)
+}
+
+// EventProvider acts as a dependency injection for querying/persisting events
+type EventProvider interface {
+	SaveEvent(ctx context.Context, event *stategate.Event) *errorz.Error
 	SearchEvents(ctx context.Context, ref *stategate.SearchEventOpts) (*stategate.Events, *errorz.Error)
 	GetEvent(ctx context.Context, ref *stategate.EventRef) (*stategate.Event, *errorz.Error)
+}
+
+// Provider is an event & entity provider
+type Provider interface {
+	EventProvider
+	EntityProvider
 	Close() error
 }
 

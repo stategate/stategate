@@ -46,7 +46,7 @@ func (s Service) setEntity(ctx context.Context, entity *stategate.Entity) (*empt
 		return nil, err.Public()
 	}
 
-	if err := s.channel.PublishEvent(ctx, e); err != nil {
+	if err := s.cache.PublishEvent(ctx, e); err != nil {
 		err.Log(s.lgger)
 		return nil, err.Public()
 	}
@@ -111,7 +111,7 @@ func (s Service) editEntity(ctx context.Context, entity *stategate.Entity) (*sta
 		err.Log(s.lgger)
 		return nil, err.Public()
 	}
-	if err := s.channel.PublishEvent(ctx, e); err != nil {
+	if err := s.cache.PublishEvent(ctx, e); err != nil {
 		err.Log(s.lgger)
 		return nil, err.Public()
 	}
@@ -143,7 +143,7 @@ func (s Service) delEntity(ctx context.Context, ref *stategate.EntityRef) (*empt
 		err.Log(s.lgger)
 		return nil, err.Public()
 	}
-	if err := s.channel.PublishEvent(ctx, e); err != nil {
+	if err := s.cache.PublishEvent(ctx, e); err != nil {
 		err.Log(s.lgger)
 		return nil, err.Public()
 	}
@@ -154,8 +154,8 @@ func (s Service) streamEvents(opts *stategate.StreamEventOpts, server stategate.
 	if s.storage == nil {
 		return status.Error(codes.Unimplemented, "empty storage provider")
 	}
-	if s.channel == nil {
-		return status.Error(codes.Unimplemented, "empty channel provider")
+	if s.cache == nil {
+		return status.Error(codes.Unimplemented, "empty cache provider")
 	}
 	s.events.Subscribe(server.Context(), eventChannelName(opts.GetDomain(), opts.GetType()), func(ctx context.Context, msg machine.Message) (bool, error) {
 		if err := server.Send(msg.GetBody().(*stategate.Event)); err != nil {
@@ -203,8 +203,8 @@ func (s Service) searchEntities(ctx context.Context, opts *stategate.SearchEntit
 }
 
 func (s Service) broadcastMessage(ctx context.Context, message *stategate.Message) (*empty.Empty, error) {
-	if s.channel == nil {
-		return nil, status.Error(codes.Unimplemented, "empty channel provider")
+	if s.cache == nil {
+		return nil, status.Error(codes.Unimplemented, "empty cache provider")
 	}
 	c, _ := auth.GetContext(ctx)
 	claims, _ := structpb.NewStruct(c.Claims)
@@ -217,7 +217,7 @@ func (s Service) broadcastMessage(ctx context.Context, message *stategate.Messag
 		Claims:  claims,
 		Time:    time.Now().UnixNano(),
 	}
-	if err := s.channel.PublishMessage(ctx, bm); err != nil {
+	if err := s.cache.PublishMessage(ctx, bm); err != nil {
 		err.Log(s.lgger)
 		return nil, err.Public()
 	}
@@ -225,8 +225,8 @@ func (s Service) broadcastMessage(ctx context.Context, message *stategate.Messag
 }
 
 func (s Service) streamMessages(opts *stategate.StreamMessageOpts, server stategate.PeerService_StreamServer) error {
-	if s.channel == nil {
-		return status.Error(codes.Unimplemented, "empty channel provider")
+	if s.cache == nil {
+		return status.Error(codes.Unimplemented, "empty cache provider")
 	}
 	s.messages.Subscribe(server.Context(), msgChannelName(opts.GetDomain(), opts.GetChannel(), opts.GetType()), func(ctx context.Context, msg machine.Message) (bool, error) {
 		if err := server.Send(msg.GetBody().(*stategate.PeerMessage)); err != nil {

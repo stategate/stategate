@@ -2,15 +2,6 @@
 
 A pluggable "Application State Gateway" that enforces the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html) for securely persisting & broadcasting application state changes
 
-What is Event Sourcing?
-
-> Event sourcing persists the state of a business entity such an Order or a Customer as a sequence of state-changing events. Whenever the state of a business entity changes, a new event is appended to the list of events. Since saving an event is a single operation, it is inherently atomic. The application reconstructs an entity’s current state by replaying the events. 
-
-> Applications persist events in an event store, which is a database of events. The store has an API for adding and retrieving an entity’s events. The event store also behaves like a message broker. It provides an API that enables services to subscribe to events. When a service saves an event in the event store, it is delivered to all interested subscribers. 
-
-![Event-Sourcing](./stategate.png)
-
-
 [![GoDoc](https://godoc.org/github.com/autom8ter/stategate?status.svg)](https://godoc.org/github.com/autom8ter/stategate/stategate-client-go)
 
 - [API Documentation](https://autom8ter.github.io/stategate/)
@@ -35,7 +26,7 @@ service EntityService {
       patch: "/api/entity/ref/{domain}/{type}/{key}"
     };
   }
-  // Revert reverts an Entity to a previous version of itself by querying the event store.
+  // Revert reverts an Entity to a previous version of itself
   // Reverting an entity dispatches another event since it is a state change
   rpc Revert(EventRef) returns(Entity) {
     option (google.api.http) = {
@@ -133,14 +124,14 @@ service MutexService {
   // It is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL
   rpc Lock(Mutex) returns(google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/cache/ref/{domain}/{key}/lock"
+      post: "/api/mutex/ref/{domain}/{key}/lock"
     };
   }
   // Unlock unlocks the key(if it's currently locked) so that it may be locked again.
   // It is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL
   rpc Unlock(MutexRef) returns(google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/cache/ref/{domain}/{key}/unlock"
+      post: "/api/mutex/ref/{domain}/{key}/unlock"
     };
   }
 }
@@ -155,6 +146,8 @@ service MutexService {
     - [protobuf schema](schema.proto)
 - [x] Embedded REST support `/` (transcoding)
     - [open api schema](schema.swagger.json)
+- [x] Embedded GraphQL support `/graphql` (transcoding)
+    - [graphQL schema](schema.graphql)
 - [x] Embedded [grpcweb](https://grpc.io/docs/platforms/web/basics/) support (transcoding)
 - [x] Metrics Server(prometheus/pprof)
 - [x] Authentication - JWT/OAuth with remote [JWKS](https://auth0.com/docs/tokens/json-web-tokens/json-web-key-sets) verification
@@ -168,38 +161,26 @@ service MutexService {
     - [x] [C#](./gen/grpc/csharp)
     - [x] [Java](./gen/grpc/java)
     - [x] [gRPC Web](./gen/grpc/web)
-    - [ ] Python
+    - [x] [Python](./gen/grpc/python)
     - [ ] Ruby
 - [x] Structured JSON Logs
 - [x] [Sample Kubernetes Manifest](k8s.yaml)
 - [x] [Sample Docker Compose](docker-compose.yml)
-- [x] Pluggable "Channel" Providers
-    - [x] In-Memory(won't scale horizontally)
-        - [x] fully-tested
-    - [x] Nats
-         - [x] fully-tested
-    - [x] Nats Streaming(Stan)
-    - [x] Redis
-         - [x] fully-tested
-    - [x] Kafka
-    - [ ] RabbitMQ
-
-- [x] Pluggable "Storage" Providers
+- [x] Pluggable ["Storage" Providers]()
     - [x] MongoDb
         - [x] fully-tested
     - [ ] PostgreSQL
     - [ ] MySQL
     - [ ] Cassandra
-- [x] Pluggable "Cache" Providers
+- [x] Pluggable ["Cache" Providers]()
     - [x] Redis
         - [x] fully-tested
-    - [ ] Memcached
     
 
 
 ## Goals
 
-- [x] Create a simple API interface for storing state(entities) and subscribing to state changes(events) using pluggable channel & storage providers
+- [x] Create a simple API interface for storing state(entities) and subscribing to state changes(events) using pluggable cache & storage providers
 - [x] Capture all changes to an application's state/entities as a sequence of events.
 - [x] Safe to swap backend providers without changing client-side code
 - [x] Type-safe client's generated in many languages
@@ -211,28 +192,22 @@ service MutexService {
 - [x] Create complex client applications with stategate as their only dependency
 - [ ] Create serverless deployment model for stategate client applications
 
-## Implementation Details
+## Design
 
-### Storage Providers
+Stategate was designed with EventSourcing in mind
 
-- A stategate storage provider is a pluggable, 3rd party database storage service. 
-- Storage providers provide persistance for all current entities/events and should be scaled independently of stategate instances.
+What is Event Sourcing?
 
-### Channel Providers
+> Event sourcing persists the state of a business entity such an Order or a Customer as a sequence of state-changing events. Whenever the state of a business entity changes, a new event is appended to the list of events. Since saving an event is a single operation, it is inherently atomic. The application reconstructs an entity’s current state by replaying the events. 
 
-- A stategate channel provider is a pluggable, 3rd party message-queue/channel service. 
-- Channel providers provide a way for stategate to broadcast events to itself while scaling horizontally. 
-- Channel providers should be scaled independently of stategate instances.
+> Applications persist events in an event store, which is a database of events. The store has an API for adding and retrieving an entity’s events. The event store also behaves like a message broker. It provides an API that enables services to subscribe to events. When a service saves an event in the event store, it is delivered to all interested subscribers. 
 
-### Cache Providers
+![Event-Sourcing](./stategate.png)
 
-- A stategate channel provider is a pluggable, 3rd party caching service. 
-- Cache providers enable the CacheService which is a generic caching interface
-- Cache providers enable the MutexService which is a generic distributed locking interface
 
-## Primitives
+### Primitives
 
-### Entity
+#### Entity
 
 An entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
 
@@ -253,7 +228,7 @@ An entity represents a single record(k/v pairs) with a unique key with a given [
           google.protobuf.Struct values = 4[(validator.field) = {msg_exists : true}];
         }
 
-### Events
+#### Events
  
 Event is primitive that represents a single state change to an entity
 
@@ -275,7 +250,7 @@ Event is primitive that represents a single state change to an entity
           int64 time =4[(validator.field) = {int_gt : 0}];
         }
 
-### Messages  
+#### Messages  
 
 Message is a non-persisted message passed between Peers as a means of communication
 
@@ -316,11 +291,6 @@ STATEGATE_JWKS_URI=https://www.googleapis.com/oauth2/v3/certs
 STATEGATE_REQUEST_POLICY=cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB0cnVl
 # base64 encoded OPA rego policy executed on responses sent to clients (optional)
 STATEGATE_RESPONSE_POLICY=cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB0cnVl
-# channel provider configuration(JSON) options: [inmem, redis, nats, stan, kafka] REQUIRED
-STATEGATE_CHANNEL_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "xxx", "password": "xxxxxxxxxx" }
-# STATEGATE_CHANNEL_PROVIDER={ "name": "nats", "addr": "localhost:4222" }
-# STATEGATE_CHANNEL_PROVIDER={ "name": "stan", "addr": "localhost:4222" }
-# STATEGATE_CHANNEL_PROVIDER={ "name": "inmem" }
 
 # storage provider configuration(JSON) options: [mongo] REQUIRED
 STATEGATE_STORAGE_PROVIDER={ "name": "mongo", "database": "testing", "addr": "mongodb://localhost:27017/testing" }
@@ -330,16 +300,95 @@ STATEGATE_CACHE_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "x
 
 ```
 
-## Codebase
+## Implementation Details
 
-[Channel Provider Implementations](./internal/channel)
 [Storage Provider Implementations](./internal/storage)
 [Cache Provider Implementations](./internal/cache)
 [Auth](./internal/auth)
 [ListenAndServe](./internal/server)
 [Errors](./internal/errorz)
 [Go Client SDK](./stategate-client-go)
+[Generated Code](./gen)
 [Testing Framework](./internal/testing/framework)
+
+### Storage Providers
+
+supported providers: [mongo]
+
+- A stategate storage provider is a pluggable, 3rd party database storage service. 
+- Storage providers provide persistance for all current entities/events and should be scaled independently of stategate instances.
+
+[interface](internal/storage/providers.go)
+```go
+
+// EntityProvider provides logic for querying/persisting entities
+type EntityProvider interface {
+	SetEntity(ctx context.Context, entity *stategate.Entity) *errorz.Error
+	EditEntity(ctx context.Context, entity *stategate.Entity) (*stategate.Entity, *errorz.Error)
+	SearchEntities(ctx context.Context, ref *stategate.SearchEntityOpts) (*stategate.Entities, *errorz.Error)
+	DelEntity(ctx context.Context, ref *stategate.EntityRef) *errorz.Error
+	GetEntity(ctx context.Context, ref *stategate.EntityRef) (*stategate.Entity, *errorz.Error)
+}
+
+// EventProvider provides logic for querying/persisting events
+type EventProvider interface {
+	SaveEvent(ctx context.Context, event *stategate.Event) *errorz.Error
+	SearchEvents(ctx context.Context, ref *stategate.SearchEventOpts) (*stategate.Events, *errorz.Error)
+	GetEvent(ctx context.Context, ref *stategate.EventRef) (*stategate.Event, *errorz.Error)
+}
+
+// Provider is an event & entity provider
+type Provider interface {
+	EventProvider
+	EntityProvider
+	Close() error
+}
+
+```
+   
+### Cache Providers
+
+supported providers: [redis]
+
+- A stategate cache provider is a pluggable, 3rd party caching & message-queue service. 
+- Cache providers provide a way for stategate to store ephemeral data & broadcast events to itself while scaling horizontally. 
+
+[interface](internal/cache/providers.go)
+  
+```go
+
+// ChannelProvider acts as dependency injection for broadcasting messages to stategate instances as they fan out
+type ChannelProvider interface {
+	PublishEvent(ctx context.Context, event *stategate.Event) *errorz.Error
+	GetEventChannel(ctx context.Context) (chan *stategate.Event, *errorz.Error)
+	PublishMessage(ctx context.Context, message *stategate.PeerMessage) *errorz.Error
+	GetMessageChannel(ctx context.Context) (chan *stategate.PeerMessage, *errorz.Error)
+}
+
+// CacheProvider acts as dependency injection for caching ephemeral data 
+type CacheProvider interface {
+	Get(ctx context.Context, ref *stategate.CacheRef) (*stategate.Cache, *errorz.Error)
+	Set(ctx context.Context, value *stategate.Cache) *errorz.Error
+	Del(ctx context.Context, value *stategate.CacheRef) *errorz.Error
+	
+}
+
+// MutexProvider acts as dependency injection for distributed mutex operations
+type MutexProvider interface {
+	Lock(ctx context.Context, ref *stategate.Mutex) *errorz.Error
+	Unlock(ctx context.Context, value *stategate.MutexRef) *errorz.Error
+}
+
+// Provider is a channel, cache, & mutex provider
+type Provider interface {
+	CacheProvider
+	ChannelProvider
+	MutexProvider
+	Close() error
+}
+```
+    
+- Cache providers should be scaled independently of stategate instances.
 
 ## Authorization
 

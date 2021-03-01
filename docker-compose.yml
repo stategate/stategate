@@ -27,17 +27,17 @@ services:
       default:
         aliases:
           - redis
-  stategate:
-    image: colemanword/stategate:v0.2.3
-    env_file:
-      - ./.env
-    ports:
-      - "8080:8080"
-      - "8081:8081"
-    networks:
-      default:
-        aliases:
-          - stategate
+#  stategate:
+#    image: colemanword/stategate:v0.2.3
+#    env_file:
+#      - ./.env
+#    ports:
+#      - "8080:8080"
+#      - "8081:8081"
+#    networks:
+#      default:
+#        aliases:
+#          - stategate
 networks:
   default:
 

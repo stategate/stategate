@@ -7,7 +7,7 @@ import (
 	stategate "github.com/autom8ter/stategate/gen/grpc/go"
 	"github.com/autom8ter/stategate/internal/auth"
 	"github.com/autom8ter/stategate/internal/cache"
-	"github.com/autom8ter/stategate/internal/channel"
+	"github.com/autom8ter/stategate/internal/gql"
 	"github.com/autom8ter/stategate/internal/logger"
 	"github.com/autom8ter/stategate/internal/service"
 	"github.com/autom8ter/stategate/internal/storage"
@@ -82,17 +82,17 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 
 	var metricServer *http.Server
 
-	router := http.NewServeMux()
-	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	metricsRouter := http.NewServeMux()
+	metricsRouter.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 	})
-	router.Handle("/metrics", promhttp.Handler())
-	router.HandleFunc("/debug/pprof/", pprof.Index)
-	router.HandleFunc("/debug/pprof/cmdline", pprof.Cmdline)
-	router.HandleFunc("/debug/pprof/profile", pprof.Profile)
-	router.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
-	router.HandleFunc("/debug/pprof/trace", pprof.Trace)
-	metricServer = &http.Server{Handler: router}
+	metricsRouter.Handle("/metrics", promhttp.Handler())
+	metricsRouter.HandleFunc("/debug/pprof/", pprof.Index)
+	metricsRouter.HandleFunc("/debug/pprof/cmdline", pprof.Cmdline)
+	metricsRouter.HandleFunc("/debug/pprof/profile", pprof.Profile)
+	metricsRouter.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
+	metricsRouter.HandleFunc("/debug/pprof/trace", pprof.Trace)
+	metricServer = &http.Server{Handler: metricsRouter}
 	if tlsConfig != nil {
 		metricServer.TLSConfig = tlsConfig
 		metricServer.TLSNextProto = map[string]func(*http.Server, *tls.Conn, http.Handler){}
@@ -139,9 +139,8 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	}
 
 	var (
-		strgProvider    storage.Provider
-		channelProvider channel.Provider
-		cacheProvider   cache.Provider
+		strgProvider  storage.Provider
+		cacheProvider cache.Provider
 	)
 	if c.StorageProvider != nil && len(c.StorageProvider) > 0 {
 		strgProvider, err = storage.GetStorageProvider(lgger, c.StorageProvider)
@@ -150,22 +149,13 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 		}
 		defer strgProvider.Close()
 	}
-	if c.ChannelProvider != nil && len(c.ChannelProvider) > 0 {
-		channelProvider, err = channel.GetChannelProvider(lgger, c.ChannelProvider)
-		if err != nil {
-			return errors.Wrap(err, "failed to setup channel provider")
-		}
-		defer channelProvider.Close()
+	cacheProvider, err = cache.GetCacheProvider(lgger, c.CacheProvider)
+	if err != nil {
+		return errors.Wrap(err, "failed to setup cache provider")
 	}
-	if c.CacheProvider != nil && len(c.CacheProvider) > 0 {
-		cacheProvider, err = cache.GetCacheProvider(lgger, c.CacheProvider)
-		if err != nil {
-			return errors.Wrap(err, "failed to setup cache provider")
-		}
-		defer cacheProvider.Close()
-	}
+	defer cacheProvider.Close()
 
-	svc, err := service.NewService(ctx, strgProvider, channelProvider, cacheProvider, lgger)
+	svc, err := service.NewService(ctx, strgProvider, cacheProvider, lgger)
 	if err != nil {
 		return errors.Wrap(err, "failed to setup service")
 	}
@@ -215,10 +205,20 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	if err := stategate.RegisterMutexServiceHandler(ctx, restMux, conn); err != nil {
 		return errors.Wrap(err, "failed to register REST mutex endpoints")
 	}
+	gresolver := gql.NewResolver(conn)
+	defer gresolver.Close()
+	if err := restMux.HandlePath(http.MethodPost, "/graphql", func(w http.ResponseWriter, r *http.Request, pathParams map[string]string) {
+		gresolver.QueryHandler()(w, r)
+	}); err != nil {
+		return errors.Wrap(err, "failed to register POST /graphql endpoints")
+	}
+	if err := restMux.HandlePath(http.MethodGet, "/graphql", func(w http.ResponseWriter, r *http.Request, pathParams map[string]string) {
+		gresolver.QueryHandler()(w, r)
+	}); err != nil {
+		return errors.Wrap(err, "failed to register POST /graphql endpoints")
+	}
 	mux.Handle("/", restMux)
-
-	var httpServer *http.Server
-	httpServer = &http.Server{
+	httpServer := &http.Server{
 		Handler: mux,
 	}
 	if tlsConfig != nil {

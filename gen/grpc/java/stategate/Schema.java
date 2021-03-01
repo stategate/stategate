@@ -788,6 +788,7 @@ public final class Schema {
     /**
      * <pre>
      * the cached value's business domain(ex: accounting)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -796,6 +797,7 @@ public final class Schema {
     /**
      * <pre>
      * the cached value's business domain(ex: accounting)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -806,6 +808,7 @@ public final class Schema {
     /**
      * <pre>
      * cached value's key (unique within domain)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -814,6 +817,7 @@ public final class Schema {
     /**
      * <pre>
      * cached value's key (unique within domain)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -915,6 +919,7 @@ public final class Schema {
     /**
      * <pre>
      * the cached value's business domain(ex: accounting)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -934,6 +939,7 @@ public final class Schema {
     /**
      * <pre>
      * the cached value's business domain(ex: accounting)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -957,6 +963,7 @@ public final class Schema {
     /**
      * <pre>
      * cached value's key (unique within domain)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -976,6 +983,7 @@ public final class Schema {
     /**
      * <pre>
      * cached value's key (unique within domain)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -1322,6 +1330,7 @@ public final class Schema {
       /**
        * <pre>
        * the cached value's business domain(ex: accounting)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -1341,6 +1350,7 @@ public final class Schema {
       /**
        * <pre>
        * the cached value's business domain(ex: accounting)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -1361,6 +1371,7 @@ public final class Schema {
       /**
        * <pre>
        * the cached value's business domain(ex: accounting)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -1378,6 +1389,7 @@ public final class Schema {
       /**
        * <pre>
        * the cached value's business domain(ex: accounting)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -1391,6 +1403,7 @@ public final class Schema {
       /**
        * <pre>
        * the cached value's business domain(ex: accounting)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -1411,6 +1424,7 @@ public final class Schema {
       /**
        * <pre>
        * cached value's key (unique within domain)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -1430,6 +1444,7 @@ public final class Schema {
       /**
        * <pre>
        * cached value's key (unique within domain)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -1450,6 +1465,7 @@ public final class Schema {
       /**
        * <pre>
        * cached value's key (unique within domain)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -1467,6 +1483,7 @@ public final class Schema {
       /**
        * <pre>
        * cached value's key (unique within domain)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -1480,6 +1497,7 @@ public final class Schema {
       /**
        * <pre>
        * cached value's key (unique within domain)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -2522,6 +2540,7 @@ public final class Schema {
     /**
      * <pre>
      * the event's entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -2530,6 +2549,7 @@ public final class Schema {
     /**
      * <pre>
      * the event's entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -2540,6 +2560,7 @@ public final class Schema {
     /**
      * <pre>
      * event entity type (ex: user)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -2548,6 +2569,7 @@ public final class Schema {
     /**
      * <pre>
      * event entity type (ex: user)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -2558,6 +2580,7 @@ public final class Schema {
     /**
      * <pre>
      * event's entity's key (unique within type)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -2566,6 +2589,7 @@ public final class Schema {
     /**
      * <pre>
      * event's entity's key (unique within type)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -2699,6 +2723,7 @@ public final class Schema {
     /**
      * <pre>
      * the event's entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -2718,6 +2743,7 @@ public final class Schema {
     /**
      * <pre>
      * the event's entity's business domain(ex: accounting)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -2741,6 +2767,7 @@ public final class Schema {
     /**
      * <pre>
      * event entity type (ex: user)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -2760,6 +2787,7 @@ public final class Schema {
     /**
      * <pre>
      * event entity type (ex: user)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -2783,6 +2811,7 @@ public final class Schema {
     /**
      * <pre>
      * event's entity's key (unique within type)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -2802,6 +2831,7 @@ public final class Schema {
     /**
      * <pre>
      * event's entity's key (unique within type)
+     * must not be empty or contain spaces
      * </pre>
      *
      * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -3224,6 +3254,7 @@ public final class Schema {
       /**
        * <pre>
        * the event's entity's business domain(ex: accounting)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -3243,6 +3274,7 @@ public final class Schema {
       /**
        * <pre>
        * the event's entity's business domain(ex: accounting)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -3263,6 +3295,7 @@ public final class Schema {
       /**
        * <pre>
        * the event's entity's business domain(ex: accounting)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -3280,6 +3313,7 @@ public final class Schema {
       /**
        * <pre>
        * the event's entity's business domain(ex: accounting)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -3293,6 +3327,7 @@ public final class Schema {
       /**
        * <pre>
        * the event's entity's business domain(ex: accounting)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -3313,6 +3348,7 @@ public final class Schema {
       /**
        * <pre>
        * event entity type (ex: user)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -3332,6 +3368,7 @@ public final class Schema {
       /**
        * <pre>
        * event entity type (ex: user)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -3352,6 +3389,7 @@ public final class Schema {
       /**
        * <pre>
        * event entity type (ex: user)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -3369,6 +3407,7 @@ public final class Schema {
       /**
        * <pre>
        * event entity type (ex: user)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -3382,6 +3421,7 @@ public final class Schema {
       /**
        * <pre>
        * event entity type (ex: user)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string type = 2 [(.validator.field) = { ... }</code>
@@ -3402,6 +3442,7 @@ public final class Schema {
       /**
        * <pre>
        * event's entity's key (unique within type)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -3421,6 +3462,7 @@ public final class Schema {
       /**
        * <pre>
        * event's entity's key (unique within type)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -3441,6 +3483,7 @@ public final class Schema {
       /**
        * <pre>
        * event's entity's key (unique within type)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -3458,6 +3501,7 @@ public final class Schema {
       /**
        * <pre>
        * event's entity's key (unique within type)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -3471,6 +3515,7 @@ public final class Schema {
       /**
        * <pre>
        * event's entity's key (unique within type)
+       * must not be empty or contain spaces
        * </pre>
        *
        * <code>string key = 3 [(.validator.field) = { ... }</code>
@@ -18692,12 +18737,12 @@ public final class Schema {
       "\037\022\035/api/cache/ref/{domain}/{key}\022Y\n\003Del\022" +
       "\023.stategate.CacheRef\032\026.google.protobuf.E" +
       "mpty\"%\202\323\344\223\002\037*\035/api/cache/ref/{domain}/{k" +
-      "ey}2\321\001\n\014MutexService\022\\\n\004Lock\022\020.stategate" +
-      ".Mutex\032\026.google.protobuf.Empty\"*\202\323\344\223\002$\"\"" +
-      "/api/cache/ref/{domain}/{key}/lock\022c\n\006Un" +
-      "lock\022\023.stategate.MutexRef\032\026.google.proto" +
-      "buf.Empty\",\202\323\344\223\002&\"$/api/cache/ref/{domai" +
-      "n}/{key}/unlockB\013Z\tstategateb\006proto3"
+      "ey}2\305\001\n\014MutexService\022W\n\004Lock\022\020.stategate" +
+      ".Mutex\032\026.google.protobuf.Empty\"%\202\323\344\223\002\037\032\035" +
+      "/api/mutex/ref/{domain}/{key}\022\\\n\006Unlock\022" +
+      "\023.stategate.MutexRef\032\026.google.protobuf.E" +
+      "mpty\"%\202\323\344\223\002\037\032\035/api/mutex/ref/{domain}/{k" +
+      "ey}B\013Z\tstategateb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

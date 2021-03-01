@@ -1,0 +1,306 @@
+# time is an rfc 3339 timestamp
+scalar Time
+# Map is a k/v map where the key is a string and the value is any value
+scalar Map
+# Any is any value
+scalar Any
+
+# EntityRef is a reference to an existing entity
+input EntityRef {
+    # the entity's business domain(ex: accounting)
+    # must not be empty or contain spaces
+    domain: String!
+    # the entity's type (ex: user)
+    # must not be empty or contain spaces
+    type: String!
+    # the entity's key (unique within type).
+    # must not be empty or contain spaces
+    key: String!
+}
+
+# EntityInput represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+# EventService clients should use the EntityService to persist & interact with the current state of an entity.
+input EntityInput {
+    # the entity's business domain(ex: accounting)
+    # must not be empty or contain spaces
+    domain: String!
+    # the entity's type (ex: user)
+    # must not be empty or contain spaces
+    type: String!
+    # the entity's key (unique within type).
+    # must not be empty or contain spaces
+    key: String!
+    # the entity's values (k/v pairs)
+    values: Map!
+}
+
+# Entity represents a single record(k/v pairs) with a unique key with a given [type](https://en.wikipedia.org/wiki/Type_system), belonging to a particular [domain](https://en.wikipedia.org/wiki/Domain-driven_design)
+# EventService clients should use the EntityService to persist & interact with the current state of an entity.
+type Entity {
+    # the entity's business domain(ex: accounting)
+    # must not be empty or contain spaces
+    domain: String!
+    # the entity's type (ex: user)
+    # must not be empty or contain spaces
+    type: String!
+    # the entity's key (unique within type).
+    # must not be empty or contain spaces
+    key: String!
+    # the entity's values (k/v pairs)
+    values: Map!
+}
+
+# EventRef holds options for reverting an entity to a previous version of itself
+input EventRef {
+    # the entity's business domain(ex: accounting)
+    # must not be empty or contain spaces
+    domain: String!
+    # the entity's type (ex: user)
+    # must not be empty or contain spaces
+    type: String!
+    # the entity's key (unique within type).
+    # must not be empty or contain spaces
+    key: String!
+    # id is the event id.
+    id: String!
+}
+
+# Event is primitive that represents a single state change to an entity
+# Events are persisted to history & broadcasted to interested consumers(Stream) any time an entity is created/modified/deleted
+# Events are immutable after creation and may be searched.
+# EventService client's may search events to query previous state of an entity(s)
+type Event {
+    # identifies the event(uuid v4).
+    id: String!
+    # state of an Entity after it has been mutated
+    entity: Entity!
+    # the invoked method that triggered the event
+    method: String!
+    # the authentication claims of the event producer.
+    claims: Map
+    # timestamp(ns) of when the event was received.
+    time: Int!
+}
+
+# Message is an arbitrary message to be delivered to a Peer
+# Messages are NOT persisted and should only be used to communicate with other Peers
+input Message {
+    # the message's business domain(ex: accounting)
+    #  must not be empty or contain spaces
+    domain: String!
+    # the message's channel(ex: general)
+    # must not be empty or contain spaces
+    channel: String!
+    # message's type (ex: comment)
+    # must not be empty or contain spaces
+    type: String!
+    # the body of the message(k/v values).
+    body: Map!
+}
+
+# PeerMessage is a message produced by a client to the PeerService
+# PeerMessages are NOT persisted and should only be used to communicate with other Peers
+type PeerMessage {
+    # the unique id of the message
+    id: String!
+    # the message's business domain(ex: accounting)
+    #  must not be empty or contain spaces
+    domain: String!
+    # the message's channel(ex: general)
+    # must not be empty or contain spaces
+    channel: String!
+    # message's type (ex: comment)
+    # must not be empty or contain spaces
+    type: String!
+    # the body of the message(k/v values).
+    body: Map!
+    # the authentication claims of the message producer.
+    claims: Map
+    # timestamp(ns) of when the message was broadcasted.
+    time: Int!
+}
+
+# MutexRef is a reference to a distributed mutex/lock
+input MutexRef {
+    # the mutex's business domain(ex: accounting)
+    domain: String!
+    # mutex key (unique within domain)
+    key: String!
+}
+
+# Mutex is a distributed mutex for preventing data-races amongst peer services
+input Mutex {
+    # the mutex's business domain(ex: accounting)
+    domain: String!
+    # mutex key (unique within domain)
+    key: String!
+    # exp is the time at which the mutex value will expire
+    # if exp is 0, the mutex will never expire
+    exp: Time
+}
+
+# CacheRef is a reference to a cached value
+input CacheRef {
+    # the mutex's business domain(ex: accounting)
+    domain: String!
+    # mutex key (unique within domain)
+    key: String!
+}
+
+# CacheInput is a persisted value that will expire after a period of time. It is held in memory for maximum performance.
+input CacheInput {
+    # the cached value's business domain(ex: accounting)
+    domain: String!
+    # cache key (unique within domain)
+    key: String!
+    # the cached value's value to store
+    value: Any!
+    # exp is the time at which the cached value will expire
+    # if exp is 0, the value will never expire
+    exp: Time
+}
+
+# Cache is a persisted value that will expire after a period of time. It is held in memory for maximum performance.
+type Cache {
+    # the cached value's business domain(ex: accounting)
+    domain: String!
+    # cache key (unique within domain)
+    key: String!
+    # the cached value's value to store
+    value: Any!
+    # exp is the time at which the cached value will expire
+    # if exp is 0, the value will never expire
+    exp: Time
+}
+
+# Sort is a primitive used to sort an array
+input Sort {
+    # field is a field to sort the array by
+    # please note that dot notation may be used to access nested fields
+    field: String!
+    # reverse reverses the direction of the sort
+    reverse: Boolean
+}
+
+# StreamMessageOpts holds options for streaming messages produced by Peers
+input StreamMessageOpts {
+    # the message's business domain(ex: accounting) to subscribe to
+    # must not be empty or contain spaces
+    # * indicates any domain
+    domain: String!
+    # the message's channel(ex: general) to subscribe to
+    # must not be empty or contain spaces
+    # * indicates any channel
+    channel: String!
+    # message's type (ex: comment) to subscribe to
+    # must not be empty or contain spaces
+    # * indicates any type
+    type: String!
+}
+
+#  SearchEntityOpts are options when querying the current values of entities.
+# If historical values are needed, SearchEvents should be used
+input SearchEntityOpts {
+    #  the entity's business domain(ex: accounting)
+    # must not be empty or contain spaces
+    domain: String!
+    # entity type (ex: user)
+    # must not be empty or contain spaces
+    type: String!
+    # json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
+    # please note that dot notation may be used to access nested fields
+    query_string: String!
+    # limit number of returned values
+    limit: Int!
+    # offset returned events(pagination)
+    offset: Int
+    # sort sorts the returned entities by a specified field
+    sort: Sort
+}
+
+# SearchEventOpts are options when querying historical events emitted from mutations made from State mutations
+input SearchEventOpts {
+    #  the entity's business domain(ex: accounting)
+    # must not be empty or contain spaces
+    domain: String!
+    # entity type (ex: user)
+    # must not be empty or contain spaces
+    type: String!
+    # json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
+    # please note that dot notation may be used to access nested fields
+    query_string: String!
+    # limit number of returned values
+    limit: Int!
+    # only return events that occurred after specified min timestamp
+    min: Int
+    # only return events that occurred before specified max timestamp
+    max: Int
+    # offset returned events(pagination)
+    offset: Int
+    # sort sorts the returned entities by a specified field
+    sort: Sort
+}
+
+# StreamEventOpts are options for consumers looking to stream events.
+# Events are automatically emitted from mutations made from State mutations within the EntityService
+input StreamEventOpts {
+    # the domain of the entity (ex: acme) that triggered the event
+    # * indicates any domain
+    # must not be empty or contain spaces
+    domain: String!
+    # the type of the entity (ex: user) that triggered the event
+    # * indicates any type
+    # must not be empty or contain spaces
+    type: String!
+}
+
+# Query holds read related methods
+type Query {
+    # getEntity gets an entity's current state
+    getEntity(input: EntityRef!): Entity!
+    # getEvent gets a single event
+    getEvent(input: EventRef!): Event!
+    # getCache gets a value from the cache
+    getCache(input: CacheRef!): Cache!
+    # searchEvents queries historical events - every historical state change to an entity may be queried.
+    searchEvents(input: SearchEventOpts!): [Event!]
+    # searchEntities queries the current state of entities
+    searchEntities(input: SearchEntityOpts!): [Entity!]
+}
+
+# Mutation holds write related methods
+type Mutation {
+    # setCache sets a value in the cache
+    setCache(input: CacheInput!): String
+    # delCache deletes a value from the cache
+    delCache(input: CacheRef!): String
+    # setEntity sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+    setEntity(input: EntityInput!): Entity!
+    # delEntity hard deletes an entity from current state store, adds it's state prior to deletion to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+    # an Entity may be recovered via querying the Event store for historical records of the deleted Entity.
+    delEntity(input: EntityRef!): String
+    # editEntity overwrites the k/v pairs present in the entity request without replacing the entire entity.
+    # it then adds the state change to the event log, then broadcast the event to all interested consumers(EventService.Stream)
+    # editEntity returns the current state of the Entity after the mutation.
+    editEntity(input: EntityInput!): Entity!
+    # revertEntity reverts an Entity to a previous version of itself by querying the event store.
+    # reverting an entity dispatches another event since it is a state change
+    revertEntity(input: EventRef!): Entity!
+    # lockMutex locks a value for a period of time if it is not locked already.
+    # if it is already locked, an error will be returned
+    # it is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL
+    lockMutex(input: Mutex!): String
+    # unlockMutex unlocks the key(if it's currently locked) so that it may be locked again.
+    # it is best practice for client's to call Unlock when the distributed lock operation is completed instead of relying on the TTL
+    unlockMutex(input: MutexRef!): String
+    # broadcastMessage broadcasts a message to N subscribers(clients calling Stream)
+    broadcastMessage(input: Message!): String
+}
+
+# Subscription holds streaming related methods
+type Subscription {
+    # streamEvents creates an event stream/subscription to state changes to entities in real time. Glob matching is supported.
+    streamEvents(input: StreamEventOpts!): Event!
+    # streamMessages consumes/streams messages from message producers(clients calling broadcast)
+    streamMessages(input: StreamMessageOpts!): PeerMessage!
+}

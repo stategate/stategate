@@ -1,4 +1,4 @@
-version := "0.10.0"
+version := "0.11.0"
 
 .DEFAULT_GOAL := help
 
@@ -45,6 +45,10 @@ up: ## start local containers
 .PHONY: down
 down: ## shuts down local docker containers
 	@docker-compose -f docker-compose.yml down --remove-orphans
+
+.PHONY: gql
+gql: ## regenerate graphql code
+	@gqlgen generate
 
 build: ## build the server to ./bin
 	@mkdir -p bin

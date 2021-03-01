@@ -103,12 +103,12 @@ namespace Stategate {
             "YXRlZ2F0ZS5DYWNoZSIlgtPkkwIfEh0vYXBpL2NhY2hlL3JlZi97ZG9tYWlu",
             "fS97a2V5fRJZCgNEZWwSEy5zdGF0ZWdhdGUuQ2FjaGVSZWYaFi5nb29nbGUu",
             "cHJvdG9idWYuRW1wdHkiJYLT5JMCHyodL2FwaS9jYWNoZS9yZWYve2RvbWFp",
-            "bn0ve2tleX0y0QEKDE11dGV4U2VydmljZRJcCgRMb2NrEhAuc3RhdGVnYXRl",
-            "Lk11dGV4GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IiqC0+STAiQiIi9hcGkv",
-            "Y2FjaGUvcmVmL3tkb21haW59L3trZXl9L2xvY2sSYwoGVW5sb2NrEhMuc3Rh",
-            "dGVnYXRlLk11dGV4UmVmGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IiyC0+ST",
-            "AiYiJC9hcGkvY2FjaGUvcmVmL3tkb21haW59L3trZXl9L3VubG9ja0ILWglz",
-            "dGF0ZWdhdGViBnByb3RvMw=="));
+            "bn0ve2tleX0yxQEKDE11dGV4U2VydmljZRJXCgRMb2NrEhAuc3RhdGVnYXRl",
+            "Lk11dGV4GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IiWC0+STAh8aHS9hcGkv",
+            "bXV0ZXgvcmVmL3tkb21haW59L3trZXl9ElwKBlVubG9jaxITLnN0YXRlZ2F0",
+            "ZS5NdXRleFJlZhoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIlgtPkkwIfGh0v",
+            "YXBpL211dGV4L3JlZi97ZG9tYWlufS97a2V5fUILWglzdGF0ZWdhdGViBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -344,6 +344,7 @@ namespace Stategate {
     private string domain_ = "";
     /// <summary>
     /// the cached value's business domain(ex: accounting)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -358,6 +359,7 @@ namespace Stategate {
     private string key_ = "";
     /// <summary>
     /// cached value's key (unique within domain)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Key {
@@ -712,6 +714,7 @@ namespace Stategate {
     private string domain_ = "";
     /// <summary>
     /// the event's entity's business domain(ex: accounting)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -726,6 +729,7 @@ namespace Stategate {
     private string type_ = "";
     /// <summary>
     /// event entity type (ex: user)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Type {
@@ -740,6 +744,7 @@ namespace Stategate {
     private string key_ = "";
     /// <summary>
     /// event's entity's key (unique within type)
+    /// must not be empty or contain spaces
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Key {

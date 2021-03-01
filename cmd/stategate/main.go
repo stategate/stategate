@@ -27,7 +27,7 @@ func main() {
 	}
 	var lgger = logger.New(
 		c.Debug,
-		zap.Any("channel_provider", cast.ToString(c.ChannelProvider["name"])),
+		zap.Any("cache_provider", cast.ToString(c.CacheProvider["name"])),
 		zap.Any("storage_provider", cast.ToString(c.StorageProvider["name"])),
 	)
 	lgger.Debug("loaded config from env", zap.Any("config", c))
