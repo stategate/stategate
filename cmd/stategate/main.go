@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/autom8ter/stategate/internal/logger"
-	"github.com/autom8ter/stategate/internal/server"
 	"github.com/joho/godotenv"
 	"github.com/spf13/cast"
+	"github.com/stategate/stategate/internal/logger"
+	"github.com/stategate/stategate/internal/server"
 	"go.uber.org/zap"
 )
 

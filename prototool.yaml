@@ -30,7 +30,7 @@ lint:
 
 generate:
   go_options:
-    import_path: github.com/autom8ter/stategate
+    import_path: github.com/stategate/stategate
 
   plugins:
     - name: go

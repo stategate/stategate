@@ -3,7 +3,7 @@ package errorz
 import (
 	"context"
 	"encoding/json"
-	"github.com/autom8ter/stategate/internal/logger"
+	"github.com/stategate/stategate/internal/logger"
 	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

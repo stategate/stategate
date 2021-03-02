@@ -3,11 +3,11 @@ package service
 import (
 	"context"
 	"github.com/autom8ter/machine/v2"
-	stategate "github.com/autom8ter/stategate/gen/grpc/go"
-	"github.com/autom8ter/stategate/internal/cache"
-	"github.com/autom8ter/stategate/internal/logger"
-	"github.com/autom8ter/stategate/internal/storage"
 	"github.com/golang/protobuf/ptypes/empty"
+	stategate "github.com/stategate/stategate/gen/grpc/go"
+	"github.com/stategate/stategate/internal/cache"
+	"github.com/stategate/stategate/internal/logger"
+	"github.com/stategate/stategate/internal/storage"
 	"go.uber.org/zap"
 )
 

@@ -1,4 +1,4 @@
-module github.com/autom8ter/stategate
+module github.com/stategate/stategate
 
 go 1.15
 

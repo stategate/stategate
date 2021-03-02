@@ -2,12 +2,12 @@ package stategate_client_go
 
 import (
 	"context"
-	stategate "github.com/autom8ter/stategate/gen/grpc/go"
-	"github.com/autom8ter/stategate/internal/logger"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	grpc_validator "github.com/grpc-ecosystem/go-grpc-middleware/validator"
 	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/pkg/errors"
+	stategate "github.com/stategate/stategate/gen/grpc/go"
+	"github.com/stategate/stategate/internal/logger"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"io"

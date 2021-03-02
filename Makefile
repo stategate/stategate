@@ -1,4 +1,4 @@
-version := "0.11.0"
+version := "0.12.0"
 
 .DEFAULT_GOAL := help
 
@@ -9,7 +9,7 @@ help:
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 	@echo "----------------------------------------------------------------"
 
-run:
+run: ## run server
 	@go run cmd/stategate/main.go
 
 patch: ## bump sem version by 1 patch
@@ -21,7 +21,7 @@ minor: ## bump sem version by 1 minor
 tag: ## tag the repo (remember to commit changes beforehand)
 	git tag v$(version)
 
-push:
+push: ## push tagged version to remote repository
 	git push origin v$(version)
 
 docker-build:
@@ -55,3 +55,6 @@ build: ## build the server to ./bin
 	@cd cmd/stategate; gox -osarch="linux/amd64" -output="../../bin/linux/{{.Dir}}_linux_amd64"
 	@cd cmd/stategate; gox -osarch="darwin/amd64" -output="../../bin/darwin/{{.Dir}}_darwin_amd64"
 	@cd cmd/stategate; gox -osarch="windows/amd64" -output="../../bin/windows/{{.Dir}}_windows_amd64"
+
+test: ## run tests
+	@go test -v ./...
