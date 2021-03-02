@@ -25,10 +25,10 @@ push: ## push tagged version to remote repository
 	git push origin v$(version)
 
 docker-build:
-	@docker build -t colemanword/stategate:v$(version) .
+	@docker build -t stategate/stategate:v$(version) .
 
 docker-push:
-	@docker push colemanword/stategate:v$(version)
+	@docker push stategate/stategate:v$(version)
 
 
 .PHONY: proto

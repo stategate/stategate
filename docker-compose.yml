@@ -28,7 +28,7 @@ services:
         aliases:
           - redis
 #  stategate:
-#    image: colemanword/stategate:v0.2.3
+#    image: stategate/stategate:v0.2.3
 #    env_file:
 #      - ./.env
 #    ports:
