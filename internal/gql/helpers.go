@@ -1,8 +1,8 @@
 package gql
 
 import (
-	"github.com/autom8ter/stategate/gen/gql/go/model"
-	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	"github.com/stategate/stategate/gen/gql/go/model"
+	stategate "github.com/stategate/stategate/gen/grpc/go"
 	"google.golang.org/protobuf/types/known/structpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )

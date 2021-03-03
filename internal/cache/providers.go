@@ -3,12 +3,12 @@ package cache
 import (
 	"context"
 	"crypto/tls"
-	stategate "github.com/autom8ter/stategate/gen/grpc/go"
-	"github.com/autom8ter/stategate/internal/cache/redis"
-	"github.com/autom8ter/stategate/internal/errorz"
-	"github.com/autom8ter/stategate/internal/logger"
 	rediss "github.com/go-redis/redis/v8"
 	"github.com/pkg/errors"
+	stategate "github.com/stategate/stategate/gen/grpc/go"
+	"github.com/stategate/stategate/internal/cache/redis"
+	"github.com/stategate/stategate/internal/errorz"
+	"github.com/stategate/stategate/internal/logger"
 	"go.uber.org/zap"
 	"time"
 )

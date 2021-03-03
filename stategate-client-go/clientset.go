@@ -2,7 +2,7 @@ package stategate_client_go
 
 import (
 	"context"
-	stategate "github.com/autom8ter/stategate/gen/grpc/go"
+	stategate "github.com/stategate/stategate/gen/grpc/go"
 	"google.golang.org/grpc"
 )
 

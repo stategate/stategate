@@ -9,8 +9,8 @@ import (
 	"google.golang.org/grpc/status"
 
 	"github.com/99designs/gqlgen/graphql"
-	"github.com/autom8ter/stategate/gen/gql/go/generated"
-	"github.com/autom8ter/stategate/gen/gql/go/model"
+	"github.com/stategate/stategate/gen/gql/go/generated"
+	"github.com/stategate/stategate/gen/gql/go/model"
 	"github.com/vektah/gqlparser/v2/gqlerror"
 	"go.uber.org/zap"
 )
