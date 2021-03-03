@@ -19,6 +19,7 @@ import (
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/rs/cors"
 	"github.com/soheilhy/cmux"
 	"go.uber.org/zap"
 	"golang.org/x/sync/errgroup"
@@ -205,19 +206,14 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	if err := stategate.RegisterMutexServiceHandler(ctx, restMux, conn); err != nil {
 		return errors.Wrap(err, "failed to register REST mutex endpoints")
 	}
-	gresolver := gql.NewResolver(conn)
+	lgger.Debug("registered gRPC service implementations")
+	gresolver := gql.NewResolver(conn, lgger)
 	defer gresolver.Close()
-	if err := restMux.HandlePath(http.MethodPost, "/graphql", func(w http.ResponseWriter, r *http.Request, pathParams map[string]string) {
-		gresolver.QueryHandler()(w, r)
-	}); err != nil {
-		return errors.Wrap(err, "failed to register POST /graphql endpoints")
-	}
-	if err := restMux.HandlePath(http.MethodGet, "/graphql", func(w http.ResponseWriter, r *http.Request, pathParams map[string]string) {
-		gresolver.QueryHandler()(w, r)
-	}); err != nil {
-		return errors.Wrap(err, "failed to register POST /graphql endpoints")
-	}
+	mux.HandleFunc("/api/graphql", gresolver.QueryHandler())
+	lgger.Debug("registered graphQL endpoints", zap.String("path", "/api/graphql"))
 	mux.Handle("/", restMux)
+	lgger.Debug("registered REST endpoints")
+
 	httpServer := &http.Server{
 		Handler: mux,
 	}
@@ -237,6 +233,12 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 			mux.ServeHTTP(resp, req)
 		}
 	})
+	crs := cors.New(cors.Options{
+		AllowedOrigins:         c.CorsAllowOrigins,
+		AllowedMethods:         c.CorsAllowMethods,
+		AllowedHeaders:         c.CorsAllowHeaders,
+ 	})
+	httpServer.Handler = crs.Handler(httpServer.Handler)
 	group.Go(func() error {
 		httpMatchermatcher := apiMux.Match(cmux.Any())
 		defer httpMatchermatcher.Close()

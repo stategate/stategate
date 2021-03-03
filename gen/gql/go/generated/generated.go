@@ -107,7 +107,7 @@ type ComplexityRoot struct {
 type MutationResolver interface {
 	SetCache(ctx context.Context, input model.CacheInput) (*string, error)
 	DelCache(ctx context.Context, input model.CacheRef) (*string, error)
-	SetEntity(ctx context.Context, input model.EntityInput) (*model.Entity, error)
+	SetEntity(ctx context.Context, input model.EntityInput) (*string, error)
 	DelEntity(ctx context.Context, input model.EntityRef) (*string, error)
 	EditEntity(ctx context.Context, input model.EntityInput) (*model.Entity, error)
 	RevertEntity(ctx context.Context, input model.EventRef) (*model.Entity, error)
@@ -832,7 +832,7 @@ type Mutation {
     # delCache deletes a value from the cache
     delCache(input: CacheRef!): String
     # setEntity sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers(EventService.Stream)
-    setEntity(input: EntityInput!): Entity!
+    setEntity(input: EntityInput!): String
     # delEntity hard deletes an entity from current state store, adds it's state prior to deletion to the event log, then broadcast the event to all interested consumers(EventService.Stream)
     # an Entity may be recovered via querying the Event store for historical records of the deleted Entity.
     delEntity(input: EntityRef!): String
@@ -1720,14 +1720,11 @@ func (ec *executionContext) _Mutation_setEntity(ctx context.Context, field graph
 		return graphql.Null
 	}
 	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
 		return graphql.Null
 	}
-	res := resTmp.(*model.Entity)
+	res := resTmp.(*string)
 	fc.Result = res
-	return ec.marshalNEntity2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx, field.Selections, res)
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_delEntity(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -4364,9 +4361,6 @@ func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet)
 			out.Values[i] = ec._Mutation_delCache(ctx, field)
 		case "setEntity":
 			out.Values[i] = ec._Mutation_setEntity(ctx, field)
-			if out.Values[i] == graphql.Null {
-				invalids++
-			}
 		case "delEntity":
 			out.Values[i] = ec._Mutation_delEntity(ctx, field)
 		case "editEntity":

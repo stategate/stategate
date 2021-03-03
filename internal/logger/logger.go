@@ -15,7 +15,7 @@ type Logger struct {
 func New(debug bool, withFields ...zap.Field) *Logger {
 	hst, _ := os.Hostname()
 	withFields = append(withFields, zap.String("host", hst))
-	withFields = append(withFields, zap.String("service", "graphik"))
+	withFields = append(withFields, zap.String("service", "stategate"))
 	withFields = append(withFields, zap.String("version", version.Version))
 
 	zap.NewDevelopmentConfig()

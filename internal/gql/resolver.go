@@ -32,7 +32,7 @@ type Resolver struct {
 	logger  *logger.Logger
 }
 
-func NewResolver(conn *grpc.ClientConn) *Resolver {
+func NewResolver(conn *grpc.ClientConn, lgger *logger.Logger) *Resolver {
 	return &Resolver{
 		cache:   stategate.NewCacheServiceClient(conn),
 		event:   stategate.NewEventServiceClient(conn),
@@ -40,6 +40,7 @@ func NewResolver(conn *grpc.ClientConn) *Resolver {
 		mutex:   stategate.NewMutexServiceClient(conn),
 		peer:    stategate.NewPeerServiceClient(conn),
 		machine: machine.New(),
+		logger: lgger,
 	}
 }
 

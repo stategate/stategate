@@ -149,7 +149,7 @@ service MutexService {
     - [protobuf schema](schema.proto)
 - [x] Embedded REST support `/` (transcoding)
     - [open api schema](schema.swagger.json)
-- [x] Embedded GraphQL support `/graphql` (transcoding)
+- [x] Embedded GraphQL support `/api/graphql` (transcoding)
     - [graphQL schema](schema.graphql)
 - [x] Embedded [grpcweb](https://grpc.io/docs/platforms/web/basics/) support (transcoding)
 - [x] Metrics Server(prometheus/pprof)
@@ -274,6 +274,8 @@ Message is a non-persisted message passed between Peers as a means of communicat
 
 ## Environmental Variables
 
+.env files are loaded if found in the same directory as stategate
+
 ```yaml
 # port to serve on (optional). defaults to 8080
 STATEGATE_PORT=8080
@@ -300,6 +302,10 @@ STATEGATE_STORAGE_PROVIDER={ "name": "mongo", "database": "testing", "addr": "mo
 # cache provider configuration(JSON) options: [redis] REQUIRED
 STATEGATE_CACHE_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "xxx", "password": "xxxxxxxxxx" }
 
+# CORS options for accessing stategate from the browser
+STATEGATE_CORS_ALLOW_ORIGINS=*
+STATEGATE_CORS_ALLOW_METHODS=POST,GET,PUT,DELETE
+STATEGATE_CORS_ALLOW_HEADERS=*
 ```
 
 ## Implementation Details
@@ -407,6 +413,22 @@ TODO
 https://auth0.com/docs/tokens/json-web-tokens/json-web-key-sets
 
 TODO
+
+## Sample GraphQL queries
+
+```graphql
+mutation {
+  setEntity(input: {
+    domain: "accounting",
+    type: "user"
+    key: "colemanword@gmail.com",
+    values: {
+      first_name: "Coleman"
+      last_name: "Word"
+    }
+  })
+}
+```
 
 ## FAQ
 
