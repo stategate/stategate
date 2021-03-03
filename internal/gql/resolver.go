@@ -40,7 +40,7 @@ func NewResolver(conn *grpc.ClientConn, lgger *logger.Logger) *Resolver {
 		mutex:   stategate.NewMutexServiceClient(conn),
 		peer:    stategate.NewPeerServiceClient(conn),
 		machine: machine.New(),
-		logger: lgger,
+		logger:  lgger,
 	}
 }
 

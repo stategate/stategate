@@ -5,14 +5,14 @@ package gql
 
 import (
 	"context"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/stategate/stategate/gen/gql/go/generated"
 	"github.com/stategate/stategate/gen/gql/go/model"
 	"github.com/vektah/gqlparser/v2/gqlerror"
 	"go.uber.org/zap"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 func (r *mutationResolver) SetCache(ctx context.Context, input model.CacheInput) (*string, error) {

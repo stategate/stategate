@@ -89,23 +89,23 @@ type PeerMessage struct {
 }
 
 type SearchEntityOpts struct {
-	Domain      string `json:"domain"`
-	Type        string `json:"type"`
-	QueryString string `json:"query_string"`
-	Limit       int    `json:"limit"`
-	Offset      *int   `json:"offset"`
-	Sort        *Sort  `json:"sort"`
+	Domain      string  `json:"domain"`
+	Type        string  `json:"type"`
+	QueryString *string `json:"query_string"`
+	Limit       int     `json:"limit"`
+	Offset      *int    `json:"offset"`
+	Sort        *Sort   `json:"sort"`
 }
 
 type SearchEventOpts struct {
-	Domain      string `json:"domain"`
-	Type        string `json:"type"`
-	QueryString string `json:"query_string"`
-	Limit       int    `json:"limit"`
-	Min         *int   `json:"min"`
-	Max         *int   `json:"max"`
-	Offset      *int   `json:"offset"`
-	Sort        *Sort  `json:"sort"`
+	Domain      string  `json:"domain"`
+	Type        string  `json:"type"`
+	QueryString *string `json:"query_string"`
+	Limit       int     `json:"limit"`
+	Min         *int    `json:"min"`
+	Max         *int    `json:"max"`
+	Offset      *int    `json:"offset"`
+	Sort        *Sort   `json:"sort"`
 }
 
 type Sort struct {

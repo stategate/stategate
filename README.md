@@ -401,6 +401,8 @@ type Provider interface {
 
 ## Authorization
 
+Stategate uses an embedded [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) compiler/engine to execute authorization decisions at runtime
+
 ### Request Authorization Policies
 TODO
 
@@ -413,6 +415,13 @@ TODO
 https://auth0.com/docs/tokens/json-web-tokens/json-web-key-sets
 
 TODO
+
+## User Interface
+
+Please take a look at the following options for stategate user-interface clients:
+
+- [OAuth GraphQL Playground](https://github.com/autom8ter/oauth-graphql-playground): A graphQL IDE that may be used to connect & interact with the full functionality of the stategate graphQL API as an authenticated user
+
 
 ## Sample GraphQL queries
 
@@ -429,6 +438,7 @@ mutation {
   })
 }
 ```
+
 
 ## FAQ
 

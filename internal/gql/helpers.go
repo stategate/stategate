@@ -132,10 +132,12 @@ func toMessage(input model.Message) *stategate.Message {
 
 func toSearchEventOpts(input model.SearchEventOpts) *stategate.SearchEventOpts {
 	o := &stategate.SearchEventOpts{
-		Domain:      input.Domain,
-		Type:        input.Type,
-		QueryString: input.QueryString,
-		Limit:       int32(input.Limit),
+		Domain: input.Domain,
+		Type:   input.Type,
+		Limit:  int32(input.Limit),
+	}
+	if input.QueryString != nil {
+		o.QueryString = *input.QueryString
 	}
 	if input.Min != nil {
 		o.Min = int64(*input.Min)
@@ -154,12 +156,14 @@ func toSearchEventOpts(input model.SearchEventOpts) *stategate.SearchEventOpts {
 
 func toSearchEntityOpts(input model.SearchEntityOpts) *stategate.SearchEntityOpts {
 	o := &stategate.SearchEntityOpts{
-		Domain:      input.Domain,
-		Type:        input.Type,
-		QueryString: input.QueryString,
-		Limit:       int32(input.Limit),
-		Offset:      0,
-		Sort:        nil,
+		Domain: input.Domain,
+		Type:   input.Type,
+		Limit:  int32(input.Limit),
+		Offset: 0,
+		Sort:   nil,
+	}
+	if input.QueryString != nil {
+		o.QueryString = *input.QueryString
 	}
 	if input.Offset != nil {
 		o.Offset = int32(*input.Offset)

@@ -234,10 +234,10 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 		}
 	})
 	crs := cors.New(cors.Options{
-		AllowedOrigins:         c.CorsAllowOrigins,
-		AllowedMethods:         c.CorsAllowMethods,
-		AllowedHeaders:         c.CorsAllowHeaders,
- 	})
+		AllowedOrigins: c.CorsAllowOrigins,
+		AllowedMethods: c.CorsAllowMethods,
+		AllowedHeaders: c.CorsAllowHeaders,
+	})
 	httpServer.Handler = crs.Handler(httpServer.Handler)
 	group.Go(func() error {
 		httpMatchermatcher := apiMux.Match(cmux.Any())
