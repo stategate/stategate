@@ -5,6 +5,8 @@ package gql
 
 import (
 	"context"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/autom8ter/stategate/gen/gql/go/generated"
@@ -35,7 +37,7 @@ func (r *mutationResolver) DelCache(ctx context.Context, input model.CacheRef) (
 	return nil, nil
 }
 
-func (r *mutationResolver) SetEntity(ctx context.Context, input model.EntityInput) (*model.Entity, error) {
+func (r *mutationResolver) SetEntity(ctx context.Context, input model.EntityInput) (*string, error) {
 	_, err := r.entity.Set(ctx, toEntity(input))
 	if err != nil {
 		return nil, &gqlerror.Error{
@@ -185,14 +187,19 @@ func (r *subscriptionResolver) StreamEvents(ctx context.Context, input model.Str
 		}
 	}
 	r.machine.Go(ctx, func(ctx context.Context) error {
+		defer func() {
+			close(ch)
+		}()
 		for {
 			select {
 			case <-ctx.Done():
-				close(ch)
 				return nil
 			default:
 				msg, err := stream.Recv()
 				if err != nil {
+					if status.Code(err) == codes.Canceled {
+						return nil
+					}
 					r.logger.Error("graphql: failed to stream event", zap.Error(err))
 					continue
 				}
@@ -213,10 +220,12 @@ func (r *subscriptionResolver) StreamMessages(ctx context.Context, input model.S
 		}
 	}
 	r.machine.Go(ctx, func(ctx context.Context) error {
+		defer func() {
+			close(ch)
+		}()
 		for {
 			select {
 			case <-ctx.Done():
-				close(ch)
 				return nil
 			default:
 				msg, err := stream.Recv()
