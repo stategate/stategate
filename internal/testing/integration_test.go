@@ -22,16 +22,17 @@ const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwi
 const allowAll = "cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB0cnVl"
 
 func TestIntegration(t *testing.T) {
-	testRedisMongo(t)
+	testRedisRedisMongo(t)
+	testRedisNatsMongo(t)
 }
 
-func testRedisMongo(t *testing.T) {
+func testRedisRedisMongo(t *testing.T) {
 	redisContainer := framework.NewContainer(t, "redis", "latest", nil)
 	defer redisContainer.Close(t)
 	mongoContainer := framework.NewContainer(t, "mongo", "latest", nil)
 	defer mongoContainer.Close(t)
 	ctx := context.Background()
-	rmgo := redisMongo(t, ctx, redisContainer.GetPort("6379/tcp"), mongoContainer.GetPort("27017/tcp"))
+	rmgo := redisRedisMongo(t, ctx, redisContainer.GetPort("6379/tcp"), mongoContainer.GetPort("27017/tcp"))
 	framework.Run(t, []*framework.Provider{
 		rmgo,
 	}, []*framework.TestCase{
@@ -42,7 +43,31 @@ func testRedisMongo(t *testing.T) {
 	})
 }
 
-func redisMongo(t *testing.T, ctx context.Context, redisPort, mongoPort string) *framework.Provider {
+func testRedisNatsMongo(t *testing.T) {
+	redisContainer := framework.NewContainer(t, "redis", "latest", nil)
+	defer redisContainer.Close(t)
+	mongoContainer := framework.NewContainer(t, "mongo", "latest", nil)
+	defer mongoContainer.Close(t)
+	natsContainer := framework.NewContainer(t, "nats", "latest", nil)
+	defer natsContainer.Close(t)
+	ctx := context.Background()
+	rmgo := redisNatsMongo(
+		t,
+		ctx,
+		redisContainer.GetPort("6379/tcp"),
+		mongoContainer.GetPort("27017/tcp"),
+		natsContainer.GetPort("4222/tcp"))
+	framework.Run(t, []*framework.Provider{
+		rmgo,
+	}, []*framework.TestCase{
+		peerService(ctx),
+		endToEnd(ctx),
+		transaction(ctx),
+		testCacheProvider(ctx),
+	})
+}
+
+func redisRedisMongo(t *testing.T, ctx context.Context, redisPort, mongoPort string) *framework.Provider {
 	return framework.NewProvider(t, ctx, token, &server.Config{
 		Port:           0,
 		AuthDisabled:   true,
@@ -56,6 +81,33 @@ func redisMongo(t *testing.T, ctx context.Context, redisPort, mongoPort string) 
 		CacheProvider: map[string]string{
 			"name": "redis",
 			"addr": fmt.Sprintf("0.0.0.0:%s", redisPort),
+		},
+		ChannelProvider: map[string]string{
+			"name": "redis",
+			"addr": fmt.Sprintf("0.0.0.0:%s", redisPort),
+		},
+	})
+}
+
+
+func redisNatsMongo(t *testing.T, ctx context.Context, redisPort, mongoPort, natsPort string) *framework.Provider {
+	return framework.NewProvider(t, ctx, token, &server.Config{
+		Port:           0,
+		AuthDisabled:   true,
+		RequestPolicy:  allowAll,
+		ResponsePolicy: allowAll,
+		StorageProvider: map[string]string{
+			"name":     "mongo",
+			"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
+			"database": "testing",
+		},
+		CacheProvider: map[string]string{
+			"name": "redis",
+			"addr": fmt.Sprintf("0.0.0.0:%s", redisPort),
+		},
+		ChannelProvider: map[string]string{
+			"name": "nats",
+			"addr": fmt.Sprintf("0.0.0.0:%s", natsPort),
 		},
 	})
 }
@@ -226,7 +278,6 @@ func endToEnd(ctx context.Context) *framework.TestCase {
 						return err
 					}
 				}
-
 				return nil
 			})
 

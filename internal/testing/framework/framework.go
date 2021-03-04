@@ -80,6 +80,7 @@ func NewProvider(t *testing.T, ctx context.Context, jwt string, config *server.C
 		config.Debug,
 		zap.Any("storage_provider", cast.ToString(config.StorageProvider["name"])),
 		zap.Any("cache_provider", cast.ToString(config.CacheProvider["name"])),
+		zap.Any("channel_provider", cast.ToString(config.ChannelProvider["name"])),
 	)
 	f := &Provider{
 		ctx:       ctx,
@@ -99,7 +100,7 @@ func NewProvider(t *testing.T, ctx context.Context, jwt string, config *server.C
 			AccessToken: jwt,
 		})))
 	if err != nil {
-		t.Fatal(err.Error())
+		t.Fatal(err)
 	}
 	f.clientset = clientset
 	return f

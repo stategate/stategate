@@ -14,12 +14,12 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/soheilhy/cmux"
 	stategate "github.com/stategate/stategate/gen/grpc/go"
+	"github.com/stategate/stategate/internal/api"
 	"github.com/stategate/stategate/internal/auth"
-	"github.com/stategate/stategate/internal/cache"
 	"github.com/stategate/stategate/internal/gql"
 	"github.com/stategate/stategate/internal/logger"
+	"github.com/stategate/stategate/internal/providers"
 	"github.com/stategate/stategate/internal/service"
-	"github.com/stategate/stategate/internal/storage"
 	"go.uber.org/zap"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
@@ -139,23 +139,33 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	}
 
 	var (
-		strgProvider  storage.Provider
-		cacheProvider cache.Provider
+		strgProvider    api.StorageProvider
+		cacheProvider   api.CacheProvider
+		channelProvider api.ChannelProvider
 	)
+	if c.ChannelProvider != nil && len(c.ChannelProvider) > 0 {
+		channelProvider, err = providers.GetChannelProvider(lgger, c.ChannelProvider)
+		if err != nil {
+			return errors.Wrap(err, "failed to setup channel provider")
+		}
+		defer channelProvider.Close()
+	}
 	if c.StorageProvider != nil && len(c.StorageProvider) > 0 {
-		strgProvider, err = storage.GetStorageProvider(lgger, c.StorageProvider)
+		strgProvider, err = providers.GetStorageProvider(lgger, c.StorageProvider)
 		if err != nil {
 			return errors.Wrap(err, "failed to setup storage provider")
 		}
 		defer strgProvider.Close()
 	}
-	cacheProvider, err = cache.GetCacheProvider(lgger, c.CacheProvider)
-	if err != nil {
-		return errors.Wrap(err, "failed to setup cache provider")
+	if c.CacheProvider != nil && len(c.CacheProvider) > 0 {
+		cacheProvider, err = providers.GetCacheProvider(lgger, c.CacheProvider)
+		if err != nil {
+			return errors.Wrap(err, "failed to setup cache provider")
+		}
+		defer cacheProvider.Close()
 	}
-	defer cacheProvider.Close()
 
-	svc, err := service.NewService(ctx, strgProvider, cacheProvider, lgger)
+	svc, err := service.NewService(ctx, strgProvider, cacheProvider, channelProvider, lgger)
 	if err != nil {
 		return errors.Wrap(err, "failed to setup service")
 	}

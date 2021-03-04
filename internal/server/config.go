@@ -20,6 +20,7 @@ type Config struct {
 	CorsAllowOrigins []string
 	CorsAllowMethods []string
 	CorsAllowHeaders []string
+	ChannelProvider  map[string]string
 	StorageProvider  map[string]string
 	CacheProvider    map[string]string
 }
@@ -36,6 +37,7 @@ func (c *Config) LoadEnv() error {
 		responsePolicy   = os.Getenv("STATEGATE_RESPONSE_POLICY")
 		storageProvider  = os.Getenv("STATEGATE_STORAGE_PROVIDER")
 		cacheProvider    = os.Getenv("STATEGATE_CACHE_PROVIDER")
+		channelProvider  = os.Getenv("STATEGATE_CHANNEL_PROVIDER")
 		corsAllowOrigins = os.Getenv("STATEGATE_CORS_ALLOW_ORIGINS")
 		corsAllowMethods = os.Getenv("STATEGATE_CORS_ALLOW_METHODS")
 		corsAllowHeaders = os.Getenv("STATEGATE_CORS_ALLOW_HEADERS")
@@ -93,6 +95,13 @@ func (c *Config) LoadEnv() error {
 		}
 		c.CacheProvider = provider
 	}
+	if channelProvider != "" {
+		provider := map[string]string{}
+		if err := json.Unmarshal([]byte(channelProvider), &provider); err != nil {
+			return errors.Wrap(err, "failed to unmarshal channel provider JSON")
+		}
+		c.ChannelProvider = provider
+	}
 	return nil
 }
 
@@ -107,10 +116,13 @@ func (c *Config) Validate() error {
 		return errors.New("config: empty port")
 	}
 	if c.StorageProvider == nil {
-		return errors.New("config: empty storage provider")
+		return errors.New("config: empty storage provider (JSON string)")
 	}
 	if c.CacheProvider == nil {
-		return errors.New("config: empty cache provider")
+		return errors.New("config: empty cache provider (JSON string)")
+	}
+	if c.ChannelProvider == nil {
+		return errors.New("config: empty channel provider (JSON string)")
 	}
 	return nil
 }

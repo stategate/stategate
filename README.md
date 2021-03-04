@@ -168,16 +168,24 @@ service MutexService {
 - [x] Structured JSON Logs
 - [x] [Sample Kubernetes Manifest](k8s.yaml)
 - [x] [Sample Docker Compose](docker-compose.yml)
-- [x] Pluggable ["Storage" Providers](internal/storage/providers.go)
+- [x] Pluggable ["Storage" Providers](internal/api/api.go)
     - [x] MongoDb
         - [x] fully-tested
     - [ ] PostgreSQL
     - [ ] MySQL
     - [ ] Cassandra
-- [x] Pluggable ["Cache" Providers](internal/cache/providers.go)
+- [x] Pluggable ["Cache" Providers](internal/api/api.go)
     - [x] Redis
         - [x] fully-tested
-    
+- [x] Pluggable ["Channel" Providers](internal/api/api.go)
+    - [x] Redis
+        - [x] fully-tested   
+    - [x] Nats
+        - [x] fully-tested  
+    - [ ] RabbitMQ
+        - [ ] fully-tested
+    - [ ] 0MQ
+        - [ ] fully-tested
 
 
 ## Goals
@@ -190,6 +198,9 @@ service MutexService {
 - [x] Capture a persistant, immutable historical record of all state changes to entities using a pluggable storage provider
 - [x] Revert/Rollback an entity to any previous version of itself at any point in time
 - [x] Store identity(jwt.claims) & timestamp in event logs to capture who is changing what & when
+- [x] Raw message queue / pubsub interface for high performance message distribution
+- [x] High performance caching interface
+- [x] High performance distributed locking interface
 - [x] Easy deployment model - fully configureable via environmental variables
 - [x] Create complex client applications with stategate as their only dependency
 - [ ] Create serverless deployment model for stategate client applications
@@ -294,6 +305,10 @@ STATEGATE_REQUEST_POLICY=cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB
 # base64 encoded OPA rego policy executed on responses sent to clients (optional)
 STATEGATE_RESPONSE_POLICY=cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB0cnVl
 
+# channel provider configuration(JSON) options: [redis, nats]
+STATEGATE_CHANNEL_PROVIDER={ "name": "redis", "addr": "localhost:6379" }
+# STATEGATE_CHANNEL_PROVIDER={ "name": "nats", "addr": "localhost:4222" }
+
 # storage provider configuration(JSON) options: [mongo] REQUIRED
 STATEGATE_STORAGE_PROVIDER={ "name": "mongo", "database": "testing", "addr": "mongodb://localhost:27017/testing" }
 
@@ -302,10 +317,17 @@ STATEGATE_CACHE_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "x
 
 ```
 
+## User Interface
+
+Please take a look at the following options for stategate user-interface clients:
+
+- [OAuth GraphQL Playground](https://github.com/autom8ter/oauth-graphql-playground): A graphQL IDE that may be used to connect & interact with the full functionality of the stategate graphQL API as an authenticated user
+
+
 ## Implementation Details
 
-- [Storage Provider Implementations](./internal/storage)
-- [Cache Provider Implementations](./internal/cache)
+- [Interfaces](./internal/api)
+- [Interface Implementations / Providers](./internal/providers)
 - [Auth](./internal/auth)
 - [ListenAndServe](./internal/server)
 - [Errors](./internal/errorz)
@@ -321,29 +343,19 @@ supported providers: [mongo]
 - A stategate storage provider is a pluggable, 3rd party database storage service. 
 - Storage providers provide persistance for all current entities/events and should be scaled independently of stategate instances.
 
-[interface](internal/storage/providers.go)
+[interface](internal/api/api.go)
 ```go
 
-// EntityProvider provides logic for querying/persisting entities
-type EntityProvider interface {
+// StorageProvider is an interface for querying/persisting entities & events
+type StorageProvider interface {
 	SetEntity(ctx context.Context, entity *stategate.Entity) *errorz.Error
 	EditEntity(ctx context.Context, entity *stategate.Entity) (*stategate.Entity, *errorz.Error)
 	SearchEntities(ctx context.Context, ref *stategate.SearchEntityOpts) (*stategate.Entities, *errorz.Error)
 	DelEntity(ctx context.Context, ref *stategate.EntityRef) *errorz.Error
 	GetEntity(ctx context.Context, ref *stategate.EntityRef) (*stategate.Entity, *errorz.Error)
-}
-
-// EventProvider provides logic for querying/persisting events
-type EventProvider interface {
 	SaveEvent(ctx context.Context, event *stategate.Event) *errorz.Error
 	SearchEvents(ctx context.Context, ref *stategate.SearchEventOpts) (*stategate.Events, *errorz.Error)
 	GetEvent(ctx context.Context, ref *stategate.EventRef) (*stategate.Event, *errorz.Error)
-}
-
-// Provider is an event & entity provider
-type Provider interface {
-	EventProvider
-	EntityProvider
 	Close() error
 }
 
@@ -353,47 +365,50 @@ type Provider interface {
 
 supported providers: [redis]
 
-- A stategate cache provider is a pluggable, 3rd party caching & message-queue service. 
-- Cache providers provide a way for stategate to store ephemeral data & broadcast events to itself while scaling horizontally. 
+- A stategate cache provider is a pluggable, 3rd party caching service
+- Cache providers provide a way for stategate to store ephemeral data as well as distributed locking/mutex. 
 
-[interface](internal/cache/providers.go)
+[interface](internal/api/api.go)
   
 ```go
-
-// ChannelProvider acts as dependency injection for broadcasting messages to stategate instances as they fan out
-type ChannelProvider interface {
-	PublishEvent(ctx context.Context, event *stategate.Event) *errorz.Error
-	GetEventChannel(ctx context.Context) (chan *stategate.Event, *errorz.Error)
-	PublishMessage(ctx context.Context, message *stategate.PeerMessage) *errorz.Error
-	GetMessageChannel(ctx context.Context) (chan *stategate.PeerMessage, *errorz.Error)
-}
-
-// CacheProvider acts as dependency injection for caching ephemeral data 
+// CacheProvider is an interface for caching ephemeral data & distributed locking
 type CacheProvider interface {
 	Get(ctx context.Context, ref *stategate.CacheRef) (*stategate.Cache, *errorz.Error)
 	Set(ctx context.Context, value *stategate.Cache) *errorz.Error
 	Del(ctx context.Context, value *stategate.CacheRef) *errorz.Error
-	
-}
-
-// MutexProvider acts as dependency injection for distributed mutex operations
-type MutexProvider interface {
 	Lock(ctx context.Context, ref *stategate.Mutex) *errorz.Error
 	Unlock(ctx context.Context, value *stategate.MutexRef) *errorz.Error
-}
-
-// Provider is a channel, cache, & mutex provider
-type Provider interface {
-	CacheProvider
-	ChannelProvider
-	MutexProvider
 	Close() error
 }
 ```
     
 - Cache providers should be scaled independently of stategate instances.
 
+
+### Channel Providers
+
+supported providers: [redis, nats]
+
+- A stategate channel provider is a pluggable, 3rd party message queue service
+- Channel providers provide a way for stategate to broadcast messages back to itself as it scales horizontally. 
+
+[interface](internal/api/api.go)
+
+```go
+// ChannelProvider is an interface for broadcasting messages to stategate instances as they fan out horizontally
+type ChannelProvider interface {
+	PublishEvent(ctx context.Context, event *stategate.Event) *errorz.Error
+	GetEventChannel(ctx context.Context) (chan *stategate.Event, *errorz.Error)
+	PublishMessage(ctx context.Context, message *stategate.PeerMessage) *errorz.Error
+	GetMessageChannel(ctx context.Context) (chan *stategate.PeerMessage, *errorz.Error)
+	Close() error
+}
+```
+
 ## Authorization
+
+Stategate uses an embedded [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) compiler/engine to execute authorization decisions at runtime
+
 
 ### Request Authorization Policies
 TODO

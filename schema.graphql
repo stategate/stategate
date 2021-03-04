@@ -209,7 +209,7 @@ input SearchEntityOpts {
     type: String!
     # json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
     # please note that dot notation may be used to access nested fields
-    query_string: String!
+    query_string: String
     # limit number of returned values
     limit: Int!
     # offset returned events(pagination)
@@ -228,7 +228,7 @@ input SearchEventOpts {
     type: String!
     # json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
     # please note that dot notation may be used to access nested fields
-    query_string: String!
+    query_string: String
     # limit number of returned values
     limit: Int!
     # only return events that occurred after specified min timestamp

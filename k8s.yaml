@@ -80,7 +80,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-          image: "stategate/stategate:v0.12.0"
+          image: "stategate/stategate:v0.13.0"
           imagePullPolicy: Always
           ports:
           - containerPort: 8081

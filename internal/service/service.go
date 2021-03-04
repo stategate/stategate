@@ -2,30 +2,41 @@ package service
 
 import (
 	"context"
+	"errors"
 	"github.com/autom8ter/machine/v2"
 	"github.com/golang/protobuf/ptypes/empty"
 	stategate "github.com/stategate/stategate/gen/grpc/go"
-	"github.com/stategate/stategate/internal/cache"
+	"github.com/stategate/stategate/internal/api"
 	"github.com/stategate/stategate/internal/logger"
-	"github.com/stategate/stategate/internal/storage"
 	"go.uber.org/zap"
 )
 
 type Service struct {
-	cache    cache.Provider
-	storage  storage.Provider
+	cache    api.CacheProvider
+	storage  api.StorageProvider
+	channel  api.ChannelProvider
 	lgger    *logger.Logger
 	messages machine.Machine
 	events   machine.Machine
 	cancel   func()
 }
 
-func NewService(ctx context.Context, storage storage.Provider, cache cache.Provider, lgger *logger.Logger) (*Service, error) {
+func NewService(ctx context.Context, storage api.StorageProvider, cache api.CacheProvider, channel api.ChannelProvider, lgger *logger.Logger) (*Service, error) {
+	if cache == nil {
+		return nil, errors.New("empty cache provider")
+	}
+	if channel == nil {
+		return nil, errors.New("empty channel provider")
+	}
+	if storage == nil {
+		return nil, errors.New("empty storage provider")
+	}
 	ctx, cancel := context.WithCancel(ctx)
 	svc := &Service{
 		cache:   cache,
 		storage: storage,
 		lgger:   lgger,
+		channel: channel,
 		messages: machine.New(machine.WithErrHandler(func(err error) {
 			lgger.Error("message streaming error", zap.Error(err))
 		})),
@@ -34,11 +45,11 @@ func NewService(ctx context.Context, storage storage.Provider, cache cache.Provi
 		})),
 		cancel: cancel,
 	}
-	ech, err := cache.GetEventChannel(ctx)
+	ech, err := channel.GetEventChannel(ctx)
 	if err != nil {
 		return nil, err.Err
 	}
-	mch, err := cache.GetMessageChannel(ctx)
+	mch, err := channel.GetMessageChannel(ctx)
 	if err != nil {
 		return nil, err.Err
 	}

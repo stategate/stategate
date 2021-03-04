@@ -766,7 +766,7 @@ input SearchEntityOpts {
     type: String!
     # json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
     # please note that dot notation may be used to access nested fields
-    query_string: String!
+    query_string: String
     # limit number of returned values
     limit: Int!
     # offset returned events(pagination)
@@ -785,7 +785,7 @@ input SearchEventOpts {
     type: String!
     # json string to filter records that have values match k/v pairs ex: { "message": "hello world" }
     # please note that dot notation may be used to access nested fields
-    query_string: String!
+    query_string: String
     # limit number of returned values
     limit: Int!
     # only return events that occurred after specified min timestamp
@@ -874,7 +874,7 @@ func (ec *executionContext) field_Mutation_broadcastMessage_args(ctx context.Con
 	var arg0 model.Message
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNMessage2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐMessage(ctx, tmp)
+		arg0, err = ec.unmarshalNMessage2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐMessage(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -889,7 +889,7 @@ func (ec *executionContext) field_Mutation_delCache_args(ctx context.Context, ra
 	var arg0 model.CacheRef
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNCacheRef2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCacheRef(ctx, tmp)
+		arg0, err = ec.unmarshalNCacheRef2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCacheRef(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -904,7 +904,7 @@ func (ec *executionContext) field_Mutation_delEntity_args(ctx context.Context, r
 	var arg0 model.EntityRef
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNEntityRef2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityRef(ctx, tmp)
+		arg0, err = ec.unmarshalNEntityRef2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityRef(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -919,7 +919,7 @@ func (ec *executionContext) field_Mutation_editEntity_args(ctx context.Context, 
 	var arg0 model.EntityInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNEntityInput2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityInput(ctx, tmp)
+		arg0, err = ec.unmarshalNEntityInput2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -934,7 +934,7 @@ func (ec *executionContext) field_Mutation_lockMutex_args(ctx context.Context, r
 	var arg0 model.Mutex
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNMutex2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐMutex(ctx, tmp)
+		arg0, err = ec.unmarshalNMutex2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐMutex(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -949,7 +949,7 @@ func (ec *executionContext) field_Mutation_revertEntity_args(ctx context.Context
 	var arg0 model.EventRef
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNEventRef2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEventRef(ctx, tmp)
+		arg0, err = ec.unmarshalNEventRef2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEventRef(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -964,7 +964,7 @@ func (ec *executionContext) field_Mutation_setCache_args(ctx context.Context, ra
 	var arg0 model.CacheInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNCacheInput2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCacheInput(ctx, tmp)
+		arg0, err = ec.unmarshalNCacheInput2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCacheInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -979,7 +979,7 @@ func (ec *executionContext) field_Mutation_setEntity_args(ctx context.Context, r
 	var arg0 model.EntityInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNEntityInput2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityInput(ctx, tmp)
+		arg0, err = ec.unmarshalNEntityInput2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -994,7 +994,7 @@ func (ec *executionContext) field_Mutation_unlockMutex_args(ctx context.Context,
 	var arg0 model.MutexRef
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNMutexRef2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐMutexRef(ctx, tmp)
+		arg0, err = ec.unmarshalNMutexRef2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐMutexRef(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -1024,7 +1024,7 @@ func (ec *executionContext) field_Query_getCache_args(ctx context.Context, rawAr
 	var arg0 model.CacheRef
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNCacheRef2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCacheRef(ctx, tmp)
+		arg0, err = ec.unmarshalNCacheRef2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCacheRef(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -1039,7 +1039,7 @@ func (ec *executionContext) field_Query_getEntity_args(ctx context.Context, rawA
 	var arg0 model.EntityRef
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNEntityRef2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityRef(ctx, tmp)
+		arg0, err = ec.unmarshalNEntityRef2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityRef(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -1054,7 +1054,7 @@ func (ec *executionContext) field_Query_getEvent_args(ctx context.Context, rawAr
 	var arg0 model.EventRef
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNEventRef2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEventRef(ctx, tmp)
+		arg0, err = ec.unmarshalNEventRef2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEventRef(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -1069,7 +1069,7 @@ func (ec *executionContext) field_Query_searchEntities_args(ctx context.Context,
 	var arg0 model.SearchEntityOpts
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNSearchEntityOpts2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSearchEntityOpts(ctx, tmp)
+		arg0, err = ec.unmarshalNSearchEntityOpts2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSearchEntityOpts(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -1084,7 +1084,7 @@ func (ec *executionContext) field_Query_searchEvents_args(ctx context.Context, r
 	var arg0 model.SearchEventOpts
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNSearchEventOpts2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSearchEventOpts(ctx, tmp)
+		arg0, err = ec.unmarshalNSearchEventOpts2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSearchEventOpts(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -1099,7 +1099,7 @@ func (ec *executionContext) field_Subscription_streamEvents_args(ctx context.Con
 	var arg0 model.StreamEventOpts
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNStreamEventOpts2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐStreamEventOpts(ctx, tmp)
+		arg0, err = ec.unmarshalNStreamEventOpts2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐStreamEventOpts(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -1114,7 +1114,7 @@ func (ec *executionContext) field_Subscription_streamMessages_args(ctx context.C
 	var arg0 model.StreamMessageOpts
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNStreamMessageOpts2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐStreamMessageOpts(ctx, tmp)
+		arg0, err = ec.unmarshalNStreamMessageOpts2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐStreamMessageOpts(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -1505,7 +1505,7 @@ func (ec *executionContext) _Event_entity(ctx context.Context, field graphql.Col
 	}
 	res := resTmp.(*model.Entity)
 	fc.Result = res
-	return ec.marshalNEntity2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx, field.Selections, res)
+	return ec.marshalNEntity2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Event_method(ctx context.Context, field graphql.CollectedField, obj *model.Event) (ret graphql.Marshaler) {
@@ -1727,7 +1727,7 @@ func (ec *executionContext) _Mutation_setEntity(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.Entity)
 	fc.Result = res
-	return ec.marshalNEntity2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx, field.Selections, res)
+	return ec.marshalNEntity2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_delEntity(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -1808,7 +1808,7 @@ func (ec *executionContext) _Mutation_editEntity(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Entity)
 	fc.Result = res
-	return ec.marshalNEntity2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx, field.Selections, res)
+	return ec.marshalNEntity2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_revertEntity(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -1850,7 +1850,7 @@ func (ec *executionContext) _Mutation_revertEntity(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.Entity)
 	fc.Result = res
-	return ec.marshalNEntity2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx, field.Selections, res)
+	return ec.marshalNEntity2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_lockMutex(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -2251,7 +2251,7 @@ func (ec *executionContext) _Query_getEntity(ctx context.Context, field graphql.
 	}
 	res := resTmp.(*model.Entity)
 	fc.Result = res
-	return ec.marshalNEntity2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx, field.Selections, res)
+	return ec.marshalNEntity2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_getEvent(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -2293,7 +2293,7 @@ func (ec *executionContext) _Query_getEvent(ctx context.Context, field graphql.C
 	}
 	res := resTmp.(*model.Event)
 	fc.Result = res
-	return ec.marshalNEvent2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx, field.Selections, res)
+	return ec.marshalNEvent2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_getCache(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -2335,7 +2335,7 @@ func (ec *executionContext) _Query_getCache(ctx context.Context, field graphql.C
 	}
 	res := resTmp.(*model.Cache)
 	fc.Result = res
-	return ec.marshalNCache2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCache(ctx, field.Selections, res)
+	return ec.marshalNCache2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCache(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_searchEvents(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -2374,7 +2374,7 @@ func (ec *executionContext) _Query_searchEvents(ctx context.Context, field graph
 	}
 	res := resTmp.([]*model.Event)
 	fc.Result = res
-	return ec.marshalOEvent2ᚕᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEventᚄ(ctx, field.Selections, res)
+	return ec.marshalOEvent2ᚕᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEventᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_searchEntities(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -2413,7 +2413,7 @@ func (ec *executionContext) _Query_searchEntities(ctx context.Context, field gra
 	}
 	res := resTmp.([]*model.Entity)
 	fc.Result = res
-	return ec.marshalOEntity2ᚕᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityᚄ(ctx, field.Selections, res)
+	return ec.marshalOEntity2ᚕᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -2533,7 +2533,7 @@ func (ec *executionContext) _Subscription_streamEvents(ctx context.Context, fiel
 			w.Write([]byte{'{'})
 			graphql.MarshalString(field.Alias).MarshalGQL(w)
 			w.Write([]byte{':'})
-			ec.marshalNEvent2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx, field.Selections, res).MarshalGQL(w)
+			ec.marshalNEvent2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx, field.Selections, res).MarshalGQL(w)
 			w.Write([]byte{'}'})
 		})
 	}
@@ -2585,7 +2585,7 @@ func (ec *executionContext) _Subscription_streamMessages(ctx context.Context, fi
 			w.Write([]byte{'{'})
 			graphql.MarshalString(field.Alias).MarshalGQL(w)
 			w.Write([]byte{':'})
-			ec.marshalNPeerMessage2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐPeerMessage(ctx, field.Selections, res).MarshalGQL(w)
+			ec.marshalNPeerMessage2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐPeerMessage(ctx, field.Selections, res).MarshalGQL(w)
 			w.Write([]byte{'}'})
 		})
 	}
@@ -4008,7 +4008,7 @@ func (ec *executionContext) unmarshalInputSearchEntityOpts(ctx context.Context, 
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("query_string"))
-			it.QueryString, err = ec.unmarshalNString2string(ctx, v)
+			it.QueryString, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -4032,7 +4032,7 @@ func (ec *executionContext) unmarshalInputSearchEntityOpts(ctx context.Context, 
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
-			it.Sort, err = ec.unmarshalOSort2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSort(ctx, v)
+			it.Sort, err = ec.unmarshalOSort2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSort(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -4068,7 +4068,7 @@ func (ec *executionContext) unmarshalInputSearchEventOpts(ctx context.Context, o
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("query_string"))
-			it.QueryString, err = ec.unmarshalNString2string(ctx, v)
+			it.QueryString, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -4108,7 +4108,7 @@ func (ec *executionContext) unmarshalInputSearchEventOpts(ctx context.Context, o
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("sort"))
-			it.Sort, err = ec.unmarshalOSort2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSort(ctx, v)
+			it.Sort, err = ec.unmarshalOSort2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSort(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -4847,11 +4847,11 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 	return res
 }
 
-func (ec *executionContext) marshalNCache2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCache(ctx context.Context, sel ast.SelectionSet, v model.Cache) graphql.Marshaler {
+func (ec *executionContext) marshalNCache2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCache(ctx context.Context, sel ast.SelectionSet, v model.Cache) graphql.Marshaler {
 	return ec._Cache(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNCache2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCache(ctx context.Context, sel ast.SelectionSet, v *model.Cache) graphql.Marshaler {
+func (ec *executionContext) marshalNCache2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCache(ctx context.Context, sel ast.SelectionSet, v *model.Cache) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -4861,21 +4861,21 @@ func (ec *executionContext) marshalNCache2ᚖgithubᚗcomᚋautom8terᚋstategat
 	return ec._Cache(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNCacheInput2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCacheInput(ctx context.Context, v interface{}) (model.CacheInput, error) {
+func (ec *executionContext) unmarshalNCacheInput2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCacheInput(ctx context.Context, v interface{}) (model.CacheInput, error) {
 	res, err := ec.unmarshalInputCacheInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNCacheRef2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCacheRef(ctx context.Context, v interface{}) (model.CacheRef, error) {
+func (ec *executionContext) unmarshalNCacheRef2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐCacheRef(ctx context.Context, v interface{}) (model.CacheRef, error) {
 	res, err := ec.unmarshalInputCacheRef(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNEntity2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx context.Context, sel ast.SelectionSet, v model.Entity) graphql.Marshaler {
+func (ec *executionContext) marshalNEntity2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx context.Context, sel ast.SelectionSet, v model.Entity) graphql.Marshaler {
 	return ec._Entity(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNEntity2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx context.Context, sel ast.SelectionSet, v *model.Entity) graphql.Marshaler {
+func (ec *executionContext) marshalNEntity2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx context.Context, sel ast.SelectionSet, v *model.Entity) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -4885,21 +4885,21 @@ func (ec *executionContext) marshalNEntity2ᚖgithubᚗcomᚋautom8terᚋstatega
 	return ec._Entity(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNEntityInput2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityInput(ctx context.Context, v interface{}) (model.EntityInput, error) {
+func (ec *executionContext) unmarshalNEntityInput2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityInput(ctx context.Context, v interface{}) (model.EntityInput, error) {
 	res, err := ec.unmarshalInputEntityInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNEntityRef2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityRef(ctx context.Context, v interface{}) (model.EntityRef, error) {
+func (ec *executionContext) unmarshalNEntityRef2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityRef(ctx context.Context, v interface{}) (model.EntityRef, error) {
 	res, err := ec.unmarshalInputEntityRef(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNEvent2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx context.Context, sel ast.SelectionSet, v model.Event) graphql.Marshaler {
+func (ec *executionContext) marshalNEvent2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx context.Context, sel ast.SelectionSet, v model.Event) graphql.Marshaler {
 	return ec._Event(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNEvent2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx context.Context, sel ast.SelectionSet, v *model.Event) graphql.Marshaler {
+func (ec *executionContext) marshalNEvent2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx context.Context, sel ast.SelectionSet, v *model.Event) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -4909,7 +4909,7 @@ func (ec *executionContext) marshalNEvent2ᚖgithubᚗcomᚋautom8terᚋstategat
 	return ec._Event(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNEventRef2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEventRef(ctx context.Context, v interface{}) (model.EventRef, error) {
+func (ec *executionContext) unmarshalNEventRef2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEventRef(ctx context.Context, v interface{}) (model.EventRef, error) {
 	res, err := ec.unmarshalInputEventRef(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
@@ -4950,26 +4950,26 @@ func (ec *executionContext) marshalNMap2map(ctx context.Context, sel ast.Selecti
 	return res
 }
 
-func (ec *executionContext) unmarshalNMessage2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐMessage(ctx context.Context, v interface{}) (model.Message, error) {
+func (ec *executionContext) unmarshalNMessage2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐMessage(ctx context.Context, v interface{}) (model.Message, error) {
 	res, err := ec.unmarshalInputMessage(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNMutex2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐMutex(ctx context.Context, v interface{}) (model.Mutex, error) {
+func (ec *executionContext) unmarshalNMutex2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐMutex(ctx context.Context, v interface{}) (model.Mutex, error) {
 	res, err := ec.unmarshalInputMutex(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNMutexRef2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐMutexRef(ctx context.Context, v interface{}) (model.MutexRef, error) {
+func (ec *executionContext) unmarshalNMutexRef2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐMutexRef(ctx context.Context, v interface{}) (model.MutexRef, error) {
 	res, err := ec.unmarshalInputMutexRef(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNPeerMessage2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐPeerMessage(ctx context.Context, sel ast.SelectionSet, v model.PeerMessage) graphql.Marshaler {
+func (ec *executionContext) marshalNPeerMessage2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐPeerMessage(ctx context.Context, sel ast.SelectionSet, v model.PeerMessage) graphql.Marshaler {
 	return ec._PeerMessage(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNPeerMessage2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐPeerMessage(ctx context.Context, sel ast.SelectionSet, v *model.PeerMessage) graphql.Marshaler {
+func (ec *executionContext) marshalNPeerMessage2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐPeerMessage(ctx context.Context, sel ast.SelectionSet, v *model.PeerMessage) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -4979,22 +4979,22 @@ func (ec *executionContext) marshalNPeerMessage2ᚖgithubᚗcomᚋautom8terᚋst
 	return ec._PeerMessage(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNSearchEntityOpts2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSearchEntityOpts(ctx context.Context, v interface{}) (model.SearchEntityOpts, error) {
+func (ec *executionContext) unmarshalNSearchEntityOpts2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSearchEntityOpts(ctx context.Context, v interface{}) (model.SearchEntityOpts, error) {
 	res, err := ec.unmarshalInputSearchEntityOpts(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNSearchEventOpts2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSearchEventOpts(ctx context.Context, v interface{}) (model.SearchEventOpts, error) {
+func (ec *executionContext) unmarshalNSearchEventOpts2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSearchEventOpts(ctx context.Context, v interface{}) (model.SearchEventOpts, error) {
 	res, err := ec.unmarshalInputSearchEventOpts(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNStreamEventOpts2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐStreamEventOpts(ctx context.Context, v interface{}) (model.StreamEventOpts, error) {
+func (ec *executionContext) unmarshalNStreamEventOpts2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐStreamEventOpts(ctx context.Context, v interface{}) (model.StreamEventOpts, error) {
 	res, err := ec.unmarshalInputStreamEventOpts(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNStreamMessageOpts2githubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐStreamMessageOpts(ctx context.Context, v interface{}) (model.StreamMessageOpts, error) {
+func (ec *executionContext) unmarshalNStreamMessageOpts2githubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐStreamMessageOpts(ctx context.Context, v interface{}) (model.StreamMessageOpts, error) {
 	res, err := ec.unmarshalInputStreamMessageOpts(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
@@ -5267,7 +5267,7 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	return graphql.MarshalBoolean(*v)
 }
 
-func (ec *executionContext) marshalOEntity2ᚕᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Entity) graphql.Marshaler {
+func (ec *executionContext) marshalOEntity2ᚕᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntityᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Entity) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -5294,7 +5294,7 @@ func (ec *executionContext) marshalOEntity2ᚕᚖgithubᚗcomᚋautom8terᚋstat
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNEntity2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx, sel, v[i])
+			ret[i] = ec.marshalNEntity2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEntity(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -5307,7 +5307,7 @@ func (ec *executionContext) marshalOEntity2ᚕᚖgithubᚗcomᚋautom8terᚋstat
 	return ret
 }
 
-func (ec *executionContext) marshalOEvent2ᚕᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEventᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Event) graphql.Marshaler {
+func (ec *executionContext) marshalOEvent2ᚕᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEventᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Event) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -5334,7 +5334,7 @@ func (ec *executionContext) marshalOEvent2ᚕᚖgithubᚗcomᚋautom8terᚋstate
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNEvent2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx, sel, v[i])
+			ret[i] = ec.marshalNEvent2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐEvent(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -5377,7 +5377,7 @@ func (ec *executionContext) marshalOMap2map(ctx context.Context, sel ast.Selecti
 	return graphql.MarshalMap(v)
 }
 
-func (ec *executionContext) unmarshalOSort2ᚖgithubᚗcomᚋautom8terᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSort(ctx context.Context, v interface{}) (*model.Sort, error) {
+func (ec *executionContext) unmarshalOSort2ᚖgithubᚗcomᚋstategateᚋstategateᚋgenᚋgqlᚋgoᚋmodelᚐSort(ctx context.Context, v interface{}) (*model.Sort, error) {
 	if v == nil {
 		return nil, nil
 	}
