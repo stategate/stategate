@@ -28,10 +28,10 @@ import (
 type Name string
 
 const (
-	REDIS    Name = "redis"
-	MONGO    Name = "mongo"
-	NATS     Name = "nats"
-	AMQP     Name = "amqp"
+	REDIS     Name = "redis"
+	MONGO     Name = "mongo"
+	NATS      Name = "nats"
+	AMQP      Name = "amqp"
 	MEMCACHED Name = "memcached"
 )
 

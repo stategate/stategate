@@ -10,15 +10,15 @@ services:
       default:
         aliases:
           - mongo
-#  nats:
-#    image: nats:latest
-#    ports:
-#      - "8222:8222"
-#      - "4222:4222"
-#    networks:
-#      default:
-#        aliases:
-#          - nats
+  nats:
+    image: nats:latest
+    ports:
+      - "8222:8222"
+      - "4222:4222"
+    networks:
+      default:
+        aliases:
+          - nats
   redis:
     image: redis:latest
     ports:
@@ -27,17 +27,17 @@ services:
       default:
         aliases:
           - redis
-#  stategate:
-#    image: stategate/stategate:v0.2.3
-#    env_file:
-#      - ./.env
-#    ports:
-#      - "8080:8080"
-#      - "8081:8081"
-#    networks:
-#      default:
-#        aliases:
-#          - stategate
+  stategate:
+    image: stategate/stategate:v0.13.3
+    env_file:
+      - ./.env
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    networks:
+      default:
+        aliases:
+          - stategate
 networks:
   default:
 
