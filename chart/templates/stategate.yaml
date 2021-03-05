@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: stategate-system
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: stategate-service
+  namespace: stategate-system
+  labels:
+    app: stategate
+spec:
+  ports:
+  - port: 8080
+    name: api
+  - port: 8081
+    name: metrics
+  clusterIP: None
+  selector:
+    app: stategate
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stategate
+  namespace: stategate-system
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: stategate
+  template:
+    metadata:
+      labels:
+        app: stategate
+    spec:
+      containers:
+        - name: stategate
+          env:
+            # port to serve on. defaults to 8080
+            - name: STATEGATE_PORT
+              value: "8080"
+            # enable debug logs (optional)
+            - name: STATEGATE_DEBUG
+              value: {{ .Values.debug }}
+            # disable all authentication & authorization(jwks, request policies, response policies) (optional)
+            - name: STATEGATE_AUTH_DISABLED
+              value: {{ .Values.auth_disabled }}
+            # JSON Web Key Set remote URI used for fetching jwt signing keys for verification/validation (optional)
+            - name: STATEGATE_JWKS_URI
+              value: {{ .Values.jwks_uri }}
+            # OPA rego policy executed on inbound requests from clients
+            - name: STATEGATE_REQUEST_POLICY
+              value: {{ .Values.request_policy }}
+            # OPA rego policy executed on responses sent to clients
+            - name: STATEGATE_RESPONSE_POLICY
+              value: {{ .Values.response_policy }}
+            # channel provider configuration(JSON) options: [redis, nats, imqp]
+            # STATEGATE_CHANNEL_PROVIDER={ "name": "redis", "addr": "redis:6379", "user": "changeme", "password": "changeme" }
+            # STATEGATE_CHANNEL_PROVIDER={ "name": "nats", "addr": "localhost:4222", "user": "changeme", "password": "changeme" }
+            # STATEGATE_CHANNEL_PROVIDER={ "name": "amqp", "addr": "localhost:5672", "user": "changeme", "password": "changeme" }
+            - name: STATEGATE_CHANNEL_PROVIDER
+              value: {{ .Values.channel_provider }}
+            # storage provider configuration(JSON) options: [mongo]
+            - name: STATEGATE_STORAGE_PROVIDER
+              value: {{ .Values.storage_provider }}
+            # STATEGATE_CACHE_PROVIDER={ "name": "redis", "addr": "redis:6379", "user": "changeme", "password": "changeme" }
+            # STATEGATE_CACHE_PROVIDER={ "name": "memcached", "addr": "localhost:11211" }
+            - name: STATEGATE_CACHE_PROVIDER
+              value: {{ .Values.cache_provider }}
+          image: "stategate/stategate:v0.13.3"
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8081
+          - containerPort: 8080
+
+---

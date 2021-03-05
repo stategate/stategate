@@ -58,3 +58,12 @@ build: ## build the server to ./bin
 
 test: ## run tests
 	@go test -v ./...
+
+
+chart:
+	@cd chart; helm dependency update && helm package .
+	@helm repo index .
+
+update-helm:
+	@helm repo add --username stategate https://raw.githubusercontent.com/stategate/stategate/master/
+	@helm repo update

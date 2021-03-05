@@ -1,0 +1,9 @@
+replicas: 3
+debug: "true"
+auth_disabled: "true"
+jwks_uri: ""
+request_policy: ""
+response_policy: ""
+channel_provider: '{ "name": "nats", "addr": "nats:4222" }'
+storage_provider: '{ "name": "mongo", "addr": "mongodb://mongo:27017/testing" }'
+cache_provider: '{ "name": "redis", "addr": "redis:6379" }'
