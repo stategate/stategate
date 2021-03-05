@@ -1,10 +1,33 @@
-# stategate
+# StateGate
 
 A pluggable "Application State Gateway" that acts as a unified API for all application state operations
 
 [![GoDoc](https://godoc.org/github.com/stategate/stategate?status.svg)](https://godoc.org/github.com/stategate/stategate/stategate-client-go)
 
 - [API Documentation](https://stategate.github.io/stategate/)
+
+- [StateGate](#stategate)
+  * [API Services/Methods](#api-services-methods)
+  * [Features](#features)
+  * [Goals](#goals)
+  * [Design](#design)
+      - [Stategate is designed as a unified API for all application state operations](#stategate-is-designed-as-a-unified-api-for-all-application-state-operations)
+      - [Stategate is designed to be flexible enough to work in many different tech stacks](#stategate-is-designed-to-be-flexible-enough-to-work-in-many-different-tech-stacks)
+      - [Stategate is designed with EventSourcing in mind](#stategate-is-designed-with-eventsourcing-in-mind)
+    + [Primitives](#primitives)
+      - [Entity](#entity)
+      - [Events](#events)
+      - [Messages](#messages)
+  * [Environmental Variables](#environmental-variables)
+  * [User Interface](#user-interface)
+  * [Code Base](#code-base)
+    + [Storage Providers](#storage-providers)
+    + [Cache Providers](#cache-providers)
+    + [Channel Providers](#channel-providers)
+  * [Authentication(optional)](#authentication-optional-)
+  * [Authorization(optional)](#authorization-optional-)
+  * [FAQ](#faq)
+
 
 ## API Services/Methods
 
@@ -354,9 +377,9 @@ STATEGATE_CACHE_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "c
 Please take a look at the following options for stategate user-interface clients:
 
 - [OAuth GraphQL Playground](https://github.com/autom8ter/oauth-graphql-playground): A graphQL IDE that may be used to connect & interact with the full functionality of the stategate graphQL API as an authenticated user
+- [GraphQL Playground](https://github.com/graphql/graphql-playground): A graphQL IDE that may be used to connect & interact with the full functionality of the stategate graphQL API as an unauthenticated user(stategate auth is disabled)
 
-
-## Implementation Details
+## Code Base
 
 - [Interfaces](./internal/api)
 - [Interface Implementations / Providers](./internal/providers)
@@ -439,29 +462,28 @@ type ChannelProvider interface {
 }
 ```
 
-## Authorization
 
-Stategate uses an embedded [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) compiler/engine to execute authorization decisions at runtime
+## Authentication(optional)
+Stategate uses a configured remote [JSON web key set](https://auth0.com/docs/tokens/json-web-tokens/json-web-key-sets) to verify inbound JWT's. Stategate will reject token's not signed by the keys presented by the remote jwks uri. Stategate expects JWT's to be sent as Authorization: Bearer $token. 
+The JWKS uri is loaded at startup via environmental variables. If StateGate auth is disabled, authentication will be skipped.
+
+## Authorization(optional)
+
+Stategate uses an embedded [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) compiler/engine to execute authorization decisions at runtime.
+All policies are loaded via environmental variables at startup. If StateGate auth is disabled, policy execution will be skipped. Authorization always occurs AFTER authentication(if a jwks uri is configured).
+
+The input attributes to all rego decisions are:
+- `claims`: the jwt claims of the user making the request
+- `method`: the gRPC method invoked
+- `metadata`: the inbound gRPC metadata
+- `body`: the request body
+- `client_stream`: whether the current request is a client stream
+- `server_stream`: whether the current request is a server stream
+
+Stategate may load request policies and/or response policies. Request policies authorize inbound requests(ingress), response policies authorize outbound responses(egress).
 
 
-### Request Authorization Policies
-TODO
-
-## Response Authorization Policies
-TODO
-
-## Authentication
-### Remote JWKS URI
-
-https://auth0.com/docs/tokens/json-web-tokens/json-web-key-sets
-
-TODO
 
 ## FAQ
 
-#### What is your favorite combination of storage, cache, and channel providers for maximum scale?
-My favorite combination for maximum scale is:
-cache_provider: Redis
-storage_provider: MongoDB
-channel_provider: Nats
 
