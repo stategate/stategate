@@ -275,7 +275,7 @@ type Mutation {
     # delCache deletes a value from the cache
     delCache(input: CacheRef!): String
     # setEntity sets the current state value of an entity, adds it to the event log, then broadcast the event to all interested consumers(EventService.Stream)
-    setEntity(input: EntityInput!): Entity!
+    setEntity(input: EntityInput!): String
     # delEntity hard deletes an entity from current state store, adds it's state prior to deletion to the event log, then broadcast the event to all interested consumers(EventService.Stream)
     # an Entity may be recovered via querying the Event store for historical records of the deleted Entity.
     delEntity(input: EntityRef!): String

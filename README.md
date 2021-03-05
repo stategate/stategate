@@ -1,6 +1,6 @@
 # stategate
 
-A pluggable "Application State Gateway" that enforces the [Event Sourcing Pattern](https://microservices.io/patterns/data/event-sourcing.html) for securely persisting & broadcasting application state changes
+A pluggable "Application State Gateway" that sits in front of third party stateful services and securely persists and broadcasts application state changes
 
 [![GoDoc](https://godoc.org/github.com/stategate/stategate?status.svg)](https://godoc.org/github.com/stategate/stategate/stategate-client-go)
 
@@ -177,21 +177,22 @@ service MutexService {
 - [x] Pluggable ["Cache" Providers](internal/api/api.go)
     - [x] Redis
         - [x] fully-tested
+    - [ ] Memcache
+        - [ ] fully-tested
 - [x] Pluggable ["Channel" Providers](internal/api/api.go)
     - [x] Redis
         - [x] fully-tested   
     - [x] Nats
         - [x] fully-tested  
-    - [ ] RabbitMQ
-        - [ ] fully-tested
-    - [ ] 0MQ
-        - [ ] fully-tested
+    - [x] AMQP
+        - [x] fully-tested
+
 
 
 ## Goals
 
 - [x] Create a simple API interface for storing state(entities) and subscribing to state changes(events) using pluggable cache & storage providers
-- [x] Capture all changes to an application's state/entities as a sequence of events.
+- [x] Capture all changes to an application's state/entities as a sequence of events - [event sourcing](https://microservices.io/patterns/data/event-sourcing.html).
 - [x] Safe to swap backend providers without changing client-side code
 - [x] Type-safe client's generated in many languages
 - [x] Safe to expose to the public internet due to fine-grained authentication/authorization model.
@@ -207,7 +208,14 @@ service MutexService {
 
 ## Design
 
-Stategate was designed with EventSourcing in mind
+#### Stategate was designed to front all interactions with N application(s) state
+Stategate acts as a gateway to ALL application state related functionality including:
+- persistance of an entity's current state
+- persistance of an entity's historical state
+- caching
+- peer to peer pubsub
+
+#### Stategate was designed with EventSourcing in mind
 
 What is Event Sourcing?
 
@@ -387,10 +395,12 @@ type CacheProvider interface {
 
 ### Channel Providers
 
-supported providers: [redis, nats]
+supported providers: [redis, nats, amqp]
 
 - A stategate channel provider is a pluggable, 3rd party message queue service
 - Channel providers provide a way for stategate to broadcast messages back to itself as it scales horizontally. 
+- Channel providers need not be durable since storage providers handle persistance
+- Message delivery performance is desireable over durability.
 
 [interface](internal/api/api.go)
 
@@ -425,4 +435,9 @@ TODO
 
 ## FAQ
 
+#### What is your favorite combination of storage, cache, and channel providers for maximum scale?
+My favorite combination for maximum scale is:
+cache_provider: Redis
+storage_provider: MongoDB
+channel_provider: Nats
 

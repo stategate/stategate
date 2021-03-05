@@ -35,7 +35,7 @@ func (r *mutationResolver) DelCache(ctx context.Context, input model.CacheRef) (
 	return nil, nil
 }
 
-func (r *mutationResolver) SetEntity(ctx context.Context, input model.EntityInput) (*model.Entity, error) {
+func (r *mutationResolver) SetEntity(ctx context.Context, input model.EntityInput) (*string, error) {
 	_, err := r.entity.Set(ctx, toEntity(input))
 	if err != nil {
 		return nil, &gqlerror.Error{

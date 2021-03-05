@@ -100,6 +100,7 @@ func NewProvider(t *testing.T, ctx context.Context, jwt string, config *server.C
 			AccessToken: jwt,
 		})))
 	if err != nil {
+		lgger.Error("", zap.Error(err))
 		t.Fatal(err)
 	}
 	f.clientset = clientset

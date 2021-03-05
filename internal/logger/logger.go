@@ -4,6 +4,7 @@ import (
 	"github.com/stategate/stategate/internal/version"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+	"net/http"
 	"os"
 	"runtime"
 )
@@ -15,7 +16,7 @@ type Logger struct {
 func New(debug bool, withFields ...zap.Field) *Logger {
 	hst, _ := os.Hostname()
 	withFields = append(withFields, zap.String("host", hst))
-	withFields = append(withFields, zap.String("service", "graphik"))
+	withFields = append(withFields, zap.String("service", "stategate"))
 	withFields = append(withFields, zap.String("version", version.Version))
 
 	zap.NewDevelopmentConfig()
@@ -71,4 +72,15 @@ func (l *Logger) Error(msg string, fields ...zap.Field) {
 
 func (l *Logger) Zap() *zap.Logger {
 	return l.logger
+}
+
+func (l *Logger) Handler(handler http.Handler) http.Handler{
+	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+		fields := []zapcore.Field{
+			zap.String("method", req.Method),
+			zap.String("url", req.URL.String()),
+		}
+		l.logger.Debug("http request received", fields...)
+		handler.ServeHTTP(w, req)
+	})
 }

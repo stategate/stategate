@@ -46,11 +46,11 @@ func NewService(ctx context.Context, storage api.StorageProvider, cache api.Cach
 		cancel: cancel,
 	}
 	ech, err := channel.GetEventChannel(ctx)
-	if err != nil {
+	if err != nil && err.Err != nil {
 		return nil, err.Err
 	}
 	mch, err := channel.GetMessageChannel(ctx)
-	if err != nil {
+	if err != nil && err.Err != nil {
 		return nil, err.Err
 	}
 	go func() {

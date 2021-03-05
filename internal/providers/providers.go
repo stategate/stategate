@@ -10,9 +10,11 @@ import (
 	"github.com/pkg/errors"
 	"github.com/stategate/stategate/internal/api"
 	"github.com/stategate/stategate/internal/logger"
+	"github.com/stategate/stategate/internal/providers/amqpb"
 	"github.com/stategate/stategate/internal/providers/mongo"
 	natss "github.com/stategate/stategate/internal/providers/nats"
 	"github.com/stategate/stategate/internal/providers/redis"
+	"github.com/streadway/amqp"
 	mongo2 "go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.uber.org/zap"
@@ -27,12 +29,13 @@ const (
 	REDIS Name = "redis"
 	MONGO Name = "mongo"
 	NATS  Name = "nats"
+	AMQP  Name = "amqp"
 )
 
 var (
 	AllCacheProviders   = []Name{REDIS}
 	AllStorageProviders = []Name{MONGO}
-	AllChannelProviders = []Name{REDIS, NATS}
+	AllChannelProviders = []Name{REDIS, NATS, AMQP}
 )
 
 func GetStorageProvider(lgger *logger.Logger, providerConfig map[string]string) (api.StorageProvider, error) {
@@ -138,6 +141,7 @@ func GetChannelProvider(lgger *logger.Logger, providerConfig map[string]string) 
 	if name == "" {
 		return nil, errors.New("cache provider: empty name")
 	}
+	addr := providerConfig["addr"]
 	user := providerConfig["user"]
 	pw := providerConfig["password"]
 	var tlsConfig *tls.Config
@@ -151,10 +155,19 @@ func GetChannelProvider(lgger *logger.Logger, providerConfig map[string]string) 
 			Certificates: []tls.Certificate{cer},
 		}
 	}
+
 	switch Name(name) {
+	case AMQP:
+		if addr == "" {
+			return nil, errors.New("amqp config: empty addr")
+		}
+		conn, err := amqp.Dial(addr)
+		if err != nil {
+			return nil, errors.Wrap(err, "failed to dial amqp")
+		}
+		return amqpb.NewService(lgger, conn)
 	case NATS:
-		natsAddr := providerConfig["addr"]
-		if natsAddr == "" {
+		if addr == "" {
 			return nil, errors.New("nats config: empty addr")
 		}
 		hostname, err := os.Hostname()
@@ -178,7 +191,7 @@ func GetChannelProvider(lgger *logger.Logger, providerConfig map[string]string) 
 				opts = append(opts, nats.UserInfo(user, pw))
 			}
 			conn, err = nats.Connect(
-				natsAddr,
+				addr,
 				opts...,
 			)
 			if err == nil && conn != nil {
@@ -191,12 +204,11 @@ func GetChannelProvider(lgger *logger.Logger, providerConfig map[string]string) 
 		}
 		return natss.NewService(lgger, conn)
 	case REDIS:
-		redisHost := providerConfig["addr"]
-		if redisHost == "" {
+		if addr == "" {
 			return nil, errors.New("redis config: empty addr")
 		}
 		opts := &rediss.Options{
-			Addr:     redisHost,
+			Addr:     addr,
 			Username: user,
 			Password: pw,
 		}

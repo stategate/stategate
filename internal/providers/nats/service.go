@@ -14,7 +14,8 @@ import (
 type Service struct {
 	logger *logger.Logger
 	conn   *nats.Conn
-	sub    *nats.Subscription
+	esub   *nats.Subscription
+	msub   *nats.Subscription
 }
 
 func NewService(logger *logger.Logger, conn *nats.Conn) (*Service, error) {
@@ -68,12 +69,12 @@ func (s *Service) GetMessageChannel(ctx context.Context) (chan *stategate.PeerMe
 	if err != nil {
 		return nil, &errorz.Error{
 			Type:     errorz.ErrUnknown,
-			Info:     "failed to get peer channel",
+			Info:     "failed to get peer message channel",
 			Err:      err,
 			Metadata: map[string]string{},
 		}
 	}
-	s.sub = sub
+	s.esub = sub
 	return peers, nil
 }
 
@@ -124,13 +125,18 @@ func (s *Service) GetEventChannel(ctx context.Context) (chan *stategate.Event, *
 			Metadata: map[string]string{},
 		}
 	}
-	s.sub = sub
+	s.msub = sub
 	return events, nil
 }
 
 func (s *Service) Close() error {
-	if s.sub != nil {
-		if err := s.sub.Drain(); err != nil {
+	if s.msub != nil {
+		if err := s.msub.Drain(); err != nil {
+			return err
+		}
+	}
+	if s.esub != nil {
+		if err := s.esub.Drain(); err != nil {
 			return err
 		}
 	}

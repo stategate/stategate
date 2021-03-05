@@ -217,20 +217,9 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	}
 	gresolver := gql.NewResolver(conn)
 	defer gresolver.Close()
-	if err := restMux.HandlePath(http.MethodPost, "/graphql", func(w http.ResponseWriter, r *http.Request, pathParams map[string]string) {
-		gresolver.QueryHandler()(w, r)
-	}); err != nil {
-		return errors.Wrap(err, "failed to register POST /graphql endpoints")
-	}
-	if err := restMux.HandlePath(http.MethodGet, "/graphql", func(w http.ResponseWriter, r *http.Request, pathParams map[string]string) {
-		gresolver.QueryHandler()(w, r)
-	}); err != nil {
-		return errors.Wrap(err, "failed to register POST /graphql endpoints")
-	}
 	mux.Handle("/", restMux)
-	httpServer := &http.Server{
-		Handler: mux,
-	}
+	mux.Handle("/api/graphql", gresolver.QueryHandler())
+	httpServer := &http.Server{}
 	if tlsConfig != nil {
 		httpServer.TLSConfig = tlsConfig
 		httpServer.TLSNextProto = map[string]func(*http.Server, *tls.Conn, http.Handler){}
@@ -240,13 +229,13 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 		grpcweb.WithWebsockets(true),
 		grpcweb.WithWebsocketPingInterval(15*time.Second),
 	)
-	httpServer.Handler = http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
+	httpServer.Handler = lgger.Handler(http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
 		if wrappedGrpc.IsGrpcWebRequest(req) {
 			wrappedGrpc.ServeHTTP(resp, req)
 		} else {
 			mux.ServeHTTP(resp, req)
 		}
-	})
+	}))
 	group.Go(func() error {
 		httpMatchermatcher := apiMux.Match(cmux.Any())
 		defer httpMatchermatcher.Close()
