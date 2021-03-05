@@ -74,7 +74,7 @@ func (l *Logger) Zap() *zap.Logger {
 	return l.logger
 }
 
-func (l *Logger) Handler(handler http.Handler) http.Handler{
+func (l *Logger) Handler(handler http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		fields := []zapcore.Field{
 			zap.String("method", req.Method),

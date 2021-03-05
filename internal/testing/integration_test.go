@@ -38,6 +38,31 @@ func TestRedisRedisMongo(t *testing.T) {
 	})
 }
 
+func TestMemcacheRedisMongo(t *testing.T) {
+	redisContainer := framework.NewContainer(t, "redis", "latest", nil)
+	defer redisContainer.Close(t)
+	mongoContainer := framework.NewContainer(t, "mongo", "latest", nil)
+	defer mongoContainer.Close(t)
+	memcacheContainer := framework.NewContainer(t, "memcached", "latest", nil)
+	defer memcacheContainer.Close(t)
+	ctx := context.Background()
+	rmgo := memcacheRedisMongo(
+		t,
+		ctx,
+		memcacheContainer.GetPort("11211/tcp"),
+		redisContainer.GetPort("6379/tcp"),
+		mongoContainer.GetPort("27017/tcp"),
+	)
+	framework.Run(t, []*framework.Provider{
+		rmgo,
+	}, []*framework.TestCase{
+		peerService(ctx),
+		endToEnd(ctx),
+		transaction(ctx),
+		testCacheProvider(ctx),
+	})
+}
+
 func TestRedisNatsMongo(t *testing.T) {
 	redisContainer := framework.NewContainer(t, "redis", "latest", nil)
 	defer redisContainer.Close(t)
@@ -149,6 +174,28 @@ func redisAmqpMongo(t *testing.T, ctx context.Context, redisPort, mongoPort, amq
 		ChannelProvider: map[string]string{
 			"name": "amqp",
 			"addr": fmt.Sprintf("amqp://guest:guest@0.0.0.0:%s", amqpPort),
+		},
+	})
+}
+
+func memcacheRedisMongo(t *testing.T, ctx context.Context, memcachePort, redisPort, mongoPort string) *framework.Provider {
+	return framework.NewProvider(t, ctx, token, &server.Config{
+		Port:           0,
+		AuthDisabled:   true,
+		RequestPolicy:  allowAll,
+		ResponsePolicy: allowAll,
+		StorageProvider: map[string]string{
+			"name":     "mongo",
+			"addr":     fmt.Sprintf("mongodb://localhost:%s/testing", mongoPort),
+			"database": "testing",
+		},
+		CacheProvider: map[string]string{
+			"name": "memcached",
+			"addr": fmt.Sprintf("0.0.0.0:%s", memcachePort),
+		},
+		ChannelProvider: map[string]string{
+			"name": "redis",
+			"addr": fmt.Sprintf("0.0.0.0:%s", redisPort),
 		},
 	})
 }

@@ -8,6 +8,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.0 // indirect
 	github.com/autom8ter/machine/v2 v2.0.4
 	github.com/aws/aws-sdk-go v1.37.6 // indirect
+	github.com/bradfitz/gomemcache v0.0.0-20190913173617-a41fca850d0b
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
 	github.com/go-redis/redis/v8 v8.5.0
 	github.com/gogo/protobuf v1.3.2 // indirect

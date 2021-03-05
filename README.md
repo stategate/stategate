@@ -1,6 +1,6 @@
 # stategate
 
-A pluggable "Application State Gateway" that sits in front of third party stateful services and securely persists and broadcasts application state changes
+A pluggable "Application State Gateway" that acts as a unified API for all application state operations
 
 [![GoDoc](https://godoc.org/github.com/stategate/stategate?status.svg)](https://godoc.org/github.com/stategate/stategate/stategate-client-go)
 
@@ -177,8 +177,8 @@ service MutexService {
 - [x] Pluggable ["Cache" Providers](internal/api/api.go)
     - [x] Redis
         - [x] fully-tested
-    - [ ] Memcache
-        - [ ] fully-tested
+    - [x] Memcached
+        - [x] fully-tested
 - [x] Pluggable ["Channel" Providers](internal/api/api.go)
     - [x] Redis
         - [x] fully-tested   
@@ -208,14 +208,35 @@ service MutexService {
 
 ## Design
 
-#### Stategate was designed to front all interactions with N application(s) state
+#### Stategate is designed as a unified API for all application state operations
 Stategate acts as a gateway to ALL application state related functionality including:
 - persistance of an entity's current state
 - persistance of an entity's historical state
-- caching
-- peer to peer pubsub
+- caching for ephemeral state
+- peer to peer pubsub for peer-peer communication
+- distributed locking to prevent race conditions
 
-#### Stategate was designed with EventSourcing in mind
+#### Stategate is designed to be flexible enough to work in many different tech stacks
+
+Stategate can be configured to use different backend "providers" so that it may be used in a wide range of tech stacks.
+
+examples:
+
+1) if my company doesn't allow me to setup a Redis server but DOES allow Memcache, I would configure Stategate to use Memecache as it's
+"Cache Provider".
+
+2) if my company doesn't allow me to setup a RabbitMQ server but DOES allow Nats, I would configure Stategate to use Nats as it's
+"Channel Provider".
+
+3) if my company doesn't allow me to setup a MongoDB server but DOES allow PostGres, I would configure Stategate to use PostGres as it's
+"Storage Provider".
+ 
+#### Stategate is designed with EventSourcing in mind
+
+When interacting with the Stategate Entity/Event Service, the event sourcing paradigm is strictly adhered to.
+This means that entities current state is persisted, as well as a history of it's historical state. This allows entities to be
+reverted to a previous version of themselves at any given time. It also allows services to replay history to catch up on events.
+Changes to entites are always broadcasted to Event stream consumers.
 
 What is Event Sourcing?
 
@@ -223,8 +244,9 @@ What is Event Sourcing?
 
 > Applications persist events in an event store, which is a database of events. The store has an API for adding and retrieving an entity’s events. The event store also behaves like a message broker. It provides an API that enables services to subscribe to events. When a service saves an event in the event store, it is delivered to all interested subscribers. 
 
-![Event-Sourcing](./stategate.png)
-
+More Information on Event Sourcing: 
+    - https://martinfowler.com/eaaDev/EventSourcing.html
+    - https://microservices.io/patterns/data/event-sourcing.html
 
 ### Primitives
 
@@ -313,15 +335,17 @@ STATEGATE_REQUEST_POLICY=cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB
 # base64 encoded OPA rego policy executed on responses sent to clients (optional)
 STATEGATE_RESPONSE_POLICY=cGFja2FnZSBzdGF0ZWdhdGUuYXV0aHoKCmRlZmF1bHQgYWxsb3cgPSB0cnVl
 
-# channel provider configuration(JSON) options: [redis, nats]
-STATEGATE_CHANNEL_PROVIDER={ "name": "redis", "addr": "localhost:6379" }
-# STATEGATE_CHANNEL_PROVIDER={ "name": "nats", "addr": "localhost:4222" }
+# channel provider configuration(JSON) options: [redis, nats, amqp]
+STATEGATE_CHANNEL_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "changeme", "password": "changeme" }
+# STATEGATE_CHANNEL_PROVIDER={ "name": "nats", "addr": "localhost:4222", "user": "changeme", "password": "changeme" }
+# STATEGATE_CHANNEL_PROVIDER={ "name": "amqp", "addr": "localhost:5672", "user": "changeme", "password": "changeme" }
 
 # storage provider configuration(JSON) options: [mongo] REQUIRED
-STATEGATE_STORAGE_PROVIDER={ "name": "mongo", "database": "testing", "addr": "mongodb://localhost:27017/testing" }
+STATEGATE_STORAGE_PROVIDER={ "name": "mongo", "addr": "mongodb://localhost:27017/testing", "user": "changeme", "password": "changeme" }
 
-# cache provider configuration(JSON) options: [redis] REQUIRED
-STATEGATE_CACHE_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "xxx", "password": "xxxxxxxxxx" }
+# cache provider configuration(JSON) options: [redis, memcached] REQUIRED
+STATEGATE_CACHE_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "changeme", "password": "changeme" }
+# STATEGATE_CACHE_PROVIDER={ "name": "memcached", "addr": "localhost:11211" }
 
 ```
 

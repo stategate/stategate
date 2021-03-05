@@ -18,10 +18,10 @@ type ChannelProvider interface {
 // CacheProvider is an interface for caching ephemeral data
 type CacheProvider interface {
 	Get(ctx context.Context, ref *stategate.CacheRef) (*stategate.Cache, *errorz.Error)
-	Set(ctx context.Context, value *stategate.Cache) *errorz.Error
-	Del(ctx context.Context, value *stategate.CacheRef) *errorz.Error
-	Lock(ctx context.Context, ref *stategate.Mutex) *errorz.Error
-	Unlock(ctx context.Context, value *stategate.MutexRef) *errorz.Error
+	Set(ctx context.Context, cache *stategate.Cache) *errorz.Error
+	Del(ctx context.Context, ref *stategate.CacheRef) *errorz.Error
+	Lock(ctx context.Context, mutex *stategate.Mutex) *errorz.Error
+	Unlock(ctx context.Context, ref *stategate.MutexRef) *errorz.Error
 	Close() error
 }
 

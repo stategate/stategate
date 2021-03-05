@@ -4,13 +4,15 @@ import (
 	"context"
 	"crypto/tls"
 	"fmt"
+	memcache2 "github.com/bradfitz/gomemcache/memcache"
 	rediss "github.com/go-redis/redis/v8"
 	"github.com/nats-io/nats.go"
 	"github.com/nats-io/nuid"
 	"github.com/pkg/errors"
 	"github.com/stategate/stategate/internal/api"
 	"github.com/stategate/stategate/internal/logger"
-	"github.com/stategate/stategate/internal/providers/amqpb"
+	amqp2 "github.com/stategate/stategate/internal/providers/amqp"
+	"github.com/stategate/stategate/internal/providers/memcached"
 	"github.com/stategate/stategate/internal/providers/mongo"
 	natss "github.com/stategate/stategate/internal/providers/nats"
 	"github.com/stategate/stategate/internal/providers/redis"
@@ -26,14 +28,15 @@ import (
 type Name string
 
 const (
-	REDIS Name = "redis"
-	MONGO Name = "mongo"
-	NATS  Name = "nats"
-	AMQP  Name = "amqp"
+	REDIS    Name = "redis"
+	MONGO    Name = "mongo"
+	NATS     Name = "nats"
+	AMQP     Name = "amqp"
+	MEMCACHED Name = "memcached"
 )
 
 var (
-	AllCacheProviders   = []Name{REDIS}
+	AllCacheProviders   = []Name{REDIS, MEMCACHED}
 	AllStorageProviders = []Name{MONGO}
 	AllChannelProviders = []Name{REDIS, NATS, AMQP}
 )
@@ -59,10 +62,6 @@ func GetStorageProvider(lgger *logger.Logger, providerConfig map[string]string) 
 	}
 	switch Name(name) {
 	case MONGO:
-		db := providerConfig["database"]
-		if db == "" {
-			return nil, errors.New("mongo config: empty database")
-		}
 		uri := providerConfig["addr"]
 		if uri == "" {
 			return nil, errors.New("mongo config: empty addr")
@@ -96,6 +95,7 @@ func GetCacheProvider(lgger *logger.Logger, providerConfig map[string]string) (a
 	if name == "" {
 		return nil, errors.New("cache provider: empty name")
 	}
+	addr := providerConfig["addr"]
 	var tlsConfig *tls.Config
 	if providerConfig["client_cert_file"] != "" && providerConfig["client_key_file"] != "" {
 		cer, err := tls.LoadX509KeyPair(providerConfig["tls_cert"], providerConfig["tls_key"])
@@ -108,13 +108,18 @@ func GetCacheProvider(lgger *logger.Logger, providerConfig map[string]string) (a
 		}
 	}
 	switch Name(name) {
+	case MEMCACHED:
+		if addr == "" {
+			return nil, errors.New("memcached config: empty addr")
+		}
+		mc := memcache2.New(strings.Split(addr, ",")...)
+		return memcached.NewService(lgger, mc), nil
 	case REDIS:
-		redisHost := providerConfig["addr"]
-		if redisHost == "" {
+		if addr == "" {
 			return nil, errors.New("redis config: empty addr")
 		}
 		opts := &rediss.Options{
-			Addr:     redisHost,
+			Addr:     addr,
 			Username: providerConfig["user"],
 			Password: providerConfig["password"],
 		}
@@ -165,7 +170,7 @@ func GetChannelProvider(lgger *logger.Logger, providerConfig map[string]string) 
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to dial amqp")
 		}
-		return amqpb.NewService(lgger, conn)
+		return amqp2.NewService(lgger, conn)
 	case NATS:
 		if addr == "" {
 			return nil, errors.New("nats config: empty addr")

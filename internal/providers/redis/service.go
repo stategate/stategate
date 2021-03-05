@@ -78,7 +78,6 @@ func (s *Service) Set(ctx context.Context, value *stategate.Cache) *errorz.Error
 	if value.GetExp() != nil {
 		exp = value.GetExp().AsTime().Sub(time.Now())
 	}
-	value.GetExp().AsTime().Sub(time.Now())
 	if err := s.conn.Set(ctx, cachedKeyName(value.GetDomain(), value.GetKey()), bits, exp).Err(); err != nil {
 		return &errorz.Error{
 			Type: errorz.ErrUnknown,

@@ -1,4 +1,4 @@
-package amqpb
+package amqp
 
 import (
 	"context"
@@ -74,7 +74,7 @@ func (s Service) PublishEvent(ctx context.Context, event *stategate.Event) *erro
 		"",        // exchange
 		s.eq.Name, // routing key
 		false,     // mandatory
-		false,      // immediate
+		false,     // immediate
 		amqp.Publishing{
 			ContentType: "application/protobuf",
 			Body:        bits,
@@ -152,7 +152,7 @@ func (s Service) PublishMessage(ctx context.Context, message *stategate.PeerMess
 		"",        // exchange
 		s.mq.Name, // routing key
 		false,     // mandatory
-		false,      // immediate
+		false,     // immediate
 		amqp.Publishing{
 			ContentType: "application/protobuf",
 			Body:        bits,
@@ -180,7 +180,7 @@ func (s Service) GetMessageChannel(ctx context.Context) (chan *stategate.PeerMes
 		true,      // auto-ack
 		false,     // exclusive
 		false,     // no-local
-		true,     // no-wait
+		true,      // no-wait
 		nil,       // args
 	)
 	if err != nil {
