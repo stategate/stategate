@@ -24,16 +24,16 @@ A pluggable "Application State Gateway" that acts as a unified API for all appli
       - [Binaries](#binaries)
       - [Docker](#docker)
       - [Docker Compose](#docker-compose)
-      - [Kubernetes w/ Manifest](#kubernetes-w--manifest)
-      - [Kubernetes w/ Helm](#kubernetes-w--helm)
+      - [Kubernetes with Manifest](#kubernetes-with-manifest)
+      - [Kubernetes with Helm](#kubernetes-with-helm)
   * [Environmental Variables](#environmental-variables)
   * [User Interface](#user-interface)
   * [Code Base](#code-base)
     + [Storage Providers](#storage-providers)
     + [Cache Providers](#cache-providers)
     + [Channel Providers](#channel-providers)
-  * [Authentication(optional)](#authentication-optional-)
-  * [Authorization(optional)](#authorization-optional-)
+  * [Authentication(optional)](#authentication)
+  * [Authorization(optional)](#authorization)
   * [FAQ](#faq)
 
 
@@ -423,7 +423,7 @@ stop containers:
 
     docker-compose -f docker-compose.yml down --remove-orphans
     
-#### Kubernetes w/ Manifest
+#### Kubernetes with Manifest
 please download the [example kubernetes manifest](./k8s.yaml) and modify it to your liking.
 
 
@@ -433,7 +433,7 @@ deploy to cluster:
 
 Note: you will need to deploy channel/cache/storage providers and add them to the stategate deployment env vars before deployment.
     
-#### Kubernetes w/ Helm
+#### Kubernetes with Helm
     
     helm repo add stategate https://raw.githubusercontent.com/stategate/stategate/master/
     helm repo update
@@ -574,13 +574,13 @@ type ChannelProvider interface {
 ```
 
 
-## Authentication(optional)
-Stategate uses a configured remote [JSON web key set](https://auth0.com/docs/tokens/json-web-tokens/json-web-key-sets) to verify inbound JWT's. Stategate will reject token's not signed by the keys presented by the remote jwks uri. Stategate expects JWT's to be sent as Authorization: Bearer $token. 
+## Authentication
+Stategate may be configured to use a configured remote [JSON web key set](https://auth0.com/docs/tokens/json-web-tokens/json-web-key-sets) to verify inbound JWT's. Stategate will reject token's not signed by the keys presented by the remote jwks uri. Stategate expects JWT's to be sent as Authorization: Bearer $token. 
 The JWKS uri is loaded at startup via environmental variables. If StateGate auth is disabled, authentication will be skipped.
 
-## Authorization(optional)
+## Authorization
 
-Stategate uses an embedded [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) compiler/engine to execute authorization decisions at runtime.
+Stategate may be configured to use an embedded [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) compiler/engine to execute authorization decisions at runtime.
 All policies are loaded via environmental variables at startup. If StateGate auth is disabled, policy execution will be skipped. Authorization always occurs AFTER authentication(if a jwks uri is configured).
 
 The input attributes to all rego decisions are:
