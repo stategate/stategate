@@ -18,8 +18,8 @@ A pluggable "Application State Gateway" that acts as a unified API for all appli
       - [Entity](#entity)
       - [Event](#event)
       - [Message](#message)
-  * [Cache](#cache)
-  * [Mutex](#mutex)
+      - [Cache](#cache)
+      - [Mutex](#mutex)
   * [Installation](#installation)
       - [Binaries](#binaries)
       - [Docker](#docker)
@@ -367,7 +367,7 @@ Message is a non-persisted message passed between Peers as a means of communicat
     }
     
 
-## Cache
+#### Cache
 
 Cache is a persisted value that will expire after a period of time. It is held in memory for maximum performance.
 
@@ -384,7 +384,7 @@ Cache is a persisted value that will expire after a period of time. It is held i
       google.protobuf.Timestamp exp =4;
     }
 
-## Mutex
+#### Mutex
 
 Mutex is a distributed mutex for preventing data-races amongst peer services
     
