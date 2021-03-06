@@ -60,6 +60,7 @@ test: ## run tests
 	@go test -v ./...
 
 
+.PHONY: chart
 chart:
 	@cd chart; helm dependency update && helm package .
 	@helm repo index .

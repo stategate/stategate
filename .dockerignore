@@ -4,3 +4,6 @@ config.yaml
 k8s.yaml
 *.png
 chart
+.env
+docker-compose.yml
+bin

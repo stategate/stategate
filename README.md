@@ -435,8 +435,9 @@ Note: you will need to deploy channel/cache/storage providers and add them to th
     
 #### Kubernetes w/ Helm
     
-    helm repo add --username stategate https://raw.githubusercontent.com/stategate/stategate/master/
+    helm repo add stategate https://raw.githubusercontent.com/stategate/stategate/master/
     helm repo update
+    helm search repo stategate
 
 
 Note: you will need to deploy channel/cache/storage providers and set them as helm vars `--set` before deployment. 

@@ -2,13 +2,13 @@ apiVersion: v1
 entries:
   stategate:
   - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2021-03-05T14:00:42.186397-07:00"
-    description: A Helm chart for StateGate
-    digest: c36f31a1ead0de3de42ef418858688e467183fbfbabea1a4b860ada39d6ffefe
+    appVersion: 0.13.4
+    created: "2021-03-06T14:36:35.822784-07:00"
+    description: A Helm chart for the StateGate API
+    digest: b717801c1a62a1b5caf2fa9dd3ca4424fab195d9ae7cd4c058344a9a6eb86bfc
     name: stategate
     type: application
     urls:
     - chart/stategate-0.1.0.tgz
     version: 0.1.0
-generated: "2021-03-05T14:00:42.186003-07:00"
+generated: "2021-03-06T14:36:35.819614-07:00"
