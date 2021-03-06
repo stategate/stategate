@@ -1,9 +1,22 @@
+# number of replicas to create
 replicas: 3
+# enable debug logs
 debug: "true"
+# disable authentication/authorization
 auth_disabled: "true"
+
 jwks_uri: ""
 request_policy: ""
 response_policy: ""
-channel_provider: '{ "name": "nats", "addr": "nats:4222" }'
-storage_provider: '{ "name": "mongo", "addr": "mongodb://mongo:27017/testing" }'
-cache_provider: '{ "name": "redis", "addr": "redis:6379" }'
+
+#channel_provider: '{ "name": "nats", "addr": "localhost:4222", "user": "changeme", "password": "changeme" }'
+#channel_provider: '{ "name": "amqp", "addr": "localhost:5672", "user": "changeme", "password": "changeme" }'
+#channel_provider: '{ "name": "amqp", "addr": "localhost:5672", "user": "changeme", "password": "changeme" }'
+channel_provider: ''
+
+#storage_provider: '{ "name": "mongo", "addr": "mongodb://mongo:27017/testing" }'
+storage_provider: ''
+
+#cache_provider: '{ "name": "redis", "addr": "redis:6379" }'
+#cache_provider: '{ "name": "memcached", "addr": "localhost:11211" }'
+cache_provider: ''

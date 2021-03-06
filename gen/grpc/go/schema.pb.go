@@ -88,7 +88,7 @@ func (x *MutexRef) GetKey() string {
 	return ""
 }
 
-// EntityRef is a reference to a cached value
+// CacheRef is a reference to a cached value
 type CacheRef struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -604,9 +604,9 @@ type Cache struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// the item's business domain(ex: accounting)
+	// the cached value's business domain(ex: accounting)
 	Domain string `protobuf:"bytes,1,opt,name=domain,proto3" json:"domain,omitempty"`
-	// entity key (unique within type)
+	// the cached value's key (unique within domain)
 	Key string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
 	// the cached value's value to store
 	Value *_struct.Value `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`

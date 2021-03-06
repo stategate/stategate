@@ -280,7 +280,6 @@ message PeerMessage {
   google.protobuf.Struct claims =6[(validator.field) = {msg_exists : true}];
   // timestamp(ns) of when the message was broadcasted.
   int64 time =7[(validator.field) = {int_gt : 0}];
-
 }
 
 // Entities is an array of Entity

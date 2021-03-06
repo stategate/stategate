@@ -106,14 +106,14 @@
         "parameters": [
           {
             "name": "domain",
-            "description": "the item's business domain(ex: accounting)",
+            "description": "the cached value's business domain(ex: accounting)",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "key",
-            "description": "entity key (unique within type)",
+            "description": "the cached value's key (unique within domain)",
             "in": "path",
             "required": true,
             "type": "string"
@@ -792,11 +792,11 @@
       "properties": {
         "domain": {
           "type": "string",
-          "title": "the item's business domain(ex: accounting)"
+          "title": "the cached value's business domain(ex: accounting)"
         },
         "key": {
           "type": "string",
-          "title": "entity key (unique within type)"
+          "title": "the cached value's key (unique within domain)"
         },
         "value": {
           "type": "object",

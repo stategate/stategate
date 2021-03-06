@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * EntityRef is a reference to a cached value
+ * CacheRef is a reference to a cached value
  *
  * Generated from protobuf message <code>stategate.CacheRef</code>
  */

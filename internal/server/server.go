@@ -12,6 +12,7 @@ import (
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/rs/cors"
 	"github.com/soheilhy/cmux"
 	stategate "github.com/stategate/stategate/gen/grpc/go"
 	"github.com/stategate/stategate/internal/api"
@@ -87,15 +88,18 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 		w.WriteHeader(http.StatusOK)
 	})
 	metricsRouter.Handle("/metrics", promhttp.Handler())
+	lgger.Debug("registered prometheus endpoint", zap.String("path", "/metrics"))
+
 	metricsRouter.HandleFunc("/debug/pprof/", pprof.Index)
 	metricsRouter.HandleFunc("/debug/pprof/cmdline", pprof.Cmdline)
 	metricsRouter.HandleFunc("/debug/pprof/profile", pprof.Profile)
 	metricsRouter.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
 	metricsRouter.HandleFunc("/debug/pprof/trace", pprof.Trace)
+	lgger.Debug("registered pprof endpoints", zap.String("path", "/debug/pprof/"))
+
 	metricServer = &http.Server{Handler: metricsRouter}
 	if tlsConfig != nil {
 		metricServer.TLSConfig = tlsConfig
-		metricServer.TLSNextProto = map[string]func(*http.Server, *tls.Conn, http.Handler){}
 	}
 	group.Go(func() error {
 		addr, err := net.ResolveTCPAddr("tcp", fmt.Sprintf(":%v", c.Port+1))
@@ -217,25 +221,38 @@ func ListenAndServe(ctx context.Context, lgger *logger.Logger, c *Config) error 
 	}
 	gresolver := gql.NewResolver(conn)
 	defer gresolver.Close()
+
 	mux.Handle("/", restMux)
+	lgger.Debug("registered REST endpoints", zap.String("path", "/"))
+
 	mux.Handle("/api/graphql", gresolver.QueryHandler())
+	lgger.Debug("registered graphQL endpoint", zap.String("path", "/api/graphql"))
+
 	httpServer := &http.Server{}
 	if tlsConfig != nil {
 		httpServer.TLSConfig = tlsConfig
-		httpServer.TLSNextProto = map[string]func(*http.Server, *tls.Conn, http.Handler){}
 	}
 	wrappedGrpc := grpcweb.WrapServer(
 		gserver,
 		grpcweb.WithWebsockets(true),
 		grpcweb.WithWebsocketPingInterval(15*time.Second),
 	)
-	httpServer.Handler = lgger.Handler(http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
+	httpServer.Handler = http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
 		if wrappedGrpc.IsGrpcWebRequest(req) {
 			wrappedGrpc.ServeHTTP(resp, req)
 		} else {
 			mux.ServeHTTP(resp, req)
 		}
-	}))
+	})
+	if len(c.CorsAllowOrigins) > 0 {
+		crs := cors.New(cors.Options{
+			AllowedOrigins:   c.CorsAllowOrigins,
+			AllowedMethods:   c.CorsAllowMethods,
+			AllowedHeaders:   c.CorsAllowHeaders,
+			AllowCredentials: true,
+		})
+		httpServer.Handler = crs.Handler(httpServer.Handler)
+	}
 	group.Go(func() error {
 		httpMatchermatcher := apiMux.Match(cmux.Any())
 		defer httpMatchermatcher.Close()

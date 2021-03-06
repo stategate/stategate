@@ -827,7 +827,7 @@ public final class Schema {
   }
   /**
    * <pre>
-   * EntityRef is a reference to a cached value
+   * CacheRef is a reference to a cached value
    * </pre>
    *
    * Protobuf type {@code stategate.CacheRef}
@@ -1169,7 +1169,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * EntityRef is a reference to a cached value
+     * CacheRef is a reference to a cached value
      * </pre>
      *
      * Protobuf type {@code stategate.CacheRef}
@@ -8155,7 +8155,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * the item's business domain(ex: accounting)
+     * the cached value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -8163,7 +8163,7 @@ public final class Schema {
     java.lang.String getDomain();
     /**
      * <pre>
-     * the item's business domain(ex: accounting)
+     * the cached value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -8173,7 +8173,7 @@ public final class Schema {
 
     /**
      * <pre>
-     * entity key (unique within type)
+     * the cached value's key (unique within domain)
      * </pre>
      *
      * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -8181,7 +8181,7 @@ public final class Schema {
     java.lang.String getKey();
     /**
      * <pre>
-     * entity key (unique within type)
+     * the cached value's key (unique within domain)
      * </pre>
      *
      * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -8361,7 +8361,7 @@ public final class Schema {
     private volatile java.lang.Object domain_;
     /**
      * <pre>
-     * the item's business domain(ex: accounting)
+     * the cached value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -8380,7 +8380,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * the item's business domain(ex: accounting)
+     * the cached value's business domain(ex: accounting)
      * </pre>
      *
      * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -8403,7 +8403,7 @@ public final class Schema {
     private volatile java.lang.Object key_;
     /**
      * <pre>
-     * entity key (unique within type)
+     * the cached value's key (unique within domain)
      * </pre>
      *
      * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -8422,7 +8422,7 @@ public final class Schema {
     }
     /**
      * <pre>
-     * entity key (unique within type)
+     * the cached value's key (unique within domain)
      * </pre>
      *
      * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -8897,7 +8897,7 @@ public final class Schema {
       private java.lang.Object domain_ = "";
       /**
        * <pre>
-       * the item's business domain(ex: accounting)
+       * the cached value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -8916,7 +8916,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the item's business domain(ex: accounting)
+       * the cached value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -8936,7 +8936,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the item's business domain(ex: accounting)
+       * the cached value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -8953,7 +8953,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the item's business domain(ex: accounting)
+       * the cached value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -8966,7 +8966,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * the item's business domain(ex: accounting)
+       * the cached value's business domain(ex: accounting)
        * </pre>
        *
        * <code>string domain = 1 [(.validator.field) = { ... }</code>
@@ -8986,7 +8986,7 @@ public final class Schema {
       private java.lang.Object key_ = "";
       /**
        * <pre>
-       * entity key (unique within type)
+       * the cached value's key (unique within domain)
        * </pre>
        *
        * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -9005,7 +9005,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * entity key (unique within type)
+       * the cached value's key (unique within domain)
        * </pre>
        *
        * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -9025,7 +9025,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * entity key (unique within type)
+       * the cached value's key (unique within domain)
        * </pre>
        *
        * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -9042,7 +9042,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * entity key (unique within type)
+       * the cached value's key (unique within domain)
        * </pre>
        *
        * <code>string key = 2 [(.validator.field) = { ... }</code>
@@ -9055,7 +9055,7 @@ public final class Schema {
       }
       /**
        * <pre>
-       * entity key (unique within type)
+       * the cached value's key (unique within domain)
        * </pre>
        *
        * <code>string key = 2 [(.validator.field) = { ... }</code>

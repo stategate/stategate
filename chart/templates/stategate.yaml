@@ -1,14 +1,7 @@
 apiVersion: v1
-kind: Namespace
-metadata:
-  name: stategate-system
----
-
-apiVersion: v1
 kind: Service
 metadata:
   name: stategate-service
-  namespace: stategate-system
   labels:
     app: stategate
 spec:
@@ -25,7 +18,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: stategate
-  namespace: stategate-system
 spec:
   replicas: {{ .Values.replicas }}
   selector:
@@ -70,7 +62,7 @@ spec:
             # STATEGATE_CACHE_PROVIDER={ "name": "memcached", "addr": "localhost:11211" }
             - name: STATEGATE_CACHE_PROVIDER
               value: {{ .Values.cache_provider }}
-          image: "stategate/stategate:v0.13.3"
+          image: "stategate/stategate:{{ .Chart.AppVersion }}"
           imagePullPolicy: Always
           ports:
           - containerPort: 8081

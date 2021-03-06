@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class Cache extends \Google\Protobuf\Internal\Message
 {
     /**
-     * the item's business domain(ex: accounting)
+     * the cached value's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      */
     private $domain = '';
     /**
-     * entity key (unique within type)
+     * the cached value's key (unique within domain)
      *
      * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
      */
@@ -48,9 +48,9 @@ class Cache extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $domain
-     *           the item's business domain(ex: accounting)
+     *           the cached value's business domain(ex: accounting)
      *     @type string $key
-     *           entity key (unique within type)
+     *           the cached value's key (unique within domain)
      *     @type \Google\Protobuf\Value $value
      *           the cached value's value to store
      *     @type \Google\Protobuf\Timestamp $exp
@@ -64,7 +64,7 @@ class Cache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the item's business domain(ex: accounting)
+     * the cached value's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @return string
@@ -75,7 +75,7 @@ class Cache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * the item's business domain(ex: accounting)
+     * the cached value's business domain(ex: accounting)
      *
      * Generated from protobuf field <code>string domain = 1 [(.validator.field) = {</code>
      * @param string $var
@@ -90,7 +90,7 @@ class Cache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * entity key (unique within type)
+     * the cached value's key (unique within domain)
      *
      * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
      * @return string
@@ -101,7 +101,7 @@ class Cache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * entity key (unique within type)
+     * the cached value's key (unique within domain)
      *
      * Generated from protobuf field <code>string key = 2 [(.validator.field) = {</code>
      * @param string $var

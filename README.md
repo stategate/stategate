@@ -1,10 +1,41 @@
-# stategate
+# StateGate
 
 A pluggable "Application State Gateway" that acts as a unified API for all application state operations
 
 [![GoDoc](https://godoc.org/github.com/stategate/stategate?status.svg)](https://godoc.org/github.com/stategate/stategate/stategate-client-go)
 
 - [API Documentation](https://stategate.github.io/stategate/)
+
+- [StateGate](#stategate)
+  * [API Services/Methods](#api-services-methods)
+  * [Features](#features)
+  * [Goals](#goals)
+  * [Design](#design)
+      - [Stategate is designed as a unified API for all application state operations](#stategate-is-designed-as-a-unified-api-for-all-application-state-operations)
+      - [Stategate is designed to be flexible enough to work in many different tech stacks](#stategate-is-designed-to-be-flexible-enough-to-work-in-many-different-tech-stacks)
+      - [Stategate is designed with EventSourcing in mind](#stategate-is-designed-with-eventsourcing-in-mind)
+    + [Primitives](#primitives)
+      - [Entity](#entity)
+      - [Event](#event)
+      - [Message](#message)
+  * [Cache](#cache)
+  * [Mutex](#mutex)
+  * [Installation](#installation)
+      - [Binaries](#binaries)
+      - [Docker](#docker)
+      - [Docker Compose](#docker-compose)
+      - [Kubernetes w/ Manifest](#kubernetes-w--manifest)
+      - [Kubernetes w/ Helm](#kubernetes-w--helm)
+  * [Environmental Variables](#environmental-variables)
+  * [User Interface](#user-interface)
+  * [Code Base](#code-base)
+    + [Storage Providers](#storage-providers)
+    + [Cache Providers](#cache-providers)
+    + [Channel Providers](#channel-providers)
+  * [Authentication(optional)](#authentication-optional-)
+  * [Authorization(optional)](#authorization-optional-)
+  * [FAQ](#faq)
+
 
 ## API Services/Methods
 
@@ -149,7 +180,7 @@ service MutexService {
     - [protobuf schema](schema.proto)
 - [x] Embedded REST support `/` (transcoding)
     - [open api schema](schema.swagger.json)
-- [x] Embedded GraphQL support `/graphql` (transcoding)
+- [x] Embedded GraphQL support `/api/graphql` (transcoding)
     - [graphQL schema](schema.graphql)
 - [x] Embedded [grpcweb](https://grpc.io/docs/platforms/web/basics/) support (transcoding)
 - [x] Metrics Server(prometheus/pprof)
@@ -271,7 +302,7 @@ An entity represents a single record(k/v pairs) with a unique key with a given [
           google.protobuf.Struct values = 4[(validator.field) = {msg_exists : true}];
         }
 
-#### Events
+#### Event
  
 Event is primitive that represents a single state change to an entity
 
@@ -293,7 +324,7 @@ Event is primitive that represents a single state change to an entity
           int64 time =4[(validator.field) = {int_gt : 0}];
         }
 
-#### Messages  
+#### Message  
 
 Message is a non-persisted message passed between Peers as a means of communication
 
@@ -312,6 +343,104 @@ Message is a non-persisted message passed between Peers as a means of communicat
       // the body of the message(k/v values).
       google.protobuf.Struct body =4[(validator.field) = {msg_exists : true}];
     }
+    
+    // PeerMessage is a message produced by a client to the PeerService
+    // PeerMessages are NOT persisted and should only be used to communicate with other Peers
+    message PeerMessage {
+      // the unique id of the message
+      string id =1[(validator.field) = {uuid_ver : 4}];
+      // the message's business domain(ex: accounting)
+      // must not be empty or contain spaces
+      string domain =2[(validator.field) = {regex : "^\\S+$"}];
+      // the message's channel(ex: general)
+      // must not be empty or contain spaces
+      string channel =3[(validator.field) = {regex : "^\\S+$"}];
+      // message's type (ex: comment)
+      // must not be empty or contain spaces
+      string type =4[(validator.field) = {regex : "^\\S+$"}];
+      // the body of the message(k/v values).
+      google.protobuf.Struct body =5[(validator.field) = {msg_exists : true}];
+      // the authentication claims of the message producer.
+      google.protobuf.Struct claims =6[(validator.field) = {msg_exists : true}];
+      // timestamp(ns) of when the message was broadcasted.
+      int64 time =7[(validator.field) = {int_gt : 0}];
+    }
+    
+
+## Cache
+
+Cache is a persisted value that will expire after a period of time. It is held in memory for maximum performance.
+
+    
+    message Cache {
+      // the cached value's business domain(ex: accounting)
+      string domain =1[(validator.field) = {regex : "^\\S+$"}];
+      // the cached value's key (unique within domain)
+      string key =2[(validator.field) = {regex : "^\\S+$"}];
+      // the cached value's value to store
+      google.protobuf.Value value = 3[(validator.field) = {msg_exists : true}];
+      // exp is the time at which the cached value will expire
+      // if exp is 0, the value will never expire
+      google.protobuf.Timestamp exp =4;
+    }
+
+## Mutex
+
+Mutex is a distributed mutex for preventing data-races amongst peer services
+    
+    
+    message Mutex {
+      // the mutex's business domain(ex: accounting)
+      string domain =1[(validator.field) = {regex : "^\\S+$"}];
+      // mutex key (unique within domain)
+      string key =2[(validator.field) = {regex : "^\\S+$"}];
+      // exp is the time at which the mutex value will expire
+      // if exp is 0, the mutex will never expire
+      google.protobuf.Timestamp exp =4;
+    }
+     
+
+## Installation
+
+#### Binaries
+
+Please see [stategate releases](https://github.com/stategate/stategate/releases) for binary releases for windows, linux, and mac.
+
+#### Docker
+    
+    docker pull stategate/stategate:v0.13.4
+
+#### Docker Compose
+
+please download the [example docker-compose manifest](./docker-compose.yml) and modify it to your liking.
+
+start containers:
+
+    docker-compose -f docker-compose.yml pull
+    docker-compose -f docker-compose.yml up -d
+
+stop containers:
+
+    docker-compose -f docker-compose.yml down --remove-orphans
+    
+#### Kubernetes w/ Manifest
+please download the [example kubernetes manifest](./k8s.yaml) and modify it to your liking.
+
+
+deploy to cluster:
+
+    kubectl apply -f k8s.yaml
+
+Note: you will need to deploy channel/cache/storage providers and add them to the stategate deployment env vars before deployment.
+    
+#### Kubernetes w/ Helm
+    
+    helm repo add --username stategate https://raw.githubusercontent.com/stategate/stategate/master/
+    helm repo update
+
+
+Note: you will need to deploy channel/cache/storage providers and set them as helm vars `--set` before deployment. 
+Please see [Default variables](./chart/values.yaml) to see which variables you can override.
 
 ## Environmental Variables
 
@@ -347,6 +476,10 @@ STATEGATE_STORAGE_PROVIDER={ "name": "mongo", "addr": "mongodb://localhost:27017
 STATEGATE_CACHE_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "changeme", "password": "changeme" }
 # STATEGATE_CACHE_PROVIDER={ "name": "memcached", "addr": "localhost:11211" }
 
+# CORS options
+STATEGATE_CORS_ALLOW_ORIGINS=*
+STATEGATE_CORS_ALLOW_METHODS=POST,GET,PUT,DELETE
+STATEGATE_CORS_ALLOW_HEADERS=*
 ```
 
 ## User Interface
@@ -354,9 +487,9 @@ STATEGATE_CACHE_PROVIDER={ "name": "redis", "addr": "localhost:6379", "user": "c
 Please take a look at the following options for stategate user-interface clients:
 
 - [OAuth GraphQL Playground](https://github.com/autom8ter/oauth-graphql-playground): A graphQL IDE that may be used to connect & interact with the full functionality of the stategate graphQL API as an authenticated user
+- [GraphQL Playground](https://github.com/graphql/graphql-playground): A graphQL IDE that may be used to connect & interact with the full functionality of the stategate graphQL API as an unauthenticated user(stategate auth is disabled)
 
-
-## Implementation Details
+## Code Base
 
 - [Interfaces](./internal/api)
 - [Interface Implementations / Providers](./internal/providers)
@@ -439,29 +572,28 @@ type ChannelProvider interface {
 }
 ```
 
-## Authorization
 
-Stategate uses an embedded [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) compiler/engine to execute authorization decisions at runtime
+## Authentication(optional)
+Stategate uses a configured remote [JSON web key set](https://auth0.com/docs/tokens/json-web-tokens/json-web-key-sets) to verify inbound JWT's. Stategate will reject token's not signed by the keys presented by the remote jwks uri. Stategate expects JWT's to be sent as Authorization: Bearer $token. 
+The JWKS uri is loaded at startup via environmental variables. If StateGate auth is disabled, authentication will be skipped.
+
+## Authorization(optional)
+
+Stategate uses an embedded [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) compiler/engine to execute authorization decisions at runtime.
+All policies are loaded via environmental variables at startup. If StateGate auth is disabled, policy execution will be skipped. Authorization always occurs AFTER authentication(if a jwks uri is configured).
+
+The input attributes to all rego decisions are:
+- `claims`: the jwt claims of the user making the request
+- `method`: the gRPC method invoked
+- `metadata`: the inbound gRPC metadata
+- `body`: the request body
+- `client_stream`: whether the current request is a client stream
+- `server_stream`: whether the current request is a server stream
+
+Stategate may load request policies and/or response policies. Request policies authorize inbound requests(ingress), response policies authorize outbound responses(egress).
 
 
-### Request Authorization Policies
-TODO
-
-## Response Authorization Policies
-TODO
-
-## Authentication
-### Remote JWKS URI
-
-https://auth0.com/docs/tokens/json-web-tokens/json-web-key-sets
-
-TODO
 
 ## FAQ
 
-#### What is your favorite combination of storage, cache, and channel providers for maximum scale?
-My favorite combination for maximum scale is:
-cache_provider: Redis
-storage_provider: MongoDB
-channel_provider: Nats
 

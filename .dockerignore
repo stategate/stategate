@@ -3,3 +3,4 @@ vendor
 config.yaml
 k8s.yaml
 *.png
+chart

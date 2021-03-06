@@ -302,7 +302,7 @@ namespace Stategate {
   }
 
   /// <summary>
-  /// EntityRef is a reference to a cached value
+  /// CacheRef is a reference to a cached value
   /// </summary>
   public sealed partial class CacheRef : pb::IMessage<CacheRef> {
     private static readonly pb::MessageParser<CacheRef> _parser = new pb::MessageParser<CacheRef>(() => new CacheRef());
@@ -1827,7 +1827,7 @@ namespace Stategate {
     public const int DomainFieldNumber = 1;
     private string domain_ = "";
     /// <summary>
-    /// the item's business domain(ex: accounting)
+    /// the cached value's business domain(ex: accounting)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Domain {
@@ -1841,7 +1841,7 @@ namespace Stategate {
     public const int KeyFieldNumber = 2;
     private string key_ = "";
     /// <summary>
-    /// entity key (unique within type)
+    /// the cached value's key (unique within domain)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Key {
