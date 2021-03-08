@@ -753,6 +753,10 @@ input StreamMessageOpts {
     # must not be empty or contain spaces
     # * indicates any type
     type: String!
+    # consumer_group specifies the consumer group - the server will ensure that this is the sole consumer
+    # from this queue. When exclusive is false, the server will fairly distribute
+    # deliveries across multiple consumers of the same group.
+    consumer_group: String
 }
 
 #  SearchEntityOpts are options when querying the current values of entities.
@@ -809,6 +813,10 @@ input StreamEventOpts {
     # * indicates any type
     # must not be empty or contain spaces
     type: String!
+    # consumer_group specifies the consumer group - the server will ensure that this is the sole consumer
+    # from this queue. When exclusive is false, the server will fairly distribute
+    # deliveries across multiple consumers of the same group.
+    consumer_group: String
 }
 
 # Query holds read related methods
@@ -4165,6 +4173,14 @@ func (ec *executionContext) unmarshalInputStreamEventOpts(ctx context.Context, o
 			if err != nil {
 				return it, err
 			}
+		case "consumer_group":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("consumer_group"))
+			it.ConsumerGroup, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		}
 	}
 
@@ -4198,6 +4214,14 @@ func (ec *executionContext) unmarshalInputStreamMessageOpts(ctx context.Context,
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("type"))
 			it.Type, err = ec.unmarshalNString2string(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "consumer_group":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("consumer_group"))
+			it.ConsumerGroup, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}

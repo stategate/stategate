@@ -204,8 +204,11 @@ service MutexService {
     - [x] MongoDb
         - [x] fully-tested
     - [ ] PostgreSQL
+        - [ ] fully-tested
     - [ ] MySQL
+        - [ ] fully-tested
     - [ ] Cassandra
+        - [ ] fully-tested
 - [x] Pluggable ["Cache" Providers](internal/api/api.go)
     - [x] Redis
         - [x] fully-tested
@@ -218,7 +221,10 @@ service MutexService {
         - [x] fully-tested  
     - [x] AMQP
         - [x] fully-tested
-
+    - [ ] GCP Pub Sub
+        - [ ] fully-tested
+    - [ ] AWS SQS
+        - [ ] fully-tested
 
 
 ## Goals
@@ -409,7 +415,7 @@ Please see [stategate releases](https://github.com/stategate/stategate/releases)
 
 #### Docker
     
-    docker pull stategate/stategate:v0.13.5
+    docker pull stategate/stategate:v0.14.0
 
 #### Docker Compose
 

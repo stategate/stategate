@@ -176,8 +176,12 @@ func toSearchEntityOpts(input model.SearchEntityOpts) *stategate.SearchEntityOpt
 
 func toStreamEventOpts(input model.StreamEventOpts) *stategate.StreamEventOpts {
 	o := &stategate.StreamEventOpts{
-		Domain: input.Domain,
-		Type:   input.Type,
+		Domain:        input.Domain,
+		Type:          input.Type,
+		ConsumerGroup: "",
+	}
+	if input.ConsumerGroup != nil {
+		o.ConsumerGroup = *input.ConsumerGroup
 	}
 	return o
 }
@@ -186,6 +190,9 @@ func toStreamMessageOpts(input model.StreamMessageOpts) *stategate.StreamMessage
 	o := &stategate.StreamMessageOpts{
 		Domain: input.Domain,
 		Type:   input.Type,
+	}
+	if input.ConsumerGroup != nil {
+		o.ConsumerGroup = *input.ConsumerGroup
 	}
 	return o
 }

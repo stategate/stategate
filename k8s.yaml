@@ -70,7 +70,7 @@ spec:
             # STATEGATE_CACHE_PROVIDER={ "name": "memcached", "addr": "localhost:11211" }
             - name: STATEGATE_CACHE_PROVIDER
               value: '{ "name": "redis", "addr": "redis:6379" }'
-          image: "stategate/stategate:v0.13.5"
+          image: "stategate/stategate:v0.14.0"
           imagePullPolicy: Always
           ports:
           - containerPort: 8081

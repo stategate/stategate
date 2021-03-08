@@ -114,12 +114,14 @@ type Sort struct {
 }
 
 type StreamEventOpts struct {
-	Domain string `json:"domain"`
-	Type   string `json:"type"`
+	Domain        string  `json:"domain"`
+	Type          string  `json:"type"`
+	ConsumerGroup *string `json:"consumer_group"`
 }
 
 type StreamMessageOpts struct {
-	Domain  string `json:"domain"`
-	Channel string `json:"channel"`
-	Type    string `json:"type"`
+	Domain        string  `json:"domain"`
+	Channel       string  `json:"channel"`
+	Type          string  `json:"type"`
+	ConsumerGroup *string `json:"consumer_group"`
 }
