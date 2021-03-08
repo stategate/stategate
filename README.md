@@ -488,8 +488,8 @@ STATEGATE_CORS_ALLOW_HEADERS=*
 
 Please take a look at the following options for stategate user-interface clients:
 
-- [OAuth GraphQL Playground](https://github.com/autom8ter/oauth-graphql-playground): A graphQL IDE that may be used to connect & interact with the full functionality of the stategate graphQL API as an authenticated user
-- [GraphQL Playground](https://github.com/graphql/graphql-playground): A graphQL IDE that may be used to connect & interact with the full functionality of the stategate graphQL API as an unauthenticated user(stategate auth is disabled)
+- [OAuth GraphQL Playground](https://github.com/autom8ter/oauth-graphql-playground): A graphQL IDE that may be used to connect & interact with the full functionality of the stategate graphQL API(/api/graphql) as an authenticated user
+- [GraphQL Playground](https://github.com/graphql/graphql-playground): A graphQL IDE that may be used to connect & interact with the full functionality of the stategate graphQL API(/api/graphql) as an unauthenticated user(stategate auth is disabled)
 
 ## Code Base
 
