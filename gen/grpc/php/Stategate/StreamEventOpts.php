@@ -32,6 +32,12 @@ class StreamEventOpts extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string type = 2 [(.validator.field) = {</code>
      */
     private $type = '';
+    /**
+     * consumer_group
+     *
+     * Generated from protobuf field <code>string consumer_group = 3;</code>
+     */
+    private $consumer_group = '';
 
     /**
      * Constructor.
@@ -47,6 +53,8 @@ class StreamEventOpts extends \Google\Protobuf\Internal\Message
      *           the type of the entity (ex: user) that triggered the event
      *           * indicates any type
      *           must not be empty or contain spaces
+     *     @type string $consumer_group
+     *           consumer_group
      * }
      */
     public function __construct($data = NULL) {
@@ -110,6 +118,32 @@ class StreamEventOpts extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * consumer_group
+     *
+     * Generated from protobuf field <code>string consumer_group = 3;</code>
+     * @return string
+     */
+    public function getConsumerGroup()
+    {
+        return $this->consumer_group;
+    }
+
+    /**
+     * consumer_group
+     *
+     * Generated from protobuf field <code>string consumer_group = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConsumerGroup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->consumer_group = $var;
 
         return $this;
     }

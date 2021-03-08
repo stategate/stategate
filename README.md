@@ -173,6 +173,7 @@ service MutexService {
 
 - [x] Capture all changes to an application's state(entities) as a sequence of events - Event Sourcing(EntityService/EventService)
 - [x] High Performance Pubsub Interface Service(PeerService) 
+    - [x] Consumer groups so that clients can scale horizontally
 - [x] High Performance Caching Interface(CacheService)
 - [x] High Performance Distributed Locking Interface(MutexService)
 - [x] Stateless & horizontally scaleable
@@ -408,7 +409,7 @@ Please see [stategate releases](https://github.com/stategate/stategate/releases)
 
 #### Docker
     
-    docker pull stategate/stategate:v0.13.4
+    docker pull stategate/stategate:v0.13.5
 
 #### Docker Compose
 

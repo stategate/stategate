@@ -4965,6 +4965,24 @@ public final class Schema {
      */
     com.google.protobuf.ByteString
         getTypeBytes();
+
+    /**
+     * <pre>
+     * consumer_group
+     * </pre>
+     *
+     * <code>string consumer_group = 4;</code>
+     */
+    java.lang.String getConsumerGroup();
+    /**
+     * <pre>
+     * consumer_group
+     * </pre>
+     *
+     * <code>string consumer_group = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getConsumerGroupBytes();
   }
   /**
    * <pre>
@@ -4986,6 +5004,7 @@ public final class Schema {
       domain_ = "";
       channel_ = "";
       type_ = "";
+      consumerGroup_ = "";
     }
 
     @java.lang.Override
@@ -5028,6 +5047,12 @@ public final class Schema {
               java.lang.String s = input.readStringRequireUtf8();
 
               type_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              consumerGroup_ = s;
               break;
             }
             default: {
@@ -5200,6 +5225,48 @@ public final class Schema {
       }
     }
 
+    public static final int CONSUMER_GROUP_FIELD_NUMBER = 4;
+    private volatile java.lang.Object consumerGroup_;
+    /**
+     * <pre>
+     * consumer_group
+     * </pre>
+     *
+     * <code>string consumer_group = 4;</code>
+     */
+    public java.lang.String getConsumerGroup() {
+      java.lang.Object ref = consumerGroup_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        consumerGroup_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * consumer_group
+     * </pre>
+     *
+     * <code>string consumer_group = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getConsumerGroupBytes() {
+      java.lang.Object ref = consumerGroup_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        consumerGroup_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -5223,6 +5290,9 @@ public final class Schema {
       if (!getTypeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, type_);
       }
+      if (!getConsumerGroupBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, consumerGroup_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -5240,6 +5310,9 @@ public final class Schema {
       }
       if (!getTypeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, type_);
+      }
+      if (!getConsumerGroupBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, consumerGroup_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5263,6 +5336,8 @@ public final class Schema {
           .equals(other.getChannel());
       result = result && getType()
           .equals(other.getType());
+      result = result && getConsumerGroup()
+          .equals(other.getConsumerGroup());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -5280,6 +5355,8 @@ public final class Schema {
       hash = (53 * hash) + getChannel().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
+      hash = (37 * hash) + CONSUMER_GROUP_FIELD_NUMBER;
+      hash = (53 * hash) + getConsumerGroup().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -5423,6 +5500,8 @@ public final class Schema {
 
         type_ = "";
 
+        consumerGroup_ = "";
+
         return this;
       }
 
@@ -5452,6 +5531,7 @@ public final class Schema {
         result.domain_ = domain_;
         result.channel_ = channel_;
         result.type_ = type_;
+        result.consumerGroup_ = consumerGroup_;
         onBuilt();
         return result;
       }
@@ -5510,6 +5590,10 @@ public final class Schema {
         }
         if (!other.getType().isEmpty()) {
           type_ = other.type_;
+          onChanged();
+        }
+        if (!other.getConsumerGroup().isEmpty()) {
+          consumerGroup_ = other.consumerGroup_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -5834,6 +5918,95 @@ public final class Schema {
   checkByteStringIsUtf8(value);
         
         type_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object consumerGroup_ = "";
+      /**
+       * <pre>
+       * consumer_group
+       * </pre>
+       *
+       * <code>string consumer_group = 4;</code>
+       */
+      public java.lang.String getConsumerGroup() {
+        java.lang.Object ref = consumerGroup_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          consumerGroup_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * consumer_group
+       * </pre>
+       *
+       * <code>string consumer_group = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getConsumerGroupBytes() {
+        java.lang.Object ref = consumerGroup_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          consumerGroup_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * consumer_group
+       * </pre>
+       *
+       * <code>string consumer_group = 4;</code>
+       */
+      public Builder setConsumerGroup(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        consumerGroup_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * consumer_group
+       * </pre>
+       *
+       * <code>string consumer_group = 4;</code>
+       */
+      public Builder clearConsumerGroup() {
+        
+        consumerGroup_ = getDefaultInstance().getConsumerGroup();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * consumer_group
+       * </pre>
+       *
+       * <code>string consumer_group = 4;</code>
+       */
+      public Builder setConsumerGroupBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        consumerGroup_ = value;
         onChanged();
         return this;
       }
@@ -14954,6 +15127,24 @@ public final class Schema {
      */
     com.google.protobuf.ByteString
         getTypeBytes();
+
+    /**
+     * <pre>
+     * consumer_group
+     * </pre>
+     *
+     * <code>string consumer_group = 3;</code>
+     */
+    java.lang.String getConsumerGroup();
+    /**
+     * <pre>
+     * consumer_group
+     * </pre>
+     *
+     * <code>string consumer_group = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getConsumerGroupBytes();
   }
   /**
    * <pre>
@@ -14975,6 +15166,7 @@ public final class Schema {
     private StreamEventOpts() {
       domain_ = "";
       type_ = "";
+      consumerGroup_ = "";
     }
 
     @java.lang.Override
@@ -15011,6 +15203,12 @@ public final class Schema {
               java.lang.String s = input.readStringRequireUtf8();
 
               type_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              consumerGroup_ = s;
               break;
             }
             default: {
@@ -15137,6 +15335,48 @@ public final class Schema {
       }
     }
 
+    public static final int CONSUMER_GROUP_FIELD_NUMBER = 3;
+    private volatile java.lang.Object consumerGroup_;
+    /**
+     * <pre>
+     * consumer_group
+     * </pre>
+     *
+     * <code>string consumer_group = 3;</code>
+     */
+    public java.lang.String getConsumerGroup() {
+      java.lang.Object ref = consumerGroup_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        consumerGroup_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * consumer_group
+     * </pre>
+     *
+     * <code>string consumer_group = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getConsumerGroupBytes() {
+      java.lang.Object ref = consumerGroup_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        consumerGroup_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -15157,6 +15397,9 @@ public final class Schema {
       if (!getTypeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
       }
+      if (!getConsumerGroupBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, consumerGroup_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -15171,6 +15414,9 @@ public final class Schema {
       }
       if (!getTypeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
+      }
+      if (!getConsumerGroupBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, consumerGroup_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -15192,6 +15438,8 @@ public final class Schema {
           .equals(other.getDomain());
       result = result && getType()
           .equals(other.getType());
+      result = result && getConsumerGroup()
+          .equals(other.getConsumerGroup());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -15207,6 +15455,8 @@ public final class Schema {
       hash = (53 * hash) + getDomain().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
+      hash = (37 * hash) + CONSUMER_GROUP_FIELD_NUMBER;
+      hash = (53 * hash) + getConsumerGroup().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -15349,6 +15599,8 @@ public final class Schema {
 
         type_ = "";
 
+        consumerGroup_ = "";
+
         return this;
       }
 
@@ -15377,6 +15629,7 @@ public final class Schema {
         stategate.Schema.StreamEventOpts result = new stategate.Schema.StreamEventOpts(this);
         result.domain_ = domain_;
         result.type_ = type_;
+        result.consumerGroup_ = consumerGroup_;
         onBuilt();
         return result;
       }
@@ -15431,6 +15684,10 @@ public final class Schema {
         }
         if (!other.getType().isEmpty()) {
           type_ = other.type_;
+          onChanged();
+        }
+        if (!other.getConsumerGroup().isEmpty()) {
+          consumerGroup_ = other.consumerGroup_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -15656,6 +15913,95 @@ public final class Schema {
   checkByteStringIsUtf8(value);
         
         type_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object consumerGroup_ = "";
+      /**
+       * <pre>
+       * consumer_group
+       * </pre>
+       *
+       * <code>string consumer_group = 3;</code>
+       */
+      public java.lang.String getConsumerGroup() {
+        java.lang.Object ref = consumerGroup_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          consumerGroup_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * consumer_group
+       * </pre>
+       *
+       * <code>string consumer_group = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getConsumerGroupBytes() {
+        java.lang.Object ref = consumerGroup_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          consumerGroup_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * consumer_group
+       * </pre>
+       *
+       * <code>string consumer_group = 3;</code>
+       */
+      public Builder setConsumerGroup(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        consumerGroup_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * consumer_group
+       * </pre>
+       *
+       * <code>string consumer_group = 3;</code>
+       */
+      public Builder clearConsumerGroup() {
+        
+        consumerGroup_ = getDefaultInstance().getConsumerGroup();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * consumer_group
+       * </pre>
+       *
+       * <code>string consumer_group = 3;</code>
+       */
+      public Builder setConsumerGroupBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        consumerGroup_ = value;
         onChanged();
         return this;
       }
@@ -18665,84 +19011,85 @@ public final class Schema {
       "\004 \001(\tB\007\342\337\037\003\220\001\004\"\213\001\n\006Entity\022\033\n\006domain\030\001 \001(" +
       "\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+" +
       "$\022\030\n\003key\030\003 \001(\tB\013\342\337\037\007\n\005^\\S+$\022/\n\006values\030\004 " +
-      "\001(\0132\027.google.protobuf.StructB\006\342\337\037\002 \001\"i\n\021" +
-      "StreamMessageOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n" +
-      "\005^\\S+$\022\034\n\007channel\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004" +
-      "type\030\003 \001(\tB\013\342\337\037\007\n\005^\\S+$\"\216\001\n\007Message\022\033\n\006d" +
-      "omain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\034\n\007channel\030\002 \001(" +
-      "\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\003 \001(\tB\013\342\337\037\007\n\005^\\S+" +
-      "$\022-\n\004body\030\004 \001(\0132\027.google.protobuf.Struct" +
-      "B\006\342\337\037\002 \001\"g\n\005Mutex\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n" +
-      "\005^\\S+$\022\030\n\003key\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\'\n\003exp\030" +
-      "\004 \001(\0132\032.google.protobuf.Timestamp\"\226\001\n\005Ca" +
-      "che\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030" +
-      "\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022-\n\005value\030\003 \001(\0132\026.goog" +
-      "le.protobuf.ValueB\006\342\337\037\002 \001\022\'\n\003exp\030\004 \001(\0132\032" +
-      ".google.protobuf.Timestamp\"\356\001\n\013PeerMessa" +
-      "ge\022\023\n\002id\030\001 \001(\tB\007\342\337\037\003\220\001\004\022\033\n\006domain\030\002 \001(\tB" +
-      "\013\342\337\037\007\n\005^\\S+$\022\034\n\007channel\030\003 \001(\tB\013\342\337\037\007\n\005^\\S" +
-      "+$\022\031\n\004type\030\004 \001(\tB\013\342\337\037\007\n\005^\\S+$\022-\n\004body\030\005 " +
-      "\001(\0132\027.google.protobuf.StructB\006\342\337\037\002 \001\022/\n\006" +
-      "claims\030\006 \001(\0132\027.google.protobuf.StructB\006\342" +
-      "\337\037\002 \001\022\024\n\004time\030\007 \001(\003B\006\342\337\037\002\020\000\"/\n\010Entities\022" +
-      "#\n\010entities\030\001 \003(\0132\021.stategate.Entity\"\246\001\n" +
-      "\020SearchEntityOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n" +
-      "\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014que" +
-      "ry_string\030\003 \001(\t\022\025\n\005limit\030\004 \001(\005B\006\342\337\037\002\020\000\022\016" +
-      "\n\006offset\030\005 \001(\005\022\035\n\004sort\030\t \001(\0132\017.stategate" +
-      ".Sort\"\277\001\n\017SearchEventOpts\022\033\n\006domain\030\001 \001(" +
-      "\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+" +
-      "$\022\024\n\014query_string\030\004 \001(\t\022\013\n\003min\030\005 \001(\003\022\013\n\003" +
-      "max\030\006 \001(\003\022\025\n\005limit\030\007 \001(\005B\006\342\337\037\002\020\000\022\016\n\006offs" +
-      "et\030\010 \001(\005\022\035\n\004sort\030\t \001(\0132\017.stategate.Sort\"" +
-      "I\n\017StreamEventOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007" +
-      "\n\005^\\S+$\022\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\"&\n\004So" +
-      "rt\022\r\n\005field\030\001 \001(\t\022\017\n\007reverse\030\002 \001(\010\"\246\001\n\005E" +
-      "vent\022\023\n\002id\030\001 \001(\tB\007\342\337\037\003\220\001\004\022)\n\006entity\030\002 \001(" +
-      "\0132\021.stategate.EntityB\006\342\337\037\002 \001\022\026\n\006method\030\005" +
-      " \001(\tB\006\342\337\037\002X\001\022/\n\006claims\030\003 \001(\0132\027.google.pr" +
-      "otobuf.StructB\006\342\337\037\002 \001\022\024\n\004time\030\004 \001(\003B\006\342\337\037" +
-      "\002\020\000\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020.stategat" +
-      "e.Event2\320\004\n\rEntityService\022_\n\003Set\022\021.state" +
-      "gate.Entity\032\026.google.protobuf.Empty\"-\202\323\344" +
-      "\223\002\'\032%/api/entity/ref/{domain}/{type}/{ke" +
-      "y}\022[\n\004Edit\022\021.stategate.Entity\032\021.stategat" +
-      "e.Entity\"-\202\323\344\223\002\'2%/api/entity/ref/{domai" +
-      "n}/{type}/{key}\022f\n\006Revert\022\023.stategate.Ev" +
-      "entRef\032\021.stategate.Entity\"4\202\323\344\223\002.\032,/api/" +
-      "entity/ref/{domain}/{type}/{key}/revert\022" +
-      "]\n\003Get\022\024.stategate.EntityRef\032\021.stategate" +
-      ".Entity\"-\202\323\344\223\002\'\022%/api/entity/ref/{domain" +
-      "}/{type}/{key}\022b\n\003Del\022\024.stategate.Entity" +
-      "Ref\032\026.google.protobuf.Empty\"-\202\323\344\223\002\'*%/ap" +
-      "i/entity/ref/{domain}/{type}/{key}\022V\n\006Se" +
-      "arch\022\033.stategate.SearchEntityOpts\032\023.stat" +
-      "egate.Entities\"\032\202\323\344\223\002\024\022\022/api/entity/sear" +
-      "ch2\230\002\n\014EventService\022S\n\006Stream\022\032.stategat" +
-      "e.StreamEventOpts\032\020.stategate.Event\"\031\202\323\344" +
-      "\223\002\023\022\021/api/event/stream0\001\022R\n\006Search\022\032.sta" +
-      "tegate.SearchEventOpts\032\021.stategate.Event" +
-      "s\"\031\202\323\344\223\002\023\022\021/api/event/search\022_\n\003Get\022\023.st" +
-      "ategate.EventRef\032\020.stategate.Event\"1\202\323\344\223" +
-      "\002+\022)/api/event/ref/{domain}/{type}/{key}" +
-      "/{id}2\302\001\n\013PeerService\022W\n\tBroadcast\022\022.sta" +
-      "tegate.Message\032\026.google.protobuf.Empty\"\036" +
-      "\202\323\344\223\002\030\"\023/api/peer/broadcast:\001*\022Z\n\006Stream" +
-      "\022\034.stategate.StreamMessageOpts\032\026.statega" +
-      "te.PeerMessage\"\030\202\323\344\223\002\022\022\020/api/peer/stream" +
-      "0\0012\226\002\n\014CacheService\022V\n\003Set\022\020.stategate.C" +
-      "ache\032\026.google.protobuf.Empty\"%\202\323\344\223\002\037\032\035/a" +
-      "pi/cache/ref/{domain}/{key}\022S\n\003Get\022\023.sta" +
-      "tegate.CacheRef\032\020.stategate.Cache\"%\202\323\344\223\002" +
-      "\037\022\035/api/cache/ref/{domain}/{key}\022Y\n\003Del\022" +
-      "\023.stategate.CacheRef\032\026.google.protobuf.E" +
-      "mpty\"%\202\323\344\223\002\037*\035/api/cache/ref/{domain}/{k" +
-      "ey}2\305\001\n\014MutexService\022W\n\004Lock\022\020.stategate" +
-      ".Mutex\032\026.google.protobuf.Empty\"%\202\323\344\223\002\037\032\035" +
-      "/api/mutex/ref/{domain}/{key}\022\\\n\006Unlock\022" +
-      "\023.stategate.MutexRef\032\026.google.protobuf.E" +
-      "mpty\"%\202\323\344\223\002\037\032\035/api/mutex/ref/{domain}/{k" +
-      "ey}B\013Z\tstategateb\006proto3"
+      "\001(\0132\027.google.protobuf.StructB\006\342\337\037\002 \001\"\201\001\n" +
+      "\021StreamMessageOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007" +
+      "\n\005^\\S+$\022\034\n\007channel\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n" +
+      "\004type\030\003 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\026\n\016consumer_gro" +
+      "up\030\004 \001(\t\"\216\001\n\007Message\022\033\n\006domain\030\001 \001(\tB\013\342\337" +
+      "\037\007\n\005^\\S+$\022\034\n\007channel\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022" +
+      "\031\n\004type\030\003 \001(\tB\013\342\337\037\007\n\005^\\S+$\022-\n\004body\030\004 \001(\013" +
+      "2\027.google.protobuf.StructB\006\342\337\037\002 \001\"g\n\005Mut" +
+      "ex\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030\002" +
+      " \001(\tB\013\342\337\037\007\n\005^\\S+$\022\'\n\003exp\030\004 \001(\0132\032.google." +
+      "protobuf.Timestamp\"\226\001\n\005Cache\022\033\n\006domain\030\001" +
+      " \001(\tB\013\342\337\037\007\n\005^\\S+$\022\030\n\003key\030\002 \001(\tB\013\342\337\037\007\n\005^\\" +
+      "S+$\022-\n\005value\030\003 \001(\0132\026.google.protobuf.Val" +
+      "ueB\006\342\337\037\002 \001\022\'\n\003exp\030\004 \001(\0132\032.google.protobu" +
+      "f.Timestamp\"\356\001\n\013PeerMessage\022\023\n\002id\030\001 \001(\tB" +
+      "\007\342\337\037\003\220\001\004\022\033\n\006domain\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\034\n" +
+      "\007channel\030\003 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030\004 \001(" +
+      "\tB\013\342\337\037\007\n\005^\\S+$\022-\n\004body\030\005 \001(\0132\027.google.pr" +
+      "otobuf.StructB\006\342\337\037\002 \001\022/\n\006claims\030\006 \001(\0132\027." +
+      "google.protobuf.StructB\006\342\337\037\002 \001\022\024\n\004time\030\007" +
+      " \001(\003B\006\342\337\037\002\020\000\"/\n\010Entities\022#\n\010entities\030\001 \003" +
+      "(\0132\021.stategate.Entity\"\246\001\n\020SearchEntityOp" +
+      "ts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type\030" +
+      "\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014query_string\030\003 \001(\t" +
+      "\022\025\n\005limit\030\004 \001(\005B\006\342\337\037\002\020\000\022\016\n\006offset\030\005 \001(\005\022" +
+      "\035\n\004sort\030\t \001(\0132\017.stategate.Sort\"\277\001\n\017Searc" +
+      "hEventOpts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022" +
+      "\031\n\004type\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\024\n\014query_stri" +
+      "ng\030\004 \001(\t\022\013\n\003min\030\005 \001(\003\022\013\n\003max\030\006 \001(\003\022\025\n\005li" +
+      "mit\030\007 \001(\005B\006\342\337\037\002\020\000\022\016\n\006offset\030\010 \001(\005\022\035\n\004sor" +
+      "t\030\t \001(\0132\017.stategate.Sort\"a\n\017StreamEventO" +
+      "pts\022\033\n\006domain\030\001 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\031\n\004type" +
+      "\030\002 \001(\tB\013\342\337\037\007\n\005^\\S+$\022\026\n\016consumer_group\030\003 " +
+      "\001(\t\"&\n\004Sort\022\r\n\005field\030\001 \001(\t\022\017\n\007reverse\030\002 " +
+      "\001(\010\"\246\001\n\005Event\022\023\n\002id\030\001 \001(\tB\007\342\337\037\003\220\001\004\022)\n\006en" +
+      "tity\030\002 \001(\0132\021.stategate.EntityB\006\342\337\037\002 \001\022\026\n" +
+      "\006method\030\005 \001(\tB\006\342\337\037\002X\001\022/\n\006claims\030\003 \001(\0132\027." +
+      "google.protobuf.StructB\006\342\337\037\002 \001\022\024\n\004time\030\004" +
+      " \001(\003B\006\342\337\037\002\020\000\"*\n\006Events\022 \n\006events\030\001 \003(\0132\020" +
+      ".stategate.Event2\320\004\n\rEntityService\022_\n\003Se" +
+      "t\022\021.stategate.Entity\032\026.google.protobuf.E" +
+      "mpty\"-\202\323\344\223\002\'\032%/api/entity/ref/{domain}/{" +
+      "type}/{key}\022[\n\004Edit\022\021.stategate.Entity\032\021" +
+      ".stategate.Entity\"-\202\323\344\223\002\'2%/api/entity/r" +
+      "ef/{domain}/{type}/{key}\022f\n\006Revert\022\023.sta" +
+      "tegate.EventRef\032\021.stategate.Entity\"4\202\323\344\223" +
+      "\002.\032,/api/entity/ref/{domain}/{type}/{key" +
+      "}/revert\022]\n\003Get\022\024.stategate.EntityRef\032\021." +
+      "stategate.Entity\"-\202\323\344\223\002\'\022%/api/entity/re" +
+      "f/{domain}/{type}/{key}\022b\n\003Del\022\024.statega" +
+      "te.EntityRef\032\026.google.protobuf.Empty\"-\202\323" +
+      "\344\223\002\'*%/api/entity/ref/{domain}/{type}/{k" +
+      "ey}\022V\n\006Search\022\033.stategate.SearchEntityOp" +
+      "ts\032\023.stategate.Entities\"\032\202\323\344\223\002\024\022\022/api/en" +
+      "tity/search2\230\002\n\014EventService\022S\n\006Stream\022\032" +
+      ".stategate.StreamEventOpts\032\020.stategate.E" +
+      "vent\"\031\202\323\344\223\002\023\022\021/api/event/stream0\001\022R\n\006Sea" +
+      "rch\022\032.stategate.SearchEventOpts\032\021.stateg" +
+      "ate.Events\"\031\202\323\344\223\002\023\022\021/api/event/search\022_\n" +
+      "\003Get\022\023.stategate.EventRef\032\020.stategate.Ev" +
+      "ent\"1\202\323\344\223\002+\022)/api/event/ref/{domain}/{ty" +
+      "pe}/{key}/{id}2\302\001\n\013PeerService\022W\n\tBroadc" +
+      "ast\022\022.stategate.Message\032\026.google.protobu" +
+      "f.Empty\"\036\202\323\344\223\002\030\"\023/api/peer/broadcast:\001*\022" +
+      "Z\n\006Stream\022\034.stategate.StreamMessageOpts\032" +
+      "\026.stategate.PeerMessage\"\030\202\323\344\223\002\022\022\020/api/pe" +
+      "er/stream0\0012\226\002\n\014CacheService\022V\n\003Set\022\020.st" +
+      "ategate.Cache\032\026.google.protobuf.Empty\"%\202" +
+      "\323\344\223\002\037\032\035/api/cache/ref/{domain}/{key}\022S\n\003" +
+      "Get\022\023.stategate.CacheRef\032\020.stategate.Cac" +
+      "he\"%\202\323\344\223\002\037\022\035/api/cache/ref/{domain}/{key" +
+      "}\022Y\n\003Del\022\023.stategate.CacheRef\032\026.google.p" +
+      "rotobuf.Empty\"%\202\323\344\223\002\037*\035/api/cache/ref/{d" +
+      "omain}/{key}2\305\001\n\014MutexService\022W\n\004Lock\022\020." +
+      "stategate.Mutex\032\026.google.protobuf.Empty\"" +
+      "%\202\323\344\223\002\037\032\035/api/mutex/ref/{domain}/{key}\022\\" +
+      "\n\006Unlock\022\023.stategate.MutexRef\032\026.google.p" +
+      "rotobuf.Empty\"%\202\323\344\223\002\037\032\035/api/mutex/ref/{d" +
+      "omain}/{key}B\013Z\tstategateb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -18797,7 +19144,7 @@ public final class Schema {
     internal_static_stategate_StreamMessageOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_StreamMessageOpts_descriptor,
-        new java.lang.String[] { "Domain", "Channel", "Type", });
+        new java.lang.String[] { "Domain", "Channel", "Type", "ConsumerGroup", });
     internal_static_stategate_Message_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_stategate_Message_fieldAccessorTable = new
@@ -18845,7 +19192,7 @@ public final class Schema {
     internal_static_stategate_StreamEventOpts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_stategate_StreamEventOpts_descriptor,
-        new java.lang.String[] { "Domain", "Type", });
+        new java.lang.String[] { "Domain", "Type", "ConsumerGroup", });
     internal_static_stategate_Sort_descriptor =
       getDescriptor().getMessageTypes().get(14);
     internal_static_stategate_Sort_fieldAccessorTable = new

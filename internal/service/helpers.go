@@ -6,12 +6,13 @@ import (
 	"github.com/autom8ter/machine/v2"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/uuid"
-	"github.com/pkg/errors"
 	stategate "github.com/stategate/stategate/gen/grpc/go"
 	"github.com/stategate/stategate/internal/auth"
+	"github.com/stategate/stategate/internal/constants"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/structpb"
+	"google.golang.org/protobuf/types/known/timestamppb"
 	"time"
 )
 
@@ -161,8 +162,21 @@ func (s Service) streamEvents(opts *stategate.StreamEventOpts, server stategate.
 		return status.Error(codes.Unimplemented, "empty cache provider")
 	}
 	s.events.Subscribe(server.Context(), eventChannelName(opts.GetDomain(), opts.GetType()), func(ctx context.Context, msg machine.Message) (bool, error) {
-		if err := server.Send(msg.GetBody().(*stategate.Event)); err != nil {
-			return false, errors.Wrap(err, "failed to stream event")
+		event := msg.GetBody().(*stategate.Event)
+		if opts.GetConsumerGroup() != "" {
+			if err := s.cache.Lock(ctx, &stategate.Mutex{
+				Domain: fmt.Sprintf("%s/events", constants.InternalDomain),
+				Key:    fmt.Sprintf("%s/%s", opts.GetConsumerGroup(), event.GetId()),
+				Exp:    timestamppb.New(time.Now().Add(5 * time.Minute)),
+			}); err == nil {
+				if err := server.Send(event); err != nil {
+					return false, status.Error(codes.Internal, "failed to stream event")
+				}
+			}
+		} else {
+			if err := server.Send(event); err != nil {
+				return false, status.Error(codes.Internal, "failed to stream event")
+			}
 		}
 		return true, nil
 	})
@@ -232,8 +246,21 @@ func (s Service) streamMessages(opts *stategate.StreamMessageOpts, server stateg
 		return status.Error(codes.Unimplemented, "empty cache provider")
 	}
 	s.messages.Subscribe(server.Context(), msgChannelName(opts.GetDomain(), opts.GetChannel(), opts.GetType()), func(ctx context.Context, msg machine.Message) (bool, error) {
-		if err := server.Send(msg.GetBody().(*stategate.PeerMessage)); err != nil {
-			return false, errors.Wrap(err, "failed to stream message")
+		message := msg.GetBody().(*stategate.PeerMessage)
+		if opts.GetConsumerGroup() != "" {
+			if err := s.cache.Lock(ctx, &stategate.Mutex{
+				Domain: fmt.Sprintf("%s/messages", constants.InternalDomain),
+				Key:    fmt.Sprintf("%s/%s", opts.GetConsumerGroup(), message.GetId()),
+				Exp:    timestamppb.New(time.Now().Add(5 * time.Minute)),
+			}); err == nil {
+				if err := server.Send(message); err != nil {
+					return false, status.Error(codes.Internal, "failed to stream message")
+				}
+			}
+		} else {
+			if err := server.Send(message); err != nil {
+				return false, status.Error(codes.Internal, "failed to stream message")
+			}
 		}
 		return true, nil
 	})

@@ -39,6 +39,12 @@ class StreamMessageOpts extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string type = 3 [(.validator.field) = {</code>
      */
     private $type = '';
+    /**
+     * consumer_group
+     *
+     * Generated from protobuf field <code>string consumer_group = 4;</code>
+     */
+    private $consumer_group = '';
 
     /**
      * Constructor.
@@ -58,6 +64,8 @@ class StreamMessageOpts extends \Google\Protobuf\Internal\Message
      *           message's type (ex: comment) to subscribe to
      *           must not be empty or contain spaces
      *           * indicates any type
+     *     @type string $consumer_group
+     *           consumer_group
      * }
      */
     public function __construct($data = NULL) {
@@ -151,6 +159,32 @@ class StreamMessageOpts extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * consumer_group
+     *
+     * Generated from protobuf field <code>string consumer_group = 4;</code>
+     * @return string
+     */
+    public function getConsumerGroup()
+    {
+        return $this->consumer_group;
+    }
+
+    /**
+     * consumer_group
+     *
+     * Generated from protobuf field <code>string consumer_group = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConsumerGroup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->consumer_group = $var;
 
         return $this;
     }

@@ -1080,7 +1080,8 @@ proto.stategate.StreamMessageOpts.toObject = function(includeInstance, msg) {
   var f, obj = {
     domain: jspb.Message.getFieldWithDefault(msg, 1, ""),
     channel: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 3, "")
+    type: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    consumerGroup: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -1128,6 +1129,10 @@ proto.stategate.StreamMessageOpts.deserializeBinaryFromReader = function(msg, re
     case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setType(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setConsumerGroup(value);
       break;
     default:
       reader.skipField();
@@ -1179,6 +1184,13 @@ proto.stategate.StreamMessageOpts.serializeBinaryToWriter = function(message, wr
       f
     );
   }
+  f = message.getConsumerGroup();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
 };
 
 
@@ -1224,6 +1236,21 @@ proto.stategate.StreamMessageOpts.prototype.getType = function() {
 /** @param {string} value */
 proto.stategate.StreamMessageOpts.prototype.setType = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string consumer_group = 4;
+ * @return {string}
+ */
+proto.stategate.StreamMessageOpts.prototype.getConsumerGroup = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.stategate.StreamMessageOpts.prototype.setConsumerGroup = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -3133,7 +3160,8 @@ proto.stategate.StreamEventOpts.prototype.toObject = function(opt_includeInstanc
 proto.stategate.StreamEventOpts.toObject = function(includeInstance, msg) {
   var f, obj = {
     domain: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 2, "")
+    type: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    consumerGroup: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -3178,6 +3206,10 @@ proto.stategate.StreamEventOpts.deserializeBinaryFromReader = function(msg, read
       var value = /** @type {string} */ (reader.readString());
       msg.setType(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setConsumerGroup(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3221,6 +3253,13 @@ proto.stategate.StreamEventOpts.serializeBinaryToWriter = function(message, writ
       f
     );
   }
+  f = message.getConsumerGroup();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -3251,6 +3290,21 @@ proto.stategate.StreamEventOpts.prototype.getType = function() {
 /** @param {string} value */
 proto.stategate.StreamEventOpts.prototype.setType = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string consumer_group = 3;
+ * @return {string}
+ */
+proto.stategate.StreamEventOpts.prototype.getConsumerGroup = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.stategate.StreamEventOpts.prototype.setConsumerGroup = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

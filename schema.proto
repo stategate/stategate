@@ -217,6 +217,10 @@ message StreamMessageOpts {
   // must not be empty or contain spaces
   // * indicates any type
   string type =3[(validator.field) = {regex : "^\\S+$"}];
+  // consumer_group specifies the consumer group - the server will ensure that this is the sole consumer
+  //from this queue. When exclusive is false, the server will fairly distribute
+  //deliveries across multiple consumers of the same group.
+  string consumer_group =4;
 }
 
 // Message is an arbitrary message to be delivered to a Peer
@@ -342,6 +346,10 @@ message StreamEventOpts {
   // * indicates any type
   // must not be empty or contain spaces
   string type =2[(validator.field) = {regex : "^\\S+$"}];
+  // consumer_group specifies the consumer group - the server will ensure that this is the sole consumer
+  //from this queue. When exclusive is false, the server will fairly distribute
+  //deliveries across multiple consumers of the same group.
+  string consumer_group =3;
 }
 
 // Sort is a primitive used to sort an array

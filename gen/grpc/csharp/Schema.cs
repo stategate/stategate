@@ -39,76 +39,77 @@ namespace Stategate {
             "Qgvi3x8HCgVeXFMrJBITCgJpZBgEIAEoCUIH4t8fA5ABBCKLAQoGRW50aXR5",
             "EhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxTKyQSGQoEdHlwZRgCIAEoCUIL",
             "4t8fBwoFXlxTKyQSGAoDa2V5GAMgASgJQgvi3x8HCgVeXFMrJBIvCgZ2YWx1",
-            "ZXMYBCABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAEiaQoR",
-            "U3RyZWFtTWVzc2FnZU9wdHMSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMr",
-            "JBIcCgdjaGFubmVsGAIgASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAMgASgJ",
-            "Qgvi3x8HCgVeXFMrJCKOAQoHTWVzc2FnZRIbCgZkb21haW4YASABKAlCC+Lf",
-            "HwcKBV5cUyskEhwKB2NoYW5uZWwYAiABKAlCC+LfHwcKBV5cUyskEhkKBHR5",
-            "cGUYAyABKAlCC+LfHwcKBV5cUyskEi0KBGJvZHkYBCABKAsyFy5nb29nbGUu",
-            "cHJvdG9idWYuU3RydWN0Qgbi3x8CIAEiZwoFTXV0ZXgSGwoGZG9tYWluGAEg",
-            "ASgJQgvi3x8HCgVeXFMrJBIYCgNrZXkYAiABKAlCC+LfHwcKBV5cUyskEicK",
-            "A2V4cBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAilgEKBUNh",
-            "Y2hlEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxTKyQSGAoDa2V5GAIgASgJ",
-            "Qgvi3x8HCgVeXFMrJBItCgV2YWx1ZRgDIAEoCzIWLmdvb2dsZS5wcm90b2J1",
-            "Zi5WYWx1ZUIG4t8fAiABEicKA2V4cBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1",
-            "Zi5UaW1lc3RhbXAi7gEKC1BlZXJNZXNzYWdlEhMKAmlkGAEgASgJQgfi3x8D",
-            "kAEEEhsKBmRvbWFpbhgCIAEoCUIL4t8fBwoFXlxTKyQSHAoHY2hhbm5lbBgD",
-            "IAEoCUIL4t8fBwoFXlxTKyQSGQoEdHlwZRgEIAEoCUIL4t8fBwoFXlxTKyQS",
-            "LQoEYm9keRgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RCBuLfHwIg",
-            "ARIvCgZjbGFpbXMYBiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi",
-            "3x8CIAESFAoEdGltZRgHIAEoA0IG4t8fAhAAIi8KCEVudGl0aWVzEiMKCGVu",
-            "dGl0aWVzGAEgAygLMhEuc3RhdGVnYXRlLkVudGl0eSKmAQoQU2VhcmNoRW50",
-            "aXR5T3B0cxIbCgZkb21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUY",
-            "AiABKAlCC+LfHwcKBV5cUyskEhQKDHF1ZXJ5X3N0cmluZxgDIAEoCRIVCgVs",
-            "aW1pdBgEIAEoBUIG4t8fAhAAEg4KBm9mZnNldBgFIAEoBRIdCgRzb3J0GAkg",
-            "ASgLMg8uc3RhdGVnYXRlLlNvcnQivwEKD1NlYXJjaEV2ZW50T3B0cxIbCgZk",
-            "b21haW4YASABKAlCC+LfHwcKBV5cUyskEhkKBHR5cGUYAiABKAlCC+LfHwcK",
-            "BV5cUyskEhQKDHF1ZXJ5X3N0cmluZxgEIAEoCRILCgNtaW4YBSABKAMSCwoD",
-            "bWF4GAYgASgDEhUKBWxpbWl0GAcgASgFQgbi3x8CEAASDgoGb2Zmc2V0GAgg",
-            "ASgFEh0KBHNvcnQYCSABKAsyDy5zdGF0ZWdhdGUuU29ydCJJCg9TdHJlYW1F",
-            "dmVudE9wdHMSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBl",
-            "GAIgASgJQgvi3x8HCgVeXFMrJCImCgRTb3J0Eg0KBWZpZWxkGAEgASgJEg8K",
-            "B3JldmVyc2UYAiABKAgipgEKBUV2ZW50EhMKAmlkGAEgASgJQgfi3x8DkAEE",
-            "EikKBmVudGl0eRgCIAEoCzIRLnN0YXRlZ2F0ZS5FbnRpdHlCBuLfHwIgARIW",
-            "CgZtZXRob2QYBSABKAlCBuLfHwJYARIvCgZjbGFpbXMYAyABKAsyFy5nb29n",
-            "bGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAESFAoEdGltZRgEIAEoA0IG4t8f",
-            "AhAAIioKBkV2ZW50cxIgCgZldmVudHMYASADKAsyEC5zdGF0ZWdhdGUuRXZl",
-            "bnQy0AQKDUVudGl0eVNlcnZpY2USXwoDU2V0EhEuc3RhdGVnYXRlLkVudGl0",
-            "eRoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSItgtPkkwInGiUvYXBpL2VudGl0",
-            "eS9yZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9ElsKBEVkaXQSES5zdGF0ZWdh",
-            "dGUuRW50aXR5GhEuc3RhdGVnYXRlLkVudGl0eSItgtPkkwInMiUvYXBpL2Vu",
-            "dGl0eS9yZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9EmYKBlJldmVydBITLnN0",
-            "YXRlZ2F0ZS5FdmVudFJlZhoRLnN0YXRlZ2F0ZS5FbnRpdHkiNILT5JMCLhos",
-            "L2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fS9yZXZlcnQS",
-            "XQoDR2V0EhQuc3RhdGVnYXRlLkVudGl0eVJlZhoRLnN0YXRlZ2F0ZS5FbnRp",
-            "dHkiLYLT5JMCJxIlL2FwaS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97",
-            "a2V5fRJiCgNEZWwSFC5zdGF0ZWdhdGUuRW50aXR5UmVmGhYuZ29vZ2xlLnBy",
-            "b3RvYnVmLkVtcHR5Ii2C0+STAicqJS9hcGkvZW50aXR5L3JlZi97ZG9tYWlu",
-            "fS97dHlwZX0ve2tleX0SVgoGU2VhcmNoEhsuc3RhdGVnYXRlLlNlYXJjaEVu",
-            "dGl0eU9wdHMaEy5zdGF0ZWdhdGUuRW50aXRpZXMiGoLT5JMCFBISL2FwaS9l",
-            "bnRpdHkvc2VhcmNoMpgCCgxFdmVudFNlcnZpY2USUwoGU3RyZWFtEhouc3Rh",
-            "dGVnYXRlLlN0cmVhbUV2ZW50T3B0cxoQLnN0YXRlZ2F0ZS5FdmVudCIZgtPk",
-            "kwITEhEvYXBpL2V2ZW50L3N0cmVhbTABElIKBlNlYXJjaBIaLnN0YXRlZ2F0",
-            "ZS5TZWFyY2hFdmVudE9wdHMaES5zdGF0ZWdhdGUuRXZlbnRzIhmC0+STAhMS",
-            "ES9hcGkvZXZlbnQvc2VhcmNoEl8KA0dldBITLnN0YXRlZ2F0ZS5FdmVudFJl",
-            "ZhoQLnN0YXRlZ2F0ZS5FdmVudCIxgtPkkwIrEikvYXBpL2V2ZW50L3JlZi97",
-            "ZG9tYWlufS97dHlwZX0ve2tleX0ve2lkfTLCAQoLUGVlclNlcnZpY2USVwoJ",
-            "QnJvYWRjYXN0EhIuc3RhdGVnYXRlLk1lc3NhZ2UaFi5nb29nbGUucHJvdG9i",
-            "dWYuRW1wdHkiHoLT5JMCGCITL2FwaS9wZWVyL2Jyb2FkY2FzdDoBKhJaCgZT",
-            "dHJlYW0SHC5zdGF0ZWdhdGUuU3RyZWFtTWVzc2FnZU9wdHMaFi5zdGF0ZWdh",
-            "dGUuUGVlck1lc3NhZ2UiGILT5JMCEhIQL2FwaS9wZWVyL3N0cmVhbTABMpYC",
-            "CgxDYWNoZVNlcnZpY2USVgoDU2V0EhAuc3RhdGVnYXRlLkNhY2hlGhYuZ29v",
-            "Z2xlLnByb3RvYnVmLkVtcHR5IiWC0+STAh8aHS9hcGkvY2FjaGUvcmVmL3tk",
-            "b21haW59L3trZXl9ElMKA0dldBITLnN0YXRlZ2F0ZS5DYWNoZVJlZhoQLnN0",
-            "YXRlZ2F0ZS5DYWNoZSIlgtPkkwIfEh0vYXBpL2NhY2hlL3JlZi97ZG9tYWlu",
-            "fS97a2V5fRJZCgNEZWwSEy5zdGF0ZWdhdGUuQ2FjaGVSZWYaFi5nb29nbGUu",
-            "cHJvdG9idWYuRW1wdHkiJYLT5JMCHyodL2FwaS9jYWNoZS9yZWYve2RvbWFp",
-            "bn0ve2tleX0yxQEKDE11dGV4U2VydmljZRJXCgRMb2NrEhAuc3RhdGVnYXRl",
-            "Lk11dGV4GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IiWC0+STAh8aHS9hcGkv",
-            "bXV0ZXgvcmVmL3tkb21haW59L3trZXl9ElwKBlVubG9jaxITLnN0YXRlZ2F0",
-            "ZS5NdXRleFJlZhoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIlgtPkkwIfGh0v",
-            "YXBpL211dGV4L3JlZi97ZG9tYWlufS97a2V5fUILWglzdGF0ZWdhdGViBnBy",
-            "b3RvMw=="));
+            "ZXMYBCABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAEigQEK",
+            "EVN0cmVhbU1lc3NhZ2VPcHRzEhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxT",
+            "KyQSHAoHY2hhbm5lbBgCIAEoCUIL4t8fBwoFXlxTKyQSGQoEdHlwZRgDIAEo",
+            "CUIL4t8fBwoFXlxTKyQSFgoOY29uc3VtZXJfZ3JvdXAYBCABKAkijgEKB01l",
+            "c3NhZ2USGwoGZG9tYWluGAEgASgJQgvi3x8HCgVeXFMrJBIcCgdjaGFubmVs",
+            "GAIgASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAMgASgJQgvi3x8HCgVeXFMr",
+            "JBItCgRib2R5GAQgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8f",
+            "AiABImcKBU11dGV4EhsKBmRvbWFpbhgBIAEoCUIL4t8fBwoFXlxTKyQSGAoD",
+            "a2V5GAIgASgJQgvi3x8HCgVeXFMrJBInCgNleHAYBCABKAsyGi5nb29nbGUu",
+            "cHJvdG9idWYuVGltZXN0YW1wIpYBCgVDYWNoZRIbCgZkb21haW4YASABKAlC",
+            "C+LfHwcKBV5cUyskEhgKA2tleRgCIAEoCUIL4t8fBwoFXlxTKyQSLQoFdmFs",
+            "dWUYAyABKAsyFi5nb29nbGUucHJvdG9idWYuVmFsdWVCBuLfHwIgARInCgNl",
+            "eHAYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIu4BCgtQZWVy",
+            "TWVzc2FnZRITCgJpZBgBIAEoCUIH4t8fA5ABBBIbCgZkb21haW4YAiABKAlC",
+            "C+LfHwcKBV5cUyskEhwKB2NoYW5uZWwYAyABKAlCC+LfHwcKBV5cUyskEhkK",
+            "BHR5cGUYBCABKAlCC+LfHwcKBV5cUyskEi0KBGJvZHkYBSABKAsyFy5nb29n",
+            "bGUucHJvdG9idWYuU3RydWN0Qgbi3x8CIAESLwoGY2xhaW1zGAYgASgLMhcu",
+            "Z29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABEhQKBHRpbWUYByABKANC",
+            "BuLfHwIQACIvCghFbnRpdGllcxIjCghlbnRpdGllcxgBIAMoCzIRLnN0YXRl",
+            "Z2F0ZS5FbnRpdHkipgEKEFNlYXJjaEVudGl0eU9wdHMSGwoGZG9tYWluGAEg",
+            "ASgJQgvi3x8HCgVeXFMrJBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMrJBIU",
+            "CgxxdWVyeV9zdHJpbmcYAyABKAkSFQoFbGltaXQYBCABKAVCBuLfHwIQABIO",
+            "CgZvZmZzZXQYBSABKAUSHQoEc29ydBgJIAEoCzIPLnN0YXRlZ2F0ZS5Tb3J0",
+            "Ir8BCg9TZWFyY2hFdmVudE9wdHMSGwoGZG9tYWluGAEgASgJQgvi3x8HCgVe",
+            "XFMrJBIZCgR0eXBlGAIgASgJQgvi3x8HCgVeXFMrJBIUCgxxdWVyeV9zdHJp",
+            "bmcYBCABKAkSCwoDbWluGAUgASgDEgsKA21heBgGIAEoAxIVCgVsaW1pdBgH",
+            "IAEoBUIG4t8fAhAAEg4KBm9mZnNldBgIIAEoBRIdCgRzb3J0GAkgASgLMg8u",
+            "c3RhdGVnYXRlLlNvcnQiYQoPU3RyZWFtRXZlbnRPcHRzEhsKBmRvbWFpbhgB",
+            "IAEoCUIL4t8fBwoFXlxTKyQSGQoEdHlwZRgCIAEoCUIL4t8fBwoFXlxTKyQS",
+            "FgoOY29uc3VtZXJfZ3JvdXAYAyABKAkiJgoEU29ydBINCgVmaWVsZBgBIAEo",
+            "CRIPCgdyZXZlcnNlGAIgASgIIqYBCgVFdmVudBITCgJpZBgBIAEoCUIH4t8f",
+            "A5ABBBIpCgZlbnRpdHkYAiABKAsyES5zdGF0ZWdhdGUuRW50aXR5Qgbi3x8C",
+            "IAESFgoGbWV0aG9kGAUgASgJQgbi3x8CWAESLwoGY2xhaW1zGAMgASgLMhcu",
+            "Z29vZ2xlLnByb3RvYnVmLlN0cnVjdEIG4t8fAiABEhQKBHRpbWUYBCABKANC",
+            "BuLfHwIQACIqCgZFdmVudHMSIAoGZXZlbnRzGAEgAygLMhAuc3RhdGVnYXRl",
+            "LkV2ZW50MtAECg1FbnRpdHlTZXJ2aWNlEl8KA1NldBIRLnN0YXRlZ2F0ZS5F",
+            "bnRpdHkaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiLYLT5JMCJxolL2FwaS9l",
+            "bnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJbCgRFZGl0EhEuc3Rh",
+            "dGVnYXRlLkVudGl0eRoRLnN0YXRlZ2F0ZS5FbnRpdHkiLYLT5JMCJzIlL2Fw",
+            "aS9lbnRpdHkvcmVmL3tkb21haW59L3t0eXBlfS97a2V5fRJmCgZSZXZlcnQS",
+            "Ey5zdGF0ZWdhdGUuRXZlbnRSZWYaES5zdGF0ZWdhdGUuRW50aXR5IjSC0+ST",
+            "Ai4aLC9hcGkvZW50aXR5L3JlZi97ZG9tYWlufS97dHlwZX0ve2tleX0vcmV2",
+            "ZXJ0El0KA0dldBIULnN0YXRlZ2F0ZS5FbnRpdHlSZWYaES5zdGF0ZWdhdGUu",
+            "RW50aXR5Ii2C0+STAicSJS9hcGkvZW50aXR5L3JlZi97ZG9tYWlufS97dHlw",
+            "ZX0ve2tleX0SYgoDRGVsEhQuc3RhdGVnYXRlLkVudGl0eVJlZhoWLmdvb2ds",
+            "ZS5wcm90b2J1Zi5FbXB0eSItgtPkkwInKiUvYXBpL2VudGl0eS9yZWYve2Rv",
+            "bWFpbn0ve3R5cGV9L3trZXl9ElYKBlNlYXJjaBIbLnN0YXRlZ2F0ZS5TZWFy",
+            "Y2hFbnRpdHlPcHRzGhMuc3RhdGVnYXRlLkVudGl0aWVzIhqC0+STAhQSEi9h",
+            "cGkvZW50aXR5L3NlYXJjaDKYAgoMRXZlbnRTZXJ2aWNlElMKBlN0cmVhbRIa",
+            "LnN0YXRlZ2F0ZS5TdHJlYW1FdmVudE9wdHMaEC5zdGF0ZWdhdGUuRXZlbnQi",
+            "GYLT5JMCExIRL2FwaS9ldmVudC9zdHJlYW0wARJSCgZTZWFyY2gSGi5zdGF0",
+            "ZWdhdGUuU2VhcmNoRXZlbnRPcHRzGhEuc3RhdGVnYXRlLkV2ZW50cyIZgtPk",
+            "kwITEhEvYXBpL2V2ZW50L3NlYXJjaBJfCgNHZXQSEy5zdGF0ZWdhdGUuRXZl",
+            "bnRSZWYaEC5zdGF0ZWdhdGUuRXZlbnQiMYLT5JMCKxIpL2FwaS9ldmVudC9y",
+            "ZWYve2RvbWFpbn0ve3R5cGV9L3trZXl9L3tpZH0ywgEKC1BlZXJTZXJ2aWNl",
+            "ElcKCUJyb2FkY2FzdBISLnN0YXRlZ2F0ZS5NZXNzYWdlGhYuZ29vZ2xlLnBy",
+            "b3RvYnVmLkVtcHR5Ih6C0+STAhgiEy9hcGkvcGVlci9icm9hZGNhc3Q6ASoS",
+            "WgoGU3RyZWFtEhwuc3RhdGVnYXRlLlN0cmVhbU1lc3NhZ2VPcHRzGhYuc3Rh",
+            "dGVnYXRlLlBlZXJNZXNzYWdlIhiC0+STAhISEC9hcGkvcGVlci9zdHJlYW0w",
+            "ATKWAgoMQ2FjaGVTZXJ2aWNlElYKA1NldBIQLnN0YXRlZ2F0ZS5DYWNoZRoW",
+            "Lmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIlgtPkkwIfGh0vYXBpL2NhY2hlL3Jl",
+            "Zi97ZG9tYWlufS97a2V5fRJTCgNHZXQSEy5zdGF0ZWdhdGUuQ2FjaGVSZWYa",
+            "EC5zdGF0ZWdhdGUuQ2FjaGUiJYLT5JMCHxIdL2FwaS9jYWNoZS9yZWYve2Rv",
+            "bWFpbn0ve2tleX0SWQoDRGVsEhMuc3RhdGVnYXRlLkNhY2hlUmVmGhYuZ29v",
+            "Z2xlLnByb3RvYnVmLkVtcHR5IiWC0+STAh8qHS9hcGkvY2FjaGUvcmVmL3tk",
+            "b21haW59L3trZXl9MsUBCgxNdXRleFNlcnZpY2USVwoETG9jaxIQLnN0YXRl",
+            "Z2F0ZS5NdXRleBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eSIlgtPkkwIfGh0v",
+            "YXBpL211dGV4L3JlZi97ZG9tYWlufS97a2V5fRJcCgZVbmxvY2sSEy5zdGF0",
+            "ZWdhdGUuTXV0ZXhSZWYaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiJYLT5JMC",
+            "HxodL2FwaS9tdXRleC9yZWYve2RvbWFpbn0ve2tleX1CC1oJc3RhdGVnYXRl",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Validator.ValidatorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -117,7 +118,7 @@ namespace Stategate {
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.EntityRef), global::Stategate.EntityRef.Parser, new[]{ "Domain", "Type", "Key" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.EventRef), global::Stategate.EventRef.Parser, new[]{ "Domain", "Type", "Key", "Id" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entity), global::Stategate.Entity.Parser, new[]{ "Domain", "Type", "Key", "Values" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamMessageOpts), global::Stategate.StreamMessageOpts.Parser, new[]{ "Domain", "Channel", "Type" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamMessageOpts), global::Stategate.StreamMessageOpts.Parser, new[]{ "Domain", "Channel", "Type", "ConsumerGroup" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Message), global::Stategate.Message.Parser, new[]{ "Domain", "Channel", "Type", "Body" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Mutex), global::Stategate.Mutex.Parser, new[]{ "Domain", "Key", "Exp" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Cache), global::Stategate.Cache.Parser, new[]{ "Domain", "Key", "Value", "Exp" }, null, null, null),
@@ -125,7 +126,7 @@ namespace Stategate {
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Entities), global::Stategate.Entities.Parser, new[]{ "Entities_" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEntityOpts), global::Stategate.SearchEntityOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Limit", "Offset", "Sort" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.SearchEventOpts), global::Stategate.SearchEventOpts.Parser, new[]{ "Domain", "Type", "QueryString", "Min", "Max", "Limit", "Offset", "Sort" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamEventOpts), global::Stategate.StreamEventOpts.Parser, new[]{ "Domain", "Type" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.StreamEventOpts), global::Stategate.StreamEventOpts.Parser, new[]{ "Domain", "Type", "ConsumerGroup" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Sort), global::Stategate.Sort.Parser, new[]{ "Field", "Reverse" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Event), global::Stategate.Event.Parser, new[]{ "Id", "Entity", "Method", "Claims", "Time" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Stategate.Events), global::Stategate.Events.Parser, new[]{ "Events_" }, null, null, null)
@@ -1169,6 +1170,7 @@ namespace Stategate {
       domain_ = other.domain_;
       channel_ = other.channel_;
       type_ = other.type_;
+      consumerGroup_ = other.consumerGroup_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1225,6 +1227,20 @@ namespace Stategate {
       }
     }
 
+    /// <summary>Field number for the "consumer_group" field.</summary>
+    public const int ConsumerGroupFieldNumber = 4;
+    private string consumerGroup_ = "";
+    /// <summary>
+    /// consumer_group
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string ConsumerGroup {
+      get { return consumerGroup_; }
+      set {
+        consumerGroup_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as StreamMessageOpts);
@@ -1241,6 +1257,7 @@ namespace Stategate {
       if (Domain != other.Domain) return false;
       if (Channel != other.Channel) return false;
       if (Type != other.Type) return false;
+      if (ConsumerGroup != other.ConsumerGroup) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1250,6 +1267,7 @@ namespace Stategate {
       if (Domain.Length != 0) hash ^= Domain.GetHashCode();
       if (Channel.Length != 0) hash ^= Channel.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (ConsumerGroup.Length != 0) hash ^= ConsumerGroup.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1275,6 +1293,10 @@ namespace Stategate {
         output.WriteRawTag(26);
         output.WriteString(Type);
       }
+      if (ConsumerGroup.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(ConsumerGroup);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1291,6 +1313,9 @@ namespace Stategate {
       }
       if (Type.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      }
+      if (ConsumerGroup.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ConsumerGroup);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1311,6 +1336,9 @@ namespace Stategate {
       }
       if (other.Type.Length != 0) {
         Type = other.Type;
+      }
+      if (other.ConsumerGroup.Length != 0) {
+        ConsumerGroup = other.ConsumerGroup;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1333,6 +1361,10 @@ namespace Stategate {
           }
           case 26: {
             Type = input.ReadString();
+            break;
+          }
+          case 34: {
+            ConsumerGroup = input.ReadString();
             break;
           }
         }
@@ -3177,6 +3209,7 @@ namespace Stategate {
     public StreamEventOpts(StreamEventOpts other) : this() {
       domain_ = other.domain_;
       type_ = other.type_;
+      consumerGroup_ = other.consumerGroup_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3217,6 +3250,20 @@ namespace Stategate {
       }
     }
 
+    /// <summary>Field number for the "consumer_group" field.</summary>
+    public const int ConsumerGroupFieldNumber = 3;
+    private string consumerGroup_ = "";
+    /// <summary>
+    /// consumer_group
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string ConsumerGroup {
+      get { return consumerGroup_; }
+      set {
+        consumerGroup_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as StreamEventOpts);
@@ -3232,6 +3279,7 @@ namespace Stategate {
       }
       if (Domain != other.Domain) return false;
       if (Type != other.Type) return false;
+      if (ConsumerGroup != other.ConsumerGroup) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3240,6 +3288,7 @@ namespace Stategate {
       int hash = 1;
       if (Domain.Length != 0) hash ^= Domain.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
+      if (ConsumerGroup.Length != 0) hash ^= ConsumerGroup.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3261,6 +3310,10 @@ namespace Stategate {
         output.WriteRawTag(18);
         output.WriteString(Type);
       }
+      if (ConsumerGroup.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(ConsumerGroup);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3274,6 +3327,9 @@ namespace Stategate {
       }
       if (Type.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      }
+      if (ConsumerGroup.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ConsumerGroup);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3292,6 +3348,9 @@ namespace Stategate {
       if (other.Type.Length != 0) {
         Type = other.Type;
       }
+      if (other.ConsumerGroup.Length != 0) {
+        ConsumerGroup = other.ConsumerGroup;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -3309,6 +3368,10 @@ namespace Stategate {
           }
           case 18: {
             Type = input.ReadString();
+            break;
+          }
+          case 26: {
+            ConsumerGroup = input.ReadString();
             break;
           }
         }

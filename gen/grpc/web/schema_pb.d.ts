@@ -150,6 +150,9 @@ export class StreamMessageOpts extends jspb.Message {
   getType(): string;
   setType(value: string): StreamMessageOpts;
 
+  getConsumerGroup(): string;
+  setConsumerGroup(value: string): StreamMessageOpts;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StreamMessageOpts.AsObject;
   static toObject(includeInstance: boolean, msg: StreamMessageOpts): StreamMessageOpts.AsObject;
@@ -163,6 +166,7 @@ export namespace StreamMessageOpts {
     domain: string,
     channel: string,
     type: string,
+    consumerGroup: string,
   }
 }
 
@@ -421,6 +425,9 @@ export class StreamEventOpts extends jspb.Message {
   getType(): string;
   setType(value: string): StreamEventOpts;
 
+  getConsumerGroup(): string;
+  setConsumerGroup(value: string): StreamEventOpts;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StreamEventOpts.AsObject;
   static toObject(includeInstance: boolean, msg: StreamEventOpts): StreamEventOpts.AsObject;
@@ -433,6 +440,7 @@ export namespace StreamEventOpts {
   export type AsObject = {
     domain: string,
     type: string,
+    consumerGroup: string,
   }
 }
 

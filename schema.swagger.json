@@ -610,6 +610,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "consumerGroup",
+            "description": "consumer_group.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -734,6 +741,13 @@
           {
             "name": "type",
             "description": "message's type (ex: comment) to subscribe to\nmust not be empty or contain spaces\n* indicates any type.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "consumerGroup",
+            "description": "consumer_group.",
             "in": "query",
             "required": false,
             "type": "string"

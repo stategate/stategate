@@ -196,6 +196,10 @@ input StreamMessageOpts {
     # must not be empty or contain spaces
     # * indicates any type
     type: String!
+    # consumer_group specifies the consumer group - the server will ensure that this is the sole consumer
+    # from this queue. When exclusive is false, the server will fairly distribute
+    # deliveries across multiple consumers of the same group.
+    consumer_group: String!
 }
 
 #  SearchEntityOpts are options when querying the current values of entities.
@@ -252,6 +256,10 @@ input StreamEventOpts {
     # * indicates any type
     # must not be empty or contain spaces
     type: String!
+    # consumer_group specifies the consumer group - the server will ensure that this is the sole consumer
+    # from this queue. When exclusive is false, the server will fairly distribute
+    # deliveries across multiple consumers of the same group.
+    consumer_group: String!
 }
 
 # Query holds read related methods
